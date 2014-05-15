@@ -71,9 +71,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="unittest1.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\BaseThread.cpp">
       <Filter>Quelldateien\Classes under test</Filter>
     </ClCompile>
@@ -112,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="..\src\DateTime.cpp">
       <Filter>Quelldateien\Classes under test</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitTestDoubleHelper.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
