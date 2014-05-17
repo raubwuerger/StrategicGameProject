@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "HighResolutionTimer.h"
 #include "LogInterface.h"
+#include "StringHelper.h"
 
 
 namespace jha
@@ -15,7 +16,9 @@ HighResolutionTimer::HighResolutionTimer( bool start )
 	BOOL highResolution = QueryPerformanceFrequency( &m_Frequency );
 	if( highResolution == TRUE )
 	{
-		jha::log->Log("High resolution timer available [Ticks per second]: " +int(m_Frequency.QuadPart),jha::LogInterface::LL_DEBUG, "planet_gui" );
+		std::string message("High resolution timer available [Ticks per second]: ");
+		message += StringHelper().ConvertFromInt64(m_Frequency.QuadPart);
+		jha::log->Log( message,jha::LogInterface::LL_DEBUG, "HighResolutionTimer" );
 		if( start )
 		{
 			Start();
