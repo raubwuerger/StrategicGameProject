@@ -66,12 +66,18 @@
     <ClInclude Include="..\src\DateTime.h">
       <Filter>Headerdateien\Classes under test</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\DirectoryParser.h">
+      <Filter>Headerdateien\Classes under test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\File.h">
+      <Filter>Headerdateien\Classes under test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\StringHelper.h">
+      <Filter>Headerdateien\Classes under test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="unittest1.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="..\src\BaseThread.cpp">
@@ -111,6 +117,18 @@
       <Filter>Quelldateien\Classes under test</Filter>
     </ClCompile>
     <ClCompile Include="..\src\DateTime.cpp">
+      <Filter>Quelldateien\Classes under test</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitTestDoubleHelper.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DirectoryParser.cpp">
+      <Filter>Quelldateien\Classes under test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\File.cpp">
+      <Filter>Quelldateien\Classes under test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\StringHelper.cpp">
       <Filter>Quelldateien\Classes under test</Filter>
     </ClCompile>
   </ItemGroup>

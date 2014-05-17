@@ -84,7 +84,9 @@
   <ItemGroup>
     <ClInclude Include="..\src\BaseThread.h" />
     <ClInclude Include="..\src\DateTime.h" />
+    <ClInclude Include="..\src\DirectoryParser.h" />
     <ClInclude Include="..\src\DoubleHelper.h" />
+    <ClInclude Include="..\src\File.h" />
     <ClInclude Include="..\src\HighResolutionTimer.h" />
     <ClInclude Include="..\src\LogFactory.h" />
     <ClInclude Include="..\src\Logger.h" />
@@ -95,13 +97,16 @@
     <ClInclude Include="..\src\LogManager.h" />
     <ClInclude Include="..\src\LogManagerThread.h" />
     <ClInclude Include="..\src\LogMessage.h" />
+    <ClInclude Include="..\src\StringHelper.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\BaseThread.cpp" />
     <ClCompile Include="..\src\DateTime.cpp" />
+    <ClCompile Include="..\src\DirectoryParser.cpp" />
     <ClCompile Include="..\src\DoubleHelper.cpp" />
+    <ClCompile Include="..\src\File.cpp" />
     <ClCompile Include="..\src\HighResolutionTimer.cpp" />
     <ClCompile Include="..\src\LogFactory.cpp" />
     <ClCompile Include="..\src\Logger.cpp" />
@@ -112,11 +117,12 @@
     <ClCompile Include="..\src\LogManager.cpp" />
     <ClCompile Include="..\src\LogManagerThread.cpp" />
     <ClCompile Include="..\src\LogMessage.cpp" />
+    <ClCompile Include="..\src\StringHelper.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="unittest1.cpp" />
+    <ClCompile Include="UnitTestDoubleHelper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
