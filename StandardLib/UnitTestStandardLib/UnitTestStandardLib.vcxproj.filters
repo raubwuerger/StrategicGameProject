@@ -122,6 +122,7 @@
     <ClCompile Include="UnitTestDoubleHelper.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\src\DirectoryParser.cpp">
       <Filter>Quelldateien\Classes under test</Filter>
     </ClCompile>
@@ -131,5 +132,7 @@
     <ClCompile Include="..\src\StringHelper.cpp">
       <Filter>Quelldateien\Classes under test</Filter>
     </ClCompile>
+=======
+>>>>>>> ec0bc49f49a53b5be3aa5c6c6cc5255fc8373675
   </ItemGroup>
 </Project>
