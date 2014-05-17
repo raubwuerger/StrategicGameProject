@@ -1,0 +1,5 @@
+[Project]
+AdditionalDirectories=
+IncludePath=.
+Language=Cpp
+SourceRoot=.
