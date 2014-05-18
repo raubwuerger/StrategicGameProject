@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\StandardLib">
+      <UniqueIdentifier>{80aa0aca-29eb-4866-9106-29c40e44b868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\StandardLib">
+      <UniqueIdentifier>{f62373e4-0f99-4130-9727-ad02965bbe45}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HoIScenarioDesigner.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="HoIScenarioDesignerDoc.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="HoIScenarioDesignerView.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FileView.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassView.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewTree.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputWnd.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertiesWnd.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CalendarBar.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\DirectoryParser.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\File.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\StringHelper.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\HighResolutionTimer.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\BaseThread.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\DateTime.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\DoubleHelper.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LogFactory.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\Logger.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LoggerCout.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LoggerFile.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LogInterface.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LogLevel.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LogManager.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LogManagerThread.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\LogMessage.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\StandardLib\src\Directory.h">
+      <Filter>Headerdateien\StandardLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HoIScenarioDesigner.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="HoIScenarioDesignerDoc.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="HoIScenarioDesignerView.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="FileView.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassView.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewTree.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputWnd.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertiesWnd.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="CalendarBar.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\DirectoryParser.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\File.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\StringHelper.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\HighResolutionTimer.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\BaseThread.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\DateTime.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\DoubleHelper.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LogFactory.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\Logger.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LoggerCout.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LoggerFile.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LogInterface.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LogLevel.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LogManager.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LogManagerThread.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\LogMessage.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\StandardLib\src\Directory.cpp">
+      <Filter>Quelldateien\StandardLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HoIScenarioDesigner.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\file_view.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\file_view_hc.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\class_view.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\class_view_hc.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\fileview.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\fileview_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\classview.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\classview_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\explorer.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\explorer_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\sort.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\sort_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\menuimages.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\menuimages_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\output_wnd.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\output_wnd_hc.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\properties_wnd.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\properties_wnd_hc.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\properties.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\properties_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\nav_large.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\nav_large_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\pages.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\pages_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\pages_small.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\pages_small_hc.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\info.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="UserImages.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\HoIScenarioDesignerDoc.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\HoIScenarioDesigner.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\Toolbar256.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\HoIScenarioDesigner.rc2">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HoIScenarioDesigner", "HoIScenarioDesigner.vcxproj", "{EEBA4CD1-E84F-424E-81D0-5FF9DC523F80}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestStandardLib", "..\..\StandardLib\UnitTestStandardLib\UnitTestStandardLib.vcxproj", "{C9D47611-B608-477D-A43E-29757BA50F25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEBA4CD1-E84F-424E-81D0-5FF9DC523F80}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EEBA4CD1-E84F-424E-81D0-5FF9DC523F80}.Debug|Win32.Build.0 = Debug|Win32
+		{EEBA4CD1-E84F-424E-81D0-5FF9DC523F80}.Release|Win32.ActiveCfg = Release|Win32
+		{EEBA4CD1-E84F-424E-81D0-5FF9DC523F80}.Release|Win32.Build.0 = Release|Win32
+		{C9D47611-B608-477D-A43E-29757BA50F25}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C9D47611-B608-477D-A43E-29757BA50F25}.Debug|Win32.Build.0 = Debug|Win32
+		{C9D47611-B608-477D-A43E-29757BA50F25}.Release|Win32.ActiveCfg = Release|Win32
+		{C9D47611-B608-477D-A43E-29757BA50F25}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

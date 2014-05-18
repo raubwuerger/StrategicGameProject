@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CCalendarBar">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGAAAAAAAEAAAkAAAAAgAAAACAAAMEAAAAAAAAAAAg=</HashCode>
+      <FileName>CalendarBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CClassToolBar">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ClassView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CClassView">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACACABAgAEAAAwAhAAMgAAAAiAEgAEAAAEBgEAAACA=</HashCode>
+      <FileName>ClassView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
