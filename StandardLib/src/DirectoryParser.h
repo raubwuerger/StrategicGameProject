@@ -4,6 +4,8 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "File.h"
+#include "Directory.h"
 
 namespace jha
 {
@@ -18,7 +20,9 @@ public:
 /** */
 	std::vector<jha::File> ParseRecursive( const std::wstring& path ) const;
 /** */
-	std::vector<jha::File> Parse( const std::wstring& path, const std::wstring& mask = _T("*.*") ) const;
+	std::vector<jha::File::unique> CreateFlatFileList( const std::wstring& path, const std::wstring& mask = _T("*.*") ) const;
+/** */
+	Directory* CreateStructuredList( const std::wstring& path, const std::wstring& mask = _T("*.*") ) const;
 private:
 	int	m_EstimatedFiles;
 };
