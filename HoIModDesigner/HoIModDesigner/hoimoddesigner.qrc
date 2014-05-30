@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/HoIModDesigner">
+        <file>images/delete.png</file>
+        <file>images/recycle.ico</file>
+        <file>images/user.ico</file>
+        <file>images/add2.ico</file>
+        <file>images/exit.ico</file>
+        <file>images/folder_document.ico</file>
+        <file>images/about.ico</file>
+    </qresource>
+</RCC>
