@@ -9,15 +9,12 @@
 #include <QPoint>
 
 //=================================================================================================
-void PolygonHelper::FindSurroundingRect( const QPolygon &points, int &width, int &height, int &left, int &top ) const
+QRect PolygonHelper::FindSurroundingRect( const QPolygon &points ) const
 {
-    width   = 0;
-    height  = 0;
-    left    = 0;
-    top     = 0;
+	QRect result(0,0,0,0);
     if( points.isEmpty() == true )
     {
-        return;
+        return result;
     }
     int minX = points.at(0).x();
     int maxX = points.at(0).x();
@@ -50,10 +47,11 @@ void PolygonHelper::FindSurroundingRect( const QPolygon &points, int &width, int
             }
         }
     }
-    width   = (maxX - minX) + 1;
-    height  = (maxY - minY) + 1;
-    left    = minX;
-    top     = minY;
+	result.setX(minX);
+	result.setY(minY);
+	result.setWidth((maxX - minX) + 1);
+	result.setHeight((maxY - minY) + 1);
+	return result;
 }
 
 //================================================================================
@@ -110,32 +108,90 @@ QPolygon PolygonHelper::SortToProvinceContour( QPolygon& firstChancePoints, QPol
     sorted.append(first);
     while(!firstChancePoints.isEmpty())
     {
-        int found = FindIndexOfNearestNeigbour(firstChancePoints,sorted.last());
-        if( found == -1 )
+        std::vector<int> found = FindIndexOfNearestNeigbour(firstChancePoints,sorted.last());
+        if( found.empty() == true )
         {
-			int foundInSecondChance = FindIndexOfNearestNeigbour( secondChancePoints, sorted.last());
-			if( foundInSecondChance == -1 )
+			found = FindIndexOfNearestNeigbour( secondChancePoints, sorted.last());
+			if( found.empty() == true )
 			{
 				//HJMessageManager::Instance()->DoPostMessage(HJMessage::mtDEBUG,"Kein nächster Punkt gefunden");
 				return sorted;
 			}
-			const QPoint &p = secondChancePoints.at(foundInSecondChance);
+			const QPoint &p = secondChancePoints.at(found.at(0));
 			sorted.append(p);
-			secondChancePoints.remove(foundInSecondChance);
+			secondChancePoints.remove(found.at(0));
         }
 		else
 		{
-			const QPoint &p = firstChancePoints.at(found);
+			const QPoint &p = firstChancePoints.at(found.at(0));
 			sorted.append(p);
-			firstChancePoints.remove(found);
+			firstChancePoints.remove(found.at(0));
 		}
     }
     return sorted;
 }
 
 //================================================================================
-int PolygonHelper::FindIndexOfNearestNeigbour( const QPolygon &neigbours, const QPoint &p ) const
+QPolygon PolygonHelper::SortToProvinceContour( QPolygon& firstChancePoints ) const 
 {
+	QPolygon sorted;
+	const QPoint &first = firstChancePoints.at(0);
+	sorted.append(first);
+	firstChancePoints.remove(0);
+	while(!firstChancePoints.isEmpty())
+	{
+		std::vector<int> found = FindIndexOfNearestNeigbour(firstChancePoints,sorted.last());
+		if( found.empty() == true )
+		{
+			//HJMessageManager::Instance()->DoPostMessage(HJMessage::mtDEBUG,"Kein nächster Punkt gefunden");
+			return sorted;
+		}
+		const QPoint &p = firstChancePoints.at(found.at(0));
+		sorted.append(p);
+		firstChancePoints.remove(found.at(0));
+	}
+	return sorted;
+}
+
+//================================================================================
+QPolygon PolygonHelper::SortToProvinceContourFlip( QPolygon& firstChancePoints ) const 
+{
+	QPolygon sorted;
+	const QPoint &first = firstChancePoints.at(0);
+	sorted.append(first);
+	firstChancePoints.remove(0);
+	std::vector<int> lastFound;
+	while(!firstChancePoints.isEmpty())
+	{
+		lastFound = FindIndexOfNearestNeigbour(firstChancePoints,sorted.last());
+		if( lastFound.empty() == true )
+		{
+			//HJMessageManager::Instance()->DoPostMessage(HJMessage::mtDEBUG,"Kein nächster Punkt gefunden");
+			if( sorted.size() > 1 )
+			{
+				const QPoint last = sorted.at(sorted.size()-1);
+				const QPoint beforeLast = sorted.at(sorted.size()-2);
+				sorted.setPoint(sorted.size()-1, beforeLast);
+				sorted.setPoint(sorted.size()-2, last);
+			}
+
+			lastFound = FindIndexOfNearestNeigbour(firstChancePoints,sorted.last());
+			if( lastFound.empty() == true )
+			{
+				return sorted;
+			}
+		}
+		const QPoint &p = firstChancePoints.at(lastFound.at(0));
+		sorted.append(p);
+		firstChancePoints.remove(lastFound.at(0));
+	}
+	return sorted;
+}
+
+//================================================================================
+std::vector<int> PolygonHelper::FindIndexOfNearestNeigbour( const QPolygon &neigbours, const QPoint &p ) const
+{
+	std::vector<int> result;
     QPolygon surroundOrdered; //Zuerst die Horizontal/Vertikalen, dann die diagonalen
     surroundOrdered.append(QPoint(p.x()+1,p.y()));
     surroundOrdered.append(QPoint(p.x(),p.y()-1));
@@ -150,94 +206,63 @@ int PolygonHelper::FindIndexOfNearestNeigbour( const QPolygon &neigbours, const 
         int found = neigbours.indexOf(surroundOrdered.at(i));
         if( found != -1 )
         {
-            return found;
+            result.push_back(found);
         }
     }
 
-    return -1;
+    return result;
 }
 
 //================================================================================
-bool PolygonHelper::IsMiddlePoint( const QPoint &point, const QImage &image, int allowedExternalColors ) const
+int PolygonHelper::CalcNeigboursColorCount( const QPoint &point, const QImage &image ) const
 {
 	if( image.isNull() == true )
 	{
-		return false;
+		return -1;
 	}
 	QRgb colorOfPoint = image.pixel( point );
 	int externalsColorCount = 0;
-	if( ColorsIdentical( QPoint(point.x()-1,point.y()-1), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x()-1,point.y()-1), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x(),point.y()-1), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x(),point.y()-1), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x()+1,point.y()-1), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x()+1,point.y()-1), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x()-1,point.y()), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x()-1,point.y()), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x()+1,point.y()), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x()+1,point.y()), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x()-1,point.y()+1), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x()-1,point.y()+1), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x(),point.y()+1), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x(),point.y()+1), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
-	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
 	}
 
-	if( ColorsIdentical( QPoint(point.x()+1,point.y()+1), colorOfPoint, image ) == false )
+	if( ColorsIdentical( QPoint(point.x()+1,point.y()+1), colorOfPoint, image ) == true )
 	{
 		externalsColorCount++;
 	}
-	if( externalsColorCount > allowedExternalColors )
-	{
-		return false;
-	}
-	return true;
+
+	return externalsColorCount;
 }
 
 // End of file PolygonHelper.cpp

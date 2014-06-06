@@ -20,18 +20,24 @@ public:
 /** Versucht die übergebenen Punkt-Liste so zu sortiered das alle Punkte in einer Reihe sind. Problem des nächsten Nachbarns 
   * Später in Helperklasse auslagern! */
     QPolygon SortToProvinceContour( QPolygon& firstChancePoints, QPolygon& secondChancePoints ) const;
+/** Versucht die übergebenen Punkt-Liste so zu sortiered das alle Punkte in einer Reihe sind. Problem des nächsten Nachbarns 
+  * Später in Helperklasse auslagern! */
+    QPolygon SortToProvinceContour( QPolygon& firstChancePoints ) const;
+/** Versucht die übergebenen Punkt-Liste so zu sortiered das alle Punkte in einer Reihe sind. Problem des nächsten Nachbarns 
+  * Später in Helperklasse auslagern! */
+    QPolygon SortToProvinceContourFlip( QPolygon& firstChancePoints ) const;
 /** Überprüft ob benachbarte Punkte selbe Farbe haben.
   * Wenn ja, werden sie in die Liste eingefügt */
     void CreateNeigboursByColor( QRgb color, const QPoint &point, QPolygon &toVerify, const QPolygon &sameColor, const QImage &image );
 /** Ermittelt zu einer Punktemenge ein MinimalesRechteck in dem alle Punkte Platz haben */
-    void FindSurroundingRect( const QPolygon &points, int &width, int &height, int &left, int &top ) const;
-/** Liefert true wenn Punkt nur von Punkten mit gleicher Farbe umgeben ist */
-	bool IsMiddlePoint( const QPoint &point, const QImage &image, int allowedExternalColors = 0 ) const;
+    QRect FindSurroundingRect( const QPolygon &points ) const;
+/** Liefert Anzahl der Nachbarn mit gleicher Farbe */
+	int CalcNeigboursColorCount( const QPoint &point, const QImage &image ) const;
 private:
 /** Überprüft ob ein Punkt mit Farbe übereinstimmt */
     bool ColorsIdentical( const QPoint &point, const QRgb &color, const QImage &image ) const;
 /** Liefert zu Punkt p den nächsten Nachbarn */
-    int FindIndexOfNearestNeigbour( const QPolygon &neigbours, const QPoint &p ) const;
+    std::vector<int> FindIndexOfNearestNeigbour( const QPolygon &neigbours, const QPoint &p ) const;
 };
 
 
