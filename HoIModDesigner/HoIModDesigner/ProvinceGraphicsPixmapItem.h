@@ -8,7 +8,7 @@ class ProvinceGraphicsPixmapItem : public QGraphicsPixmapItem
 {
 public:
 	/** */
-	ProvinceGraphicsPixmapItem( const QPixmap & pixmap, const QRect& location, ExtendedGraphicsScene *parent );
+	ProvinceGraphicsPixmapItem( const QPixmap & pixmap, const QPixmap & contour, const QRect& location, ExtendedGraphicsScene *parent );
 	/** */
 	ProvinceGraphicsPixmapItem( const ProvinceGraphicsPixmapItem& rhs );
 	/** */
@@ -29,7 +29,9 @@ public:
 	void UpdateColor( const QColor& color );
 private:
 	QRect	m_Location;
-	QPixmap	*m_OrgPixmap;
+	QPixmap	m_OrgPixmap;
+	QPixmap	m_Contour;
+	QPixmap	m_LastPixmap;
 	const ProvinceItem *m_AttachedProvinceItem;
 	ExtendedGraphicsScene *m_Parent;
 	QColor	m_ColorBeforeEnter;

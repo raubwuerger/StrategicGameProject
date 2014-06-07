@@ -61,6 +61,11 @@ bool LogInterface::Init()
 		}
 		LogFactory().Init();
 		connect( this, SIGNAL(PostLogMessage(jha::LogMessage *)), LogFactory().GetLogManager(), SLOT(AddLogMessage( jha::LogMessage *)) );
+		QString message("Starting ");
+		message += QCoreApplication::applicationName();
+		message += ", version=";
+		message += 	QCoreApplication::applicationVersion();
+		Log( message, jha::LogInterface::LL_MESSAGE);
 		//connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(const ProvinceItem*)),this, SLOT(UpdateProvinceDetail(const ProvinceItem*)));
 		return true;
 	}

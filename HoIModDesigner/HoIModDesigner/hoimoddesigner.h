@@ -24,7 +24,10 @@ public:
 	{
 
 	}
-
+	bool operator< ( const QTableWidgetItem &other ) const
+	{
+		return text().toDouble() < other.text().toDouble();
+	}
 public:
 	Nation *m_Nation;
 };
@@ -33,6 +36,64 @@ class LoggingTableWidgetRow
 {
 public:
 	QVector<QTableWidgetItem*> m_Items;
+};
+
+class HoI3Context
+{
+public:
+	HoI3Context()
+	: m_BasePath("E:\\Spiele\\HoI3"),
+		m_PathTFH("tfh"),
+		m_ProvincesBMP("map\\provinces.bmp"),
+		m_DefinitionCSV("map\\definition.csv"),
+		m_CountriesTXT("common\\countries.txt"),
+		m_ProvincesDir("history\\provinces"),
+		m_ModPath("mod\\RandomHoi"),
+		m_CommonDir("common\\"),
+		TRAIL("\\")
+	{
+
+	}
+	QString GetPathProvinceBMP() const
+	{
+		return m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ProvincesBMP;
+	}
+	QString GetPathDefinitionCSV() const
+	{
+		return m_BasePath +TRAIL +m_PathTFH +TRAIL +m_UsedMod +m_DefinitionCSV;
+	}
+	QString GetPathCountriesTXT() const
+	{
+		//return m_BasePath +TRAIL +m_CountriesTXT;
+		return m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_CountriesTXT;
+	}
+	QVector<QString> GetPathProvincesDir() const
+	{
+		QVector<QString> paths;
+// 		paths.push_back(m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ProvincesDir);
+// 		paths.push_back(m_BasePath +TRAIL +m_ProvincesDir);
+		paths.push_back(m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_ProvincesDir);
+		return paths;
+	}
+	QVector<QString> GetPathCommonDir() const
+	{
+		QVector<QString> paths;
+		// 		paths.push_back(m_BasePath +TRAIL +m_PathTFH +TRAIL +m_CommonDir);
+		// 		paths.push_back(m_BasePath +TRAIL +m_ProvincesDir);
+		paths.push_back(m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_CommonDir);
+		return paths;
+	}
+public:
+	const QString TRAIL;
+	QString		m_BasePath;
+	QString		m_PathTFH;
+	QString		m_ModPath;
+	QString		m_DefinitionCSV;
+	QString		m_CountriesTXT;
+	QString		m_ProvincesDir;
+	QString		m_ProvincesBMP;
+	QString		m_UsedMod;
+	QString		m_CommonDir;
 };
 
 class LoggingTableWidget : public QTableWidget
@@ -51,6 +112,58 @@ public slots:
 private:
 	QTimer	*m_TimerScrollToBottom;
 	bool	m_RowsAdded;
+};
+
+#include "ProvinceItem.h"
+class TimeLineDataCriteria
+{
+public:
+	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const = 0;
+};
+
+class TimeLineDataCriteriaEnergy : public TimeLineDataCriteria
+{
+public:
+	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
+	{
+		return timeLineData.m_Energy <= 0;
+	}
+};
+
+class TimeLineDataCriteriaMetal : public TimeLineDataCriteria
+{
+public:
+	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
+	{
+		return timeLineData.m_Metal <= 0;
+	}
+};
+
+class TimeLineDataCriteriaCrudeOil : public TimeLineDataCriteria
+{
+public:
+	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
+	{
+		return timeLineData.m_CrudeOil <= 0;
+	}
+};
+
+class TimeLineDataCriteriaRareMaterial : public TimeLineDataCriteria
+{
+public:
+	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
+	{
+		return timeLineData.m_RareMaterials <= 0;
+	}
+};
+
+class TimeLineDataCriteriaIndustry : public TimeLineDataCriteria
+{
+public:
+	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
+	{
+		return timeLineData.m_Industry <= 0;
+	}
 };
 
 class HoIModDesigner : public QMainWindow
@@ -73,12 +186,18 @@ private slots:
 /** */
 	void ShowNationColorMap();
 /** */
-	void ShowIndustryColorMap();
+	void FilterMapEnergy();
 /** */
-	void ShowMetalColorMap();
+	void FilterMapMetal();
 /** */
-	void ShowCrudeOilColorMap();
+	void FilterMapCrudeOil();
+/** */
+	void FilterMapRareMaterial();
+/** */
+	void FilterMapIndustry();
 private:
+/** */
+	void ShowMapFiltered( const TimeLineDataCriteria& criteria );
 /** */
 	bool CreateColorMap( QHash<int,ProvinceItem*>& result );
 /** */
@@ -88,7 +207,7 @@ private:
 /** */
 	void FillCountryList( const QHash<QString,Nation*>& nations, QTableWidget* widget );
 /** */
-	bool ParseCountryList( QHash<QString,Nation*>& countryList, const QString& countryPath ) const;
+	bool ParseCountryList( QHash<QString,Nation*>& countryList, const QString& countryPath, const QVector<QString>& pathCountryDetails ) const;
 /** */
 	Nation* CreateCountryFromString( const QString& line ) const;
 /** */
@@ -98,7 +217,7 @@ private:
 /** */
 	ProvinceItem* CreateProvinzeItemFromString( const QString& line ) const;
 /** */
-	ProvinceGraphicsPixmapItem* CreateItemFromPixelClash( const QPolygon& pixelClash, const QColor& color, ExtendedGraphicsScene *scene ) const;
+	ProvinceGraphicsPixmapItem* CreateItemFromPixelClash( const QPolygon& pixelClash, const QPolygon& pixelClashContour, const QColor& color, ExtendedGraphicsScene *scene ) const;
 /** */
 	void CreateGraphicsItems( QHash<int,ProvinceItem*>& result ) const;
 /** */
@@ -148,9 +267,23 @@ private:
 	QAction		*m_AboutAction;
 	QAction		*m_ShowOriginalMap;
 	QAction		*m_ShowNationColorMap;
-	QAction		*m_ShowIndustryProvinces;
+
 	QAction		*m_ShowMetalProvinces;
 	QAction		*m_ShowOilProvinces;
+	QAction		*m_ShowEnergyProvinces;
+	QAction		*m_ShowRareProvinces;
+
+	QAction		*m_ShowIndustryProvinces;
+	QAction		*m_ShowAAProvinces;
+	QAction		*m_ShowAirbaseProvinces;
+	QAction		*m_ShowCoastalfortProvinces;
+	QAction		*m_ShowInfraProvinces;
+	QAction		*m_ShowLandfortProvinces;
+	QAction		*m_ShowNavalbaseProvinces;
+	QAction		*m_ShowNuclearProvinces;
+	QAction		*m_ShowRadarProvinces;
+	QAction		*m_ShowRocketProvinces;
+
 	QToolBox	*m_ToolBox;
 	ExtendedGraphicsView *m_View;
 	QPixmap		m_OriginalMap;

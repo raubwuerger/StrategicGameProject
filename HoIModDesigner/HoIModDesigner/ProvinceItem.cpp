@@ -18,7 +18,8 @@ ProvinceItem::ProvinceItem( const ProvinceItem& rhs )
 	m_Name(rhs.m_Name),
 	m_Color(rhs.m_Color),
 	m_GraphicsItem( rhs.m_GraphicsItem),
-	m_Contour(rhs.m_Contour),
+	m_ProvincePixels(rhs.m_ProvincePixels),
+	m_ContourPixels(rhs.m_ContourPixels),
 	m_ColorNation(rhs.m_ColorNation)
 {
 
@@ -41,7 +42,8 @@ ProvinceItem& ProvinceItem::operator=( const ProvinceItem& rhs )
 	m_Name = rhs.m_Name;
 	m_Color = rhs.m_Color;
 	m_GraphicsItem = rhs.m_GraphicsItem;
-	m_Contour = rhs.m_Contour;
+	m_ProvincePixels = rhs.m_ProvincePixels;
 	m_ColorNation = rhs.m_ColorNation;
+	m_ContourPixels = rhs.m_ContourPixels;
 	return *this;
 }

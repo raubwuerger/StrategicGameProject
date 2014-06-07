@@ -8,8 +8,19 @@
         <file>images/folder_document.ico</file>
         <file>images/about.ico</file>
       <file>images/test.png</file>
-      <file>images/icon_build_industry.ico</file>
       <file>images/resource_metal.ico</file>
       <file>images/resource_oil.ico</file>
+      <file>images/resource_energy.ico</file>
+      <file>images/resource_raremat.ico</file>
+      <file>images/icon_build_aa.ico</file>
+      <file>images/icon_build_airbase.ico</file>
+      <file>images/icon_build_coastalfort.ico</file>
+      <file>images/icon_build_factory.ico</file>
+      <file>images/icon_build_infra.ico</file>
+      <file>images/icon_build_landfort.ico</file>
+      <file>images/icon_build_navalbase.ico</file>
+      <file>images/icon_build_nuclear.ico</file>
+      <file>images/icon_build_radar.ico</file>
+      <file>images/icon_build_rocket.ico</file>
     </qresource>
 </RCC>

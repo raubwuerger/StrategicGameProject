@@ -35,7 +35,10 @@ public:
 	double CalcCrudeOil() const;
 /** */
 	double CalcRareMaterial() const;
-
+/** */
+	double CalcManpower() const;
+/** */
+	double CalcLeadership() const;
 protected:
 	friend class HoIModDesigner;
 /** */

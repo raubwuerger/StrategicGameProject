@@ -161,5 +161,34 @@ double Nation::CalcRareMaterial() const
 		result += (*i)->m_TimeLineData.at(0).m_RareMaterials;
 	}
 	return result;
+}
 
+double Nation::CalcManpower() const
+{
+	double result = 0;
+	QHash<int,ProvinceItem*>::ConstIterator i;
+	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
+	{
+		if( (*i)->m_TimeLineData.isEmpty() == true )
+		{
+			continue;
+		}
+		result += (*i)->m_TimeLineData.at(0).m_Manpower;
+	}
+	return result;
+}
+
+double Nation::CalcLeadership() const
+{
+	double result = 0;
+	QHash<int,ProvinceItem*>::ConstIterator i;
+	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
+	{
+		if( (*i)->m_TimeLineData.isEmpty() == true )
+		{
+			continue;
+		}
+		result += (*i)->m_TimeLineData.at(0).m_LeaderShip;
+	}
+	return result;
 }

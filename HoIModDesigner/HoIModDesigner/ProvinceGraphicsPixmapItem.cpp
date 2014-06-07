@@ -3,14 +3,14 @@
 #include "ProvinceItem.h"
 #include "ExtendedGraphicsScene.h"
 
-ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const QPixmap & pixmapOrg, const QRect& location, ExtendedGraphicsScene *parent )
+ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const QPixmap & pixmapOrg, const QPixmap & contour, const QRect& location, ExtendedGraphicsScene *parent )
 	: QGraphicsPixmapItem(pixmapOrg),
 		m_Location(location),
 		m_AttachedProvinceItem(nullptr),
 		m_Parent(parent),
-		m_OrgPixmap(nullptr)
+		m_OrgPixmap(pixmapOrg),
+		m_Contour(contour)
 {
-	m_OrgPixmap = new QPixmap(pixmap());
 	setAcceptHoverEvents(true);
 }
 
@@ -19,16 +19,15 @@ ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const ProvinceGraphicsPi
 	m_Location(rhs.m_Location),
 	m_AttachedProvinceItem(rhs.m_AttachedProvinceItem),
 	m_Parent(rhs.m_Parent),
-	m_OrgPixmap(nullptr)
+	m_OrgPixmap(rhs.m_OrgPixmap),
+	m_Contour(rhs.m_Contour)
 {
-	m_OrgPixmap = new QPixmap(pixmap());
 	setOffset( rhs.offset() );
 	setAcceptHoverEvents(rhs.acceptHoverEvents());
 }
 
 ProvinceGraphicsPixmapItem::~ProvinceGraphicsPixmapItem()
 {
-	delete m_OrgPixmap;
 }
 
 const QRect& ProvinceGraphicsPixmapItem::GetLocation() const 
@@ -38,10 +37,12 @@ const QRect& ProvinceGraphicsPixmapItem::GetLocation() const
 
 void ProvinceGraphicsPixmapItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
+	m_LastPixmap = pixmap();
 	if( m_Parent != nullptr )
 	{
 		emit m_Parent->SignalProvinceEntered(m_AttachedProvinceItem);
 	}
+
 	ShowSelected();
 	QGraphicsPixmapItem::hoverEnterEvent(event);
 	event->ignore();
@@ -53,21 +54,19 @@ void ProvinceGraphicsPixmapItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * even
 	{
 		emit m_Parent->SignalProvinceLeft(m_AttachedProvinceItem);
 	}
-	ShowOriginal();
+	setPixmap(m_LastPixmap);
 	QGraphicsPixmapItem::hoverLeaveEvent(event);
 	event->ignore();
 }
 
 void ProvinceGraphicsPixmapItem::ShowSelected() 
 {
-//	m_ColorBeforeEnter = 
-//	UpdateColor(Qt::black);
+	setPixmap( m_Contour );
 }
 
 void ProvinceGraphicsPixmapItem::ShowOriginal() 
 {
-//	setPixmap( *m_OrgPixmap );
-
+	setPixmap( m_OrgPixmap );
 }
 
 const ProvinceItem * ProvinceGraphicsPixmapItem::GetAttachedProvinceItem() const
@@ -82,12 +81,9 @@ void ProvinceGraphicsPixmapItem::SetAttachedProvinceItem( const ProvinceItem * v
 
 void ProvinceGraphicsPixmapItem::UpdateColor( const QColor& color )
 {
-	if( m_OrgPixmap == nullptr )
-	{
-		return;
-	}
-	QPixmap pixmap(*m_OrgPixmap);
+	m_LastPixmap = pixmap();
+	QPixmap pixmap(pixmap());
 	pixmap.fill(color);
-	pixmap.setMask( m_OrgPixmap->mask() );
+	pixmap.setMask( m_OrgPixmap.mask() );
 	setPixmap( pixmap );
 }

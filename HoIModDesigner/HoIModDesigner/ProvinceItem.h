@@ -120,7 +120,8 @@ public:
 	QString		m_Name;
 	QColor		m_Color;
 	QColor		m_ColorNation;
-	QPolygon	m_Contour;
+	QPolygon	m_ProvincePixels;
+	QPolygon	m_ContourPixels;
 	ProvinceGraphicsPixmapItem	*m_GraphicsItem;
 	QVector<ProvinceTimeLineData> m_TimeLineData;
 };

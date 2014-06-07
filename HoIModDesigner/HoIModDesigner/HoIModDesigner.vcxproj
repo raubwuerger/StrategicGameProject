@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DDSLoader.cpp" />
     <ClCompile Include="DummyClass.cpp" />
     <ClCompile Include="ExtendedGraphicsScene.cpp" />
     <ClCompile Include="ExtendedGraphicsView.cpp" />
@@ -161,6 +162,8 @@
     <ClCompile Include="std\LogMessage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DDSLoader.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="std\LogFactory.h" />
     <ClInclude Include="std\Logger.h" />
     <ClInclude Include="std\LoggerCout.h" />
@@ -293,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HoIModDesigner.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="HoIModDesigner.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,9 @@
 #include "std/LoggerFile.h"
 #include "std/LoggerTableWidget.h"
 
+
+#include <DDSLoader.h>
+
 HoIModDesigner::HoIModDesigner(QWidget *parent)
 	: QMainWindow(parent),
 	m_DockWidgetNationList(nullptr),
@@ -55,24 +58,79 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	m_ShowNationColorMap->setStatusTip(tr("Shows map by country colors"));
 	connect(m_ShowNationColorMap, SIGNAL(triggered()), this, SLOT(ShowNationColorMap()));
 
-	m_ShowIndustryProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_industry.ico"),tr("Industry"), this);
-	m_ShowIndustryProvinces->setStatusTip(tr("Shows only provinces with industry"));
-	connect(m_ShowIndustryProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
-
 	m_ShowMetalProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_metal.ico"),tr("Metal"), this);
 	m_ShowMetalProvinces->setStatusTip(tr("Shows only provinces with metal"));
-	connect(m_ShowMetalProvinces, SIGNAL(triggered()), this, SLOT(ShowMetalColorMap()));
+	connect(m_ShowMetalProvinces, SIGNAL(triggered()), this, SLOT(FilterMapMetal()));
 
 	m_ShowOilProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_oil.ico"),tr("Crude oil"), this);
 	m_ShowOilProvinces->setStatusTip(tr("Shows only provinces with crude oil"));
-	connect(m_ShowOilProvinces, SIGNAL(triggered()), this, SLOT(ShowCrudeOilColorMap()));
+	connect(m_ShowOilProvinces, SIGNAL(triggered()), this, SLOT(FilterMapCrudeOil()));
+
+	m_ShowEnergyProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_energy.ico"),tr("Energy"), this);
+	m_ShowEnergyProvinces->setStatusTip(tr("Shows only provinces with energy"));
+	connect(m_ShowEnergyProvinces, SIGNAL(triggered()), this, SLOT(FilterMapEnergy()));
+
+	m_ShowRareProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_raremat.ico"),tr("Rare material"), this);
+	m_ShowRareProvinces->setStatusTip(tr("Shows only provinces with rare material"));
+	connect(m_ShowRareProvinces, SIGNAL(triggered()), this, SLOT(FilterMapRareMaterial()));
+
+	m_ShowIndustryProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_factory.ico"),tr("Industry"), this);
+	m_ShowIndustryProvinces->setStatusTip(tr("Shows only provinces with industry"));
+	connect(m_ShowIndustryProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowAAProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_aa.ico"),tr("Antiair"), this);
+	m_ShowAAProvinces->setStatusTip(tr("Shows only provinces with antiair"));
+	connect(m_ShowAAProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowAirbaseProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_airbase.ico"),tr("Airbase"), this);
+	m_ShowAirbaseProvinces->setStatusTip(tr("Shows only provinces with airbase"));
+	connect(m_ShowAirbaseProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowCoastalfortProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_coastalfort.ico"),tr("Coastalfort"), this);
+	m_ShowCoastalfortProvinces->setStatusTip(tr("Shows only provinces with coastalfort"));
+	connect(m_ShowCoastalfortProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowInfraProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_infra.ico"),tr("Infrastructure"), this);
+	m_ShowInfraProvinces->setStatusTip(tr("Shows only provinces with infrastructure"));
+	connect(m_ShowInfraProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowLandfortProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_landfort.ico"),tr("Landfort"), this);
+	m_ShowLandfortProvinces->setStatusTip(tr("Shows only provinces with landfort"));
+	connect(m_ShowLandfortProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowNavalbaseProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_navalbase.ico"),tr("Navalbase"), this);
+	m_ShowNavalbaseProvinces->setStatusTip(tr("Shows only provinces with navalbase"));
+	connect(m_ShowNavalbaseProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowNuclearProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_nuclear.ico"),tr("Nuclear"), this);
+	m_ShowNuclearProvinces->setStatusTip(tr("Shows only provinces with nuclear"));
+	connect(m_ShowNuclearProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowRadarProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_radar.ico"),tr("Radar"), this);
+	m_ShowRadarProvinces->setStatusTip(tr("Shows only provinces with radar"));
+	connect(m_ShowRadarProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
+
+	m_ShowRocketProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_rocket.ico"),tr("Rocket"), this);
+	m_ShowRocketProvinces->setStatusTip(tr("Shows only provinces with rocket"));
+	connect(m_ShowRocketProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
 	m_MapFilterToolBar = addToolBar(tr("Map filter"));
 	m_MapFilterToolBar->addAction(m_ShowOriginalMap);
 	m_MapFilterToolBar->addAction(m_ShowNationColorMap);
-	m_MapFilterToolBar->addAction(m_ShowIndustryProvinces);
+	m_MapFilterToolBar->addAction(m_ShowEnergyProvinces);
 	m_MapFilterToolBar->addAction(m_ShowMetalProvinces);
+	m_MapFilterToolBar->addAction(m_ShowRareProvinces);
 	m_MapFilterToolBar->addAction(m_ShowOilProvinces);
+	m_MapFilterToolBar->addAction(m_ShowIndustryProvinces);
+	m_MapFilterToolBar->addAction(m_ShowAAProvinces);
+	m_MapFilterToolBar->addAction(m_ShowAirbaseProvinces);
+	m_MapFilterToolBar->addAction(m_ShowCoastalfortProvinces);
+	m_MapFilterToolBar->addAction(m_ShowInfraProvinces);
+	m_MapFilterToolBar->addAction(m_ShowLandfortProvinces);
+	m_MapFilterToolBar->addAction(m_ShowNavalbaseProvinces);
+	m_MapFilterToolBar->addAction(m_ShowNuclearProvinces);
+	m_MapFilterToolBar->addAction(m_ShowRadarProvinces);
+	m_MapFilterToolBar->addAction(m_ShowRocketProvinces);
 
 	QToolButton *button = new QToolButton;
 	button->setText("Testicon");
@@ -137,7 +195,35 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	jha::GetLog()->RegisterLogger( new jha::LoggerFile("e:/temp/Logfile.log") );
 	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
 	jha::GetLog()->Start();
-	jha::GetLog()->Log( "Hallo Logmanager", jha::LogInterface::LL_INFO );
+}
+
+/** */
+void HoIModDesigner::FilterMapEnergy()
+{
+	ShowMapFiltered( TimeLineDataCriteriaEnergy() );
+}
+
+/** */
+void HoIModDesigner::FilterMapMetal()
+{
+	ShowMapFiltered( TimeLineDataCriteriaMetal() );
+}
+
+/** */
+void HoIModDesigner::FilterMapCrudeOil()
+{
+	ShowMapFiltered( TimeLineDataCriteriaCrudeOil() );
+}
+
+/** */
+void HoIModDesigner::FilterMapRareMaterial()
+{
+	ShowMapFiltered( TimeLineDataCriteriaRareMaterial() );
+}
+
+void HoIModDesigner::FilterMapIndustry()
+{
+	ShowMapFiltered( TimeLineDataCriteriaIndustry() );
 }
 
 HoIModDesigner::~HoIModDesigner()
@@ -161,6 +247,7 @@ bool HoIModDesigner::CreateColorMap( QHash<int,ProvinceItem*>& result )
 	{
 		for( int j=0;j<width;j++ )
 		{
+			int sameColorCount = PolygonHelper().CalcNeigboursColorCount(QPoint(j,i),mapImage);
 			QRgb color = mapImage.pixel( j, i );
 			QHash<int,ProvinceItem*>::iterator found = result.find( color );
 
@@ -169,7 +256,11 @@ bool HoIModDesigner::CreateColorMap( QHash<int,ProvinceItem*>& result )
 				//TODO: Kein Eintrag in definition.csv für  Farbcode <x,y,z> aus provinces.bmp
 				continue;
 			}
-			found.value()->m_Contour.append( QPoint(j,i) );
+			found.value()->m_ProvincePixels.append( QPoint(j,i) );
+			if( sameColorCount != 8 )
+			{
+				found.value()->m_ContourPixels.append( QPoint(j,i) );
+			}
 		}
 	}
 	return result.isEmpty() == false;
@@ -186,26 +277,29 @@ void HoIModDesigner::LoadMap()
 //	QString mapName("D:\\Projects\\StrategicGameProject\\HoIModDesigner\\HoIModDesigner\\media\\Test_Rectangle_4.bmp");
 	
 //	QString mapName("D:\\Spiele\\HoI3\\map\\provinces.bmp");
-	QString mapName = QFileDialog::getOpenFileName(this, tr("Open Image"), "C:\\Users\\jha\\Documents\\GitHub\\StrategicGameProject\\HoIModDesigner\\HoIModDesigner\\media\\", tr("Image Files (*.png *.jpg *.bmp)"));
-	LoadOriginalMap(mapName);
+//	QString mapName = QFileDialog::getOpenFileName(this, tr("Open Image"), "C:\\Users\\jha\\Documents\\GitHub\\StrategicGameProject\\HoIModDesigner\\HoIModDesigner\\media\\", tr("Image Files (*.png *.jpg *.bmp)"));
+	HoI3Context context;
+	LoadOriginalMap(context.GetPathProvinceBMP());
 	m_View->setSceneRect( 0, 0, m_OriginalMap.size().width(), m_OriginalMap.size().height() );
 
 	ClearProvinceItems();
 	ClearNations();
-	QString pathDefinitionCSV("E:\\Spiele\\HoI3\\map\\definition.csv");
-	ParseProvinzList(m_ProvinceMapByRGB,m_ProvinceMapByID,pathDefinitionCSV);
+	ParseProvinzList(m_ProvinceMapByRGB,m_ProvinceMapByID,context.GetPathDefinitionCSV());
 
-	QString pathCountriesTXT("E:\\Spiele\\HoI3\\common\\countries.txt");
-	ParseCountryList(m_Nations,pathCountriesTXT);
+	QString pathCountriesTXT(context.GetPathCountriesTXT());
+	//TODO: Hack für TFH, was anderers überlegen ...
+	ParseCountryList(m_Nations,pathCountriesTXT,context.GetPathCommonDir());
+
+	QVector<QString> provinceDirPaths = context.GetPathProvincesDir();
+	for( int i=0;i<provinceDirPaths.size();i++ )
+	{
+		ParseProvinceDetailInfoDirectory( m_ProvinceMapByID, provinceDirPaths.at(i) );
+	}
+	AttachProvincesToNations( m_ProvinceMapByID, m_Nations );
 
 	FillCountryList(m_Nations,m_DockWidgetNationList);
 	FillProvinceList(m_ProvinceMapByID,m_DockWidgetProvinceList);
 
-	QString pathProvinceDetailInfos("E:\\Spiele\\HoI3\\history\\provinces");
-	ParseProvinceDetailInfoDirectory( m_ProvinceMapByID, pathProvinceDetailInfos );
-	AttachProvincesToNations( m_ProvinceMapByID, m_Nations );
-
-	
 	CreateColorMap(m_ProvinceMapByRGB);
 	CreateGraphicsItems(m_ProvinceMapByRGB);
 	DisplayItemMap();
@@ -245,7 +339,7 @@ void HoIModDesigner::CreateGraphicsItems( QHash<int,ProvinceItem*>& result ) con
 	QHash<int,ProvinceItem*>::Iterator iter;
 	for( iter = result.begin(); iter != result.end(); iter++ )
 	{
-		(*iter)->m_GraphicsItem = CreateItemFromPixelClash((*iter)->m_Contour,(*iter)->m_Color, m_View->m_Scene );
+		(*iter)->m_GraphicsItem = CreateItemFromPixelClash((*iter)->m_ProvincePixels,(*iter)->m_ContourPixels, (*iter)->m_Color, m_View->m_Scene );
 		if( (*iter)->m_GraphicsItem == nullptr )
 		{
 			continue;
@@ -259,7 +353,7 @@ void HoIModDesigner::CreateGraphicsItems( QHash<int,ProvinceItem*>& result ) con
 	}
 }
 
-ProvinceGraphicsPixmapItem* HoIModDesigner::CreateItemFromPixelClash( const QPolygon& pixelClash, const QColor& color, ExtendedGraphicsScene *scene ) const
+ProvinceGraphicsPixmapItem* HoIModDesigner::CreateItemFromPixelClash( const QPolygon& pixelClash, const QPolygon& pixelClashContour, const QColor& color, ExtendedGraphicsScene *scene ) const
 {
 	if( pixelClash.empty() == true )
 	{
@@ -287,8 +381,21 @@ ProvinceGraphicsPixmapItem* HoIModDesigner::CreateItemFromPixelClash( const QPol
 	pixmap.convertFromImage( image );
 	pixmap.setMask( QBitmap::fromImage(mask,Qt::MonoOnly) );
 
-	//TODO: Nicht schön, dass hier auf m_View->m_Scene zugegriffen wird!
-	ProvinceGraphicsPixmapItem *item = new ProvinceGraphicsPixmapItem( pixmap, rect, scene );
+	QImage contour(rect.width(),rect.height(),QImage::Format_RGB32);
+	image.fill(color);
+	for( int i=0;i<pixelClashContour.size();i++ )
+	{
+		QPoint relativ(pixelClashContour.at(i));
+		relativ.setX( relativ.x() - rect.left() );
+		relativ.setY( relativ.y() - rect.top() );
+		contour.setPixel(relativ,Qt::black);
+	}
+
+	QPixmap pixmapContour;
+	pixmapContour.convertFromImage( contour );
+	pixmapContour.setMask( QBitmap::fromImage(mask,Qt::MonoOnly) );
+
+	ProvinceGraphicsPixmapItem *item = new ProvinceGraphicsPixmapItem( pixmap, pixmapContour, rect, scene );
 	item->setOffset( rect.left(), rect.top() );
 	return item;
 }
@@ -296,10 +403,11 @@ ProvinceGraphicsPixmapItem* HoIModDesigner::CreateItemFromPixelClash( const QPol
 
 bool HoIModDesigner::LoadOriginalMap( const QString& fileName )
 {
+	jha::GetLog()->Log("Loading file: " +fileName, jha::LogInterface::LL_INFO);
 	m_OriginalMap.load(fileName);
 	if( m_OriginalMap.isNull() == true )
 	{
-		//Unable to load bitmap
+		jha::GetLog()->Log("Unable to load file: " +fileName, jha::LogInterface::LL_ERROR);
 		return false;
 	}
 	m_OriginalMap = m_OriginalMap.transformed(QTransform().rotate(180,Qt::XAxis));
@@ -353,13 +461,11 @@ void HoIModDesigner::DisplayItemMap()
 
 bool HoIModDesigner::ParseProvinzList( QHash<int,ProvinceItem*>& mapRGB, QHash<int,ProvinceItem*>& mapID, const QString& provincePath ) const
 {
-// 	QCoreApplication::processEvents();
-// 	QCoreApplication::flush();
-
+	jha::GetLog()->Log("Loading file: " +provincePath, jha::LogInterface::LL_INFO);
 	QFile file(provincePath);
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		//HJMessageManager::Instance()->DoPostMessage( HJMessage::mtERROR, QString("Datei konnte nicht geöffnet werden: ") +filepath );
+		jha::GetLog()->Log("Unable to load file: " +provincePath, jha::LogInterface::LL_ERROR);
 		return false;
 	}
 
@@ -381,17 +487,19 @@ bool HoIModDesigner::ParseProvinzList( QHash<int,ProvinceItem*>& mapRGB, QHash<i
 		mapID.insert(newItem->m_ID, newItem);
 	}
 
+	jha::GetLog()->Log("Created province items: " +QString().setNum(mapRGB.size()), jha::LogInterface::LL_INFO);
 	//m_ProvinceMap
 	return mapRGB.isEmpty() == false;
 }
 
 //================================================================================
-bool HoIModDesigner::ParseCountryList( QHash<QString,Nation*>& countryList, const QString& countryPath ) const
+bool HoIModDesigner::ParseCountryList( QHash<QString,Nation*>& countryList, const QString& countryPath, const QVector<QString>& pathCountryDetails ) const
 {
+	jha::GetLog()->Log("Loading file: " +countryPath, jha::LogInterface::LL_INFO);
 	QFile file(countryPath);
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		//HJMessageManager::Instance()->DoPostMessage( HJMessage::mtERROR, QString("Datei konnte nicht geöffnet werden: ") +filepath );
+		jha::GetLog()->Log("Unable to load file: " +countryPath, jha::LogInterface::LL_ERROR);
 		return false;
 	}
 
@@ -409,9 +517,18 @@ bool HoIModDesigner::ParseCountryList( QHash<QString,Nation*>& countryList, cons
 			continue;
 		}
 		countryList.insert(newNation->GetID(), newNation);
-		ParseCountryDetailInfo( newNation->GetFilePath(), newNation );
+
+		//TODO: Hack für TFH.Da muss ich mir noch was anderes überlegen
+		if( ParseCountryDetailInfo( pathCountryDetails.at(0) + newNation->GetFilePath(), newNation ) == false)
+		{
+			if( pathCountryDetails.size() > 1 )
+			{
+				ParseCountryDetailInfo( pathCountryDetails.at(1) + newNation->GetFilePath(), newNation );
+			}
+		}
 	}
 
+	jha::GetLog()->Log("Created countries: " +QString().setNum(countryList.size()), jha::LogInterface::LL_INFO);
 	return countryList.isEmpty() == false;
 }
 
@@ -427,12 +544,12 @@ bool HoIModDesigner::ParseCountryDetailInfo( const QString& filename, Nation* na
 		return false;
 	}
 
-	QString path("E://Spiele//HoI3//common//");
+	jha::GetLog()->Log("Loading file: " +filename, jha::LogInterface::LL_INFO);
 	//TODO: Holt sich aktuell nur die Farbe raus ...
-	QFile file(path +filename);
+	QFile file(filename);
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		//HJMessageManager::Instance()->DoPostMessage( HJMessage::mtERROR, QString("Datei konnte nicht geöffnet werden: ") +filepath );
+		jha::GetLog()->Log("Unable to load file: " +filename, jha::LogInterface::LL_ERROR);
 		return false;
 	}
 
@@ -443,12 +560,14 @@ bool HoIModDesigner::ParseCountryDetailInfo( const QString& filename, Nation* na
 	//TODO: Dummyimplementierung. Holt nur die Farbe raus ...
 	if( lines.isEmpty() == true )
 	{
+		jha::GetLog()->Log("Unable to parse color: " +filename, jha::LogInterface::LL_ERROR);
 		return false;
 	}
 
 	QStringList items = lines.at(0).split(" ",QString::SkipEmptyParts);
 	if( items.size() < 7 )
 	{
+		jha::GetLog()->Log("Unable to parse color: " +filename, jha::LogInterface::LL_ERROR);
 		return false;
 	}
 
@@ -490,12 +609,16 @@ int HoIModDesigner::ParseToLines( const QByteArray& data, QStringList &lines ) c
 //================================================================================
 ProvinceItem* HoIModDesigner::CreateProvinzeItemFromString( const QString& line ) const
 {
+	if( line.trimmed().isEmpty() == true )
+	{
+		return nullptr;
+	}
 	const QString columnSeparator(";");
 	const unsigned int columns = 6;
 	QStringList fields  = line.split(columnSeparator);
 	if( fields.size() != columns )
 	{
-		//TODO: Log falsche Spaltenanzahl
+		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
 		return nullptr;
 	}
 
@@ -503,28 +626,28 @@ ProvinceItem* HoIModDesigner::CreateProvinzeItemFromString( const QString& line 
 	int provinceID = fields.at(0).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		//TODO: Wert aus Spalte 1 konnte nicht in ProvinzID konvertiert werden
+		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
 		return nullptr;
 	}
 
 	int r = fields.at(1).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		//TODO: Wert aus Spalte 2 konnte nicht in r konvertiert werden
+		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
 		return nullptr;
 	}
 
 	int g = fields.at(2).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		//TODO: Wert aus Spalte 3 konnte nicht in g konvertiert werden
+		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
 		return nullptr;
 	}
 
 	int b = fields.at(3).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		//TODO: Wert aus Spalte 4 konnte nicht in b konvertiert werden
+		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
 		return nullptr;
 	}
 
@@ -598,21 +721,7 @@ void HoIModDesigner::CreateDockWidgets()
 	{
 		QDockWidget *dockCountry = new QDockWidget(tr("Country list"), this);
 		dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-		m_DockWidgetNationList = new QTableWidget(150,2,dockCountry);
-
-		QHeaderView *verticalHeader = m_DockWidgetNationList->verticalHeader();
-		verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
-		verticalHeader->setDefaultSectionSize(20);
-
-		m_DockWidgetNationList->verticalHeader()->setVisible(false);
-		m_DockWidgetNationList->setSelectionBehavior(QAbstractItemView::SelectRows);
-		QTableWidgetItem *headerColumn1 = new QTableWidgetItem("ID");
-		headerColumn1->setBackground(Qt::lightGray);
-		m_DockWidgetNationList->setHorizontalHeaderItem( 0, headerColumn1 );
-
-		QTableWidgetItem *headerColumn2 = new QTableWidgetItem("Name");
-		headerColumn2->setBackground(Qt::lightGray);
-		m_DockWidgetNationList->setHorizontalHeaderItem( 1, headerColumn2 );
+		m_DockWidgetNationList = new QTableWidget(0,0,dockCountry);
 		dockCountry->setWidget( m_DockWidgetNationList );
 		addDockWidget(Qt::RightDockWidgetArea, dockCountry);
 		m_DockWidgetsMenu->addAction(dockCountry->toggleViewAction());
@@ -791,6 +900,14 @@ void HoIModDesigner::UpdateCountryDetail( QTableWidgetItem* item )
 	m_DockWidgetNationDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	m_DockWidgetNationDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(specialItem->m_Nation->CalcPoints())) );
 
+	m_DockWidgetNationDetails->setItem(index, 0, new QTableWidgetItem("Manpower") );
+	m_DockWidgetNationDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+	m_DockWidgetNationDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(specialItem->m_Nation->CalcManpower())) );
+
+	m_DockWidgetNationDetails->setItem(index, 0, new QTableWidgetItem("Leadership") );
+	m_DockWidgetNationDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+	m_DockWidgetNationDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(specialItem->m_Nation->CalcLeadership())) );
+
 	m_DockWidgetNationDetails->setItem(index, 0, new QTableWidgetItem("Energy") );
 	m_DockWidgetNationDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	m_DockWidgetNationDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(specialItem->m_Nation->CalcEnergy())) );
@@ -815,7 +932,57 @@ void HoIModDesigner::FillCountryList( const QHash<QString,Nation*>& nations, QTa
 	{
 		return;
 	}
-	widget->clearContents();
+
+	widget->setSortingEnabled(true);
+	widget->setRowCount( nations.size() );
+	widget->setColumnCount( 10 );
+
+	QHeaderView *verticalHeader = widget->verticalHeader();
+	verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
+	verticalHeader->setDefaultSectionSize(20);
+
+	int columnIndex = 0;
+	widget->verticalHeader()->setVisible(false);
+	widget->setSelectionBehavior(QAbstractItemView::SelectRows);
+	QTableWidgetItem *id = new QTableWidgetItem("Name");
+	id->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, id );
+
+	QTableWidgetItem *provinces = new QTableWidgetItem("Provinces");
+	provinces->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, provinces );
+
+	QTableWidgetItem *ic = new QTableWidgetItem("IC");
+	ic->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, ic );
+
+	QTableWidgetItem *points = new QTableWidgetItem("Points");
+	points->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, points );
+
+	QTableWidgetItem *manpower = new QTableWidgetItem("Manpower");
+	manpower->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, manpower );
+
+	QTableWidgetItem *leadership = new QTableWidgetItem("Leadership");
+	leadership->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, leadership );
+
+	QTableWidgetItem *energy = new QTableWidgetItem("Energy");
+	energy->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, energy );
+
+	QTableWidgetItem *metal = new QTableWidgetItem("Metal");
+	metal->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, metal );
+
+	QTableWidgetItem *oil = new QTableWidgetItem("Crude oil");
+	oil->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, oil );
+
+	QTableWidgetItem *rare = new QTableWidgetItem("Rare material");
+	rare->setBackground(Qt::lightGray);
+	widget->setHorizontalHeaderItem( columnIndex++, rare );
 	if( nations.isEmpty() == true )
 	{
 		return;
@@ -825,11 +992,37 @@ void HoIModDesigner::FillCountryList( const QHash<QString,Nation*>& nations, QTa
 	QHash<QString,Nation*>::ConstIterator iter;
 	for( iter = nations.constBegin(); iter != nations.constEnd(); iter++ )
 	{
-		widget->setItem(rowIndex, 0, new TableWidgetItemNation((*iter)->GetID(),(*iter)) );
+		int columnIndex = 0;
+		widget->setItem(rowIndex, columnIndex++, new TableWidgetItemNation((*iter)->GetID(),(*iter)) );
 		widget->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
 		
-		QTableWidgetItem *countryPath = new TableWidgetItemNation((*iter)->GetFilePath(),(*iter));
-		widget->setItem(rowIndex, 1, countryPath );
+		QTableWidgetItem *provinces = new TableWidgetItemNation(QString().setNum((*iter)->m_Provinces.size()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, provinces );
+
+		QTableWidgetItem *ic = new TableWidgetItemNation(QString().setNum((*iter)->CalcIC()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, ic );
+
+		QTableWidgetItem *points = new TableWidgetItemNation(QString().setNum((*iter)->CalcPoints()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, points );
+
+		QTableWidgetItem *manpower = new TableWidgetItemNation(QString().setNum((*iter)->CalcManpower()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, manpower );
+
+		QTableWidgetItem *leadership = new TableWidgetItemNation(QString().setNum((*iter)->CalcLeadership()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, leadership );
+
+		QTableWidgetItem *energy = new TableWidgetItemNation(QString().setNum((*iter)->CalcEnergy()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, energy );
+
+		QTableWidgetItem *metal = new TableWidgetItemNation(QString().setNum((*iter)->CalcMetal()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, metal );
+
+		QTableWidgetItem *oil = new TableWidgetItemNation(QString().setNum((*iter)->CalcCrudeOil()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, oil );
+
+		QTableWidgetItem *rare = new TableWidgetItemNation(QString().setNum((*iter)->CalcRareMaterial()),(*iter));
+		widget->setItem(rowIndex, columnIndex++, rare );
+
 		rowIndex++;
 	}
 }
@@ -863,6 +1056,7 @@ void HoIModDesigner::FillProvinceList( QHash<int,ProvinceItem*>& provinces, QTab
 
 bool HoIModDesigner::ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& provinceList, const QString& provincePath ) const
 {
+	jha::GetLog()->Log("Parsing directory: " +provincePath, jha::LogInterface::LL_INFO);
 	QDir directory(provincePath);
 	QFileInfoList infos = directory.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files);
 	for( int i=0;i<infos.size();i++ )
@@ -1194,7 +1388,7 @@ void HoIModDesigner::ShowNationColorMap()
 	m_View->setVisible(true);
 }
 
-void HoIModDesigner::ShowIndustryColorMap()
+void HoIModDesigner::ShowMapFiltered( const TimeLineDataCriteria& criteria )
 {
 	m_View->setVisible(false);
 	QList<QGraphicsItem *> items = m_View->m_Scene->items();
@@ -1223,7 +1417,7 @@ void HoIModDesigner::ShowIndustryColorMap()
 			continue;
 		}
 
-		if( item->GetAttachedProvinceItem()->m_TimeLineData.at(0).m_Industry <= 0 )
+		if( criteria.CriteriaFullfilled(item->GetAttachedProvinceItem()->m_TimeLineData.at(0)) == true )
 		{
 			item->UpdateColor(Qt::lightGray);
 			continue;
@@ -1232,85 +1426,6 @@ void HoIModDesigner::ShowIndustryColorMap()
 	}
 	m_View->setVisible(true);
 }
-
-void HoIModDesigner::ShowMetalColorMap()
-{
-	m_View->setVisible(false);
-	QList<QGraphicsItem *> items = m_View->m_Scene->items();
-	for( int i=0;i<items.size();i++ )
-	{
-		ProvinceGraphicsPixmapItem* item = dynamic_cast<ProvinceGraphicsPixmapItem*>(items.at(i));
-		if( item == nullptr )
-		{
-			continue;
-		}
-		if( item->GetAttachedProvinceItem() == nullptr )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-
-		if( item->GetAttachedProvinceItem()->m_ColorNation == Qt::white )
-		{
-			item->UpdateColor(QColor(135,165,230));
-			continue; //Wasser
-		}
-
-		if( item->GetAttachedProvinceItem()->m_TimeLineData.isEmpty() == true )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-
-		if( item->GetAttachedProvinceItem()->m_TimeLineData.at(0).m_Metal <= 0 )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-		item->UpdateColor(Qt::green);
-	}
-	m_View->setVisible(true);
-}
-
-void HoIModDesigner::ShowCrudeOilColorMap()
-{
-	m_View->setVisible(false);
-	QList<QGraphicsItem *> items = m_View->m_Scene->items();
-	for( int i=0;i<items.size();i++ )
-	{
-		ProvinceGraphicsPixmapItem* item = dynamic_cast<ProvinceGraphicsPixmapItem*>(items.at(i));
-		if( item == nullptr )
-		{
-			continue;
-		}
-		if( item->GetAttachedProvinceItem() == nullptr )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-
-		if( item->GetAttachedProvinceItem()->m_ColorNation == Qt::white )
-		{
-			item->UpdateColor(QColor(135,165,230));
-			continue; //Wasser
-		}
-
-		if( item->GetAttachedProvinceItem()->m_TimeLineData.isEmpty() == true )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-
-		if( item->GetAttachedProvinceItem()->m_TimeLineData.at(0).m_CrudeOil <= 0 )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-		item->UpdateColor(Qt::green);
-	}
-	m_View->setVisible(true);
-}
-
 
 void HoIModDesigner::ClearProvinceItems()
 {
@@ -1332,7 +1447,6 @@ void HoIModDesigner::ClearNations()
 	}
 	m_Nations.clear();
 }
-
 
 //================================================================================
 //================================================================================
