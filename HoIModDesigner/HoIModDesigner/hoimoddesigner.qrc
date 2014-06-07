@@ -8,5 +8,8 @@
         <file>images/folder_document.ico</file>
         <file>images/about.ico</file>
       <file>images/test.png</file>
+      <file>images/icon_build_industry.ico</file>
+      <file>images/resource_metal.ico</file>
+      <file>images/resource_oil.ico</file>
     </qresource>
 </RCC>

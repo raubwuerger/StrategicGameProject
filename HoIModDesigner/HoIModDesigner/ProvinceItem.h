@@ -119,6 +119,7 @@ public:
 	int			m_ID;
 	QString		m_Name;
 	QColor		m_Color;
+	QColor		m_ColorNation;
 	QPolygon	m_Contour;
 	ProvinceGraphicsPixmapItem	*m_GraphicsItem;
 	QVector<ProvinceTimeLineData> m_TimeLineData;

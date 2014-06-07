@@ -33,6 +33,12 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Dateien\std">
+      <UniqueIdentifier>{78ae6095-1259-4348-8a0b-cd59e29254e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\std">
+      <UniqueIdentifier>{0014b03e-7212-40c0-9af9-e420983a32a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,6 +98,60 @@
     <ClCompile Include="Nation.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="std\LogFactory.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\Logger.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LoggerCout.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LoggerFile.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LogInterface.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LogLevel.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LogManager.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LogManagerThread.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LogMessage.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogManager.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogManager.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogManagerThread.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogManagerThread.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="std\LoggerTableWidget.cpp">
+      <Filter>Source Dateien\std</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogInterface.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogInterface.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LoggerTableWidget.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LoggerTableWidget.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -108,6 +168,24 @@
     </ClInclude>
     <ClInclude Include="Nation.h">
       <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="std\LogFactory.h">
+      <Filter>Header Dateien\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\Logger.h">
+      <Filter>Header Dateien\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\LoggerCout.h">
+      <Filter>Header Dateien\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\LoggerFile.h">
+      <Filter>Header Dateien\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\LogLevel.h">
+      <Filter>Header Dateien\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\LogMessage.h">
+      <Filter>Header Dateien\std</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +209,18 @@
     </CustomBuild>
     <CustomBuild Include="DummyClass.h">
       <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="std\LogManager.h">
+      <Filter>Header Dateien\std</Filter>
+    </CustomBuild>
+    <CustomBuild Include="std\LogManagerThread.h">
+      <Filter>Header Dateien\std</Filter>
+    </CustomBuild>
+    <CustomBuild Include="std\LogInterface.h">
+      <Filter>Header Dateien\std</Filter>
+    </CustomBuild>
+    <CustomBuild Include="std\LoggerTableWidget.h">
+      <Filter>Header Dateien\std</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

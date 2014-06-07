@@ -9,52 +9,48 @@ class ProvinceItem;
 class ExtendedGraphicsScene;
 class ExtendedGraphicsView;
 class Nation;
-class ProvinceTimeLineData;
 
-class ExtendedGraphicsPolygonItem : public QGraphicsPolygonItem
+class TableWidgetItemNation : public QTableWidgetItem
 {
 public:
-	ExtendedGraphicsPolygonItem( const QPolygonF & polygon, QGraphicsItem * parent = 0 )
-		: QGraphicsPolygonItem(polygon,parent)
+	TableWidgetItemNation()
+		: m_Nation(nullptr)
 	{
-		setAcceptHoverEvents(true);
+
+	}
+	TableWidgetItemNation( const QString& text, Nation *nation )
+		: QTableWidgetItem(text),
+		m_Nation(nation)
+	{
+
 	}
 
-	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
-	{
-		QBrush brush;
-		brush.setStyle(Qt::SolidPattern); 
-		QColor color("brown");
-		brush.setColor(color);
-		setBrush(brush);
-		update(boundingRect());
-		QGraphicsPolygonItem::hoverEnterEvent(event);
-		event->ignore();
-	}
-	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) 
-	{
-		QBrush brush;
-		brush.setStyle(Qt::NoBrush); 
-		// 		QColor color("brown");
-		// 		brush.setColor(color);
-		setBrush(brush);
-		update(boundingRect());
-		QGraphicsPolygonItem::hoverLeaveEvent(event);
-		event->ignore();
-	}
+public:
+	Nation *m_Nation;
+};
 
+class LoggingTableWidgetRow
+{
+public:
+	QVector<QTableWidgetItem*> m_Items;
+};
 
-	void mousePressEvent(QGraphicsSceneMouseEvent * event)
-	{
-			QBrush brush;
-			brush.setStyle(Qt::SolidPattern); 
-			QColor color("brown");
-			brush.setColor(color);
-			setBrush(brush);
-			update(boundingRect());
-			QGraphicsPolygonItem::mousePressEvent(event);
-			event->ignore();
-	}
+class LoggingTableWidget : public QTableWidget
+{
+	Q_OBJECT
+public:
+/** */
+	LoggingTableWidget(int rows, int columns, QWidget * parent );
+/** */
+	~LoggingTableWidget();
+public slots:
+/** */
+	void AppendRow( LoggingTableWidgetRow *newRow );
+/** */
+	void ScrollToBottom();
+private:
+	QTimer	*m_TimerScrollToBottom;
+	bool	m_RowsAdded;
 };
 
 class HoIModDesigner : public QMainWindow
@@ -71,70 +67,75 @@ private slots:
 /** */
 	void DisplayContourMap();
 /** */
-	void DisplayContourSortedMap();
-/** */
 	void DisplayItemMap();
 /** */
 	void ShowOriginalMap();
 /** */
 	void ShowNationColorMap();
+/** */
+	void ShowIndustryColorMap();
+/** */
+	void ShowMetalColorMap();
+/** */
+	void ShowCrudeOilColorMap();
 private:
 /** */
-	bool CreateColorMap( QHash<int,ProvinceItem>& result );
-
-	int Smooth( QImage &mapImage, int level = 3 );
-
-	bool SmoothColor( QImage &mapImage, const QPoint& org, const QPoint& updateFrom );
-
-	/** */
-	bool CreateContourImage( QHash<int,ProvinceItem>& result, QPixmap& pixmap );
-/** */
-	bool CreateContourSortedMap( QHash<int,ProvinceItem>& result, QPixmap& pixmap );
+	bool CreateColorMap( QHash<int,ProvinceItem*>& result );
 /** */
 	bool LoadOriginalMap( const QString& fileName );
-/** Erzeugt aus der Kontour-Karte Polygonobjekte */
-	bool CreateContourPolygons( QHash<int,ProvinceItem>& result ) const;
 /** */
-	bool ParseProvinzList( QHash<int,ProvinceItem>& mapRGB, QHash<int,ProvinceItem>& mapID, const QString& provincePath ) const;
+	bool ParseProvinzList( QHash<int,ProvinceItem*>& mapRGB, QHash<int,ProvinceItem*>& mapID, const QString& provincePath ) const;
 /** */
-	bool ParseCountryList( QHash<QString,Nation>& countryList, const QString& countryPath ) const;
+	void FillCountryList( const QHash<QString,Nation*>& nations, QTableWidget* widget );
+/** */
+	bool ParseCountryList( QHash<QString,Nation*>& countryList, const QString& countryPath ) const;
+/** */
+	Nation* CreateCountryFromString( const QString& line ) const;
+/** */
+	bool ParseCountryDetailInfo( const QString& filename, Nation* provinceItem ) const;
 /** */
 	int ParseToLines( const QByteArray& data, QStringList &lines ) const;
 /** */
-	bool CreateProvinzeItemFromString( const QString& line, ProvinceItem& item ) const;
-/** */
-	bool CreateNationFromString( const QString& line, Nation& nation ) const;
+	ProvinceItem* CreateProvinzeItemFromString( const QString& line ) const;
 /** */
 	ProvinceGraphicsPixmapItem* CreateItemFromPixelClash( const QPolygon& pixelClash, const QColor& color, ExtendedGraphicsScene *scene ) const;
 /** */
-	void CreateGraphicsItems( QHash<int,ProvinceItem>& result ) const;
+	void CreateGraphicsItems( QHash<int,ProvinceItem*>& result ) const;
 /** */
 	void CreateDockWidgets();
 /** */
-	void FillNationList( const QHash<QString,Nation>& nations, QTableWidget* widget );
+	void FillProvinceList( QHash<int,ProvinceItem*>& provinces, QTableWidget* widget );
 /** */
-	void FillProvinceList( QHash<int,ProvinceItem>& provinces, QTableWidget* widget );
+	bool ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& provinzList, const QString& provincePath ) const;
 /** */
-	bool ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem>& provinzList, const QString& provincePath ) const;
+	int CreateProvinceIDFromFilename( const QString& filename, const QString& separator = "-" ) const;
 /** */
-	int CreateProvinceIDFromFilename( const QString& filename ) const;
-/** */
-	bool ParseProvinceDetailInfo( const QString& filename, ProvinceItem& provinceItem ) const;
+	bool ParseProvinceDetailInfo( const QString& filename, ProvinceItem* provinceItem ) const;
 /** */
 	bool CreateTokenMap( const QStringList& line, QHash<QString,QString> &tokens, const QString& separator = "=" ) const;
 /** */
 	bool SortLinesByTimeline( const QStringList& data, QVector<QStringList>& timeLineParts ) const;
 /** */
-	bool CreateProvinceTimeLineData( const QHash<QString,QString>& tokens, ProvinceItem& data ) const;
+	bool CreateProvinceTimeLineData( const QHash<QString,QString>& tokens, ProvinceItem* data ) const;
 /** */
 	bool UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, int& valueToUpadte ) const;
 /** */
 	bool UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, double& valueToUpadte ) const;
 /** */
 	bool UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, QString& valueToUpadte ) const;
-
+/** */
+	void AttachProvinceToNation( ProvinceItem *province, QHash<QString,Nation*>& nations );
+/** */
+	void AttachProvincesToNations( const QHash<int,ProvinceItem*>& provinces, QHash<QString,Nation*>& nations );
+/** */
+	void ClearProvinceItems();
+/** */
+	void ClearNations();
+signals:
+	void SignalAppendRow(LoggingTableWidgetRow*);
 private slots:
 	void UpdateProvinceDetail(const ProvinceItem* item);
+	void UpdateCountryDetail(QTableWidgetItem* item);
 private:
 	Ui::HoIModDesignerClass ui;
 	QMenu		*m_FileMenu;
@@ -147,17 +148,22 @@ private:
 	QAction		*m_AboutAction;
 	QAction		*m_ShowOriginalMap;
 	QAction		*m_ShowNationColorMap;
+	QAction		*m_ShowIndustryProvinces;
+	QAction		*m_ShowMetalProvinces;
+	QAction		*m_ShowOilProvinces;
 	QToolBox	*m_ToolBox;
 	ExtendedGraphicsView *m_View;
 	QPixmap		m_OriginalMap;
 	QPixmap		m_ContourMap;
 	QPixmap		m_ContourSortedMap;
-	QHash<int,ProvinceItem>	m_ProvinceMapByRGB;
-	QHash<int,ProvinceItem>	m_ProvinceMapByID;
-	QHash<QString,Nation>	m_Nations;
+	QHash<int,ProvinceItem*>	m_ProvinceMapByRGB;
+	QHash<int,ProvinceItem*>	m_ProvinceMapByID;
+	QHash<QString,Nation*>	m_Nations;
 	QTableWidget *m_DockWidgetProvinceDetails;
 	QTableWidget *m_DockWidgetNationList;
+	QTableWidget *m_DockWidgetNationDetails;
 	QTableWidget *m_DockWidgetProvinceList;
+	LoggingTableWidget *m_DockWidgetLogging;
 };
 
 #endif // HOIMODDESIGNER_H

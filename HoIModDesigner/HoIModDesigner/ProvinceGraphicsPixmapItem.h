@@ -32,6 +32,7 @@ private:
 	QPixmap	*m_OrgPixmap;
 	const ProvinceItem *m_AttachedProvinceItem;
 	ExtendedGraphicsScene *m_Parent;
+	QColor	m_ColorBeforeEnter;
 };
 
 #endif // PROVINCEGRAPHICSPIXMAPITEM_H

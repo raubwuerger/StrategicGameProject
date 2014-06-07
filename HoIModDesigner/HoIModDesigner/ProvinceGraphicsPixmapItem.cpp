@@ -60,12 +60,14 @@ void ProvinceGraphicsPixmapItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * even
 
 void ProvinceGraphicsPixmapItem::ShowSelected() 
 {
-	UpdateColor(Qt::black);
+//	m_ColorBeforeEnter = 
+//	UpdateColor(Qt::black);
 }
 
 void ProvinceGraphicsPixmapItem::ShowOriginal() 
 {
-	setPixmap( *m_OrgPixmap );
+//	setPixmap( *m_OrgPixmap );
+
 }
 
 const ProvinceItem * ProvinceGraphicsPixmapItem::GetAttachedProvinceItem() const
