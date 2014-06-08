@@ -40,10 +40,10 @@ public:
 /** */
 	double CalcLeadership() const;
 protected:
-	friend class HoIModDesigner;
+	friend class ParserHoI3;
 /** */
 	Nation();
-private:
+public:
 	QColor	m_Color;
 	QString	m_ID;
 	QString	m_FilePath;

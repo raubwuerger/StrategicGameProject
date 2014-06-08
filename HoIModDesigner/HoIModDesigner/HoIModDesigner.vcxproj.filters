@@ -155,6 +155,21 @@
     <ClCompile Include="DDSLoader.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ParserThreadContainer.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ParserThreadContainer.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserThreadContainer.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserHoI3.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="HoI3Context.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -196,6 +211,12 @@
     <ClInclude Include="resource.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="ParserHoI3.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="HoI3Context.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="hoimoddesigner.h">
@@ -230,6 +251,9 @@
     </CustomBuild>
     <CustomBuild Include="std\LoggerTableWidget.h">
       <Filter>Header Dateien\std</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ParserThreadContainer.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
