@@ -2,6 +2,7 @@
 #include "ProvinceGraphicsPixmapItem.h"
 #include "ProvinceItem.h"
 #include "ExtendedGraphicsScene.h"
+#include "std\LogInterface.h"
 
 ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const QPixmap & pixmapOrg, const QPixmap & contour, const QRect& location, ExtendedGraphicsScene *parent )
 	: QGraphicsPixmapItem(pixmapOrg),
@@ -9,7 +10,8 @@ ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const QPixmap & pixmapOr
 		m_AttachedProvinceItem(nullptr),
 		m_Parent(parent),
 		m_OrgPixmap(pixmapOrg),
-		m_Contour(contour)
+		m_Contour(contour),
+		m_ShowContour(false)
 {
 	setAcceptHoverEvents(true);
 }
@@ -20,7 +22,9 @@ ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const ProvinceGraphicsPi
 	m_AttachedProvinceItem(rhs.m_AttachedProvinceItem),
 	m_Parent(rhs.m_Parent),
 	m_OrgPixmap(rhs.m_OrgPixmap),
-	m_Contour(rhs.m_Contour)
+	m_Contour(rhs.m_Contour),
+	m_ShowContour(rhs.m_ShowContour),
+	m_ContourPolygon(rhs.m_ContourPolygon)
 {
 	setOffset( rhs.offset() );
 	setAcceptHoverEvents(rhs.acceptHoverEvents());
@@ -61,7 +65,8 @@ void ProvinceGraphicsPixmapItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * even
 
 void ProvinceGraphicsPixmapItem::ShowSelected() 
 {
-	setPixmap( m_Contour );
+//	setPixmap( m_Contour );
+	setPixmap( ApplyContour(pixmap()) );
 }
 
 void ProvinceGraphicsPixmapItem::ShowOriginal() 
@@ -85,5 +90,26 @@ void ProvinceGraphicsPixmapItem::UpdateColor( const QColor& color )
 	QPixmap pixmap(pixmap());
 	pixmap.fill(color);
 	pixmap.setMask( m_OrgPixmap.mask() );
-	setPixmap( pixmap );
+	if( m_ShowContour == true )
+	{
+		setPixmap( ApplyContour(pixmap) );
+	}
+	else
+	{
+		setPixmap( pixmap );
+	}
+}
+
+QPixmap ProvinceGraphicsPixmapItem::ApplyContour( const QPixmap& pixmap ) const
+{
+	QImage image( pixmap.toImage() );
+	QPolygon::ConstIterator iter;
+	for( iter = m_ContourPolygon.constBegin(); iter != m_ContourPolygon.constEnd(); iter++ )
+	{
+		image.setPixel((*iter),qRgba(0,0,0,255));
+	}
+	QPixmap newPixmap;
+	newPixmap.convertFromImage(image);
+	newPixmap.setMask( pixmap.mask() );
+	return newPixmap;
 }

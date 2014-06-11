@@ -27,14 +27,20 @@ public:
 	void SetAttachedProvinceItem(const ProvinceItem * val);
 /** */
 	void UpdateColor( const QColor& color );
+	const QPolygon& GetContourPolygon() const { return m_ContourPolygon; }
+	void SetContourPolygon( const QPolygon& obj ) { m_ContourPolygon = obj; }
+private:
+	QPixmap ApplyContour( const QPixmap& pixmap ) const;
 private:
 	QRect	m_Location;
 	QPixmap	m_OrgPixmap;
 	QPixmap	m_Contour;
 	QPixmap	m_LastPixmap;
+	QPolygon m_ContourPolygon;
 	const ProvinceItem *m_AttachedProvinceItem;
 	ExtendedGraphicsScene *m_Parent;
 	QColor	m_ColorBeforeEnter;
+	bool	m_ShowContour;
 };
 
 #endif // PROVINCEGRAPHICSPIXMAPITEM_H

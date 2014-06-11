@@ -5,6 +5,7 @@ class ProvinceItem;
 class Nation;
 class ProvinceGraphicsPixmapItem;
 class ExtendedGraphicsScene;
+class HoI3Script;
 
 class ParserHoI3
 {
@@ -13,6 +14,8 @@ public:
 	ParserHoI3();
 /** */
 	bool Parse( HoI3Context& context, ExtendedGraphicsScene *scene );
+/** */
+	HoI3Script* ParseScript( const QString& filename ) const;
 private:
 /** */
 	QPixmap* LoadProvincesBMP( const QString& fileName );

@@ -521,6 +521,12 @@ bool ParserHoI3::CreateProvinceTimeLineData( const QHash<QString,QString>& token
 	UpdateTokenValue(tokens,"manpower",timeLineData.m_Manpower);
 	UpdateTokenValue(tokens,"leadership",timeLineData.m_LeaderShip);
 
+	UpdateTokenValue(tokens,"coastal_fort",timeLineData.m_Coastalfort);
+	UpdateTokenValue(tokens,"land_fort",timeLineData.m_Landfort);
+	UpdateTokenValue(tokens,"rocket_test",timeLineData.m_Rocket);
+	UpdateTokenValue(tokens,"radar_station",timeLineData.m_Radar);
+	UpdateTokenValue(tokens,"nuclear_reactor",timeLineData.m_Nuclear);
+
 	data->m_TimeLineData.push_back(timeLineData);
 	return true;
 }
@@ -672,6 +678,7 @@ ProvinceGraphicsPixmapItem* ParserHoI3::CreateItemFromPixelClash( const QPolygon
 	{
 		return nullptr;
 	}
+
 	QImage mask(rect.width(),rect.height(),QImage::Format_Mono);
 	mask.fill(Qt::color1);
 	for( int i=0;i<pixelClash.size();i++ )
@@ -689,13 +696,15 @@ ProvinceGraphicsPixmapItem* ParserHoI3::CreateItemFromPixelClash( const QPolygon
 	pixmap.convertFromImage( image );
 	pixmap.setMask( QBitmap::fromImage(mask,Qt::MonoOnly) );
 
+	QPolygon relativePixelClash;
 	QImage contour(rect.width(),rect.height(),QImage::Format_RGB32);
-	image.fill(color);
+	contour.fill(color);
 	for( int i=0;i<pixelClashContour.size();i++ )
 	{
 		QPoint relativ(pixelClashContour.at(i));
 		relativ.setX( relativ.x() - rect.left() );
 		relativ.setY( relativ.y() - rect.top() );
+		relativePixelClash.append(relativ);
 		contour.setPixel(relativ,Qt::black);
 	}
 
@@ -705,7 +714,30 @@ ProvinceGraphicsPixmapItem* ParserHoI3::CreateItemFromPixelClash( const QPolygon
 
 	ProvinceGraphicsPixmapItem *item = new ProvinceGraphicsPixmapItem( pixmap, pixmapContour, rect, scene );
 	item->setOffset( rect.left(), rect.top() );
+	item->SetContourPolygon(relativePixelClash);
 	return item;
+}
+
+#include "HoI3Scriptparser.h"
+HoI3Script* ParserHoI3::ParseScript( const QString& filename ) const
+{
+	QFile file(filename);
+	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
+	{
+		jha::GetLog()->Log("Unable to load file: " +filename, jha::LogInterface::LL_ERROR);
+		return nullptr;
+	}
+
+	QByteArray data = file.readAll();
+	QStringList lines;
+
+	ParseToLines( data, lines );
+
+	HoI3Script *newScript = new HoI3Script(filename);
+
+	HoI3Scriptparser parser;
+	parser.Parse(lines,*newScript);
+	return newScript;
 }
 
 

@@ -18,7 +18,12 @@ public:
 		m_Manpower(0.0),
 		m_LeaderShip(0.0),
 		m_NavalBase(0),
-		m_CrudeOil(0.0)
+		m_CrudeOil(0.0),
+		m_Landfort(0),
+		m_Coastalfort(0),
+		m_Nuclear(0),
+		m_Radar(0),
+		m_Rocket(0)
 	{
 
 	}
@@ -35,7 +40,12 @@ public:
 		m_Manpower(0.0),
 		m_LeaderShip(0.0),
 		m_NavalBase(0),
-		m_CrudeOil(0.0)
+		m_CrudeOil(0.0),
+		m_Landfort(0),
+		m_Coastalfort(0),
+		m_Nuclear(0),
+		m_Radar(0),
+		m_Rocket(0)
 	{
 
 	}
@@ -54,7 +64,12 @@ public:
 		m_NavalBase(rhs.m_NavalBase),
 		m_CrudeOil(rhs.m_CrudeOil),
 		m_Owner(rhs.m_Owner),
-		m_Controller(rhs.m_Controller)
+		m_Controller(rhs.m_Controller),
+		m_Landfort(rhs.m_Landfort),
+		m_Coastalfort(rhs.m_Coastalfort),
+		m_Nuclear(rhs.m_Nuclear),
+		m_Radar(rhs.m_Radar),
+		m_Rocket(rhs.m_Rocket)
 	{
 
 	}
@@ -76,6 +91,11 @@ public:
 		m_CrudeOil = rhs.m_CrudeOil;
 		m_Owner = rhs.m_Owner;
 		m_Controller = rhs.m_Controller;
+		m_Landfort = rhs.m_Landfort;
+		m_Coastalfort = rhs.m_Coastalfort;
+		m_Nuclear = rhs.m_Nuclear;
+		m_Radar = rhs.m_Radar;
+		m_Rocket = rhs.m_Rocket;
 		return *this;
 	}
 public:
@@ -95,6 +115,11 @@ public:
 	int		m_AirBases;
 	double	m_Manpower;
 	double	m_LeaderShip;
+	int		m_Landfort;
+	int		m_Coastalfort;
+	int		m_Nuclear;
+	int		m_Radar;
+	int		m_Rocket;
 };
 
 class ProvinceGraphicsPixmapItem;

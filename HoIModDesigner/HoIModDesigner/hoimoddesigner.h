@@ -8,6 +8,7 @@ class ProvinceItem;
 class ExtendedGraphicsScene;
 class ExtendedGraphicsView;
 class Nation;
+class TimeLineDataCriteria;
 
 class TableWidgetItemNation : public QTableWidgetItem
 {
@@ -55,66 +56,12 @@ private:
 	bool	m_RowsAdded;
 };
 
-#include "ProvinceItem.h"
-class TimeLineDataCriteria
+namespace PropertyEditor
 {
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const = 0;
-};
+	class PropertyEditor;
+}
 
-class TimeLineDataCriteriaEnergy : public TimeLineDataCriteria
-{
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
-	{
-		return timeLineData.m_Energy <= 0;
-	}
-};
-
-class TimeLineDataCriteriaMetal : public TimeLineDataCriteria
-{
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
-	{
-		return timeLineData.m_Metal <= 0;
-	}
-};
-
-class TimeLineDataCriteriaCrudeOil : public TimeLineDataCriteria
-{
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
-	{
-		return timeLineData.m_CrudeOil <= 0;
-	}
-};
-
-class TimeLineDataCriteriaRareMaterial : public TimeLineDataCriteria
-{
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
-	{
-		return timeLineData.m_RareMaterials <= 0;
-	}
-};
-
-class TimeLineDataCriteriaIndustry : public TimeLineDataCriteria
-{
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
-	{
-		return timeLineData.m_Industry <= 0;
-	}
-};
-
-class TimeLineDataCriteriaAirbase : public TimeLineDataCriteria
-{
-public:
-	virtual bool CriteriaFullfilled( const ProvinceTimeLineData& timeLineData ) const
-	{
-		return timeLineData.m_AirBases <= 0;
-	}
-};
+class HoI3Token;
 
 class HoIModDesigner : public QMainWindow
 {
@@ -124,7 +71,10 @@ public:
 	HoIModDesigner(QWidget *parent = 0);
 	~HoIModDesigner();
 private slots:
+/** */
 	void LoadMap();
+/** */
+	void OpenConfigurationDialog();
 /** */
 	void DisplayContourMap();
 /** */
@@ -134,26 +84,16 @@ private slots:
 /** */
 	void ShowNationColorMap();
 /** */
-	void FilterMapEnergy();
-/** */
-	void FilterMapMetal();
-/** */
-	void FilterMapCrudeOil();
-/** */
-	void FilterMapRareMaterial();
-/** */
-	void FilterMapIndustry();
-/** */
-	void FilterMapAirbase();
+	void ShowMapFiltered( const TimeLineDataCriteria* criteria );
 private:
-/** */
-	void ShowMapFiltered( const TimeLineDataCriteria& criteria );
 /** */
 	void FillCountryList( const QHash<QString,Nation*>& nations, QTableWidget* widget );
 /** */
 	void FillProvinceList( QHash<int,ProvinceItem*>& provinces, QTableWidget* widget );
 /** */
 	void CreateDockWidgets();
+/** */
+	void CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const;
 signals:
 	void SignalAppendRow(LoggingTableWidgetRow*);
 private slots:
@@ -166,6 +106,7 @@ private:
 	QMenu		*m_DockWidgetsMenu;
 	QToolBar	*m_FileToolBar;
 	QToolBar	*m_MapFilterToolBar;
+	QAction		*m_FileConfigurationAction;
 	QAction		*m_ExitAction;
 	QAction		*m_LoadMapAction;
 	QAction		*m_AboutAction;
@@ -196,6 +137,48 @@ private:
 	QTableWidget *m_DockWidgetProvinceList;
 	LoggingTableWidget *m_DockWidgetLogging;
 
+	PropertyEditor::PropertyEditor *m_PropertyEdit;
+	QTreeWidget	*m_TreeView;
+
 };
 
+class PropTestClass : public QObject
+{
+	Q_OBJECT
+public:
+	PropTestClass(QObject* parent = 0)
+		: QObject(parent)
+	{
+
+	}
+	virtual ~PropTestClass() {}
+};
 #endif // HOIMODDESIGNER_H
+
+class FilterAction : public QAction
+{
+	Q_OBJECT
+public:
+	FilterAction( const QIcon & icon, const QString & text, const TimeLineDataCriteria* filterCriteria, HoIModDesigner * parent )
+		: QAction(icon,text,parent),
+		m_FilterCriteria(filterCriteria)
+	{
+		connect(this, SIGNAL(triggered()), this, SLOT(RedirectTriggered()));
+		connect(this, SIGNAL(ApplyFilter( const TimeLineDataCriteria* )), parent, SLOT(ShowMapFiltered( const TimeLineDataCriteria* )) );
+	}
+	~FilterAction()
+	{
+		delete m_FilterCriteria;
+	}
+	private slots:
+		void RedirectTriggered() 
+		{
+			emit ApplyFilter(m_FilterCriteria);
+		}
+signals:
+		void FilterTriggered();
+		void ApplyFilter( const TimeLineDataCriteria* );
+private:
+	const TimeLineDataCriteria* m_FilterCriteria;
+};
+

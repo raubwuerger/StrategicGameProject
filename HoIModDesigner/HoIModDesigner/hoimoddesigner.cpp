@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "hoimoddesigner.h"
-#include "PolygonHelper.h"
 #include "ProvinceGraphicsPixmapItem.h"
 #include "ProvinceItem.h"
 #include "ExtendedGraphicsView.h"
@@ -11,6 +10,7 @@
 #include "std/LoggerTableWidget.h"
 #include "ParserHoI3.h"
 #include "HoI3Context.h"
+#include "MapFilter.h"
 
 
 #include <DDSLoader.h>
@@ -34,12 +34,18 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	m_LoadMapAction->setStatusTip(tr("Load HoI3 map"));
 	connect(m_LoadMapAction, SIGNAL(triggered()), this, SLOT(LoadMap()));
 
-	m_AboutAction = new QAction(QIcon(":HoIModDesigner/images/about.ico"),tr("About"),this );
+	m_FileConfigurationAction = new QAction(QIcon(":HoIModDesigner/images/gear.ico"),tr("Configuration..."),this );
+	m_FileConfigurationAction->setStatusTip(tr("Open configuration dialog"));
+	connect(m_FileConfigurationAction, SIGNAL(triggered()), this, SLOT(OpenConfigurationDialog()));
+
+	m_AboutAction = new QAction(QIcon(":HoIModDesigner/images/about.ico"),tr("About..."),this );
 	m_AboutAction->setStatusTip(tr("Show about dialog"));
 //	connect(m_AboutAction, SIGNAL(triggered()), this, SLOT(About()));
 
 	m_FileMenu = menuBar()->addMenu(tr("&File"));
 	m_FileMenu->addAction( m_LoadMapAction );
+	m_FileMenu->addSeparator();
+	m_FileMenu->addAction( m_FileConfigurationAction );
 	m_FileMenu->addSeparator();
 	m_FileMenu->addAction( m_ExitAction );
 
@@ -52,69 +58,55 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	m_FileToolBar->addAction(m_ExitAction);
 	m_FileToolBar->addAction(m_LoadMapAction);
 
-	m_ShowOriginalMap = new QAction(recycle,tr("Original"), this);
+	m_ShowOriginalMap = new QAction(QIcon("images/test.png"),tr("Original"), this);
 	m_ShowOriginalMap->setStatusTip(tr("Shows original map"));
 	connect(m_ShowOriginalMap, SIGNAL(triggered()), this, SLOT(ShowOriginalMap()));
 
-	m_ShowNationColorMap = new QAction(recycle,tr("Nations"), this);
+	m_ShowNationColorMap = new QAction(QIcon(":HoIModDesigner/images/mapmode_political.ico"),tr("Nations"), this);
 	m_ShowNationColorMap->setStatusTip(tr("Shows map by country colors"));
 	connect(m_ShowNationColorMap, SIGNAL(triggered()), this, SLOT(ShowNationColorMap()));
 
-	m_ShowMetalProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_metal.ico"),tr("Metal"), this);
+	m_ShowMetalProvinces = new FilterAction(QIcon(":HoIModDesigner/images/resource_metal.ico"),tr("Metal"), new TimeLineDataCriteriaMetal(), this);
 	m_ShowMetalProvinces->setStatusTip(tr("Shows only provinces with metal"));
-	connect(m_ShowMetalProvinces, SIGNAL(triggered()), this, SLOT(FilterMapMetal()));
 
-	m_ShowOilProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_oil.ico"),tr("Crude oil"), this);
+	m_ShowOilProvinces = new FilterAction(QIcon(":HoIModDesigner/images/resource_oil.ico"),tr("Crude oil"), new TimeLineDataCriteriaCrudeOil(), this);
 	m_ShowOilProvinces->setStatusTip(tr("Shows only provinces with crude oil"));
-	connect(m_ShowOilProvinces, SIGNAL(triggered()), this, SLOT(FilterMapCrudeOil()));
 
-	m_ShowEnergyProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_energy.ico"),tr("Energy"), this);
+	m_ShowEnergyProvinces = new FilterAction(QIcon(":HoIModDesigner/images/resource_energy.ico"),tr("Energy"), new TimeLineDataCriteriaEnergy(), this);
 	m_ShowEnergyProvinces->setStatusTip(tr("Shows only provinces with energy"));
-	connect(m_ShowEnergyProvinces, SIGNAL(triggered()), this, SLOT(FilterMapEnergy()));
 
-	m_ShowRareProvinces = new QAction(QIcon(":HoIModDesigner/images/resource_raremat.ico"),tr("Rare material"), this);
+	m_ShowRareProvinces = new FilterAction(QIcon(":HoIModDesigner/images/resource_raremat.ico"),tr("Rare material"), new TimeLineDataCriteriaRareMaterial(), this);
 	m_ShowRareProvinces->setStatusTip(tr("Shows only provinces with rare material"));
-	connect(m_ShowRareProvinces, SIGNAL(triggered()), this, SLOT(FilterMapRareMaterial()));
 
-	m_ShowIndustryProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_factory.ico"),tr("Industry"), this);
+	m_ShowIndustryProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_factory.ico"),tr("Industry"), new TimeLineDataCriteriaIndustry(), this);
 	m_ShowIndustryProvinces->setStatusTip(tr("Shows only provinces with industry"));
-	connect(m_ShowIndustryProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowAAProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_aa.ico"),tr("Antiair"), this);
+	m_ShowAAProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_aa.ico"),tr("Antiair"), new TimeLineDataCriteriaAntiair(), this);
 	m_ShowAAProvinces->setStatusTip(tr("Shows only provinces with antiair"));
-	connect(m_ShowAAProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowAirbaseProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_airbase.ico"),tr("Airbase"), this);
+	m_ShowAirbaseProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_airbase.ico"),tr("Airbase"), new TimeLineDataCriteriaAirbase(), this);
 	m_ShowAirbaseProvinces->setStatusTip(tr("Shows only provinces with airbase"));
-	connect(m_ShowAirbaseProvinces, SIGNAL(triggered()), this, SLOT(FilterMapAirbase()));
 
-	m_ShowCoastalfortProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_coastalfort.ico"),tr("Coastalfort"), this);
+	m_ShowCoastalfortProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_coastalfort.ico"),tr("Coastalfort"), new TimeLineDataCriteriaCoastalfort(), this);
 	m_ShowCoastalfortProvinces->setStatusTip(tr("Shows only provinces with coastalfort"));
-	connect(m_ShowCoastalfortProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowInfraProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_infra.ico"),tr("Infrastructure"), this);
+	m_ShowInfraProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_infra.ico"),tr("Infrastructure"), new TimeLineDataCriteriaInfrastructure(), this);
 	m_ShowInfraProvinces->setStatusTip(tr("Shows only provinces with infrastructure"));
-	connect(m_ShowInfraProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowLandfortProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_landfort.ico"),tr("Landfort"), this);
+	m_ShowLandfortProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_landfort.ico"),tr("Landfort"), new TimeLineDataCriteriaLandfort(), this);
 	m_ShowLandfortProvinces->setStatusTip(tr("Shows only provinces with landfort"));
-	connect(m_ShowLandfortProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowNavalbaseProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_navalbase.ico"),tr("Navalbase"), this);
+	m_ShowNavalbaseProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_navalbase.ico"),tr("Navalbase"), new TimeLineDataCriteriaNavalbase(), this);
 	m_ShowNavalbaseProvinces->setStatusTip(tr("Shows only provinces with navalbase"));
-	connect(m_ShowNavalbaseProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowNuclearProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_nuclear.ico"),tr("Nuclear"), this);
+	m_ShowNuclearProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_nuclear.ico"),tr("Nuclear"), new TimeLineDataCriteriaNuclear(), this);
 	m_ShowNuclearProvinces->setStatusTip(tr("Shows only provinces with nuclear"));
-	connect(m_ShowNuclearProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowRadarProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_radar.ico"),tr("Radar"), this);
+	m_ShowRadarProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_radar.ico"),tr("Radar"), new TimeLineDataCriteriaRadar(), this);
 	m_ShowRadarProvinces->setStatusTip(tr("Shows only provinces with radar"));
-	connect(m_ShowRadarProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
-	m_ShowRocketProvinces  = new QAction(QIcon(":HoIModDesigner/images/icon_build_rocket.ico"),tr("Rocket"), this);
+	m_ShowRocketProvinces  = new FilterAction(QIcon(":HoIModDesigner/images/icon_build_rocket.ico"),tr("Rocket"), new TimeLineDataCriteriaRocket(), this);
 	m_ShowRocketProvinces->setStatusTip(tr("Shows only provinces with rocket"));
-	connect(m_ShowRocketProvinces, SIGNAL(triggered()), this, SLOT(ShowIndustryColorMap()));
 
 	m_MapFilterToolBar = addToolBar(tr("Map filter"));
 	m_MapFilterToolBar->addAction(m_ShowOriginalMap);
@@ -190,41 +182,6 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	jha::GetLog()->Start();
 }
 
-/** */
-void HoIModDesigner::FilterMapEnergy()
-{
-	ShowMapFiltered( TimeLineDataCriteriaEnergy() );
-}
-
-/** */
-void HoIModDesigner::FilterMapMetal()
-{
-	ShowMapFiltered( TimeLineDataCriteriaMetal() );
-}
-
-/** */
-void HoIModDesigner::FilterMapCrudeOil()
-{
-	ShowMapFiltered( TimeLineDataCriteriaCrudeOil() );
-}
-
-/** */
-void HoIModDesigner::FilterMapRareMaterial()
-{
-	ShowMapFiltered( TimeLineDataCriteriaRareMaterial() );
-}
-
-void HoIModDesigner::FilterMapIndustry()
-{
-	ShowMapFiltered( TimeLineDataCriteriaIndustry() );
-}
-
-void HoIModDesigner::FilterMapAirbase()
-{
-	ShowMapFiltered( TimeLineDataCriteriaAirbase() );
-}
-
-
 HoIModDesigner::~HoIModDesigner()
 {
 }
@@ -240,23 +197,76 @@ void HoIModDesigner::LoadMap()
 	DisplayItemMap(&(context.m_ProvinceMap));
 	FillCountryList(context.m_Countries,m_DockWidgetNationList);
 	FillProvinceList(context.m_ProvinceMap,m_DockWidgetProvinceList);
-
-//TODO: Später wieder aktivieren!!!
-//	m_View->setSceneRect( 0, 0, m_OriginalMap.size().width(), m_OriginalMap.size().height() );
 }
 
+// #include "property/QPropertyEditorWidget.h"
+// #include "property/CustomTypes.h"
+// #include "property/TestClass.h"
+// void HoIModDesigner::DisplayContourMap()
+// {
+// 	QDockWidget *dock = new QDockWidget(tr("Properties"), this);
+// 	dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+// 
+// 	CustomTypes::registerTypes();
+// 	m_PropertyEdit = new  QPropertyEditorWidget(dock);
+// 
+// 	m_PropertyEdit->registerCustomPropertyCB(CustomTypes::createCustomProperty);
+//  	TestClass *testClass = new TestClass(this);
+// 	testClass->setProperty("Dynamic prop",QVariant("Text"));
+// 	testClass->setProperty("Dynamic2",QVariant(23));
+// //	testClass->
+// 	//testClass->property()
+//  	m_PropertyEdit->addObject(testClass);
+// 
+// 	dock->setWidget(m_PropertyEdit);
+// 	addDockWidget(Qt::RightDockWidgetArea, dock);
+// 	m_DockWidgetsMenu->addAction(dock->toggleViewAction());
+// }
+
+//#include "prop\propertyeditor.h"
+#include "HoI3Scriptparser.h"
 void HoIModDesigner::DisplayContourMap()
 {
-	connect(this, SIGNAL(SignalAppendRow(LoggingTableWidgetRow*)),m_DockWidgetLogging, SLOT(AppendRow(LoggingTableWidgetRow*)));
+	ParserHoI3 parser;
+	HoI3Script *script = parser.ParseScript("E:/Spiele/HoI3/events/ClaimingMemel.txt");
+	if( script == nullptr )
+	{
+		return;
+	}
 
-	LoggingTableWidgetRow *newRow = new LoggingTableWidgetRow;
-	newRow->m_Items.push_back( new QTableWidgetItem("blabla") );
-	newRow->m_Items.push_back( new QTableWidgetItem("blabla1") );
-	newRow->m_Items.push_back( new QTableWidgetItem("blabla2") );
-	newRow->m_Items.push_back( new QTableWidgetItem("blabla3") );
+	QDockWidget *dock = new QDockWidget(tr("Script"), this);
+	dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	m_TreeView = new QTreeWidget(dock);
+	m_TreeView->setColumnCount(2);
 
-	emit SignalAppendRow(newRow);
-		
+	QList<QTreeWidgetItem*> topLevelItems;
+	QList<HoI3Token>::const_iterator iter;
+	for( iter = script->m_TokenList.constBegin(); iter  != script->m_TokenList.constEnd(); iter++ )
+	{
+		QStringList newData;
+		newData << iter->m_Name << iter->m_Value;
+		QTreeWidgetItem *newTopLevelItem = new QTreeWidgetItem( m_TreeView, newData );
+		CreateColumn( newTopLevelItem, (*iter) );
+	}
+
+	m_TreeView->addTopLevelItems(topLevelItems);
+	m_TreeView->expandAll();
+
+	dock->setWidget(m_TreeView);
+	addDockWidget(Qt::RightDockWidgetArea, dock);
+	m_DockWidgetsMenu->addAction(dock->toggleViewAction());
+}
+
+void HoIModDesigner::CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const
+{
+	QList<HoI3Token>::ConstIterator iter;
+	for( iter = token.m_Tokens.constBegin(); iter != token.m_Tokens.constEnd(); iter++ )
+	{
+		QStringList newData;
+		newData << iter->m_Name << iter->m_Value;
+		QTreeWidgetItem *newItem = new QTreeWidgetItem( parent, newData );
+		CreateColumn( newItem, (*iter) );
+	}
 }
 
 void HoIModDesigner::DisplayItemMap( const QHash<int,ProvinceItem*>* items )
@@ -683,8 +693,12 @@ void HoIModDesigner::ShowNationColorMap()
 	m_View->setVisible(true);
 }
 
-void HoIModDesigner::ShowMapFiltered( const TimeLineDataCriteria& criteria )
+void HoIModDesigner::ShowMapFiltered( const TimeLineDataCriteria* criteria )
 {
+	if( criteria == nullptr )
+	{
+		return;
+	}
 	m_View->setVisible(false);
 	QList<QGraphicsItem *> items = m_View->m_Scene->items();
 	for( int i=0;i<items.size();i++ )
@@ -712,7 +726,7 @@ void HoIModDesigner::ShowMapFiltered( const TimeLineDataCriteria& criteria )
 			continue;
 		}
 
-		if( criteria.CriteriaFullfilled(item->GetAttachedProvinceItem()->m_TimeLineData.at(0)) == true )
+		if( criteria->CriteriaFullfilled(item->GetAttachedProvinceItem()->m_TimeLineData.at(0)) == true )
 		{
 			item->UpdateColor(Qt::lightGray);
 			continue;
@@ -720,6 +734,13 @@ void HoIModDesigner::ShowMapFiltered( const TimeLineDataCriteria& criteria )
 		item->UpdateColor(Qt::green);
 	}
 	m_View->setVisible(true);
+}
+
+#include "ConfigurationDialog.h"
+void HoIModDesigner::OpenConfigurationDialog()
+{
+	ConfigurationDialog dialog;
+	dialog.exec();
 }
 
 //================================================================================
