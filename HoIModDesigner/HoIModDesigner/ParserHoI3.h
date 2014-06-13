@@ -6,16 +6,23 @@ class Nation;
 class ProvinceGraphicsPixmapItem;
 class ExtendedGraphicsScene;
 class HoI3Script;
+class BuildingItem;
 
-class ParserHoI3
+#include "HoI3Context.h"
+
+class ParserHoI3 : public QObject
 {
+	Q_OBJECT
 public:
 /** */
-	ParserHoI3();
-/** */
-	bool Parse( HoI3Context& context, ExtendedGraphicsScene *scene );
+	ParserHoI3( ExtendedGraphicsScene *scene );
 /** */
 	HoI3Script* ParseScript( const QString& filename ) const;
+public slots:
+/** */
+	void Parse();
+signals:
+	void Finished();
 private:
 /** */
 	QPixmap* LoadProvincesBMP( const QString& fileName );
@@ -59,5 +66,10 @@ private:
 	void CreateGraphicsItems( QHash<int,ProvinceItem*>& result, ExtendedGraphicsScene *scene ) const;
 /** */
 	ProvinceGraphicsPixmapItem* CreateItemFromPixelClash( const QPolygon& pixelClash, const QPolygon& pixelClashContour, const QColor& color, ExtendedGraphicsScene *scene ) const;
+/** */
+	bool ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, const QString& filename ) const;
+public:
+	HoI3Context				m_Context;
+	ExtendedGraphicsScene	*m_Scene;
 };
 

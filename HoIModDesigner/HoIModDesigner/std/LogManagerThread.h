@@ -23,6 +23,7 @@ public:
 /** */
 	void Stop();
 public slots:
+/** */
 	void HasFinished();
 /** */
 	void RequestStartFromTimer();

@@ -2,6 +2,8 @@
 #include <QVector>
 #include <QString>
 
+#include "LogLevel.h"
+
 namespace jha
 {
 class LogMessage;
@@ -25,13 +27,17 @@ public:
 	/** */
 	void SetEnabled( bool enable );
 protected:
+/** */
 	QString CreateDefaultLogString( jha::LogMessage *message ) const;
+/** */
+	bool LogThisLogLevel( jha::LogMessage *message ) const;
 private:
 	/** */
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage ) = 0;
 private:
 	QString	m_Name;
 	bool	m_Enabled;
+	LogLevel m_LogLevel;
 };
 
 }

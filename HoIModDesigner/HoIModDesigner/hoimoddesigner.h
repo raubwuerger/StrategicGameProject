@@ -9,6 +9,7 @@ class ExtendedGraphicsScene;
 class ExtendedGraphicsView;
 class Nation;
 class TimeLineDataCriteria;
+class BuildingItem;
 
 class TableWidgetItemNation : public QTableWidgetItem
 {
@@ -62,6 +63,7 @@ namespace PropertyEditor
 }
 
 class HoI3Token;
+class ParserHoI3;
 
 class HoIModDesigner : public QMainWindow
 {
@@ -78,7 +80,7 @@ private slots:
 /** */
 	void DisplayContourMap();
 /** */
-	void DisplayItemMap( const QHash<int,ProvinceItem*>* items );
+	void DisplayItemMap( const QHash<int,ProvinceItem*>& items );
 /** */
 	void ShowOriginalMap();
 /** */
@@ -91,6 +93,8 @@ private:
 /** */
 	void FillProvinceList( QHash<int,ProvinceItem*>& provinces, QTableWidget* widget );
 /** */
+	void FillBuildinsList( QHash<QString,BuildingItem*>& buildings, QTableWidget* widget );
+/** */
 	void CreateDockWidgets();
 /** */
 	void CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const;
@@ -99,6 +103,7 @@ signals:
 private slots:
 	void UpdateProvinceDetail(const ProvinceItem* item);
 	void UpdateCountryDetail(QTableWidgetItem* item);
+	void ParsingFinished();
 private:
 	Ui::HoIModDesignerClass ui;
 	QMenu		*m_FileMenu;
@@ -135,10 +140,13 @@ private:
 	QTableWidget *m_DockWidgetNationList;
 	QTableWidget *m_DockWidgetNationDetails;
 	QTableWidget *m_DockWidgetProvinceList;
+	QTableWidget *m_DockWidgetBuildingTypes;
 	LoggingTableWidget *m_DockWidgetLogging;
 
 	PropertyEditor::PropertyEditor *m_PropertyEdit;
 	QTreeWidget	*m_TreeView;
+
+	ParserHoI3	*m_Parser;
 
 };
 

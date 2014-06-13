@@ -1,0 +1,6 @@
+2014-06-12 - jha: Wünsch dir was ...
+
+	o	DDS-Files mit QT parsen und in QIcon oder ähnliches umwandeln
+	o	Loggingframework: Parametrierung erstellen
+	o	Filtermöglichkeit für LogLevel (von ... bis)
+	o	Loggingframework: Sinnvolle verwendung für Kategorie

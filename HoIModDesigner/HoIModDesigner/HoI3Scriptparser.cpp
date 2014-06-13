@@ -65,8 +65,10 @@ QString HoI3Scriptparser::RemoveIgnoreData( const QString& line ) const
 
 QStringList HoI3Scriptparser::SeparateToken( const QString& line ) const
 {
+	//TODO: Geht nicht so einfach. Tokens die durch "" zusammengefasst sind können Leerzeichen enthalten!
 	QStringList rawToken = line.split(SEPARATOR,QString::SkipEmptyParts);
 	QStringList token;
+	QString tokenInBrakets;
 	for( int i=0; i<rawToken.size();i++ )
 	{
 		QString tokenString = rawToken.at(i).trimmed();
@@ -74,7 +76,27 @@ QStringList HoI3Scriptparser::SeparateToken( const QString& line ) const
 		{
 			continue;
 		}
-		token.append(tokenString);
+		
+		if( tokenString.count("\"") == 1 )
+		{
+			if( tokenInBrakets.isEmpty() == true )
+			{
+				tokenInBrakets = tokenString;
+				continue;
+			}
+			else
+			{
+				tokenInBrakets += tokenString;
+				tokenString = tokenInBrakets;
+				tokenInBrakets.clear();
+			}
+		}
+		else if( tokenInBrakets.isEmpty() == false )
+		{
+			tokenInBrakets += tokenString;
+			continue;
+		}
+		token.append(tokenString.remove("\""));
 	}
 	return token;
 }
@@ -106,33 +128,41 @@ bool HoI3Scriptparser::CreateTokenTree( const QStringList& flatTokenList, QStrin
 			return true;
 		}
 
-		if( *tokenPosition != ASSIGN )
-		{
-			//LOG: Bad Token. "=" expected after lhs!
-			return false;
-		}
-		tokenPosition++;
-
-		if( *tokenPosition == ASSIGN || *tokenPosition == BLOCK_END )
-		{
-			//LOG: Bad Token. Not expected after "="!
-			return false;
-		}
-		if( *tokenPosition == BLOCK_START )
+		if( *tokenPosition == ASSIGN ) //TODO: Bei geöffneter Klammer können auch nur Werte kommen
 		{
 			tokenPosition++;
-			HoI3Token newToken(tokenName,"");
-			if( CreateTokenTree(flatTokenList,tokenPosition,newToken.m_Tokens) == false )
+
+			if( *tokenPosition == ASSIGN || *tokenPosition == BLOCK_END )
 			{
+				//LOG: Bad Token. Not expected after "="!
 				return false;
 			}
-			tokenList.append(newToken);
+			if( *tokenPosition == BLOCK_START )
+			{
+				tokenPosition++;
+				HoI3Token newToken(tokenName,"");
+				if( CreateTokenTree(flatTokenList,tokenPosition,newToken.m_Tokens) == false )
+				{
+					return false;
+				}
+				tokenList.append(newToken);
+			}
+			else
+			{
+				HoI3Token newToken(tokenName,*tokenPosition);
+				tokenList.append(newToken);
+				tokenPosition++;
+			}
 		}
 		else
 		{
-			HoI3Token newToken(tokenName,*tokenPosition);
+			if( *tokenPosition == BLOCK_START )
+			{
+				//SOwas gibt es nicht { <Wert> } ...
+				return false;
+			}
+			HoI3Token newToken("",tokenName); //Muss wohl eine Aufreihung von Werten sein ...
 			tokenList.append(newToken);
-			tokenPosition++;
 		}
 	}
 	return true;

@@ -9,7 +9,8 @@ HoI3Context::HoI3Context() : m_BasePath("E:\\Spiele\\HoI3"),
 	m_ProvincesDir("history\\provinces"),
 	m_ModPath("mod\\RandomHoi"),
 	m_CommonDir("common\\"),
-	TRAIL("\\")
+	TRAIL("\\"),
+	m_BuildingsTXT("common\\buildings.txt")
 {
 
 }
@@ -28,6 +29,11 @@ QString HoI3Context::GetPathCountriesTXT() const
 {
 	//return m_BasePath +TRAIL +m_CountriesTXT;
 	return m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_CountriesTXT;
+}
+
+QString HoI3Context::GetPathBuildingsTXT() const
+{
+	return m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_BuildingsTXT;
 }
 
 QVector<QString> HoI3Context::GetPathProvincesDir() const

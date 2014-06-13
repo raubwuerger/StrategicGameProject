@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-16" standalone="no"?>
+<root>
+	<Settings lastSelectedContext="tfh"/>
+	<Directories>
+		<Directory name="common"/>
+		<Directory name="history\provinces"/>
+		<Directory name="history\units"/>
+		<Directory name="technologies"/>
+		<Directory name="units"/>
+		<Directory name="units\models"/>
+		<Directory name="gfx\mapitems"/>
+	</Directories>
+</root>

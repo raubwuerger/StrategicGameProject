@@ -6,48 +6,63 @@
 #include "PolygonHelper.h"
 #include "ProvinceGraphicsPixmapItem.h"
 #include "HoI3Context.h"
+#include "HoI3Scriptparser.h"
 
-ParserHoI3::ParserHoI3()
+ParserHoI3::ParserHoI3( ExtendedGraphicsScene *scene )
+	: m_Scene(scene)
 {
 }
 
-bool ParserHoI3::Parse( HoI3Context& context, ExtendedGraphicsScene *scene )
+void ParserHoI3::Parse()
 {
-	QPixmap *map = LoadProvincesBMP(context.GetPathProvinceBMP());
+	QPixmap *map = LoadProvincesBMP(m_Context.GetPathProvinceBMP());
 	if( map == nullptr )
 	{
-		return false;
+		emit Finished();
+		moveToThread(QApplication::instance()->thread()); //Muss sich selber zurückschieben (push, not pull!)
+		return;
 	}
 
 	QHash<int,ProvinceItem*>	provinceMapByRGB;
-	ParseProvinzList(provinceMapByRGB,context.m_ProvinceMap,context.GetPathDefinitionCSV());
+	ParseProvinzList(provinceMapByRGB,m_Context.m_ProvinceMap,m_Context.GetPathDefinitionCSV());
 
- 	ParseCountryList(context.m_Countries,context.GetPathCountriesTXT(),context.GetPathCommonDir());
+ 	ParseCountryList(m_Context.m_Countries,m_Context.GetPathCountriesTXT(),m_Context.GetPathCommonDir());
  
-	QVector<QString> provinceDirPaths = context.GetPathProvincesDir();
+	QVector<QString> provinceDirPaths = m_Context.GetPathProvincesDir();
 	for( int i=0;i<provinceDirPaths.size();i++ )
 	{
-		ParseProvinceDetailInfoDirectory( context.m_ProvinceMap, provinceDirPaths.at(i) );
+		ParseProvinceDetailInfoDirectory( m_Context.m_ProvinceMap, provinceDirPaths.at(i) );
 	}
 
- 	AttachProvincesToNations( context.m_ProvinceMap, context.m_Countries );
+ 	AttachProvincesToNations( m_Context.m_ProvinceMap, m_Context.m_Countries );
 
 	if( CreateColorMap(provinceMapByRGB,map) == false )
 	{
-		return false;
+		emit Finished();
+		moveToThread(QApplication::instance()->thread()); //Muss sich selber zurückschieben (push, not pull!)
+		return;
 	}
- 	CreateGraphicsItems(provinceMapByRGB,scene);
-	return true;
+ 	CreateGraphicsItems(provinceMapByRGB,m_Scene);
+
+	if( ParseBuildingsTXT( m_Context.m_BuildingTypes, m_Context.GetPathBuildingsTXT() ) == false )
+	{
+		jha::GetLog()->Log( "Unable to parse: " +m_Context.GetPathBuildingsTXT(), LEVEL::LL_ERROR );
+	}
+
+	jha::GetLog()->Log( "Finished parsing HoI3 context: " +m_Context.m_ModPath, LEVEL::LL_MESSAGE );
+
+	emit Finished();
+	moveToThread(QApplication::instance()->thread()); //Muss sich selber zurückschieben (push, not pull!)
 }
 
 QPixmap* ParserHoI3::LoadProvincesBMP( const QString& fileName )
 {
-	jha::GetLog()->Log("Loading file: " +fileName, jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Loading file: " +fileName, LEVEL::LL_INFO);
 	QPixmap *newPixmap = new QPixmap;
 	newPixmap->load(fileName);
 	if( newPixmap->isNull() == true )
 	{
-		jha::GetLog()->Log("Unable to load file: " +fileName, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to load file: " +fileName, LEVEL::LL_ERROR);
 		delete newPixmap;
 		return nullptr;
 	}
@@ -57,11 +72,11 @@ QPixmap* ParserHoI3::LoadProvincesBMP( const QString& fileName )
 
 bool ParserHoI3::ParseProvinzList( QHash<int,ProvinceItem*>& mapRGB, QHash<int,ProvinceItem*>& mapID, const QString& provincePath ) const
 {
-	jha::GetLog()->Log("Loading file: " +provincePath, jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Loading file: " +provincePath, LEVEL::LL_INFO);
 	QFile file(provincePath);
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		jha::GetLog()->Log("Unable to load file: " +provincePath, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to load file: " +provincePath, LEVEL::LL_ERROR);
 		return false;
 	}
 
@@ -83,7 +98,7 @@ bool ParserHoI3::ParseProvinzList( QHash<int,ProvinceItem*>& mapRGB, QHash<int,P
 		mapID.insert(newItem->m_ID, newItem);
 	}
 
-	jha::GetLog()->Log("Created province items: " +QString().setNum(mapRGB.size()), jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Created province items: " +QString().setNum(mapRGB.size()), LEVEL::LL_INFO);
 	//m_ProvinceMap
 	return mapRGB.isEmpty() == false;
 }
@@ -101,7 +116,7 @@ int ParserHoI3::ParseToLines( const QByteArray& data, QStringList &lines ) const
 		char currentChar = data.at(i);
 		if( currentChar == CR || currentChar == LF )
 		{
-			if( line.isEmpty() == true )
+			if( line.trimmed().isEmpty() == true )
 			{
 				continue;
 			}
@@ -111,7 +126,10 @@ int ParserHoI3::ParseToLines( const QByteArray& data, QStringList &lines ) const
 		}
 		line.append(currentChar);
 	}
-	lines.append(line);
+	if( line.trimmed().isEmpty() == false )
+	{
+		lines.append(line);
+	}
 	return lines.size();
 }
 
@@ -127,7 +145,7 @@ ProvinceItem* ParserHoI3::CreateProvinzeItemFromString( const QString& line ) co
 	QStringList fields  = line.split(columnSeparator);
 	if( fields.size() != columns )
 	{
-		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
+		jha::GetLog()->Log("Unable to parse line: " +line, LEVEL::LL_WARNING);
 		return nullptr;
 	}
 
@@ -135,28 +153,28 @@ ProvinceItem* ParserHoI3::CreateProvinzeItemFromString( const QString& line ) co
 	int provinceID = fields.at(0).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
+		jha::GetLog()->Log("Unable to parse line: " +line, LEVEL::LL_WARNING);
 		return nullptr;
 	}
 
 	int r = fields.at(1).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
+		jha::GetLog()->Log("Unable to parse line: " +line, LEVEL::LL_WARNING);
 		return nullptr;
 	}
 
 	int g = fields.at(2).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
+		jha::GetLog()->Log("Unable to parse line: " +line, LEVEL::LL_WARNING);
 		return nullptr;
 	}
 
 	int b = fields.at(3).toInt(&conversionValid);
 	if( conversionValid == false )
 	{
-		jha::GetLog()->Log("Unable to parse line: " +line, jha::LogInterface::LL_WARNING);
+		jha::GetLog()->Log("Unable to parse line: " +line, LEVEL::LL_WARNING);
 		return nullptr;
 	}
 
@@ -168,11 +186,11 @@ ProvinceItem* ParserHoI3::CreateProvinzeItemFromString( const QString& line ) co
 //================================================================================
 bool ParserHoI3::ParseCountryList( QHash<QString,Nation*>& countryList, const QString& countryPath, const QVector<QString>& pathCountryDetails ) const
 {
-	jha::GetLog()->Log("Loading file: " +countryPath, jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Loading file: " +countryPath, LEVEL::LL_INFO);
 	QFile file(countryPath);
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		jha::GetLog()->Log("Unable to load file: " +countryPath, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to load file: " +countryPath, LEVEL::LL_ERROR);
 		return false;
 	}
 
@@ -201,7 +219,7 @@ bool ParserHoI3::ParseCountryList( QHash<QString,Nation*>& countryList, const QS
 		}
 	}
 
-	jha::GetLog()->Log("Created countries: " +QString().setNum(countryList.size()), jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Created countries: " +QString().setNum(countryList.size()), LEVEL::LL_INFO);
 	return countryList.isEmpty() == false;
 }
 
@@ -250,12 +268,12 @@ bool ParserHoI3::ParseCountryDetailInfo( const QString& filename, Nation* nation
 		return false;
 	}
 
-	jha::GetLog()->Log("Loading file: " +filename, jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Loading file: " +filename, LEVEL::LL_INFO);
 	//TODO: Holt sich aktuell nur die Farbe raus ...
 	QFile file(filename);
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		jha::GetLog()->Log("Unable to load file: " +filename, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to load file: " +filename, LEVEL::LL_ERROR);
 		return false;
 	}
 
@@ -266,14 +284,14 @@ bool ParserHoI3::ParseCountryDetailInfo( const QString& filename, Nation* nation
 	//TODO: Dummyimplementierung. Holt nur die Farbe raus ...
 	if( lines.isEmpty() == true )
 	{
-		jha::GetLog()->Log("Unable to parse color: " +filename, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to parse empty file: " +filename, LEVEL::LL_ERROR);
 		return false;
 	}
 
 	QStringList items = lines.at(0).split(" ",QString::SkipEmptyParts);
 	if( items.size() < 7 )
 	{
-		jha::GetLog()->Log("Unable to parse color: " +filename, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to parse color: " +filename, LEVEL::LL_ERROR);
 		return false;
 	}
 
@@ -288,7 +306,7 @@ bool ParserHoI3::ParseCountryDetailInfo( const QString& filename, Nation* nation
 //================================================================================
 bool ParserHoI3::ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& provinceList, const QString& provincePath ) const
 {
-	jha::GetLog()->Log("Parsing directory: " +provincePath, jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Parsing directory: " +provincePath, LEVEL::LL_INFO);
 	QDir directory(provincePath);
 	QFileInfoList infos = directory.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files);
 	for( int i=0;i<infos.size();i++ )
@@ -367,7 +385,7 @@ bool ParserHoI3::ParseProvinceDetailInfo( const QString& filename, ProvinceItem*
 	{
 		int wait = 0;
 	}
-	jha::GetLog()->Log("Parsing file: " +filename,jha::LogInterface::LL_INFO);
+	jha::GetLog()->Log("Parsing file: " +filename,LEVEL::LL_INFO);
 	//  	QCoreApplication::processEvents();
 	//  	QCoreApplication::flush();
 	QFile file(filename);
@@ -721,10 +739,11 @@ ProvinceGraphicsPixmapItem* ParserHoI3::CreateItemFromPixelClash( const QPolygon
 #include "HoI3Scriptparser.h"
 HoI3Script* ParserHoI3::ParseScript( const QString& filename ) const
 {
-	QFile file(filename);
+	jha::GetLog()->Log( "Parsing file: " +filename, LEVEL::LL_MESSAGE, jha::LogCategoryByName(__FILE__) );
+	QFile file(filename); 
 	if( file.open(QIODevice::ReadOnly | QIODevice::Text) == false )
 	{
-		jha::GetLog()->Log("Unable to load file: " +filename, jha::LogInterface::LL_ERROR);
+		jha::GetLog()->Log("Unable to load file: " +filename, LEVEL::LL_ERROR);
 		return nullptr;
 	}
 
@@ -738,6 +757,32 @@ HoI3Script* ParserHoI3::ParseScript( const QString& filename ) const
 	HoI3Scriptparser parser;
 	parser.Parse(lines,*newScript);
 	return newScript;
+}
+
+#include "BuildingItem.h"
+bool ParserHoI3::ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, const QString& filename ) const
+{
+	HoI3Script *script = ParseScript(filename);
+	if( script == nullptr )
+	{
+		return false;
+	}
+
+	BuildingItemPrototypeRepository prototypeFactory;
+
+	QList<HoI3Token>::ConstIterator iterType;
+	for( iterType = script->m_TokenList.constBegin(); iterType != script->m_TokenList.constEnd(); iterType++ )
+	{
+		BuildingItem *newBuilding = new BuildingItem(iterType->m_Name);
+		QList<HoI3Token>::ConstIterator iterData;
+		for( iterData = iterType->m_Tokens.constBegin(); iterData != iterType->m_Tokens.constEnd(); iterData++ )
+		{
+			newBuilding->AppendItemData(iterData->m_Name, prototypeFactory.CreateItemData( iterData->m_Name, iterData->m_Value ) );
+		}
+
+		buildingList.insert(newBuilding->GetName(), newBuilding);
+	}
+	return buildingList.size() > 0;
 }
 
 

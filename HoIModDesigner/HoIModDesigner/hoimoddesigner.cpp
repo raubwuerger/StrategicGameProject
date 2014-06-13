@@ -18,7 +18,8 @@
 HoIModDesigner::HoIModDesigner(QWidget *parent)
 	: QMainWindow(parent),
 	m_DockWidgetNationList(nullptr),
-	m_DockWidgetNationDetails(nullptr)
+	m_DockWidgetNationDetails(nullptr),
+	m_Parser(nullptr)
 {
 	ui.setupUi(this);
 
@@ -186,17 +187,28 @@ HoIModDesigner::~HoIModDesigner()
 {
 }
 
+#include "ParserThreadContainer.h"
 void HoIModDesigner::LoadMap()
 {
-	HoI3Context context;
-	ParserHoI3 parser;
-	if( parser.Parse(context,m_View->m_Scene) == false )
+	if( m_Parser == nullptr )
 	{
-		return;
+		m_Parser = new ParserHoI3(m_View->m_Scene);
 	}
-	DisplayItemMap(&(context.m_ProvinceMap));
-	FillCountryList(context.m_Countries,m_DockWidgetNationList);
-	FillProvinceList(context.m_ProvinceMap,m_DockWidgetProvinceList);
+// 	m_Parser->Parse();
+// 	ParsingFinished();
+
+	ParserThreadContainer *parserThreadContainer = new ParserThreadContainer(m_Parser);
+	connect( parserThreadContainer, SIGNAL(ParsingFinished()), this, SLOT(ParsingFinished()) );
+	parserThreadContainer->StartParsing();
+}
+
+
+void HoIModDesigner::ParsingFinished()
+{
+	DisplayItemMap(m_Parser->m_Context.m_ProvinceMap);
+	FillCountryList(m_Parser->m_Context.m_Countries,m_DockWidgetNationList);
+	FillProvinceList(m_Parser->m_Context.m_ProvinceMap,m_DockWidgetProvinceList);
+	FillBuildinsList(m_Parser->m_Context.m_BuildingTypes,m_DockWidgetBuildingTypes);
 }
 
 // #include "property/QPropertyEditorWidget.h"
@@ -225,36 +237,42 @@ void HoIModDesigner::LoadMap()
 
 //#include "prop\propertyeditor.h"
 #include "HoI3Scriptparser.h"
+#include "DDSLoader.h"
 void HoIModDesigner::DisplayContourMap()
 {
-	ParserHoI3 parser;
-	HoI3Script *script = parser.ParseScript("E:/Spiele/HoI3/events/ClaimingMemel.txt");
-	if( script == nullptr )
-	{
-		return;
-	}
-
-	QDockWidget *dock = new QDockWidget(tr("Script"), this);
-	dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	m_TreeView = new QTreeWidget(dock);
-	m_TreeView->setColumnCount(2);
-
-	QList<QTreeWidgetItem*> topLevelItems;
-	QList<HoI3Token>::const_iterator iter;
-	for( iter = script->m_TokenList.constBegin(); iter  != script->m_TokenList.constEnd(); iter++ )
-	{
-		QStringList newData;
-		newData << iter->m_Name << iter->m_Value;
-		QTreeWidgetItem *newTopLevelItem = new QTreeWidgetItem( m_TreeView, newData );
-		CreateColumn( newTopLevelItem, (*iter) );
-	}
-
-	m_TreeView->addTopLevelItems(topLevelItems);
-	m_TreeView->expandAll();
-
-	dock->setWidget(m_TreeView);
-	addDockWidget(Qt::RightDockWidgetArea, dock);
-	m_DockWidgetsMenu->addAction(dock->toggleViewAction());
+//	QImage ddsImage = DDSLoader().readDDSFile("E:/temp/building_airbase.dds");
+	QPixmap newPixmap;
+	newPixmap.load("E:/temp/building_airbase.dds");
+//	newPixmap.convertFromImage(ddsImage);
+	m_View->m_Scene->addPixmap(newPixmap);
+// 	ParserHoI3 parser;
+// 	HoI3Script *script = parser.ParseScript("E:/Spiele/HoI3/events/ClaimingMemel.txt");
+// 	if( script == nullptr )
+// 	{
+// 		return;
+// 	}
+// 
+// 	QDockWidget *dock = new QDockWidget(tr("Script"), this);
+// 	dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+// 	m_TreeView = new QTreeWidget(dock);
+// 	m_TreeView->setColumnCount(2);
+// 
+// 	QList<QTreeWidgetItem*> topLevelItems;
+// 	QList<HoI3Token>::const_iterator iter;
+// 	for( iter = script->m_TokenList.constBegin(); iter  != script->m_TokenList.constEnd(); iter++ )
+// 	{
+// 		QStringList newData;
+// 		newData << iter->m_Name << iter->m_Value;
+// 		QTreeWidgetItem *newTopLevelItem = new QTreeWidgetItem( m_TreeView, newData );
+// 		CreateColumn( newTopLevelItem, (*iter) );
+// 	}
+// 
+// 	m_TreeView->addTopLevelItems(topLevelItems);
+// 	m_TreeView->expandAll();
+// 
+// 	dock->setWidget(m_TreeView);
+// 	addDockWidget(Qt::RightDockWidgetArea, dock);
+// 	m_DockWidgetsMenu->addAction(dock->toggleViewAction());
 }
 
 void HoIModDesigner::CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const
@@ -269,19 +287,29 @@ void HoIModDesigner::CreateColumn( QTreeWidgetItem* parent, const HoI3Token& tok
 	}
 }
 
-void HoIModDesigner::DisplayItemMap( const QHash<int,ProvinceItem*>* items )
+void HoIModDesigner::DisplayItemMap( const QHash<int,ProvinceItem*>& items )
 {
-	m_View->m_Scene->clear();
- 	QHash<int,ProvinceItem*>::ConstIterator iter;
- 	for( iter = items->constBegin(); iter != items->constEnd(); iter++ )
- 	{
-		if( (*iter)->m_GraphicsItem == nullptr )
+	ProvinceGraphicsPixmapItem *lastItem = nullptr;
+	int count = 0;
+	try
+	{
+		m_View->m_Scene->clear();
+		QHash<int,ProvinceItem*>::ConstIterator iter;
+		for( iter = items.constBegin(); iter != items.constEnd(); iter++ )
 		{
-			continue;
+			if( (*iter)->m_GraphicsItem == nullptr )
+			{
+				continue;
+			}
+			ProvinceGraphicsPixmapItem *copiedItem = new ProvinceGraphicsPixmapItem(*((*iter)->m_GraphicsItem));
+			lastItem = copiedItem;
+			m_View->m_Scene->addItem( copiedItem );
+			count++;
 		}
-		ProvinceGraphicsPixmapItem *copiedItem = new ProvinceGraphicsPixmapItem(*((*iter)->m_GraphicsItem));
-		QPointF offset = copiedItem->offset();
-		m_View->m_Scene->addItem( copiedItem );
+	}
+	catch(...)
+	{
+
 	}
 }
 
@@ -312,7 +340,6 @@ void HoIModDesigner::CreateDockWidgets()
 		addDockWidget(Qt::RightDockWidgetArea, dock);
 		m_DockWidgetsMenu->addAction(dock->toggleViewAction());
 		connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(const ProvinceItem*)),this, SLOT(UpdateProvinceDetail(const ProvinceItem*)));
-		//	connect(m_View->m_Scene, SIGNAL(SignalProvinceLeft(ProvinceItem*)),this, SLOT(removeProvinceInfo(ProvinceItem*)));
 	}
 
 	{
@@ -377,6 +404,16 @@ void HoIModDesigner::CreateDockWidgets()
 		dock2->setWidget( m_DockWidgetLogging );
 		addDockWidget(Qt::BottomDockWidgetArea, dock2);
 		m_DockWidgetsMenu->addAction(dock2->toggleViewAction());
+	}
+	{
+		QDockWidget *dock2 = new QDockWidget(tr("Buildings"), this);
+		dock2->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea );
+		m_DockWidgetBuildingTypes = new QTableWidget(0,0,dock2);
+
+		dock2->setWidget( m_DockWidgetBuildingTypes );
+		addDockWidget(Qt::BottomDockWidgetArea, dock2);
+		m_DockWidgetsMenu->addAction(dock2->toggleViewAction());
+		
 	}
 }
 
@@ -647,6 +684,43 @@ void HoIModDesigner::FillProvinceList( QHash<int,ProvinceItem*>& provinces, QTab
 		widget->setItem(rowIndex, 0, new QTableWidgetItem(QString().setNum((*iter)->m_ID)) );
 		widget->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
 		widget->setItem(rowIndex, 1, new QTableWidgetItem((*iter)->m_Name) );
+		rowIndex++;
+	}
+}
+
+#include "BuildingItem.h"
+void HoIModDesigner::FillBuildinsList( QHash<QString,BuildingItem*>& buildings, QTableWidget* widget )
+{
+	if( widget == nullptr )
+	{
+		return;
+	}
+	widget->clearContents();
+	if( buildings.isEmpty() == true )
+	{
+		return;
+	}
+
+
+	widget->setColumnCount(12);
+	widget->setRowCount(buildings.size());
+	int rowIndex = 0;
+	QHash<QString,BuildingItem*>::ConstIterator iter;
+	for( iter = buildings.constBegin(); iter != buildings.constEnd(); iter++ )
+	{
+		if( (*iter)->GetName().isEmpty() == true )
+		{
+			continue;
+		}
+
+		int columnIndex = 0;
+		widget->setItem(rowIndex, columnIndex++, new QTableWidgetItem((*iter)->GetName()) );
+
+		QMap<QString,ItemData>::ConstIterator iterData;
+		for( iterData = (*iter)->GetProvinceDataItem().constBegin(); iterData != (*iter)->GetProvinceDataItem().constEnd(); iterData++ )
+		{
+			widget->setItem(rowIndex, columnIndex++, new QTableWidgetItem( iterData->m_Data.toString() ) );
+		}
 		rowIndex++;
 	}
 }

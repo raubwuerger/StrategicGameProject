@@ -230,6 +230,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConfigurationDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="BuildingItem.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ParserHoI3.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ParserHoI3.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -271,9 +280,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="ParserHoI3.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="HoI3Context.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
@@ -285,6 +291,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_ConfigurationDialog.h">
       <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingItem.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +353,9 @@
     </CustomBuild>
     <CustomBuild Include="ConfigurationDialog.ui">
       <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ParserHoI3.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

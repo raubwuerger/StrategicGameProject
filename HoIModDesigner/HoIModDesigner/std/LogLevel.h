@@ -2,6 +2,10 @@
 
 #include <QString>
 #include <QColor>
+
+//TODO: enums in eigene HEader auslagern, dann kann das hier entfallen
+#include "LogInterface.h"
+
 namespace jha
 {
 
@@ -28,6 +32,8 @@ public:
 //	UINT GetMessageBoxType() const;
 /** Liefert Farbe */
 	const QColor& GetColor() const;
+/** */
+	LOGLEVEL GetValue() const { return m_Value; }
 private:
 	friend class LogInterface;
 /** Default constructor restricted */
@@ -35,12 +41,12 @@ private:
 /** Move Konstruktor restricted */
 	LogLevel( LogLevel&& rhs );
 /** */
-	LogLevel( const QString& name, const QString& prefix, /*UINT messageBoxType,*/ const QColor& color );
+	LogLevel( const QString& name, const QString& prefix, /*UINT messageBoxType,*/ const QColor& color, LOGLEVEL value );
 private:
 	QString		m_Name;
 	QString		m_LogFilePrefix;
-//	UINT		m_MessageBoxType;
 	QColor		m_Color;
+	LOGLEVEL	m_Value;
 };
 
 }

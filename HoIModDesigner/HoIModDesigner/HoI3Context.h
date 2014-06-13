@@ -6,6 +6,7 @@ class ProvinceItem;
 class ExtendedGraphicsScene;
 class ExtendedGraphicsView;
 class Nation;
+class BuildingItem;
 
 class HoI3Context
 {
@@ -14,11 +15,13 @@ public:
 	QString GetPathProvinceBMP() const;
 	QString GetPathDefinitionCSV() const;
 	QString GetPathCountriesTXT() const;
+	QString GetPathBuildingsTXT() const;
 	QVector<QString> GetPathProvincesDir() const;
 	QVector<QString> GetPathCommonDir() const;
 public:
 	QHash<int,ProvinceItem*> m_ProvinceMap;
 	QHash<QString,Nation*>	m_Countries;
+	QHash<QString,BuildingItem*> m_BuildingTypes;
 	const QString TRAIL;
 	QString		m_BasePath;
 	QString		m_PathTFH;
@@ -29,5 +32,6 @@ public:
 	QString		m_ProvincesBMP;
 	QString		m_UsedMod;
 	QString		m_CommonDir;
+	QString		m_BuildingsTXT;
 };
 #endif // HOI3CONTEXT_H

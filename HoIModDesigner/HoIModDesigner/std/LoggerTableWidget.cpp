@@ -37,6 +37,10 @@ bool LoggerTableWidget::DoLogMessage( const QVector<jha::LogMessage*>& logMessag
 	for( size_t i=0;i<logMessage.size();i++ )
 	{
 		jha::LogMessage* message = logMessage.at(i);
+		if( LogThisLogLevel(message)  == false )
+		{
+			continue;
+		}
 
 		QTableWidgetItem *time = new QTableWidgetItem( message->GetLogTime().toString(jha::Logger::DEFAULT_TIME_FORMAT) );
 		time->setTextColor(message->GetLogLevel().GetColor());

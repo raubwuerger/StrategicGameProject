@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-//#include "concrt.h"
 
 namespace jha
 {
@@ -28,7 +27,7 @@ public slots:
 /** Fügt LogMessage ein */
 	void AddLogMessage( jha::LogMessage *logMessage );
 signals:
-		void Finished();
+	void Finished();
 protected:
 	friend class LogManagerThread;
 /** Verarbeitet Meldungen */

@@ -1,6 +1,20 @@
 #ifndef PROVINCEITEM_H
 #define PROVINCEITEM_H
 
+class ProvinceDataItem
+{
+public:
+	ProvinceDataItem( const QString& name, const QVariant& data )
+		: m_Name(name),
+		m_Data(data)
+	{
+
+	}
+public:
+	QString		m_Name;
+	QVariant	m_Data;
+};
+
 class ProvinceTimeLineData
 {
 public:
@@ -100,6 +114,9 @@ public:
 	}
 public:
 	QString	m_TimeLine;
+	QMap<QString,ProvinceDataItem> m_ProvinceDataItem;
+
+
 	QString m_Owner;
 	QString	m_Controller;
 	QVector<QString>	m_CoreFrom;
