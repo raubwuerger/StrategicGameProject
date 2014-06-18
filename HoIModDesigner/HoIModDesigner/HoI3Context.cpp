@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "HoI3Context.h"
 
-HoI3Context::HoI3Context() : m_BasePath("E:\\Spiele\\HoI3"),
+HoI3Context::HoI3Context() 
+	: m_BasePath("D:\\Spiele\\HoI3"),
 	m_PathTFH("tfh"),
 	m_ProvincesBMP("map\\provinces.bmp"),
 	m_DefinitionCSV("map\\definition.csv"),

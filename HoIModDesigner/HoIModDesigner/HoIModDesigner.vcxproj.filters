@@ -39,9 +39,6 @@
     <Filter Include="Source Dateien\std">
       <UniqueIdentifier>{0014b03e-7212-40c0-9af9-e420983a32a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Dateien\property">
-      <UniqueIdentifier>{f5deafd4-4734-4403-afea-d762740f41de}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,15 +73,6 @@
     </ClCompile>
     <ClCompile Include="ExtendedGraphicsView.cpp">
       <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="DummyClass.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DummyClass.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DummyClass.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ProvinceItem.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
@@ -172,48 +160,6 @@
     </ClCompile>
     <ClCompile Include="HoI3Context.cpp">
       <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="prop\propertydelegate.cpp">
-      <Filter>Header Dateien\property</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_propertydelegate.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_propertydelegate.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="prop\propertyeditor.cpp">
-      <Filter>Header Dateien\property</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_propertyeditor.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_propertyeditor.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="prop\propertyinterface.cpp">
-      <Filter>Header Dateien\property</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_propertyinterface.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_propertyinterface.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="prop\propertymodel.cpp">
-      <Filter>Header Dateien\property</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_propertymodel.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_propertymodel.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_propertyvalidator.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_propertyvalidator.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="MapFilter.cpp">
       <Filter>Source Dateien</Filter>
@@ -315,9 +261,6 @@
     <CustomBuild Include="ExtendedGraphicsScene.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="DummyClass.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="std\LogManager.h">
       <Filter>Header Dateien\std</Filter>
     </CustomBuild>
@@ -332,21 +275,6 @@
     </CustomBuild>
     <CustomBuild Include="ParserThreadContainer.h">
       <Filter>Header Dateien</Filter>
-    </CustomBuild>
-    <CustomBuild Include="prop\propertydelegate.h">
-      <Filter>Header Dateien\property</Filter>
-    </CustomBuild>
-    <CustomBuild Include="prop\propertyeditor.h">
-      <Filter>Header Dateien\property</Filter>
-    </CustomBuild>
-    <CustomBuild Include="prop\propertyinterface.h">
-      <Filter>Header Dateien\property</Filter>
-    </CustomBuild>
-    <CustomBuild Include="prop\propertymodel.h">
-      <Filter>Header Dateien\property</Filter>
-    </CustomBuild>
-    <CustomBuild Include="prop\propertyvalidator.h">
-      <Filter>Header Dateien\property</Filter>
     </CustomBuild>
     <CustomBuild Include="ConfigurationDialog.h">
       <Filter>Header Dateien</Filter>
