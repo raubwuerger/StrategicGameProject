@@ -8,7 +8,7 @@ HoI3Context::HoI3Context()
 	m_DefinitionCSV("map\\definition.csv"),
 	m_CountriesTXT("common\\countries.txt"),
 	m_ProvincesDir("history\\provinces"),
-	m_ModPath("mod\\RandomHoi"),
+	m_ModPath("mod\\RandomHoI"),
 	m_CommonDir("common\\"),
 	TRAIL("\\"),
 	m_BuildingsTXT("common\\buildings.txt")
@@ -28,7 +28,6 @@ QString HoI3Context::GetPathDefinitionCSV() const
 
 QString HoI3Context::GetPathCountriesTXT() const
 {
-	//return m_BasePath +TRAIL +m_CountriesTXT;
 	return m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_CountriesTXT;
 }
 

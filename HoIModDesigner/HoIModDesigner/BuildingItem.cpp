@@ -2,41 +2,56 @@
 #include "BuildingItem.h"
 #include "std/LogInterface.h"
 
-BuildingItem::BuildingItem( const QString& name ) 
+ItemTypeBase::ItemTypeBase( const QString& name ) 
 	: m_Name(name)
 {
 
 }
 
-const QString& BuildingItem::GetName() const
+const QString& ItemTypeBase::GetName() const
 {
 	return m_Name;
 }
 
-const QMap<QString,ItemData>& BuildingItem::GetProvinceDataItem() const
+const QMap<QString,ItemData>& ItemTypeBase::GetItemMap() const
 {
-	return m_ProvinceDataItem;
+	return m_Items;
 }
 
-bool BuildingItem::AppendItemData( const QString& key, const ItemData& value )
+bool ItemTypeBase::AppendItemData( const QString& key, const ItemData& value )
 {
-	QMap<QString,ItemData>::Iterator iter = m_ProvinceDataItem.find(key);
-	if( iter != m_ProvinceDataItem.end() )
+	QMap<QString,ItemData>::Iterator iter = m_Items.find(key);
+	if( iter != m_Items.end() )
 	{
 		return false;
 	}
-	m_ProvinceDataItem.insert(key,value);
+	m_Items.insert(key,value);
 	return true;
 }
 
-ItemData BuildingItem::FindItem( const QString& key ) const
+ItemData ItemTypeBase::FindItem( const QString& key ) const
 {
-	QMap<QString,ItemData>::ConstIterator iter = m_ProvinceDataItem.find(key);
-	if( iter != m_ProvinceDataItem.end() )
+	QMap<QString,ItemData>::ConstIterator iter = m_Items.find(key);
+	if( iter != m_Items.end() )
 	{
 		return ItemData();
 	}
 	return (*iter);
+}
+
+bool ItemTypeBase::UpdateItem( const QString& key, const QVariant& data )
+{
+	QMap<QString,ItemData>::Iterator iter = m_Items.find(key);
+	if( iter != m_Items.end() )
+	{
+		return false;
+	}
+	if( iter->m_Data.type() != data.type() )
+	{
+		return false;
+	}
+	iter->m_Data = data;
+	return true;
 }
 
 const ItemData BuildingItemPrototypeRepository::on_completion = ItemData("on_completion",QVariant(QString()));
@@ -106,4 +121,10 @@ ItemData BuildingItemPrototypeRepository::CreateItemData( const QString& name, c
 	}
 
 	return ItemData( name, dataVariant );
+}
+
+BuildingItem::BuildingItem( const QString& name )
+	: ItemTypeBase(name)
+{
+
 }

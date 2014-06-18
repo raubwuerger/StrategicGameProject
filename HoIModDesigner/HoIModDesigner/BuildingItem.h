@@ -21,22 +21,31 @@ public:
 	bool		m_IsNull;
 };
 
-class BuildingItem
+class ItemTypeBase
+{
+public:
+	/** Constructor */
+	ItemTypeBase( const QString& name );
+	/** Liefert Name */
+	const QString& GetName() const;
+	/** Liefert alle ItemDatas */
+	const QMap<QString,ItemData>& GetItemMap() const;
+	/** Fügt neues Item hinzu */
+	bool AppendItemData( const QString& key, const ItemData& value );
+	/** */
+	ItemData FindItem( const QString& key ) const;
+	/** */
+	bool UpdateItem( const QString& key, const QVariant& data );
+private:
+	QString					m_Name;
+	QMap<QString,ItemData>	m_Items;
+};
+
+class BuildingItem : public ItemTypeBase
 {
 public:
 /** Constructor */
 	BuildingItem( const QString& name );
-/** Liefert Name */
-	const QString& GetName() const;
-/** Liefert alle ItemDatas */
-	const QMap<QString,ItemData>& GetProvinceDataItem() const;
-/** Fügt neues Item hinzu */
-	bool AppendItemData( const QString& key, const ItemData& value );
-/** */
-	ItemData FindItem( const QString& key ) const;
-private:
-	QString					m_Name;
-	QMap<QString,ItemData>	m_ProvinceDataItem;
 };
 
 class BuildingItemPrototypeRepository

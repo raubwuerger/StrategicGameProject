@@ -166,6 +166,7 @@ public:
 	QPolygon	m_ContourPixels;
 	ProvinceGraphicsPixmapItem	*m_GraphicsItem;
 	QVector<ProvinceTimeLineData> m_TimeLineData;
+	QString		m_FilePath;
 };
 
 #endif // PROVINCEITEM_H

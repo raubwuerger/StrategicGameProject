@@ -48,3 +48,38 @@ QPixmap DDSLoader::LoadDDSFile( const QString& filename ) const
 	pixmap.convertFromImage( pbuffer.toImage() );
 	return pixmap;
 }
+
+QImage DDSLoader::readDDSFile( const QString &filename ) const
+{
+	QGLWidget glWidget;
+	glWidget.makeCurrent();
+
+	QFile file(filename);
+	if( file.exists() == false )
+	{
+		return QImage();
+	}
+
+	QPixmap pixmap;
+	pixmap.load(filename);
+
+	GLuint texture = glWidget.bindTexture(filename);
+	if (!texture)
+		return QImage();
+
+	// Determine the size of the DDS image
+	GLint width, height;
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+
+	if (width == 0 || height == 0)
+		return QImage();
+
+	QGLPixelBuffer pbuffer(QSize(width, height), glWidget.format(), &glWidget);
+	if (!pbuffer.makeCurrent())
+		return QImage();
+
+	pbuffer.drawTexture(QRectF(-1, -1, 2, 2), texture);
+	return pbuffer.toImage();
+}

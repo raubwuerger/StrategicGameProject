@@ -238,6 +238,7 @@ void HoIModDesigner::ParsingFinished()
 //#include "prop\propertyeditor.h"
 #include "HoI3Scriptparser.h"
 #include "DDSLoader.h"
+#include "ParserHoI3.h"
 void HoIModDesigner::DisplayContourMap()
 {
 //	QImage ddsImage = DDSLoader().readDDSFile("E:/temp/building_airbase.dds");
@@ -245,12 +246,16 @@ void HoIModDesigner::DisplayContourMap()
 	newPixmap.load("E:/temp/building_airbase.dds");
 //	newPixmap.convertFromImage(ddsImage);
 	m_View->m_Scene->addPixmap(newPixmap);
-// 	ParserHoI3 parser;
-// 	HoI3Script *script = parser.ParseScript("E:/Spiele/HoI3/events/ClaimingMemel.txt");
-// 	if( script == nullptr )
-// 	{
-// 		return;
-// 	}
+
+	ParserHoI3 parser(nullptr);
+	HoI3Script *script = parser.ParseScript("E:/Spiele/HoI3/events/ClaimingMemel.txt");
+	if( script == nullptr )
+	{
+		return;
+	}
+	HoI3Scriptparser scriptParser;
+	scriptParser.SaveScript( *script, "E:/Spiele/HoI3/events/ClaimingMemel2.txt" );
+
 // 
 // 	QDockWidget *dock = new QDockWidget(tr("Script"), this);
 // 	dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -717,7 +722,7 @@ void HoIModDesigner::FillBuildinsList( QHash<QString,BuildingItem*>& buildings, 
 		widget->setItem(rowIndex, columnIndex++, new QTableWidgetItem((*iter)->GetName()) );
 
 		QMap<QString,ItemData>::ConstIterator iterData;
-		for( iterData = (*iter)->GetProvinceDataItem().constBegin(); iterData != (*iter)->GetProvinceDataItem().constEnd(); iterData++ )
+		for( iterData = (*iter)->GetItemMap().constBegin(); iterData != (*iter)->GetItemMap().constEnd(); iterData++ )
 		{
 			widget->setItem(rowIndex, columnIndex++, new QTableWidgetItem( iterData->m_Data.toString() ) );
 		}

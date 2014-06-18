@@ -7,7 +7,9 @@ HoI3Scriptparser::HoI3Scriptparser()
 	SEPARATOR(" "),
 	BLOCK_START("{"),
 	BLOCK_END("}"),
-	IGNORE_START("#")
+	COMMENT("#"),
+	LINEEND("\n"),
+	TAB("\t")
 {
 }
 
@@ -42,11 +44,13 @@ QStringList HoI3Scriptparser::CreateFlatTokenList( const QStringList &lines ) co
 		{
 			continue;
 		}
-		if( lines.at(i).at(0) == IGNORE_START )
+
+		QString line = lines.at(i);
+		if( lines.at(i).at(0) != COMMENT )
 		{
-			continue;
+			line = RemoveIgnoreData(line);
 		}
-		QString line = RemoveIgnoreData(lines.at(i));
+		
 		token.append( SeparateToken(line) );
 	}
 
@@ -55,7 +59,7 @@ QStringList HoI3Scriptparser::CreateFlatTokenList( const QStringList &lines ) co
 
 QString HoI3Scriptparser::RemoveIgnoreData( const QString& line ) const
 {
-	int foundIndex = line.indexOf(IGNORE_START);
+	int foundIndex = line.indexOf(COMMENT);
 	if( foundIndex == -1 )
 	{
 		return line;
@@ -65,9 +69,20 @@ QString HoI3Scriptparser::RemoveIgnoreData( const QString& line ) const
 
 QStringList HoI3Scriptparser::SeparateToken( const QString& line ) const
 {
-	//TODO: Geht nicht so einfach. Tokens die durch "" zusammengefasst sind können Leerzeichen enthalten!
-	QStringList rawToken = line.split(SEPARATOR,QString::SkipEmptyParts);
+	if( line.isEmpty() == true )
+	{
+		return QStringList();
+	}
+
 	QStringList token;
+	if( line.at(0) == COMMENT )
+	{
+		token.append(line);
+		return token;
+	}
+
+	//TODO: Hier sollten auch noch die #Kommentare erkannt werden ...
+	QStringList rawToken = line.split(SEPARATOR,QString::SkipEmptyParts);
 	QString tokenInBrakets;
 	for( int i=0; i<rawToken.size();i++ )
 	{
@@ -96,7 +111,8 @@ QStringList HoI3Scriptparser::SeparateToken( const QString& line ) const
 			tokenInBrakets += tokenString;
 			continue;
 		}
-		token.append(tokenString.remove("\""));
+//		token.append(tokenString.remove("\""));
+		token.append(tokenString);
 	}
 	return token;
 }
@@ -141,6 +157,10 @@ bool HoI3Scriptparser::CreateTokenTree( const QStringList& flatTokenList, QStrin
 			{
 				tokenPosition++;
 				HoI3Token newToken(tokenName,"");
+				if( tokenName.at(0) == COMMENT )
+				{
+					newToken.m_Comment = true;
+				}
 				if( CreateTokenTree(flatTokenList,tokenPosition,newToken.m_Tokens) == false )
 				{
 					return false;
@@ -150,6 +170,10 @@ bool HoI3Scriptparser::CreateTokenTree( const QStringList& flatTokenList, QStrin
 			else
 			{
 				HoI3Token newToken(tokenName,*tokenPosition);
+				if( tokenName.at(0) == COMMENT )
+				{
+					newToken.m_Comment = true;
+				}
 				tokenList.append(newToken);
 				tokenPosition++;
 			}
@@ -162,8 +186,85 @@ bool HoI3Scriptparser::CreateTokenTree( const QStringList& flatTokenList, QStrin
 				return false;
 			}
 			HoI3Token newToken("",tokenName); //Muss wohl eine Aufreihung von Werten sein ...
+			if( tokenName.at(0) == COMMENT )
+			{
+				newToken.m_Comment = true;
+			}
 			tokenList.append(newToken);
 		}
 	}
 	return true;
+}
+
+#include "std\LogInterface.h"
+bool HoI3Scriptparser::SaveScript( const HoI3Script& script, const QString& alternatePath /*= "" */ ) const
+{
+	QString fileName( script.GetName() );
+	if( alternatePath.isEmpty() == false )
+	{
+		fileName = alternatePath;
+	}
+	QFile file(fileName); 
+	if( file.open(QIODevice::WriteOnly | QIODevice::Text) == false )
+	{
+		jha::GetLog()->Log("Unable to open file: " +fileName, LEVEL::LL_ERROR);
+		return nullptr;
+	}
+
+	QTextStream stream(&file);
+	QList<HoI3Token>::ConstIterator iter;
+	for( iter = script.m_TokenList.constBegin(); iter != script.m_TokenList.constEnd(); iter++ )
+	{
+		if( iter->m_Comment == true )
+		{
+			stream << iter->m_Value << LINEEND;
+			continue;
+		}
+		WriteTokenToStream( (*iter), stream, 1, true, false );
+		stream << BLOCK_END << LINEEND << LINEEND;
+	}
+
+	file.close();
+	return true;
+}
+
+void HoI3Scriptparser::WriteTokenToStream( const HoI3Token& token, QTextStream& stream, int tabLevel, bool lineEnd, bool checkBlockEnd ) const
+{
+	QString value(token.m_Value);
+	if( value.isEmpty() == true )
+	{
+		value = BLOCK_START;
+	}
+	bool groupInOneRow = false;
+	if( token.m_Tokens.size() == 1 || token.m_Tokens.size() == 2 )
+	{
+		groupInOneRow = true;
+	}
+
+	stream << token.m_Name << SEPARATOR << ASSIGN << SEPARATOR << value << (groupInOneRow == true || lineEnd == false ? SEPARATOR : LINEEND);
+
+	QList<HoI3Token>::ConstIterator iter;
+	for( iter = token.m_Tokens.constBegin(); iter != token.m_Tokens.constEnd(); iter++ )
+	{
+		if( groupInOneRow == false )
+		{
+			for( int i=0;i<tabLevel;i++ )
+			{
+				stream << TAB;
+			}
+		}
+		WriteTokenToStream( (*iter), stream, tabLevel + 1, !groupInOneRow );
+	}
+	if( token.m_Tokens.isEmpty() == true || checkBlockEnd == false )
+	{
+		return;
+	}
+	if( groupInOneRow == false )
+	{
+		for( int i=1;i<tabLevel;i++ )
+		{
+			stream << TAB;
+		}
+	}
+	stream << BLOCK_END << LINEEND;
 }
