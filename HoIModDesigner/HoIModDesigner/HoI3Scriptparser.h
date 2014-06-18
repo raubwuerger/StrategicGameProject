@@ -5,14 +5,16 @@ class HoI3Token
 public:
 	HoI3Token( const QString& name, const QString& value )
 		: m_Name(name),
-		m_Value(value)
+		m_Value(value),
+		m_Comment(false)
 	{
 
 	}
 	HoI3Token( const HoI3Token& rhs )
 		: m_Name(rhs.m_Name),
 		m_Value(rhs.m_Value),
-		m_Tokens(rhs.m_Tokens)
+		m_Tokens(rhs.m_Tokens),
+		m_Comment(rhs.m_Comment)
 	{
 	}
 	bool operator==( const HoI3Token& rhs )
@@ -30,6 +32,7 @@ public:
 	QList<HoI3Token>	m_Tokens;
 	QString		m_Name;
 	QString		m_Value;
+	bool		m_Comment;
 };
 
 
@@ -40,6 +43,7 @@ public:
 		: m_Name(name)
 	{
 	}
+	const QString& GetName() const { return m_Name; }
 public:
 	QList<HoI3Token> m_TokenList;
 private:
@@ -55,6 +59,8 @@ public:
 	~HoI3Scriptparser();
 /** */
 	bool Parse( const QStringList &lines, HoI3Script& script );
+/** */
+	bool SaveScript( const HoI3Script& script, const QString& alternatePath = "" ) const;
 private:
 /** */
 	QStringList CreateFlatTokenList( const QStringList &lines ) const;
@@ -66,11 +72,15 @@ private:
 	bool CreateScriptStructure( const QStringList& flatTokenList, QList<HoI3Token>& tokenList ) const;
 /** */
 	bool CreateTokenTree( const QStringList& flatTokenList, QStringList::ConstIterator& iterator, QList<HoI3Token>& tokenList ) const;
+/** */
+	void WriteTokenToStream( const HoI3Token& token, QTextStream& stream, int tabLevel, bool lineEnd = true, bool checkBlockEnd = true ) const;
 private:
 	const QString ASSIGN;
 	const QString SEPARATOR;
 	const QString BLOCK_START;
 	const QString BLOCK_END;
-	const QString IGNORE_START;
+	const QString COMMENT;
+	const QString LINEEND;
+	const QString TAB;
 };
 

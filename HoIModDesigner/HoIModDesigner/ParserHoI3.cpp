@@ -311,12 +311,8 @@ bool ParserHoI3::ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& pro
 	QFileInfoList infos = directory.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files);
 	for( int i=0;i<infos.size();i++ )
 	{
-		if( infos.at(i).isFile()  )
+		if( infos.at(i).isFile() == true )
 		{
-			if( infos.at(i).fileName() == "11391.txt" )
-			{
-				int wait = 0;
-			}
 			int provinceID = CreateProvinceIDFromFilename( infos.at(i).fileName() );
 			if( provinceID == -1 )
 			{
@@ -340,6 +336,7 @@ bool ParserHoI3::ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& pro
 				//TODO: Unable to parse province detail info 
 				continue;
 			}
+			provinceItem.value()->m_FilePath = infos.at(i).fileName();
 		}
 		else
 		{

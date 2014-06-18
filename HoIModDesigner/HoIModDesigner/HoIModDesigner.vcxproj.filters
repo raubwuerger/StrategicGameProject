@@ -295,6 +295,9 @@
     <ClInclude Include="BuildingItem.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_DialogProvinceDetail.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="hoimoddesigner.h">
@@ -356,6 +359,9 @@
     </CustomBuild>
     <CustomBuild Include="ParserHoI3.h">
       <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DialogProvinceDetail.ui">
+      <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
