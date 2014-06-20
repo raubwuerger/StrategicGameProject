@@ -178,7 +178,7 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	setWindowState(windowState() | Qt::WindowMaximized);
 
 	jha::LogInterface().Init();
-	jha::GetLog()->RegisterLogger( new jha::LoggerFile("e:/temp/Logfile.log") );
+	jha::GetLog()->RegisterLogger( new jha::LoggerFile("d:/temp/Logfile.log") );
 	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
 	jha::GetLog()->Start();
 }
@@ -429,7 +429,7 @@ void HoIModDesigner::UpdateProvinceDetail( const ProvinceItem* item )
 		return;
 	}
 	m_DockWidgetProvinceDetails->clearContents();
-
+	m_DockWidgetProvinceDetails->setRowCount(item->GetItemMap().size() + 2);
 	int index = 0;
 	m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("ID") );
 	m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -439,8 +439,16 @@ void HoIModDesigner::UpdateProvinceDetail( const ProvinceItem* item )
 	m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem(item->m_Name) );
 
+	QMap<QString,ItemData>::ConstIterator iter;
+	for( iter = item->GetItemMap().constBegin(); iter != item->GetItemMap().constEnd(); iter++ )
+	{
+		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem( iter->GetName()) );
+		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( iter->GetData().toString() ) );
+	}
+
 	//TODO: Nur BASE-Datensatz
-	if( item->m_TimeLineData.isEmpty() == false )
+/*	if( item->m_TimeLineData.isEmpty() == false )
 	{
 		const ProvinceTimeLineData& data = item->m_TimeLineData.at(0);
 
@@ -499,7 +507,7 @@ void HoIModDesigner::UpdateProvinceDetail( const ProvinceItem* item )
 		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Naval bases") );
 		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_NavalBase) ) );
-	}
+	}*/
 }
 
 
@@ -724,7 +732,7 @@ void HoIModDesigner::FillBuildinsList( QHash<QString,BuildingItem*>& buildings, 
 		QMap<QString,ItemData>::ConstIterator iterData;
 		for( iterData = (*iter)->GetItemMap().constBegin(); iterData != (*iter)->GetItemMap().constEnd(); iterData++ )
 		{
-			widget->setItem(rowIndex, columnIndex++, new QTableWidgetItem( iterData->m_Data.toString() ) );
+			widget->setItem(rowIndex, columnIndex++, new QTableWidgetItem( iterData->GetData().toString() ) );
 		}
 		rowIndex++;
 	}
@@ -799,13 +807,7 @@ void HoIModDesigner::ShowMapFiltered( const TimeLineDataCriteria* criteria )
 			continue; //Wasser
 		}
 
-		if( item->GetAttachedProvinceItem()->m_TimeLineData.isEmpty() == true )
-		{
-			item->UpdateColor(Qt::lightGray);
-			continue;
-		}
-
-		if( criteria->CriteriaFullfilled(item->GetAttachedProvinceItem()->m_TimeLineData.at(0)) == true )
+		if( criteria->CriteriaFullfilled(item->GetAttachedProvinceItem()->GetItemMap()) == true )
 		{
 			item->UpdateColor(Qt::lightGray);
 			continue;

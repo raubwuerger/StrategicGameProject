@@ -61,6 +61,8 @@ public:
 	bool Parse( const QStringList &lines, HoI3Script& script );
 /** */
 	bool SaveScript( const HoI3Script& script, const QString& alternatePath = "" ) const;
+/** Liefert true wenn es sich bei dem Token um ein Datum handelt */
+	bool IsDateToken( const HoI3Token& token ) const;
 private:
 /** */
 	QStringList CreateFlatTokenList( const QStringList &lines ) const;

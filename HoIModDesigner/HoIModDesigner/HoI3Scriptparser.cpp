@@ -268,3 +268,8 @@ void HoI3Scriptparser::WriteTokenToStream( const HoI3Token& token, QTextStream& 
 	}
 	stream << BLOCK_END << LINEEND;
 }
+
+bool HoI3Scriptparser::IsDateToken( const HoI3Token& token ) const
+{
+	return token.m_Name.count( "." ) == 2;
+}

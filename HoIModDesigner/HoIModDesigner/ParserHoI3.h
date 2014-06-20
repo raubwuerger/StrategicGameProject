@@ -45,18 +45,6 @@ private:
 /** */
 	bool ParseProvinceDetailInfo( const QString& filename, ProvinceItem* provinceItem ) const;
 /** */
-	bool SortLinesByTimeline( const QStringList& data, QVector<QStringList>& timeLineParts ) const;
-/** */
-	bool CreateTokenMap( const QStringList& line, QHash<QString,QString> &tokens, const QString& separator = "=" ) const;
-/** */
-	bool CreateProvinceTimeLineData( const QHash<QString,QString>& tokens, ProvinceItem* data ) const;
-/** */
-	bool UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, int& valueToUpadte ) const;
-/** */
-	bool UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, double& valueToUpadte ) const;
-/** */
-	bool UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, QString& valueToUpadte ) const;
-/** */
 	void AttachProvincesToNations( const QHash<int,ProvinceItem*>& provinces, QHash<QString,Nation*>& nations );
 /** */
 	void AttachProvinceToNation( ProvinceItem *province, QHash<QString,Nation*>& nations );

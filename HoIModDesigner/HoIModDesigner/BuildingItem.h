@@ -1,60 +1,26 @@
 #ifndef BUILDINGITEM_H
 #define BUILDINGITEM_H
 
-class ItemData
-{
-public:
-	ItemData()
-		: m_IsNull(true)
-	{
-
-	}
-	ItemData( const QString& name, const QVariant& data )
-		: m_Name(name),
-		m_Data(data),
-		m_IsNull(false)
-	{
-	}
-public:
-	QString		m_Name;
-	QVariant	m_Data;
-	bool		m_IsNull;
-};
-
-class ItemTypeBase
-{
-public:
-	/** Constructor */
-	ItemTypeBase( const QString& name );
-	/** Liefert Name */
-	const QString& GetName() const;
-	/** Liefert alle ItemDatas */
-	const QMap<QString,ItemData>& GetItemMap() const;
-	/** Fügt neues Item hinzu */
-	bool AppendItemData( const QString& key, const ItemData& value );
-	/** */
-	ItemData FindItem( const QString& key ) const;
-	/** */
-	bool UpdateItem( const QString& key, const QVariant& data );
-private:
-	QString					m_Name;
-	QMap<QString,ItemData>	m_Items;
-};
+#include "ItemTypeBase.h"
 
 class BuildingItem : public ItemTypeBase
 {
 public:
 /** Constructor */
 	BuildingItem( const QString& name );
+/** Get m_Name */
+	const QString& GetName() const;
+private:
+	QString	m_Name;
 };
 
-class BuildingItemPrototypeRepository
+class BuildingItemPrototypeRepository : public ItemPrototypeRepository
 {
 public:
-/** Default constructor */
-	BuildingItemPrototypeRepository();
-/** Erzeugt ein Item aus name und data */	
-	ItemData CreateItemData( const QString& name, const QString& data ) const;
+/** Initialisiert Repository */
+	virtual void Init();
+/** Erzeugt neues Item und Initialisiert es */
+	BuildingItem* CreateBuildingItem( const QString& name ) const;
 public:
 	static const ItemData on_completion;
 	static const ItemData completion_size;
@@ -78,7 +44,5 @@ public:
 	static const ItemData repair;
 	static const ItemData ic;
 	static const ItemData infrastructure;
-private:
-	QMap<QString,ItemData> m_PrototypeMap;
 };
 #endif // BUILDINGITEM_H

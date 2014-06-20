@@ -7,10 +7,15 @@
 #include "ProvinceGraphicsPixmapItem.h"
 #include "HoI3Context.h"
 #include "HoI3Scriptparser.h"
+#include "HoI3Scriptparser.h"
+#include "BuildingItem.h"
+
 
 ParserHoI3::ParserHoI3( ExtendedGraphicsScene *scene )
 	: m_Scene(scene)
 {
+	BuildingItemPrototypeRepository().Init();
+	ProvinceItemPrototypeRepository().Init();
 }
 
 void ParserHoI3::Parse()
@@ -180,7 +185,7 @@ ProvinceItem* ParserHoI3::CreateProvinzeItemFromString( const QString& line ) co
 
 	QString name = fields.at(4);
 
-	return new ProvinceItem(provinceID,name,QColor(r,g,b));
+	return ProvinceItemPrototypeRepository().CreateProvinceItem(provinceID,name,QColor(r,g,b));
 }
 
 //================================================================================
@@ -378,224 +383,37 @@ int ParserHoI3::CreateProvinceIDFromFilename( const QString& filename, const QSt
 
 bool ParserHoI3::ParseProvinceDetailInfo( const QString& filename, ProvinceItem* provinceItem ) const
 {
-	if( provinceItem->m_ID == 11391 )
-	{
-		int wait = 0;
-	}
-	jha::GetLog()->Log("Parsing file: " +filename,LEVEL::LL_INFO);
-	//  	QCoreApplication::processEvents();
-	//  	QCoreApplication::flush();
-	QFile file(filename);
-	if( file.open(QIODevice::ReadOnly /*| QIODevice::Text*/) == false )
-	{
-		//HJMessageManager::Instance()->DoPostMessage( HJMessage::mtERROR, QString("Datei konnte nicht geöffnet werden: ") +filepath );
-		return false;
-	}
-
-	QByteArray data = file.readAll();
-	QStringList lines;
-	ParseToLines( data, lines );
-
-	QVector<QStringList> linesPerTimeline;
-	if( SortLinesByTimeline( lines, linesPerTimeline ) == false )
-	{
-		//TODO: Was eigentlich?
-		return false;
-	}
-
-	//TODO: Aktuell wird nur die BASE-Timeline ausgewertet
-	QHash<QString,QString> tokenList;
-	tokenList.insert("TIMELINE","BASE");
-	if( CreateTokenMap( linesPerTimeline.at(0), tokenList ) == false )
-	{
-		//TODO: War wohl doch keine gültige Datei?!
-		return false;
-	}
-
-	return CreateProvinceTimeLineData( tokenList, provinceItem );
-}
-
-
-bool ParserHoI3::SortLinesByTimeline( const QStringList& data, QVector<QStringList>& timeLineParts ) const
-{
-	if( data.isEmpty() == true )
+	if( provinceItem == nullptr )
 	{
 		return false;
 	}
 
-	timeLineParts.push_back(QStringList());
-	int currentIndex = 0;
-
-	const QString timeLineStart("{");
-	const QString timeLineEnd("}");
-	for( int i=0; i<data.size(); i++ )
+	HoI3Script *script = ParseScript(filename);
+	if( script == nullptr )
 	{
-		if( data.at(i).isEmpty() == true )
+		return false;
+	}
+
+	ProvinceItemPrototypeRepository prototypeFactory;
+
+	bool atLeastOneItemFound = false;
+	QList<HoI3Token>::ConstIterator iterType;
+	for( iterType = script->m_TokenList.constBegin(); iterType != script->m_TokenList.constEnd(); iterType++ )
+	{
+		if( HoI3Scriptparser().IsDateToken((*iterType)) == true )
 		{
 			continue;
 		}
-		if( data.at(i).indexOf(timeLineStart) != -1 )
-		{
-			timeLineParts.push_back(QStringList(data.at(i)));
-			if( data.at(i).indexOf(timeLineEnd) == -1 )  //{ und } können ja auch in einer Zeile stehen
-			{
-				currentIndex = timeLineParts.size()-1;
-			}
-			continue;
-		}
-		if( data.at(i).indexOf(timeLineEnd) != -1 )
-		{
-			timeLineParts[currentIndex].append(data.at(i));
-			currentIndex = 0;
-		}
-		else
-		{
-			timeLineParts[currentIndex].append(data.at(i));
-		}
-	}
-	return true;
-}
-
-bool ParserHoI3::CreateTokenMap( const QStringList& lines, QHash<QString,QString> &tokens, const QString& separator ) const
-{
-	if( lines.isEmpty() == true )
-	{
-		return false;
-	}
-
-	for( int i=0;i<lines.size();i++ )
-	{
-		QStringList fields = lines.at(i).split(separator);
-		const int expectedPartsCount = 2;
-		if( fields.size() != expectedPartsCount )
+		if( provinceItem->FindItem(iterType->m_Name).IsNull() == true )
 		{
 			continue;
 		}
-		if( fields.at(1).indexOf("{") == -1 )
+		if( provinceItem->UpdateItem( iterType->m_Name, iterType->m_Value ) == true )
 		{
-			//TODO: Doppelte Einträge?! add_core
-			tokens.insert(fields.at(0).trimmed(),fields.at(1).trimmed());
+			atLeastOneItemFound = true;
 		}
-		else
-		{
-			//TOOD: Ist das schön??
-			tokens.insert("TIMELINE",fields.at(0).trimmed());
-		}
-
 	}
-	return true;
-}
-
-bool ParserHoI3::CreateProvinceTimeLineData( const QHash<QString,QString>& tokens, ProvinceItem* data ) const
-{
-	if( tokens.isEmpty() == true )
-	{
-		return false;
-	}
-
-	if( data == nullptr )
-	{
-		return false;
-	}
-
-	if( data->m_ID == 11391 )
-	{
-		int wait = 0;
-	}
-
-	QString timeLine;
-	if( UpdateTokenValue(tokens,"TIMELINE",timeLine) == false )
-	{
-		//TODO: Hmm da ist was falsch gelaufen ...
-		return false;
-	}
-	ProvinceTimeLineData timeLineData(timeLine.trimmed());
-
-	if( UpdateTokenValue(tokens,"owner",timeLineData.m_Owner) == false )
-	{
-		//TODO: Hmm Provinz ohne controller
-		return false;
-	}
-
-	if( UpdateTokenValue(tokens,"controller",timeLineData.m_Controller) == false )
-	{
-		//TODO: Hmm Provinz ohne controller
-		return false;
-	}
-
-	UpdateTokenValue(tokens,"points",timeLineData.m_Points);
-	UpdateTokenValue(tokens,"metal",timeLineData.m_Metal);
-	UpdateTokenValue(tokens,"energy",timeLineData.m_Energy);
-	UpdateTokenValue(tokens,"rare_materials",timeLineData.m_RareMaterials);
-	UpdateTokenValue(tokens,"crude_oil",timeLineData.m_CrudeOil);
-	UpdateTokenValue(tokens,"industry",timeLineData.m_Industry);
-	UpdateTokenValue(tokens,"anti_air",timeLineData.m_AntiAir);
-	UpdateTokenValue(tokens,"infra",timeLineData.m_Infrastructure);
-	UpdateTokenValue(tokens,"air_base",timeLineData.m_AirBases);
-	UpdateTokenValue(tokens,"naval_base",timeLineData.m_NavalBase);
-	UpdateTokenValue(tokens,"manpower",timeLineData.m_Manpower);
-	UpdateTokenValue(tokens,"leadership",timeLineData.m_LeaderShip);
-
-	UpdateTokenValue(tokens,"coastal_fort",timeLineData.m_Coastalfort);
-	UpdateTokenValue(tokens,"land_fort",timeLineData.m_Landfort);
-	UpdateTokenValue(tokens,"rocket_test",timeLineData.m_Rocket);
-	UpdateTokenValue(tokens,"radar_station",timeLineData.m_Radar);
-	UpdateTokenValue(tokens,"nuclear_reactor",timeLineData.m_Nuclear);
-
-	data->m_TimeLineData.push_back(timeLineData);
-	return true;
-}
-
-bool ParserHoI3::UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, int& valueToUpadte ) const
-{
-	QString tempValue;
-	if( UpdateTokenValue(tokens,tokenName,tempValue) == false )
-	{
-		return false;
-	}
-
-	bool conversionValid;
-	int temp = tempValue.trimmed().toInt(&conversionValid);
-	if( conversionValid == false )
-	{
-		return false;
-	}
-
-	valueToUpadte = temp;
-
-	return true;
-}
-
-bool ParserHoI3::UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, double& valueToUpadte ) const
-{
-	QString tempValue;
-	if( UpdateTokenValue(tokens,tokenName,tempValue) == false )
-	{
-		return false;
-	}
-
-	bool conversionValid;
-	double temp = tempValue.trimmed().toDouble(&conversionValid);
-	if( conversionValid == false )
-	{
-		return false;
-	}
-
-	valueToUpadte = temp;
-
-	return true;
-}
-
-bool ParserHoI3::UpdateTokenValue( const QHash<QString,QString>& tokens, const QString& tokenName, QString& valueToUpadte ) const
-{
-	QHash<QString,QString>::const_iterator token = tokens.find(tokenName);
-	if( token == tokens.end() )
-	{
-		return false;
-	}
-
-	valueToUpadte = token.value();
-	return true;
+	return atLeastOneItemFound;
 }
 
 void ParserHoI3::AttachProvincesToNations( const QHash<int,ProvinceItem*>& provinces, QHash<QString,Nation*>& nations )
@@ -613,11 +431,7 @@ void ParserHoI3::AttachProvinceToNation( ProvinceItem *province, QHash<QString,N
 	{
 		return;
 	}
-	if( province->m_TimeLineData.isEmpty() == true )
-	{
-		return;
-	}
-	QString controller = province->m_TimeLineData.at(0).m_Controller;
+	QString controller = province->FindItem( ProvinceItemPrototypeRepository::controller.GetName() ).GetData().toString();
 	QHash<QString,Nation*>::iterator country = nations.find(controller);
 	if( country == nations.end() )
 	{
@@ -733,7 +547,6 @@ ProvinceGraphicsPixmapItem* ParserHoI3::CreateItemFromPixelClash( const QPolygon
 	return item;
 }
 
-#include "HoI3Scriptparser.h"
 HoI3Script* ParserHoI3::ParseScript( const QString& filename ) const
 {
 	jha::GetLog()->Log( "Parsing file: " +filename, LEVEL::LL_MESSAGE, jha::LogCategoryByName(__FILE__) );
@@ -756,7 +569,6 @@ HoI3Script* ParserHoI3::ParseScript( const QString& filename ) const
 	return newScript;
 }
 
-#include "BuildingItem.h"
 bool ParserHoI3::ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, const QString& filename ) const
 {
 	HoI3Script *script = ParseScript(filename);
@@ -770,11 +582,11 @@ bool ParserHoI3::ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, 
 	QList<HoI3Token>::ConstIterator iterType;
 	for( iterType = script->m_TokenList.constBegin(); iterType != script->m_TokenList.constEnd(); iterType++ )
 	{
-		BuildingItem *newBuilding = new BuildingItem(iterType->m_Name);
+		BuildingItem *newBuilding = prototypeFactory.CreateBuildingItem(iterType->m_Name);
 		QList<HoI3Token>::ConstIterator iterData;
 		for( iterData = iterType->m_Tokens.constBegin(); iterData != iterType->m_Tokens.constEnd(); iterData++ )
 		{
-			newBuilding->AppendItemData(iterData->m_Name, prototypeFactory.CreateItemData( iterData->m_Name, iterData->m_Value ) );
+			newBuilding->UpdateItem(iterData->m_Name, iterData->m_Value );
 		}
 
 		buildingList.insert(newBuilding->GetName(), newBuilding);

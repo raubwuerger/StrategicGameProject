@@ -2,58 +2,19 @@
 #include "BuildingItem.h"
 #include "std/LogInterface.h"
 
-ItemTypeBase::ItemTypeBase( const QString& name ) 
-	: m_Name(name)
+BuildingItem::BuildingItem( const QString& name )
+	: ItemTypeBase("BuildingItem"),
+	m_Name(name)
 {
 
 }
 
-const QString& ItemTypeBase::GetName() const
+const QString& BuildingItem::GetName() const
 {
 	return m_Name;
 }
 
-const QMap<QString,ItemData>& ItemTypeBase::GetItemMap() const
-{
-	return m_Items;
-}
-
-bool ItemTypeBase::AppendItemData( const QString& key, const ItemData& value )
-{
-	QMap<QString,ItemData>::Iterator iter = m_Items.find(key);
-	if( iter != m_Items.end() )
-	{
-		return false;
-	}
-	m_Items.insert(key,value);
-	return true;
-}
-
-ItemData ItemTypeBase::FindItem( const QString& key ) const
-{
-	QMap<QString,ItemData>::ConstIterator iter = m_Items.find(key);
-	if( iter != m_Items.end() )
-	{
-		return ItemData();
-	}
-	return (*iter);
-}
-
-bool ItemTypeBase::UpdateItem( const QString& key, const QVariant& data )
-{
-	QMap<QString,ItemData>::Iterator iter = m_Items.find(key);
-	if( iter != m_Items.end() )
-	{
-		return false;
-	}
-	if( iter->m_Data.type() != data.type() )
-	{
-		return false;
-	}
-	iter->m_Data = data;
-	return true;
-}
-
+//================================================================================
 const ItemData BuildingItemPrototypeRepository::on_completion = ItemData("on_completion",QVariant(QString()));
 const ItemData BuildingItemPrototypeRepository::completion_size = ItemData("completion_size",QVariant(QVariant::Double));
 const ItemData BuildingItemPrototypeRepository::air_capacity = ItemData("air_capacity",QVariant(QVariant::Int));
@@ -77,54 +38,38 @@ const ItemData BuildingItemPrototypeRepository::repair = ItemData("repair",QVari
 const ItemData BuildingItemPrototypeRepository::ic = ItemData("ic",QVariant(QVariant::Int));
 const ItemData BuildingItemPrototypeRepository::infrastructure = ItemData("infrastructure",QVariant(QVariant::Double));
 
-BuildingItemPrototypeRepository::BuildingItemPrototypeRepository()
+void BuildingItemPrototypeRepository::Init()
 {
-	m_PrototypeMap.insert( on_completion.m_Name, on_completion );
-	m_PrototypeMap.insert( on_completion.m_Name, on_completion );
-	m_PrototypeMap.insert( completion_size.m_Name, completion_size );
-	m_PrototypeMap.insert( air_capacity.m_Name, air_capacity );
-	m_PrototypeMap.insert( capital.m_Name, capital );
-	m_PrototypeMap.insert( onmap.m_Name, onmap );
-	m_PrototypeMap.insert( cost.m_Name, cost );
-	m_PrototypeMap.insert( time.m_Name, time );
-	m_PrototypeMap.insert( max_level.m_Name, max_level );
-	m_PrototypeMap.insert( visibility.m_Name, visibility );
-	m_PrototypeMap.insert( naval_capacity.m_Name, naval_capacity );
-	m_PrototypeMap.insert( port.m_Name, port );
-	m_PrototypeMap.insert( coastal_fort_level.m_Name, coastal_fort_level );
-	m_PrototypeMap.insert( orientation.m_Name, orientation );
-	m_PrototypeMap.insert( fort_level.m_Name, fort_level );
-	m_PrototypeMap.insert( local_anti_air.m_Name, local_anti_air );
-	m_PrototypeMap.insert( damage_factor.m_Name, damage_factor );
-	m_PrototypeMap.insert( radar_level.m_Name, radar_level );
-	m_PrototypeMap.insert( local_underground.m_Name, local_underground );
-	m_PrototypeMap.insert( show_for_province.m_Name, show_for_province );
-	m_PrototypeMap.insert( repair.m_Name, repair );
-	m_PrototypeMap.insert( ic.m_Name, ic );
-	m_PrototypeMap.insert( infrastructure.m_Name, infrastructure );
+	m_PrototypeMap.clear();
+	m_PrototypeMap.insert( on_completion.GetName(), on_completion );
+	m_PrototypeMap.insert( on_completion.GetName(), on_completion );
+	m_PrototypeMap.insert( completion_size.GetName(), completion_size );
+	m_PrototypeMap.insert( air_capacity.GetName(), air_capacity );
+	m_PrototypeMap.insert( capital.GetName(), capital );
+	m_PrototypeMap.insert( onmap.GetName(), onmap );
+	m_PrototypeMap.insert( cost.GetName(), cost );
+	m_PrototypeMap.insert( time.GetName(), time );
+	m_PrototypeMap.insert( max_level.GetName(), max_level );
+	m_PrototypeMap.insert( visibility.GetName(), visibility );
+	m_PrototypeMap.insert( naval_capacity.GetName(), naval_capacity );
+	m_PrototypeMap.insert( port.GetName(), port );
+	m_PrototypeMap.insert( coastal_fort_level.GetName(), coastal_fort_level );
+	m_PrototypeMap.insert( orientation.GetName(), orientation );
+	m_PrototypeMap.insert( fort_level.GetName(), fort_level );
+	m_PrototypeMap.insert( local_anti_air.GetName(), local_anti_air );
+	m_PrototypeMap.insert( damage_factor.GetName(), damage_factor );
+	m_PrototypeMap.insert( radar_level.GetName(), radar_level );
+	m_PrototypeMap.insert( local_underground.GetName(), local_underground );
+	m_PrototypeMap.insert( show_for_province.GetName(), show_for_province );
+	m_PrototypeMap.insert( repair.GetName(), repair );
+	m_PrototypeMap.insert( ic.GetName(), ic );
+	m_PrototypeMap.insert( infrastructure.GetName(), infrastructure );
 }
 
-ItemData BuildingItemPrototypeRepository::CreateItemData( const QString& name, const QString& data ) const
+BuildingItem* BuildingItemPrototypeRepository::CreateBuildingItem( const QString& name ) const
 {
-	QMap<QString,ItemData>::ConstIterator foundPrototype = m_PrototypeMap.constFind(name);
-	if( foundPrototype == m_PrototypeMap.constEnd() )
-	{
-		jha::GetLog()->Log( "Item not defined: " +name, LEVEL::LL_WARNING );
-		return ItemData(name,"???");
-	}
-
-	QVariant dataVariant(data);
-	if( dataVariant.convert(foundPrototype->m_Data.type() ) == false )
-	{
-		jha::GetLog()->Log( "Data type invalid: " +data, LEVEL::LL_WARNING );
-		return ItemData(name,"???");
-	}
-
-	return ItemData( name, dataVariant );
+	BuildingItem *newItem = new BuildingItem(name);
+	InitWithAllPrototypes( *newItem );
+	return newItem;
 }
 
-BuildingItem::BuildingItem( const QString& name )
-	: ItemTypeBase(name)
-{
-
-}

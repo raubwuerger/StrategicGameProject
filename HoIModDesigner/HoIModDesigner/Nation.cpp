@@ -77,11 +77,7 @@ int Nation::CalcIC() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_Industry;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::industry.GetName() ).GetData().toDouble();
 	}
 	return result;
 }
@@ -92,11 +88,7 @@ int Nation::CalcPoints() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_Points;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::points.GetName() ).GetData().toDouble();
 	}
 	return result;
 }
@@ -107,11 +99,7 @@ double Nation::CalcEnergy() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_Energy;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::energy.GetName() ).GetData().toDouble();
 	}
 	return result;
 }
@@ -122,11 +110,7 @@ double Nation::CalcMetal() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_Metal;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::metal.GetName() ).GetData().toDouble();
 	}
 	return result;
 
@@ -138,11 +122,7 @@ double Nation::CalcCrudeOil() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_CrudeOil;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::crude_oil.GetName() ).GetData().toDouble();
 	}
 	return result;
 
@@ -154,11 +134,7 @@ double Nation::CalcRareMaterial() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_RareMaterials;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::rare_materials.GetName() ).GetData().toDouble();
 	}
 	return result;
 }
@@ -169,11 +145,7 @@ double Nation::CalcManpower() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_Manpower;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::manpower.GetName() ).GetData().toDouble();
 	}
 	return result;
 }
@@ -184,11 +156,7 @@ double Nation::CalcLeadership() const
 	QHash<int,ProvinceItem*>::ConstIterator i;
 	for( i = m_Provinces.constBegin(); i != m_Provinces.constEnd();i++ )
 	{
-		if( (*i)->m_TimeLineData.isEmpty() == true )
-		{
-			continue;
-		}
-		result += (*i)->m_TimeLineData.at(0).m_LeaderShip;
+		result += (*i)->FindItem( ProvinceItemPrototypeRepository::leadership.GetName() ).GetData().toDouble();
 	}
 	return result;
 }
