@@ -11,9 +11,8 @@
 #include "ParserHoI3.h"
 #include "HoI3Context.h"
 #include "MapFilter.h"
+#include "ContextFactory.h"
 
-
-#include <DDSLoader.h>
 
 HoIModDesigner::HoIModDesigner(QWidget *parent)
 	: QMainWindow(parent),
@@ -192,10 +191,8 @@ void HoIModDesigner::LoadMap()
 {
 	if( m_Parser == nullptr )
 	{
-		m_Parser = new ParserHoI3(m_View->m_Scene);
+		m_Parser = new ParserHoI3(m_View->m_Scene, 	ContextFactory().CreateDefaultContext() );
 	}
-// 	m_Parser->Parse();
-// 	ParsingFinished();
 
 	ParserThreadContainer *parserThreadContainer = new ParserThreadContainer(m_Parser);
 	connect( parserThreadContainer, SIGNAL(ParsingFinished()), this, SLOT(ParsingFinished()) );
@@ -205,10 +202,10 @@ void HoIModDesigner::LoadMap()
 
 void HoIModDesigner::ParsingFinished()
 {
-	DisplayItemMap(m_Parser->m_Context.m_ProvinceMap);
-	FillCountryList(m_Parser->m_Context.m_Countries,m_DockWidgetNationList);
-	FillProvinceList(m_Parser->m_Context.m_ProvinceMap,m_DockWidgetProvinceList);
-	FillBuildinsList(m_Parser->m_Context.m_BuildingTypes,m_DockWidgetBuildingTypes);
+	DisplayItemMap(m_Parser->m_Context->m_ProvinceMap);
+	FillCountryList(m_Parser->m_Context->m_Countries,m_DockWidgetNationList);
+	FillProvinceList(m_Parser->m_Context->m_ProvinceMap,m_DockWidgetProvinceList);
+	FillBuildinsList(m_Parser->m_Context->m_BuildingTypes,m_DockWidgetBuildingTypes);
 }
 
 // #include "property/QPropertyEditorWidget.h"
@@ -237,17 +234,14 @@ void HoIModDesigner::ParsingFinished()
 
 //#include "prop\propertyeditor.h"
 #include "HoI3Scriptparser.h"
-#include "DDSLoader.h"
 #include "ParserHoI3.h"
 void HoIModDesigner::DisplayContourMap()
 {
-//	QImage ddsImage = DDSLoader().readDDSFile("E:/temp/building_airbase.dds");
 	QPixmap newPixmap;
 	newPixmap.load("E:/temp/building_airbase.dds");
-//	newPixmap.convertFromImage(ddsImage);
 	m_View->m_Scene->addPixmap(newPixmap);
 
-	ParserHoI3 parser(nullptr);
+	ParserHoI3 parser(nullptr,nullptr);
 	HoI3Script *script = parser.ParseScript("E:/Spiele/HoI3/events/ClaimingMemel.txt");
 	if( script == nullptr )
 	{
@@ -446,68 +440,6 @@ void HoIModDesigner::UpdateProvinceDetail( const ProvinceItem* item )
 		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( iter->GetData().toString() ) );
 	}
-
-	//TODO: Nur BASE-Datensatz
-/*	if( item->m_TimeLineData.isEmpty() == false )
-	{
-		const ProvinceTimeLineData& data = item->m_TimeLineData.at(0);
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Owner") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem(data.m_Owner ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Controller") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem(data.m_Controller ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Points") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_Points) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Manpower") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_Manpower,'g',2) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Leadership") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_LeaderShip,'g',2) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Energy") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_Energy,'g',2) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Metal") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_Metal,'g',2) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Rare materials") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_RareMaterials,'g',2) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Cruide Oil") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_CrudeOil,'g',2) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Industry") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_Industry) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Infrastructure") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_Infrastructure) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Anti air") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_AntiAir) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Air bases") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_AirBases) ) );
-
-		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem("Naval bases") );
-		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( QString().setNum(data.m_NavalBase) ) );
-	}*/
 }
 
 
@@ -640,7 +572,8 @@ void HoIModDesigner::FillCountryList( const QHash<QString,Nation*>& nations, QTa
 	for( iter = nations.constBegin(); iter != nations.constEnd(); iter++ )
 	{
 		int columnIndex = 0;
-		widget->setItem(rowIndex, columnIndex++, new TableWidgetItemNation((*iter)->GetID(),(*iter)) );
+		TableWidgetItemNation *nameItem = new TableWidgetItemNation((*iter)->GetID(),(*iter), new TableWidgetItemComparatorString() );
+		widget->setItem(rowIndex, columnIndex++, nameItem );
 		widget->item(rowIndex,0)->setTextAlignment(Qt::AlignCenter);
 		
 		QTableWidgetItem *provinces = new TableWidgetItemNation(QString().setNum((*iter)->m_Provinces.size()),(*iter));
@@ -904,4 +837,16 @@ void LoggingTableWidget::ScrollToBottom()
 	}
 	m_RowsAdded = false;
 	scrollToBottom();
+}
+
+//================================================================================
+bool TableWidgetItemComparatorDouble::Compare( const QTableWidgetItem &lhs, const QTableWidgetItem &rhs ) const
+{
+	return lhs.text().toDouble() < rhs.text().toDouble();
+}
+
+//================================================================================
+bool TableWidgetItemComparatorString::Compare( const QTableWidgetItem &lhs, const QTableWidgetItem &rhs ) const
+{
+	return lhs.text() < rhs.text();
 }

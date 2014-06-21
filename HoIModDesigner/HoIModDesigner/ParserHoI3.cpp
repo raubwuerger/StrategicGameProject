@@ -9,10 +9,12 @@
 #include "HoI3Scriptparser.h"
 #include "HoI3Scriptparser.h"
 #include "BuildingItem.h"
+#include "HoI3Context.h"
 
 
-ParserHoI3::ParserHoI3( ExtendedGraphicsScene *scene )
-	: m_Scene(scene)
+ParserHoI3::ParserHoI3( ExtendedGraphicsScene *scene, HoI3Context *context )
+	: m_Scene(scene),
+	m_Context(context)
 {
 	BuildingItemPrototypeRepository().Init();
 	ProvinceItemPrototypeRepository().Init();
@@ -20,7 +22,11 @@ ParserHoI3::ParserHoI3( ExtendedGraphicsScene *scene )
 
 void ParserHoI3::Parse()
 {
-	QPixmap *map = LoadProvincesBMP(m_Context.GetPathProvinceBMP());
+	if( m_Context == nullptr )
+	{
+		return;
+	}
+	QPixmap *map = LoadProvincesBMP(m_Context->GetPathProvinceBMP());
 	if( map == nullptr )
 	{
 		emit Finished();
@@ -29,17 +35,17 @@ void ParserHoI3::Parse()
 	}
 
 	QHash<int,ProvinceItem*>	provinceMapByRGB;
-	ParseProvinzList(provinceMapByRGB,m_Context.m_ProvinceMap,m_Context.GetPathDefinitionCSV());
+	ParseProvinzList(provinceMapByRGB,m_Context->m_ProvinceMap,m_Context->GetPathDefinitionCSV());
 
- 	ParseCountryList(m_Context.m_Countries,m_Context.GetPathCountriesTXT(),m_Context.GetPathCommonDir());
+ 	ParseCountryList(m_Context->m_Countries,m_Context->GetPathCountriesTXT(),m_Context->GetPathCommonDir());
  
-	QVector<QString> provinceDirPaths = m_Context.GetPathProvincesDir();
+	QVector<QString> provinceDirPaths = m_Context->GetPathProvincesDir();
 	for( int i=0;i<provinceDirPaths.size();i++ )
 	{
-		ParseProvinceDetailInfoDirectory( m_Context.m_ProvinceMap, provinceDirPaths.at(i) );
+		ParseProvinceDetailInfoDirectory( m_Context->m_ProvinceMap, provinceDirPaths.at(i) );
 	}
 
- 	AttachProvincesToNations( m_Context.m_ProvinceMap, m_Context.m_Countries );
+ 	AttachProvincesToNations( m_Context->m_ProvinceMap, m_Context->m_Countries );
 
 	if( CreateColorMap(provinceMapByRGB,map) == false )
 	{
@@ -49,12 +55,12 @@ void ParserHoI3::Parse()
 	}
  	CreateGraphicsItems(provinceMapByRGB,m_Scene);
 
-	if( ParseBuildingsTXT( m_Context.m_BuildingTypes, m_Context.GetPathBuildingsTXT() ) == false )
+	if( ParseBuildingsTXT( m_Context->m_BuildingTypes, m_Context->GetPathBuildingsTXT() ) == false )
 	{
-		jha::GetLog()->Log( "Unable to parse: " +m_Context.GetPathBuildingsTXT(), LEVEL::LL_ERROR );
+		jha::GetLog()->Log( "Unable to parse: " +m_Context->GetPathBuildingsTXT(), LEVEL::LL_ERROR );
 	}
 
-	jha::GetLog()->Log( "Finished parsing HoI3 context: " +m_Context.m_ModPath, LEVEL::LL_MESSAGE );
+	jha::GetLog()->Log( "Finished parsing HoI3 context: " +m_Context->m_ModPath, LEVEL::LL_MESSAGE );
 
 	emit Finished();
 	moveToThread(QApplication::instance()->thread()); //Muss sich selber zurückschieben (push, not pull!)

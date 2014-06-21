@@ -8,14 +8,13 @@ class ExtendedGraphicsScene;
 class HoI3Script;
 class BuildingItem;
 
-#include "HoI3Context.h"
-
+class HoI3Context;
 class ParserHoI3 : public QObject
 {
 	Q_OBJECT
 public:
 /** */
-	ParserHoI3( ExtendedGraphicsScene *scene );
+	ParserHoI3( ExtendedGraphicsScene *scene, HoI3Context *context );
 /** */
 	HoI3Script* ParseScript( const QString& filename ) const;
 public slots:
@@ -57,7 +56,7 @@ private:
 /** */
 	bool ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, const QString& filename ) const;
 public:
-	HoI3Context				m_Context;
+	HoI3Context				*m_Context;
 	ExtendedGraphicsScene	*m_Scene;
 };
 

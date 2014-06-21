@@ -182,6 +182,9 @@
     <ClCompile Include="ItemTypeBase.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="ContextFactory.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -242,6 +245,9 @@
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="ItemTypeBase.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextFactory.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>

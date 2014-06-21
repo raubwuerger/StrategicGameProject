@@ -11,26 +11,63 @@ class Nation;
 class TimeLineDataCriteria;
 class BuildingItem;
 
+class TableWidgetItemNation;
+class TableWidgetItemComparator
+{
+public:
+	virtual bool Compare( const QTableWidgetItem &lhs, const QTableWidgetItem &rhs ) const = 0;
+};
+
+class TableWidgetItemComparatorDouble : public TableWidgetItemComparator
+{
+public:
+	virtual bool Compare( const QTableWidgetItem &lhs, const QTableWidgetItem &rhs ) const;
+};
+
+class TableWidgetItemComparatorString: public TableWidgetItemComparator
+{
+public:
+	virtual bool Compare( const QTableWidgetItem &lhs, const QTableWidgetItem &rhs ) const;
+};
+
 class TableWidgetItemNation : public QTableWidgetItem
 {
 public:
-	TableWidgetItemNation()
-		: m_Nation(nullptr)
+	TableWidgetItemNation( const TableWidgetItemNation& rhs )
+		: QTableWidgetItem(""),
+		m_Comparator( rhs.m_Comparator ),
+		m_Nation( rhs.m_Nation )
 	{
 
 	}
-	TableWidgetItemNation( const QString& text, Nation *nation )
+
+	~TableWidgetItemNation()
+	{
+		delete m_Comparator;
+	}
+
+	TableWidgetItemNation( TableWidgetItemComparator* comparator = new TableWidgetItemComparatorDouble() )
+		: QTableWidgetItem(""),
+		m_Nation(nullptr),
+		m_Comparator(comparator)
+	{
+
+	}
+	TableWidgetItemNation( const QString& text, Nation *nation, TableWidgetItemComparator* comparator = new TableWidgetItemComparatorDouble() )
 		: QTableWidgetItem(text),
-		m_Nation(nation)
+		m_Nation(nation),
+		m_Comparator(comparator)
 	{
 
 	}
 	bool operator< ( const QTableWidgetItem &other ) const
 	{
-		return text().toDouble() < other.text().toDouble();
+		return m_Comparator->Compare(*this,other);
 	}
 public:
 	Nation *m_Nation;
+private:
+	TableWidgetItemComparator *m_Comparator;
 };
 
 class LoggingTableWidgetRow

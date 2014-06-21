@@ -11,7 +11,7 @@ class BuildingItem;
 class HoI3Context
 {
 public:
-	HoI3Context();
+	HoI3Context( const QString& basePath );
 	QString GetPathProvinceBMP() const;
 	QString GetPathDefinitionCSV() const;
 	QString GetPathCountriesTXT() const;
