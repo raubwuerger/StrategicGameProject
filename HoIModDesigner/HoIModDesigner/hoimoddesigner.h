@@ -109,6 +109,8 @@ class HoIModDesigner : public QMainWindow
 public:
 	HoIModDesigner(QWidget *parent = 0);
 	~HoIModDesigner();
+public slots:
+	void UpdateProvinceColor( ProvinceItem *item );
 private slots:
 /** */
 	void LoadMap();
@@ -138,7 +140,7 @@ private:
 signals:
 	void SignalAppendRow(LoggingTableWidgetRow*);
 private slots:
-	void UpdateProvinceDetail(const ProvinceItem* item);
+	void UpdateProvinceDetail(ProvinceItem* item);
 	void UpdateCountryDetail(QTableWidgetItem* item);
 	void ParsingFinished();
 private:
@@ -184,7 +186,6 @@ private:
 	QTreeWidget	*m_TreeView;
 
 	ParserHoI3	*m_Parser;
-
 };
 
 class PropTestClass : public QObject

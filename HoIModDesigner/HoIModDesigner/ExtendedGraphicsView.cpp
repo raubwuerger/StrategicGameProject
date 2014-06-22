@@ -7,7 +7,7 @@ ExtendedGraphicsView::ExtendedGraphicsView( QWidget* parent ) : QGraphicsView(pa
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	m_Scene = new ExtendedGraphicsScene(this);
 	setScene(m_Scene);
-
+	m_Scene->Init();
 	//Set-up the view
 	setSceneRect(0, 0, 5000, 5000);
 

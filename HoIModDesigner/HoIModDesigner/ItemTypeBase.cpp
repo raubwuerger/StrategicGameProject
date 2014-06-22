@@ -39,8 +39,8 @@ const QVariant& ItemData::GetData() const
 
 void ItemData::SetData( const QVariant& val )
 {
-	m_Data = val;
 	m_ValueActive = true;
+	m_Data = val;
 }
 
 bool ItemData::GetValueActive() const
@@ -92,6 +92,35 @@ ItemData ItemTypeBase::FindItem( const QString& key ) const
 }
 
 bool ItemTypeBase::UpdateItem( const QString& key, const QVariant& data )
+{
+	QMap<QString,ItemData>::Iterator iter = m_Items.find(key);
+	if( iter == m_Items.end() )
+	{
+		return false;
+	}
+
+	QVariant dataVariant(data);
+	if( dataVariant.convert(iter->GetData().type() ) == false )
+	{
+		return false;
+	}
+
+	if( iter->GetData().type() == QVariant::StringList )
+	{
+		QStringList old = iter->GetData().toStringList();
+		QStringList append = data.toStringList();
+		old.append( append );
+		iter->SetData(old);
+	}
+	else
+	{
+		iter->SetData(data);
+	}
+
+	return true;
+}
+
+bool ItemTypeBase::SetItem( const QString& key, const QVariant& data )
 {
 	QMap<QString,ItemData>::Iterator iter = m_Items.find(key);
 	if( iter == m_Items.end() )

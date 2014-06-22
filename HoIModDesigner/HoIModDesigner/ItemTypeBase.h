@@ -43,8 +43,10 @@ public:
 	bool AppendItemData( const QString& key, const ItemData& value );
 	/** */
 	ItemData FindItem( const QString& key ) const;
-	/** */
+	/** Fügt neuen Wert altem hinzu. Macht nur Sinn bei QStringList ... */
 	bool UpdateItem( const QString& key, const QVariant& data );
+	/** Ersetzt alten Wert durch neuen */
+	bool SetItem( const QString& key, const QVariant& data );
 private:
 	QString					m_ItemID;
 	QMap<QString,ItemData>	m_Items;

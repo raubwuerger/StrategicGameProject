@@ -347,7 +347,7 @@ bool ParserHoI3::ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& pro
 				//TODO: Unable to parse province detail info 
 				continue;
 			}
-			provinceItem.value()->m_FilePath = infos.at(i).fileName();
+			provinceItem.value()->m_FilePath = infos.at(i).filePath();
 		}
 		else
 		{
@@ -401,7 +401,10 @@ bool ParserHoI3::ParseProvinceDetailInfo( const QString& filename, ProvinceItem*
 	}
 
 	ProvinceItemPrototypeRepository prototypeFactory;
-
+	if( provinceItem->m_ID == 5233 )
+	{
+		int wait = 0;
+	}
 	bool atLeastOneItemFound = false;
 	QList<HoI3Token>::ConstIterator iterType;
 	for( iterType = script->m_TokenList.constBegin(); iterType != script->m_TokenList.constEnd(); iterType++ )
@@ -599,5 +602,3 @@ bool ParserHoI3::ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, 
 	}
 	return buildingList.size() > 0;
 }
-
-

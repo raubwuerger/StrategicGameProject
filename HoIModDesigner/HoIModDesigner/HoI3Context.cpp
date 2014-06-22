@@ -53,3 +53,26 @@ QVector<QString> HoI3Context::GetPathCommonDir() const
 	paths.push_back(m_BasePath +TRAIL +m_PathTFH +TRAIL +m_ModPath +TRAIL +m_CommonDir);
 	return paths;
 }
+
+#include "ProvinceItem.h"
+#include "Nation.h"
+void HoI3Context::UpdateNationColor( ProvinceItem *province )
+{
+	if( province == nullptr )
+	{
+		return;
+	}
+	QString controller = province->FindItem( ProvinceItemPrototypeRepository::controller.GetName() ).GetData().toString();
+	QHash<QString,Nation*>::iterator country = m_Countries.find(controller);
+	if( country == m_Countries.end() )
+	{
+		return;
+	}
+	(*country)->AttachProvince(province);
+	province->m_ColorNation = (*country)->GetColor();
+}
+
+HoI3Context::~HoI3Context()
+{
+	int who_kills_me = 0;
+}

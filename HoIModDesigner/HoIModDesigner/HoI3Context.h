@@ -12,12 +12,14 @@ class HoI3Context
 {
 public:
 	HoI3Context( const QString& basePath );
+	~HoI3Context();
 	QString GetPathProvinceBMP() const;
 	QString GetPathDefinitionCSV() const;
 	QString GetPathCountriesTXT() const;
 	QString GetPathBuildingsTXT() const;
 	QVector<QString> GetPathProvincesDir() const;
 	QVector<QString> GetPathCommonDir() const;
+	void UpdateNationColor( ProvinceItem *province );
 public:
 	QHash<int,ProvinceItem*> m_ProvinceMap;
 	QHash<QString,Nation*>	m_Countries;

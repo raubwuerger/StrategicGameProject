@@ -37,6 +37,7 @@ public:
  	static const ItemData owner;
 	static const ItemData core;
  	static const ItemData controller;
+	static const ItemData add_core;
  	static const ItemData infra;
 	static const ItemData points;
 	static const ItemData metal;

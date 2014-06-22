@@ -185,6 +185,15 @@
     <ClCompile Include="ContextFactory.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogProvinceDetails.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogProvinceDetails.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogProvinceDetails.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -296,6 +305,9 @@
     </CustomBuild>
     <CustomBuild Include="DialogProvinceDetail.ui">
       <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DialogProvinceDetails.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

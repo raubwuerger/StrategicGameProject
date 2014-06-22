@@ -138,8 +138,6 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	button5->setIcon(QIcon(":HoIModDesigner/images/add2.ico"));
 	button5->setIconSize(QSize(48, 48));
 	button5->setCheckable(true);
-	connect(button5,SIGNAL(clicked()),this,SLOT(DisplayItemMap()));
-
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button2, 0, 0, Qt::AlignHCenter);
@@ -197,6 +195,7 @@ void HoIModDesigner::LoadMap()
 	ParserThreadContainer *parserThreadContainer = new ParserThreadContainer(m_Parser);
 	connect( parserThreadContainer, SIGNAL(ParsingFinished()), this, SLOT(ParsingFinished()) );
 	parserThreadContainer->StartParsing();
+	connect( m_View->m_Scene, SIGNAL(UpdateProvinceOwner( ProvinceItem* )), this, SLOT(UpdateProvinceColor( ProvinceItem *)));
 }
 
 
@@ -206,6 +205,8 @@ void HoIModDesigner::ParsingFinished()
 	FillCountryList(m_Parser->m_Context->m_Countries,m_DockWidgetNationList);
 	FillProvinceList(m_Parser->m_Context->m_ProvinceMap,m_DockWidgetProvinceList);
 	FillBuildinsList(m_Parser->m_Context->m_BuildingTypes,m_DockWidgetBuildingTypes);
+// 	m_TestContext = new HoI3Context("dfsf");
+// 	m_TestContext =	*(m_Parser->m_Context);
 }
 
 // #include "property/QPropertyEditorWidget.h"
@@ -288,8 +289,6 @@ void HoIModDesigner::CreateColumn( QTreeWidgetItem* parent, const HoI3Token& tok
 
 void HoIModDesigner::DisplayItemMap( const QHash<int,ProvinceItem*>& items )
 {
-	ProvinceGraphicsPixmapItem *lastItem = nullptr;
-	int count = 0;
 	try
 	{
 		m_View->m_Scene->clear();
@@ -300,10 +299,7 @@ void HoIModDesigner::DisplayItemMap( const QHash<int,ProvinceItem*>& items )
 			{
 				continue;
 			}
-			ProvinceGraphicsPixmapItem *copiedItem = new ProvinceGraphicsPixmapItem(*((*iter)->m_GraphicsItem));
-			lastItem = copiedItem;
-			m_View->m_Scene->addItem( copiedItem );
-			count++;
+ 			m_View->m_Scene->addItem( (*iter)->m_GraphicsItem );
 		}
 	}
 	catch(...)
@@ -338,7 +334,8 @@ void HoIModDesigner::CreateDockWidgets()
 		dock->setWidget(m_DockWidgetProvinceDetails);
 		addDockWidget(Qt::RightDockWidgetArea, dock);
 		m_DockWidgetsMenu->addAction(dock->toggleViewAction());
-		connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(const ProvinceItem*)),this, SLOT(UpdateProvinceDetail(const ProvinceItem*)));
+		connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(ProvinceItem*)),this, SLOT(UpdateProvinceDetail(ProvinceItem*)));
+		connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(ProvinceItem*)),m_View->m_Scene, SLOT(SlotProvinceEntered(ProvinceItem*)));
 	}
 
 	{
@@ -416,7 +413,7 @@ void HoIModDesigner::CreateDockWidgets()
 	}
 }
 
-void HoIModDesigner::UpdateProvinceDetail( const ProvinceItem* item )
+void HoIModDesigner::UpdateProvinceDetail( ProvinceItem* item )
 {
 	if( item == nullptr )
 	{
@@ -438,7 +435,7 @@ void HoIModDesigner::UpdateProvinceDetail( const ProvinceItem* item )
 	{
 		m_DockWidgetProvinceDetails->setItem(index, 0, new QTableWidgetItem( iter->GetName()) );
 		m_DockWidgetProvinceDetails->item(index,0)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( iter->GetData().toString() ) );
+		m_DockWidgetProvinceDetails->setItem(index++, 1, new QTableWidgetItem( iter->GetData().type() == QVariant::StringList ? iter->GetData().toStringList().join(", ") : iter->GetData().toString() ) );
 	}
 }
 
@@ -755,6 +752,32 @@ void HoIModDesigner::OpenConfigurationDialog()
 {
 	ConfigurationDialog dialog;
 	dialog.exec();
+}
+
+void HoIModDesigner::UpdateProvinceColor( ProvinceItem *item )
+{
+	if( item == nullptr )
+	{
+		return;
+	}
+
+	m_Parser->m_Context->UpdateNationColor(item);
+
+	QList<QGraphicsItem *> items = m_View->m_Scene->items();
+	for( int i=0;i<items.size();i++ )
+	{
+		ProvinceGraphicsPixmapItem* itemToUpdate = dynamic_cast<ProvinceGraphicsPixmapItem*>(items.at(i));
+		if( itemToUpdate == nullptr )
+		{
+			continue;
+		}
+		if( item != itemToUpdate->GetAttachedProvinceItem() )
+		{
+			continue;
+		}
+		itemToUpdate->UpdateColor(item->m_ColorNation);
+	}
+	m_View->setVisible(true);
 }
 
 //================================================================================

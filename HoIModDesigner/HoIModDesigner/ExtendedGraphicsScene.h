@@ -8,12 +8,21 @@ class ExtendedGraphicsScene : public QGraphicsScene
  	Q_OBJECT
 public:
  	ExtendedGraphicsScene(QObject *parent = 0);
+	void Init();
+public slots:
+	void OpenProvinceDetailDialog();
+	void SlotProvinceEntered( ProvinceItem* );
 signals:
-	void SignalProvinceEntered( const ProvinceItem* );
-	void SignalProvinceLeft( const ProvinceItem* );
+	void SignalProvinceEntered( ProvinceItem* );
+	void SignalProvinceLeft( ProvinceItem* );
+	void UpdateProvinceOwner( ProvinceItem* );
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent *event);
 	bool event(QEvent *event);
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * contextMenuEvent);
+private:
+	QAction	*m_ActionEditProvinceDetails;
+	ProvinceItem	*m_LastSelectedItem;
 };
 
 #include <QGraphicsSceneHoverEvent>

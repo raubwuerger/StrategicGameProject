@@ -221,7 +221,10 @@ bool HoI3Scriptparser::SaveScript( const HoI3Script& script, const QString& alte
 			continue;
 		}
 		WriteTokenToStream( (*iter), stream, 1, true, false );
-		stream << BLOCK_END << LINEEND << LINEEND;
+		if( iter->m_Tokens.empty() == false )
+		{
+			stream << BLOCK_END << LINEEND << LINEEND;
+		}
 	}
 
 	file.close();
@@ -231,7 +234,7 @@ bool HoI3Scriptparser::SaveScript( const HoI3Script& script, const QString& alte
 void HoI3Scriptparser::WriteTokenToStream( const HoI3Token& token, QTextStream& stream, int tabLevel, bool lineEnd, bool checkBlockEnd ) const
 {
 	QString value(token.m_Value);
-	if( value.isEmpty() == true )
+	if( value.isEmpty() == true && token.m_Tokens.isEmpty() == false )
 	{
 		value = BLOCK_START;
 	}

@@ -70,6 +70,7 @@ const ItemData ProvinceItemPrototypeRepository::coastal_fort = ItemData("coastal
 const ItemData ProvinceItemPrototypeRepository::nuclear_reactor = ItemData("nuclear_reactor",QVariant(QVariant::Int));
 const ItemData ProvinceItemPrototypeRepository::radar_station = ItemData("radar_station",QVariant(QVariant::Int));
 const ItemData ProvinceItemPrototypeRepository::rocket_test = ItemData("rocket_test",QVariant(QVariant::Int));
+const ItemData ProvinceItemPrototypeRepository::add_core = ItemData("add_core",QVariant(QStringList()));
 
 
 void ProvinceItemPrototypeRepository::Init()
@@ -77,6 +78,7 @@ void ProvinceItemPrototypeRepository::Init()
 	m_PrototypeMap.clear();
 	m_PrototypeMap.insert( owner.GetName(), owner );
 	m_PrototypeMap.insert( controller.GetName(), controller );
+	m_PrototypeMap.insert( add_core.GetName(), add_core );
 	m_PrototypeMap.insert( infra.GetName(), infra );
 	m_PrototypeMap.insert( points.GetName(), points );
 	m_PrototypeMap.insert( metal.GetName(), metal );

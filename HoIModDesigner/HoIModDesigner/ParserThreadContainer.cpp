@@ -16,10 +16,13 @@ bool ParserThreadContainer::StartParsing()
 	}
 	m_Finished = false;
 	m_Parser->moveToThread(&m_WorkerThread);
- 	connect(&m_WorkerThread, &QThread::finished, m_Parser, &QObject::deleteLater);
-//	connect(m_Parser, SIGNAL(Finished()), this, SLOT(HasFinished()), Qt::QueuedConnection );
-	connect(m_Parser, SIGNAL(Finished()), this, SLOT(HasFinished()) );
+ 	connect(m_Parser, SIGNAL(Finished()), this, SLOT(HasFinished()) );
 	connect(this, SIGNAL(Start()),m_Parser,SLOT(Parse()) );
+
+	connect(m_Parser, SIGNAL(Finished()), &m_WorkerThread, SLOT(quit()));
+//	connect(m_Parser, SIGNAL(Finished()), m_Parser, SLOT(deleteLater()));	//Wenn diese Connection aktiv ist, sind die Zeiger auf die Parser-childs (context) zerstört! Das Objekt lebt aber noch
+//	connect(&m_WorkerThread, SIGNAL(finished()), &m_WorkerThread, SLOT(deleteLater())); //Wenn diese Connection aktiv ist, dann bekomme ich beim Beenden des Threads eine exception
+
 	m_WorkerThread.start();
 	emit Start();
 	return true;
@@ -28,7 +31,6 @@ bool ParserThreadContainer::StartParsing()
 void ParserThreadContainer::HasFinished()
 {
 	m_Finished = true;
-	m_WorkerThread.quit();
 //jha: Geht nicht, das muss das verschobene Threadobjekt selber machen!
 //	m_Parser->moveToThread(QApplication::instance()->thread());
 	emit ParsingFinished();

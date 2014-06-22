@@ -79,7 +79,7 @@ const ProvinceItem * ProvinceGraphicsPixmapItem::GetAttachedProvinceItem() const
 	return m_AttachedProvinceItem;
 }
 
-void ProvinceGraphicsPixmapItem::SetAttachedProvinceItem( const ProvinceItem * val )
+void ProvinceGraphicsPixmapItem::SetAttachedProvinceItem( ProvinceItem * val )
 {
 	m_AttachedProvinceItem = val;
 }

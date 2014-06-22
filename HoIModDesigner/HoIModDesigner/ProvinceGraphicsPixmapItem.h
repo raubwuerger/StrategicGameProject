@@ -24,7 +24,7 @@ public:
 	/** Zeigt Provinz in der Farbe aus Originaldatei an */
 	void ShowOriginal();
 	const ProvinceItem * GetAttachedProvinceItem() const;
-	void SetAttachedProvinceItem(const ProvinceItem * val);
+	void SetAttachedProvinceItem(ProvinceItem * val);
 /** */
 	void UpdateColor( const QColor& color );
 	const QPolygon& GetContourPolygon() const { return m_ContourPolygon; }
@@ -37,7 +37,7 @@ private:
 	QPixmap	m_Contour;
 	QPixmap	m_LastPixmap;
 	QPolygon m_ContourPolygon;
-	const ProvinceItem *m_AttachedProvinceItem;
+	ProvinceItem *m_AttachedProvinceItem;
 	ExtendedGraphicsScene *m_Parent;
 	QColor	m_ColorBeforeEnter;
 	bool	m_ShowContour;
