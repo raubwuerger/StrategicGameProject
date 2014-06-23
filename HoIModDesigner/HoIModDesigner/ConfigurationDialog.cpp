@@ -6,6 +6,22 @@ ConfigurationDialog::ConfigurationDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect( ui.pushButtonChooseHoI3Path, SIGNAL(clicked()), this, SLOT(ChooseHoI3Path()) );
+
+	QGridLayout *mainLayout = new QGridLayout;
+	mainLayout->addWidget( ui.labelHoI3Path, 0, 0);
+	mainLayout->addWidget( ui.labelMods, 1, 0);
+	mainLayout->addWidget( ui.lineEditHoI3Path, 0, 1, 1, 3);
+	mainLayout->addWidget( ui.listWidget, 1, 1, 8, 4 );
+
+	ui.pushButtonChooseHoI3Path->setMaximumWidth(ui.pushButtonChooseHoI3Path->width());
+	mainLayout->addWidget( ui.pushButtonChooseHoI3Path, 0, 4 );
+	ui.pushButtonAddMod->setMaximumWidth(ui.pushButtonAddMod->width());
+	mainLayout->addWidget( ui.pushButtonAddMod, 1, 5 );
+	mainLayout->addWidget( ui.pushButtonModifyMod, 2, 5 );
+	mainLayout->addWidget( ui.pushButtonDeleteMod, 3, 5 );
+	mainLayout->addWidget( ui.pushButtonClose, 8, 5 );
+
+	setLayout(mainLayout);
 }
 
 ConfigurationDialog::~ConfigurationDialog()

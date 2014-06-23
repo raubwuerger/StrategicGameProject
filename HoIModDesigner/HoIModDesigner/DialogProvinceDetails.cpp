@@ -6,6 +6,23 @@ DialogProvinceDetails::DialogProvinceDetails(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+	QGridLayout *gridLayout = new QGridLayout;
+	ui.lineEditID->setEnabled(false);
+	gridLayout->addWidget( ui.labelID, 0, 0 );
+	gridLayout->addWidget( ui.lineEditID, 0, 1 );
+
+	ui.lineEditName->setEnabled(false);
+	gridLayout->addWidget( ui.lineEditName, 0, 2 );
+	gridLayout->addWidget( ui.lineEditName, 0, 3 );
+
+	gridLayout->addWidget( ui.listWidget, 1, 0, 12, 4 );
+	ui.listWidget->horizontalHeader()->setStretchLastSection(true);
+	
+	gridLayout->addWidget( ui.cancelButton, 13, 2 );
+	ui.cancelButton->setMaximumWidth(ui.cancelButton->width());
+	gridLayout->addWidget( ui.okButton, 13, 3 );
+	ui.okButton->setMaximumWidth(ui.okButton->width());
+	setLayout(gridLayout);
 }
 
 DialogProvinceDetails::~DialogProvinceDetails()
@@ -20,7 +37,9 @@ void DialogProvinceDetails::SetProvinceItem( ProvinceItem * val )
 		return;
 	}
 	
-	ui.lineEdit->setText( val->m_Name );
+	ui.lineEditID->setText( QString().setNum(val->m_ID) );
+
+	ui.lineEditName->setText( val->m_Name );
 
 	ui.listWidget->setSortingEnabled(true);
 	ui.listWidget->setRowCount( val->GetItemMap().size() );
