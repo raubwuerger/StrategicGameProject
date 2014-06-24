@@ -20,7 +20,7 @@ void ExtendedGraphicsScene::mousePressEvent( QGraphicsSceneMouseEvent *event )
 #include "ProvinceGraphicsPixmapItem.h"
 void ExtendedGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-	if( m_LastSelectedItem != nullptr )
+	if( m_LastSelectedItem != nullptr && event->button() == Qt::LeftButton )
 	{
 		emit SignalProvinceMouseReleased( m_LastSelectedItem );
 	}

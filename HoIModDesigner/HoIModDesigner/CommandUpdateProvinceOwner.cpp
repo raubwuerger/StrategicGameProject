@@ -30,13 +30,34 @@ bool CommandUpdateProvinceOwner::DoExecute()
 		return false;
 	}
 
+	m_OrgOwner = m_ProvinceItem->FindItem( ProvinceItemPrototypeRepository::owner.GetName() ).GetData().toString();
+	m_OrgController = m_ProvinceItem->FindItem( ProvinceItemPrototypeRepository::controller.GetName() ).GetData().toString();
+
 	m_ProvinceItem->UpdateItem( ProvinceItemPrototypeRepository::owner.GetName(), m_NewOwner );
 	m_ProvinceItem->UpdateItem( ProvinceItemPrototypeRepository::controller.GetName(), m_NewOwner );
 		
-	HoI3Script provinceScript( m_ProvinceItem->m_FilePath );
+	return SaveProvinceDetailFile( m_ProvinceItem );
+}
+
+bool CommandUpdateProvinceOwner::DoUndo()
+{
+	if( m_OrgOwner.isEmpty() == true || m_OrgController.isEmpty() == true )
+	{
+		return false;
+	}
+	m_ProvinceItem->UpdateItem( ProvinceItemPrototypeRepository::owner.GetName(), m_OrgOwner );
+	m_ProvinceItem->UpdateItem( ProvinceItemPrototypeRepository::controller.GetName(), m_OrgController );
+
+	return SaveProvinceDetailFile(m_ProvinceItem);
+
+}
+
+bool CommandUpdateProvinceOwner::SaveProvinceDetailFile( ProvinceItem *item )
+{
+	HoI3Script provinceScript( item->m_FilePath );
 
 	QMap<QString,ItemData>::ConstIterator iter;
-	for( iter = m_ProvinceItem->GetItemMap().constBegin(); iter != m_ProvinceItem->GetItemMap().constEnd(); iter++ )
+	for( iter = item->GetItemMap().constBegin(); iter != item->GetItemMap().constEnd(); iter++ )
 	{
 		if( iter->GetData().type() == QVariant::StringList )
 		{
@@ -53,6 +74,9 @@ bool CommandUpdateProvinceOwner::DoExecute()
 	}
 
 	HoI3Scriptparser scriptParser;
-	scriptParser.SaveScript( provinceScript );
+	if( scriptParser.SaveScript( provinceScript ) == false )
+	{
+		return false;
+	}
 	return true;
 }

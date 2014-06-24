@@ -13,7 +13,13 @@ public:
 private:
 /**  */
 	virtual bool DoExecute();
+/** */
+	virtual bool DoUndo();
+/** */
+	bool SaveProvinceDetailFile( ProvinceItem *item );
 private:
 	ProvinceItem	*m_ProvinceItem;
 	QString			m_NewOwner;
+	QString			m_OrgOwner;
+	QString			m_OrgController;
 };
