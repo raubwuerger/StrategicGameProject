@@ -174,6 +174,9 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
 
+	connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(ProvinceItem*)),m_View->m_Scene, SLOT(SlotProvinceEntered(ProvinceItem*)));
+	connect(m_View->m_Scene, SIGNAL(SignalProvinceMouseReleased(ProvinceItem*)),this, SLOT(SlotProvinceMouseReleased(ProvinceItem*)));
+
 	jha::LogInterface().Init();
 	jha::GetLog()->RegisterLogger( new jha::LoggerFile("d:/temp/Logfile.log") );
 	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
@@ -335,7 +338,6 @@ void HoIModDesigner::CreateDockWidgets()
 		addDockWidget(Qt::RightDockWidgetArea, dock);
 		m_DockWidgetsMenu->addAction(dock->toggleViewAction());
 		connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(ProvinceItem*)),this, SLOT(UpdateProvinceDetail(ProvinceItem*)));
-		connect(m_View->m_Scene, SIGNAL(SignalProvinceEntered(ProvinceItem*)),m_View->m_Scene, SLOT(SlotProvinceEntered(ProvinceItem*)));
 	}
 
 	{
@@ -779,6 +781,23 @@ void HoIModDesigner::UpdateProvinceColor( ProvinceItem *item )
 	}
 	m_View->setVisible(true);
 }
+
+#include "CommandFactory.h"
+void HoIModDesigner::SlotProvinceMouseReleased(ProvinceItem *item )
+{
+	if( item == nullptr )
+	{
+		return;
+	}
+	QSharedPointer<jha::Command> command( CommandFactory().CreateCommandUpdateProvinceOwner(item,"GER"));
+	if( command->Execute() == false )
+	{
+		return;
+	}
+	item->m_GraphicsItem->ShowSelected();
+	UpdateProvinceColor(item);
+}
+
 
 //================================================================================
 //================================================================================

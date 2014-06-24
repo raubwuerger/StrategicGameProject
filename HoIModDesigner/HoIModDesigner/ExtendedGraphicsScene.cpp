@@ -8,13 +8,23 @@ ExtendedGraphicsScene::ExtendedGraphicsScene( QObject *parent /*= 0*/ )
 {
 }
 
+#include "ProvinceItem.h"
 void ExtendedGraphicsScene::mousePressEvent( QGraphicsSceneMouseEvent *event )
 {
 // 	QPointF mousePos(event->buttonDownScenePos(Qt::LeftButton).x(), event->buttonDownScenePos(Qt::LeftButton).y());
 // 	const QList<QGraphicsItem *> itemList = items(mousePos);
 //	m_LastSelectedItem = itemList.isEmpty() ? nullptr : itemList.first();
-	clearSelection();
 	QGraphicsScene::mousePressEvent(event);
+}
+
+#include "ProvinceGraphicsPixmapItem.h"
+void ExtendedGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+	if( m_LastSelectedItem != nullptr )
+	{
+		emit SignalProvinceMouseReleased( m_LastSelectedItem );
+	}
+	QGraphicsScene::mouseReleaseEvent(event);
 }
 
 bool ExtendedGraphicsScene::event(QEvent *event)
@@ -42,44 +52,11 @@ void ExtendedGraphicsScene::contextMenuEvent( QGraphicsSceneContextMenuEvent * c
 	menu.exec(contextMenuEvent->screenPos());
 }
 
-#include "DialogProvinceDetails.h"
-#include "HoI3Scriptparser.h"
-#include "ParserHoI3.h"
-#include "ProvinceItem.h"
-#include "ProvinceGraphicsPixmapItem.h"
+#include "CommandFactory.h"
 void ExtendedGraphicsScene::OpenProvinceDetailDialog()
 {
-	QGraphicsItem *activeItem = mouseGrabberItem();
-
-	DialogProvinceDetails dialog;
-	dialog.SetProvinceItem(m_LastSelectedItem);
-	if( dialog.exec() != QDialog::Accepted )
-	{
-		return;
-	}
-	dialog.UpdateProvinceItem(m_LastSelectedItem);
-
-	HoI3Script provinceScript( m_LastSelectedItem->m_FilePath );
-
-	QMap<QString,ItemData>::ConstIterator iter;
-	for( iter = m_LastSelectedItem->GetItemMap().constBegin(); iter != m_LastSelectedItem->GetItemMap().constEnd(); iter++ )
-	{
-		if( iter->GetData().type() == QVariant::StringList )
-		{
-			QStringList stringList = iter->GetData().toStringList();
-			for( int i=0;i<stringList.size();i++ )
-			{
-				provinceScript.m_TokenList.append( HoI3Token( iter->GetName(), stringList.at(i)) );
-			}
-		}
-		else
-		{
-			provinceScript.m_TokenList.append( HoI3Token( iter->GetName(), iter->GetData().toString()) );
-		}
-	}
-
-	HoI3Scriptparser scriptParser;
-	scriptParser.SaveScript( provinceScript );
+	QSharedPointer<jha::Command> command( CommandFactory().CreateCommandUpdateProvinceDetails(m_LastSelectedItem) );
+	command->Execute();
 	emit UpdateProvinceOwner(m_LastSelectedItem);
 }
 

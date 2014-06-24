@@ -14,6 +14,7 @@ ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const QPixmap & pixmapOr
 		m_ShowContour(false)
 {
 	setAcceptHoverEvents(true);
+	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 }
 
 ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const ProvinceGraphicsPixmapItem& rhs )
@@ -28,6 +29,7 @@ ProvinceGraphicsPixmapItem::ProvinceGraphicsPixmapItem( const ProvinceGraphicsPi
 {
 	setOffset( rhs.offset() );
 	setAcceptHoverEvents(rhs.acceptHoverEvents());
+	setAcceptedMouseButtons( rhs.acceptedMouseButtons() );
 }
 
 ProvinceGraphicsPixmapItem::~ProvinceGraphicsPixmapItem()
@@ -41,12 +43,6 @@ const QRect& ProvinceGraphicsPixmapItem::GetLocation() const
 
 void ProvinceGraphicsPixmapItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
-	m_LastPixmap = pixmap();
-	if( m_Parent != nullptr )
-	{
-		emit m_Parent->SignalProvinceEntered(m_AttachedProvinceItem);
-	}
-
 	ShowSelected();
 	QGraphicsPixmapItem::hoverEnterEvent(event);
 	event->ignore();
@@ -65,7 +61,11 @@ void ProvinceGraphicsPixmapItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * even
 
 void ProvinceGraphicsPixmapItem::ShowSelected() 
 {
-//	setPixmap( m_Contour );
+	m_LastPixmap = pixmap();
+	if( m_Parent != nullptr )
+	{
+		emit m_Parent->SignalProvinceEntered(m_AttachedProvinceItem);
+	}
 	setPixmap( ApplyContour(pixmap()) );
 }
 
@@ -86,18 +86,18 @@ void ProvinceGraphicsPixmapItem::SetAttachedProvinceItem( ProvinceItem * val )
 
 void ProvinceGraphicsPixmapItem::UpdateColor( const QColor& color )
 {
-	m_LastPixmap = pixmap();
-	QPixmap pixmap(pixmap());
-	pixmap.fill(color);
-	pixmap.setMask( m_OrgPixmap.mask() );
+	QPixmap newPixmap(pixmap());
+	newPixmap.fill(color);
+	newPixmap.setMask( m_OrgPixmap.mask() );
 	if( m_ShowContour == true )
 	{
-		setPixmap( ApplyContour(pixmap) );
+		setPixmap( ApplyContour(newPixmap) );
 	}
 	else
 	{
-		setPixmap( pixmap );
+		setPixmap( newPixmap );
 	}
+	m_LastPixmap = pixmap();
 }
 
 QPixmap ProvinceGraphicsPixmapItem::ApplyContour( const QPixmap& pixmap ) const

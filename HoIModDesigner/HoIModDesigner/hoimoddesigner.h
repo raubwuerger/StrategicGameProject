@@ -111,6 +111,7 @@ public:
 	~HoIModDesigner();
 public slots:
 	void UpdateProvinceColor( ProvinceItem *item );
+	void SlotProvinceMouseReleased(ProvinceItem *item );
 private slots:
 /** */
 	void LoadMap();
