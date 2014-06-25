@@ -34,6 +34,10 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	m_LoadMapAction->setStatusTip(tr("Load HoI3 map"));
 	connect(m_LoadMapAction, SIGNAL(triggered()), this, SLOT(LoadMap()));
 
+	m_SaveChangesAction = new QAction(QIcon(":HoIModDesigner/images/floppy_disk.ico"),tr("Save"),this );
+	m_SaveChangesAction->setStatusTip(tr("Save changes"));
+	connect(m_SaveChangesAction, SIGNAL(triggered()), this, SLOT(SaveChanges()));
+
 	m_FileConfigurationAction = new QAction(QIcon(":HoIModDesigner/images/gear.ico"),tr("Configuration..."),this );
 	m_FileConfigurationAction->setStatusTip(tr("Open configuration dialog"));
 	connect(m_FileConfigurationAction, SIGNAL(triggered()), this, SLOT(OpenConfigurationDialog()));
@@ -44,6 +48,7 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 
 	m_FileMenu = menuBar()->addMenu(tr("&File"));
 	m_FileMenu->addAction( m_LoadMapAction );
+	m_FileMenu->addAction( m_SaveChangesAction );
 	m_FileMenu->addSeparator();
 	m_FileMenu->addAction( m_FileConfigurationAction );
 	m_FileMenu->addSeparator();
@@ -57,6 +62,7 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	m_FileToolBar = addToolBar(tr("Edit"));
 	m_FileToolBar->addAction(m_ExitAction);
 	m_FileToolBar->addAction(m_LoadMapAction);
+	m_FileToolBar->addAction(m_SaveChangesAction);
 
 	m_ShowOriginalMap = new QAction(QIcon("images/test.png"),tr("Original"), this);
 	m_ShowOriginalMap->setStatusTip(tr("Shows original map"));
@@ -154,6 +160,15 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	m_ToolBox->setMinimumWidth(widget->sizeHint().width());
 	m_ToolBox->addItem(widget, tr("First group"));
 
+	QButtonGroup *paintEvents = new QButtonGroup(this);
+	paintEvents->setExclusive(true);
+	QVBoxLayout *layoutPaintEvents = new QVBoxLayout;
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Country") ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Industry") ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Metal") ));
+	QWidget *itemWidget = new QWidget;
+	itemWidget->setLayout(layoutPaintEvents);
+	m_ToolBox->addItem(itemWidget, tr("Painters"));
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	layoutMain->addWidget(m_ToolBox);
@@ -182,6 +197,26 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
 	jha::GetLog()->Start();
 }
+
+QWidget *HoIModDesigner::CreatePaintButton(const QString &text )
+{
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(QIcon(":HoIModDesigner/images/gear.ico"));
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+//	buttonGroup->addButton(button, int(type));
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+
 
 HoIModDesigner::~HoIModDesigner()
 {
@@ -789,13 +824,31 @@ void HoIModDesigner::SlotProvinceMouseReleased(ProvinceItem *item )
 	{
 		return;
 	}
-	QSharedPointer<jha::Command> command( CommandFactory().CreateCommandUpdateProvinceOwner(item,"GER"));
+	ItemData itemOwner = item->FindItem( ProvinceItemPrototypeRepository::owner.GetName() );
+	itemOwner.SetData("GER");
+	QSharedPointer<jha::Command> command( CommandFactory().CreateCommandUpdateProvinceItem(item,itemOwner));
 	if( command->Execute() == false )
+	{
+		return;
+	}
+	ItemData itemController = item->FindItem( ProvinceItemPrototypeRepository::controller.GetName() );
+	itemController.SetData("GER");
+	QSharedPointer<jha::Command> command2( CommandFactory().CreateCommandUpdateProvinceItem(item,itemController));
+	if( command2->Execute() == false )
 	{
 		return;
 	}
 	item->m_GraphicsItem->ShowSelected();
 	UpdateProvinceColor(item);
+}
+
+void HoIModDesigner::SaveChanges()
+{
+	if( m_Parser == nullptr )
+	{
+		return;
+	}
+	m_Parser->SaveProvinceDetailInfo( m_Parser->m_Context->m_ProvinceMap );
 }
 
 

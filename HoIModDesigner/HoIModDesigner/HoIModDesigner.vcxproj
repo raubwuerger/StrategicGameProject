@@ -87,6 +87,7 @@
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="CommandProvinceItem.cpp" />
     <ClCompile Include="CommandUpdateProvinceDetails.cpp" />
+    <ClCompile Include="CommandUpdateProvinceItem.cpp" />
     <ClCompile Include="CommandUpdateProvinceOwner.cpp" />
     <ClCompile Include="ConfigurationDialog.cpp" />
     <ClCompile Include="ContextFactory.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="CommandProvinceItem.h" />
     <ClInclude Include="CommandUpdateProvinceDetails.h" />
+    <ClInclude Include="CommandUpdateProvinceItem.h" />
     <ClInclude Include="CommandUpdateProvinceOwner.h" />
     <ClInclude Include="ContextFactory.h" />
     <ClInclude Include="DDSLoader.h" />

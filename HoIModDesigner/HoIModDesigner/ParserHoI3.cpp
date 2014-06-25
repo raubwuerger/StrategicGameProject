@@ -105,8 +105,8 @@ bool ParserHoI3::ParseProvinzList( QHash<int,ProvinceItem*>& mapRGB, QHash<int,P
 		{
 			continue;
 		}
-		mapRGB.insert(newItem->m_Color.rgb(), newItem);
-		mapID.insert(newItem->m_ID, newItem);
+		mapRGB.insert(newItem->GetColor().rgb(), newItem);
+		mapID.insert(newItem->GetID(), newItem);
 	}
 
 	jha::GetLog()->Log("Created province items: " +QString().setNum(mapRGB.size()), LEVEL::LL_INFO);
@@ -347,7 +347,7 @@ bool ParserHoI3::ParseProvinceDetailInfoDirectory( QHash<int,ProvinceItem*>& pro
 				//TODO: Unable to parse province detail info 
 				continue;
 			}
-			provinceItem.value()->m_FilePath = infos.at(i).filePath();
+			provinceItem.value()->SetFilePath( infos.at(i).filePath() );
 		}
 		else
 		{
@@ -401,10 +401,6 @@ bool ParserHoI3::ParseProvinceDetailInfo( const QString& filename, ProvinceItem*
 	}
 
 	ProvinceItemPrototypeRepository prototypeFactory;
-	if( provinceItem->m_ID == 5233 )
-	{
-		int wait = 0;
-	}
 	bool atLeastOneItemFound = false;
 	QList<HoI3Token>::ConstIterator iterType;
 	for( iterType = script->m_TokenList.constBegin(); iterType != script->m_TokenList.constEnd(); iterType++ )
@@ -447,7 +443,7 @@ void ParserHoI3::AttachProvinceToNation( ProvinceItem *province, QHash<QString,N
 		return;
 	}
 	(*country)->AttachProvince(province);
-	province->m_ColorNation = (*country)->GetColor();
+	province->SetColorNation( (*country)->GetColor() );
 }
 
 bool ParserHoI3::CreateColorMap( QHash<int,ProvinceItem*>& result, const QPixmap* pixmap )
@@ -479,10 +475,10 @@ bool ParserHoI3::CreateColorMap( QHash<int,ProvinceItem*>& result, const QPixmap
 				//TODO: Kein Eintrag in definition.csv für  Farbcode <x,y,z> aus provinces.bmp
 				continue;
 			}
-			found.value()->m_ProvincePixels.append( QPoint(j,i) );
+			found.value()->GetProvincePixels().append( QPoint(j,i) );
 			if( sameColorCount != 8 )
 			{
-				found.value()->m_ContourPixels.append( QPoint(j,i) );
+				found.value()->GetContourPixels().append( QPoint(j,i) );
 			}
 		}
 	}
@@ -494,13 +490,12 @@ void ParserHoI3::CreateGraphicsItems( QHash<int,ProvinceItem*>& result, Extended
 	QHash<int,ProvinceItem*>::Iterator iter;
 	for( iter = result.begin(); iter != result.end(); iter++ )
 	{
-		(*iter)->m_GraphicsItem = CreateItemFromPixelClash((*iter)->m_ProvincePixels,(*iter)->m_ContourPixels, (*iter)->m_Color, scene );
-		if( (*iter)->m_GraphicsItem == nullptr )
+		(*iter)->SetGraphicsItem( CreateItemFromPixelClash((*iter)->GetProvincePixels(),(*iter)->GetContourPixels(), (*iter)->GetColor(), scene ) );
+		if( (*iter)->GetGraphicsItem() == nullptr )
 		{
 			continue;
 		}
-//		(*iter)->m_GraphicsItem->SetAttachedProvinceItem( mapRGB.find(iter.value()->m_ID).value() );
-		(*iter)->m_GraphicsItem->SetAttachedProvinceItem( (*iter) );
+		(*iter)->GetGraphicsItem()->SetAttachedProvinceItem( (*iter) );
 	}
 }
 
@@ -601,4 +596,47 @@ bool ParserHoI3::ParseBuildingsTXT( QHash<QString,BuildingItem*>& buildingList, 
 		buildingList.insert(newBuilding->GetName(), newBuilding);
 	}
 	return buildingList.size() > 0;
+}
+
+bool ParserHoI3::SaveProvinceDetailInfo( const QHash<int,ProvinceItem*>& items )
+{
+	bool allFilesSaved = true;
+	QHash<int,ProvinceItem*>::const_iterator iter;
+	for( iter = items.constBegin(); iter != items.constEnd(); iter++ )
+	{
+		if( iter.value()->GetContentChanged() == false )
+		{
+			continue;
+		}
+
+		HoI3Script provinceScript( iter.value()->GetFilePath() );
+
+		QMap<QString,ItemData>::ConstIterator iterItemMap;
+		for( iterItemMap = iter.value()->GetItemMap().constBegin(); iterItemMap != iter.value()->GetItemMap().constEnd(); iterItemMap++ )
+		{
+			if( iterItemMap->GetData().type() == QVariant::StringList )
+			{
+				QStringList stringList = iterItemMap->GetData().toStringList();
+				for( int i=0;i<stringList.size();i++ )
+				{
+					provinceScript.m_TokenList.append( HoI3Token( iterItemMap->GetName(), stringList.at(i)) );
+				}
+			}
+			else
+			{
+				provinceScript.m_TokenList.append( HoI3Token( iterItemMap->GetName(), iterItemMap->GetData().toString()) );
+			}
+		}
+
+		HoI3Scriptparser scriptParser;
+		if( scriptParser.SaveScript( provinceScript ) == false )
+		{
+			allFilesSaved = false;
+		}
+		else
+		{
+			iter.value()->SetContentChanged(false);
+		}
+	}
+	return allFilesSaved;
 }

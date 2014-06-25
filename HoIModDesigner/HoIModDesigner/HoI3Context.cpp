@@ -69,7 +69,7 @@ void HoI3Context::UpdateNationColor( ProvinceItem *province )
 		return;
 	}
 	(*country)->AttachProvince(province);
-	province->m_ColorNation = (*country)->GetColor();
+	province->SetColorNation( (*country)->GetColor() );
 }
 
 HoI3Context::~HoI3Context()

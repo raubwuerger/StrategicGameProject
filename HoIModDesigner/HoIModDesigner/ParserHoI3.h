@@ -17,6 +17,8 @@ public:
 	ParserHoI3( ExtendedGraphicsScene *scene, HoI3Context *context );
 /** */
 	HoI3Script* ParseScript( const QString& filename ) const;
+/** */
+	static bool SaveProvinceDetailInfo( const QHash<int,ProvinceItem*>& items );
 public slots:
 /** */
 	void Parse();

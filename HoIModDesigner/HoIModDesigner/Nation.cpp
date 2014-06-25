@@ -54,11 +54,11 @@ void Nation::AttachProvince( ProvinceItem *province )
 	{
 		return;
 	}
-	if( m_Provinces.find(province->m_ID) != m_Provinces.end() )
+	if( m_Provinces.find(province->GetID()) != m_Provinces.end() )
 	{
 		return;
 	}
-	m_Provinces.insert(province->m_ID,province);
+	m_Provinces.insert(province->GetID(),province);
 }
 
 const QColor& Nation::GetColor() const

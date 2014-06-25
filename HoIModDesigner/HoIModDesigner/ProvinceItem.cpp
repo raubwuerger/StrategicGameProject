@@ -8,7 +8,8 @@ ProvinceItem::ProvinceItem()
 	m_Name("prototype"),
 	m_Color(Qt::white),
 	m_ColorNation(Qt::white),
-	m_GraphicsItem(nullptr)
+	m_GraphicsItem(nullptr),
+	m_ContentChanged(false)
 {
 }
 
@@ -21,7 +22,8 @@ ProvinceItem::ProvinceItem( const ProvinceItem& rhs )
 	m_GraphicsItem( rhs.m_GraphicsItem),
 	m_ProvincePixels(rhs.m_ProvincePixels),
 	m_ContourPixels(rhs.m_ContourPixels),
-	m_ColorNation(rhs.m_ColorNation)
+	m_ColorNation(rhs.m_ColorNation),
+	m_ContentChanged(rhs.m_ContentChanged)
 {
 
 }
@@ -32,7 +34,8 @@ ProvinceItem::ProvinceItem( int id, const QString& name, const QColor& color )
 	m_Name(name),
 	m_Color(color),
 	m_GraphicsItem(nullptr),
-	m_ColorNation(Qt::white)
+	m_ColorNation(Qt::white),
+	m_ContentChanged(false)
 {
 
 }
@@ -46,8 +49,14 @@ ProvinceItem& ProvinceItem::operator=( const ProvinceItem& rhs )
 	m_ProvincePixels = rhs.m_ProvincePixels;
 	m_ColorNation = rhs.m_ColorNation;
 	m_ContourPixels = rhs.m_ContourPixels;
+	m_ContentChanged = rhs.m_ContentChanged;
 	ItemTypeBase::operator=(rhs);
 	return *this;
+}
+
+int ProvinceItem::GetID() const
+{
+	return m_ID;
 }
 
 //================================================================================

@@ -39,6 +39,12 @@ bool ExtendedGraphicsScene::event(QEvent *event)
 		}
 		return true;
 	}
+
+	if( event->type() == QEvent::GraphicsSceneContextMenu )
+	{
+		int nix_is = 0;
+		return true;
+	}
 	return QGraphicsScene::event(event);
 }
 

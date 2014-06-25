@@ -37,9 +37,9 @@ void DialogProvinceDetails::SetProvinceItem( ProvinceItem * val )
 		return;
 	}
 	
-	ui.lineEditID->setText( QString().setNum(val->m_ID) );
+	ui.lineEditID->setText( QString().setNum(val->GetID()) );
 
-	ui.lineEditName->setText( val->m_Name );
+	ui.lineEditName->setText( val->GetName() );
 
 	ui.listWidget->setSortingEnabled(true);
 	ui.listWidget->setRowCount( val->GetItemMap().size() );

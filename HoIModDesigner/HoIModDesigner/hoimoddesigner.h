@@ -116,6 +116,8 @@ private slots:
 /** */
 	void LoadMap();
 /** */
+	void SaveChanges();
+/** */
 	void OpenConfigurationDialog();
 /** */
 	void DisplayContourMap();
@@ -138,6 +140,8 @@ private:
 	void CreateDockWidgets();
 /** */
 	void CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const;
+/** */
+	QWidget *HoIModDesigner::CreatePaintButton(const QString &text );
 signals:
 	void SignalAppendRow(LoggingTableWidgetRow*);
 private slots:
@@ -154,6 +158,7 @@ private:
 	QAction		*m_FileConfigurationAction;
 	QAction		*m_ExitAction;
 	QAction		*m_LoadMapAction;
+	QAction		*m_SaveChangesAction;
 	QAction		*m_AboutAction;
 	QAction		*m_ShowOriginalMap;
 	QAction		*m_ShowNationColorMap;
