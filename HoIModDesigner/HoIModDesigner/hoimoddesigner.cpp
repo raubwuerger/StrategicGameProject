@@ -163,9 +163,22 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	QButtonGroup *paintEvents = new QButtonGroup(this);
 	paintEvents->setExclusive(true);
 	QVBoxLayout *layoutPaintEvents = new QVBoxLayout;
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Country") ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Industry") ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Metal") ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Country"), "E:/Spiele/HoI3/gfx/interface/mapmode_political.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Energy"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_energy.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Metal"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_metal.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Rare materials"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_raremat.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Crude oil"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_oil.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Industry"), "E:/Spiele/HoI3/gfx/interface/prov_build_factory.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Infrastructure"), "E:/Spiele/HoI3/gfx/interface/prov_build_infra.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Anti air"), "E:/Spiele/HoI3/gfx/interface/prov_build_aa.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Airfield"), "E:/Spiele/HoI3/gfx/interface/prov_build_airfield.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Landfort"), "E:/Spiele/HoI3/gfx/interface/prov_build_landfort.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Coastfort"), "E:/Spiele/HoI3/gfx/interface/prov_build_coastfort.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Naval base"), "E:/Spiele/HoI3/gfx/interface/prov_build_navalbase.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Nuclear"), "E:/Spiele/HoI3/gfx/interface/prov_build_nuclear.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Radar"), "E:/Spiele/HoI3/gfx/interface/prov_build_radar.dds" ));
+	layoutPaintEvents->addWidget(CreatePaintButton( tr("Rocket"), "E:/Spiele/HoI3/gfx/interface/prov_build_rocket.dds" ));
+	
 	QWidget *itemWidget = new QWidget;
 	itemWidget->setLayout(layoutPaintEvents);
 	m_ToolBox->addItem(itemWidget, tr("Painters"));
@@ -198,12 +211,11 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	jha::GetLog()->Start();
 }
 
-QWidget *HoIModDesigner::CreatePaintButton(const QString &text )
+QWidget *HoIModDesigner::CreatePaintButton(const QString &text, const QString& iconPath )
 {
-
 	QToolButton *button = new QToolButton;
-	button->setIcon(QIcon(":HoIModDesigner/images/gear.ico"));
-	button->setIconSize(QSize(48, 48));
+	button->setIcon(QIcon(QPixmap(iconPath)));
+	button->setIconSize(QSize(32, 32));
 	button->setCheckable(true);
 //	buttonGroup->addButton(button, int(type));
 

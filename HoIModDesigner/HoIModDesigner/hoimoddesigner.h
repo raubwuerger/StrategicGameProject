@@ -141,7 +141,7 @@ private:
 /** */
 	void CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const;
 /** */
-	QWidget *HoIModDesigner::CreatePaintButton(const QString &text );
+	QWidget *HoIModDesigner::CreatePaintButton(const QString &text, const QString& iconPath );
 signals:
 	void SignalAppendRow(LoggingTableWidgetRow*);
 private slots:
