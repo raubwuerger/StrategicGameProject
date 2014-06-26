@@ -141,13 +141,14 @@ private:
 /** */
 	void CreateColumn( QTreeWidgetItem* parent, const HoI3Token& token ) const;
 /** */
-	QWidget *HoIModDesigner::CreatePaintButton(const QString &text, const QString& iconPath );
+	QWidget *CreatePaintButton(const QString &text, const QString& iconPath, QButtonGroup *group, int buttonID );
 signals:
 	void SignalAppendRow(LoggingTableWidgetRow*);
 private slots:
 	void UpdateProvinceDetail(ProvinceItem* item);
 	void UpdateCountryDetail(QTableWidgetItem* item);
 	void ParsingFinished();
+	void SetFactoryForExtendedScene( int id );
 private:
 	Ui::HoIModDesignerClass ui;
 	QMenu		*m_FileMenu;
@@ -190,6 +191,7 @@ private:
 
 	PropertyEditor::PropertyEditor *m_PropertyEdit;
 	QTreeWidget	*m_TreeView;
+	QVector<QWidget*> m_PainterWidgets;
 
 	ParserHoI3	*m_Parser;
 };

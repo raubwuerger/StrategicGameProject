@@ -2,6 +2,7 @@
 #define EXTENDEDGRAPHICSSCENE_H
 
 class ProvinceItem;
+class CommandFactoryProvincePainter;
 
 class ExtendedGraphicsScene : public QGraphicsScene
 {
@@ -9,6 +10,8 @@ class ExtendedGraphicsScene : public QGraphicsScene
 public:
  	ExtendedGraphicsScene(QObject *parent = 0);
 	void Init();
+	/** Set m_PainterFactory */
+	void SetPainterFactory( CommandFactoryProvincePainter * val);
 public slots:
 	void OpenProvinceDetailDialog();
 	void SlotProvinceEntered( ProvinceItem* );
@@ -25,6 +28,7 @@ protected:
 private:
 	QAction	*m_ActionEditProvinceDetails;
 	ProvinceItem	*m_LastSelectedItem;
+	CommandFactoryProvincePainter	*m_PainterFactory;
 };
 
 #include <QGraphicsSceneHoverEvent>

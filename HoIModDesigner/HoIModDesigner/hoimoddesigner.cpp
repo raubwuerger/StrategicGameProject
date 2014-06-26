@@ -155,32 +155,43 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	QGridLayout *backgroundLayout = new QGridLayout;
 	backgroundLayout->addWidget(widget, 0, 0);
 
-	m_ToolBox = new QToolBox;
-	m_ToolBox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
-	m_ToolBox->setMinimumWidth(widget->sizeHint().width());
-	m_ToolBox->addItem(widget, tr("First group"));
-
 	QButtonGroup *paintEvents = new QButtonGroup(this);
 	paintEvents->setExclusive(true);
 	QVBoxLayout *layoutPaintEvents = new QVBoxLayout;
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Country"), "E:/Spiele/HoI3/gfx/interface/mapmode_political.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Energy"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_energy.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Metal"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_metal.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Rare materials"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_raremat.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Crude oil"), "E:/Spiele/HoI3/tfh/gfx/mapitems/resource_oil.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Industry"), "E:/Spiele/HoI3/gfx/interface/prov_build_factory.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Infrastructure"), "E:/Spiele/HoI3/gfx/interface/prov_build_infra.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Anti air"), "E:/Spiele/HoI3/gfx/interface/prov_build_aa.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Airfield"), "E:/Spiele/HoI3/gfx/interface/prov_build_airfield.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Landfort"), "E:/Spiele/HoI3/gfx/interface/prov_build_landfort.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Coastfort"), "E:/Spiele/HoI3/gfx/interface/prov_build_coastfort.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Naval base"), "E:/Spiele/HoI3/gfx/interface/prov_build_navalbase.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Nuclear"), "E:/Spiele/HoI3/gfx/interface/prov_build_nuclear.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Radar"), "E:/Spiele/HoI3/gfx/interface/prov_build_radar.dds" ));
-	layoutPaintEvents->addWidget(CreatePaintButton( tr("Rocket"), "E:/Spiele/HoI3/gfx/interface/prov_build_rocket.dds" ));
+	int buttonID = 0;
+	m_PainterWidgets.append(CreatePaintButton( tr("Owner"), "D:/Spiele/HoI3/gfx/interface/mapmode_political.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Energy"), "D:/Spiele/HoI3/tfh/gfx/mapitems/resource_energy.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Metal"), "D:/Spiele/HoI3/tfh/gfx/mapitems/resource_metal.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Rare materials"), "D:/Spiele/HoI3/tfh/gfx/mapitems/resource_raremat.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Crude oil"), "D:/Spiele/HoI3/tfh/gfx/mapitems/resource_oil.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Industry"), "D:/Spiele/HoI3/gfx/interface/prov_build_factory.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Infrastructure"), "D:/Spiele/HoI3/gfx/interface/prov_build_infra.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Anti air"), "D:/Spiele/HoI3/gfx/interface/prov_build_aa.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Airfield"), "D:/Spiele/HoI3/gfx/interface/prov_build_airfield.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Landfort"), "D:/Spiele/HoI3/gfx/interface/prov_build_landfort.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Coastfort"), "D:/Spiele/HoI3/gfx/interface/prov_build_coastfort.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Naval base"), "D:/Spiele/HoI3/gfx/interface/prov_build_navalbase.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Nuclear"), "D:/Spiele/HoI3/gfx/interface/prov_build_nuclear.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Radar"), "D:/Spiele/HoI3/gfx/interface/prov_build_radar.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Rocket"), "D:/Spiele/HoI3/gfx/interface/prov_build_rocket.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Leadership"), "D:/Spiele/HoI3/gfx/interface/icon_leadership.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Manpower"), "D:/Spiele/HoI3/gfx/interface/icon_manpower.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Points"), "D:/Spiele/HoI3/gfx/interface/mapmode_vp.dds", paintEvents, buttonID++ ));
+	m_PainterWidgets.append(CreatePaintButton( tr("Controller"), "D:/Spiele/HoI3/gfx/interface/mapmode_political.dds", paintEvents, buttonID++ ));
+	for( int i=0; i < m_PainterWidgets.size();i++ )
+	{
+		layoutPaintEvents->addWidget( m_PainterWidgets.at(i) );
+	}
+
+	connect(paintEvents,SIGNAL(buttonClicked(int)),this,SLOT(SetFactoryForExtendedScene(int)));
 	
 	QWidget *itemWidget = new QWidget;
 	itemWidget->setLayout(layoutPaintEvents);
+
+	m_ToolBox = new QToolBox;
+	m_ToolBox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
+	m_ToolBox->setMinimumWidth(itemWidget->sizeHint().width());
+	m_ToolBox->addItem(widget, tr("Test group"));
 	m_ToolBox->addItem(itemWidget, tr("Painters"));
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
@@ -211,13 +222,16 @@ HoIModDesigner::HoIModDesigner(QWidget *parent)
 	jha::GetLog()->Start();
 }
 
-QWidget *HoIModDesigner::CreatePaintButton(const QString &text, const QString& iconPath )
+QWidget *HoIModDesigner::CreatePaintButton(const QString &text, const QString& iconPath, QButtonGroup *group, int buttonID )
 {
 	QToolButton *button = new QToolButton;
 	button->setIcon(QIcon(QPixmap(iconPath)));
 	button->setIconSize(QSize(32, 32));
 	button->setCheckable(true);
-//	buttonGroup->addButton(button, int(type));
+	if( group != nullptr )
+	{
+		group->addButton(button,buttonID);
+	}
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
@@ -227,6 +241,84 @@ QWidget *HoIModDesigner::CreatePaintButton(const QString &text, const QString& i
 	widget->setLayout(layout);
 
 	return widget;
+}
+
+#include "CommandFactory.h"
+void HoIModDesigner::SetFactoryForExtendedScene( int id )
+{
+	if( m_View == nullptr )
+	{
+		return;
+	}
+	if( m_View->m_Scene == nullptr )
+	{
+		return;
+	}
+	if( id < 0 || id >= m_PainterWidgets.size() )
+	{
+		return;
+	}
+	//TODO: Richtig lösen!!
+	switch( id )
+	{
+	case 0:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::owner ) );
+		break;
+	case 1:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::energy ) );
+		break;
+	case 2:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::metal ) );
+		break;
+	case 3:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::rare_materials ) );
+		break;
+	case 4:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::crude_oil ) );
+		break;
+	case 5:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::industry ) );
+		break;
+	case 6:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::infra ) );
+		break;
+	case 7:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::anti_air ) );
+		break;
+	case 8:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::air_base ) );
+		break;
+	case 9:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::land_fort ) );
+		break;
+	case 10:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::coastal_fort ) );
+		break;
+	case 11:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::naval_base ) );
+		break;
+	case 12:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::nuclear_reactor ) );
+		break;
+	case 13:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::radar_station ) );
+		break;
+	case 14:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::rocket_test ) );
+		break;
+	case 15:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::leadership ) );
+		break;
+	case 16:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::manpower ) );
+		break;
+	case 17:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::points ) );
+		break;
+	case 18:
+		m_View->m_Scene->SetPainterFactory( new CommandFactoryProvincePainter( ProvinceItemPrototypeRepository::controller ) );
+		break;
+	}
 }
 
 
@@ -829,27 +921,27 @@ void HoIModDesigner::UpdateProvinceColor( ProvinceItem *item )
 	m_View->setVisible(true);
 }
 
-#include "CommandFactory.h"
+//#include "CommandFactory.h"
 void HoIModDesigner::SlotProvinceMouseReleased(ProvinceItem *item )
 {
-	if( item == nullptr )
-	{
-		return;
-	}
-	ItemData itemOwner = item->FindItem( ProvinceItemPrototypeRepository::owner.GetName() );
-	itemOwner.SetData("GER");
-	QSharedPointer<jha::Command> command( CommandFactory().CreateCommandUpdateProvinceItem(item,itemOwner));
-	if( command->Execute() == false )
-	{
-		return;
-	}
-	ItemData itemController = item->FindItem( ProvinceItemPrototypeRepository::controller.GetName() );
-	itemController.SetData("GER");
-	QSharedPointer<jha::Command> command2( CommandFactory().CreateCommandUpdateProvinceItem(item,itemController));
-	if( command2->Execute() == false )
-	{
-		return;
-	}
+// 	if( item == nullptr )
+// 	{
+// 		return;
+// 	}
+// 	ItemData itemOwner = item->FindItem( ProvinceItemPrototypeRepository::owner.GetName() );
+// 	itemOwner.SetData("GER");
+// 	QSharedPointer<jha::Command> command( CommandFactory().CreateCommandUpdateProvinceItem(item,itemOwner));
+// 	if( command->Execute() == false )
+// 	{
+// 		return;
+// 	}
+// 	ItemData itemController = item->FindItem( ProvinceItemPrototypeRepository::controller.GetName() );
+// 	itemController.SetData("GER");
+// 	QSharedPointer<jha::Command> command2( CommandFactory().CreateCommandUpdateProvinceItem(item,itemController));
+// 	if( command2->Execute() == false )
+// 	{
+// 		return;
+// 	}
 	item->m_GraphicsItem->ShowSelected();
 	UpdateProvinceColor(item);
 }

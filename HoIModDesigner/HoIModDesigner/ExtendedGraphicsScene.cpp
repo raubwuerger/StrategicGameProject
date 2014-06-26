@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include "ExtendedGraphicsScene.h"
+#include "CommandFactory.h"
 
 ExtendedGraphicsScene::ExtendedGraphicsScene( QObject *parent /*= 0*/ )
 	: QGraphicsScene(parent),
 	m_ActionEditProvinceDetails(nullptr),
-	m_LastSelectedItem(nullptr)
+	m_LastSelectedItem(nullptr),
+	m_PainterFactory(nullptr)
 {
 }
 
@@ -20,9 +22,13 @@ void ExtendedGraphicsScene::mousePressEvent( QGraphicsSceneMouseEvent *event )
 #include "ProvinceGraphicsPixmapItem.h"
 void ExtendedGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-	if( m_LastSelectedItem != nullptr && event->button() == Qt::LeftButton )
+	if( m_LastSelectedItem != nullptr && event->button() == Qt::LeftButton && m_PainterFactory != nullptr )
 	{
-		emit SignalProvinceMouseReleased( m_LastSelectedItem );
+		QSharedPointer<jha::Command> command( m_PainterFactory->CreateCommandProvincePainter(m_LastSelectedItem) );
+		if( command->Execute() == true )
+		{
+			emit SignalProvinceMouseReleased( m_LastSelectedItem );
+		}
 	}
 	QGraphicsScene::mouseReleaseEvent(event);
 }
@@ -40,11 +46,6 @@ bool ExtendedGraphicsScene::event(QEvent *event)
 		return true;
 	}
 
-	if( event->type() == QEvent::GraphicsSceneContextMenu )
-	{
-		int nix_is = 0;
-		return true;
-	}
 	return QGraphicsScene::event(event);
 }
 
@@ -76,4 +77,10 @@ void ExtendedGraphicsScene::Init()
 void ExtendedGraphicsScene::SlotProvinceEntered( ProvinceItem *item )
 {
 	m_LastSelectedItem = item;
+}
+
+void ExtendedGraphicsScene::SetPainterFactory( CommandFactoryProvincePainter * val )
+{
+	delete m_PainterFactory;
+	m_PainterFactory = val;
 }

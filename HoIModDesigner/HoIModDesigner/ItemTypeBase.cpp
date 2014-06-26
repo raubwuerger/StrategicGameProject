@@ -108,13 +108,13 @@ bool ItemTypeBase::UpdateItem( const QString& key, const QVariant& data )
 	if( iter->GetData().type() == QVariant::StringList )
 	{
 		QStringList old = iter->GetData().toStringList();
-		QStringList append = data.toStringList();
+		QStringList append = dataVariant.toStringList();
 		old.append( append );
 		iter->SetData(old);
 	}
 	else
 	{
-		iter->SetData(data);
+		iter->SetData(dataVariant);
 	}
 
 	return true;

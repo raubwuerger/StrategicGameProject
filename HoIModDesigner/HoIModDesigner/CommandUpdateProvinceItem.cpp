@@ -20,13 +20,25 @@ bool CommandUpdateProvinceItem::DoExecute()
 	{
 		return false;
 	}
-	if( m_ProvinceItem->FindItem(m_NewValue.GetName()).GetData().isNull() == true )
-	{
-		return false;
-	}
+//TODO: Wofür soll das gut sein? Muss initialisiert sein ... sonst ist vorher schon was falsch gelaufen
+// 	if( m_ProvinceItem->FindItem(m_NewValue.GetName()).GetData().isNull() == true )
+// 	{
+// 		return false;
+// 	}
 
 	m_OrgValue = m_ProvinceItem->FindItem( m_NewValue.GetName() );
-
+	if( m_OrgValue.GetData().type() == QVariant::Int )
+	{
+		m_NewValue.SetData( m_OrgValue.GetData().toInt() + 1 );
+	}
+	if( m_OrgValue.GetData().type() == QVariant::Double )
+	{
+		m_NewValue.SetData( m_OrgValue.GetData().toDouble() + 1.0 );
+	}
+	if( m_OrgValue.GetData().type() == QVariant::String )
+	{
+		m_NewValue.SetData( "GER" );
+	}
 	m_ProvinceItem->UpdateItem( m_NewValue.GetName(), m_NewValue.GetData() );
 	m_ProvinceItem->SetContentChanged(true);
 	return true;
