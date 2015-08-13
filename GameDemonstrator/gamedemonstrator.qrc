@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="GameDemonstrator">
+        <file>Resources/exit.ico</file>
+        <file>Resources/media_play_green.ico</file>
+        <file>Resources/media_stop_red.ico</file>
+        <file>Resources/gear_run.ico</file>
+        <file>Resources/floppy_disk_blue.ico</file>
+        <file>Resources/folder_document.ico</file>
+        <file>Resources/about.ico</file>
+    </qresource>
+</RCC>
