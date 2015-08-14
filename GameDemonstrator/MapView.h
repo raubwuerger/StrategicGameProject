@@ -4,6 +4,8 @@
 #include <QGraphicsView>
 class MapViewGraphicsScene;
 class HexagonData;
+class HexItemEventManager;
+class MapEventManager;
 
 class MapView : public QGraphicsView
 {
@@ -11,9 +13,14 @@ class MapView : public QGraphicsView
 
 public:
 	MapView(QWidget *parent);
+
+	void Init();
+
 	~MapView();
 public:
 	MapViewGraphicsScene	*m_Scene;
+	HexItemEventManager		*m_HexItemEventManager;
+	MapEventManager			*m_MapEventManager;
 private:
 	/** */
 	void CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon );
@@ -22,7 +29,6 @@ private:
 	/** */
 	double CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const;
 private:
-	
 };
 
 #endif // MAPVIEW_H

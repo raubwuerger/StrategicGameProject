@@ -2,30 +2,22 @@
 #include "MapView.h"
 #include "MapViewGraphicsScene.h"
 #include "MapViewHexItem.h"
+#include "MapEventManager.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	m_Scene = new MapViewGraphicsScene(this);
-
-	double defaultHexSize = 48.0;
-	HexagonData hexagonTemplate( defaultHexSize );
-	int cols = 40;
-	int rows = 20;
-	CreateTestMap( cols, rows, hexagonTemplate );
-
-	setScene(m_Scene);
-	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
-
-	setDragMode(ScrollHandDrag);
 }
 
 MapView::~MapView()
 {
-
+	delete m_HexItemEventManager;
+	delete m_MapEventManager;
 }
 
+#include "MapViewHexItem.h"
 void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon )
 {
 	double startX = 0.0;
@@ -45,8 +37,12 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 				cordY += offsetYEvenCol;
 			}
 			MapViewHexItem *mapItem = new MapViewHexItem( defaultHexagon, QPointF(cordX,cordY) );
+			mapItem->SetRow(row);
+			mapItem->SetCol(col);
+			mapItem->SetHexItemEventManager( m_HexItemEventManager );
 			mapItem->setBrush( QBrush(Qt::green) );
 			m_Scene->addItem( mapItem );
+			m_MapEventManager->RegisterMapItem( mapItem );
 		}
 	}
 }
@@ -59,4 +55,23 @@ double MapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& he
 double MapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
 {
 	return (hexagon.height * hexagonCountRows) + ( hexagon.height / 2.0 );
+}
+
+void MapView::Init()
+{
+	int cols = 40;
+	int rows = 20;
+
+	m_MapEventManager->InitMapItemsRegistry(rows,cols);
+
+	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
+
+	double defaultHexSize = 48.0;
+	HexagonData hexagonTemplate( defaultHexSize );
+	CreateTestMap( cols, rows, hexagonTemplate );
+
+	setScene(m_Scene);
+	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
+
+	setDragMode(ScrollHandDrag);
 }

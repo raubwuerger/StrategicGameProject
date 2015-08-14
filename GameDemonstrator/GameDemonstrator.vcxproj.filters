@@ -89,15 +89,6 @@
     <ClCompile Include="GameMainCounter.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
-    <ClCompile Include="GameTurnInfo.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameTurnInfo.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameTurnInfo.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GameTurnDialog.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
@@ -128,6 +119,30 @@
     <ClCompile Include="MapViewHexItem.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="HexItemInfoDialog.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HexItemInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HexItemInfoDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MapViewHexItem.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MapViewHexItem.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEventManager.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MapEventManager.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MapEventManager.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -139,10 +154,10 @@
     <ClInclude Include="resource.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_GameTurnInfo.h">
+    <ClInclude Include="GeneratedFiles\ui_GameTurnDialog.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_GameTurnDialog.h">
+    <ClInclude Include="GeneratedFiles\ui_HexItemInfoDialog.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -168,12 +183,6 @@
     <CustomBuild Include="GameMainCounter.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="GameTurnInfo.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GameTurnInfo.ui">
-      <Filter>Form Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="GameTurnDialog.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
@@ -187,6 +196,15 @@
       <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="MapViewHexItem.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HexItemInfoDialog.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HexItemInfoDialog.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MapEventManager.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>

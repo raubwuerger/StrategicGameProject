@@ -60,7 +60,8 @@ MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& centerPo
 	: data(data),
 	centerPoint(centerPoint),
 	col(-1),
-	row(-1)
+	row(-1),
+	eventItem(nullptr)
 {
 	this->data.MovePosition(centerPoint);
 	CreateHexPolygon(this->data);
@@ -94,13 +95,19 @@ void MapViewHexItem::CreateHexPolygon( const HexagonData &data )
 
 void MapViewHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
+	setZValue( 255 );
 	ShowSelected();
+	if( eventItem != nullptr )
+	{
+		emit eventItem->HexItemEntered( row, col );
+	}
 	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();
 }
 
 void MapViewHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event) 
 {
+	setZValue( 0 );
 	ShowOriginal();
 	QGraphicsPolygonItem::hoverLeaveEvent(event);
 	event->ignore();

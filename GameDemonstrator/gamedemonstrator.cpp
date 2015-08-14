@@ -5,16 +5,20 @@
 #include "GameMainLoop.h"
 #include "GameTurnDialog.h"
 #include "MapView.h"
+#include "MapViewHexItem.h"
+#include "MapEventManager.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
 	m_GameTurnDialog(nullptr),
-	m_MainGameLoop(nullptr)
+	m_MainGameLoop(nullptr),
+	m_HexItemInfoDialog(nullptr)
 {
 	ui.setupUi(this);
 
 	m_ActionRepository = new QActionRepository(parent);
 	CreateGameTurnInfoDialog();
+	CreateHexItemInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
 	CreateMenuAbout();
@@ -22,6 +26,12 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	MapView *mapView = new MapView(this);
+
+	mapView->m_HexItemEventManager = new HexItemEventManager;
+	mapView->m_MapEventManager = new MapEventManager(nullptr);
+	mapView->m_MapEventManager->m_HexItemInfoDialog = m_HexItemInfoDialog;
+	mapView->Init();
+
 
 	layoutMain->addWidget(mapView);
 
@@ -122,5 +132,16 @@ void GameDemonstrator::CreateMenuAbout()
 
 	m_FileMenu = menuBar()->addMenu(tr("&Info"));
 	m_FileMenu->addAction( aboutAction );
+}
+
+#include "HexItemInfoDialog.h"
+void GameDemonstrator::CreateHexItemInfoDialog()
+{
+	QDockWidget *dockHexItem = new QDockWidget(tr("Hex item"), this);
+	dockHexItem->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	m_HexItemInfoDialog = new HexItemInfoDialog(dockHexItem);
+	dockHexItem->setWidget( m_HexItemInfoDialog );
+	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
+	m_HexItemInfoDialog->addAction(dockHexItem->toggleViewAction());
 }
 

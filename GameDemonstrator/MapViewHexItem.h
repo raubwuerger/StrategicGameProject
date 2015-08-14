@@ -34,6 +34,16 @@ public:
 };
 
 //================================================================================
+class HexItemEventManager : public QObject
+{
+	Q_OBJECT
+public:
+	HexItemEventManager() {}
+signals:
+	void HexItemEntered( int row, int col );
+};
+
+//================================================================================
 class MapViewHexItem : public QGraphicsPolygonItem
 {
 public:
@@ -49,6 +59,16 @@ public:
 	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
+	/** Set eventItem */
+	void SetHexItemEventManager( HexItemEventManager * val) { eventItem = val; }
+	/** Get row */
+	 int GetRow() const { return row; }
+	/** Set row */
+	void SetRow(  int val) { row = val; }
+	/** Get col */
+	int GetCol() const { return col; }
+	/** Set col */
+	void SetCol(  int val) { col = val; }
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );
@@ -58,9 +78,10 @@ private:
 	void ShowOriginal();
 private:
 	HexagonData data;
+	QPointF centerPoint;
+	HexItemEventManager	*eventItem;
 	int row;
 	int col;
-	QPointF centerPoint;
 };
 
 #endif // MAPVIEWHEXITEM_H

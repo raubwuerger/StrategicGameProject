@@ -8,6 +8,7 @@ class QActionRepository;
 class GameTurnDialog;
 class GameMainThread;
 class GameMainLoop;
+class HexItemInfoDialog;
 
 class GameDemonstrator : public QMainWindow
 {
@@ -26,11 +27,13 @@ private:
 	void CreateMenuAbout();
 	void CreateGameTurnInfoDialog();
 	void CreateMainGameThreadAndLoop();
+	void CreateHexItemInfoDialog();
 	void InitMainGameThread();
 private:
 	QMenu	*m_FileMenu;
 	QActionRepository	*m_ActionRepository;
 	GameTurnDialog		*m_GameTurnDialog;
+	HexItemInfoDialog	*m_HexItemInfoDialog;
 	GameMainThread		*m_MainThread;
 	GameMainLoop		*m_MainGameLoop;
 };
