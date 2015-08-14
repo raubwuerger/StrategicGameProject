@@ -45,8 +45,17 @@ public:
 	void paint();
 	/** */
 	QRectF boundingRect() const;
+	/** */
+	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
+	/** */
+	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 private:
+	/** */
 	void CreateHexPolygon( const HexagonData &data );
+	/** */
+	void ShowSelected();
+	/** */
+	void ShowOriginal();
 private:
 	HexagonData data;
 	int row;
