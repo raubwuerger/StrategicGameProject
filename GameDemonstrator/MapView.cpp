@@ -18,7 +18,6 @@ MapView::MapView(QWidget *parent)
 	setScene(m_Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
 
-	//Use ScrollHand Drag Mode to enable Panning
 	setDragMode(ScrollHandDrag);
 }
 
@@ -45,7 +44,9 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 			{
 				cordY += offsetYEvenCol;
 			}
-			m_Scene->addItem( new MapViewHexItem( defaultHexagon, QPointF(cordX,cordY) ) );
+			MapViewHexItem *mapItem = new MapViewHexItem( defaultHexagon, QPointF(cordX,cordY) );
+			mapItem->setBrush( QBrush(Qt::green) );
+			m_Scene->addItem( mapItem );
 		}
 	}
 }

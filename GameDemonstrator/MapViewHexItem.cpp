@@ -64,6 +64,8 @@ MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& centerPo
 {
 	this->data.MovePosition(centerPoint);
 	CreateHexPolygon(this->data);
+	setAcceptHoverEvents(true);
+	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 }
 
 MapViewHexItem::~MapViewHexItem()
@@ -73,9 +75,9 @@ MapViewHexItem::~MapViewHexItem()
 
 void MapViewHexItem::paint()
 {
-	int grass = 20;
-	setPen(QPen(Qt::black, 0));
-	setBrush(QBrush(QColor(255-grass,255,255-grass)));
+// 	int grass = 20;
+// 	setPen(QPen(Qt::black, 0));
+// 	setBrush(QBrush(QColor(255-grass,255,255-grass)));
 	update(boundingRect());
 }
 
@@ -88,4 +90,30 @@ void MapViewHexItem::CreateHexPolygon( const HexagonData &data )
 {
 	setPolygon(data.hexPoints);
 	setFlags(QGraphicsItem::ItemIsFocusable);
+}
+
+void MapViewHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
+{
+	ShowSelected();
+	QGraphicsPolygonItem::hoverEnterEvent(event);
+	event->ignore();
+}
+
+void MapViewHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event) 
+{
+	ShowOriginal();
+	QGraphicsPolygonItem::hoverLeaveEvent(event);
+	event->ignore();
+}
+
+void MapViewHexItem::ShowSelected()
+{
+	setPen( QPen( QBrush(Qt::black), 4 ) );
+	update(boundingRect());
+}
+
+void MapViewHexItem::ShowOriginal()
+{
+	setPen( QPen() );
+	update(boundingRect());
 }
