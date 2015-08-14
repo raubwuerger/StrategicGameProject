@@ -1,16 +1,69 @@
 #include "stdafx.h"
 #include "MapViewHexItem.h"
 
-MapViewHexItem::MapViewHexItem(QGraphicsPolygonItem *parent, int size, double h)
-	: QGraphicsPolygonItem(parent),
-	m_Size(size),
-	m_Height(h),
-	m_BoundingRect(QPointF(-2 * m_Size,-m_Height),QSizeF(4 * m_Size, 2 * m_Height))
+/************************************************************************/
+/* MapViewHexItemData                                                   */
+/************************************************************************/
+HexagonData::HexagonData( double sideLength )
+	: sideLength(sideLength),
+	width(0.0),
+	height(0.0),
+	side(0.0)
 {
-	QPolygonF polygon;
-	polygon << QPointF(2*m_Size,0) << QPointF(m_Size,-m_Height) << QPointF(-m_Size,-m_Height) << QPointF(-2*m_Size,0) << QPointF(-m_Size,m_Height) << QPointF(m_Size,m_Height);
-	setPolygon(polygon);
-	setFlags(QGraphicsItem::ItemIsFocusable);
+	calcWidth();
+	calcHeight();
+	calcSide();
+	calcBoundingRect();
+	calcHexPointsOrigin();
+}
+
+void HexagonData::calcWidth()
+{
+	width = 2.0 * sideLength;
+}
+
+void HexagonData::calcHeight()
+{
+	height = sqrt(3) * sideLength;
+}
+
+void HexagonData::calcSide()
+{
+	side = 3.0 / 2.0 * sideLength;
+}
+
+void HexagonData::calcBoundingRect()
+{
+	boundingRect = QRectF(QPointF(-width,-height),QSizeF(width, height));
+}
+
+void HexagonData::calcHexPointsOrigin()
+{
+	hexPoints << QPointF(0,height*0.5) 
+		<< QPointF(width - side,0.0) 
+		<< QPointF(side,0.0) 
+		<< QPointF(width,height*0.5) 
+		<< QPointF(side,height) 
+		<< QPointF(width - side,height);
+}
+
+void HexagonData::MovePosition( const QPointF& topLeft )
+{
+	boundingRect.moveTopLeft( topLeft );
+	hexPoints.translate( topLeft );
+}
+
+/************************************************************************/
+/* MapViewHexItem                                                       */
+/************************************************************************/
+MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& centerPoint, QGraphicsPolygonItem *parent /*= 0*/ )
+	: data(data),
+	centerPoint(centerPoint),
+	col(-1),
+	row(-1)
+{
+	this->data.MovePosition(centerPoint);
+	CreateHexPolygon(this->data);
 }
 
 MapViewHexItem::~MapViewHexItem()
@@ -28,5 +81,11 @@ void MapViewHexItem::paint()
 
 QRectF MapViewHexItem::boundingRect() const
 {
-	return m_BoundingRect;
+	return data.boundingRect;
+}
+
+void MapViewHexItem::CreateHexPolygon( const HexagonData &data )
+{
+	setPolygon(data.hexPoints);
+	setFlags(QGraphicsItem::ItemIsFocusable);
 }

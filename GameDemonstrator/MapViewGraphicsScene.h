@@ -10,7 +10,6 @@ class MapViewGraphicsScene : public QGraphicsScene
 public:
 	MapViewGraphicsScene(QObject *parent);
 	~MapViewGraphicsScene();
-
 private:
 	
 };
