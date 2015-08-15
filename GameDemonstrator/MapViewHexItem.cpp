@@ -81,6 +81,7 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 {
 	QGraphicsPolygonItem::paint(painter,option,widget);
 
+	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
 	QRectF textBoundingRect = data.boundingRect;
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
 	textBoundingRect.setHeight( textBoundingRect.height() * 0.2 );
