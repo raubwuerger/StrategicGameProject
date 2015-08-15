@@ -22,7 +22,6 @@ void MapEventManager::InitMapItemsRegistry( int rows, int cols )
 
 void MapEventManager::RegisterMapItem( MapViewHexItem* mapItem )
 {
-//	Q_ASSERT(false); //Out of Bounds prüfen!
 	MapItems[mapItem->GetRow()][mapItem->GetCol()] = mapItem;
 }
 
