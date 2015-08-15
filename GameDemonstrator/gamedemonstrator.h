@@ -34,6 +34,9 @@ private:
 	void CreateHexItemInfoDialog();
 	void InitMainGameThread();
 	void InitLoggingFramwork();
+	bool LoadTerrainTypes();
+	bool ReadTerrainTypes(QIODevice *device);
+
 private:
 	QMenu	*m_FileMenu;
 	QActionRepository	*m_ActionRepository;

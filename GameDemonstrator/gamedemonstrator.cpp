@@ -169,3 +169,54 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::GetLog()->Log("Logging started ...", LEVEL::LL_INFO);
 }
 
+#include "TerrainTypeFactory.h"
+#include <QDomDocument>
+bool GameDemonstrator::LoadTerrainTypes()
+{
+	QString fileName(".\\conf\\TerrainTypes.xml");
+
+	QFile file(fileName);
+	if( file.open(QFile::ReadOnly | QFile::Text) == false )
+	{
+		QMessageBox::warning(this, tr("SAX Bookmarks"),
+			tr("Cannot read file %1:\n%2.")
+			.arg(fileName)
+			.arg(file.errorString()));
+		return false;
+	}
+
+	QString errorStr;
+	int errorLine;
+	int errorColumn;
+	QDomDocument domDocument;
+
+	if( domDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
+	{
+		QMessageBox::information(window(), tr("DOM Bookmarks"),
+			tr("Parse error at line %1, column %2:\n%3")
+			.arg(errorLine)
+			.arg(errorColumn)
+			.arg(errorStr));
+		return false;
+	}
+
+	QDomElement root = domDocument.documentElement();
+	if( root.tagName() != "TerrainTypes") 
+	{
+		QMessageBox::information(window(), tr("DOM Bookmarks"), tr("The file is not an TerrainTypes file."));
+		return false;
+	}
+
+	if (root.hasAttribute("version") && root.attribute("version") != "1.0") 
+	{
+		QMessageBox::information(window(), tr("DOM Bookmarks"), tr("The file is not an TerrainTypes version 1.0 file."));
+		return false;
+	}
+
+	QDomNodeList terrainTypeNodes = root.childNodes();
+	for( int i=0; i <terrainTypeNodes.count(); i++ )
+	{
+		CTerrainType *terrainType = CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) );
+	}
+...
+}

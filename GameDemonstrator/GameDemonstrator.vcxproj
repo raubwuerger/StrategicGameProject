@@ -212,8 +212,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TerrainType.cpp" />
+    <ClCompile Include="TerrainTypeFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TerrainType.h" />
+    <ClInclude Include="TerrainTypeFactory.h" />
     <CustomBuild Include="GameMainCounter.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GameMainCounter.h...</Message>
