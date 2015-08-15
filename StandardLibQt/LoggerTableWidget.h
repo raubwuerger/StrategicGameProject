@@ -3,19 +3,19 @@
 #include <QString>
 #include "Logger.h"
 
-class LoggingTableWidgetRow;
-class LoggingTableWidget;
-
 namespace jha
 {
+
+class LoggingTableWidgetRow;
+class LoggingTableWidget;
 
 class WidgetConnector : public QObject
 {
 	Q_OBJECT
 public:
-	bool ConnectMe( LoggingTableWidget *widget );
+	bool ConnectMe( jha::LoggingTableWidget *widget );
 signals:
-	void SignalAppendRow(LoggingTableWidgetRow*);
+	void SignalAppendRow( jha::LoggingTableWidgetRow *row );
 };
 
 class LogMessage;
@@ -23,7 +23,7 @@ class LoggerTableWidget : public Logger
 {
 public:
 /** Konstruktor */
-	LoggerTableWidget( LoggingTableWidget *tableWidget );
+	LoggerTableWidget( jha::LoggingTableWidget *tableWidget );
 /** Destruktor */
 	~LoggerTableWidget();
 /** */
@@ -32,7 +32,7 @@ protected:
 /** */
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage );
 private:
-	LoggingTableWidget *m_TableWidget;
+	jha::LoggingTableWidget *m_TableWidget;
 	WidgetConnector		*m_WidgetConnector;
 };
 

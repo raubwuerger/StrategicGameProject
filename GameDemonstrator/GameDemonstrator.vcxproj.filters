@@ -33,6 +33,12 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Dateien\StdLibQt">
+      <UniqueIdentifier>{f3c838d2-bd2d-49b3-91d2-ccb2f89e193f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\StdLibQt">
+      <UniqueIdentifier>{7b79b4b7-248c-4f17-b987-c90359527f8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -143,6 +149,72 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MapEventManager.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LoggerTableWidget.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LoggerTableWidget.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogInterface.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogInterface.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogManager.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogManager.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogManagerThread.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogManagerThread.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\Command.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogFactory.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\Logger.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LoggerCout.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LoggerFile.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LoggerTableWidget.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogInterface.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogLevel.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogManager.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogManagerThread.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogMessage.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LoggingTableWidget.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LoggingTableWidget.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LoggingTableWidget.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -159,6 +231,27 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_HexItemInfoDialog.h">
       <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\Command.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LogFactory.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\Logger.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LoggerCout.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LoggerFile.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LogLevel.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LogMessage.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +299,21 @@
     </CustomBuild>
     <CustomBuild Include="MapEventManager.h">
       <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LoggerTableWidget.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LogInterface.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LogManager.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LogManagerThread.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

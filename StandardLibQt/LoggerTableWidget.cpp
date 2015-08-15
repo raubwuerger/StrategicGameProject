@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "LoggerTableWidget.h"
 #include "LogMessage.h"
-#include "hoimoddesigner.h"
+#include "LoggingTableWidget.h"
 
 namespace jha
 {
 
-LoggerTableWidget::LoggerTableWidget( LoggingTableWidget *tableWidget )
+LoggerTableWidget::LoggerTableWidget( jha::LoggingTableWidget *tableWidget )
 	: Logger("TableWidget"),
 	m_TableWidget(tableWidget)
 {
@@ -77,7 +77,7 @@ bool WidgetConnector::ConnectMe( LoggingTableWidget *widget )
 	{
 		return false;
 	}
-	return connect(this, SIGNAL(SignalAppendRow(LoggingTableWidgetRow*)),widget, SLOT(AppendRow(LoggingTableWidgetRow*))/*,Qt::QueuedConnection*/);
+	return connect(this, SIGNAL(SignalAppendRow(jha::LoggingTableWidgetRow*)),widget, SLOT(AppendRow(jha::LoggingTableWidgetRow*))/*,Qt::QueuedConnection*/);
 }
 
 }

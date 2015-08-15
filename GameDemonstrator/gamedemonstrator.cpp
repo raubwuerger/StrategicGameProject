@@ -23,6 +23,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateMenuFile();
 	CreateMenuAbout();
 	InitMainGameThread();
+	InitLoggingFramwork();
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	MapView *mapView = new MapView(this);
@@ -143,5 +144,28 @@ void GameDemonstrator::CreateHexItemInfoDialog()
 	dockHexItem->setWidget( m_HexItemInfoDialog );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
 	m_HexItemInfoDialog->addAction(dockHexItem->toggleViewAction());
+}
+
+#include "LogInterface.h"
+#include "LoggingTableWidget.h"
+#include "LoggerFile.h"
+#include "LoggerTableWidget.h"
+void GameDemonstrator::InitLoggingFramwork()
+{
+	QDockWidget *dockWidget = new QDockWidget(tr("Logging"), this);
+	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea );
+	m_DockWidgetLogging = new jha::LoggingTableWidget(0,0,dockWidget);
+
+	dockWidget->setWidget( m_DockWidgetLogging );
+	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
+	m_FileMenu->addAction(dockWidget->toggleViewAction());
+
+
+	jha::LogInterface().Init();
+//	jha::GetLog()->RegisterLogger( new jha::LoggerFile("d:/temp/Logfile.log") );
+	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
+	jha::GetLog()->Start();
+
+	jha::GetLog()->Log("Logging started ...", LEVEL::LL_INFO);
 }
 
