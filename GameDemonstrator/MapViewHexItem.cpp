@@ -56,14 +56,17 @@ void HexagonData::MovePosition( const QPointF& topLeft )
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& centerPoint, QGraphicsPolygonItem *parent /*= 0*/ )
+MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft, QGraphicsPolygonItem *parent /*= 0*/ )
 	: data(data),
-	centerPoint(centerPoint),
+	topLeft(topLeft),
 	col(-1),
 	row(-1),
 	eventItem(nullptr)
 {
-	this->data.MovePosition(centerPoint);
+	this->data.MovePosition(topLeft);
+	this->centerPoint.rx() = topLeft.x() + (data.width / 2.0);
+	this->centerPoint.ry() = topLeft.y() + (data.height / 2.0);
+	
 	CreateHexPolygon(this->data);
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
@@ -74,12 +77,24 @@ MapViewHexItem::~MapViewHexItem()
 
 }
 
-void MapViewHexItem::paint()
+void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
-// 	int grass = 20;
-// 	setPen(QPen(Qt::black, 0));
-// 	setBrush(QBrush(QColor(255-grass,255,255-grass)));
-	update(boundingRect());
+	QGraphicsPolygonItem::paint(painter,option,widget);
+
+	QRectF textBoundingRect = data.boundingRect;
+	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
+	textBoundingRect.setHeight( textBoundingRect.height() * 0.2 );
+	
+	QPointF centerPosText( centerPoint );
+	centerPosText.setX( data.boundingRect.x() + ((data.boundingRect.width() - textBoundingRect.width()) / 2.0) );
+	centerPosText.setY( data.boundingRect.y() + ((data.boundingRect.height() - textBoundingRect.height()) / 2.0) );
+
+	textBoundingRect.moveTopLeft( centerPosText );
+
+
+	QTextOption textOption;
+	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
+	painter->drawText( textBoundingRect, stringRowCol, textOption );
 }
 
 QRectF MapViewHexItem::boundingRect() const
@@ -123,4 +138,12 @@ void MapViewHexItem::ShowOriginal()
 {
 	setPen( QPen() );
 	update(boundingRect());
+}
+
+void MapViewHexItem::SetRowAndCol( int row, int col )
+{
+	this->row = row; 
+	this->col = col;
+
+	stringRowCol = QString::number(row) +"|" +QString::number(col);
 }

@@ -48,11 +48,9 @@ class MapViewHexItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapViewHexItem( const HexagonData& data, const QPointF& centerPoint, QGraphicsPolygonItem *parent = 0 );
+	MapViewHexItem( const HexagonData& data, const QPointF& topLeft, QGraphicsPolygonItem *parent = 0 );
 	/** */
 	~MapViewHexItem();
-	/** */
-	void paint();
 	/** */
 	QRectF boundingRect() const;
 	/** */
@@ -61,14 +59,14 @@ public:
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 	/** Set eventItem */
 	void SetHexItemEventManager( HexItemEventManager * val) { eventItem = val; }
+	/** */
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	/** Get row */
 	 int GetRow() const { return row; }
 	/** Set row */
-	void SetRow(  int val) { row = val; }
+	void SetRowAndCol( int row, int col );
 	/** Get col */
 	int GetCol() const { return col; }
-	/** Set col */
-	void SetCol(  int val) { col = val; }
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );
@@ -79,9 +77,11 @@ private:
 private:
 	HexagonData data;
 	QPointF centerPoint;
+	QPointF topLeft;
 	HexItemEventManager	*eventItem;
 	int row;
 	int col;
+	QString	stringRowCol;
 };
 
 #endif // MAPVIEWHEXITEM_H

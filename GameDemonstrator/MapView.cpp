@@ -37,8 +37,7 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 				cordY += offsetYEvenCol;
 			}
 			MapViewHexItem *mapItem = new MapViewHexItem( defaultHexagon, QPointF(cordX,cordY) );
-			mapItem->SetRow(row);
-			mapItem->SetCol(col);
+			mapItem->SetRowAndCol(row,col);
 			mapItem->SetHexItemEventManager( m_HexItemEventManager );
 			mapItem->setBrush( QBrush(Qt::green) );
 			m_Scene->addItem( mapItem );
@@ -59,8 +58,8 @@ double MapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& h
 
 void MapView::Init()
 {
-	int cols = 40;
-	int rows = 20;
+	int cols = 140;
+	int rows = 80;
 
 	m_MapEventManager->InitMapItemsRegistry(rows,cols);
 
