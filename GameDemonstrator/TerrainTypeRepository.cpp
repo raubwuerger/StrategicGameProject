@@ -13,7 +13,7 @@ CTerrainTypeRepository::~CTerrainTypeRepository()
 
 bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
 {
-	if( terrainType )
+	if( terrainType == nullptr )
 	{
 		Q_ASSERT(false);
 		return false;

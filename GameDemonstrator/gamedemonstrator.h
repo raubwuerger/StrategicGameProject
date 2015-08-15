@@ -9,6 +9,7 @@ class GameTurnDialog;
 class GameMainThread;
 class GameMainLoop;
 class HexItemInfoDialog;
+class CTerrainTypeRepository;
 namespace jha
 {
 	class LoggingTableWidget;
@@ -45,6 +46,7 @@ private:
 	GameMainThread		*m_MainThread;
 	GameMainLoop		*m_MainGameLoop;
 	jha::LoggingTableWidget	*m_DockWidgetLogging;
+	CTerrainTypeRepository	*m_TerrainTypeRepository;
 };
 
 #endif // GAMEDEMONSTRATOR_H

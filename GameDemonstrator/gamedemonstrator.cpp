@@ -12,7 +12,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
 	m_GameTurnDialog(nullptr),
 	m_MainGameLoop(nullptr),
-	m_HexItemInfoDialog(nullptr)
+	m_HexItemInfoDialog(nullptr),
+	m_TerrainTypeRepository(nullptr)
 {
 	ui.setupUi(this);
 
@@ -24,6 +25,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateMenuAbout();
 	InitMainGameThread();
 	InitLoggingFramwork();
+	LoadTerrainTypes();
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	MapView *mapView = new MapView(this);
@@ -47,6 +49,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 GameDemonstrator::~GameDemonstrator()
 {
 	delete m_ActionRepository;
+	delete m_TerrainTypeRepository;
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()
@@ -162,7 +165,7 @@ void GameDemonstrator::InitLoggingFramwork()
 
 
 	jha::LogInterface().Init();
-//	jha::GetLog()->RegisterLogger( new jha::LoggerFile("d:/temp/Logfile.log") );
+	jha::GetLog()->RegisterLogger( new jha::LoggerFile("./log/Logfile.log") );
 	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
 	jha::GetLog()->Start();
 
@@ -171,8 +174,10 @@ void GameDemonstrator::InitLoggingFramwork()
 
 #include "TerrainTypeFactory.h"
 #include <QDomDocument>
+#include "TerrainTypeRepository.h"
 bool GameDemonstrator::LoadTerrainTypes()
 {
+	m_TerrainTypeRepository = new CTerrainTypeRepository;
 	QString fileName(".\\conf\\TerrainTypes.xml");
 
 	QFile file(fileName);
@@ -216,7 +221,7 @@ bool GameDemonstrator::LoadTerrainTypes()
 	QDomNodeList terrainTypeNodes = root.childNodes();
 	for( int i=0; i <terrainTypeNodes.count(); i++ )
 	{
-		CTerrainType *terrainType = CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) );
+		m_TerrainTypeRepository->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
-//...
+	return true;
 }

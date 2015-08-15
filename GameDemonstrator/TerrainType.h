@@ -3,7 +3,7 @@ class CTerrainType
 {
 public:
 	/** */
-	CTerrainType();
+	CTerrainType( int id );
 	/** */
 	~CTerrainType();
 	/** Get m_Id */	
@@ -17,5 +17,6 @@ private:
 	int			m_Timber;
 	int			m_MovementModifier;
 	int			m_DefenseModifier;
+	int			m_Infrastructure;
 };
 

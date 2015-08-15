@@ -1,8 +1,13 @@
 #include "stdafx.h"
 #include "TerrainType.h"
 
-
-CTerrainType::CTerrainType()
+CTerrainType::CTerrainType( int id )
+	: m_Id(id),
+	m_Oil(0),
+	m_Timber(0),
+	m_MovementModifier(0),
+	m_DefenseModifier(0),
+	m_Infrastructure(0)
 {
 }
 
