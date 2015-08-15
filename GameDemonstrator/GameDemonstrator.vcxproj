@@ -214,10 +214,12 @@
     </ClCompile>
     <ClCompile Include="TerrainType.cpp" />
     <ClCompile Include="TerrainTypeFactory.cpp" />
+    <ClCompile Include="TerrainTypeRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TerrainType.h" />
     <ClInclude Include="TerrainTypeFactory.h" />
+    <ClInclude Include="TerrainTypeRepository.h" />
     <CustomBuild Include="GameMainCounter.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GameMainCounter.h...</Message>

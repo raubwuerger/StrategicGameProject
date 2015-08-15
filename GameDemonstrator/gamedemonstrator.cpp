@@ -218,5 +218,5 @@ bool GameDemonstrator::LoadTerrainTypes()
 	{
 		CTerrainType *terrainType = CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) );
 	}
-...
+//...
 }

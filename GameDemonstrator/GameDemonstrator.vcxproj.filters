@@ -221,6 +221,9 @@
     <ClCompile Include="TerrainTypeFactory.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="TerrainTypeRepository.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -263,6 +266,9 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="TerrainTypeFactory.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainTypeRepository.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,8 +6,10 @@ public:
 	CTerrainType();
 	/** */
 	~CTerrainType();
+	/** Get m_Id */	
+	int GetId() const;
 private:
-//	friend class CTerrainTypeFactory;
+	friend class CTerrainTypeFactory;
 	int			m_Id;
 	QString		m_Name;
 	QString		m_PicturePath;
