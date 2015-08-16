@@ -4,6 +4,7 @@ class CTerrainType;
 class QDomNode;
 class QDomElement;
 
+//================================================================================
 class CTerrainTypeFactory
 {
 public:
@@ -15,6 +16,7 @@ public:
 	CTerrainType* CreateTerrainTypeFromXML( const QDomNode& node );
 };
 
+//================================================================================
 class CDomElementFinder
 {
 public:

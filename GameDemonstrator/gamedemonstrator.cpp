@@ -168,8 +168,6 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::GetLog()->RegisterLogger( new jha::LoggerFile("./log/Logfile.log") );
 	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(m_DockWidgetLogging) );
 	jha::GetLog()->Start();
-
-	jha::GetLog()->Log("Logging started ...", LEVEL::LL_INFO);
 }
 
 #include "TerrainTypeFactory.h"
@@ -177,6 +175,7 @@ void GameDemonstrator::InitLoggingFramwork()
 #include "TerrainTypeRepository.h"
 bool GameDemonstrator::LoadTerrainTypes()
 {
+	jha::GetLog()->Log("Loading TerrainTypes.xml ...", LEVEL::LL_MESSAGE);
 	m_TerrainTypeRepository = new CTerrainTypeRepository;
 	QString fileName(".\\conf\\TerrainTypes.xml");
 
@@ -223,5 +222,6 @@ bool GameDemonstrator::LoadTerrainTypes()
 	{
 		m_TerrainTypeRepository->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
+	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(m_TerrainTypeRepository->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
