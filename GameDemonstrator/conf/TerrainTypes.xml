@@ -9,7 +9,7 @@
 		<MovementModifier>0</MovementModifier>
 		<DefenseModifier>0</DefenseModifier>
 	</TerrainType>
-	<TerrainType strId="2" strName="Woods">
+	<TerrainType strId="2">
 		<Name>Woods</Name>
 		<PicturePath>.\resources\Woods.png</PicturePath>
 		<Infrastructure>5</Infrastructure>
@@ -18,7 +18,7 @@
 		<MovementModifier>20</MovementModifier>
 		<DefenseModifier>50</DefenseModifier>
 	</TerrainType>
-	<TerrainType strId="3" strName="Ocean">
+	<TerrainType strId="3">
 		<Name>Ocean</Name>
 		<PicturePath>.\resources\Ocean.png</PicturePath>
 		<Infrastructure>0</Infrastructure>
@@ -26,5 +26,23 @@
 		<Timber>0</Timber>
 		<MovementModifier>0</MovementModifier>
 		<DefenseModifier>0</DefenseModifier>
+	</TerrainType>
+	<TerrainType strId="4">
+		<Name>Hills</Name>
+		<PicturePath>.\resources\Hills.png</PicturePath>
+		<Infrastructure>50</Infrastructure>
+		<Oil>5</Oil>
+		<Timber>20</Timber>
+		<MovementModifier>50</MovementModifier>
+		<DefenseModifier>50</DefenseModifier>
+	</TerrainType>
+	<TerrainType strId="5">
+		<Name>Mountains</Name>
+		<PicturePath>.\resources\Mountains.png</PicturePath>
+		<Infrastructure>20</Infrastructure>
+		<Oil>0</Oil>
+		<Timber>10</Timber>
+		<MovementModifier>100</MovementModifier>
+		<DefenseModifier>100</DefenseModifier>
 	</TerrainType>
 </TerrainTypes>

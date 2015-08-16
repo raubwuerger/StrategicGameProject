@@ -16,7 +16,9 @@ public:
 	/** */
 	int GetCount() const;
 	/** */
-	QMap<int,CTerrainType*>::const_iterator GetFirstIterator();
+	QMap<int,CTerrainType*>::const_iterator GetFirstIterator() const;
+	/** */
+	QMap<int,CTerrainType*>::const_iterator GetLastIterator() const;
 private:
 	QMap<int,CTerrainType*>	m_TerrainTypes;
 };

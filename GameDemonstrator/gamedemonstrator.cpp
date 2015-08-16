@@ -13,19 +13,30 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	m_GameTurnDialog(nullptr),
 	m_MainGameLoop(nullptr),
 	m_HexItemInfoDialog(nullptr),
-	m_TerrainTypeRepository(nullptr)
+	m_TerrainTypeRepository(nullptr),
+	m_ToolBoxMapItems(nullptr),
+	m_ButtonGroupTerrainTypes(nullptr),
+	m_ButtonGroupBuildings(nullptr),
+	m_FileMenu(nullptr),
+	m_ViewMenu(nullptr),
+	m_InfoMenu(nullptr)
 {
 	ui.setupUi(this);
 
 	m_ActionRepository = new QActionRepository(parent);
-	CreateGameTurnInfoDialog();
-	CreateHexItemInfoDialog();
+	m_FileMenu = menuBar()->addMenu(tr("&File"));
+	m_ViewMenu = menuBar()->addMenu(tr("&View"));
+	m_InfoMenu = menuBar()->addMenu(tr("&Info"));
+
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
+	CreateGameTurnInfoDialog();
+	CreateHexItemInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
 	InitLoggingFramwork();
 	LoadTerrainTypes();
+	CreateToolbox( m_TerrainTypeRepository );
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	MapView *mapView = new MapView(this);
@@ -59,7 +70,7 @@ void GameDemonstrator::CreateGameTurnInfoDialog()
 	m_GameTurnDialog = new GameTurnDialog(dockCountry);
 	dockCountry->setWidget( m_GameTurnDialog );
 	addDockWidget(Qt::RightDockWidgetArea, dockCountry);
-	m_GameTurnDialog->addAction(dockCountry->toggleViewAction());
+	m_ViewMenu->addAction(dockCountry->toggleViewAction());
 }
 
 void GameDemonstrator::CreateMainGameThreadAndLoop()
@@ -109,7 +120,6 @@ void GameDemonstrator::CreateMenuFile()
 	connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 	m_ActionRepository->AddAction(exitAction);
 
-	m_FileMenu = menuBar()->addMenu(tr("&File"));
 	m_FileMenu->addAction( createAction );
 	m_FileMenu->addAction( loadGameAction );
 	m_FileMenu->addAction( saveGameAction );
@@ -134,8 +144,7 @@ void GameDemonstrator::CreateMenuAbout()
 //	connect(aboutAction, SIGNAL(triggered()), this, SLOT(close()));
 	m_ActionRepository->AddAction(aboutAction);
 
-	m_FileMenu = menuBar()->addMenu(tr("&Info"));
-	m_FileMenu->addAction( aboutAction );
+	m_InfoMenu->addAction( aboutAction );
 }
 
 #include "HexItemInfoDialog.h"
@@ -146,7 +155,7 @@ void GameDemonstrator::CreateHexItemInfoDialog()
 	m_HexItemInfoDialog = new HexItemInfoDialog(dockHexItem);
 	dockHexItem->setWidget( m_HexItemInfoDialog );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
-	m_HexItemInfoDialog->addAction(dockHexItem->toggleViewAction());
+	m_ViewMenu->addAction(dockHexItem->toggleViewAction());
 }
 
 #include "LogInterface.h"
@@ -161,7 +170,7 @@ void GameDemonstrator::InitLoggingFramwork()
 
 	dockWidget->setWidget( m_DockWidgetLogging );
 	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
-	m_FileMenu->addAction(dockWidget->toggleViewAction());
+	m_ViewMenu->addAction(dockWidget->toggleViewAction());
 
 
 	jha::LogInterface().Init();
@@ -225,3 +234,129 @@ bool GameDemonstrator::LoadTerrainTypes()
 	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(m_TerrainTypeRepository->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
+
+#include "TerrainType.h"
+#include "TerrainTypeRepository.h"
+void GameDemonstrator::CreateToolbox( CTerrainTypeRepository *repository )
+{
+	m_ButtonGroupTerrainTypes = new QButtonGroup(this);
+	m_ButtonGroupTerrainTypes->setExclusive(false);
+	
+	//TODO: 2015/08/17 - jha: Hier Aktionen verknüpfen
+	//	connect(m_ButtonGroupTerrainTypes, SIGNAL(buttonClicked(int)), this, SLOT(buttonGroupClicked(int)));
+	
+	QGridLayout *layout = new QGridLayout;
+	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
+	int rowIndex = 0;
+	while( terrainTypes != repository->GetLastIterator() )
+	{
+		layout->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_ButtonGroupTerrainTypes ), rowIndex++, 0);
+		terrainTypes++;
+	}
+
+// 	layout->setRowStretch(3, 10);
+// 	layout->setColumnStretch(2, 10);
+
+	QWidget *itemTerrainTyped = new QWidget;
+	itemTerrainTyped->setLayout(layout);
+
+	m_ButtonGroupBuildings = new QButtonGroup(this);
+	//TODO: 2015/08/17 - jha: Hier Aktionen verknüpfen
+	//	connect(m_ButtonGroupBuildings, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(backgroundButtonGroupClicked(QAbstractButton*)));
+
+	QGridLayout *backgroundLayout = new QGridLayout;
+// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("Blue Grid"),
+// 		":/images/background1.png"), 0, 0);
+// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("White Grid"),
+// 		":/images/background2.png"), 0, 1);
+// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("Gray Grid"),
+// 		":/images/background3.png"), 1, 0);
+// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("No Grid"),
+// 		":/images/background4.png"), 1, 1);
+
+	backgroundLayout->setRowStretch(2, 10);
+	backgroundLayout->setColumnStretch(2, 10);
+
+	QWidget *itemBuildings = new QWidget;
+	itemBuildings->setLayout(backgroundLayout);
+
+
+	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
+	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+
+	m_ToolBoxMapItems = new QToolBox(dockCountry);
+	m_ToolBoxMapItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
+	m_ToolBoxMapItems->setMinimumWidth(itemTerrainTyped->sizeHint().width());
+	m_ToolBoxMapItems->addItem(itemTerrainTyped, tr("Terrain Types"));
+	m_ToolBoxMapItems->addItem(itemBuildings, tr("Buildings"));
+
+	dockCountry->setWidget( m_ToolBoxMapItems );
+	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
+	m_ViewMenu->addAction(dockCountry->toggleViewAction());
+}
+
+QWidget *GameDemonstrator::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup )
+{
+	QIcon icon(":GameDemonstrator/Resources/gear_run.ico");
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+	buttonGroup->addButton(button);
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+
+
+
+/*
+QWidget *createBackgroundCellWidget(const QString &text, const QString &image)
+{
+	QToolButton *button = new QToolButton;
+	button->setText(text);
+	button->setIcon(QIcon(image));
+	button->setIconSize(QSize(50, 50));
+	button->setCheckable(true);
+	backgroundButtonGroup->addButton(button);
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+*/
+
+/*
+QWidget *createCellWidget(const QString &text, DiagramItem::DiagramType type)
+{
+	DiagramItem item(type, itemMenu);
+	QIcon icon(item.image());
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(50, 50));
+	button->setCheckable(true);
+	buttonGroup->addButton(button, int(type));
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+*/

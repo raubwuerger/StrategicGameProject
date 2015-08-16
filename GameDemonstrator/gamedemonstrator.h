@@ -37,9 +37,13 @@ private:
 	void InitLoggingFramwork();
 	bool LoadTerrainTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-
+	void CreateToolbox( CTerrainTypeRepository *repository );
+	/** */
+	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup );
 private:
 	QMenu	*m_FileMenu;
+	QMenu	*m_ViewMenu;
+	QMenu	*m_InfoMenu;
 	QActionRepository	*m_ActionRepository;
 	GameTurnDialog		*m_GameTurnDialog;
 	HexItemInfoDialog	*m_HexItemInfoDialog;
@@ -47,6 +51,10 @@ private:
 	GameMainLoop		*m_MainGameLoop;
 	jha::LoggingTableWidget	*m_DockWidgetLogging;
 	CTerrainTypeRepository	*m_TerrainTypeRepository;
+
+	QToolBox			*m_ToolBoxMapItems;
+	QButtonGroup		*m_ButtonGroupTerrainTypes;
+	QButtonGroup		*m_ButtonGroupBuildings;
 };
 
 #endif // GAMEDEMONSTRATOR_H
