@@ -28,9 +28,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	m_ViewMenu = menuBar()->addMenu(tr("&View"));
 	m_InfoMenu = menuBar()->addMenu(tr("&Info"));
 
+	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
-	CreateGameTurnInfoDialog();
 	CreateHexItemInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
