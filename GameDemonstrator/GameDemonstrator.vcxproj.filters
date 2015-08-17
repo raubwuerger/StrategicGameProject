@@ -224,6 +224,24 @@
     <ClCompile Include="TerrainTypeRepository.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="CreateNewMap.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMap.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMap.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateNewMapDialog.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMapDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMapDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -270,6 +288,9 @@
     </ClInclude>
     <ClInclude Include="TerrainTypeRepository.h">
       <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h">
+      <Filter>Generierte Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +353,15 @@
     </CustomBuild>
     <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CreateNewMap.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CreateNewMapDialog.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CreateNewMapDialog.ui">
+      <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

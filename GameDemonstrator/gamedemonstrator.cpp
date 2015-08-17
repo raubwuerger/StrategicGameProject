@@ -70,12 +70,13 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	connect( m_MainGameLoop, SIGNAL(TurnFinished(QDate)),m_GameTurnDialog, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
+#include "CreateNewMap.h"
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	connect(createAction, SIGNAL(triggered()), m_MainGameLoop, SLOT(Start()), Qt::QueuedConnection );
+	connect(createAction, SIGNAL(triggered()), new CreateNewMap(this), SLOT(DoCreateNewMap()), Qt::QueuedConnection );
 	m_ActionRepository->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
