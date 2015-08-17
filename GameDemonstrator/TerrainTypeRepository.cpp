@@ -42,7 +42,12 @@ int CTerrainTypeRepository::GetCount() const
 	return m_TerrainTypes.size();
 }
 
-QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetFirstIterator()
+QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetFirstIterator() const
 {
 	return m_TerrainTypes.cbegin();
+}
+
+QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetLastIterator() const
+{
+	return m_TerrainTypes.cend();
 }

@@ -8,6 +8,10 @@ public:
 	~CTerrainType();
 	/** Get m_Id */	
 	int GetId() const;
+	/** Wird später entfernt */
+	QColor InterpolateColorByType( ) const;
+	/** Get m_Name */	
+	const QString& GetName() const;
 private:
 	friend class CTerrainTypeFactory;
 	int			m_Id;
