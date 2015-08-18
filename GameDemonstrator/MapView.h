@@ -12,11 +12,12 @@ class MapView : public QGraphicsView
 	Q_OBJECT
 
 public:
+	/** */
 	MapView(QWidget *parent);
-
-	void Init();
-
+	/** */
 	~MapView();
+	/** */
+	void Init( int cols, int rows );
 public:
 	MapViewGraphicsScene	*m_Scene;
 	HexItemEventManager		*m_HexItemEventManager;

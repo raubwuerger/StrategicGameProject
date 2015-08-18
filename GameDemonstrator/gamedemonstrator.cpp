@@ -28,6 +28,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	m_ViewMenu = menuBar()->addMenu(tr("&View"));
 	m_InfoMenu = menuBar()->addMenu(tr("&Info"));
 
+	mapView = new MapView(this);
+
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
@@ -39,13 +41,10 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateToolbox( m_TerrainTypeRepository );
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
-	MapView *mapView = new MapView(this);
 
 	mapView->m_HexItemEventManager = new HexItemEventManager;
 	mapView->m_MapEventManager = new MapEventManager(nullptr);
 	mapView->m_MapEventManager->m_HexItemInfoDialog = m_HexItemInfoDialog;
-	mapView->Init();
-
 
 	layoutMain->addWidget(mapView);
 
@@ -81,13 +80,14 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	connect( m_MainGameLoop, SIGNAL(TurnFinished(QDate)),m_GameTurnDialog, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
-#include "CreateNewMap.h"
+#include "MapFactory.h"
+#include "CreateNewMap.h" //connect kann sonst den Typ nicht auf QObject auflösen ...
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	connect(createAction, SIGNAL(triggered()), new CreateNewMap(this), SLOT(DoCreateNewMap()), Qt::QueuedConnection );
+	CMapFactory().CreateNewMapAction(this,createAction,mapView);
 	m_ActionRepository->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");

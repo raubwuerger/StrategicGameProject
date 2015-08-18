@@ -17,6 +17,22 @@ MapView::~MapView()
 	delete m_MapEventManager;
 }
 
+void MapView::Init( int cols, int rows )
+{
+	m_MapEventManager->InitMapItemsRegistry(rows,cols);
+
+	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
+
+	double defaultHexSize = 48.0;
+	HexagonData hexagonTemplate( defaultHexSize );
+	CreateTestMap( cols, rows, hexagonTemplate );
+
+	setScene(m_Scene);
+	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
+
+	setDragMode(ScrollHandDrag);
+}
+
 #include "MapViewHexItem.h"
 void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon )
 {
@@ -54,23 +70,4 @@ double MapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& he
 double MapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
 {
 	return (hexagon.height * hexagonCountRows) + ( hexagon.height / 2.0 );
-}
-
-void MapView::Init()
-{
-	int cols = 140;
-	int rows = 80;
-
-	m_MapEventManager->InitMapItemsRegistry(rows,cols);
-
-	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
-
-	double defaultHexSize = 48.0;
-	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( cols, rows, hexagonTemplate );
-
-	setScene(m_Scene);
-	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
-
-	setDragMode(ScrollHandDrag);
 }

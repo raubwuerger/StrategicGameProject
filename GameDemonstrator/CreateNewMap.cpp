@@ -1,23 +1,26 @@
 #include "stdafx.h"
 #include "CreateNewMap.h"
 #include "CreateNewMapDialog.h"
+#include "MapView.h"
 
-CreateNewMap::CreateNewMap(QObject *parent)
-	: QObject(parent)
+CCreateNewMap::CCreateNewMap(QObject *parent)
+	: QObject(parent),
+	m_MapView(nullptr)
 {
 
 }
 
-CreateNewMap::~CreateNewMap()
+CCreateNewMap::~CCreateNewMap()
 {
 
 }
 
-void CreateNewMap::DoCreateNewMap()
+void CCreateNewMap::DoCreateNewMap()
 {
 	CreateNewMapDialog dialog(nullptr);
 	if( dialog.exec() == QDialog::Rejected )
 	{
 		return;
 	}
+	m_MapView->Init( dialog.GetTilesX(), dialog.GetTilesY() );
 }

@@ -10,6 +10,8 @@ class GameMainThread;
 class GameMainLoop;
 class HexItemInfoDialog;
 class CTerrainTypeRepository;
+class MapView;
+
 namespace jha
 {
 	class LoggingTableWidget;
@@ -51,6 +53,7 @@ private:
 	GameMainLoop		*m_MainGameLoop;
 	jha::LoggingTableWidget	*m_DockWidgetLogging;
 	CTerrainTypeRepository	*m_TerrainTypeRepository;
+	MapView				*mapView;
 
 	QToolBox			*m_ToolBoxMapItems;
 	QButtonGroup		*m_ButtonGroupTerrainTypes;

@@ -2,18 +2,22 @@
 #define CREATENEWMAP_H
 
 #include <QObject>
+class MapView;
 
-class CreateNewMap : public QObject
+class CCreateNewMap : public QObject
 {
 	Q_OBJECT
 
 public:
 	/** */
-	CreateNewMap(QObject *parent);
+	CCreateNewMap(QObject *parent);
 	/** */
-	~CreateNewMap();
+	~CCreateNewMap();
 public slots:
 	void DoCreateNewMap();
+private:
+	friend class CMapFactory;
+	MapView	*m_MapView;
 };
 
 #endif // CREATENEWMAP_H
