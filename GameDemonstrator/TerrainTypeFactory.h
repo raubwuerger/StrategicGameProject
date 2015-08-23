@@ -15,6 +15,8 @@ public:
 	~CTerrainTypeFactory();
 	/** */
 	CTerrainType* CreateTerrainTypeFromXML( const QDomNode& node );
+private:
+	const QImage* LoadTerrainTypeImage( const QString& path );
 };
 
 //================================================================================

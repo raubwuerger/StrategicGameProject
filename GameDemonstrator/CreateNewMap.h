@@ -3,6 +3,7 @@
 
 #include <QObject>
 class MapView;
+class CTerrainTypeRepository;
 
 class CCreateNewMap : public QObject
 {
@@ -18,6 +19,7 @@ public slots:
 private:
 	friend class CMapFactory;
 	MapView	*m_MapView;
+	CTerrainTypeRepository	*m_TerrainTypeRepository;
 };
 
 #endif // CREATENEWMAP_H

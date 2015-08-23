@@ -3,6 +3,7 @@
 #include "TerrainType.h"
 
 CTerrainTypeRepository::CTerrainTypeRepository()
+	: m_DefaultTerrainType(nullptr)
 {
 }
 
@@ -30,7 +31,7 @@ bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
 CTerrainType* CTerrainTypeRepository::FindTerrainTypeById( int id )
 {
 	QMap<int,CTerrainType*>::iterator exists = m_TerrainTypes.find( id );
-	if( exists != m_TerrainTypes.end() )
+	if( exists == m_TerrainTypes.end() )
 	{
 		return nullptr;
 	}
@@ -50,4 +51,14 @@ QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetFirstIterator
 QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetLastIterator() const
 {
 	return m_TerrainTypes.cend();
+}
+
+const CTerrainType* CTerrainTypeRepository::GetDefaultTerrainType() const
+{
+	return m_DefaultTerrainType;
+}
+
+void CTerrainTypeRepository::SetDefaultTerrainType( const CTerrainType* val )
+{
+	m_DefaultTerrainType = val;
 }

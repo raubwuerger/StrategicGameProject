@@ -30,6 +30,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	mapView = new MapView(this);
 
+	CreateTerrainTypeRepository();
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
@@ -87,7 +88,7 @@ void GameDemonstrator::CreateMenuFile()
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	CMapFactory().CreateNewMapAction(this,createAction,mapView);
+	CMapFactory().CreateNewMapAction(this,createAction,mapView,m_TerrainTypeRepository);
 	m_ActionRepository->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
@@ -186,7 +187,6 @@ void GameDemonstrator::InitLoggingFramwork()
 bool GameDemonstrator::LoadTerrainTypes()
 {
 	jha::GetLog()->Log("Loading TerrainTypes.xml ...", LEVEL::LL_MESSAGE);
-	m_TerrainTypeRepository = new CTerrainTypeRepository;
 	QString fileName(".\\conf\\TerrainTypes.xml");
 
 	QFile file(fileName);
@@ -232,6 +232,7 @@ bool GameDemonstrator::LoadTerrainTypes()
 	{
 		m_TerrainTypeRepository->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
+	m_TerrainTypeRepository->SetDefaultTerrainType( m_TerrainTypeRepository->FindTerrainTypeById(1) );
 	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(m_TerrainTypeRepository->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
@@ -249,6 +250,8 @@ void GameDemonstrator::CreateToolbox( CTerrainTypeRepository *repository )
 	QGridLayout *layout = new QGridLayout;
 	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
 	int rowIndex = 0;
+	
+	//TODO: Wo werden die ganzen globalen Strings definiert!?
 	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	while( terrainTypes != repository->GetLastIterator() )
 	{
@@ -319,6 +322,10 @@ QWidget *GameDemonstrator::CreateTerrainTypeWidget(const QString &text, QButtonG
 	return widget;
 }
 
+void GameDemonstrator::CreateTerrainTypeRepository()
+{
+	m_TerrainTypeRepository = new CTerrainTypeRepository;
+}
 
 
 /*

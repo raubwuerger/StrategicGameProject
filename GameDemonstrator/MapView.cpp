@@ -17,7 +17,10 @@ MapView::~MapView()
 	delete m_MapEventManager;
 }
 
-void MapView::Init( int cols, int rows )
+//TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
+#include "TerrainTypeRepository.h"
+#include "TerrainType.h"
+void MapView::Init( int cols, int rows, CTerrainTypeRepository *terrainTypeRepository )
 {
 	m_MapEventManager->InitMapItemsRegistry(rows,cols);
 
@@ -25,7 +28,7 @@ void MapView::Init( int cols, int rows )
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( cols, rows, hexagonTemplate );
+	CreateTestMap( cols, rows, hexagonTemplate, terrainTypeRepository->GetDefaultTerrainType()->GetImage() );
 
 	setScene(m_Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
@@ -34,7 +37,7 @@ void MapView::Init( int cols, int rows )
 }
 
 #include "MapViewHexItem.h"
-void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon )
+void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType  )
 {
 	double startX = 0.0;
 	double startY = 0.0;
@@ -55,7 +58,7 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 			MapViewHexItem *mapItem = new MapViewHexItem( defaultHexagon, QPointF(cordX,cordY) );
 			mapItem->SetRowAndCol(row,col);
 			mapItem->SetHexItemEventManager( m_HexItemEventManager );
-			mapItem->setBrush( QBrush(Qt::green) );
+			mapItem->SetTerrainImage( defaultTerrainType );
 			m_Scene->addItem( mapItem );
 			m_MapEventManager->RegisterMapItem( mapItem );
 		}

@@ -61,7 +61,8 @@ MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft,
 	topLeft(topLeft),
 	col(-1),
 	row(-1),
-	eventItem(nullptr)
+	eventItem(nullptr),
+	m_TerrainImage(nullptr)
 {
 	this->data.MovePosition(topLeft);
 	this->centerPoint.rx() = topLeft.x() + (data.width / 2.0);
@@ -79,8 +80,6 @@ MapViewHexItem::~MapViewHexItem()
 
 void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
-	QGraphicsPolygonItem::paint(painter,option,widget);
-
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
 	QRectF textBoundingRect = data.boundingRect;
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
@@ -91,11 +90,17 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 	centerPosText.setY( data.boundingRect.y() + ((data.boundingRect.height() - textBoundingRect.height()) / 2.0) );
 
 	textBoundingRect.moveTopLeft( centerPosText );
-
-
+	
 	QTextOption textOption;
 	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
 	painter->drawText( textBoundingRect, stringRowCol, textOption );
+
+	if( m_TerrainImage != nullptr )
+	{
+		painter->drawImage( data.boundingRect.topLeft(), *m_TerrainImage );
+	}
+
+	QGraphicsPolygonItem::paint(painter,option,widget);
 }
 
 QRectF MapViewHexItem::boundingRect() const

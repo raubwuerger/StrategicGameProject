@@ -31,7 +31,42 @@ CTerrainType* CTerrainTypeFactory::CreateTerrainTypeFromXML( const QDomNode& nod
 	finder.TryFindElement( "Name", newTerrainType->m_Name );
 	finder.TryFindElement( "PicturePath", newTerrainType->m_PicturePath );
 
+	//TODO: Wo werden die ganzen globalen Strings definiert!?
+	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
+	QString terrainPicturePath(baseTerrainPicturePath);
+	terrainPicturePath += newTerrainType->m_PicturePath;
+	const QImage *terrainTypeImage = LoadTerrainTypeImage( terrainPicturePath );
+
+	if( terrainTypeImage == nullptr )
+	{
+		jha::GetLog()->Log("Unable to load terrain image: " +terrainPicturePath ,LEVEL::LL_WARNING);
+	}
+	else
+	{
+		newTerrainType->SetImage( terrainTypeImage );
+	}
+
 	return newTerrainType;
+}
+
+const QImage* CTerrainTypeFactory::LoadTerrainTypeImage( const QString& path )
+{
+	QImage* newImage = new QImage;
+	try
+	{
+		if( newImage->load( path ) == false )
+		{
+			delete newImage;
+			return nullptr;
+		}
+		return newImage;
+	}
+	catch( ... )
+	{
+		delete newImage;
+		return nullptr;
+	}
+	return newImage;
 }
 
 

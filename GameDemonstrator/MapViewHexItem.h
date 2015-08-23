@@ -67,6 +67,8 @@ public:
 	void SetRowAndCol( int row, int col );
 	/** Get col */
 	int GetCol() const { return col; }
+	/** Set m_TerrainImage */
+	void SetTerrainImage( const QImage *& val) { m_TerrainImage = val; }
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );
@@ -82,6 +84,7 @@ private:
 	int row;
 	int col;
 	QString	stringRowCol;
+	const QImage	*m_TerrainImage;
 };
 
 #endif // MAPVIEWHEXITEM_H

@@ -7,12 +7,14 @@ CTerrainType::CTerrainType( int id )
 	m_Timber(0),
 	m_MovementModifier(0),
 	m_DefenseModifier(0),
-	m_Infrastructure(0)
+	m_Infrastructure(0),
+	m_Image(nullptr)
 {
 }
 
 CTerrainType::~CTerrainType()
 {
+	delete m_Image;
 }
 
 int CTerrainType::GetId() const
@@ -34,10 +36,22 @@ QColor CTerrainType::InterpolateColorByType() const
 		return QColor(205,170,125);
 	case 5:
 		return QColor(Qt::gray);
+	default:
+		return QColor(Qt::white);
 	}
 }
 
 const QString& CTerrainType::GetName() const
 {
 	return m_Name;
+}
+
+void CTerrainType::SetImage( const QImage * val )
+{
+	m_Image = val;
+}
+
+const QImage * CTerrainType::GetImage() const
+{
+	return m_Image;
 }

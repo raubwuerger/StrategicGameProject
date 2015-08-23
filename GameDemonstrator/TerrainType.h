@@ -14,6 +14,10 @@ public:
 	const QString& GetName() const;
 	/** Get m_PicturePath */
 	const QString& GetPicturePath() const { return m_PicturePath; }
+	/** Get m_Image */
+	const QImage * GetImage() const;
+	/** Set m_Image */
+	void SetImage( const QImage * val);
 private:
 	friend class CTerrainTypeFactory;
 	int			m_Id;
@@ -24,5 +28,6 @@ private:
 	int			m_MovementModifier;
 	int			m_DefenseModifier;
 	int			m_Infrastructure;
+	const QImage		*m_Image;
 };
 

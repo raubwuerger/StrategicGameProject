@@ -42,6 +42,7 @@ private:
 	void CreateToolbox( CTerrainTypeRepository *repository );
 	/** */
 	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );
+	void CreateTerrainTypeRepository();
 private:
 	QMenu	*m_FileMenu;
 	QMenu	*m_ViewMenu;
