@@ -12,6 +12,8 @@ public:
 	QColor InterpolateColorByType( ) const;
 	/** Get m_Name */	
 	const QString& GetName() const;
+	/** Get m_PicturePath */
+	const QString& GetPicturePath() const { return m_PicturePath; }
 private:
 	friend class CTerrainTypeFactory;
 	int			m_Id;

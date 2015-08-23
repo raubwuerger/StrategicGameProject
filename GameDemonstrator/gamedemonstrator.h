@@ -41,7 +41,7 @@ private:
 	bool ReadTerrainTypes(QIODevice *device);
 	void CreateToolbox( CTerrainTypeRepository *repository );
 	/** */
-	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup );
+	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );
 private:
 	QMenu	*m_FileMenu;
 	QMenu	*m_ViewMenu;

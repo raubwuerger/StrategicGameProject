@@ -3,6 +3,7 @@
 class CCreateNewMap;
 class MapView;
 
+/** @stereotype factory*/
 class CMapFactory
 {
 public:

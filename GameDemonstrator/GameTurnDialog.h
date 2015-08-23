@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_GameTurnDialog.h"
 
+/** @stereotype BorlandFormclass*/
 class GameTurnDialog : public QWidget
 {
 	Q_OBJECT

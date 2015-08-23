@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_CreateNewMapDialog.h"
 
+/** @stereotype BorlandFormclass*/
 class CreateNewMapDialog : public QDialog
 {
 	Q_OBJECT

@@ -2,7 +2,7 @@
 <TerrainTypes>
 	<TerrainType strId="1" >
 		<Name>Plains</Name>
-		<PicturePath>.\resources\Plain.png</PicturePath>
+		<PicturePath>.\Terrain\Plains.png</PicturePath>
 		<Infrastructure>10</Infrastructure>
 		<Oil>20</Oil>
 		<Timber>30</Timber>
@@ -11,7 +11,7 @@
 	</TerrainType>
 	<TerrainType strId="2">
 		<Name>Woods</Name>
-		<PicturePath>.\resources\Woods.png</PicturePath>
+		<PicturePath>.\Terrain\Woods.png</PicturePath>
 		<Infrastructure>5</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>100</Timber>
@@ -20,7 +20,7 @@
 	</TerrainType>
 	<TerrainType strId="3">
 		<Name>Ocean</Name>
-		<PicturePath>.\resources\Ocean.png</PicturePath>
+		<PicturePath>.\Terrain\Ocean.png</PicturePath>
 		<Infrastructure>0</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>0</Timber>
@@ -29,7 +29,7 @@
 	</TerrainType>
 	<TerrainType strId="4">
 		<Name>Hills</Name>
-		<PicturePath>.\resources\Hills.png</PicturePath>
+		<PicturePath>.\Terrain\Hills.png</PicturePath>
 		<Infrastructure>50</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>20</Timber>
@@ -38,7 +38,7 @@
 	</TerrainType>
 	<TerrainType strId="5">
 		<Name>Mountains</Name>
-		<PicturePath>.\resources\Mountains.png</PicturePath>
+		<PicturePath>.\Terrain\Mountains.png</PicturePath>
 		<Infrastructure>20</Infrastructure>
 		<Oil>0</Oil>
 		<Timber>10</Timber>

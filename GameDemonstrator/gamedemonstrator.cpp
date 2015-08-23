@@ -249,9 +249,12 @@ void GameDemonstrator::CreateToolbox( CTerrainTypeRepository *repository )
 	QGridLayout *layout = new QGridLayout;
 	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
 	int rowIndex = 0;
+	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	while( terrainTypes != repository->GetLastIterator() )
 	{
-		layout->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_ButtonGroupTerrainTypes ), rowIndex++, 0);
+		QString terrainPictureName(baseTerrainPicturePath);
+		terrainPictureName += terrainTypes.value()->GetPicturePath();
+		layout->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_ButtonGroupTerrainTypes, terrainPictureName ), rowIndex++, 0);
 		terrainTypes++;
 	}
 
@@ -296,9 +299,9 @@ void GameDemonstrator::CreateToolbox( CTerrainTypeRepository *repository )
 	m_ViewMenu->addAction(dockCountry->toggleViewAction());
 }
 
-QWidget *GameDemonstrator::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup )
+QWidget *GameDemonstrator::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, const QString& pictureName )
 {
-	QIcon icon(":GameDemonstrator/Resources/gear_run.ico");
+	QIcon icon( pictureName );
 
 	QToolButton *button = new QToolButton;
 	button->setIcon(icon);

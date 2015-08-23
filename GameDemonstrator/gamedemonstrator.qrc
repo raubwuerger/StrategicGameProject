@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="GameDemonstrator">
+    <qresource prefix="/GameDemonstrator">
         <file>Resources/exit.ico</file>
         <file>Resources/media_play_green.ico</file>
         <file>Resources/media_stop_red.ico</file>
@@ -7,5 +7,11 @@
         <file>Resources/floppy_disk_blue.ico</file>
         <file>Resources/folder_document.ico</file>
         <file>Resources/about.ico</file>
+        <file>Resources/Terrain/Basic_Hex.png</file>
+        <file>Resources/Terrain/Hills.png</file>
+        <file>Resources/Terrain/Mountains.png</file>
+        <file>Resources/Terrain/Ocean.png</file>
+        <file>Resources/Terrain/Plain.png</file>
+        <file>Resources/Terrain/Wood.png</file>
     </qresource>
 </RCC>

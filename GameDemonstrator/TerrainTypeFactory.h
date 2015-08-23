@@ -5,6 +5,7 @@ class QDomNode;
 class QDomElement;
 
 //================================================================================
+/** @stereotype factory*/
 class CTerrainTypeFactory
 {
 public:

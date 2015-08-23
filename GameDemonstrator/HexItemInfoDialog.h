@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_HexItemInfoDialog.h"
 
+/** @stereotype BorlandFormclass*/
 class HexItemInfoDialog : public QWidget
 {
 	Q_OBJECT

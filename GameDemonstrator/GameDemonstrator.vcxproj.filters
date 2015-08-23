@@ -245,6 +245,9 @@
     <ClCompile Include="MapFactory.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -296,6 +299,9 @@
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="MapFactory.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
