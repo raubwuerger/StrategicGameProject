@@ -2,16 +2,13 @@
 //--------------------------------
 
 #include "stdafx.h"
-#include "CGameModeStandard.h"
+#include "GameModeStandard.h"
 
 //=================================================================================================
-namespace jha
-{
 void CGameModeStandard::Activate() 
 {
 }
+
 void CGameModeStandard::Deavtivate()
 {
-}
-
 }

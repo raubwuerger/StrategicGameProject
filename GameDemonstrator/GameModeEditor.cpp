@@ -2,7 +2,7 @@
 //--------------------------------
 
 #include "stdafx.h"
-#include "CGameModeEditor.h"
+#include "GameModeEditor.h"
 
 //=================================================================================================
 void CGameModeEditor::Activate() 

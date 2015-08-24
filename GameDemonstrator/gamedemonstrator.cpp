@@ -14,9 +14,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	m_MainGameLoop(nullptr),
 	m_HexItemInfoDialog(nullptr),
 	m_TerrainTypeRepository(nullptr),
-	m_ToolBoxMapItems(nullptr),
-	m_ButtonGroupTerrainTypes(nullptr),
-	m_ButtonGroupBuildings(nullptr),
+	m_EditorToolbox(nullptr),
 	m_FileMenu(nullptr),
 	m_ViewMenu(nullptr),
 	m_InfoMenu(nullptr)
@@ -39,7 +37,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateHexItemInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
-	CreateToolbox( m_TerrainTypeRepository );
+	CreateEditorToolbox( m_TerrainTypeRepository );
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
@@ -240,135 +238,22 @@ bool GameDemonstrator::LoadTerrainTypes()
 
 #include "TerrainType.h"
 #include "TerrainTypeRepository.h"
-void GameDemonstrator::CreateToolbox( CTerrainTypeRepository *repository )
+#include "EditorToolbox.h"
+void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository )
 {
-	m_ButtonGroupTerrainTypes = new QButtonGroup(this);
-	m_ButtonGroupTerrainTypes->setExclusive(false);
-	
-	//TODO: 2015/08/17 - jha: Hier Aktionen verknüpfen
-	//	connect(m_ButtonGroupTerrainTypes, SIGNAL(buttonClicked(int)), this, SLOT(buttonGroupClicked(int)));
-	
-	QGridLayout *layout = new QGridLayout;
-	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
-	int rowIndex = 0;
-	
-	//TODO: Wo werden die ganzen globalen Strings definiert!?
-	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
-	while( terrainTypes != repository->GetLastIterator() )
-	{
-		QString terrainPictureName(baseTerrainPicturePath);
-		terrainPictureName += terrainTypes.value()->GetPicturePath();
-		layout->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_ButtonGroupTerrainTypes, terrainPictureName ), rowIndex++, 0);
-		terrainTypes++;
-	}
-
-// 	layout->setRowStretch(3, 10);
-// 	layout->setColumnStretch(2, 10);
-
-	QWidget *itemTerrainTyped = new QWidget;
-	itemTerrainTyped->setLayout(layout);
-
-	m_ButtonGroupBuildings = new QButtonGroup(this);
-	//TODO: 2015/08/17 - jha: Hier Aktionen verknüpfen
-	//	connect(m_ButtonGroupBuildings, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(backgroundButtonGroupClicked(QAbstractButton*)));
-
-	QGridLayout *backgroundLayout = new QGridLayout;
-// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("Blue Grid"),
-// 		":/images/background1.png"), 0, 0);
-// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("White Grid"),
-// 		":/images/background2.png"), 0, 1);
-// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("Gray Grid"),
-// 		":/images/background3.png"), 1, 0);
-// 	backgroundLayout->addWidget(createBackgroundCellWidget(tr("No Grid"),
-// 		":/images/background4.png"), 1, 1);
-
-	backgroundLayout->setRowStretch(2, 10);
-	backgroundLayout->setColumnStretch(2, 10);
-
-	QWidget *itemBuildings = new QWidget;
-	itemBuildings->setLayout(backgroundLayout);
-
-
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-	m_ToolBoxMapItems = new QToolBox(dockCountry);
-	m_ToolBoxMapItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
-	m_ToolBoxMapItems->setMinimumWidth(itemTerrainTyped->sizeHint().width());
-	m_ToolBoxMapItems->addItem(itemTerrainTyped, tr("Terrain Types"));
-	m_ToolBoxMapItems->addItem(itemBuildings, tr("Buildings"));
+	m_EditorToolbox = new CEditorToolbox(dockCountry);
+	m_EditorToolbox->Create(repository);
+//	m_EditorToolbox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
 
-	dockCountry->setWidget( m_ToolBoxMapItems );
+	dockCountry->setWidget( m_EditorToolbox );
 	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
 	m_ViewMenu->addAction(dockCountry->toggleViewAction());
-}
-
-QWidget *GameDemonstrator::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, const QString& pictureName )
-{
-	QIcon icon( pictureName );
-
-	QToolButton *button = new QToolButton;
-	button->setIcon(icon);
-	button->setIconSize(QSize(48, 48));
-	button->setCheckable(true);
-	buttonGroup->addButton(button);
-
-	QGridLayout *layout = new QGridLayout;
-	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
-
-	QWidget *widget = new QWidget;
-	widget->setLayout(layout);
-
-	return widget;
 }
 
 void GameDemonstrator::CreateTerrainTypeRepository()
 {
 	m_TerrainTypeRepository = new CTerrainTypeRepository;
 }
-
-
-/*
-QWidget *createBackgroundCellWidget(const QString &text, const QString &image)
-{
-	QToolButton *button = new QToolButton;
-	button->setText(text);
-	button->setIcon(QIcon(image));
-	button->setIconSize(QSize(50, 50));
-	button->setCheckable(true);
-	backgroundButtonGroup->addButton(button);
-
-	QGridLayout *layout = new QGridLayout;
-	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
-
-	QWidget *widget = new QWidget;
-	widget->setLayout(layout);
-
-	return widget;
-}
-*/
-
-/*
-QWidget *createCellWidget(const QString &text, DiagramItem::DiagramType type)
-{
-	DiagramItem item(type, itemMenu);
-	QIcon icon(item.image());
-
-	QToolButton *button = new QToolButton;
-	button->setIcon(icon);
-	button->setIconSize(QSize(50, 50));
-	button->setCheckable(true);
-	buttonGroup->addButton(button, int(type));
-
-	QGridLayout *layout = new QGridLayout;
-	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
-
-	QWidget *widget = new QWidget;
-	widget->setLayout(layout);
-
-	return widget;
-}
-*/

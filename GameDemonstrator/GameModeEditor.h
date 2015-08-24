@@ -9,9 +9,9 @@ class CGameModeEditor : public CGameMode
 {
 public:
 	/** */
-	virtual void Activate() ;
+	virtual void Activate();
 	/** */
-	virtual void Deavtivate() ;
+	virtual void Deavtivate();
 };
 
 

@@ -11,6 +11,7 @@ class GameMainLoop;
 class HexItemInfoDialog;
 class CTerrainTypeRepository;
 class MapView;
+class CEditorToolbox;
 
 namespace jha
 {
@@ -39,9 +40,7 @@ private:
 	void InitLoggingFramwork();
 	bool LoadTerrainTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-	void CreateToolbox( CTerrainTypeRepository *repository );
-	/** */
-	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );
+	void CreateEditorToolbox( CTerrainTypeRepository *repository );
 	void CreateTerrainTypeRepository();
 private:
 	QMenu	*m_FileMenu;
@@ -56,9 +55,7 @@ private:
 	CTerrainTypeRepository	*m_TerrainTypeRepository;
 	MapView				*mapView;
 
-	QToolBox			*m_ToolBoxMapItems;
-	QButtonGroup		*m_ButtonGroupTerrainTypes;
-	QButtonGroup		*m_ButtonGroupBuildings;
+	CEditorToolbox		*m_EditorToolbox;
 };
 
 #endif // GAMEDEMONSTRATOR_H
