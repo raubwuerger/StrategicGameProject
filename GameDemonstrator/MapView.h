@@ -6,7 +6,7 @@ class MapViewGraphicsScene;
 class HexagonData;
 class HexItemEventManager;
 class MapEventManager;
-class CTerrainTypeRepository;
+class CTerrainType;
 
 class MapView : public QGraphicsView
 {
@@ -18,7 +18,7 @@ public:
 	/** */
 	~MapView();
 	/** */
-	void Init( int cols, int rows, CTerrainTypeRepository *terrainTypeRepository );
+	void Init( int cols, int rows, const CTerrainType *defaultTerrainType );
 public:
 	MapViewGraphicsScene	*m_Scene;
 	HexItemEventManager		*m_HexItemEventManager;

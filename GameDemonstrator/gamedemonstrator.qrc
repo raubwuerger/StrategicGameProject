@@ -11,7 +11,7 @@
         <file>Resources/Terrain/Hills.png</file>
         <file>Resources/Terrain/Mountains.png</file>
         <file>Resources/Terrain/Ocean.png</file>
-        <file>Resources/Terrain/Plain.png</file>
-        <file>Resources/Terrain/Wood.png</file>
+        <file>Resources/Terrain/Plains.png</file>
+        <file>Resources/Terrain/Woods.png</file>
     </qresource>
 </RCC>

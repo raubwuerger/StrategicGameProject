@@ -2,7 +2,7 @@
 
 class CCreateNewMap;
 class MapView;
-class CTerrainTypeRepository;
+class CTerrainType;
 
 /** @stereotype factory*/
 class CMapFactory
@@ -13,6 +13,6 @@ public:
 	/** */
 	~CMapFactory();
 	/** */
-	CCreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, CTerrainTypeRepository *terrainTypeRepository );
+	CCreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const CTerrainType *defaultTerrainType );
 };
 

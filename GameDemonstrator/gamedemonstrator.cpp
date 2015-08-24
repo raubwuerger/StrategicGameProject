@@ -30,15 +30,15 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	mapView = new MapView(this);
 
+	InitLoggingFramwork();
 	CreateTerrainTypeRepository();
+	LoadTerrainTypes();
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
 	CreateHexItemInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
-	InitLoggingFramwork();
-	LoadTerrainTypes();
 	CreateToolbox( m_TerrainTypeRepository );
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
@@ -83,12 +83,13 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 
 #include "MapFactory.h"
 #include "CreateNewMap.h" //connect kann sonst den Typ nicht auf QObject auflösen ...
+#include "TerrainTypeRepository.h"
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	CMapFactory().CreateNewMapAction(this,createAction,mapView,m_TerrainTypeRepository);
+	CMapFactory().CreateNewMapAction(this,createAction,mapView,m_TerrainTypeRepository->GetDefaultTerrainType());
 	m_ActionRepository->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");

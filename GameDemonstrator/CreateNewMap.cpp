@@ -6,7 +6,7 @@
 CCreateNewMap::CCreateNewMap(QObject *parent)
 	: QObject(parent),
 	m_MapView(nullptr),
-	m_TerrainTypeRepository(nullptr)
+	m_DefaultTerrainType(nullptr)
 {
 
 }
@@ -23,5 +23,5 @@ void CCreateNewMap::DoCreateNewMap()
 	{
 		return;
 	}
-	m_MapView->Init( dialog.GetTilesX(), dialog.GetTilesY(), m_TerrainTypeRepository );
+	m_MapView->Init( dialog.GetTilesX(), dialog.GetTilesY(), m_DefaultTerrainType );
 }

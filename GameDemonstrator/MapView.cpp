@@ -18,9 +18,8 @@ MapView::~MapView()
 }
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
-#include "TerrainTypeRepository.h"
 #include "TerrainType.h"
-void MapView::Init( int cols, int rows, CTerrainTypeRepository *terrainTypeRepository )
+void MapView::Init( int cols, int rows, const CTerrainType *defaultTerrainType )
 {
 	m_MapEventManager->InitMapItemsRegistry(rows,cols);
 
@@ -28,7 +27,7 @@ void MapView::Init( int cols, int rows, CTerrainTypeRepository *terrainTypeRepos
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( cols, rows, hexagonTemplate, terrainTypeRepository->GetDefaultTerrainType()->GetImage() );
+	CreateTestMap( cols, rows, hexagonTemplate, defaultTerrainType->GetImage() );
 
 	setScene(m_Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
