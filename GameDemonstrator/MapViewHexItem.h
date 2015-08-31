@@ -57,6 +57,10 @@ public:
 	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
+	/** */
+	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
+	/** */
+	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 	/** Set eventItem */
 	void SetHexItemEventManager( HexItemEventManager * val) { eventItem = val; }
 	/** */

@@ -30,6 +30,11 @@ const MapViewHexItem* MapEventManager::FindItemByIndex( int row, int col ) const
 	return MapItems[row][col];
 }
 
+MapViewHexItem* MapEventManager::FindItemByIndexNonConst( int row, int col )
+{
+	return MapItems[row][col];
+}
+
 #include "HexItemInfoDialog.h"
 void MapEventManager::UpdateMapItemInfo( int row, int col )
 {

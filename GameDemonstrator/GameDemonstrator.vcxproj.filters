@@ -263,6 +263,15 @@
     <ClCompile Include="EditorToolbox.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="TerrainTypeEditor.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TerrainTypeEditor.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TerrainTypeEditor.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -397,6 +406,9 @@
       <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="EditorToolbox.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TerrainTypeEditor.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>

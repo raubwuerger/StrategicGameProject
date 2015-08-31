@@ -19,6 +19,8 @@ public:
 	void RegisterMapItem( MapViewHexItem* mapItem );
 	/** */
 	const MapViewHexItem* FindItemByIndex( int row, int col ) const;
+	/** */
+	MapViewHexItem* FindItemByIndexNonConst( int row, int col );
 public slots:
 	/** */
 	void UpdateMapItemInfo( int row, int col );

@@ -153,3 +153,13 @@ void MapViewHexItem::SetRowAndCol( int row, int col )
 
 	stringRowCol = QString::number(row) +"|" +QString::number(col);
 }
+
+void MapViewHexItem::mouseReleaseEvent( QGraphicsSceneMouseEvent * event )
+{
+	QGraphicsItem::mouseReleaseEvent( event );
+}
+
+void MapViewHexItem::mousePressEvent( QGraphicsSceneMouseEvent *event )
+{
+	QGraphicsItem::mousePressEvent( event );
+}
