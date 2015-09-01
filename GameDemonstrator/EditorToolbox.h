@@ -24,4 +24,17 @@ private:
 	QButtonGroup		*m_GroupBuildings;
 };
 
+//================================================================================
+class CConnectorButtonTerrainTypeId : public QObject
+{
+	Q_OBJECT
+public:
+	CConnectorButtonTerrainTypeId( int terrainTypeId );
+	void Trigger();
+signals:
+	void TerrainTypeActive( int terrainTypeId );
+private:
+	int m_TerrainTypeId;
+};
+
 #endif // CEDITORTOOLBOX_H

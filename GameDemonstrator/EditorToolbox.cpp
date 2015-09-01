@@ -104,3 +104,15 @@ void CEditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 	// 	view->update();
 }
 
+/************************************************************************/
+/*                                                                      */
+/************************************************************************/
+CConnectorButtonTerrainTypeId::CConnectorButtonTerrainTypeId( int terrainTypeId ) : m_TerrainTypeId(terrainTypeId)
+{
+
+}
+
+void CConnectorButtonTerrainTypeId::Trigger()
+{
+	emit TerrainTypeActive(m_TerrainTypeId);
+}
