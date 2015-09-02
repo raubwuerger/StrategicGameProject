@@ -107,7 +107,8 @@ void CEditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 /************************************************************************/
 /*                                                                      */
 /************************************************************************/
-CConnectorButtonTerrainTypeId::CConnectorButtonTerrainTypeId( int terrainTypeId ) : m_TerrainTypeId(terrainTypeId)
+CConnectorButtonTerrainTypeId::CConnectorButtonTerrainTypeId( int terrainTypeId ) 
+	: m_TerrainTypeId(terrainTypeId)
 {
 
 }
