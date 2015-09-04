@@ -154,12 +154,15 @@ void MapViewHexItem::SetRowAndCol( int row, int col )
 	stringRowCol = QString::number(row) +"|" +QString::number(col);
 }
 
-void MapViewHexItem::mouseReleaseEvent( QGraphicsSceneMouseEvent * event )
+void MapViewHexItem::SetTerrainImage( const QImage * val )
 {
-	QGraphicsItem::mouseReleaseEvent( event );
+	m_TerrainImage = val;
 }
 
-void MapViewHexItem::mousePressEvent( QGraphicsSceneMouseEvent *event )
+/************************************************************************/
+/* HexItemEventManager                                                  */
+/************************************************************************/
+HexItemEventManager::HexItemEventManager()
 {
-	QGraphicsItem::mousePressEvent( event );
+
 }

@@ -38,9 +38,14 @@ class HexItemEventManager : public QObject
 {
 	Q_OBJECT
 public:
-	HexItemEventManager() {}
+	/** */
+	HexItemEventManager();
 signals:
+	/** */
 	void HexItemEntered( int row, int col );
+	/** */
+	void HexItemPressed( int row, int col );
+private:
 };
 
 //================================================================================
@@ -57,10 +62,6 @@ public:
 	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
-	/** */
-	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
-	/** */
-	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 	/** Set eventItem */
 	void SetHexItemEventManager( HexItemEventManager * val) { eventItem = val; }
 	/** */
@@ -72,7 +73,7 @@ public:
 	/** Get col */
 	int GetCol() const { return col; }
 	/** Set m_TerrainImage */
-	void SetTerrainImage( const QImage *& val) { m_TerrainImage = val; }
+	void SetTerrainImage( const QImage * val);
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );

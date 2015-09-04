@@ -7,6 +7,7 @@
 #include "MapView.h"
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
+#include "TerrainTypeEditor.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -37,13 +38,17 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateHexItemInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
-	CreateEditorToolbox( m_TerrainTypeRepository );
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
 	mapView->m_HexItemEventManager = new HexItemEventManager;
-	mapView->m_MapEventManager = new MapEventManager(nullptr);
+	mapView->m_MapEventManager = new CMapEventManager(nullptr);
 	mapView->m_MapEventManager->m_HexItemInfoDialog = m_HexItemInfoDialog;
+
+	CTerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( m_TerrainTypeRepository, mapView->m_MapEventManager );
+	CreateEditorToolbox( m_TerrainTypeRepository, terrainTypeEditor );
+
+	connect( mapView->m_HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
 
 	layoutMain->addWidget(mapView);
 
@@ -239,12 +244,13 @@ bool GameDemonstrator::LoadTerrainTypes()
 #include "TerrainType.h"
 #include "TerrainTypeRepository.h"
 #include "EditorToolbox.h"
-void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository )
+void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository, CTerrainTypeEditor *terrainTypeEditor )
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	m_EditorToolbox = new CEditorToolbox(dockCountry);
+	m_EditorToolbox->m_TerrainTypeEditor = terrainTypeEditor;
 	m_EditorToolbox->Create(repository);
 //	m_EditorToolbox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
 
@@ -256,4 +262,13 @@ void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository )
 void GameDemonstrator::CreateTerrainTypeRepository()
 {
 	m_TerrainTypeRepository = new CTerrainTypeRepository;
+}
+
+#include "TerrainTypeEditor.h"
+CTerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( CTerrainTypeRepository *terrainTypeRepository, CMapEventManager*mapEventManager )
+{
+	CTerrainTypeEditor *terrainTypeEditor = new CTerrainTypeEditor(nullptr);
+	terrainTypeEditor->m_TerrainTypeRepository = terrainTypeRepository;
+	terrainTypeEditor->m_MapEventManager = mapEventManager;
+	return terrainTypeEditor;
 }

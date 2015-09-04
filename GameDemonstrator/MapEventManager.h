@@ -5,14 +5,14 @@
 class MapViewHexItem;
 class HexItemInfoDialog;
 
-class MapEventManager : public QObject
+class CMapEventManager : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	MapEventManager(QObject *parent);
+	CMapEventManager(QObject *parent);
 	/** */
-	~MapEventManager();
+	~CMapEventManager();
 	/** */
 	void InitMapItemsRegistry( int rows, int cols );
 	/** */

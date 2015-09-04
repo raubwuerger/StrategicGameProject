@@ -12,6 +12,8 @@ class HexItemInfoDialog;
 class CTerrainTypeRepository;
 class MapView;
 class CEditorToolbox;
+class CMapEventManager;
+class CTerrainTypeEditor;
 
 namespace jha
 {
@@ -40,8 +42,9 @@ private:
 	void InitLoggingFramwork();
 	bool LoadTerrainTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-	void CreateEditorToolbox( CTerrainTypeRepository *repository );
+	void CreateEditorToolbox( CTerrainTypeRepository *repository, CTerrainTypeEditor *terrainTypeEditor );
 	void CreateTerrainTypeRepository();
+	CTerrainTypeEditor* CreateTerrainTypeEditor( CTerrainTypeRepository *terrainTypeRepository, CMapEventManager* mapEventManager );
 private:
 	QMenu	*m_FileMenu;
 	QMenu	*m_ViewMenu;

@@ -2,11 +2,13 @@
 #include "EditorToolbox.h"
 #include "TerrainType.h"
 #include "TerrainTypeRepository.h"
+#include "TerrainTypeEditor.h"
 
 CEditorToolbox::CEditorToolbox(QWidget *parent)
 	: QToolBox(parent),
 	m_GroupTerrainTypes(nullptr),
-	m_GroupBuildings(nullptr)
+	m_GroupBuildings(nullptr),
+	m_TerrainTypeEditor(nullptr)
 {
 }
 
@@ -31,7 +33,7 @@ void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 	{
 		QString terrainPictureName(baseTerrainPicturePath);
 		terrainPictureName += terrainTypes.value()->GetPicturePath();
-		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_GroupTerrainTypes, terrainPictureName ), rowIndex++, 0);
+		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_GroupTerrainTypes, new CConnectorButtonTerrainTypeId( terrainTypes.value()->GetId()), terrainPictureName ), rowIndex++, 0);
 		terrainTypes++;
 	}
 
@@ -55,7 +57,7 @@ void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 	addItem(itemBuildings, tr("Buildings"));
 }
 
-QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, const QString& pictureName )
+QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, CConnectorButtonTerrainTypeId *connector, const QString& pictureName )
 {
 	QIcon icon( pictureName );
 
@@ -64,6 +66,9 @@ QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGro
 	button->setIconSize(QSize(48, 48));
 	button->setCheckable(true);
 	buttonGroup->addButton(button);
+
+	connect( button, SIGNAL(pressed()), connector, SLOT(Trigger()) );
+	connect( connector, SIGNAL(TerrainTypeActive(int)), m_TerrainTypeEditor, SLOT(ActivateTerrainType(int)) );
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
@@ -105,7 +110,7 @@ void CEditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 }
 
 /************************************************************************/
-/*                                                                      */
+/* CConnectorButtonTerrainTypeId                                        */
 /************************************************************************/
 CConnectorButtonTerrainTypeId::CConnectorButtonTerrainTypeId( int terrainTypeId ) 
 	: m_TerrainTypeId(terrainTypeId)

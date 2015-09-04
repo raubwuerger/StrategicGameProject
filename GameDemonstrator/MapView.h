@@ -5,7 +5,7 @@
 class MapViewGraphicsScene;
 class HexagonData;
 class HexItemEventManager;
-class MapEventManager;
+class CMapEventManager;
 class CTerrainType;
 
 class MapView : public QGraphicsView
@@ -22,7 +22,7 @@ public:
 public:
 	MapViewGraphicsScene	*m_Scene;
 	HexItemEventManager		*m_HexItemEventManager;
-	MapEventManager			*m_MapEventManager;
+	CMapEventManager		*m_MapEventManager;
 private:
 	/** */
 	void CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType );

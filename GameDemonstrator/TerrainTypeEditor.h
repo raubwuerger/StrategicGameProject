@@ -2,6 +2,9 @@
 #define TERRAINTYPEEDITOR_H
 
 #include <QObject>
+class CTerrainType;
+class CTerrainTypeRepository;
+class CMapEventManager;
 
 class CTerrainTypeEditor : public QObject
 {
@@ -17,7 +20,10 @@ public slots:
 	/** */
 	void ChangeTerrainTypeHexItem( int row, int col );
 private:
-
+	friend class GameDemonstrator;
+	CTerrainType			*m_ActiveTerrainType;
+	CTerrainTypeRepository	*m_TerrainTypeRepository;
+	CMapEventManager		*m_MapEventManager;
 };
 
 #endif // TERRAINTYPEEDITOR_H

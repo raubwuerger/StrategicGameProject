@@ -24,6 +24,8 @@ void MapView::Init( int cols, int rows, const CTerrainType *defaultTerrainType )
 	m_MapEventManager->InitMapItemsRegistry(rows,cols);
 
 	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
+	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_Scene,SLOT(HexActive(int,int)));
+	m_Scene->m_HexItemEventManager = m_HexItemEventManager;
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );

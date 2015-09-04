@@ -15,7 +15,7 @@ public:
 	~HexItemInfoDialog();
 	/** */
 private:
-	friend class MapEventManager;
+	friend class CMapEventManager;
 	Ui::HexItemInfoDialog ui;
 };
 
