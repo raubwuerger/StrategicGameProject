@@ -1,9 +1,9 @@
 #ifndef MAPVIEWHEXITEM_H
 #define MAPVIEWHEXITEM_H
 
-#include <QGraphicsPolygonItem>
-
 //================================================================================
+#include <QGraphicsPolygonItem>
+/** Enthält die Koordinatenpunkte des Hexagons */
 class HexagonData
 {
 public:
@@ -34,6 +34,7 @@ public:
 };
 
 //================================================================================
+/** Stellt SIGNALE zur Verfügung die von Benutzeraktionen ausgelöst werden. Mausbewegung auf Karte ... */
 class HexItemEventManager : public QObject
 {
 	Q_OBJECT
@@ -49,6 +50,7 @@ private:
 };
 
 //================================================================================
+/** Repräsentiert Kartenteil auf Bildschirm */
 class MapViewHexItem : public QGraphicsPolygonItem
 {
 public:

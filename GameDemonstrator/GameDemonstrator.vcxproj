@@ -247,8 +247,12 @@
     <ClCompile Include="TerrainTypeEditor.cpp" />
     <ClCompile Include="TerrainTypeFactory.cpp" />
     <ClCompile Include="TerrainTypeRepository.cpp" />
+    <ClCompile Include="VirtualMap.cpp" />
+    <ClCompile Include="VirtualMapItem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="VirtualMap.h" />
+    <ClInclude Include="VirtualMapItem.h" />
     <CustomBuild Include="CreateNewMap.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CreateNewMap.h...</Message>

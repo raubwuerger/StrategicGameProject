@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 class HexItemEventManager;
 
+/** Benutzerschnittstelle zu Karte */
 class MapViewGraphicsScene : public QGraphicsScene
 {
 	Q_OBJECT
