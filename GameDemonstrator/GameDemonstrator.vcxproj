@@ -238,6 +238,8 @@
     <ClCompile Include="MapView.cpp" />
     <ClCompile Include="MapViewGraphicsScene.cpp" />
     <ClCompile Include="MapViewHexItem.cpp" />
+    <ClCompile Include="model\Map.cpp" />
+    <ClCompile Include="model\MapItem.cpp" />
     <ClCompile Include="QActionRepository.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -247,12 +249,8 @@
     <ClCompile Include="TerrainTypeEditor.cpp" />
     <ClCompile Include="TerrainTypeFactory.cpp" />
     <ClCompile Include="TerrainTypeRepository.cpp" />
-    <ClCompile Include="VirtualMap.cpp" />
-    <ClCompile Include="VirtualMapItem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtualMap.h" />
-    <ClInclude Include="VirtualMapItem.h" />
     <CustomBuild Include="CreateNewMap.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CreateNewMap.h...</Message>
@@ -288,6 +286,8 @@
     <ClInclude Include="GameModeStandard.h" />
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h" />
     <ClInclude Include="MapFactory.h" />
+    <ClInclude Include="model\Map.h" />
+    <ClInclude Include="model\MapItem.h" />
     <ClInclude Include="TerrainType.h" />
     <CustomBuild Include="TerrainTypeEditor.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

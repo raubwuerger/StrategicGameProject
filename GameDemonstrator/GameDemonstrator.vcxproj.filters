@@ -51,6 +51,12 @@
     <Filter Include="Source Dateien\Editor">
       <UniqueIdentifier>{7b7123b8-6374-416a-9670-2ded904c4374}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Model">
+      <UniqueIdentifier>{480bdaa4-6721-4246-b568-109ba61435b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Model">
+      <UniqueIdentifier>{f8f8ca81-e792-4e7e-8b26-9cf8cc769e11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -275,12 +281,6 @@
     <ClCompile Include="CreateNewMapDialog.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
-    <ClCompile Include="VirtualMap.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="VirtualMapItem.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="MapViewGraphicsScene.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
@@ -289,6 +289,12 @@
     </ClCompile>
     <ClCompile Include="MapView.cpp">
       <Filter>Source Dateien\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Map.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\MapItem.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -352,11 +358,11 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="VirtualMap.h">
-      <Filter>Header Dateien</Filter>
+    <ClInclude Include="model\MapItem.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="VirtualMapItem.h">
-      <Filter>Header Dateien</Filter>
+    <ClInclude Include="model\Map.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
