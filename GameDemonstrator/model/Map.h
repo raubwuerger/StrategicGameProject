@@ -1,9 +1,9 @@
 #pragma once
 
+#include "MapItem.h"
+
 namespace GDModel
 {
-
-#include "MapItem.h"
 
 /** Repräsentiert die Karte im Speicher */
 class CMap

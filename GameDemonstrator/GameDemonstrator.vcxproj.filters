@@ -297,6 +297,12 @@
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="ModelFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFactory.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInitialisationData.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -368,6 +374,12 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="ModelFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFactory.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInitialisationData.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>

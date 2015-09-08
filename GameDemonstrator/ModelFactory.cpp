@@ -16,8 +16,8 @@ CModelFactory::~CModelFactory()
 
 void CModelFactory::CreateEmptyMap( int rows, int cols, CMap* map )
 {
-	map = new CMap;
-	map->Init( rows, cols );
+ 	map = new CMap;
+ 	map->Init( rows, cols );
 }
 
 }
