@@ -238,6 +238,7 @@
     <ClCompile Include="MapView.cpp" />
     <ClCompile Include="MapViewGraphicsScene.cpp" />
     <ClCompile Include="MapViewHexItem.cpp" />
+    <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="model\Map.cpp" />
     <ClCompile Include="model\MapItem.cpp" />
     <ClCompile Include="QActionRepository.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="GameModeStandard.h" />
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h" />
     <ClInclude Include="MapFactory.h" />
+    <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="model\Map.h" />
     <ClInclude Include="model\MapItem.h" />
     <ClInclude Include="TerrainType.h" />

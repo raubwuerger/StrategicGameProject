@@ -4,11 +4,12 @@
 namespace GDModel
 {
 
-CMapItem::CMapItem()
+CMapItem::CMapItem( int row, int col )
 	: m_CenterPoint(0,0),
-		m_Row(-1),
-		m_Col(-1),
-		m_Type(nullptr)
+		m_Row(row),
+		m_Col(col),
+		m_Type(nullptr),
+		m_Owner(nullptr)
 {
 }
 
