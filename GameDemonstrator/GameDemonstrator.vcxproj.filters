@@ -303,7 +303,7 @@
       <Filter>Source Dateien</Filter>
     </ClCompile>
     <ClCompile Include="GameInitialisationData.cpp">
-      <Filter>Source Dateien</Filter>
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,7 +380,7 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="GameInitialisationData.h">
-      <Filter>Header Dateien</Filter>
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

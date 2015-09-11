@@ -3,6 +3,7 @@
 #include "MapViewGraphicsScene.h"
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
+#include "GameInitialisationData.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
@@ -19,9 +20,9 @@ MapView::~MapView()
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
 #include "TerrainType.h"
-void MapView::Init( int cols, int rows, const CTerrainType *defaultTerrainType )
+void MapView::Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
 {
-	m_MapEventManager->InitMapItemsRegistry(rows,cols);
+	m_MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
 
 	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
 	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_Scene,SLOT(HexActive(int,int)));
@@ -29,10 +30,10 @@ void MapView::Init( int cols, int rows, const CTerrainType *defaultTerrainType )
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( cols, rows, hexagonTemplate, defaultTerrainType->GetImage() );
+	CreateTestMap( data.Cols, data.Rows, hexagonTemplate, defaultTerrainType->GetImage() );
 
 	setScene(m_Scene);
-	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
+	setSceneRect(0, 0, CalcMapWidthInPixel(data.Cols,hexagonTemplate), CalcMapHeightInPixel(data.Rows,hexagonTemplate) );
 
 	setDragMode(ScrollHandDrag);
 }

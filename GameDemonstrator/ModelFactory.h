@@ -4,6 +4,7 @@ namespace GDModel
 {
 
 class CMap;
+class CGameInitialisationData;
 
 class CModelFactory
 {
@@ -13,7 +14,7 @@ public:
 	/** */
 	~CModelFactory();
 	/** */
-	void CreateEmptyMap( int rows, int cols,  CMap* map );
+	void CreateEmptyMap( const GDModel::CGameInitialisationData& data,  CMap* map );
 };
 
 }
