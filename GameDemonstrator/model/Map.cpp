@@ -42,4 +42,9 @@ void CMap::Release()
 	MapItems.clear();
 }
 
+const QVector< QVector<GDModel::CMapItem*> >& CMap::GetMapItems() const
+{
+	return MapItems;
+}
+
 }

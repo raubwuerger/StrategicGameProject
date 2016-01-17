@@ -1,5 +1,4 @@
-#ifndef QACTIONREPOSITORY_H
-#define QACTIONREPOSITORY_H
+#pragma once
 
 #include <QObject>
 
@@ -18,4 +17,3 @@ private:
 	QList<QAction*>	m_Actions;
 };
 
-#endif // QACTIONREPOSITORY_H

@@ -17,6 +17,8 @@ public:
 	void Init( int rows, int cols );
 	/** */
 	void Release();
+	/** Get MapItems */	
+	const QVector< QVector<GDModel::CMapItem*> >& GetMapItems() const;
 private:
 	QVector< QVector<GDModel::CMapItem*> >	MapItems;
 };

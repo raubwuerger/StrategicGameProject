@@ -14,6 +14,7 @@ class MapView;
 class CEditorToolbox;
 class CMapEventManager;
 class CTerrainTypeEditor;
+class COwnerTypeRepository;
 
 namespace jha
 {
@@ -41,9 +42,9 @@ private:
 	void InitMainGameThread();
 	void InitLoggingFramwork();
 	bool LoadTerrainTypes();
+	bool LoadOwnerTypes();
 	bool ReadTerrainTypes(QIODevice *device);
 	void CreateEditorToolbox( CTerrainTypeRepository *repository, CTerrainTypeEditor *terrainTypeEditor );
-	void CreateTerrainTypeRepository();
 	CTerrainTypeEditor* CreateTerrainTypeEditor( CTerrainTypeRepository *terrainTypeRepository, CMapEventManager* mapEventManager );
 private:
 	QMenu	*m_FileMenu;
@@ -56,6 +57,7 @@ private:
 	GameMainLoop		*m_MainGameLoop;
 	jha::LoggingTableWidget	*m_DockWidgetLogging;
 	CTerrainTypeRepository	*m_TerrainTypeRepository;
+	COwnerTypeRepository	*m_OwnerTypeRepository;
 	MapView				*mapView;
 
 	CEditorToolbox		*m_EditorToolbox;

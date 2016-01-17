@@ -57,6 +57,15 @@
     <Filter Include="Source Dateien\Model">
       <UniqueIdentifier>{f8f8ca81-e792-4e7e-8b26-9cf8cc769e11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\IO">
+      <UniqueIdentifier>{be895a2f-8bd5-4887-a12c-04da0c74a39c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Dateien\Utilities">
+      <UniqueIdentifier>{c2a2e3a8-36ef-4611-9659-c81d923fc81a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Utilities">
+      <UniqueIdentifier>{e65480fc-38e1-44dc-83a2-57bd92a24dc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -305,6 +314,30 @@
     <ClCompile Include="GameInitialisationData.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="SerializerInterface.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveBinary.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="OwnerType.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="OwnerTypeFactory.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OwnerTypeFactory.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OwnerTypeFactory.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLTools.cpp">
+      <Filter>Source Dateien\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="OwnerTypeRepository.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -376,11 +409,26 @@
     <ClInclude Include="ModelFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="GameFactory.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="GameInitialisationData.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializerInterface.h">
+      <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveBinary.h">
+      <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="OwnerType.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLTools.h">
+      <Filter>Header Dateien\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="OwnerTypeRepository.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -429,9 +477,6 @@
     <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
-    <CustomBuild Include="CreateNewMap.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="CreateNewMapDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
@@ -458,6 +503,12 @@
     </CustomBuild>
     <CustomBuild Include="MapViewHexItem.h">
       <Filter>Header Dateien\UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CreateNewMap.h">
+      <Filter>Header Dateien\Model</Filter>
+    </CustomBuild>
+    <CustomBuild Include="OwnerTypeFactory.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

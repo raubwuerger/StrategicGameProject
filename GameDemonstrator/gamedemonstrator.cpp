@@ -8,6 +8,7 @@
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
 #include "TerrainTypeEditor.h"
+#include "OwnerTypeRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -15,6 +16,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	m_MainGameLoop(nullptr),
 	m_HexItemInfoDialog(nullptr),
 	m_TerrainTypeRepository(nullptr),
+	m_OwnerTypeRepository(nullptr),
 	m_EditorToolbox(nullptr),
 	m_FileMenu(nullptr),
 	m_ViewMenu(nullptr),
@@ -30,8 +32,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	mapView = new MapView(this);
 
 	InitLoggingFramwork();
-	CreateTerrainTypeRepository();
 	LoadTerrainTypes();
+	LoadOwnerTypes();
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
@@ -64,6 +66,7 @@ GameDemonstrator::~GameDemonstrator()
 {
 	delete m_ActionRepository;
 	delete m_TerrainTypeRepository;
+	delete m_OwnerTypeRepository;
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()
@@ -190,6 +193,8 @@ void GameDemonstrator::InitLoggingFramwork()
 #include "TerrainTypeRepository.h"
 bool GameDemonstrator::LoadTerrainTypes()
 {
+	m_TerrainTypeRepository = new CTerrainTypeRepository;
+
 	jha::GetLog()->Log("Loading TerrainTypes.xml ...", LEVEL::LL_MESSAGE);
 	QString fileName(".\\conf\\TerrainTypes.xml");
 
@@ -241,6 +246,63 @@ bool GameDemonstrator::LoadTerrainTypes()
 	return true;
 }
 
+#include "OwnerTypeFactory.h"
+#include "OwnerTypeRepository.h"
+bool GameDemonstrator::LoadOwnerTypes()
+{
+	m_OwnerTypeRepository = new COwnerTypeRepository;
+
+	jha::GetLog()->Log("Loading OwnerTypes.xml ...", LEVEL::LL_MESSAGE);
+	QString fileName(".\\conf\\OwnerTypes.xml");
+
+	QFile file(fileName);
+	if( file.open(QFile::ReadOnly | QFile::Text) == false )
+	{
+		QMessageBox::warning(this, tr("SAX Bookmarks"),
+			tr("Cannot read file %1:\n%2.")
+			.arg(fileName)
+			.arg(file.errorString()));
+		return false;
+	}
+
+	QString errorStr;
+	int errorLine;
+	int errorColumn;
+	QDomDocument domDocument;
+
+	if( domDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
+	{
+		QMessageBox::information(window(), tr("DOM Bookmarks"),
+			tr("Parse error at line %1, column %2:\n%3")
+			.arg(errorLine)
+			.arg(errorColumn)
+			.arg(errorStr));
+		return false;
+	}
+
+	QDomElement root = domDocument.documentElement();
+	if( root.tagName() != "OwnerTypes") 
+	{
+		QMessageBox::information(window(), tr("DOM Bookmarks"), tr("The file is not an OwnerTypes file."));
+		return false;
+	}
+
+	if (root.hasAttribute("version") && root.attribute("version") != "1.0") 
+	{
+		QMessageBox::information(window(), tr("DOM Bookmarks"), tr("The file is not an OwnerTypes version 1.0 file."));
+		return false;
+	}
+
+	QDomNodeList ownerTypeNodes = root.childNodes();
+	for( int i=0; i <ownerTypeNodes.count(); i++ )
+	{
+		m_OwnerTypeRepository->RegisterOwnerType( COwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
+	}
+	m_OwnerTypeRepository->SetDefaultOwnerType( m_OwnerTypeRepository->FindOwnerTypeById(1) );
+	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(m_OwnerTypeRepository->GetCount()), LEVEL::LL_MESSAGE);
+	return true;
+}
+
 #include "TerrainType.h"
 #include "TerrainTypeRepository.h"
 #include "EditorToolbox.h"
@@ -257,11 +319,6 @@ void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository, 
 	dockCountry->setWidget( m_EditorToolbox );
 	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
 	m_ViewMenu->addAction(dockCountry->toggleViewAction());
-}
-
-void GameDemonstrator::CreateTerrainTypeRepository()
-{
-	m_TerrainTypeRepository = new CTerrainTypeRepository;
 }
 
 #include "TerrainTypeEditor.h"

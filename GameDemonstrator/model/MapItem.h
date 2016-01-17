@@ -1,7 +1,7 @@
 #pragma once
 
 class CTerrainType;
-class COwner;
+class COwnerType;
 
 namespace GDModel
 {
@@ -18,7 +18,7 @@ private:
 	int				m_Row;
 	int				m_Col;
 	CTerrainType	*m_Type;
-	COwner			*m_Owner;
+	COwnerType		*m_Owner;
 };
 
 
