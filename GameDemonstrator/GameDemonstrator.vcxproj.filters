@@ -275,9 +275,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_TerrainTypeEditor.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="EditorToolbox.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
     <ClCompile Include="TerrainTypeEditor.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
@@ -337,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="OwnerTypeRepository.cpp">
       <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorToolbox.cpp">
+      <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -480,9 +480,6 @@
     <CustomBuild Include="CreateNewMapDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="EditorToolbox.h">
-      <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
     <CustomBuild Include="TerrainTypeEditor.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
@@ -510,6 +507,9 @@
     <CustomBuild Include="OwnerTypeFactory.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
+    <CustomBuild Include="EditorToolbox.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameDemonstrator.rc">
@@ -520,5 +520,8 @@
     <Image Include="GameDemonstrator.ico">
       <Filter>Resource Dateien</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

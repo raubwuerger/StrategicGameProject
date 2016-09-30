@@ -16,9 +16,16 @@ bool CSaveBinary::SerializeMap( const GDModel::CMap& map )
 {
 	QFile file("MapFile.dat");
 	file.open(QIODevice::WriteOnly);
-	QDataStream out(&file);   // we will serialize the data into the file
-	out << QString("the answer is");   // serialize a string
-	out << (qint32)42;
+	QDataStream out(&file);
+
+	for( int row = 0; row < map.GetMapItems().size(); row++ )
+	{
+		for( int col = 0;  col < map.GetMapItems().at(row).size(); col++ )
+		{
+			out << map.GetMapItems().at(row).begin();
+		}
+	}
+
 	return false;
 }
 

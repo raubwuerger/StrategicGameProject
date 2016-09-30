@@ -21,5 +21,4 @@ private:
 	COwnerType		*m_Owner;
 };
 
-
 }

@@ -15,7 +15,7 @@ public:
 	CEditorToolbox(QWidget *parent);
 	/** */
 	~CEditorToolbox();
-	/** */
+	/** Erzeugt die Toolboxeinträge */
 	void Create( CTerrainTypeRepository *repository );
 private:
 	/** */

@@ -4,6 +4,9 @@
 #include "model\Map.h"
 #include "MapView.h"
 
+//Initialisierung von static membern
+GDModel::CMap* CGameFactory::Map = nullptr;
+
 CGameFactory::CGameFactory()
 {
 }
@@ -23,8 +26,10 @@ void CGameFactory::CreateModel( const GDModel::CGameInitialisationData& data )
 {
 	GDModel::CModelFactory modelFactory;
 
-	GDModel::CMap map;
-	modelFactory.CreateEmptyMap( data, &map );
+	delete Map;
+	Map = new GDModel::CMap;
+
+	modelFactory.CreateEmptyMap( data, Map );
 }
 
 void CGameFactory::CreateMap( const GDModel::CGameInitialisationData& data, MapView *mapView, const CTerrainType * defaultTerrainType )
