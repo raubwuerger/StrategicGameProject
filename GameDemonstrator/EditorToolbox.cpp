@@ -6,9 +6,9 @@
 
 CEditorToolbox::CEditorToolbox(QWidget *parent)
 	: QToolBox(parent),
-	m_GroupTerrainTypes(nullptr),
-	m_GroupBuildings(nullptr),
-	m_TerrainTypeEditor(nullptr)
+	GroupTerrainTypes(nullptr),
+	GroupBuildings(nullptr),
+	TerrainTypeEditor(nullptr)
 {
 }
 
@@ -19,9 +19,9 @@ CEditorToolbox::~CEditorToolbox()
 
 void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 {
-	m_GroupTerrainTypes = new QButtonGroup(this);
+	GroupTerrainTypes = new QButtonGroup(this);
 
-	connect(m_GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
+	connect(GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
 	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
@@ -33,7 +33,7 @@ void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 	{
 		QString terrainPictureName(baseTerrainPicturePath);
 		terrainPictureName += terrainTypes.value()->GetPicturePath();
-		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), m_GroupTerrainTypes, new CConnectorButtonTerrainTypeId( terrainTypes.value()->GetId()), terrainPictureName ), rowIndex++, 0);
+		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), GroupTerrainTypes, new CConnectorButtonTerrainTypeId( terrainTypes.value()->GetId()), terrainPictureName ), rowIndex++, 0);
 		terrainTypes++;
 	}
 
@@ -43,7 +43,7 @@ void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 	itemTerrainType->setLayout(layoutTerrainTypes);
 	addItem(itemTerrainType, tr("Terrain Types"));
 
-	m_GroupBuildings = new QButtonGroup(this);
+	GroupBuildings = new QButtonGroup(this);
 	QGridLayout *layoutBuildings = new QGridLayout;
 	layoutBuildings->setRowStretch(2, 10);
 	layoutBuildings->setColumnStretch(2, 10);
@@ -68,7 +68,7 @@ QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGro
 	buttonGroup->addButton(button);
 
 	connect( button, SIGNAL(pressed()), connector, SLOT(Trigger()) );
-	connect( connector, SIGNAL(TerrainTypeActive(int)), m_TerrainTypeEditor, SLOT(ActivateTerrainType(int)) );
+	connect( connector, SIGNAL(TerrainTypeActive(int)), TerrainTypeEditor, SLOT(ActivateTerrainType(int)) );
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
@@ -113,12 +113,12 @@ void CEditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 /* CConnectorButtonTerrainTypeId                                        */
 /************************************************************************/
 CConnectorButtonTerrainTypeId::CConnectorButtonTerrainTypeId( int terrainTypeId ) 
-	: m_TerrainTypeId(terrainTypeId)
+	: TerrainTypeId(terrainTypeId)
 {
 
 }
 
 void CConnectorButtonTerrainTypeId::Trigger()
 {
-	emit TerrainTypeActive(m_TerrainTypeId);
+	emit TerrainTypeActive(TerrainTypeId);
 }

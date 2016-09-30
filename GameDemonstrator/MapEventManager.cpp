@@ -3,7 +3,7 @@
 
 CMapEventManager::CMapEventManager(QObject *parent)
 	: QObject(parent),
-	m_HexItemInfoDialog(nullptr)
+	HexItemInfoDialog(nullptr)
 {
 
 }
@@ -42,12 +42,12 @@ void CMapEventManager::UpdateMapItemInfo( int row, int col )
 	{
 		return;
 	}
-	if( m_HexItemInfoDialog == nullptr )
+	if( HexItemInfoDialog == nullptr )
 	{
 		return;
 	}
 
 	MapViewHexItem *item = MapItems[row][col];
-	m_HexItemInfoDialog->ui.lineEditCol->setText( QString::number(item->GetCol()) );
-	m_HexItemInfoDialog->ui.lineEditRow->setText( QString::number(item->GetRow()) );
+	HexItemInfoDialog->ui.lineEditCol->setText( QString::number(item->GetCol()) );
+	HexItemInfoDialog->ui.lineEditRow->setText( QString::number(item->GetRow()) );
 }

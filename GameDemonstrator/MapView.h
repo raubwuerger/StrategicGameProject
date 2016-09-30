@@ -22,9 +22,9 @@ public:
 	/** */
 	void Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType );
 public:
-	MapViewGraphicsScene	*m_Scene;
-	HexItemEventManager		*m_HexItemEventManager;
-	CMapEventManager		*m_MapEventManager;
+	MapViewGraphicsScene	*Scene;
+	HexItemEventManager		*HexItemEventManager;
+	CMapEventManager		*MapEventManager;
 private:
 	/** */
 	void CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType );

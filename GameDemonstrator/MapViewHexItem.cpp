@@ -5,10 +5,10 @@
 /* MapViewHexItemData                                                   */
 /************************************************************************/
 HexagonData::HexagonData( double sideLength )
-	: sideLength(sideLength),
-	width(0.0),
-	height(0.0),
-	side(0.0)
+	: SideLength(sideLength),
+	Width(0.0),
+	Height(0.0),
+	Side(0.0)
 {
 	calcWidth();
 	calcHeight();
@@ -19,38 +19,38 @@ HexagonData::HexagonData( double sideLength )
 
 void HexagonData::calcWidth()
 {
-	width = 2.0 * sideLength;
+	Width = 2.0 * SideLength;
 }
 
 void HexagonData::calcHeight()
 {
-	height = sqrt(3) * sideLength;
+	Height = sqrt(3) * SideLength;
 }
 
 void HexagonData::calcSide()
 {
-	side = 3.0 / 2.0 * sideLength;
+	Side = 3.0 / 2.0 * SideLength;
 }
 
 void HexagonData::calcBoundingRect()
 {
-	boundingRect = QRectF(QPointF(-width,-height),QSizeF(width, height));
+	BoundingRect = QRectF(QPointF(-Width,-Height),QSizeF(Width, Height));
 }
 
 void HexagonData::calcHexPointsOrigin()
 {
-	hexPoints << QPointF(0,height*0.5) 
-		<< QPointF(width - side,0.0) 
-		<< QPointF(side,0.0) 
-		<< QPointF(width,height*0.5) 
-		<< QPointF(side,height) 
-		<< QPointF(width - side,height);
+	HexPoints << QPointF(0,Height*0.5) 
+		<< QPointF(Width - Side,0.0) 
+		<< QPointF(Side,0.0) 
+		<< QPointF(Width,Height*0.5) 
+		<< QPointF(Side,Height) 
+		<< QPointF(Width - Side,Height);
 }
 
 void HexagonData::MovePosition( const QPointF& topLeft )
 {
-	boundingRect.moveTopLeft( topLeft );
-	hexPoints.translate( topLeft );
+	BoundingRect.moveTopLeft( topLeft );
+	HexPoints.translate( topLeft );
 }
 
 /************************************************************************/
@@ -62,11 +62,11 @@ MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft,
 	col(-1),
 	row(-1),
 	eventItem(nullptr),
-	m_TerrainImage(nullptr)
+	TerrainImage(nullptr)
 {
 	this->data.MovePosition(topLeft);
-	this->centerPoint.rx() = topLeft.x() + (data.width / 2.0);
-	this->centerPoint.ry() = topLeft.y() + (data.height / 2.0);
+	this->centerPoint.rx() = topLeft.x() + (data.Width / 2.0);
+	this->centerPoint.ry() = topLeft.y() + (data.Height / 2.0);
 	
 	CreateHexPolygon(this->data);
 	setAcceptHoverEvents(true);
@@ -81,13 +81,13 @@ MapViewHexItem::~MapViewHexItem()
 void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = data.boundingRect;
+	QRectF textBoundingRect = data.BoundingRect;
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
 	textBoundingRect.setHeight( textBoundingRect.height() * 0.2 );
 	
 	QPointF centerPosText( centerPoint );
-	centerPosText.setX( data.boundingRect.x() + ((data.boundingRect.width() - textBoundingRect.width()) / 2.0) );
-	centerPosText.setY( data.boundingRect.y() + ((data.boundingRect.height() - textBoundingRect.height()) / 2.0) );
+	centerPosText.setX( data.BoundingRect.x() + ((data.BoundingRect.width() - textBoundingRect.width()) / 2.0) );
+	centerPosText.setY( data.BoundingRect.y() + ((data.BoundingRect.height() - textBoundingRect.height()) / 2.0) );
 
 	textBoundingRect.moveTopLeft( centerPosText );
 	
@@ -95,9 +95,9 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
 	painter->drawText( textBoundingRect, stringRowCol, textOption );
 
-	if( m_TerrainImage != nullptr )
+	if( TerrainImage != nullptr )
 	{
-		painter->drawImage( data.boundingRect.topLeft(), *m_TerrainImage );
+		painter->drawImage( data.BoundingRect.topLeft(), *TerrainImage );
 	}
 
 	QGraphicsPolygonItem::paint(painter,option,widget);
@@ -105,12 +105,12 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 
 QRectF MapViewHexItem::boundingRect() const
 {
-	return data.boundingRect;
+	return data.BoundingRect;
 }
 
 void MapViewHexItem::CreateHexPolygon( const HexagonData &data )
 {
-	setPolygon(data.hexPoints);
+	setPolygon(data.HexPoints);
 	setFlags(QGraphicsItem::ItemIsFocusable);
 }
 
@@ -156,7 +156,7 @@ void MapViewHexItem::SetRowAndCol( int row, int col )
 
 void MapViewHexItem::SetTerrainImage( const QImage * val )
 {
-	m_TerrainImage = val;
+	TerrainImage = val;
 }
 
 /************************************************************************/

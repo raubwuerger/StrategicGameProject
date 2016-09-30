@@ -19,9 +19,9 @@ public slots:
 	void DoCreateNewMap();
 private:
 	friend class CMapFactory;
-	MapView	*m_MapView;
-	const CTerrainType	*m_DefaultTerrainType;
-	GDModel::CGameInitialisationData *m_GameData;
+	MapView	*MapView;
+	const CTerrainType	*DefaultTerrainType;
+	GDModel::CGameInitialisationData *GameData;
 };
 
 #endif // CREATENEWMAP_H

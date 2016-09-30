@@ -9,13 +9,13 @@ QActionRepository::QActionRepository(QObject *parent)
 
 QActionRepository::~QActionRepository()
 {
-	while( m_Actions.isEmpty() == false )
+	while( Actions.isEmpty() == false )
 	{
-		delete m_Actions.takeFirst();
+		delete Actions.takeFirst();
 	}
 }
 
 void QActionRepository::AddAction( QAction* action )
 {
-	m_Actions.push_back( action );
+	Actions.push_back( action );
 }

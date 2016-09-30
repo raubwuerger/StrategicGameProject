@@ -25,7 +25,7 @@ public:
 	/** Set m_DefaultTerrainType */
 	void SetDefaultOwnerType( const GDModel::COwnerType* val);
 private:
-	QMap<int,GDModel::COwnerType*>	m_OwnerTypes;
-	const GDModel::COwnerType*			m_DefaultOwnerType;
+	QMap<int,GDModel::COwnerType*>	OwnerTypes;
+	const GDModel::COwnerType*			DefaultOwnerType;
 };
 

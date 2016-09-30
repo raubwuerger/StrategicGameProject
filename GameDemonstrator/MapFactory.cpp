@@ -14,8 +14,8 @@ CMapFactory::~CMapFactory()
 CCreateNewMap* CMapFactory::CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const CTerrainType *defaultTerrainType )
 {
 	CCreateNewMap *newMapCreator = new CCreateNewMap(parent);
-	newMapCreator->m_MapView = mapView;
-	newMapCreator->m_DefaultTerrainType = defaultTerrainType;
+	newMapCreator->MapView = mapView;
+	newMapCreator->DefaultTerrainType = defaultTerrainType;
 	QObject::connect(action, SIGNAL(triggered()), newMapCreator, SLOT(DoCreateNewMap()), Qt::QueuedConnection );
 
 	return newMapCreator;

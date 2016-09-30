@@ -3,7 +3,7 @@
 #include "TerrainType.h"
 
 CTerrainTypeRepository::CTerrainTypeRepository()
-	: m_DefaultTerrainType(nullptr)
+	: DefaultTerrainType(nullptr)
 {
 }
 
@@ -19,19 +19,19 @@ bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
 		Q_ASSERT(false);
 		return false;
 	}
-	QMap<int,CTerrainType*>::const_iterator allreadyExists = m_TerrainTypes.find(terrainType->GetId() );
-	if( allreadyExists != m_TerrainTypes.end() )
+	QMap<int,CTerrainType*>::const_iterator allreadyExists = TerrainTypes.find(terrainType->GetId() );
+	if( allreadyExists != TerrainTypes.end() )
 	{
 		return false;
 	}
-	m_TerrainTypes.insert( terrainType->GetId(), terrainType );
+	TerrainTypes.insert( terrainType->GetId(), terrainType );
 	return true;
 }
 
 CTerrainType* CTerrainTypeRepository::FindTerrainTypeById( int id )
 {
-	QMap<int,CTerrainType*>::iterator exists = m_TerrainTypes.find( id );
-	if( exists == m_TerrainTypes.end() )
+	QMap<int,CTerrainType*>::iterator exists = TerrainTypes.find( id );
+	if( exists == TerrainTypes.end() )
 	{
 		return nullptr;
 	}
@@ -40,25 +40,25 @@ CTerrainType* CTerrainTypeRepository::FindTerrainTypeById( int id )
 
 int CTerrainTypeRepository::GetCount() const
 {
-	return m_TerrainTypes.size();
+	return TerrainTypes.size();
 }
 
 QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetFirstIterator() const
 {
-	return m_TerrainTypes.cbegin();
+	return TerrainTypes.cbegin();
 }
 
 QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetLastIterator() const
 {
-	return m_TerrainTypes.cend();
+	return TerrainTypes.cend();
 }
 
 const CTerrainType* CTerrainTypeRepository::GetDefaultTerrainType() const
 {
-	return m_DefaultTerrainType;
+	return DefaultTerrainType;
 }
 
 void CTerrainTypeRepository::SetDefaultTerrainType( const CTerrainType* val )
 {
-	m_DefaultTerrainType = val;
+	DefaultTerrainType = val;
 }

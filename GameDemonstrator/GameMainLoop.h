@@ -25,7 +25,7 @@ signals:
 	void TurnFinished( QDate date );
 private:
 	GameMainCounter	*GameCounter;
-	bool	m_RunLoop;
+	bool	RunLoop;
 };
 
 #endif // GAMEMAINLOOP_H

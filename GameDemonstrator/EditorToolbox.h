@@ -25,9 +25,9 @@ private slots:
 	void ButtonGroupTerrainTypes(QAbstractButton *button);
 private:
 	friend class GameDemonstrator;
-	QButtonGroup		*m_GroupTerrainTypes;
-	QButtonGroup		*m_GroupBuildings;
-	CTerrainTypeEditor	*m_TerrainTypeEditor;
+	QButtonGroup		*GroupTerrainTypes;
+	QButtonGroup		*GroupBuildings;
+	CTerrainTypeEditor	*TerrainTypeEditor;
 };
 
 //================================================================================
@@ -44,7 +44,7 @@ signals:
 	/** */
 	void TerrainTypeActive( int terrainTypeId );
 private:
-	int m_TerrainTypeId;
+	int TerrainTypeId;
 };
 
 #endif // CEDITORTOOLBOX_H

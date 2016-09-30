@@ -22,8 +22,8 @@ void GameMainThread::run()
 void GameMainThread::Init( GameMainLoop *gameMainLoop )
 {
 	connect(m_TriggerGameMainLoop, SIGNAL(timeout()), this, SLOT(CheckTriggerGameMainLoop()));
-	connect(gameMainLoop, SIGNAL(TurnFinished(QDate)), this, SLOT(TurnFinished()));
-	connect(this, SIGNAL(TriggerGameMainLoop()), gameMainLoop, SLOT(Run()));
+	connect(gameMainLoop, SIGNAL(m_TurnFinished(QDate)), this, SLOT(m_TurnFinished()));
+	connect(this, SIGNAL(m_TriggerGameMainLoop()), gameMainLoop, SLOT(Run()));
 	m_TriggerGameMainLoop->start(100);
 }
 
@@ -41,4 +41,3 @@ void GameMainThread::TurnFinished()
 {
 	m_TurnFinished = true;
 }
-

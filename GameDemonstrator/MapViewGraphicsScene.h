@@ -22,10 +22,10 @@ protected:
 	/** */
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 private:
-	int m_ActiveRow;
-	int m_ActiveCol;
+	int ActiveRow;
+	int ActiveCol;
 	friend class MapView;
-	HexItemEventManager	*m_HexItemEventManager;
+	HexItemEventManager	*HexItemEventManager;
 };
 
 #endif // MAPVIEWGRAPHICSSCENE_H

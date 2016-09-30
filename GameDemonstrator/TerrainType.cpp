@@ -2,29 +2,29 @@
 #include "TerrainType.h"
 
 CTerrainType::CTerrainType( int id )
-	: m_Id(id),
-	m_Oil(0),
-	m_Timber(0),
-	m_MovementModifier(0),
-	m_DefenseModifier(0),
-	m_Infrastructure(0),
-	m_Image(nullptr)
+	: Id(id),
+	Oil(0),
+	Timber(0),
+	MovementModifier(0),
+	DefenseModifier(0),
+	Infrastructure(0),
+	Image(nullptr)
 {
 }
 
 CTerrainType::~CTerrainType()
 {
-	delete m_Image;
+	delete Image;
 }
 
 int CTerrainType::GetId() const
 {
-	return m_Id;
+	return Id;
 }
 
 QColor CTerrainType::InterpolateColorByType() const
 {
-	switch( m_Id )
+	switch( Id )
 	{
 	case 1:
 		return QColor(Qt::green);
@@ -43,15 +43,15 @@ QColor CTerrainType::InterpolateColorByType() const
 
 const QString& CTerrainType::GetName() const
 {
-	return m_Name;
+	return Name;
 }
 
 void CTerrainType::SetImage( const QImage * val )
 {
-	m_Image = val;
+	Image = val;
 }
 
 const QImage * CTerrainType::GetImage() const
 {
-	return m_Image;
+	return Image;
 }

@@ -24,18 +24,18 @@ CTerrainType* CTerrainTypeFactory::CreateTerrainTypeFromXML( const QDomNode& nod
 	CTerrainType *newTerrainType = new CTerrainType( node.attributes().namedItem("strId").nodeValue().toInt() );
 
 	CDomElementFinder finder(node);
-	finder.TryFindElement( "Oil", newTerrainType->m_Oil );
-	finder.TryFindElement( "Timber", newTerrainType->m_Timber );
-	finder.TryFindElement( "Infrastructure", newTerrainType->m_Infrastructure );
-	finder.TryFindElement( "MovementModifier", newTerrainType->m_MovementModifier );
-	finder.TryFindElement( "DefenseModifier", newTerrainType->m_DefenseModifier );
-	finder.TryFindElement( "Name", newTerrainType->m_Name );
-	finder.TryFindElement( "PicturePath", newTerrainType->m_PicturePath );
+	finder.TryFindElement( "Oil", newTerrainType->Oil );
+	finder.TryFindElement( "Timber", newTerrainType->Timber );
+	finder.TryFindElement( "Infrastructure", newTerrainType->Infrastructure );
+	finder.TryFindElement( "MovementModifier", newTerrainType->MovementModifier );
+	finder.TryFindElement( "DefenseModifier", newTerrainType->DefenseModifier );
+	finder.TryFindElement( "Name", newTerrainType->Name );
+	finder.TryFindElement( "PicturePath", newTerrainType->PicturePath );
 
 	//TODO: Wo werden die ganzen globalen Strings definiert!?
 	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	QString terrainPicturePath(baseTerrainPicturePath);
-	terrainPicturePath += newTerrainType->m_PicturePath;
+	terrainPicturePath += newTerrainType->PicturePath;
 	const QImage *terrainTypeImage = LoadTerrainTypeImage( terrainPicturePath );
 
 	if( terrainTypeImage == nullptr )

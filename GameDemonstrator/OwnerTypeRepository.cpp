@@ -3,7 +3,7 @@
 #include "OwnerType.h"
 
 COwnerTypeRepository::COwnerTypeRepository()
-	: m_DefaultOwnerType(nullptr)
+	: DefaultOwnerType(nullptr)
 {
 }
 
@@ -19,19 +19,19 @@ bool COwnerTypeRepository::RegisterOwnerType( GDModel::COwnerType *ownerType )
 		Q_ASSERT(false);
 		return false;
 	}
-	QMap<int,GDModel::COwnerType*>::const_iterator allreadyExists = m_OwnerTypes.find(ownerType->GetId() );
-	if( allreadyExists != m_OwnerTypes.end() )
+	QMap<int,GDModel::COwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
+	if( allreadyExists != OwnerTypes.end() )
 	{
 		return false;
 	}
-	m_OwnerTypes.insert( ownerType->GetId(), ownerType );
+	OwnerTypes.insert( ownerType->GetId(), ownerType );
 	return true;
 }
 
 GDModel::COwnerType* COwnerTypeRepository::FindOwnerTypeById( int id )
 {
-	QMap<int,GDModel::COwnerType*>::iterator exists = m_OwnerTypes.find( id );
-	if( exists == m_OwnerTypes.end() )
+	QMap<int,GDModel::COwnerType*>::iterator exists = OwnerTypes.find( id );
+	if( exists == OwnerTypes.end() )
 	{
 		return nullptr;
 	}
@@ -40,25 +40,25 @@ GDModel::COwnerType* COwnerTypeRepository::FindOwnerTypeById( int id )
 
 int COwnerTypeRepository::GetCount() const
 {
-	return m_OwnerTypes.size();
+	return OwnerTypes.size();
 }
 
 QMap<int,GDModel::COwnerType*>::const_iterator COwnerTypeRepository::GetFirstIterator() const
 {
-	return m_OwnerTypes.cbegin();
+	return OwnerTypes.cbegin();
 }
 
 QMap<int,GDModel::COwnerType*>::const_iterator COwnerTypeRepository::GetLastIterator() const
 {
-	return m_OwnerTypes.cend();
+	return OwnerTypes.cend();
 }
 
 const GDModel::COwnerType* COwnerTypeRepository::GetDefaultOwnerType() const
 {
-	return m_DefaultOwnerType;
+	return DefaultOwnerType;
 }
 
 void COwnerTypeRepository::SetDefaultOwnerType( const GDModel::COwnerType* val )
 {
-	m_DefaultOwnerType = val;
+	DefaultOwnerType = val;
 }

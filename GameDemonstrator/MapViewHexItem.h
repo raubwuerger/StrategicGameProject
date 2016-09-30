@@ -25,12 +25,12 @@ private:
 	/** */
 	void calcHexPointsOrigin();
 public:
-	double sideLength;
-	double width;
-	double height;
-	double side;
-	QRectF	boundingRect;
-	QPolygonF hexPoints;
+	double SideLength;
+	double Width;
+	double Height;
+	double Side;
+	QRectF	BoundingRect;
+	QPolygonF HexPoints;
 };
 
 //================================================================================
@@ -91,7 +91,7 @@ private:
 	int row;
 	int col;
 	QString	stringRowCol;
-	const QImage	*m_TerrainImage;
+	const QImage	*TerrainImage;
 };
 
 #endif // MAPVIEWHEXITEM_H

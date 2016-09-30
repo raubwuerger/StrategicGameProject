@@ -24,7 +24,7 @@ public:
 	/** Set m_DefaultTerrainType */
 	void SetDefaultTerrainType( const CTerrainType* val);
 private:
-	QMap<int,CTerrainType*>	m_TerrainTypes;
-	const CTerrainType*			m_DefaultTerrainType;
+	QMap<int,CTerrainType*>	TerrainTypes;
+	const CTerrainType*			DefaultTerrainType;
 };
 

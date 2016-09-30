@@ -21,9 +21,9 @@ public slots:
 	void ChangeTerrainTypeHexItem( int row, int col );
 private:
 	friend class GameDemonstrator;
-	CTerrainType			*m_ActiveTerrainType;
-	CTerrainTypeRepository	*m_TerrainTypeRepository;
-	CMapEventManager		*m_MapEventManager;
+	CTerrainType			*ActiveTerrainType;
+	CTerrainTypeRepository	*TerrainTypeRepository;
+	CMapEventManager		*MapEventManager;
 };
 
 #endif // TERRAINTYPEEDITOR_H

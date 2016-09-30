@@ -14,6 +14,6 @@ public:
 	/** */
 	void AddAction( QAction* action );
 private:
-	QList<QAction*>	m_Actions;
+	QList<QAction*>	Actions;
 };
 

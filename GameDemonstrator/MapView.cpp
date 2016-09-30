@@ -9,30 +9,30 @@ MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	m_Scene = new MapViewGraphicsScene(this);
+	Scene = new MapViewGraphicsScene(this);
 }
 
 MapView::~MapView()
 {
-	delete m_HexItemEventManager;
-	delete m_MapEventManager;
+	delete HexItemEventManager;
+	delete MapEventManager;
 }
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
 #include "TerrainType.h"
 void MapView::Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
 {
-	m_MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
+	MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
 
-	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
-	connect(m_HexItemEventManager,SIGNAL(HexItemEntered(int,int)),m_Scene,SLOT(HexActive(int,int)));
-	m_Scene->m_HexItemEventManager = m_HexItemEventManager;
+	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
+	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),Scene,SLOT(HexActive(int,int)));
+	Scene->HexItemEventManager = HexItemEventManager;
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );
 	CreateTestMap( data.Cols, data.Rows, hexagonTemplate, defaultTerrainType->GetImage() );
 
-	setScene(m_Scene);
+	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(data.Cols,hexagonTemplate), CalcMapHeightInPixel(data.Rows,hexagonTemplate) );
 
 	setDragMode(ScrollHandDrag);
@@ -43,9 +43,9 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 {
 	double startX = 0.0;
 	double startY = 0.0;
-	double offsetX = defaultHexagon.side;
-	double offsetY = defaultHexagon.height;
-	double offsetYEvenCol = defaultHexagon.height / 2.0;
+	double offsetX = defaultHexagon.Side;
+	double offsetY = defaultHexagon.Height;
+	double offsetYEvenCol = defaultHexagon.Height / 2.0;
 
 	for( size_t row = 0; row < mapHeight; row++ )
 	{
@@ -59,20 +59,20 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 			}
 			MapViewHexItem *mapItem = new MapViewHexItem( defaultHexagon, QPointF(cordX,cordY) );
 			mapItem->SetRowAndCol(row,col);
-			mapItem->SetHexItemEventManager( m_HexItemEventManager );
+			mapItem->SetHexItemEventManager( HexItemEventManager );
 			mapItem->SetTerrainImage( defaultTerrainType );
-			m_Scene->addItem( mapItem );
-			m_MapEventManager->RegisterMapItem( mapItem );
+			Scene->addItem( mapItem );
+			MapEventManager->RegisterMapItem( mapItem );
 		}
 	}
 }
 
 double MapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& hexagon ) const
 {
-	return hexagon.width + ( (hexagonCountCols - 1) * hexagon.side );
+	return hexagon.Width + ( (hexagonCountCols - 1) * hexagon.Side );
 }
 
 double MapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
 {
-	return (hexagon.height * hexagonCountRows) + ( hexagon.height / 2.0 );
+	return (hexagon.Height * hexagonCountRows) + ( hexagon.Height / 2.0 );
 }

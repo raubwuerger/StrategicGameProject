@@ -28,7 +28,7 @@ private:
 	QVector< QVector<MapViewHexItem*> >	MapItems;
 
 	friend class GameDemonstrator;
-	HexItemInfoDialog *m_HexItemInfoDialog;
+	HexItemInfoDialog *HexItemInfoDialog;
 };
 
 #endif // MAPEVENTMANAGER_H

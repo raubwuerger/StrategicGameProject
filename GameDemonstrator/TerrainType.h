@@ -14,21 +14,21 @@ public:
 	/** Get m_Name */	
 	const QString& GetName() const;
 	/** Get m_PicturePath */
-	const QString& GetPicturePath() const { return m_PicturePath; }
+	const QString& GetPicturePath() const { return PicturePath; }
 	/** Get m_Image */
 	const QImage * GetImage() const;
 	/** Set m_Image */
 	void SetImage( const QImage * val);
 private:
 	friend class CTerrainTypeFactory;
-	int			m_Id;
-	QString		m_Name;
-	QString		m_PicturePath;
-	int			m_Oil;
-	int			m_Timber;
-	int			m_MovementModifier;
-	int			m_DefenseModifier;
-	int			m_Infrastructure;
-	const QImage		*m_Image;
+	int			Id;
+	QString		Name;
+	QString		PicturePath;
+	int			Oil;
+	int			Timber;
+	int			MovementModifier;
+	int			DefenseModifier;
+	int			Infrastructure;
+	const QImage		*Image;
 };
 

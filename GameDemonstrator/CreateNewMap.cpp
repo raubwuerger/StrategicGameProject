@@ -7,11 +7,11 @@
 
 CCreateNewMap::CCreateNewMap(QObject *parent)
 	: QObject(parent),
-	m_MapView(nullptr),
-	m_DefaultTerrainType(nullptr),
-	m_GameData(nullptr)
+	MapView(nullptr),
+	DefaultTerrainType(nullptr),
+	GameData(nullptr)
 {
-	m_GameData = new GDModel::CGameInitialisationData;
+	GameData = new GDModel::CGameInitialisationData;
 }
 
 CCreateNewMap::~CCreateNewMap()
@@ -21,15 +21,15 @@ CCreateNewMap::~CCreateNewMap()
 
 void CCreateNewMap::DoCreateNewMap()
 {
-	Q_ASSERT(m_GameData);
+	Q_ASSERT(GameData);
 	CreateNewMapDialog dialog(nullptr);
 	if( dialog.exec() == QDialog::Rejected )
 	{
 		return;
 	}
 
-	m_GameData->Cols = dialog.GetTilesX();
-	m_GameData->Rows = dialog.GetTilesY();
+	GameData->Cols = dialog.GetTilesX();
+	GameData->Rows = dialog.GetTilesY();
 
-	CGameFactory().CreateNewGame( *m_GameData, m_MapView, m_DefaultTerrainType );
+	CGameFactory().CreateNewGame( *GameData, MapView, DefaultTerrainType );
 }

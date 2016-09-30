@@ -3,9 +3,9 @@
 
 MapViewGraphicsScene::MapViewGraphicsScene(QObject *parent)
 	: QGraphicsScene(parent),
-	m_ActiveCol(-1),
-	m_ActiveRow(-1),
-	m_HexItemEventManager(nullptr)
+	ActiveCol(-1),
+	ActiveRow(-1),
+	HexItemEventManager(nullptr)
 {
 
 }
@@ -23,15 +23,15 @@ void MapViewGraphicsScene::mouseReleaseEvent( QGraphicsSceneMouseEvent * event )
 #include "MapViewHexItem.h"
 void MapViewGraphicsScene::mousePressEvent( QGraphicsSceneMouseEvent *event )
 {
-	if( m_HexItemEventManager != nullptr )
+	if( HexItemEventManager != nullptr )
 	{
-		emit m_HexItemEventManager->HexItemPressed( m_ActiveRow, m_ActiveCol );
+		emit HexItemEventManager->HexItemPressed( ActiveRow, ActiveCol );
 	}
 	QGraphicsScene::mousePressEvent(event);
 }
 
 void MapViewGraphicsScene::HexActive( int row, int col )
 {
-	m_ActiveCol = col;
-	m_ActiveRow = row;
+	ActiveCol = col;
+	ActiveRow = row;
 }

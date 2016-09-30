@@ -43,14 +43,14 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
-	mapView->m_HexItemEventManager = new HexItemEventManager;
-	mapView->m_MapEventManager = new CMapEventManager(nullptr);
-	mapView->m_MapEventManager->m_HexItemInfoDialog = m_HexItemInfoDialog;
+	mapView->HexItemEventManager = new HexItemEventManager;
+	mapView->MapEventManager = new CMapEventManager(nullptr);
+	mapView->MapEventManager->HexItemInfoDialog = m_HexItemInfoDialog;
 
-	CTerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( m_TerrainTypeRepository, mapView->m_MapEventManager );
+	CTerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( m_TerrainTypeRepository, mapView->MapEventManager );
 	CreateEditorToolbox( m_TerrainTypeRepository, terrainTypeEditor );
 
-	connect( mapView->m_HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
+	connect( mapView->HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
 
 	layoutMain->addWidget(mapView);
 
@@ -312,7 +312,7 @@ void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository, 
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	m_EditorToolbox = new CEditorToolbox(dockCountry);
-	m_EditorToolbox->m_TerrainTypeEditor = terrainTypeEditor;
+	m_EditorToolbox->TerrainTypeEditor = terrainTypeEditor;
 	m_EditorToolbox->Create(repository);
 //	m_EditorToolbox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
 
@@ -325,7 +325,7 @@ void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository, 
 CTerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( CTerrainTypeRepository *terrainTypeRepository, CMapEventManager*mapEventManager )
 {
 	CTerrainTypeEditor *terrainTypeEditor = new CTerrainTypeEditor(nullptr);
-	terrainTypeEditor->m_TerrainTypeRepository = terrainTypeRepository;
-	terrainTypeEditor->m_MapEventManager = mapEventManager;
+	terrainTypeEditor->TerrainTypeRepository = terrainTypeRepository;
+	terrainTypeEditor->MapEventManager = mapEventManager;
 	return terrainTypeEditor;
 }

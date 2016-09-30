@@ -7,7 +7,6 @@ class GameMainLoop;
 class GameMainThread : public QThread
 {
 	Q_OBJECT
-
 public:
 	/** */
 	GameMainThread();

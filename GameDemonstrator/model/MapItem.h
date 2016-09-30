@@ -14,11 +14,11 @@ public:
 	/** */
 	~CMapItem();
 private:
-	QPoint			m_CenterPoint;
-	int				m_Row;
-	int				m_Col;
-	CTerrainType	*m_Type;
-	COwnerType		*m_Owner;
+	QPoint			CenterPoint;
+	int				Row;
+	int				Col;
+	CTerrainType	*Type;
+	COwnerType		*Owner;
 };
 
 }

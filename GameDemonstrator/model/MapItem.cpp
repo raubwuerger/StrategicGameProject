@@ -5,11 +5,11 @@ namespace GDModel
 {
 
 CMapItem::CMapItem( int row, int col )
-	: m_CenterPoint(0,0),
-		m_Row(row),
-		m_Col(col),
-		m_Type(nullptr),
-		m_Owner(nullptr)
+	: CenterPoint(0,0),
+		Row(row),
+		Col(col),
+		Type(nullptr),
+		Owner(nullptr)
 {
 }
 

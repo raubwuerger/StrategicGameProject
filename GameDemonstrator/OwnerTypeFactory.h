@@ -16,6 +16,6 @@ public:
 	/** */
 	GDModel::COwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
 private:
-	COwnerTypeRepository	*m_OwnerTypeRepository;
+	COwnerTypeRepository	*OwnerTypeRepository;
 };
 
