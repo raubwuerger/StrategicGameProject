@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "HexItemInfoDialog.h"
 
-HexItemInfoDialog::HexItemInfoDialog(QWidget *parent)
+CHexItemInfoDialog::CHexItemInfoDialog(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
 }
 
-HexItemInfoDialog::~HexItemInfoDialog()
+CHexItemInfoDialog::~CHexItemInfoDialog()
 {
 
 }

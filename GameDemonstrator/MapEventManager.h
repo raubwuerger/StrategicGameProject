@@ -3,7 +3,7 @@
 
 #include <QObject>
 class MapViewHexItem;
-class HexItemInfoDialog;
+class CHexItemInfoDialog;
 
 class CMapEventManager : public QObject
 {
@@ -28,7 +28,7 @@ private:
 	QVector< QVector<MapViewHexItem*> >	MapItems;
 
 	friend class GameDemonstrator;
-	HexItemInfoDialog *HexItemInfoDialog;
+	CHexItemInfoDialog *HexItemInfoDialog;
 };
 
 #endif // MAPEVENTMANAGER_H

@@ -1,5 +1,5 @@
-#ifndef MAPVIEW_H
-#define MAPVIEW_H
+#ifndef CMAPVIEW_H
+#define CMAPVIEW_H
 
 #include <QGraphicsView>
 class MapViewGraphicsScene;
@@ -10,15 +10,15 @@ class CTerrainType;
 
 namespace GDModel { class CGameInitialisationData; }
 
-class MapView : public QGraphicsView
+class CMapView : public QGraphicsView
 {
 	Q_OBJECT
 
 public:
 	/** */
-	MapView(QWidget *parent);
+	CMapView(QWidget *parent);
 	/** */
-	~MapView();
+	~CMapView();
 	/** */
 	void Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType );
 public:
@@ -35,4 +35,4 @@ private:
 private:
 };
 
-#endif // MAPVIEW_H
+#endif // CMAPVIEW_H

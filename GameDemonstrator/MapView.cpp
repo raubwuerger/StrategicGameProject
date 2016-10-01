@@ -5,14 +5,14 @@
 #include "MapEventManager.h"
 #include "GameInitialisationData.h"
 
-MapView::MapView(QWidget *parent)
+CMapView::CMapView(QWidget *parent)
 	: QGraphicsView(parent)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	Scene = new MapViewGraphicsScene(this);
 }
 
-MapView::~MapView()
+CMapView::~CMapView()
 {
 	delete HexItemEventManager;
 	delete MapEventManager;
@@ -20,7 +20,7 @@ MapView::~MapView()
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
 #include "TerrainType.h"
-void MapView::Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
+void CMapView::Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
 {
 	MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
 
@@ -39,7 +39,7 @@ void MapView::Init( const GDModel::CGameInitialisationData &data, const CTerrain
 }
 
 #include "MapViewHexItem.h"
-void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType  )
+void CMapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType  )
 {
 	double startX = 0.0;
 	double startY = 0.0;
@@ -67,12 +67,12 @@ void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& def
 	}
 }
 
-double MapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& hexagon ) const
+double CMapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& hexagon ) const
 {
 	return hexagon.Width + ( (hexagonCountCols - 1) * hexagon.Side );
 }
 
-double MapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
+double CMapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
 {
 	return (hexagon.Height * hexagonCountRows) + ( hexagon.Height / 2.0 );
 }

@@ -25,10 +25,10 @@ void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
 	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
-	int rowIndex = 0;
 
 	//TODO: Wo werden die ganzen globalen Strings definiert!?
 	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
+	int rowIndex = 0;
 	while( terrainTypes != repository->GetLastIterator() )
 	{
 		QString terrainPictureName(baseTerrainPicturePath);
@@ -43,18 +43,20 @@ void CEditorToolbox::Create( CTerrainTypeRepository *repository )
 	itemTerrainType->setLayout(layoutTerrainTypes);
 	addItem(itemTerrainType, tr("Terrain Types"));
 
-	GroupBuildings = new QButtonGroup(this);
-	QGridLayout *layoutBuildings = new QGridLayout;
-	layoutBuildings->setRowStretch(2, 10);
-	layoutBuildings->setColumnStretch(2, 10);
+	{
+		GroupBuildings = new QButtonGroup(this);
+		QGridLayout *layoutBuildings = new QGridLayout;
+		layoutBuildings->setRowStretch(2, 10);
+		layoutBuildings->setColumnStretch(2, 10);
 
-	QWidget *itemBuildings = new QWidget;
-	itemBuildings->setLayout(layoutBuildings);
+		QWidget *itemBuildings = new QWidget;
+		itemBuildings->setLayout(layoutBuildings);
 
-	setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
+		setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
 
-	setMinimumWidth(itemTerrainType->sizeHint().width());
-	addItem(itemBuildings, tr("Buildings"));
+		setMinimumWidth(itemTerrainType->sizeHint().width());
+		addItem(itemBuildings, tr("Buildings"));
+	}
 }
 
 QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, CConnectorButtonTerrainTypeId *connector, const QString& pictureName )

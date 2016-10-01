@@ -2,7 +2,7 @@
 #define CREATENEWMAP_H
 
 #include <QObject>
-class MapView;
+class CMapView;
 class CTerrainType;
 namespace GDModel { class CGameInitialisationData; }
 
@@ -19,7 +19,7 @@ public slots:
 	void DoCreateNewMap();
 private:
 	friend class CMapFactory;
-	MapView	*MapView;
+	CMapView	*MapView;
 	const CTerrainType	*DefaultTerrainType;
 	GDModel::CGameInitialisationData *GameData;
 };

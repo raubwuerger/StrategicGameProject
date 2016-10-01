@@ -5,14 +5,14 @@
 #include "ui_HexItemInfoDialog.h"
 
 /** @stereotype BorlandFormclass*/
-class HexItemInfoDialog : public QWidget
+class CHexItemInfoDialog : public QWidget
 {
 	Q_OBJECT
 public:
 	/** */
-	HexItemInfoDialog(QWidget *parent = 0);
+	CHexItemInfoDialog(QWidget *parent = 0);
 	/** */
-	~HexItemInfoDialog();
+	~CHexItemInfoDialog();
 	/** */
 private:
 	friend class CMapEventManager;

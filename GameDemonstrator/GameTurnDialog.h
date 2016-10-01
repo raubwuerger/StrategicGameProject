@@ -5,15 +5,15 @@
 #include "ui_GameTurnDialog.h"
 
 /** @stereotype BorlandFormclass*/
-class GameTurnDialog : public QWidget
+class CGameTurnDialog : public QWidget
 {
 	Q_OBJECT
 
 public:
 	/** */
-	GameTurnDialog(QWidget *parent = 0);
+	CGameTurnDialog(QWidget *parent = 0);
 	/** */
-	~GameTurnDialog();
+	~CGameTurnDialog();
 public slots:
 	void UpdateGameTurnInfo( QDate date );
 private:

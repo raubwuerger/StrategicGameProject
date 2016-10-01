@@ -11,7 +11,7 @@ CMapFactory::~CMapFactory()
 {
 }
 
-CCreateNewMap* CMapFactory::CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const CTerrainType *defaultTerrainType )
+CCreateNewMap* CMapFactory::CreateNewMapAction( QObject *parent, QAction *action, CMapView *mapView, const CTerrainType *defaultTerrainType )
 {
 	CCreateNewMap *newMapCreator = new CCreateNewMap(parent);
 	newMapCreator->MapView = mapView;

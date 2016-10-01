@@ -1,18 +1,18 @@
 #include "stdafx.h"
 #include "GameTurnDialog.h"
 
-GameTurnDialog::GameTurnDialog(QWidget *parent)
+CGameTurnDialog::CGameTurnDialog(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
 }
 
-GameTurnDialog::~GameTurnDialog()
+CGameTurnDialog::~CGameTurnDialog()
 {
 
 }
 
-void GameTurnDialog::UpdateGameTurnInfo( QDate date )
+void CGameTurnDialog::UpdateGameTurnInfo( QDate date )
 {
 	ui.turnInfoEdit->setPlainText( date.toString("MMMM, yyyy") );
 }

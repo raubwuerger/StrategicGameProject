@@ -1,7 +1,7 @@
 #pragma once
 
 class CCreateNewMap;
-class MapView;
+class CMapView;
 class CTerrainType;
 
 /** @stereotype factory*/
@@ -13,6 +13,6 @@ public:
 	/** */
 	~CMapFactory();
 	/** */
-	CCreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const CTerrainType *defaultTerrainType );
+	CCreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, CMapView *mapView, const CTerrainType *defaultTerrainType );
 };
 

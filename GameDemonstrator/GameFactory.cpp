@@ -15,7 +15,7 @@ CGameFactory::~CGameFactory()
 {
 }
 
-void CGameFactory::CreateNewGame( const GDModel::CGameInitialisationData& data, MapView *mapView, const CTerrainType * defaultTerrainType )
+void CGameFactory::CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
 {
 	CreateModel( data );
 	CreateMap( data, mapView, defaultTerrainType );
@@ -32,7 +32,7 @@ void CGameFactory::CreateModel( const GDModel::CGameInitialisationData& data )
 	modelFactory.CreateEmptyMap( data, Map );
 }
 
-void CGameFactory::CreateMap( const GDModel::CGameInitialisationData& data, MapView *mapView, const CTerrainType * defaultTerrainType )
+void CGameFactory::CreateMap( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
 {
 	mapView->Init( data, defaultTerrainType );
 }

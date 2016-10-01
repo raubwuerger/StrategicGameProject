@@ -24,7 +24,7 @@ protected:
 private:
 	int ActiveRow;
 	int ActiveCol;
-	friend class MapView;
+	friend class CMapView;
 	HexItemEventManager	*HexItemEventManager;
 };
 

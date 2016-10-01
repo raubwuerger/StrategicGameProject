@@ -1,7 +1,7 @@
 #pragma once
 
 class CTerrainType;
-class MapView;
+class CMapView;
 namespace GDModel { class CGameInitialisationData; }
 namespace GDModel { class CMap; }
 
@@ -14,12 +14,12 @@ public:
 	/** */
 	~CGameFactory();
 	/** */
-	void CreateNewGame( const GDModel::CGameInitialisationData& data, MapView *mapView, const CTerrainType * defaultTerrainType );
+	void CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
 private:
 	/** */
 	void CreateModel( const GDModel::CGameInitialisationData& data );
 	/** */
-	void CreateMap(  const GDModel::CGameInitialisationData& data, MapView *mapView, const CTerrainType * defaultTerrainType );
+	void CreateMap(  const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
 private:
 	static 	GDModel::CMap *Map;
 };
