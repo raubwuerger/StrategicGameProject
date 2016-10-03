@@ -5,86 +5,86 @@
 namespace jha
 {
 
-LogMessage::LogMessage( const unsigned long index, const QTime& time, const LogLevel& logLevel, const QString& message, const QString& category )
- :	m_Index(index),
-	m_Time(time),
-	m_LogLevel(&logLevel),
-	m_Message(message),
-	m_Category(category)
+LogMessage::LogMessage( const unsigned long index, const QTime& time, const jha::LogLevel& logLevel, const QString& message, const QString& category )
+ :	Index(index),
+	Time(time),
+	LogLevel(&logLevel),
+	Message(message),
+	Category(category)
 {
 }
 
 LogMessage::LogMessage( const LogMessage& rhs )
- :	m_Index(rhs.m_Index),
-	m_Time(rhs.m_Time),
-	m_LogLevel(rhs.m_LogLevel),
-	m_Message(rhs.m_Message),
-	m_Category(rhs.m_Category)
+ :	Index(rhs.Index),
+	Time(rhs.Time),
+	LogLevel(rhs.LogLevel),
+	Message(rhs.Message),
+	Category(rhs.Category)
 {
 }
 
 LogMessage::LogMessage( LogMessage&& rhs )
- :	m_Index(rhs.m_Index),
-	m_Time(rhs.m_Time),
-	m_LogLevel(rhs.m_LogLevel),
-	m_Message(rhs.m_Message),
-	m_Category(rhs.m_Category)
+ :	Index(rhs.Index),
+	Time(rhs.Time),
+	LogLevel(rhs.LogLevel),
+	Message(rhs.Message),
+	Category(rhs.Category)
 {
 }
 
 LogMessage& LogMessage::operator=( const LogMessage& rhs )
 {
-	m_Index		= rhs.m_Index;
-	m_Time		= rhs.m_Time;
-	m_LogLevel	= rhs.m_LogLevel;
-	m_Message	= rhs.m_Message;
-	m_Category	= rhs.m_Category;
+	Index		= rhs.Index;
+	Time		= rhs.Time;
+	LogLevel	= rhs.LogLevel;
+	Message	= rhs.Message;
+	Category	= rhs.Category;
 	return *this;
 }
 
 LogMessage& LogMessage::operator=( LogMessage&& rhs )
 {
-	m_Index		= rhs.m_Index;
-	m_Time		= rhs.m_Time;
-	m_LogLevel	= rhs.m_LogLevel;
-	m_Message	= rhs.m_Message;
-	m_Category	= rhs.m_Category;
+	Index		= rhs.Index;
+	Time		= rhs.Time;
+	LogLevel	= rhs.LogLevel;
+	Message	= rhs.Message;
+	Category	= rhs.Category;
 	return *this;
 }
 
 int LogMessage::operator==( const LogMessage& rhs ) const
 {
-	return m_Index == rhs.m_Index;
+	return Index == rhs.Index;
 }
 
 int LogMessage::operator<( const LogMessage& rhs ) const
 {
-	return m_Index < rhs.m_Index;
+	return Index < rhs.Index;
 }
 
 unsigned long LogMessage::GetIndex() const
 {
-	return m_Index;
+	return Index;
 }
 
 const QString& LogMessage::GetMessage() const
 {
-	return m_Message;
+	return Message;
 }
 
 const QString& LogMessage::GetCategory() const
 {
-	return m_Category;
+	return Category;
 }
 
 const LogLevel& LogMessage::GetLogLevel() const
 {
-	return *m_LogLevel;
+	return *LogLevel;
 }
 
 const QTime& LogMessage::GetLogTime() const
 {
-	return m_Time;
+	return Time;
 }
 
 }

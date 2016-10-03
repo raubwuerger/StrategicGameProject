@@ -19,16 +19,16 @@ class LogCategoryByName : public LogCategoryInterface
 {
 public:
 	LogCategoryByName( const QString& name )
-		: m_Name(name)
+		: Name(name)
 	{
 
 	}
 	virtual QString GetCategory() const
 	{
-		return m_Name;
+		return Name;
 	}
 private:
-	QString m_Name;
+	QString Name;
 };
 
 class LogCategoryDefault : public LogCategoryInterface
@@ -117,7 +117,7 @@ public:
 	static const LogLevel LOGLEVEL_TRACE;
 	static const LogLevel LOGLEVEL_DEBUG;
 	static LogInterface *log;
-	static LogCategoryVisitor	*m_LogInterfaceVisitor;
+	static LogCategoryVisitor	*LogInterfaceVisitor;
 };
 
 LogInterface* GetLog();

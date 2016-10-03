@@ -21,7 +21,7 @@ public:
 /** */
 	bool LogMessage( const QVector<jha::LogMessage*>& logMessage );
 /** */
-	const QString& Name() const;
+	const QString& GetName() const;
 /** */
 	bool GetEnabled() const;
 	/** */
@@ -35,9 +35,9 @@ private:
 	/** */
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage ) = 0;
 private:
-	QString	m_Name;
-	bool	m_Enabled;
-	LogLevel m_LogLevel;
+	QString	Name;
+	bool	Enabled;
+	LogLevel LogLevel;
 };
 
 }

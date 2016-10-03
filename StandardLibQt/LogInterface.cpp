@@ -38,7 +38,7 @@ LogLevel logLevelArray[8] = { LogInterface::LOGLEVEL_NONE,
 								LogInterface::LOGLEVEL_TRACE,
 								LogInterface::LOGLEVEL_DEBUG};
 
-LogCategoryVisitor* jha::LogInterface::m_LogInterfaceVisitor = nullptr;
+LogCategoryVisitor* jha::LogInterface::LogInterfaceVisitor = nullptr;
 
 LogInterface::LogInterface()
 {
@@ -52,9 +52,9 @@ void LogInterface::Log( const QString& message, LOGLEVEL logLevel, const QString
 void LogInterface::Log( const QString& message, LOGLEVEL logLevel, const LogCategoryInterface& logCategory )
 {
 	QString category = "-";
-	if( m_LogInterfaceVisitor != nullptr )
+	if( LogInterfaceVisitor != nullptr )
 	{
-		category = m_LogInterfaceVisitor->GetCategory( &logCategory );
+		category = LogInterfaceVisitor->GetCategory( &logCategory );
 	}
 	LogFactory().GetLogManager()->AddLogMessage( new LogMessage( LogFactory().GetLogManager()->CreateLogMessageIndex(), QTime::currentTime(), GetLogLevel(logLevel), message, category ) );
 }
@@ -72,9 +72,9 @@ bool LogInterface::Init()
 		{
 			log = new LogInterface;
 		}
-		if( m_LogInterfaceVisitor == nullptr )
+		if( LogInterfaceVisitor == nullptr )
 		{
-			m_LogInterfaceVisitor = new LogCategoryVisitor;
+			LogInterfaceVisitor = new LogCategoryVisitor;
 			LogCategoryDefault().SetCategory( QCoreApplication::applicationName() );
 		}
 		LogFactory().Init();
@@ -94,8 +94,8 @@ bool LogInterface::Init()
 
 bool LogInterface::CleanUp()
 {
-	delete m_LogInterfaceVisitor;
-	m_LogInterfaceVisitor = nullptr;
+	delete LogInterfaceVisitor;
+	LogInterfaceVisitor = nullptr;
 
 	delete log;
 	log = nullptr;
@@ -106,11 +106,11 @@ bool LogInterface::CleanUp()
 
 void LogInterface::Start()
 {
-	if( LogFactory::m_LogManagerThread == nullptr )
+	if( LogFactory::LogManagerThread == nullptr )
 	{
 		return;
 	}
-	LogFactory::m_LogManagerThread->Start();
+	LogFactory::LogManagerThread->Start();
 }
 
 const QString& LogInterface::GetLogLevelString( LOGLEVEL logLevel ) const
@@ -125,8 +125,8 @@ const LogLevel& LogInterface::GetLogLevel( LOGLEVEL logLevel ) const
 
 void LogInterface::SetLogInterfaceVisitor( LogCategoryVisitor * obj )
 {
-	delete m_LogInterfaceVisitor;
-	m_LogInterfaceVisitor = obj;
+	delete LogInterfaceVisitor;
+	LogInterfaceVisitor = obj;
 }
 
 }

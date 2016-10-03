@@ -33,7 +33,7 @@ public:
 /** Liefert Farbe */
 	const QColor& GetColor() const;
 /** */
-	LOGLEVEL GetValue() const { return m_Value; }
+	LOGLEVEL GetValue() const { return Value; }
 private:
 	friend class LogInterface;
 /** Default constructor restricted */
@@ -43,10 +43,10 @@ private:
 /** */
 	LogLevel( const QString& name, const QString& prefix, /*UINT messageBoxType,*/ const QColor& color, LOGLEVEL value );
 private:
-	QString		m_Name;
-	QString		m_LogFilePrefix;
-	QColor		m_Color;
-	LOGLEVEL	m_Value;
+	QString		Name;
+	QString		LogFilePrefix;
+	QColor		Color;
+	LOGLEVEL	Value;
 };
 
 }

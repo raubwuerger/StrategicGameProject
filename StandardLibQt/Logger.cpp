@@ -10,30 +10,30 @@ const QString Logger::DEFAULT_TIME_FORMAT = "hh:mm:ss.zzz";
 const QString Logger::DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 
 Logger::Logger( const QString& name )
-	: m_Name(name),
-	m_Enabled(true),
-	m_LogLevel(LogInterface::LOGLEVEL_DEBUG)
+	: Name(name),
+	Enabled(true),
+	LogLevel(LogInterface::LOGLEVEL_DEBUG)
 {
 }
 
-const QString& Logger::Name() const
+const QString& Logger::GetName() const
 {
-	return m_Name;
+	return Name;
 }
 
 bool Logger::GetEnabled() const
 {
-	return m_Enabled;
+	return Enabled;
 }
 
 void Logger::SetEnabled( bool enable )
 {
-	m_Enabled = enable;
+	Enabled = enable;
 }
 
 bool Logger::LogMessage( const QVector<jha::LogMessage*>& logMessage )
 {
-	if( m_Enabled == false )
+	if( Enabled == false )
 	{
 		return false;
 	}
@@ -55,7 +55,7 @@ bool Logger::LogThisLogLevel( jha::LogMessage *message ) const
 	{
 		return false;
 	}
-	return message->GetLogLevel() < m_LogLevel;
+	return message->GetLogLevel() < LogLevel;
 }
 
 

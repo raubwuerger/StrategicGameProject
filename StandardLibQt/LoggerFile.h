@@ -25,7 +25,7 @@ private:
 /** */
 	QString CreateLogfileName() const;
 private:
-	QString m_LogFilePathName;
+	QString LogFilePathName;
 };
 
 }

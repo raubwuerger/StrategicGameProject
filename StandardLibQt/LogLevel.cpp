@@ -5,18 +5,18 @@ namespace jha
 {
 
 LogLevel::LogLevel( const LogLevel& rhs )
-	: 	m_Name(rhs.m_Name),
-		m_LogFilePrefix(rhs.m_LogFilePrefix),
-		m_Value(rhs.m_Value),
-		m_Color(rhs.m_Color)
+	: 	Name(rhs.Name),
+		LogFilePrefix(rhs.LogFilePrefix),
+		Value(rhs.Value),
+		Color(rhs.Color)
 {
 }
 
 LogLevel::LogLevel( const QString& name, const QString& prefix, const QColor& color, LOGLEVEL value )
-	: 	m_Name(name),
-		m_LogFilePrefix(prefix),
-		m_Value(value),
-		m_Color(color)
+	: 	Name(name),
+		LogFilePrefix(prefix),
+		Value(value),
+		Color(color)
 {
 }
 
@@ -26,45 +26,45 @@ LogLevel::~LogLevel()
 
 LogLevel& LogLevel::operator=( const LogLevel& rhs )
 {
-	m_Name				= rhs.m_Name;
-	m_LogFilePrefix		= rhs.m_LogFilePrefix;
-	m_Value	= rhs.m_Value;
-	m_Color				= rhs.m_Color;
+	Name				= rhs.Name;
+	LogFilePrefix		= rhs.LogFilePrefix;
+	Value	= rhs.Value;
+	Color				= rhs.Color;
 	return *this;
 }
 
 LogLevel& LogLevel::operator=( LogLevel&& rhs )
 {
-	m_Name				= rhs.m_Name;
-	m_LogFilePrefix		= rhs.m_LogFilePrefix;
-	m_Value				= rhs.m_Value;
-	m_Color				= rhs.m_Color;
+	Name				= rhs.Name;
+	LogFilePrefix		= rhs.LogFilePrefix;
+	Value				= rhs.Value;
+	Color				= rhs.Color;
 	return *this;
 }
 
 int LogLevel::operator==( const LogLevel& rhs ) const
 {
-	return m_Value == rhs.m_Value;
+	return Value == rhs.Value;
 }
 
 int LogLevel::operator<( const LogLevel& rhs ) const
 {
-	return m_Value < rhs.m_Value;
+	return Value < rhs.Value;
 }
 
 const QString& LogLevel::GetName() const
 {
-	return m_Name;
+	return Name;
 }
 
 const QString& LogLevel::GetLogFilePrefix() const
 {
-	return m_LogFilePrefix;
+	return LogFilePrefix;
 }
 
 const QColor& LogLevel::GetColor() const
 {
-	return m_Color;
+	return Color;
 }
 
 }

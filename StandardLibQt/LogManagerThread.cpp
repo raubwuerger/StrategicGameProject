@@ -7,8 +7,8 @@
 namespace jha
 {
 
-LogManagerThreadContainer::LogManagerThreadContainer( LogManager *logManager )
-	: m_LogManager(logManager)
+LogManagerThreadContainer::LogManagerThreadContainer( jha::LogManager *logManager )
+	: LogManager(logManager)
 {
 	m_Timer = new QTimer(this);
 	m_Timer->setInterval(50);
@@ -19,35 +19,35 @@ LogManagerThreadContainer::~LogManagerThreadContainer()
 {
 	m_Timer->stop();
 	delete m_Timer;
-	m_WorkerThread.quit();
-	m_WorkerThread.wait();
+	WorkerThread.quit();
+	WorkerThread.wait();
 }
 
 bool LogManagerThreadContainer::Init()
 {
-	m_LogManager->moveToThread(&m_WorkerThread);
-	connect(&m_WorkerThread, &QThread::finished, m_LogManager, &QObject::deleteLater);
-	connect(m_LogManager, &LogManager::Finished, this, &LogManagerThreadContainer::HasFinished);
-	m_WorkerThread.start();
+	LogManager->moveToThread(&WorkerThread);
+	connect(&WorkerThread, &QThread::finished, LogManager, &QObject::deleteLater);
+	connect(LogManager, &LogManager::Finished, this, &LogManagerThreadContainer::HasFinished);
+	WorkerThread.start();
 	connect(m_Timer, &QTimer::timeout, this, &LogManagerThreadContainer::RequestStartFromTimer);
-	connect(this,&LogManagerThreadContainer::StartLogManager, m_LogManager, &LogManager::WorkMessages);
+	connect(this,&LogManagerThreadContainer::StartLogManager, LogManager, &LogManager::WorkMessages);
 	return true;
 }
 
 void LogManagerThreadContainer::RequestStartFromTimer()
 {
-	if( m_LogManagerRunning == true )
+	if( LogManagerRunning == true )
 	{
 		//TODO: Ist wohl noch nicht fertig. Dann warte ich lieber auf das nächste Interval
 		return;
 	}
-	m_LogManagerRunning = true;
+	LogManagerRunning = true;
 	emit StartLogManager();
 }
 
 void LogManagerThreadContainer::HasFinished()
 {
-	m_LogManagerRunning = false;
+	LogManagerRunning = false;
 }
 
 void LogManagerThreadContainer::Stop()

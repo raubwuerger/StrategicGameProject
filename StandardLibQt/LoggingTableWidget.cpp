@@ -9,12 +9,12 @@ namespace jha
 //================================================================================
 LoggingTableWidget::LoggingTableWidget( int rows, int columns, QWidget * parent )
 	: QTableWidget(rows,columns,parent),
-	m_RowsAdded(false)
+	RowsAdded(false)
 {
-	m_TimerScrollToBottom = new QTimer;
-	m_TimerScrollToBottom->setInterval(100);
-	connect(m_TimerScrollToBottom,SIGNAL(timeout()),SLOT(ScrollToBottom()));
-	m_TimerScrollToBottom->start();
+	TimerScrollToBottom = new QTimer;
+	TimerScrollToBottom->setInterval(100);
+	connect(TimerScrollToBottom,SIGNAL(timeout()),SLOT(ScrollToBottom()));
+	TimerScrollToBottom->start();
 	
 	setRowCount(0);
 	setColumnCount(4);
@@ -68,21 +68,21 @@ void LoggingTableWidget::AppendRow( jha::LoggingTableWidgetRow *newRow )
 	delete newRow;
 	newRow = nullptr;
 
-	m_RowsAdded = true;
+	RowsAdded = true;
 }
 
 LoggingTableWidget::~LoggingTableWidget()
 {
-	delete m_TimerScrollToBottom;
+	delete TimerScrollToBottom;
 }
 
 void LoggingTableWidget::ScrollToBottom()
 {
-	if( m_RowsAdded == false )
+	if( RowsAdded == false )
 	{
 		return;
 	}
-	m_RowsAdded = false;
+	RowsAdded = false;
 	scrollToBottom();
 }
 

@@ -31,10 +31,10 @@ signals:
 /** */
 	void StartLogManager();
 private:
-	LogManager	*m_LogManager;
-	QThread		m_WorkerThread;
+	LogManager	*LogManager;
+	QThread		WorkerThread;
 	QTimer		*m_Timer;
-	bool		m_LogManagerRunning;
+	bool		LogManagerRunning;
 };
 
 }

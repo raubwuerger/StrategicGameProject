@@ -37,11 +37,11 @@ private:
 /** Default constructor restricted */
 	LogMessage();
 private:
-	unsigned long 		m_Index;
-	QTime				m_Time;
-	const LogLevel		*m_LogLevel;
-	QString			m_Message;
-	QString			m_Category;
+	unsigned long 		Index;
+	QTime				Time;
+	const LogLevel		*LogLevel;
+	QString			Message;
+	QString			Category;
 };
 
 }

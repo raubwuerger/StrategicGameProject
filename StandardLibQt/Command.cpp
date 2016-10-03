@@ -5,7 +5,7 @@
 namespace jha
 {
 	Command::Command( const QString& name )
-		: m_Name(name)
+		: Name(name)
 	{
 
 	}
@@ -22,12 +22,12 @@ namespace jha
 
 	const QString& Command::GetName() const
 	{
-		return m_Name;
+		return Name;
 	}
 
 	bool Command::DoUndo()
 	{
-		GetLog()->Log( "DoUndo not implemented: " +m_Name, jha::LOGLEVEL::LL_WARNING );
+		GetLog()->Log( "DoUndo not implemented: " +Name, jha::LOGLEVEL::LL_WARNING );
 		return false;
 	}
 

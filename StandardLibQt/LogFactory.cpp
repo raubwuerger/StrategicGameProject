@@ -8,35 +8,35 @@
 namespace jha
 {
 
-LogManager* LogFactory::m_LogManager = nullptr;
-LogManagerThreadContainer* LogFactory::m_LogManagerThread = nullptr;
+LogManager* LogFactory::LogManager = nullptr;
+LogManagerThreadContainer* LogFactory::LogManagerThread = nullptr;
 
 void LogFactory::CleanUp()
 {
-	if( m_LogManagerThread != nullptr )
+	if( LogManagerThread != nullptr )
 	{
-		m_LogManagerThread->Stop();
+		LogManagerThread->Stop();
 	}
-	delete m_LogManagerThread;
-	m_LogManagerThread = nullptr;
+	delete LogManagerThread;
+	LogManagerThread = nullptr;
 	
-	delete m_LogManager;
-	m_LogManager = nullptr;
+	delete LogManager;
+	LogManager = nullptr;
 }
 
 LogManager* LogFactory::GetLogManager()
 {
-	return m_LogManager;
+	return LogManager;
 }
 
 bool LogFactory::Init()
 {
-	if( m_LogManagerThread == nullptr )
+	if( LogManagerThread == nullptr )
 	{
-		m_LogManager = new LogManager;
-		m_LogManager->RegisterLogger( new LoggerCout );
-		m_LogManagerThread = new LogManagerThreadContainer(m_LogManager);
-		m_LogManagerThread->Init();
+		LogManager = new jha::LogManager;
+		LogManager->RegisterLogger( new LoggerCout );
+		LogManagerThread = new LogManagerThreadContainer(LogManager);
+		LogManagerThread->Init();
 	}
 	return true;
 }

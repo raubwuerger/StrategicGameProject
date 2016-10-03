@@ -24,8 +24,8 @@ public slots:
 /** */
 	void ScrollToBottom();
 private:
-	QTimer	*m_TimerScrollToBottom;
-	bool	m_RowsAdded;
+	QTimer	*TimerScrollToBottom;
+	bool	RowsAdded;
 };
 
 }

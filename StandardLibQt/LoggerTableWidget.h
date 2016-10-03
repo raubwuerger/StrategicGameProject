@@ -9,7 +9,7 @@ namespace jha
 class LoggingTableWidgetRow;
 class LoggingTableWidget;
 
-class WidgetConnector : public QObject
+class CWidgetConnector : public QObject
 {
 	Q_OBJECT
 public:
@@ -32,8 +32,8 @@ protected:
 /** */
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage );
 private:
-	jha::LoggingTableWidget *m_TableWidget;
-	WidgetConnector		*m_WidgetConnector;
+	jha::LoggingTableWidget *TableWidget;
+	CWidgetConnector		*WidgetConnector;
 };
 
 }

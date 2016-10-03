@@ -42,11 +42,11 @@ private:
 /** */
 	void ReinitLogger();
 private:
-	QVector<Logger*>	m_Logger;
-	QVector<LogMessage*>	*m_LogMessagesProcessing;
-	QVector<LogMessage*>	*m_LogMessagesReady;
-	unsigned long m_LogMessageIndex;
-	QMutex m_Mutex;
+	QVector<Logger*>	Logger;
+	QVector<LogMessage*>	*LogMessagesProcessing;
+	QVector<LogMessage*>	*LogMessagesReady;
+	unsigned long LogMessageIndex;
+	QMutex Mutex;
 };
 
 }

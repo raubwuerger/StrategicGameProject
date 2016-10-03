@@ -25,7 +25,7 @@ private:
 /** */
 	virtual bool DoUndo();
 private:
-	QString	m_Name;
+	QString	Name;
 };
 
 }

@@ -7,35 +7,35 @@ namespace jha
 {
 
 LogManager::LogManager()
-	: m_LogMessageIndex(0),
-	m_LogMessagesProcessing(nullptr),
-	m_LogMessagesReady(nullptr)
+	: LogMessageIndex(0),
+	LogMessagesProcessing(nullptr),
+	LogMessagesReady(nullptr)
 {
-	m_LogMessagesProcessing = new QVector<LogMessage*>;
-	m_LogMessagesReady = new QVector<LogMessage*>;
+	LogMessagesProcessing = new QVector<LogMessage*>;
+	LogMessagesReady = new QVector<LogMessage*>;
 }
 
 LogManager::~LogManager()
 {
-	for( size_t i=0;i<m_Logger.size();i++ )
+	for( size_t i=0;i<Logger.size();i++ )
 	{
-		delete m_Logger.at(i);
+		delete Logger.at(i);
 	}
-	m_Logger.clear();
-	delete m_LogMessagesProcessing;
-	m_LogMessagesProcessing = nullptr;
-	delete m_LogMessagesReady;
-	m_LogMessagesReady = nullptr;
+	Logger.clear();
+	delete LogMessagesProcessing;
+	LogMessagesProcessing = nullptr;
+	delete LogMessagesReady;
+	LogMessagesReady = nullptr;
 }
 
-bool LogManager::RegisterLogger( Logger* logger )
+bool LogManager::RegisterLogger( jha::Logger* logger )
 {
 	if( logger == nullptr )
 	{
 		return false;
 	}
 
-	int index = m_Logger.indexOf(logger);
+	int index = Logger.indexOf(logger);
 	if( index != -1 )
 	{
 		return false;
@@ -45,7 +45,7 @@ bool LogManager::RegisterLogger( Logger* logger )
 		return false;
 	}
 
-	m_Logger.push_back(logger);
+	Logger.push_back(logger);
 	return true;
 }
 
@@ -56,11 +56,11 @@ bool LogManager::ProcessMessages()
 		ReinitLogger();
 	}
 	bool allMessagesProcessed = true;
-	for( size_t i=0;i<m_Logger.size();i++ )
+	for( size_t i=0;i<Logger.size();i++ )
 	{
 		try
 		{
-			m_Logger.at(i)->LogMessage( *m_LogMessagesProcessing );
+			Logger.at(i)->LogMessage( *LogMessagesProcessing );
 		}
 		catch (...)
 		{
@@ -74,30 +74,30 @@ bool LogManager::ProcessMessages()
 
 void LogManager::AddLogMessage( jha::LogMessage *logMessage )
 {
-	QMutexLocker lock(&m_Mutex);
-	m_LogMessagesReady->push_back(logMessage);
+	QMutexLocker lock(&Mutex);
+	LogMessagesReady->push_back(logMessage);
 }
 
 unsigned long LogManager::CreateLogMessageIndex()
 {
-	return ++m_LogMessageIndex;
+	return ++LogMessageIndex;
 }
 
 void LogManager::ClearLogMessages()
 {
-	for( size_t i=0;i<m_LogMessagesProcessing->size();i++ )
+	for( size_t i=0;i<LogMessagesProcessing->size();i++ )
 	{
-		delete m_LogMessagesProcessing->at(i);
+		delete LogMessagesProcessing->at(i);
 	}
-	m_LogMessagesProcessing->clear();
+	LogMessagesProcessing->clear();
 }
 
 void LogManager::FlipMessageVectors()
 {
-	QMutexLocker lock(&m_Mutex);
-	QVector<LogMessage*> *temp = m_LogMessagesProcessing;
-	m_LogMessagesProcessing = m_LogMessagesReady;
-	m_LogMessagesReady = temp;
+	QMutexLocker lock(&Mutex);
+	QVector<LogMessage*> *temp = LogMessagesProcessing;
+	LogMessagesProcessing = LogMessagesReady;
+	LogMessagesReady = temp;
 }
 
 bool LogManager::CheckReinitLogger() const
@@ -108,8 +108,8 @@ bool LogManager::CheckReinitLogger() const
 
 void LogManager::ReinitLogger()
 {
-	QVector<Logger*>::iterator logger = m_Logger.begin();
-	for( logger; logger != m_Logger.end(); logger++ )
+	QVector<jha::Logger*>::iterator logger = Logger.begin();
+	for( logger; logger != Logger.end(); logger++ )
 	{
 		(*logger)->Init();
 	}

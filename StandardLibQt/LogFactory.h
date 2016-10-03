@@ -16,8 +16,8 @@ public:
 	LogManager* GetLogManager();
 private:
 	friend class LogInterface;
-	static LogManager *m_LogManager;
-	static LogManagerThreadContainer *m_LogManagerThread;
+	static LogManager *LogManager;
+	static LogManagerThreadContainer *LogManagerThread;
 };
 
 }

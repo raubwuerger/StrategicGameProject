@@ -9,7 +9,7 @@ namespace jha
 
 LoggerFile::LoggerFile( const QString& path )
 	: Logger("LoggerFile"),
-	m_LogFilePathName(path)
+	LogFilePathName(path)
 {
 }
 
@@ -59,7 +59,7 @@ bool LoggerFile::CloseLogfile( std::ofstream& file )
 
 QString LoggerFile::CreateLogfileName() const
 {
-	QFileInfo fileInfo(m_LogFilePathName);
+	QFileInfo fileInfo(LogFilePathName);
 	QString newFileName;
 	newFileName += fileInfo.absolutePath();
 	newFileName += "/";

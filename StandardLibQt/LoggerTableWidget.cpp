@@ -8,29 +8,29 @@ namespace jha
 
 LoggerTableWidget::LoggerTableWidget( jha::LoggingTableWidget *tableWidget )
 	: Logger("TableWidget"),
-	m_TableWidget(tableWidget)
+	TableWidget(tableWidget)
 {
-	m_WidgetConnector = new WidgetConnector;
+	WidgetConnector = new CWidgetConnector;
 }
 
 LoggerTableWidget::~LoggerTableWidget()
 {
-	delete m_WidgetConnector;
+	delete WidgetConnector;
 }
 
 bool LoggerTableWidget::Init()
 {
-	if( m_TableWidget == nullptr )
+	if( TableWidget == nullptr )
 	{
 		return false;
 	}
 
-	return m_WidgetConnector->ConnectMe(m_TableWidget);
+	return WidgetConnector->ConnectMe(TableWidget);
 }
 
 bool LoggerTableWidget::DoLogMessage( const QVector<jha::LogMessage*>& logMessage )
 {
-	if( m_TableWidget == nullptr )
+	if( TableWidget == nullptr )
 	{
 		return false;
 	}
@@ -63,7 +63,7 @@ bool LoggerTableWidget::DoLogMessage( const QVector<jha::LogMessage*>& logMessag
 		newRow->m_Items.push_back(logLevel);
 		newRow->m_Items.push_back(category);
 		newRow->m_Items.push_back(messageText);
-		emit m_WidgetConnector->SignalAppendRow(newRow);
+		emit WidgetConnector->SignalAppendRow(newRow);
 	}
 
 	//m_TableWidget->scrollToBottom();
@@ -71,7 +71,7 @@ bool LoggerTableWidget::DoLogMessage( const QVector<jha::LogMessage*>& logMessag
 }
 
 
-bool WidgetConnector::ConnectMe( LoggingTableWidget *widget )
+bool CWidgetConnector::ConnectMe( LoggingTableWidget *widget )
 {
 	if( widget == nullptr )
 	{
