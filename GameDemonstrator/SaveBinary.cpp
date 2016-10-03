@@ -3,7 +3,8 @@
 #include "Model\Map.h"
 
 
-CSaveBinary::CSaveBinary()
+CSaveBinary::CSaveBinary( QAction *action )
+	: CSerializerInterface( action )
 {
 }
 

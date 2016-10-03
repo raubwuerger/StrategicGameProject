@@ -8,12 +8,17 @@ class CSerializerInterface
 {
 public:
 	/** */
-	CSerializerInterface();
+	CSerializerInterface( QAction* Action );
 	/** */
 	virtual ~CSerializerInterface();
 	/** */
 	virtual bool SerializeMap( const GDModel::CMap& map ) = 0;
 	/** */
 	virtual bool DeserializeMap( GDModel::CMap& map ) = 0;
+private:
+	/** */
+	void Toggleded() {}
+private:
+	QAction* Action;
 };
 

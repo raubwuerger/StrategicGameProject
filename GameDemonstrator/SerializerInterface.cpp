@@ -2,7 +2,8 @@
 #include "SerializerInterface.h"
 
 
-CSerializerInterface::CSerializerInterface()
+CSerializerInterface::CSerializerInterface( QAction *action )
+	: Action( new QAction(action) )
 {
 }
 
@@ -10,3 +11,4 @@ CSerializerInterface::CSerializerInterface()
 CSerializerInterface::~CSerializerInterface()
 {
 }
+

@@ -10,6 +10,8 @@
 #include "TerrainTypeEditor.h"
 #include "OwnerTypeRepository.h"
 #include "HexItemInfoDialog.h"
+#include "SerializerInterface.h"
+#include "SaveBinary.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -103,12 +105,13 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	connect(loadGameAction, SIGNAL(triggered()), MainGameLoop, SLOT(Start()), Qt::QueuedConnection );
-	ActionRepository->AddAction(loadGameAction);
+	CSerializerInterface* loadGameMap = new CSaveBinary( loadGameAction );
+	ActionRepository->AddAction( loadGameAction );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	QAction* saveGameAction = new QAction(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
-	connect(saveGameAction, SIGNAL(triggered()), MainGameLoop, SLOT(Start()), Qt::QueuedConnection );
+//	connect(saveGameAction, &QAction::triggered, MainGameLoop, &GameMainLoop::SaveGameMap, Qt::QueuedConnection );
 	ActionRepository->AddAction(saveGameAction);
 
 	QIcon start(":GameDemonstrator/Resources/media_play_green.ico");
@@ -151,7 +154,7 @@ void GameDemonstrator::CreateMenuAbout()
 	QIcon info(":GameDemonstrator/Resources/about.ico");
 	QAction* aboutAction = new QAction(info,tr("&About"), this);
 	aboutAction->setStatusTip(tr("Info about application"));
-//	connect(aboutAction, SIGNAL(triggered()), this, SLOT(close()));
+	connect(aboutAction, SIGNAL(triggered()), aboutAction, SLOT(show()));
 	ActionRepository->AddAction(aboutAction);
 
 	InfoMenu->addAction( aboutAction );
@@ -258,10 +261,7 @@ bool GameDemonstrator::LoadOwnerTypes()
 	QFile file(fileName);
 	if( file.open(QFile::ReadOnly | QFile::Text) == false )
 	{
-		QMessageBox::warning(this, tr("SAX Bookmarks"),
-			tr("Cannot read file %1:\n%2.")
-			.arg(fileName)
-			.arg(file.errorString()));
+		QMessageBox::warning(this, tr("SAX Bookmarks"),	tr("Cannot read file %1:\n%2.").arg(fileName).arg(file.errorString()));
 		return false;
 	}
 
@@ -272,11 +272,7 @@ bool GameDemonstrator::LoadOwnerTypes()
 
 	if( domDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
 	{
-		QMessageBox::information(window(), tr("DOM Bookmarks"),
-			tr("Parse error at line %1, column %2:\n%3")
-			.arg(errorLine)
-			.arg(errorColumn)
-			.arg(errorStr));
+		QMessageBox::information(window(), tr("DOM Bookmarks"),	tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr));
 		return false;
 	}
 

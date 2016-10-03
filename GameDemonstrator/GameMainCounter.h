@@ -15,7 +15,7 @@ public:
 	/** */
 	void Increment();
 	/** Get GameDate */	
-	const QDate& GetGameDate() const { return GameDate; }
+	const QDate& GetGameDate() const;
 private:
 	QDate	GameDate;
 	int		MonthIncrement;

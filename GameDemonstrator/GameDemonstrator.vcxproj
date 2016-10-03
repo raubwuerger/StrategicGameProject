@@ -368,6 +368,7 @@
     <ClCompile Include="OwnerTypeRepository.cpp" />
     <ClCompile Include="QActionRepository.cpp" />
     <ClCompile Include="SaveBinary.cpp" />
+    <ClCompile Include="SerializerFactory.cpp" />
     <ClCompile Include="SerializerInterface.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -383,6 +384,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OwnerTypeRepository.h" />
+    <ClInclude Include="SerializerFactory.h" />
     <ClInclude Include="XMLTools.h" />
     <CustomBuild Include="CreateNewMap.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

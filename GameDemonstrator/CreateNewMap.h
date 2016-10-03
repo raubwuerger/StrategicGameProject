@@ -9,7 +9,6 @@ namespace GDModel { class CGameInitialisationData; }
 class CCreateNewMap : public QObject
 {
 	Q_OBJECT
-
 public:
 	/** */
 	CCreateNewMap(QObject *parent);

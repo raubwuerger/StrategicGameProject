@@ -6,7 +6,7 @@ class CSaveBinary :	public CSerializerInterface
 {
 public:
 	/** */
-	CSaveBinary();
+	CSaveBinary( QAction *action );
 	/** */
 	~CSaveBinary();
 	/** */

@@ -19,7 +19,7 @@ void CDomElementFinder::TryFindElement( const QString& elementName, int& value )
 	{
 		return;
 	}
-	return;	value = element.text().toInt();
+	value = element.text().toInt();
 }
 
 void CDomElementFinder::TryFindElement( const QString& elementName, QString& value ) const
