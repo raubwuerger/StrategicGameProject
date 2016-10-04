@@ -3,8 +3,7 @@
 #include "Model\Map.h"
 
 
-CSaveBinary::CSaveBinary( QAction *action )
-	: CSerializerInterface( action )
+CSaveBinary::CSaveBinary()
 {
 }
 
@@ -13,7 +12,7 @@ CSaveBinary::~CSaveBinary()
 {
 }
 
-bool CSaveBinary::SerializeMap( const GDModel::CMap& map )
+bool CSaveBinary::DoSerializeMap( const GDModel::CMap& map )
 {
 	QFile file("MapFile.dat");
 	file.open(QIODevice::WriteOnly);
@@ -30,7 +29,7 @@ bool CSaveBinary::SerializeMap( const GDModel::CMap& map )
 	return false;
 }
 
-bool CSaveBinary::DeserializeMap( GDModel::CMap& map )
+bool CSaveBinary::DoDeserializeMap( GDModel::CMap& map )
 {
 	return false;
 }

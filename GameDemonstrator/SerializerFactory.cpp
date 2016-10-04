@@ -2,6 +2,8 @@
 #include "SerializerFactory.h"
 #include "SaveBinary.h"
 #include "SerializerInterface.h"
+#include "QObject.h"
+
 
 CSerializerInterface* CSerializerFactory::Interfaces = nullptr;
 
@@ -20,6 +22,8 @@ void CSerializerFactory::Release()
 
 CSerializerInterface* CSerializerFactory::CreateInterface( QAction *action )
 {
-	Interfaces = new CSaveBinary(action);
+	Interfaces = new CSaveBinary;
+	QObject::connect( action, SIGNAL(triggered()), Interfaces, SLOT(SerializeMap()) );
+
 	return Interfaces;
 }

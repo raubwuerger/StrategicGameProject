@@ -344,6 +344,15 @@
     <ClCompile Include="SerializerFactory.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SerializerInterface.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SerializerInterface.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -418,9 +427,6 @@
     <ClInclude Include="GameInitialisationData.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="SerializerInterface.h">
-      <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
     <ClInclude Include="GameFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -438,6 +444,9 @@
     </ClInclude>
     <ClInclude Include="SerializerFactory.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -518,6 +527,9 @@
     </CustomBuild>
     <CustomBuild Include="EditorToolbox.h">
       <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SerializerInterface.h">
+      <Filter>Header Dateien\IO</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

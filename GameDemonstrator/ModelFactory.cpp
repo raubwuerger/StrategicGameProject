@@ -15,10 +15,10 @@ CModelFactory::~CModelFactory()
 {
 }
 
-void CModelFactory::CreateEmptyMap( const GDModel::CGameInitialisationData& data, CMap* map )
+void CModelFactory::CreateEmptyMap( const GDModel::CGameInitialisationData& data, CMap** map )
 {
- 	map = new CMap;
- 	map->Init( data.Rows, data.Cols );
+ 	*map = new CMap;
+ 	(*map)->Init( data.Rows, data.Cols );
 }
 
 }

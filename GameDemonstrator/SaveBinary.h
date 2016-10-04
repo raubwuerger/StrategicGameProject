@@ -6,12 +6,13 @@ class CSaveBinary :	public CSerializerInterface
 {
 public:
 	/** */
-	CSaveBinary( QAction *action );
+	CSaveBinary();
 	/** */
 	~CSaveBinary();
+private:
 	/** */
-	virtual bool SerializeMap( const GDModel::CMap& map );
+	virtual bool DoSerializeMap( const GDModel::CMap& map );
 	/** */
-	virtual bool DeserializeMap( GDModel::CMap& map );
+	virtual bool DoDeserializeMap( GDModel::CMap& map );
 };
 

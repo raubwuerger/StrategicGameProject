@@ -4,21 +4,29 @@
 
 namespace GDModel { class CMap; }
 
-class CSerializerInterface
+class CSerializerInterface : public QObject
 {
 public:
+	Q_OBJECT;
+public:
 	/** */
-	CSerializerInterface( QAction* Action );
+	CSerializerInterface();
 	/** */
 	virtual ~CSerializerInterface();
 	/** */
-	virtual bool SerializeMap( const GDModel::CMap& map ) = 0;
+	static void SetMap( const GDModel::CMap* map );
+public slots:
 	/** */
-	virtual bool DeserializeMap( GDModel::CMap& map ) = 0;
+	virtual bool SerializeMap();
+	/** */
+	virtual bool DeserializeMap();
 private:
 	/** */
-	void Toggleded() {}
+	virtual bool DoSerializeMap( const GDModel::CMap& map ) = 0;
+	/** */
+	virtual bool DoDeserializeMap( GDModel::CMap& map ) = 0;
 private:
-	QAction* Action;
+	friend class CGameFactory;
+	static const GDModel::CMap *Map;
 };
 

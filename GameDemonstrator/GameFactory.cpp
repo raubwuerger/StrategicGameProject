@@ -3,6 +3,7 @@
 #include "GameInitialisationData.h"
 #include "model\Map.h"
 #include "MapView.h"
+#include "SaveBinary.h"
 
 //Initialisierung von static membern
 GDModel::CMap* CGameFactory::Map = nullptr;
@@ -27,9 +28,9 @@ void CGameFactory::CreateModel( const GDModel::CGameInitialisationData& data )
 	GDModel::CModelFactory modelFactory;
 
 	delete Map;
-	Map = new GDModel::CMap;
 
-	modelFactory.CreateEmptyMap( data, Map );
+	modelFactory.CreateEmptyMap( data, &Map );
+	CSaveBinary().SetMap(Map);
 }
 
 void CGameFactory::CreateMap( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )

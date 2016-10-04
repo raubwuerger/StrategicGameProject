@@ -14,7 +14,7 @@ public:
 	/** */
 	~CModelFactory();
 	/** */
-	void CreateEmptyMap( const GDModel::CGameInitialisationData& data,  CMap* map );
+	void CreateEmptyMap( const GDModel::CGameInitialisationData& data, CMap** map );
 };
 
 }
