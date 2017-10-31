@@ -7,7 +7,7 @@ namespace jha
 	Command::Command( const QString& name )
 		: Name(name)
 	{
-
+		//QAssert(Name.empty() == true)
 	}
 
 	Command::~Command()
