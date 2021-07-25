@@ -11,18 +11,22 @@ class LogMessage;
 class LogCategoryInterface
 {
 public:
+/** */
 	LogCategoryInterface(){}
+/** */
 	virtual QString GetCategory() const = 0;
 };
 
 class LogCategoryByName : public LogCategoryInterface
 {
 public:
+/** */
 	LogCategoryByName( const QString& name )
 		: Name(name)
 	{
 
 	}
+/** */
 	virtual QString GetCategory() const
 	{
 		return Name;
@@ -34,11 +38,14 @@ private:
 class LogCategoryDefault : public LogCategoryInterface
 {
 public:
+/** */
 	LogCategoryDefault(){}
+/** */
 	virtual QString GetCategory() const
 	{
 		return CATEGORY;
 	}
+/** */
 	void SetCategory( const QString& category )
 	{
 		CATEGORY = category;
@@ -125,4 +132,3 @@ LogInterface* GetLog();
 }
 
 typedef jha::LOGLEVEL LEVEL;
-//typedef jha::LogInterface::LOGLEVEL::DEBUG LL_DEBUG;

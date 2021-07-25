@@ -66,7 +66,6 @@ bool LoggerTableWidget::DoLogMessage( const QVector<jha::LogMessage*>& logMessag
 		emit WidgetConnector->SignalAppendRow(newRow);
 	}
 
-	//m_TableWidget->scrollToBottom();
 	return true;
 }
 

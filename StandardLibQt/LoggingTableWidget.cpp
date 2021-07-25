@@ -22,7 +22,6 @@ LoggingTableWidget::LoggingTableWidget( int rows, int columns, QWidget * parent 
 	verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 	verticalHeader()->setDefaultSectionSize(20);
 
-	//	verticalHeader->setVisible(false);
 	setSelectionBehavior(QAbstractItemView::SelectRows);
 
 	horizontalHeader()->setStretchLastSection(true);

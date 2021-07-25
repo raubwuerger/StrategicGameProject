@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "LogManagerThread.h"
 #include "LogManager.h"
-#include "LogFactory.h"
-#include "LogInterface.h"
 
 namespace jha
 {

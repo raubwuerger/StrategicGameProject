@@ -11,6 +11,20 @@ namespace jha
 LogManager* LogFactory::LogManager = nullptr;
 LogManagerThreadContainer* LogFactory::LogManagerThread = nullptr;
 
+bool LogFactory::Init()
+{
+	if( LogManagerThread != nullptr )
+	{
+		return true;
+	}
+
+	LogManager = new jha::LogManager;
+	LogManager->RegisterLogger( new LoggerCout );
+	LogManagerThread = new LogManagerThreadContainer(LogManager);
+	LogManagerThread->Init();
+	return true;
+}
+
 void LogFactory::CleanUp()
 {
 	if( LogManagerThread != nullptr )
@@ -27,18 +41,6 @@ void LogFactory::CleanUp()
 LogManager* LogFactory::GetLogManager()
 {
 	return LogManager;
-}
-
-bool LogFactory::Init()
-{
-	if( LogManagerThread == nullptr )
-	{
-		LogManager = new jha::LogManager;
-		LogManager->RegisterLogger( new LoggerCout );
-		LogManagerThread = new LogManagerThreadContainer(LogManager);
-		LogManagerThread->Init();
-	}
-	return true;
 }
 
 }
