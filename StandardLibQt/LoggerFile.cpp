@@ -1,118 +1,72 @@
 #include "stdafx.h"
 #include "LoggerFile.h"
 #include "LogMessage.h"
-#include <iostream>
+#include <fstream>
+#include <io.h>
 
 namespace jha
 {
 
-LoggerFile::LoggerFile()
+LoggerFile::LoggerFile( const QString& path )
 	: Logger("LoggerFile"),
-	Filename(""),
-	Filepath("")
+	LogFilePathName(path)
 {
 }
 
 bool LoggerFile::Init()
 {
-	if( true == Filename.isEmpty() )
+	std::ofstream logFile;
+	if( OpenLogfile(logFile) == false )
 	{
-		std::cout << "Init failed! Filename is empty -> SetFilename(...) " << endl;
 		return false;
 	}
-
-	if( true == Filepath.isEmpty() )
-	{
-		std::cout << "Init failed! Filepath is empty -> SetFilepath(...) " << endl;
-		return false;
-	}
-
-	AddPrefixToFilename();
-	CreateFilenameIncludingPath();
-	if( false == CheckIfFileCouldBeOpened() )
-	{
-		std::cout << "Unable to open log file: " << Filename.toStdString() << endl;
-		return false;
-	}
-	return true;
-}
-
-void LoggerFile::AddPrefixToFilename() const
-{
-	QString filenameWithPrefix;
-	filenameWithPrefix += QDate::currentDate().toString(jha::Logger::DEFAULT_DATE_FORMAT);
-	filenameWithPrefix += "_";
-	filenameWithPrefix += Filename;
-	FilenameIncludingPrefix = filenameWithPrefix;
-}
-
-void LoggerFile::CreateFilenameIncludingPath() const
-{
-	QString fullFileNameTemp;
-	fullFileNameTemp += Filepath;
-	fullFileNameTemp += QDir::separator();
-	fullFileNameTemp += FilenameIncludingPrefix;
-
-	QFileInfo fileInfo(fullFileNameTemp);
-	FilenameIncludingPath += fileInfo.absolutePath();
-	FilenameIncludingPath += QDir::separator();
-	FilenameIncludingPath += fileInfo.fileName();
-}
-
-bool LoggerFile::CheckIfFileCouldBeOpened()
-{
-	QFileInfo fileInfo(FilenameIncludingPath);
-	QString filePath = fileInfo.absolutePath();
-	QDir logDirectory(filePath);
-
-	if( false == logDirectory.exists() )
-	{
-		if( false == logDirectory.mkpath(fileInfo.absolutePath()) )
-		{
-			std::cout << "Unable to create path: " << filePath.toStdString() << endl;
-			return false;
-		}
-	}
-
-	QString fileName = fileInfo.absoluteFilePath();
-	QFile logFile( fileName );
-	if( false == logFile.exists() )
-	{
-		std::cout << "File dosent exist: " << fileName.toStdString() << endl;
-		if( false == logFile.open(QIODevice::ReadWrite | QIODevice::Text) )
-		{
-			std::cout << "Unable to create File: " << fileName.toStdString() << endl;
-			return false;
-		}
-		std::cout << "File has been created: " << fileName.toStdString() << endl;
-	}
-	logFile.close();
-	return true;
+	return CloseLogfile(logFile);
 }
 
 bool LoggerFile::DoLogMessage( const QVector<jha::LogMessage*>& logMessage )
 {
-	if( true == logMessage.isEmpty() )
+	std::ofstream logFile;
+	if( OpenLogfile(logFile) == false )
 	{
-		return true;
+		return false;
 	}
-
-	QFile logFile( FilenameIncludingPath );
-	if( false == logFile.open( QIODevice::Append | QIODevice::Text ) )
+	for( size_t i=0;i<logMessage.size();i++ )
 	{
-		std::cout << "Unable to open log file: " << FilenameIncludingPath.toStdString() << endl;
+		logFile << CreateDefaultLogString(logMessage.at(i)).toStdString() << "\n";
+	}
+	return CloseLogfile(logFile);
+}
+
+bool LoggerFile::OpenLogfile( std::ofstream& file )
+{
+	file.open( CreateLogfileName().toStdString(), std::ios::app);
+	if( file.fail() == true || file.bad() == true )
+	{
+		//TODO: Fehlermedlung ausgeben. Aber wie? Darf ja nicht an sich selber weitergegeben werden ... Endlosschleife
+		//TODO: Mechanismus überlegen, damit nicht an sich selber übergeben wird!
+		//TODO: Kann nur über cout ausgegeben werden, oder Messagebox?!
 		return false;
 	}
 
-	QTextStream out(&logFile);
-	for( size_t i=0;i<logMessage.size();i++ )
-	{
-		out << CreateDefaultLogString( logMessage.at(i) )  << "\n";
-	}
-
-	bool flushResult = logFile.flush();
-	logFile.close();
 	return true;
+}
+
+bool LoggerFile::CloseLogfile( std::ofstream& file )
+{
+	file.close();
+	return true; //TODO: Nur damit Kompilierbar ist
+}
+
+QString LoggerFile::CreateLogfileName() const
+{
+	QFileInfo fileInfo(LogFilePathName);
+	QString newFileName;
+	newFileName += fileInfo.absolutePath();
+	newFileName += "/";
+	newFileName += QDate::currentDate().toString(jha::Logger::DEFAULT_DATE_FORMAT);
+	newFileName += "_";
+	newFileName += fileInfo.fileName();
+	return newFileName;
 }
 
 }

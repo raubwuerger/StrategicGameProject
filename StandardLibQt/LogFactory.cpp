@@ -61,9 +61,6 @@ bool LogFactory::Init()
 		std::cout << "Error initializing LogInterface!" << endl;
 		return false;
 	}
-
-	LogManagerThread->Start();
-
 	return true;
 }
 

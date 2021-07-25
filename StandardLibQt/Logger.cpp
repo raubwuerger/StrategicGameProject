@@ -8,7 +8,6 @@ namespace jha
 
 const QString Logger::DEFAULT_TIME_FORMAT = "hh:mm:ss.zzz";
 const QString Logger::DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
-QString Logger::Separator = "\t";
 
 Logger::Logger( const QString& name )
 	: Name(name),
@@ -47,7 +46,7 @@ QString Logger::CreateDefaultLogString( jha::LogMessage *message ) const
 	{
 		return QString();
 	}
-	return QString(message->GetLogTime().toString(jha::Logger::DEFAULT_TIME_FORMAT)) +Separator +QString(message->GetLogLevel().GetName()) +Separator +Separator +QString(message->GetCategory())  +Separator +Separator +QString(message->GetMessage());
+	return QString(message->GetLogTime().toString(jha::Logger::DEFAULT_TIME_FORMAT)) +QString("\t") +QString(message->GetLogLevel().GetName()) +QString("\t\t") +QString(message->GetCategory())  +QString("\t\t") +QString(message->GetMessage());
 }
 
 bool Logger::LogThisLogLevel( jha::LogMessage *message ) const

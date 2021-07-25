@@ -9,8 +9,7 @@ namespace jha
 LogManager::LogManager()
 	: LogMessageIndex(0),
 	LogMessagesProcessing(nullptr),
-	LogMessagesReady(nullptr),
-	InitialLogmessage(nullptr)
+	LogMessagesReady(nullptr)
 {
 	LogMessagesProcessing = new QVector<LogMessage*>;
 	LogMessagesReady = new QVector<LogMessage*>;
@@ -23,14 +22,10 @@ LogManager::~LogManager()
 		delete Logger.at(i);
 	}
 	Logger.clear();
-
 	delete LogMessagesProcessing;
 	LogMessagesProcessing = nullptr;
-
 	delete LogMessagesReady;
 	LogMessagesReady = nullptr;
-
-	delete InitialLogmessage;
 }
 
 bool LogManager::RegisterLogger( jha::Logger* logger )
@@ -80,11 +75,6 @@ bool LogManager::ProcessMessages()
 void LogManager::AddLogMessage( jha::LogMessage *logMessage )
 {
 	QMutexLocker lock(&Mutex);
-	if( LogMessageIndex == 0 )
-	{
-		InjectInitialLogMessage();
-	}
-	logMessage->SetLogIndex(CreateLogMessageIndex());
 	LogMessagesReady->push_back(logMessage);
 }
 
@@ -129,14 +119,6 @@ void LogManager::WorkMessages()
 {
 	ProcessMessages();
 	emit Finished();
-}
-
-void LogManager::InjectInitialLogMessage()
-{
-	QString initialLogMessage("#################### START LOGGING ####################");
-	InitialLogmessage = new LogMessage(QTime::currentTime(),LogInterface::LOGLEVEL_INIT,initialLogMessage,QCoreApplication::applicationName());
-	InitialLogmessage->SetLogIndex(0);
-	LogMessagesReady->push_back(InitialLogmessage);
 }
 
 }

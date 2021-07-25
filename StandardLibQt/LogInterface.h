@@ -69,7 +69,6 @@ public:
 
 enum class LOGLEVEL
 {
-	LL_INIT = -1,
 	LL_NONE = 0,
 	LL_FATAL = 1,
 	LL_ERROR = 2,
@@ -92,7 +91,6 @@ public:
 	static const LogLevel LOGLEVEL_INFO;
 	static const LogLevel LOGLEVEL_TRACE;
 	static const LogLevel LOGLEVEL_DEBUG;
-	static const LogLevel LOGLEVEL_INIT;
 public:
 /** */
 	static LogInterface* GetInstance();

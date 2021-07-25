@@ -24,7 +24,7 @@ public:
 	const QString& GetName() const;
 /** */
 	bool GetEnabled() const;
-/** */
+	/** */
 	void SetEnabled( bool enable );
 protected:
 /** */
@@ -36,7 +36,6 @@ private:
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage ) = 0;
 private:
 	QString	Name;
-	static QString Separator;
 	bool	Enabled;
 	LogLevel LogLevel;
 };

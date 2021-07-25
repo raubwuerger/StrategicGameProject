@@ -12,29 +12,20 @@ class LoggerFile : public Logger
 {
 public:
 /** Konstruktor */
-	LoggerFile();
-/** */
-	void SetFilename( const QString& filename ) { Filename = filename; }
-/** */
-	void SetFilepath( const QString& filepath ) { Filepath = filepath; }
+	LoggerFile( const QString& pathName );
 /** */
 	virtual bool Init();
 /** */
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage );
 private:
 /** */
+	bool OpenLogfile( std::ofstream& file );
+/** */
 	bool CloseLogfile( std::ofstream& file );
 /** */
-	void AddPrefixToFilename() const;
-/** */
-	void CreateFilenameIncludingPath() const;
-/** */
-	bool CheckIfFileCouldBeOpened();
+	QString CreateLogfileName() const;
 private:
-	QString Filepath;
-	QString Filename;
-	mutable QString FilenameIncludingPrefix;
-	mutable QString FilenameIncludingPath;
+	QString LogFilePathName;
 };
 
 }
