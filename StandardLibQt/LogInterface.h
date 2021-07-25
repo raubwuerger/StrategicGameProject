@@ -7,6 +7,7 @@ namespace jha
 class LogLevel;
 class Logger;
 class LogMessage;
+class LogManager;
 
 class LogCategoryInterface
 {
@@ -82,39 +83,6 @@ class LogInterface : public QObject
 {
 	Q_OBJECT
 public:
-/** Constructor */
-	LogInterface();
-/** Initialisiert LogInterface */
-	bool Init();
-/** */
-	bool CleanUp();
-/** */
-	void Start();
-/** Nimmt eine Logmeldung auf */
-	void Log( const QString& message, LOGLEVEL logLevel, const QString& category );
-/** Nimmt eine Logmeldung auf */
-	void Log( const QString& message, LOGLEVEL logLevel, const LogCategoryInterface& logCategory = LogCategoryDefault() );
-/** Registriert einen speziellen Logger */
-	bool RegisterLogger( Logger* logger );
-/** */
-	const QString& GetLogLevelString( LOGLEVEL logLevel ) const;
-/** */
-	const LogLevel& GetLogLevel( LOGLEVEL logLevel ) const;
-/** */
-	void SetLogInterfaceVisitor( LogCategoryVisitor * obj );
-private:
-/** Copy constructor restricted */
-	LogInterface( const LogInterface& rhs );
-/** Move constructor restricted */
-	LogInterface( LogInterface&& rhs );
-/** Copy operator restricted */
-	LogInterface& operator=( const LogInterface& rhs );
-/** Move operator restricted */
-	LogInterface& operator==( LogInterface&& rhs );
-/** */
-signals:
-	void PostLogMessage( jha::LogMessage *logMessage );
-public:
 	static const LogLevel LOGLEVEL_NONE;
 	static const LogLevel LOGLEVEL_FATAL;
 	static const LogLevel LOGLEVEL_ERROR;
@@ -123,8 +91,35 @@ public:
 	static const LogLevel LOGLEVEL_INFO;
 	static const LogLevel LOGLEVEL_TRACE;
 	static const LogLevel LOGLEVEL_DEBUG;
-	static LogInterface *log;
-	static LogCategoryVisitor	*LogInterfaceVisitor;
+public:
+/** */
+	static LogInterface* GetInstance();
+/** Nimmt eine Logmeldung auf */
+	void Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category );
+/** Nimmt eine Logmeldung auf */
+	void Log( const QString& message, jha::LOGLEVEL logLevel, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+private:
+/** Initialisiert LogInterface */
+	bool Init();
+/** */
+	void Release();
+/** Constructor */
+	LogInterface();
+/** Copy constructor restricted */
+	LogInterface( const LogInterface& rhs );
+/** Move constructor restricted */
+	LogInterface( LogInterface&& rhs );
+/** Copy operator restricted */
+	LogInterface& operator=( const LogInterface& rhs );
+/** Move operator restricted */
+	LogInterface& operator==( LogInterface&& rhs );
+signals:
+	void PostLogMessage( jha::LogMessage *logMessage );
+private:
+	friend class LogFactory;
+	static LogInterface*		Instance;
+	static LogManager*			LogManagerInstance;
+	static LogCategoryVisitor*	LogInterfaceVisitor;
 };
 
 LogInterface* GetLog();

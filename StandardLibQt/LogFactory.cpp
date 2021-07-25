@@ -4,12 +4,39 @@
 #include "LogManagerThread.h"
 #include "LoggerCout.h"
 #include "LogInterface.h"
+#include <iostream>
 
 namespace jha
 {
 
+LogFactory* LogFactory::Instance = nullptr;
 LogManager* LogFactory::LogManager = nullptr;
 LogManagerThreadContainer* LogFactory::LogManagerThread = nullptr;
+
+LogFactory::LogFactory()
+{
+
+}
+
+LogFactory::LogFactory(const LogFactory&)
+{
+
+}
+
+LogFactory* LogFactory::GetInstance()
+{
+	//TODO: Diese Funktion könnte gleichzeitig aufgerufen werden! Durch Semaphore absichern!
+	if( Instance != nullptr )
+	{
+		return Instance;
+	}
+	Instance = new LogFactory;
+	if( false == Instance->Init() )
+	{
+		std::cout << "Error initializing LogFactory!" << endl;
+	}
+	return Instance;
+}
 
 bool LogFactory::Init()
 {
@@ -19,13 +46,25 @@ bool LogFactory::Init()
 	}
 
 	LogManager = new jha::LogManager;
-	LogManager->RegisterLogger( new LoggerCout );
 	LogManagerThread = new LogManagerThreadContainer(LogManager);
-	LogManagerThread->Init();
+	if( false == LogManagerThread->Init() )
+	{
+		std::cout << "Error initializing LogManagerThread!" << endl;
+		return false;
+	}
+	LogManager->RegisterLogger( new LoggerCout );
+
+	LogInterface* logInterface = LogInterface().GetInstance();
+	logInterface->LogManagerInstance = LogManager;
+	if( false == logInterface->Init() )
+	{
+		std::cout << "Error initializing LogInterface!" << endl;
+		return false;
+	}
 	return true;
 }
 
-void LogFactory::CleanUp()
+void LogFactory::Release()
 {
 	if( LogManagerThread != nullptr )
 	{
@@ -36,11 +75,18 @@ void LogFactory::CleanUp()
 	
 	delete LogManager;
 	LogManager = nullptr;
+
+	LogInterface().GetInstance()->Release();
 }
 
-LogManager* LogFactory::GetLogManager()
+bool LogFactory::RegisterLogger(jha::Logger* logger)
 {
-	return LogManager;
+	if( nullptr == LogManager )
+	{
+		std::cout << "LogManager is null! Call LogFactory::Init()!" << endl;
+		return false;
+	}
+	return LogManager->RegisterLogger(logger);
 }
 
 }

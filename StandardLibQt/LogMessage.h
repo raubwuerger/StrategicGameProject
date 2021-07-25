@@ -10,7 +10,7 @@ class LogMessage
 {
 public:
 /** Constructor */
-	LogMessage( const unsigned long index, const QTime& time, const LogLevel& logLevel, const QString& message, const QString& category );
+	LogMessage( const QTime& time, const LogLevel& logLevel, const QString& message, const QString& category );
 /** Copy Constructor */
 	LogMessage( const LogMessage& rhs );
 /** Move Constructor */
@@ -33,15 +33,19 @@ public:
 	const LogLevel& GetLogLevel() const;
 /** Liefert Zeitpunkt */
 	const QTime& GetLogTime() const;
+/** */
+	void SetLogIndex( const unsigned long index );
 private:
 /** Default constructor restricted */
 	LogMessage();
+/** Constructor */
+	LogMessage( const unsigned long index, const QTime& time, const LogLevel& logLevel, const QString& message, const QString& category );
 private:
 	unsigned long 		Index;
 	QTime				Time;
 	const LogLevel		*LogLevel;
-	QString			Message;
-	QString			Category;
+	QString				Message;
+	QString				Category;
 };
 
 }

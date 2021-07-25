@@ -3,7 +3,7 @@
 #include <QString>
 #include <QColor>
 
-//TODO: enums in eigene HEader auslagern, dann kann das hier entfallen
+//TODO: enums in eigene Header auslagern, dann kann das hier entfallen
 #include "LogInterface.h"
 
 namespace jha

@@ -5,8 +5,17 @@
 namespace jha
 {
 
+LogMessage::LogMessage( const QTime& time, const jha::LogLevel& logLevel, const QString& message, const QString& category )
+ :	Index(0),
+	Time(time),
+	LogLevel(&logLevel),
+	Message(message),
+	Category(category)
+{
+}
+
 LogMessage::LogMessage( const unsigned long index, const QTime& time, const jha::LogLevel& logLevel, const QString& message, const QString& category )
- :	Index(index),
+	:	Index(index),
 	Time(time),
 	LogLevel(&logLevel),
 	Message(message),
@@ -85,6 +94,11 @@ const LogLevel& LogMessage::GetLogLevel() const
 const QTime& LogMessage::GetLogTime() const
 {
 	return Time;
+}
+
+void LogMessage::SetLogIndex(const unsigned long index)
+{
+	Index = index;
 }
 
 }
