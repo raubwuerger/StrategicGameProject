@@ -4,9 +4,9 @@
 
 namespace jha
 {
+
 class LogMessage;
 class Logger;
-class LogMessage;
 
 /** LogManager, Singleton */
 class LogManager : public QObject
@@ -23,7 +23,7 @@ public slots:
 /** Startet abarbeitung der aufgelaufenen Meldungen */
 	void WorkMessages();
 /** Registriert einen neuen Logger. Übernimmt Besitz! */
-	bool RegisterLogger( Logger* logger );
+	bool RegisterLogger( jha::Logger* logger );
 /** Fügt LogMessage ein */
 	void AddLogMessage( jha::LogMessage *logMessage );
 signals:
