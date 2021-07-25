@@ -14,6 +14,7 @@
 #include "SaveBinary.h"
 #include "SerializerFactory.h"
 #include "Action.h"
+#include "LogFactory.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -184,11 +185,14 @@ void GameDemonstrator::InitLoggingFramwork()
 	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
 	ViewMenu->addAction(dockWidget->toggleViewAction());
 
+	if( false == jha::LogFactory::GetInstance()->Init() )
+	{
+		//TODO: Fehlermeldung ausgeben!!!
+		return;
+	}
 
-	jha::LogInterface().Init();
-	jha::GetLog()->RegisterLogger( new jha::LoggerFile("./log/Logfile.log") );
-	jha::GetLog()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
-	jha::GetLog()->Start();
+	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerFile("./log/Logfile.log") );
+	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 }
 
 #include "TerrainTypeFactory.h"
