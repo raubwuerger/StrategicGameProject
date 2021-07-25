@@ -24,8 +24,10 @@ namespace jha
 	const LogLevel LogInterface::LOGLEVEL_INFO("Info","i",Qt::blue,LOGLEVEL::LL_INFO);
 	const LogLevel LogInterface::LOGLEVEL_TRACE("Trace","t",Qt::black,LOGLEVEL::LL_TRACE);
 	const LogLevel LogInterface::LOGLEVEL_DEBUG("Debug","d",Qt::darkGray,LOGLEVEL::LL_DEBUG);
+	const LogLevel LogInterface::LOGLEVEL_INIT("Init","s",Qt::darkRed,LOGLEVEL::LL_INIT);
 
-	LogLevel logLevelArray[8] = { LogInterface::LOGLEVEL_NONE, 
+	LogLevel logLevelArray[8] = { 
+		LogInterface::LOGLEVEL_NONE, 
 		LogInterface::LOGLEVEL_FATAL,
 		LogInterface::LOGLEVEL_ERROR,
 		LogInterface::LOGLEVEL_WARNING,

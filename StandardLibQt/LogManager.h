@@ -17,8 +17,6 @@ public:
 	LogManager();
 /** Destructor */
 	~LogManager();
-/** */
-	unsigned long CreateLogMessageIndex();
 public slots:
 /** Startet abarbeitung der aufgelaufenen Meldungen */
 	void WorkMessages();
@@ -41,11 +39,16 @@ private:
 	bool CheckReinitLogger() const;
 /** */
 	void ReinitLogger();
+/** */
+	unsigned long CreateLogMessageIndex();
+/** */
+	void InjectInitialLogMessage();
 private:
-	QVector<Logger*>	Logger;
+	QVector<Logger*>		Logger;
 	QVector<LogMessage*>	*LogMessagesProcessing;
 	QVector<LogMessage*>	*LogMessagesReady;
-	unsigned long LogMessageIndex;
+	LogMessage*				InitialLogmessage;
+	unsigned long			LogMessageIndex;
 	QMutex Mutex;
 };
 

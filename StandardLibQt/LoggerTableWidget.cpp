@@ -30,10 +30,16 @@ bool LoggerTableWidget::Init()
 
 bool LoggerTableWidget::DoLogMessage( const QVector<jha::LogMessage*>& logMessage )
 {
+	if( true == logMessage.isEmpty() )
+	{
+		return true;
+	}
+
 	if( TableWidget == nullptr )
 	{
 		return false;
 	}
+
 	for( size_t i=0;i<logMessage.size();i++ )
 	{
 		jha::LogMessage* message = logMessage.at(i);
