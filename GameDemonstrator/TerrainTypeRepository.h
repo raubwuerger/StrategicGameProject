@@ -6,7 +6,7 @@ class CTerrainTypeRepository
 {
 public:
 	static CTerrainTypeRepository* GetInstance();
-	/** */
+	/** If no TerrainTypes are registered, the first will be set as DefaultTerrainType */
 	bool RegisterTerrainType( CTerrainType *terrainType  );
 	/** */
 	CTerrainType* FindTerrainTypeById( int id );

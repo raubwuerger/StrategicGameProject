@@ -73,7 +73,7 @@ GameDemonstrator::~GameDemonstrator()
 {
 	CTerrainTypeRepository::GetInstance()->Release();
 	delete ActionRepository;
-	delete OwnerTypeRepository;
+	COwnerTypeRepository::GetInstance()->Release();
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()
@@ -245,7 +245,6 @@ bool GameDemonstrator::LoadTerrainTypes()
 	{
 		CTerrainTypeRepository::GetInstance()->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
-	CTerrainTypeRepository::GetInstance()->SetDefaultTerrainType( CTerrainTypeRepository::GetInstance()->FindTerrainTypeById(1) );
 	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(CTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
@@ -254,8 +253,6 @@ bool GameDemonstrator::LoadTerrainTypes()
 #include "OwnerTypeRepository.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
-	OwnerTypeRepository = new COwnerTypeRepository;
-
 	jha::GetLog()->Log("Loading OwnerTypes.xml ...", LEVEL::LL_MESSAGE);
 	QString fileName(".\\conf\\OwnerTypes.xml");
 
@@ -293,10 +290,9 @@ bool GameDemonstrator::LoadOwnerTypes()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		OwnerTypeRepository->RegisterOwnerType( COwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
+		COwnerTypeRepository::GetInstance()->RegisterOwnerType( COwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
 	}
-	OwnerTypeRepository->SetDefaultOwnerType( OwnerTypeRepository->FindOwnerTypeById(1) );
-	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(OwnerTypeRepository->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(COwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
 

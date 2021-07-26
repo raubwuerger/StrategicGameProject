@@ -2,6 +2,19 @@
 #include "OwnerTypeRepository.h"
 #include "OwnerType.h"
 
+COwnerTypeRepository* COwnerTypeRepository::Instance = nullptr;
+
+COwnerTypeRepository* COwnerTypeRepository::GetInstance()
+{
+	if( nullptr != Instance )
+	{
+		return Instance;
+	}
+
+	Instance = new COwnerTypeRepository;
+	return Instance;
+}
+
 COwnerTypeRepository::COwnerTypeRepository()
 	: DefaultOwnerType(nullptr)
 {
@@ -10,6 +23,7 @@ COwnerTypeRepository::COwnerTypeRepository()
 
 COwnerTypeRepository::~COwnerTypeRepository()
 {
+	OwnerTypes.clear();
 }
 
 bool COwnerTypeRepository::RegisterOwnerType( GDModel::COwnerType *ownerType )
@@ -24,6 +38,12 @@ bool COwnerTypeRepository::RegisterOwnerType( GDModel::COwnerType *ownerType )
 	{
 		return false;
 	}
+
+	if( true == OwnerTypes.isEmpty() )
+	{
+		SetDefaultOwnerType(ownerType);
+	}
+
 	OwnerTypes.insert( ownerType->GetId(), ownerType );
 	return true;
 }
@@ -61,4 +81,10 @@ const GDModel::COwnerType* COwnerTypeRepository::GetDefaultOwnerType() const
 void COwnerTypeRepository::SetDefaultOwnerType( const GDModel::COwnerType* val )
 {
 	DefaultOwnerType = val;
+}
+
+void COwnerTypeRepository::Release()
+{
+	delete Instance;
+	Instance = nullptr;
 }

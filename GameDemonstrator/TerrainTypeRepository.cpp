@@ -32,11 +32,18 @@ bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
 		Q_ASSERT(false);
 		return false;
 	}
+	
 	QMap<int,CTerrainType*>::const_iterator allreadyExists = TerrainTypes.find(terrainType->GetId() );
 	if( allreadyExists != TerrainTypes.end() )
 	{
 		return false;
 	}
+
+	if( true == TerrainTypes.isEmpty() )
+	{
+		SetDefaultTerrainType( terrainType );
+	}
+
 	TerrainTypes.insert( terrainType->GetId(), terrainType );
 	return true;
 }
