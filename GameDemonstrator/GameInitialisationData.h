@@ -1,8 +1,5 @@
 #pragma once
 
-namespace GDModel
-{
-
 /** Enthält alle notwendigen Daten zum Erstellen eines neuen Spiels */
 
 class CGameInitialisationData
@@ -16,5 +13,3 @@ public:
 	int		Diffculty;
 	int		DefaultMapTileTerrainId;
 };
-
-}

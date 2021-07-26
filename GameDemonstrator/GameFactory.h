@@ -2,7 +2,7 @@
 
 class CTerrainType;
 class CMapView;
-namespace GDModel { class CGameInitialisationData; }
+class CGameInitialisationData;
 namespace GDModel { class GameMap; }
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
@@ -16,16 +16,16 @@ public:
 	/** */
 	void CreateNewGame();
 	/** */
-	void CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
+	void CreateNewGame( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
 	/** */
-	void CreateGameFromSavegame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
+	void CreateGameFromSavegame( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
 	/** */
-	void CreateGameFromScenario( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
+	void CreateGameFromScenario( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
 private:
 	/** */
-	void CreateModel( const GDModel::CGameInitialisationData& data );
+	void CreateModel( const CGameInitialisationData& data );
 	/** */
-	void CreateMap(  const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
+	void CreateMap(  const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
 private:
 	static 	GDModel::GameMap *TheGameMap;
 };

@@ -43,7 +43,7 @@ void CMapView::Create()
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
 #include "TerrainType.h"
-void CMapView::Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
+void CMapView::Init( const CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
 {
 	MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
 

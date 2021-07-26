@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "GameInitialisationData.h"
 
-namespace GDModel
-{
 
 CGameInitialisationData::CGameInitialisationData()
 	: 	Rows(-1),
@@ -11,6 +9,4 @@ CGameInitialisationData::CGameInitialisationData()
 		Diffculty(0),
 		DefaultMapTileTerrainId(1)
 {
-}
-
 }

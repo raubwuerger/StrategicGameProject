@@ -22,14 +22,14 @@ void CGameFactory::CreateNewGame()
 	TheGameMap->Create();
 }
 
-void CGameFactory::CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
+void CGameFactory::CreateNewGame( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
 {
 	CreateModel( data );
 	CreateMap( data, mapView, defaultTerrainType );
 }
 
 #include "ModelFactory.h"
-void CGameFactory::CreateModel( const GDModel::CGameInitialisationData& data )
+void CGameFactory::CreateModel( const CGameInitialisationData& data )
 {
 	GDModel::CModelFactory modelFactory;
 
@@ -39,7 +39,7 @@ void CGameFactory::CreateModel( const GDModel::CGameInitialisationData& data )
 	CSaveBinary().SetMap(TheGameMap);
 }
 
-void CGameFactory::CreateMap( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
+void CGameFactory::CreateMap( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
 {
 	mapView->Init( data, defaultTerrainType );
 }

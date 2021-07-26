@@ -4,7 +4,7 @@
 #include <QObject>
 class CMapView;
 class CTerrainType;
-namespace GDModel { class CGameInitialisationData; }
+class CGameInitialisationData;
 
 class CCreateNewMap : public QObject
 {
@@ -20,7 +20,7 @@ private:
 	friend class CMapFactory;
 	CMapView	*MapView;
 	const CTerrainType	*DefaultTerrainType;
-	GDModel::CGameInitialisationData *GameData;
+	CGameInitialisationData *GameData;
 };
 
 #endif // CREATENEWMAP_H

@@ -1,10 +1,11 @@
 #pragma once
 
+class CGameInitialisationData;
+
 namespace GDModel
 {
 
 class GameMap;
-class CGameInitialisationData;
 
 class CModelFactory
 {
@@ -14,7 +15,7 @@ public:
 	/** */
 	~CModelFactory();
 	/** */
-	void CreateEmptyMap( const GDModel::CGameInitialisationData& data, GameMap** gameMap );
+	void CreateEmptyMap( const CGameInitialisationData& data, GameMap** gameMap );
 };
 
 }

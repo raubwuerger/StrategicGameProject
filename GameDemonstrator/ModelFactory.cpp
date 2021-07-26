@@ -15,7 +15,7 @@ CModelFactory::~CModelFactory()
 {
 }
 
-void CModelFactory::CreateEmptyMap( const GDModel::CGameInitialisationData& data, GameMap** gameMap )
+void CModelFactory::CreateEmptyMap( const CGameInitialisationData& data, GameMap** gameMap )
 {
  	*gameMap = new GameMap;
  	(*gameMap)->Init( data.Rows, data.Cols );

@@ -8,7 +8,7 @@ class HexItemEventManager;
 class CMapEventManager;
 class CTerrainType;
 
-namespace GDModel { class CGameInitialisationData; }
+class CGameInitialisationData;
 
 class CMapView : public QGraphicsView
 {
@@ -20,7 +20,7 @@ public:
 	/** */
 	~CMapView();
 	/** */
-	void Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType );
+	void Init( const CGameInitialisationData &data, const CTerrainType* defaultTerrainType );
 	/** */
 	void Create();
 public:

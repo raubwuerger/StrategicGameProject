@@ -12,7 +12,7 @@ CCreateNewMap::CCreateNewMap(QObject *parent)
 	DefaultTerrainType(nullptr),
 	GameData(nullptr)
 {
-	GameData = new GDModel::CGameInitialisationData;
+	GameData = new CGameInitialisationData;
 }
 
 CCreateNewMap::~CCreateNewMap()
