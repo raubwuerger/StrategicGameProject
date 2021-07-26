@@ -8,12 +8,20 @@ class QActionRepository : public QObject
 
 public:
 	/** */
+	static QActionRepository* GetInstanceFirstTimeInit(QObject *parent);
+	/** */
+	static QActionRepository* GetInstance();
+	/** */
+	void AddAction( QAction* action );
+	/** */
+	void Release();
+private:
+	/** */
 	QActionRepository(QObject *parent);
 	/** */
 	~QActionRepository();
-	/** */
-	void AddAction( QAction* action );
 private:
 	QList<QAction*>	Actions;
+	static QActionRepository* Instance;
 };
 
