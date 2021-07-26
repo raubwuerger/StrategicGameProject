@@ -15,6 +15,10 @@ public:
 	~CGameFactory();
 	/** */
 	void CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
+	/** */
+	void CreateGameFromSavegame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
+	/** */
+	void CreateGameFromScenario( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
 private:
 	/** */
 	void CreateModel( const GDModel::CGameInitialisationData& data );

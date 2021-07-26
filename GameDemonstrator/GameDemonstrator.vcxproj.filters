@@ -362,6 +362,21 @@
     <ClCompile Include="model\GameMap.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="model\GameData.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\GameMapFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\GameSettings.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\GameSettingsFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\GameMapConfig.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -433,9 +448,6 @@
     <ClInclude Include="GameInitialisationData.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="GameFactory.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="SaveBinary.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
@@ -462,6 +474,24 @@
     </ClInclude>
     <ClInclude Include="model\GameMap.h">
       <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameData.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameMapFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameSettings.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameSettingsFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFactory.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameMapConfig.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -534,9 +564,6 @@
     <CustomBuild Include="MapViewHexItem.h">
       <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
-    <CustomBuild Include="CreateNewMap.h">
-      <Filter>Header Dateien\Model</Filter>
-    </CustomBuild>
     <CustomBuild Include="OwnerTypeFactory.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
@@ -548,6 +575,9 @@
     </CustomBuild>
     <CustomBuild Include="HexItemEventManager.h">
       <Filter>Header Dateien\UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CreateNewMap.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
