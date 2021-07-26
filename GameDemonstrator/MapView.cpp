@@ -5,6 +5,8 @@
 #include "MapEventManager.h"
 #include "GameInitialisationData.h"
 #include "HexItemEventManager.h"
+#include "TerrainTypeRepository.h"
+#include "TerrainType.h"
 
 CMapView::CMapView(QWidget *parent)
 	: QGraphicsView(parent)
@@ -17,6 +19,26 @@ CMapView::~CMapView()
 {
 	delete HexItemEventManager;
 	delete MapEventManager;
+}
+
+#include "model/GameDataConfig.h"
+void CMapView::Create()
+{
+	unsigned int cols = GameDataConfig::GetInstance()->TheGameMapConfig.Cols;
+	unsigned int rows = GameDataConfig::GetInstance()->TheGameMapConfig.Rows;
+	MapEventManager->InitMapItemsRegistry( cols, rows );
+	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
+	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),Scene,SLOT(HexActive(int,int)));
+	Scene->HexItemEventManager = HexItemEventManager;
+
+	double defaultHexSize = 48.0;
+	HexagonData hexagonTemplate( defaultHexSize );
+	CreateTestMap( cols, rows, hexagonTemplate, CTerrainTypeRepository::GetInstance()->GetDefaultTerrainType()->GetImage() );
+
+	setScene(Scene);
+	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
+
+	setDragMode(ScrollHandDrag);
 }
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???

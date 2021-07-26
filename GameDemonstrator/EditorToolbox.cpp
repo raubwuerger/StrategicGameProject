@@ -17,19 +17,19 @@ CEditorToolbox::~CEditorToolbox()
 
 }
 
-void CEditorToolbox::Create( CTerrainTypeRepository *repository )
+void CEditorToolbox::Create()
 {
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	connect(GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
-	QMap<int,CTerrainType*>::const_iterator terrainTypes = repository->GetFirstIterator();
+	QMap<int,CTerrainType*>::const_iterator terrainTypes = CTerrainTypeRepository::GetInstance()->GetFirstIterator();
 
 	//TODO: Wo werden die ganzen globalen Strings definiert!?
 	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	int rowIndex = 0;
-	while( terrainTypes != repository->GetLastIterator() )
+	while( terrainTypes != CTerrainTypeRepository::GetInstance()->GetLastIterator() )
 	{
 		QString terrainPictureName(baseTerrainPicturePath);
 		terrainPictureName += terrainTypes.value()->GetPicturePath();

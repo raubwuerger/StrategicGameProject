@@ -5,10 +5,7 @@ class CTerrainType;
 class CTerrainTypeRepository
 {
 public:
-	/** */
-	CTerrainTypeRepository();
-	/** */
-	~CTerrainTypeRepository();
+	static CTerrainTypeRepository* GetInstance();
 	/** */
 	bool RegisterTerrainType( CTerrainType *terrainType  );
 	/** */
@@ -23,8 +20,16 @@ public:
 	const CTerrainType* GetDefaultTerrainType() const;
 	/** Set m_DefaultTerrainType */
 	void SetDefaultTerrainType( const CTerrainType* val);
+	/** */
+	void Release();
 private:
-	QMap<int,CTerrainType*>	TerrainTypes;
-	const CTerrainType*			DefaultTerrainType;
+	/** */
+	CTerrainTypeRepository();
+	/** */
+	~CTerrainTypeRepository();
+private:
+	QMap<int,CTerrainType*>			TerrainTypes;
+	const CTerrainType*				DefaultTerrainType;
+	static CTerrainTypeRepository* Instance;
 };
 

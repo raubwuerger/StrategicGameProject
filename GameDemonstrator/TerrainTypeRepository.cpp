@@ -2,14 +2,27 @@
 #include "TerrainTypeRepository.h"
 #include "TerrainType.h"
 
+CTerrainTypeRepository* CTerrainTypeRepository::Instance = nullptr;
+
+CTerrainTypeRepository* CTerrainTypeRepository::GetInstance()
+{
+	if( nullptr != Instance )
+	{
+		return Instance;
+	}
+
+	Instance = new CTerrainTypeRepository;
+	return Instance;
+}
+
 CTerrainTypeRepository::CTerrainTypeRepository()
 	: DefaultTerrainType(nullptr)
 {
 }
 
-
 CTerrainTypeRepository::~CTerrainTypeRepository()
 {
+	TerrainTypes.clear();
 }
 
 bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
@@ -61,4 +74,11 @@ const CTerrainType* CTerrainTypeRepository::GetDefaultTerrainType() const
 void CTerrainTypeRepository::SetDefaultTerrainType( const CTerrainType* val )
 {
 	DefaultTerrainType = val;
+}
+
+
+void CTerrainTypeRepository::Release()
+{
+	delete Instance;
+	Instance = nullptr;
 }

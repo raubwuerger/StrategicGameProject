@@ -14,6 +14,8 @@ public:
 	/** */
 	~GameMap();
 	/** */
+	void Create();
+	/** */
 	void Init( int rows, int cols );
 	/** */
 	void Release();
@@ -21,6 +23,8 @@ public:
 	const QVector< QVector<GDModel::CMapItem*> >& GetMapItems() const;
 private:
 	QVector< QVector<GDModel::CMapItem*> >	MapItems;
+	unsigned int Rows;
+	unsigned int Cols;
 };
 
 

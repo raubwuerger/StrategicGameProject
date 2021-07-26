@@ -377,6 +377,9 @@
     <ClCompile Include="model\GameMapConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\GameDataConfig.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -491,6 +494,9 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="model\GameMapConfig.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameDataConfig.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

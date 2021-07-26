@@ -3,7 +3,6 @@
 
 #include <QObject>
 class CTerrainType;
-class CTerrainTypeRepository;
 class CMapEventManager;
 
 class CTerrainTypeEditor : public QObject
@@ -22,7 +21,6 @@ public slots:
 private:
 	friend class GameDemonstrator;
 	CTerrainType			*ActiveTerrainType;
-	CTerrainTypeRepository	*TerrainTypeRepository;
 	CMapEventManager		*MapEventManager;
 };
 

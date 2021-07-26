@@ -16,7 +16,7 @@ public:
 	/** */
 	~CEditorToolbox();
 	/** Erzeugt die Toolboxeinträge */
-	void Create( CTerrainTypeRepository *repository );
+	void Create();
 private:
 	/** */
 	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, CConnectorButtonTerrainTypeId *connector, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );

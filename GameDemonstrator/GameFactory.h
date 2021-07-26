@@ -14,6 +14,8 @@ public:
 	/** */
 	~CGameFactory();
 	/** */
+	void CreateNewGame();
+	/** */
 	void CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
 	/** */
 	void CreateGameFromSavegame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}

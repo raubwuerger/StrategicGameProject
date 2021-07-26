@@ -9,7 +9,6 @@ class CGameTurnDialog;
 class CHexItemInfoDialog;
 class GameMainThread;
 class GameMainLoop;
-class CTerrainTypeRepository;
 class CMapView;
 class CEditorToolbox;
 class CMapEventManager;
@@ -44,8 +43,8 @@ private:
 	bool LoadTerrainTypes();
 	bool LoadOwnerTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-	void CreateEditorToolbox( CTerrainTypeRepository *repository, CTerrainTypeEditor *terrainTypeEditor );
-	CTerrainTypeEditor* CreateTerrainTypeEditor( CTerrainTypeRepository *terrainTypeRepository, CMapEventManager* mapEventManager );
+	void CreateEditorToolbox( CTerrainTypeEditor *terrainTypeEditor );
+	CTerrainTypeEditor* CreateTerrainTypeEditor( CMapEventManager* mapEventManager );
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
@@ -56,7 +55,6 @@ private:
 	GameMainThread		*MainThread;
 	GameMainLoop		*MainGameLoop;
 	jha::LoggingTableWidget	*DockWidgetLogging;
-	CTerrainTypeRepository	*TerrainTypeRepository;
 	COwnerTypeRepository	*OwnerTypeRepository;
 	CMapView				*MapView;
 

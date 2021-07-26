@@ -9,7 +9,6 @@
 CTerrainTypeEditor::CTerrainTypeEditor(QObject *parent)
 	: QObject(parent),
 	ActiveTerrainType(nullptr),
-	TerrainTypeRepository(nullptr),
 	MapEventManager(nullptr)
 {
 
@@ -22,12 +21,12 @@ CTerrainTypeEditor::~CTerrainTypeEditor()
 
 void CTerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
 {
-	ActiveTerrainType = TerrainTypeRepository->FindTerrainTypeById( terrainTypeId );
+	ActiveTerrainType = CTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
 void CTerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 {
-	Q_ASSERT(TerrainTypeRepository);
+	Q_ASSERT(CTerrainTypeRepository::GetInstance());
 	Q_ASSERT(MapEventManager);
 	if( ActiveTerrainType == nullptr )
 	{

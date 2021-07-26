@@ -21,6 +21,8 @@ public:
 	~CMapView();
 	/** */
 	void Init( const GDModel::CGameInitialisationData &data, const CTerrainType* defaultTerrainType );
+	/** */
+	void Create();
 public:
 	MapViewGraphicsScene	*Scene;
 	HexItemEventManager		*HexItemEventManager;

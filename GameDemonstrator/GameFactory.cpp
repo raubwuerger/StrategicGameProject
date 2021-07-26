@@ -16,6 +16,12 @@ CGameFactory::~CGameFactory()
 {
 }
 
+void CGameFactory::CreateNewGame()
+{
+	TheGameMap = new GDModel::GameMap;
+	TheGameMap->Create();
+}
+
 void CGameFactory::CreateNewGame( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )
 {
 	CreateModel( data );

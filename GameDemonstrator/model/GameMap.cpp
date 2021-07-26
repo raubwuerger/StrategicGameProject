@@ -6,11 +6,26 @@ namespace GDModel
 {
 
 GameMap::GameMap()
+	: Rows(10),
+	Cols(10)
 {
 }
 
 GameMap::~GameMap()
 {
+}
+
+void GameMap::Create()
+{
+	for( int row=0;row<Rows;row++ )
+	{
+		QVector<GDModel::CMapItem*> tempRow;
+		for( int col=0;col<Cols;col++ )
+		{
+			tempRow.append( new GDModel::CMapItem(row,col) );
+		}
+		MapItems.append( tempRow );
+	}
 }
 
 void GameMap::Init( int rows, int cols )

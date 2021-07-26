@@ -16,13 +16,13 @@
 #include "SerializerFactory.h"
 #include "Action.h"
 #include "LogFactory.h"
+#include "TerrainTypeRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
 	GameTurnDialog(nullptr),
 	MainGameLoop(nullptr),
 	HexItemInfoDialog(nullptr),
-	TerrainTypeRepository(nullptr),
 	OwnerTypeRepository(nullptr),
 	EditorToolbox(nullptr),
 	FileMenu(nullptr),
@@ -54,8 +54,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapView->MapEventManager = new CMapEventManager(nullptr);
 	MapView->MapEventManager->HexItemInfoDialog = HexItemInfoDialog;
 
-	CTerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( TerrainTypeRepository, MapView->MapEventManager );
-	CreateEditorToolbox( TerrainTypeRepository, terrainTypeEditor );
+	CTerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( MapView->MapEventManager );
+	CreateEditorToolbox( terrainTypeEditor );
 
 	connect( MapView->HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
 
@@ -71,8 +71,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 GameDemonstrator::~GameDemonstrator()
 {
+	CTerrainTypeRepository::GetInstance()->Release();
 	delete ActionRepository;
-	delete TerrainTypeRepository;
 	delete OwnerTypeRepository;
 }
 
@@ -101,7 +101,7 @@ void GameDemonstrator::CreateMenuFile()
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	CMapFactory().CreateNewMapAction(this,createAction,MapView,TerrainTypeRepository->GetDefaultTerrainType());
+	CMapFactory().CreateNewMapAction(this,createAction,MapView,CTerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
 	ActionRepository->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
@@ -204,11 +204,8 @@ void GameDemonstrator::InitLoggingFramwork()
 
 #include "TerrainTypeFactory.h"
 #include <QDomDocument>
-#include "TerrainTypeRepository.h"
 bool GameDemonstrator::LoadTerrainTypes()
 {
-	TerrainTypeRepository = new CTerrainTypeRepository;
-
 	jha::GetLog()->Log("Loading TerrainTypes.xml ...", LEVEL::LL_MESSAGE);
 	QString fileName(".\\conf\\TerrainTypes.xml");
 
@@ -246,10 +243,10 @@ bool GameDemonstrator::LoadTerrainTypes()
 	QDomNodeList terrainTypeNodes = root.childNodes();
 	for( int i=0; i <terrainTypeNodes.count(); i++ )
 	{
-		TerrainTypeRepository->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
+		CTerrainTypeRepository::GetInstance()->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
-	TerrainTypeRepository->SetDefaultTerrainType( TerrainTypeRepository->FindTerrainTypeById(1) );
-	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(TerrainTypeRepository->GetCount()), LEVEL::LL_MESSAGE);
+	CTerrainTypeRepository::GetInstance()->SetDefaultTerrainType( CTerrainTypeRepository::GetInstance()->FindTerrainTypeById(1) );
+	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(CTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
 
@@ -306,15 +303,14 @@ bool GameDemonstrator::LoadOwnerTypes()
 #include "TerrainType.h"
 #include "TerrainTypeRepository.h"
 #include "EditorToolbox.h"
-void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository, CTerrainTypeEditor *terrainTypeEditor )
+void GameDemonstrator::CreateEditorToolbox( CTerrainTypeEditor *terrainTypeEditor )
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	EditorToolbox = new CEditorToolbox(dockCountry);
 	EditorToolbox->TerrainTypeEditor = terrainTypeEditor;
-	EditorToolbox->Create(repository);
-//	m_EditorToolbox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
+	EditorToolbox->Create();
 
 	dockCountry->setWidget( EditorToolbox );
 	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
@@ -322,10 +318,9 @@ void GameDemonstrator::CreateEditorToolbox( CTerrainTypeRepository *repository, 
 }
 
 #include "TerrainTypeEditor.h"
-CTerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( CTerrainTypeRepository *terrainTypeRepository, CMapEventManager*mapEventManager )
+CTerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( CMapEventManager*mapEventManager )
 {
 	CTerrainTypeEditor *terrainTypeEditor = new CTerrainTypeEditor(nullptr);
-	terrainTypeEditor->TerrainTypeRepository = terrainTypeRepository;
 	terrainTypeEditor->MapEventManager = mapEventManager;
 	return terrainTypeEditor;
 }
