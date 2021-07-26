@@ -1,53 +1,8 @@
 #ifndef MAPVIEWHEXITEM_H
 #define MAPVIEWHEXITEM_H
 
-//================================================================================
-#include <QGraphicsPolygonItem>
-/** Enthält die Koordinatenpunkte des Hexagons */
-class HexagonData
-{
-public:
-	/** */
-	HexagonData( double sideLength );
-	/** */
-	void MovePosition( const QPointF& topLeft );
-private:
-	/** */
-	HexagonData();
-	/** */
-	void calcBoundingRect();
-	/** */
-	void calcWidth();
-	/** */
-	void calcHeight();
-	/** */
-	void calcSide();
-	/** */
-	void calcHexPointsOrigin();
-public:
-	double SideLength;
-	double Width;
-	double Height;
-	double Side;
-	QRectF	BoundingRect;
-	QPolygonF HexPoints;
-};
-
-//================================================================================
-/** Stellt SIGNALE zur Verfügung die von Benutzeraktionen ausgelöst werden. Mausbewegung auf Karte ... */
-class HexItemEventManager : public QObject
-{
-	Q_OBJECT
-public:
-	/** */
-	HexItemEventManager();
-signals:
-	/** */
-	void HexItemEntered( int row, int col );
-	/** */
-	void HexItemPressed( int row, int col );
-private:
-};
+#include "HexagonData.h"
+class HexItemEventManager;
 
 //================================================================================
 /** Repräsentiert Kartenteil auf Bildschirm */

@@ -4,6 +4,7 @@
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
 #include "GameInitialisationData.h"
+#include "HexItemEventManager.h"
 
 CMapView::CMapView(QWidget *parent)
 	: QGraphicsView(parent)

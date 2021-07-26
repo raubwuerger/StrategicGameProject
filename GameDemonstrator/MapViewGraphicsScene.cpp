@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MapViewGraphicsScene.h"
+#include "HexItemEventManager.h"
 
 MapViewGraphicsScene::MapViewGraphicsScene(QObject *parent)
 	: QGraphicsScene(parent),

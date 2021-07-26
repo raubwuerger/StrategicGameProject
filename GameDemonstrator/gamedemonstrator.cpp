@@ -7,6 +7,7 @@
 #include "MapView.h"
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
+#include "HexItemEventManager.h"
 #include "TerrainTypeEditor.h"
 #include "OwnerTypeRepository.h"
 #include "HexItemInfoDialog.h"
