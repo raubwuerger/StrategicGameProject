@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ModelFactory.h"
-#include "model\Map.h"
+#include "model\GameMap.h"
 #include "GameInitialisationData.h"
 
 namespace GDModel
@@ -15,10 +15,10 @@ CModelFactory::~CModelFactory()
 {
 }
 
-void CModelFactory::CreateEmptyMap( const GDModel::CGameInitialisationData& data, CMap** map )
+void CModelFactory::CreateEmptyMap( const GDModel::CGameInitialisationData& data, GameMap** gameMap )
 {
- 	*map = new CMap;
- 	(*map)->Init( data.Rows, data.Cols );
+ 	*gameMap = new GameMap;
+ 	(*gameMap)->Init( data.Rows, data.Cols );
 }
 
 }

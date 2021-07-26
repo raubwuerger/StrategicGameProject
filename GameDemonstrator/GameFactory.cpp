@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "GameFactory.h"
 #include "GameInitialisationData.h"
-#include "model\Map.h"
+#include "model\GameMap.h"
 #include "MapView.h"
 #include "SaveBinary.h"
 
 //Initialisierung von static membern
-GDModel::CMap* CGameFactory::Map = nullptr;
+GDModel::GameMap* CGameFactory::TheGameMap = nullptr;
 
 CGameFactory::CGameFactory()
 {
@@ -27,10 +27,10 @@ void CGameFactory::CreateModel( const GDModel::CGameInitialisationData& data )
 {
 	GDModel::CModelFactory modelFactory;
 
-	delete Map;
+	delete TheGameMap;
 
-	modelFactory.CreateEmptyMap( data, &Map );
-	CSaveBinary().SetMap(Map);
+	modelFactory.CreateEmptyMap( data, &TheGameMap );
+	CSaveBinary().SetMap(TheGameMap);
 }
 
 void CGameFactory::CreateMap( const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )

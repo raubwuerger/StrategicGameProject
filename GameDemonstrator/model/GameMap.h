@@ -6,13 +6,13 @@ namespace GDModel
 {
 
 /** Repräsentiert die Karte im Speicher */
-class CMap
+class GameMap
 {
 public:
 	/** */
-	CMap();
+	GameMap();
 	/** */
-	~CMap();
+	~GameMap();
 	/** */
 	void Init( int rows, int cols );
 	/** */

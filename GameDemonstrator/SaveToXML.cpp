@@ -11,12 +11,12 @@ CSaveToXML::~CSaveToXML()
 {
 }
 
-bool CSaveToXML::DoSerializeGame( const GDModel::CMap& map )
+bool CSaveToXML::DoSerializeGame( const GDModel::GameMap& gameMap )
 {
 	return false;
 }
 
-bool CSaveToXML::DoDeserializeGame( GDModel::CMap& map )
+bool CSaveToXML::DoDeserializeGame( GDModel::GameMap& gameMap )
 {
 	return false;
 }

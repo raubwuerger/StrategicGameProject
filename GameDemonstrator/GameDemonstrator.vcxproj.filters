@@ -293,9 +293,6 @@
     <ClCompile Include="MapView.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
-    <ClCompile Include="model\Map.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\MapItem.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -362,6 +359,9 @@
     <ClCompile Include="SaveToXML.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
+    <ClCompile Include="model\GameMap.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -427,9 +427,6 @@
     <ClInclude Include="model\MapItem.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\Map.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="ModelFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -462,6 +459,9 @@
     </ClInclude>
     <ClInclude Include="SaveToXML.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="model\GameMap.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

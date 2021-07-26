@@ -3,7 +3,7 @@
 class CTerrainType;
 class CMapView;
 namespace GDModel { class CGameInitialisationData; }
-namespace GDModel { class CMap; }
+namespace GDModel { class GameMap; }
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
 class CGameFactory
@@ -21,7 +21,7 @@ private:
 	/** */
 	void CreateMap(  const GDModel::CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
 private:
-	static 	GDModel::CMap *Map;
+	static 	GDModel::GameMap *TheGameMap;
 };
 
 

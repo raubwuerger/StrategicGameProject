@@ -2,7 +2,7 @@
 
 /** Serialisiert Spieldaten ... */
 
-namespace GDModel { class CMap; }
+namespace GDModel { class GameMap; }
 
 class CSerializerInterface : public QObject
 {
@@ -14,7 +14,7 @@ public:
 	/** */
 	virtual ~CSerializerInterface();
 	/** */
-	static void SetMap( const GDModel::CMap* map );
+	static void SetMap( const GDModel::GameMap* gameMap );
 public slots:
 	/** */
 	virtual bool SerializeGame();
@@ -22,11 +22,11 @@ public slots:
 	virtual bool DeserializeGame();
 private:
 	/** */
-	virtual bool DoSerializeGame( const GDModel::CMap& map ) = 0;
+	virtual bool DoSerializeGame( const GDModel::GameMap& gameMap ) = 0;
 	/** */
-	virtual bool DoDeserializeGame( GDModel::CMap& map ) = 0;
+	virtual bool DoDeserializeGame( GDModel::GameMap& gameMap ) = 0;
 private:
 	friend class CGameFactory;
-	static const GDModel::CMap *Map;
+	static const GDModel::GameMap *TheGameMap;
 };
 

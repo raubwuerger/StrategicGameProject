@@ -1,19 +1,19 @@
 #include "stdafx.h"
-#include "Map.h"
+#include "GameMap.h"
 #include "MapItem.h"
 
 namespace GDModel
 {
 
-CMap::CMap()
+GameMap::GameMap()
 {
 }
 
-CMap::~CMap()
+GameMap::~GameMap()
 {
 }
 
-void CMap::Init( int rows, int cols )
+void GameMap::Init( int rows, int cols )
 {
 	for( int row=0;row<rows;row++ )
 	{
@@ -26,7 +26,7 @@ void CMap::Init( int rows, int cols )
 	}
 }
 
-void CMap::Release()
+void GameMap::Release()
 {
 	QVector< QVector<GDModel::CMapItem*> >::iterator row = MapItems.begin();
 	while( row != MapItems.end() )
@@ -42,7 +42,7 @@ void CMap::Release()
 	MapItems.clear();
 }
 
-const QVector< QVector<GDModel::CMapItem*> >& CMap::GetMapItems() const
+const QVector< QVector<GDModel::CMapItem*> >& GameMap::GetMapItems() const
 {
 	return MapItems;
 }

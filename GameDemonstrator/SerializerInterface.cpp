@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SerializerInterface.h"
 
-const GDModel::CMap *CSerializerInterface::Map = nullptr;
+const GDModel::GameMap *CSerializerInterface::TheGameMap = nullptr;
 
 CSerializerInterface::CSerializerInterface()
 {
@@ -11,19 +11,19 @@ CSerializerInterface::~CSerializerInterface()
 {
 }
 
-void CSerializerInterface::SetMap( const GDModel::CMap* map )
+void CSerializerInterface::SetMap( const GDModel::GameMap* gameMap )
 {
-	Map = map;
+	TheGameMap = gameMap;
 }
 
 bool CSerializerInterface::SerializeGame()
 {
-	return DoSerializeGame( *(this->Map) );
+	return DoSerializeGame( *(this->TheGameMap) );
 }
 
 bool CSerializerInterface::DeserializeGame()
 {
-//	return DoDeserializeMap( *(this->Map) );
+//	return DoDeserializeMap( *(this->TheGameMap) );
 	return false;
 }
 
