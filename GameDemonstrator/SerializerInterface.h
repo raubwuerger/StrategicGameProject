@@ -17,14 +17,14 @@ public:
 	static void SetMap( const GDModel::CMap* map );
 public slots:
 	/** */
-	virtual bool SerializeMap();
+	virtual bool SerializeGame();
 	/** */
-	virtual bool DeserializeMap();
+	virtual bool DeserializeGame();
 private:
 	/** */
-	virtual bool DoSerializeMap( const GDModel::CMap& map ) = 0;
+	virtual bool DoSerializeGame( const GDModel::CMap& map ) = 0;
 	/** */
-	virtual bool DoDeserializeMap( GDModel::CMap& map ) = 0;
+	virtual bool DoDeserializeGame( GDModel::CMap& map ) = 0;
 private:
 	friend class CGameFactory;
 	static const GDModel::CMap *Map;

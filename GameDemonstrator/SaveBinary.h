@@ -11,8 +11,8 @@ public:
 	~CSaveBinary();
 private:
 	/** */
-	virtual bool DoSerializeMap( const GDModel::CMap& map );
+	virtual bool DoSerializeGame( const GDModel::CMap& map );
 	/** */
-	virtual bool DoDeserializeMap( GDModel::CMap& map );
+	virtual bool DoDeserializeGame( GDModel::CMap& map );
 };
 

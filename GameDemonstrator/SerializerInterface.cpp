@@ -16,12 +16,12 @@ void CSerializerInterface::SetMap( const GDModel::CMap* map )
 	Map = map;
 }
 
-bool CSerializerInterface::SerializeMap()
+bool CSerializerInterface::SerializeGame()
 {
-	return DoSerializeMap( *(this->Map) );
+	return DoSerializeGame( *(this->Map) );
 }
 
-bool CSerializerInterface::DeserializeMap()
+bool CSerializerInterface::DeserializeGame()
 {
 //	return DoDeserializeMap( *(this->Map) );
 	return false;

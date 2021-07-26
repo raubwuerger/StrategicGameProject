@@ -12,7 +12,7 @@ CSaveBinary::~CSaveBinary()
 {
 }
 
-bool CSaveBinary::DoSerializeMap( const GDModel::CMap& map )
+bool CSaveBinary::DoSerializeGame( const GDModel::CMap& map )
 {
 	QFile file("MapFile.dat");
 	file.open(QIODevice::WriteOnly);
@@ -29,7 +29,7 @@ bool CSaveBinary::DoSerializeMap( const GDModel::CMap& map )
 	return false;
 }
 
-bool CSaveBinary::DoDeserializeMap( GDModel::CMap& map )
+bool CSaveBinary::DoDeserializeGame( GDModel::CMap& map )
 {
 	return false;
 }

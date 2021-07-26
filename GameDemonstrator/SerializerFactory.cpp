@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SerializerFactory.h"
 #include "SaveBinary.h"
+#include "SaveToXML.h"
 #include "SerializerInterface.h"
 #include "QObject.h"
 
@@ -22,7 +23,7 @@ void CSerializerFactory::Release()
 
 CSerializerInterface* CSerializerFactory::CreateInterface( QAction *action )
 {
-	Interfaces = new CSaveBinary;
+	Interfaces = new CSaveToXML;
 	QObject::connect( action, SIGNAL(triggered()), Interfaces, SLOT(SerializeMap()) );
 
 	return Interfaces;

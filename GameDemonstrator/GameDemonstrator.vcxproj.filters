@@ -359,6 +359,9 @@
     <ClCompile Include="HexItemEventManager.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
+    <ClCompile Include="SaveToXML.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -456,6 +459,9 @@
     </ClInclude>
     <ClInclude Include="HexagonData.h">
       <Filter>Header Dateien\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveToXML.h">
+      <Filter>Header Dateien\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
