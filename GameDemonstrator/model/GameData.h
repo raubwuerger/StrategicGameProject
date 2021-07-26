@@ -2,9 +2,6 @@
 
 /** This class holds all game objects */
 
-namespace GDModel
-{
-
 /** Repräsentiert die Karte im Speicher */
 class GameData
 {
@@ -18,6 +15,3 @@ public:
 	/** */
 	void Release();
 };
-
-
-}
