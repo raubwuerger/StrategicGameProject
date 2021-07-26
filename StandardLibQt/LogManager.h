@@ -49,6 +49,7 @@ private:
 	QVector<LogMessage*>	*LogMessagesReady;
 	LogMessage*				InitialLogmessage;
 	unsigned long			LogMessageIndex;
+	mutable int				StartingDay;
 	QMutex Mutex;
 };
 

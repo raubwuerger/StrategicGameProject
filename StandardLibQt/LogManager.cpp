@@ -14,6 +14,7 @@ LogManager::LogManager()
 {
 	LogMessagesProcessing = new QVector<LogMessage*>;
 	LogMessagesReady = new QVector<LogMessage*>;
+	StartingDay = QDate::currentDate().day();
 }
 
 LogManager::~LogManager()
@@ -56,11 +57,12 @@ bool LogManager::RegisterLogger( jha::Logger* logger )
 
 bool LogManager::ProcessMessages()
 {
+	bool allMessagesProcessed = true;
 	if( CheckReinitLogger() == true )
 	{
 		ReinitLogger();
+		return allMessagesProcessed;
 	}
-	bool allMessagesProcessed = true;
 	for( size_t i=0;i<Logger.size();i++ )
 	{
 		try
@@ -112,8 +114,13 @@ void LogManager::FlipMessageVectors()
 
 bool LogManager::CheckReinitLogger() const
 {
-	//TODO: Datumswechsel prüfen
-	return false;
+	int currentDay = QDate::currentDate().day();
+	if( currentDay == StartingDay )
+	{
+		return false;
+	}
+	StartingDay = currentDay;
+	return true;
 }
 
 void LogManager::ReinitLogger()
@@ -123,6 +130,7 @@ void LogManager::ReinitLogger()
 	{
 		(*logger)->Init();
 	}
+//	InjectInitialLogMessage();
 }
 
 void LogManager::WorkMessages()
