@@ -191,7 +191,13 @@ void GameDemonstrator::InitLoggingFramwork()
 		return;
 	}
 
-	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerFile("./log/Logfile.log") );
+	jha::LoggerFile* loggerFile = new jha::LoggerFile();
+	loggerFile->SetFilepath("./log");
+	QString logfileName( QCoreApplication::applicationName() );
+	logfileName += ".log";
+	loggerFile->SetFilename( logfileName );
+
+	jha::LogFactory::GetInstance()->RegisterLogger( loggerFile );
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 }
 
