@@ -380,6 +380,9 @@
     <ClCompile Include="model\GameDataConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="MapCreatorSimple.cpp">
+      <Filter>Header Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -501,6 +504,12 @@
     </ClInclude>
     <ClInclude Include="ISerializeGameInterface.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="IMapCreator.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCreatorSimple.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
