@@ -1,36 +1,36 @@
 #pragma once
 
 #include <QMap>
-class COwnerType;
+class OwnerType;
 
-class COwnerTypeRepository
+class OwnerTypeRepository
 {
 public:
-	static COwnerTypeRepository* GetInstance();
+	static OwnerTypeRepository* GetInstance();
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
-	bool RegisterOwnerType( COwnerType *ownerType  );
+	bool RegisterOwnerType( OwnerType *ownerType  );
 	/** */
-	COwnerType* FindOwnerTypeById( int id );
+	OwnerType* FindOwnerTypeById( int id );
 	/** */
 	int GetCount() const;
 	/** */
-	QMap<int,COwnerType*>::const_iterator GetFirstIterator() const;
+	QMap<int,OwnerType*>::const_iterator GetFirstIterator() const;
 	/** */
-	QMap<int,COwnerType*>::const_iterator GetLastIterator() const;
+	QMap<int,OwnerType*>::const_iterator GetLastIterator() const;
 	/** Get m_DefaultTerrainType */
-	const COwnerType* GetDefaultOwnerType() const;
+	const OwnerType* GetDefaultOwnerType() const;
 	/** Set m_DefaultTerrainType */
-	void SetDefaultOwnerType( const COwnerType* val);
+	void SetDefaultOwnerType( const OwnerType* val);
 	/** */
 	void Release();
 private:
 	/** */
-	COwnerTypeRepository();
+	OwnerTypeRepository();
 	/** */
-	~COwnerTypeRepository();
+	~OwnerTypeRepository();
 private:
-	QMap<int,COwnerType*>	OwnerTypes;
-	const COwnerType*		DefaultOwnerType;
-	static COwnerTypeRepository*	Instance;
+	QMap<int,OwnerType*>	OwnerTypes;
+	const OwnerType*		DefaultOwnerType;
+	static OwnerTypeRepository*	Instance;
 };
 

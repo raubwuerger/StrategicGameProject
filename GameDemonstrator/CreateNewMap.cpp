@@ -6,21 +6,21 @@
 #include "GameFactory.h"
 #include "model/GameDataConfig.h"
 
-CCreateNewMap::CCreateNewMap(QObject *parent)
+CreateNewMap::CreateNewMap(QObject *parent)
 	: QObject(parent),
 	MapView(nullptr),
 	DefaultTerrainType(nullptr),
 	GameData(nullptr)
 {
-	GameData = new CGameInitialisationData;
+	GameData = new GameInitialisationData;
 }
 
-CCreateNewMap::~CCreateNewMap()
+CreateNewMap::~CreateNewMap()
 {
 
 }
 
-void CCreateNewMap::DoCreateNewMap()
+void CreateNewMap::DoCreateNewMap()
 {
 /*	GameDataConfig::GetInstance()->TheGameMapConfig.Cols = 60;
 	GameDataConfig::GetInstance()->TheGameMapConfig.Rows = 120;
@@ -39,6 +39,6 @@ void CCreateNewMap::DoCreateNewMap()
 */
 	GameData->Cols = 60;
 	GameData->Rows = 120;
-	CGameFactory().CreateNewGame( *GameData, MapView, DefaultTerrainType );
+	GameFactory().CreateNewGame( *GameData, MapView, DefaultTerrainType );
 
 }

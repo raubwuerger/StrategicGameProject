@@ -8,21 +8,21 @@
 #include "TerrainTypeRepository.h"
 #include "TerrainType.h"
 
-CMapView::CMapView(QWidget *parent)
+MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	Scene = new MapViewGraphicsScene(this);
 }
 
-CMapView::~CMapView()
+MapView::~MapView()
 {
 	delete HexItemEventManager;
 	delete MapEventManager;
 }
 
 #include "model/GameDataConfig.h"
-void CMapView::Create()
+void MapView::Create()
 {
 	unsigned int cols = GameDataConfig::GetInstance()->TheGameMapConfig.Cols;
 	unsigned int rows = GameDataConfig::GetInstance()->TheGameMapConfig.Rows;
@@ -33,7 +33,7 @@ void CMapView::Create()
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( cols, rows, hexagonTemplate, CTerrainTypeRepository::GetInstance()->GetDefaultTerrainType()->GetImage() );
+	CreateTestMap( cols, rows, hexagonTemplate, TerrainTypeRepository::GetInstance()->GetDefaultTerrainType()->GetImage() );
 
 	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
@@ -43,7 +43,7 @@ void CMapView::Create()
 
 //TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
 #include "TerrainType.h"
-void CMapView::Init( const CGameInitialisationData &data, const CTerrainType* defaultTerrainType )
+void MapView::Init( const GameInitialisationData &data, const TerrainType* defaultTerrainType )
 {
 	MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
 
@@ -62,7 +62,7 @@ void CMapView::Init( const CGameInitialisationData &data, const CTerrainType* de
 }
 
 #include "MapViewHexItem.h"
-void CMapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType  )
+void MapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType  )
 {
 	double startX = 0.0;
 	double startY = 0.0;
@@ -90,12 +90,12 @@ void CMapView::CreateTestMap( int mapWidth, int mapHeight, const HexagonData& de
 	}
 }
 
-double CMapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& hexagon ) const
+double MapView::CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& hexagon ) const
 {
 	return hexagon.Width + ( (hexagonCountCols - 1) * hexagon.Side );
 }
 
-double CMapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
+double MapView::CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const
 {
 	return (hexagon.Height * hexagonCountRows) + ( hexagon.Height / 2.0 );
 }

@@ -2,38 +2,38 @@
 #include "OwnerTypeRepository.h"
 #include "OwnerType.h"
 
-COwnerTypeRepository* COwnerTypeRepository::Instance = nullptr;
+OwnerTypeRepository* OwnerTypeRepository::Instance = nullptr;
 
-COwnerTypeRepository* COwnerTypeRepository::GetInstance()
+OwnerTypeRepository* OwnerTypeRepository::GetInstance()
 {
 	if( nullptr != Instance )
 	{
 		return Instance;
 	}
 
-	Instance = new COwnerTypeRepository;
+	Instance = new OwnerTypeRepository;
 	return Instance;
 }
 
-COwnerTypeRepository::COwnerTypeRepository()
+OwnerTypeRepository::OwnerTypeRepository()
 	: DefaultOwnerType(nullptr)
 {
 }
 
 
-COwnerTypeRepository::~COwnerTypeRepository()
+OwnerTypeRepository::~OwnerTypeRepository()
 {
 	OwnerTypes.clear();
 }
 
-bool COwnerTypeRepository::RegisterOwnerType( COwnerType *ownerType )
+bool OwnerTypeRepository::RegisterOwnerType( OwnerType *ownerType )
 {
 	if( ownerType == nullptr )
 	{
 		Q_ASSERT(false);
 		return false;
 	}
-	QMap<int,COwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
+	QMap<int,OwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
 	if( allreadyExists != OwnerTypes.end() )
 	{
 		return false;
@@ -48,9 +48,9 @@ bool COwnerTypeRepository::RegisterOwnerType( COwnerType *ownerType )
 	return true;
 }
 
-COwnerType* COwnerTypeRepository::FindOwnerTypeById( int id )
+OwnerType* OwnerTypeRepository::FindOwnerTypeById( int id )
 {
-	QMap<int,COwnerType*>::iterator exists = OwnerTypes.find( id );
+	QMap<int,OwnerType*>::iterator exists = OwnerTypes.find( id );
 	if( exists == OwnerTypes.end() )
 	{
 		return nullptr;
@@ -58,32 +58,32 @@ COwnerType* COwnerTypeRepository::FindOwnerTypeById( int id )
 	return exists.value();
 }
 
-int COwnerTypeRepository::GetCount() const
+int OwnerTypeRepository::GetCount() const
 {
 	return OwnerTypes.size();
 }
 
-QMap<int,COwnerType*>::const_iterator COwnerTypeRepository::GetFirstIterator() const
+QMap<int,OwnerType*>::const_iterator OwnerTypeRepository::GetFirstIterator() const
 {
 	return OwnerTypes.cbegin();
 }
 
-QMap<int,COwnerType*>::const_iterator COwnerTypeRepository::GetLastIterator() const
+QMap<int,OwnerType*>::const_iterator OwnerTypeRepository::GetLastIterator() const
 {
 	return OwnerTypes.cend();
 }
 
-const COwnerType* COwnerTypeRepository::GetDefaultOwnerType() const
+const OwnerType* OwnerTypeRepository::GetDefaultOwnerType() const
 {
 	return DefaultOwnerType;
 }
 
-void COwnerTypeRepository::SetDefaultOwnerType( const COwnerType* val )
+void OwnerTypeRepository::SetDefaultOwnerType( const OwnerType* val )
 {
 	DefaultOwnerType = val;
 }
 
-void COwnerTypeRepository::Release()
+void OwnerTypeRepository::Release()
 {
 	delete Instance;
 	Instance = nullptr;

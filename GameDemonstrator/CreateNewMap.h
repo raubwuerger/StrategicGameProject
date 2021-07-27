@@ -2,25 +2,25 @@
 #define CREATENEWMAP_H
 
 #include <QObject>
-class CMapView;
-class CTerrainType;
-class CGameInitialisationData;
+class MapView;
+class TerrainType;
+class GameInitialisationData;
 
-class CCreateNewMap : public QObject
+class CreateNewMap : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	CCreateNewMap(QObject *parent);
+	CreateNewMap(QObject *parent);
 	/** */
-	~CCreateNewMap();
+	~CreateNewMap();
 public slots:
 	void DoCreateNewMap();
 private:
-	friend class CMapFactory;
-	CMapView	*MapView;
-	const CTerrainType	*DefaultTerrainType;
-	CGameInitialisationData *GameData;
+	friend class MapFactory;
+	MapView	*MapView;
+	const TerrainType	*DefaultTerrainType;
+	GameInitialisationData *GameData;
 };
 
 #endif // CREATENEWMAP_H

@@ -5,28 +5,28 @@
 class MapViewGraphicsScene;
 class HexagonData;
 class HexItemEventManager;
-class CMapEventManager;
-class CTerrainType;
+class MapEventManager;
+class TerrainType;
 
-class CGameInitialisationData;
+class GameInitialisationData;
 
-class CMapView : public QGraphicsView
+class MapView : public QGraphicsView
 {
 	Q_OBJECT
 
 public:
 	/** */
-	CMapView(QWidget *parent);
+	MapView(QWidget *parent);
 	/** */
-	~CMapView();
+	~MapView();
 	/** */
-	void Init( const CGameInitialisationData &data, const CTerrainType* defaultTerrainType );
+	void Init( const GameInitialisationData &data, const TerrainType* defaultTerrainType );
 	/** */
 	void Create();
 public:
 	MapViewGraphicsScene	*Scene;
 	HexItemEventManager		*HexItemEventManager;
-	CMapEventManager		*MapEventManager;
+	MapEventManager		*MapEventManager;
 private:
 	/** */
 	void CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType );

@@ -1,12 +1,12 @@
 #pragma once
 /** @stereotype Strategie*/
-class CGameMode
+class GameMode
 {
 public:
 	/** */
-	CGameMode();
+	GameMode();
 	/** */
-	~CGameMode();
+	~GameMode();
 	/** */
 	virtual void Activate() = 0;
 	/** */

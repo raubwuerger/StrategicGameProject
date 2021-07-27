@@ -1,33 +1,33 @@
 #include "stdafx.h"
 #include "Action.h"
 
-CAction::CAction(QObject* parent)
+Action::Action(QObject* parent)
 	: QAction(parent)
 {
 
 }
 
-CAction::CAction(const QString &text, QObject* parent)
+Action::Action(const QString &text, QObject* parent)
 	: QAction(text,parent)
 {
 
 }
 
-CAction::CAction(const QIcon &icon, const QString &text, QObject* parent)
+Action::Action(const QIcon &icon, const QString &text, QObject* parent)
 	: QAction( icon, text, parent )
 {
 }
 
-CAction::~CAction()
+Action::~Action()
 {
 }
 
-void CAction::triggered( bool checked /*= false */ )
+void Action::triggered( bool checked /*= false */ )
 {
 	emit triggered(checked);
 }
 
-void CAction::hovered()
+void Action::hovered()
 {
 	emit hovered();
 }

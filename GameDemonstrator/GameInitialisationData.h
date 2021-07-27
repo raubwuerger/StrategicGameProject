@@ -2,10 +2,10 @@
 
 /** Enthält alle notwendigen Daten zum Erstellen eines neuen Spiels */
 
-class CGameInitialisationData
+class GameInitialisationData
 {
 public:
-	CGameInitialisationData();
+	GameInitialisationData();
 public:
 	int		Rows;
 	int		Cols;

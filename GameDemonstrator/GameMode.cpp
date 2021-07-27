@@ -2,11 +2,11 @@
 #include "GameMode.h"
 
 
-CGameMode::CGameMode()
+GameMode::GameMode()
 {
 }
 
 
-CGameMode::~CGameMode()
+GameMode::~GameMode()
 {
 }

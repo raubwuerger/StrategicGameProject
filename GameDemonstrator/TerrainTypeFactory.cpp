@@ -5,15 +5,15 @@
 #include "TerrainType.h"
 #include "XMLTools.h"
 
-CTerrainTypeFactory::CTerrainTypeFactory()
+TerrainTypeFactory::TerrainTypeFactory()
 {
 }
 
-CTerrainTypeFactory::~CTerrainTypeFactory()
+TerrainTypeFactory::~TerrainTypeFactory()
 {
 }
 
-CTerrainType* CTerrainTypeFactory::CreateTerrainTypeFromXML( const QDomNode& node )
+TerrainType* TerrainTypeFactory::CreateTerrainTypeFromXML( const QDomNode& node )
 {
 	if( node.attributes().contains("strId") == false )
 	{
@@ -21,9 +21,9 @@ CTerrainType* CTerrainTypeFactory::CreateTerrainTypeFromXML( const QDomNode& nod
 		return nullptr;
 	}
 
-	CTerrainType *newTerrainType = new CTerrainType( node.attributes().namedItem("strId").nodeValue().toInt() );
+	TerrainType *newTerrainType = new TerrainType( node.attributes().namedItem("strId").nodeValue().toInt() );
 
-	CDomElementFinder finder(node);
+	DomElementFinder finder(node);
 	finder.TryFindElement( "Oil", newTerrainType->Oil );
 	finder.TryFindElement( "Timber", newTerrainType->Timber );
 	finder.TryFindElement( "Infrastructure", newTerrainType->Infrastructure );
@@ -50,7 +50,7 @@ CTerrainType* CTerrainTypeFactory::CreateTerrainTypeFromXML( const QDomNode& nod
 	return newTerrainType;
 }
 
-const QImage* CTerrainTypeFactory::LoadTerrainTypeImage( const QString& path )
+const QImage* TerrainTypeFactory::LoadTerrainTypeImage( const QString& path )
 {
 	QImage* newImage = new QImage;
 	try

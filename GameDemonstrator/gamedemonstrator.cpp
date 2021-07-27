@@ -20,11 +20,11 @@
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
-	GameTurnDialog(nullptr),
+	GameTurnDialogInstance(nullptr),
 	MainGameLoop(nullptr),
-	HexItemInfoDialog(nullptr),
+	HexItemInfoDialogInstance(nullptr),
 	OwnerTypeRepository(nullptr),
-	EditorToolbox(nullptr),
+	EditorToolboxInstance(nullptr),
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr)
@@ -35,10 +35,10 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
-	MapView = new CMapView(this);
+	MapViewInstance = new MapView(this);
 
 	QActionRepository::GetInstanceFirstTimeInit(parent);
-	SerializerInterface = CSerializerFactory().CreateInterface();
+	SerializerInterface = SerializerFactory().CreateInterface();
 	InitLoggingFramwork();
 	LoadTerrainTypes();
 	LoadOwnerTypes();
@@ -51,38 +51,38 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
-	MapView->HexItemEventManager = new HexItemEventManager;
-	MapView->MapEventManager = new CMapEventManager(nullptr);
-	MapView->MapEventManager->HexItemInfoDialog = HexItemInfoDialog;
+	MapViewInstance->HexItemEventManager = new HexItemEventManager;
+	MapViewInstance->MapEventManager = new MapEventManager(nullptr);
+	MapViewInstance->MapEventManager->HexItemInfoDialog = HexItemInfoDialogInstance;
 
-	CTerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( MapView->MapEventManager );
+	TerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( MapViewInstance->MapEventManager );
 	CreateEditorToolbox( terrainTypeEditor );
 
-	connect( MapView->HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
+	connect( MapViewInstance->HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
 
-	layoutMain->addWidget(MapView);
+	layoutMain->addWidget(MapViewInstance);
 
 	QWidget *widgetMain = new QWidget;
 	widgetMain->setLayout(layoutMain);
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
 
-	MapView->show();
+	MapViewInstance->show();
 }
 
 GameDemonstrator::~GameDemonstrator()
 {
-	CTerrainTypeRepository::GetInstance()->Release();
+	TerrainTypeRepository::GetInstance()->Release();
 	QActionRepository::GetInstance()->Release();
-	COwnerTypeRepository::GetInstance()->Release();
+	OwnerTypeRepository::GetInstance()->Release();
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Game turn"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
- 	GameTurnDialog = new CGameTurnDialog(dockCountry);
- 	dockCountry->setWidget( GameTurnDialog );
+ 	GameTurnDialogInstance = new GameTurnDialog(dockCountry);
+ 	dockCountry->setWidget( GameTurnDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockCountry);
 	ViewMenu->addAction(dockCountry->toggleViewAction());
 }
@@ -92,7 +92,7 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	MainGameLoop = new GameMainLoop(nullptr);
 	MainThread = new GameMainThread();
 	MainThread->Init( MainGameLoop );
-	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialog, SLOT(UpdateGameTurnInfo(QDate)) );
+	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialogInstance, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
 #include "MapFactory.h"
@@ -102,7 +102,7 @@ void GameDemonstrator::CreateMenuFile()
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	CMapFactory().CreateNewMapAction(this,createAction,MapView,CTerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
+	MapFactory().CreateNewMapAction(this,createAction,MapViewInstance,TerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
 	QActionRepository::GetInstance()->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
@@ -112,7 +112,7 @@ void GameDemonstrator::CreateMenuFile()
 	connect(loadGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(LoadGame()), Qt::QueuedConnection );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
-	CAction* saveGameAction = new CAction(save,tr("&Save"), this);
+	Action* saveGameAction = new Action(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
 	QActionRepository::GetInstance()->AddAction(saveGameAction);
 	connect(saveGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(SaveGame()), Qt::QueuedConnection );
@@ -167,8 +167,8 @@ void GameDemonstrator::CreateHexItemInfoDialog()
 {
 	QDockWidget *dockHexItem = new QDockWidget(tr("Hex item"), this);
 	dockHexItem->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
- 	HexItemInfoDialog = new CHexItemInfoDialog(dockHexItem);
- 	dockHexItem->setWidget( HexItemInfoDialog );
+ 	HexItemInfoDialogInstance = new HexItemInfoDialog(dockHexItem);
+ 	dockHexItem->setWidget( HexItemInfoDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
 	ViewMenu->addAction(dockHexItem->toggleViewAction());
 }
@@ -244,9 +244,9 @@ bool GameDemonstrator::LoadTerrainTypes()
 	QDomNodeList terrainTypeNodes = root.childNodes();
 	for( int i=0; i <terrainTypeNodes.count(); i++ )
 	{
-		CTerrainTypeRepository::GetInstance()->RegisterTerrainType( CTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
+		TerrainTypeRepository::GetInstance()->RegisterTerrainType( TerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
-	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(CTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(TerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
 
@@ -291,33 +291,33 @@ bool GameDemonstrator::LoadOwnerTypes()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		COwnerTypeRepository::GetInstance()->RegisterOwnerType( COwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
+		OwnerTypeRepository::GetInstance()->RegisterOwnerType( OwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
 	}
-	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(COwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(OwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
 
 #include "TerrainType.h"
 #include "TerrainTypeRepository.h"
 #include "EditorToolbox.h"
-void GameDemonstrator::CreateEditorToolbox( CTerrainTypeEditor *terrainTypeEditor )
+void GameDemonstrator::CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor )
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-	EditorToolbox = new CEditorToolbox(dockCountry);
-	EditorToolbox->TerrainTypeEditor = terrainTypeEditor;
-	EditorToolbox->Create();
+	EditorToolboxInstance = new EditorToolbox(dockCountry);
+	EditorToolboxInstance->TerrainTypeEditor = terrainTypeEditor;
+	EditorToolboxInstance->Create();
 
-	dockCountry->setWidget( EditorToolbox );
+	dockCountry->setWidget( EditorToolboxInstance );
 	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
 	ViewMenu->addAction(dockCountry->toggleViewAction());
 }
 
 #include "TerrainTypeEditor.h"
-CTerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( CMapEventManager*mapEventManager )
+TerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( MapEventManager*mapEventManager )
 {
-	CTerrainTypeEditor *terrainTypeEditor = new CTerrainTypeEditor(nullptr);
+	TerrainTypeEditor *terrainTypeEditor = new TerrainTypeEditor(nullptr);
 	terrainTypeEditor->MapEventManager = mapEventManager;
 	return terrainTypeEditor;
 }

@@ -3,17 +3,17 @@
 #include "CreateNewMap.h"
 #include "QObject.h"
 
-CMapFactory::CMapFactory()
+MapFactory::MapFactory()
 {
 }
 
-CMapFactory::~CMapFactory()
+MapFactory::~MapFactory()
 {
 }
 
-CCreateNewMap* CMapFactory::CreateNewMapAction( QObject *parent, QAction *action, CMapView *mapView, const CTerrainType *defaultTerrainType )
+CreateNewMap* MapFactory::CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const TerrainType *defaultTerrainType )
 {
-	CCreateNewMap *newMapCreator = new CCreateNewMap(parent);
+	CreateNewMap *newMapCreator = new CreateNewMap(parent);
 	newMapCreator->MapView = mapView;
 	newMapCreator->DefaultTerrainType = defaultTerrainType;
 	QObject::connect(action, SIGNAL(triggered()), newMapCreator, SLOT(DoCreateNewMap()), Qt::QueuedConnection );

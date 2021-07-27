@@ -5,11 +5,11 @@
 #include "GameModeEditor.h"
 
 //=================================================================================================
-void CGameModeEditor::Activate() 
+void GameModeEditor::Activate() 
 {
 }
 
-void CGameModeEditor::Deavtivate()
+void GameModeEditor::Deavtivate()
 {
 }
 

@@ -1,22 +1,22 @@
 #include "stdafx.h"
 #include "OwnerType.h"
 
-COwnerType::COwnerType( int id )
+OwnerType::OwnerType( int id )
 	: Id(id)
 {
 }
 
 
-COwnerType::~COwnerType()
+OwnerType::~OwnerType()
 {
 }
 
-const QString& COwnerType::GetName() const
+const QString& OwnerType::GetName() const
 {
 	return Name;
 }
 
-int COwnerType::GetId() const
+int OwnerType::GetId() const
 {
 	return Id;
 }

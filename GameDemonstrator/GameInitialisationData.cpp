@@ -2,7 +2,7 @@
 #include "GameInitialisationData.h"
 
 
-CGameInitialisationData::CGameInitialisationData()
+GameInitialisationData::GameInitialisationData()
 	: 	Rows(-1),
 		Cols(-1),
 		Oponents(0),

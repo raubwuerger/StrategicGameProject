@@ -5,10 +5,10 @@
 #include "GameModeStandard.h"
 
 //=================================================================================================
-void CGameModeStandard::Activate() 
+void GameModeStandard::Activate() 
 {
 }
 
-void CGameModeStandard::Deavtivate()
+void GameModeStandard::Deavtivate()
 {
 }

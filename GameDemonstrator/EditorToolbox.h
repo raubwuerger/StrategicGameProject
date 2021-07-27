@@ -3,23 +3,23 @@
 
 //================================================================================
 #include <QToolBox>
-class CTerrainTypeRepository;
-class CConnectorButtonTerrainTypeId;
-class CTerrainTypeEditor;
+class TerrainTypeRepository;
+class ConnectorButtonTerrainTypeId;
+class TerrainTypeEditor;
 
-class CEditorToolbox : public QToolBox
+class EditorToolbox : public QToolBox
 {
 	Q_OBJECT
 public:
 	/** */
-	CEditorToolbox(QWidget *parent);
+	EditorToolbox(QWidget *parent);
 	/** */
-	~CEditorToolbox();
+	~EditorToolbox();
 	/** Erzeugt die Toolboxeinträge */
 	void Create();
 private:
 	/** */
-	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, CConnectorButtonTerrainTypeId *connector, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );
+	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );
 private slots:
 	/** */
 	void ButtonGroupTerrainTypes(QAbstractButton *button);
@@ -27,16 +27,16 @@ private:
 	friend class GameDemonstrator;
 	QButtonGroup		*GroupTerrainTypes;
 	QButtonGroup		*GroupBuildings;
-	CTerrainTypeEditor	*TerrainTypeEditor;
+	TerrainTypeEditor	*TerrainTypeEditor;
 };
 
 //================================================================================
-class CConnectorButtonTerrainTypeId : public QObject
+class ConnectorButtonTerrainTypeId : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	CConnectorButtonTerrainTypeId( int terrainTypeId );
+	ConnectorButtonTerrainTypeId( int terrainTypeId );
 public slots:
 	/** */
 	void Trigger();

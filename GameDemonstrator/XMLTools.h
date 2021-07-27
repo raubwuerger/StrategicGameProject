@@ -4,11 +4,11 @@ class QDomNode;
 class QDomElement;
 
 //================================================================================
-class CDomElementFinder
+class DomElementFinder
 {
 public:
 	/** */
-	CDomElementFinder( const QDomNode& node );
+	DomElementFinder( const QDomNode& node );
 	/** */
 	void TryFindElement( const QString& elementName, int& value ) const;
 	/** */

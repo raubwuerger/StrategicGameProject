@@ -1,12 +1,12 @@
 #pragma once
 
-class CTerrainType
+class TerrainType
 {
 public:
 	/** */
-	CTerrainType( int id );
+	TerrainType( int id );
 	/** */
-	~CTerrainType();
+	~TerrainType();
 	/** Get m_Id */	
 	int GetId() const;
 	/** Wird später entfernt */
@@ -20,7 +20,7 @@ public:
 	/** Set m_Image */
 	void SetImage( const QImage * val);
 private:
-	friend class CTerrainTypeFactory;
+	friend class TerrainTypeFactory;
 	int			Id;
 	QString		Name;
 	QString		PicturePath;

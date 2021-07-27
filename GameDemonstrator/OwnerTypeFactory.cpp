@@ -5,15 +5,15 @@
 #include "OwnerType.h"
 #include "XMLTools.h"
 
-COwnerTypeFactory::COwnerTypeFactory()
+OwnerTypeFactory::OwnerTypeFactory()
 {
 }
 
-COwnerTypeFactory::~COwnerTypeFactory()
+OwnerTypeFactory::~OwnerTypeFactory()
 {
 }
 
-COwnerType* COwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
+OwnerType* OwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
 {
 	if( node.attributes().contains("strId") == false )
 	{
@@ -21,9 +21,9 @@ COwnerType* COwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
 		return nullptr;
 	}
 
-	COwnerType *newOwnerType = new COwnerType( node.attributes().namedItem("strId").nodeValue().toInt() );
+	OwnerType *newOwnerType = new OwnerType( node.attributes().namedItem("strId").nodeValue().toInt() );
 
-	CDomElementFinder finder(node);
+	DomElementFinder finder(node);
 	finder.TryFindElement( "Name", newOwnerType->Name );
 	finder.TryFindElement( "PicturePath", newOwnerType->PicturePath );
 	finder.TryFindElement( "Color", newOwnerType->Color );

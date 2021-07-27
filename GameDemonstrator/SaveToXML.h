@@ -2,13 +2,13 @@
 
 #include "ISerializeGameInterface.h"
 
-class CSaveToXML : public ISerializeGameInterface
+class SaveToXML : public ISerializeGameInterface
 {
 public:
 /** */
-	CSaveToXML();
+	SaveToXML();
 /** */
-	~CSaveToXML();
+	~SaveToXML();
 public:
 	/** */
 	bool SaveGame();

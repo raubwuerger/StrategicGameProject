@@ -1,35 +1,35 @@
 #pragma once
 
 #include <QMap>
-class CTerrainType;
-class CTerrainTypeRepository
+class TerrainType;
+class TerrainTypeRepository
 {
 public:
-	static CTerrainTypeRepository* GetInstance();
+	static TerrainTypeRepository* GetInstance();
 	/** If no TerrainTypes are registered, the first will be set as DefaultTerrainType */
-	bool RegisterTerrainType( CTerrainType *terrainType  );
+	bool RegisterTerrainType( TerrainType *terrainType  );
 	/** */
-	CTerrainType* FindTerrainTypeById( int id );
+	TerrainType* FindTerrainTypeById( int id );
 	/** */
 	int GetCount() const;
 	/** */
-	QMap<int,CTerrainType*>::const_iterator GetFirstIterator() const;
+	QMap<int,TerrainType*>::const_iterator GetFirstIterator() const;
 	/** */
-	QMap<int,CTerrainType*>::const_iterator GetLastIterator() const;
+	QMap<int,TerrainType*>::const_iterator GetLastIterator() const;
 	/** Get m_DefaultTerrainType */
-	const CTerrainType* GetDefaultTerrainType() const;
+	const TerrainType* GetDefaultTerrainType() const;
 	/** Set m_DefaultTerrainType */
-	void SetDefaultTerrainType( const CTerrainType* val);
+	void SetDefaultTerrainType( const TerrainType* val);
 	/** */
 	void Release();
 private:
 	/** */
-	CTerrainTypeRepository();
+	TerrainTypeRepository();
 	/** */
-	~CTerrainTypeRepository();
+	~TerrainTypeRepository();
 private:
-	QMap<int,CTerrainType*>			TerrainTypes;
-	const CTerrainType*				DefaultTerrainType;
-	static CTerrainTypeRepository* Instance;
+	QMap<int,TerrainType*>			TerrainTypes;
+	const TerrainType*				DefaultTerrainType;
+	static TerrainTypeRepository* Instance;
 };
 

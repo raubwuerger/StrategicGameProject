@@ -5,7 +5,7 @@
 #include "GameMode.h"
 
 /** @stereotype Strategie*/
-class CGameModeEditor : public CGameMode
+class GameModeEditor : public GameMode
 {
 public:
 	/** */

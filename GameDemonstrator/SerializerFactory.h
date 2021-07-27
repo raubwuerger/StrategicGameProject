@@ -1,19 +1,19 @@
 #pragma once
 
-class CSerializerInterface;
+class SerializerInterface;
 #include <QVector>
 
-class CSerializerFactory
+class SerializerFactory
 {
 public:
 /** */
-	CSerializerFactory();
+	SerializerFactory();
 /** */
-	~CSerializerFactory();
+	~SerializerFactory();
 /** */
 	void Release();
 /** */
-	CSerializerInterface* CreateInterface();
+	SerializerInterface* CreateInterface();
 private:
-	static CSerializerInterface* SerializerInterface;
+	static SerializerInterface* SerializerInterfaceInstanze;
 };

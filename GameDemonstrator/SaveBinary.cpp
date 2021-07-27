@@ -3,16 +3,16 @@
 #include "Model\GameMap.h"
 
 
-CSaveBinary::CSaveBinary()
+SaveBinary::SaveBinary()
 {
 }
 
 
-CSaveBinary::~CSaveBinary()
+SaveBinary::~SaveBinary()
 {
 }
 
-bool CSaveBinary::SaveGame()
+bool SaveBinary::SaveGame()
 {
 	//TODO: Not yet implemented!!!
 	return false;
@@ -30,7 +30,7 @@ bool CSaveBinary::SaveGame()
 */
 }
 
-bool CSaveBinary::LoadGame()
+bool SaveBinary::LoadGame()
 {
 	//TODO: Not yet implemented!!!
 	return false;

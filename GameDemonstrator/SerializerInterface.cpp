@@ -2,17 +2,17 @@
 #include "SerializerInterface.h"
 #include "SaveToXML.h"
 
-CSerializerInterface::CSerializerInterface()
+SerializerInterface::SerializerInterface()
 	: SerializeGameInterface(nullptr)
 {
 }
 
-CSerializerInterface::~CSerializerInterface()
+SerializerInterface::~SerializerInterface()
 {
 	delete SerializeGameInterface;
 }
 
-bool CSerializerInterface::SaveGame()
+bool SerializerInterface::SaveGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{
@@ -22,7 +22,7 @@ bool CSerializerInterface::SaveGame()
 	return SerializeGameInterface->SaveGame();
 }
 
-bool CSerializerInterface::LoadGame()
+bool SerializerInterface::LoadGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{

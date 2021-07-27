@@ -1,16 +1,16 @@
 #pragma once
 
-class CGameInitialisationData;
+class GameInitialisationData;
 
 class GameMap;
 
-class CModelFactory
+class ModelFactory
 {
 public:
 	/** */
-	CModelFactory();
+	ModelFactory();
 	/** */
-	~CModelFactory();
+	~ModelFactory();
 	/** */
-	void CreateEmptyMap( const CGameInitialisationData& data, GameMap** gameMap );
+	void CreateEmptyMap( const GameInitialisationData& data, GameMap** gameMap );
 };

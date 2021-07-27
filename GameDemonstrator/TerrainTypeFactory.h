@@ -1,20 +1,20 @@
 #pragma once
 
-class CTerrainType;
+class TerrainType;
 class QDomNode;
 class QDomElement;
 
 //================================================================================
 /** @stereotype factory*/
-class CTerrainTypeFactory
+class TerrainTypeFactory
 {
 public:
 	/** */
-	CTerrainTypeFactory();
+	TerrainTypeFactory();
 	/** */
-	~CTerrainTypeFactory();
+	~TerrainTypeFactory();
 	/** */
-	CTerrainType* CreateTerrainTypeFromXML( const QDomNode& node );
+	TerrainType* CreateTerrainTypeFromXML( const QDomNode& node );
 private:
 	const QImage* LoadTerrainTypeImage( const QString& path );
 };

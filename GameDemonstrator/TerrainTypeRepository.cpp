@@ -2,30 +2,30 @@
 #include "TerrainTypeRepository.h"
 #include "TerrainType.h"
 
-CTerrainTypeRepository* CTerrainTypeRepository::Instance = nullptr;
+TerrainTypeRepository* TerrainTypeRepository::Instance = nullptr;
 
-CTerrainTypeRepository* CTerrainTypeRepository::GetInstance()
+TerrainTypeRepository* TerrainTypeRepository::GetInstance()
 {
 	if( nullptr != Instance )
 	{
 		return Instance;
 	}
 
-	Instance = new CTerrainTypeRepository;
+	Instance = new TerrainTypeRepository;
 	return Instance;
 }
 
-CTerrainTypeRepository::CTerrainTypeRepository()
+TerrainTypeRepository::TerrainTypeRepository()
 	: DefaultTerrainType(nullptr)
 {
 }
 
-CTerrainTypeRepository::~CTerrainTypeRepository()
+TerrainTypeRepository::~TerrainTypeRepository()
 {
 	TerrainTypes.clear();
 }
 
-bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
+bool TerrainTypeRepository::RegisterTerrainType( TerrainType *terrainType )
 {
 	if( terrainType == nullptr )
 	{
@@ -33,7 +33,7 @@ bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
 		return false;
 	}
 	
-	QMap<int,CTerrainType*>::const_iterator allreadyExists = TerrainTypes.find(terrainType->GetId() );
+	QMap<int,TerrainType*>::const_iterator allreadyExists = TerrainTypes.find(terrainType->GetId() );
 	if( allreadyExists != TerrainTypes.end() )
 	{
 		return false;
@@ -48,9 +48,9 @@ bool CTerrainTypeRepository::RegisterTerrainType( CTerrainType *terrainType )
 	return true;
 }
 
-CTerrainType* CTerrainTypeRepository::FindTerrainTypeById( int id )
+TerrainType* TerrainTypeRepository::FindTerrainTypeById( int id )
 {
-	QMap<int,CTerrainType*>::iterator exists = TerrainTypes.find( id );
+	QMap<int,TerrainType*>::iterator exists = TerrainTypes.find( id );
 	if( exists == TerrainTypes.end() )
 	{
 		return nullptr;
@@ -58,33 +58,33 @@ CTerrainType* CTerrainTypeRepository::FindTerrainTypeById( int id )
 	return exists.value();
 }
 
-int CTerrainTypeRepository::GetCount() const
+int TerrainTypeRepository::GetCount() const
 {
 	return TerrainTypes.size();
 }
 
-QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetFirstIterator() const
+QMap<int,TerrainType*>::const_iterator TerrainTypeRepository::GetFirstIterator() const
 {
 	return TerrainTypes.cbegin();
 }
 
-QMap<int,CTerrainType*>::const_iterator CTerrainTypeRepository::GetLastIterator() const
+QMap<int,TerrainType*>::const_iterator TerrainTypeRepository::GetLastIterator() const
 {
 	return TerrainTypes.cend();
 }
 
-const CTerrainType* CTerrainTypeRepository::GetDefaultTerrainType() const
+const TerrainType* TerrainTypeRepository::GetDefaultTerrainType() const
 {
 	return DefaultTerrainType;
 }
 
-void CTerrainTypeRepository::SetDefaultTerrainType( const CTerrainType* val )
+void TerrainTypeRepository::SetDefaultTerrainType( const TerrainType* val )
 {
 	DefaultTerrainType = val;
 }
 
 
-void CTerrainTypeRepository::Release()
+void TerrainTypeRepository::Release()
 {
 	delete Instance;
 	Instance = nullptr;

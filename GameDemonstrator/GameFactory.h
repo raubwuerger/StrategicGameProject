@@ -1,31 +1,31 @@
 #pragma once
 
-class CTerrainType;
-class CMapView;
-class CGameInitialisationData;
+class TerrainType;
+class MapView;
+class GameInitialisationData;
 class GameMap;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
-class CGameFactory
+class GameFactory
 {
 public:
 	/** */
-	CGameFactory();
+	GameFactory();
 	/** */
-	~CGameFactory();
+	~GameFactory();
 	/** */
 	void CreateNewGame();
 	/** */
-	void CreateNewGame( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
+	void CreateNewGame( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType );
 	/** */
-	void CreateGameFromSavegame( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
+	void CreateGameFromSavegame( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType ) {}
 	/** */
-	void CreateGameFromScenario( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType ) {}
+	void CreateGameFromScenario( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType ) {}
 private:
 	/** */
-	void CreateModel( const CGameInitialisationData& data );
+	void CreateModel( const GameInitialisationData& data );
 	/** */
-	void CreateMap(  const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType );
+	void CreateMap(  const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType );
 private:
 	static 	GameMap *TheGameMap;
 };

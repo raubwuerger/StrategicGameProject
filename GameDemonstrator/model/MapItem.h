@@ -1,20 +1,20 @@
 #pragma once
 
-class CTerrainType;
-class COwnerType;
+class TerrainType;
+class OwnerType;
 
 /** Kartenteil im Speicher */
-class CMapItem
+class MapItem
 {
 public:
 	/** */
-	CMapItem( int row, int col );
+	MapItem( int row, int col );
 	/** */
-	~CMapItem();
+	~MapItem();
 private:
 	QPoint			CenterPoint;
 	int				Row;
 	int				Col;
-	CTerrainType	*Type;
-	COwnerType		*Owner;
+	TerrainType	*Type;
+	OwnerType		*Owner;
 };

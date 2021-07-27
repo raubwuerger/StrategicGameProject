@@ -17,9 +17,9 @@ public:
 	/** */
 	void Release();
 	/** Get MapItems */	
-	const QVector< QVector<CMapItem*> >& GetMapItems() const;
+	const QVector< QVector<MapItem*> >& GetMapItems() const;
 private:
-	QVector< QVector<CMapItem*> >	MapItems;
+	QVector< QVector<MapItem*> >	MapItems;
 	unsigned int Rows;
 	unsigned int Cols;
 };

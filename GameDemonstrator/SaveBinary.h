@@ -2,13 +2,13 @@
 
 #include "ISerializeGameInterface.h"
 
-class CSaveBinary : public ISerializeGameInterface
+class SaveBinary : public ISerializeGameInterface
 {
 public:
 	/** */
-	CSaveBinary();
+	SaveBinary();
 	/** */
-	~CSaveBinary();
+	~SaveBinary();
 	/** */
 	bool SaveGame();
 	/** */

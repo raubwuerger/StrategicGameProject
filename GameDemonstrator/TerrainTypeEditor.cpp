@@ -6,7 +6,7 @@
 #include "TerrainType.h"
 #include "MapViewHexItem.h"
 
-CTerrainTypeEditor::CTerrainTypeEditor(QObject *parent)
+TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),
 	ActiveTerrainType(nullptr),
 	MapEventManager(nullptr)
@@ -14,19 +14,19 @@ CTerrainTypeEditor::CTerrainTypeEditor(QObject *parent)
 
 }
 
-CTerrainTypeEditor::~CTerrainTypeEditor()
+TerrainTypeEditor::~TerrainTypeEditor()
 {
 
 }
 
-void CTerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
+void TerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
 {
-	ActiveTerrainType = CTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
+	ActiveTerrainType = TerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
-void CTerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
+void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 {
-	Q_ASSERT(CTerrainTypeRepository::GetInstance());
+	Q_ASSERT(TerrainTypeRepository::GetInstance());
 	Q_ASSERT(MapEventManager);
 	if( ActiveTerrainType == nullptr )
 	{

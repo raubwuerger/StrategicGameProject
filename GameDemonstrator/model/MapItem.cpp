@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MapItem.h"
 
-CMapItem::CMapItem( int row, int col )
+MapItem::MapItem( int row, int col )
 	: CenterPoint(0,0),
 		Row(row),
 		Col(col),
@@ -10,6 +10,6 @@ CMapItem::CMapItem( int row, int col )
 {
 }
 
-CMapItem::~CMapItem()
+MapItem::~MapItem()
 {
 }

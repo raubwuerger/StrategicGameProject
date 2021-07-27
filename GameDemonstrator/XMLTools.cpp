@@ -6,13 +6,13 @@
 /************************************************************************/
 /* CDomElementFinder                                                    */
 /************************************************************************/
-CDomElementFinder::CDomElementFinder( const QDomNode& node ) 
+DomElementFinder::DomElementFinder( const QDomNode& node ) 
 	: theNode(node)
 {
 
 }
 
-void CDomElementFinder::TryFindElement( const QString& elementName, int& value ) const
+void DomElementFinder::TryFindElement( const QString& elementName, int& value ) const
 {
 	QDomElement element;
 	if( ValidateNode(elementName,element) == false )
@@ -22,7 +22,7 @@ void CDomElementFinder::TryFindElement( const QString& elementName, int& value )
 	value = element.text().toInt();
 }
 
-void CDomElementFinder::TryFindElement( const QString& elementName, QString& value ) const
+void DomElementFinder::TryFindElement( const QString& elementName, QString& value ) const
 {
 	QDomElement element;
 	if( ValidateNode(elementName,element) == false )
@@ -32,7 +32,7 @@ void CDomElementFinder::TryFindElement( const QString& elementName, QString& val
 	value = element.text();
 }
 
-void CDomElementFinder::TryFindElement( const QString& elementName, QColor& value ) const
+void DomElementFinder::TryFindElement( const QString& elementName, QColor& value ) const
 {
 	QDomElement element;
 	if( ValidateNode(elementName,element) == false )
@@ -42,7 +42,7 @@ void CDomElementFinder::TryFindElement( const QString& elementName, QColor& valu
 	value = element.text();
 }
 
-bool CDomElementFinder::ValidateNode( const QString& elementName, QDomElement& element ) const
+bool DomElementFinder::ValidateNode( const QString& elementName, QDomElement& element ) const
 {
 	element = theNode.firstChildElement(elementName);
 	if( element.isNull() == true )

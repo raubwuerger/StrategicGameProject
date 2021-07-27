@@ -1,18 +1,18 @@
 #pragma once
 
-class COwnerType
+class OwnerType
 {
 public:
 	/** */
-	COwnerType( int id );
+	OwnerType( int id );
 	/** */
-	~COwnerType();
+	~OwnerType();
 	/** */
 	int GetId() const;
 	/** Get Name */	
 	const QString& GetName() const;
 private:
-	friend class COwnerTypeFactory;
+	friend class OwnerTypeFactory;
 	const int Id;
 	QString		Name;
 	QColor		Color;

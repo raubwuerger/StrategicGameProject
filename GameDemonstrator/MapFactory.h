@@ -1,18 +1,18 @@
 #pragma once
 
-class CCreateNewMap;
-class CMapView;
-class CTerrainType;
+class CreateNewMap;
+class MapView;
+class TerrainType;
 
 /** @stereotype factory*/
-class CMapFactory
+class MapFactory
 {
 public:
 	/** */
-	CMapFactory();
+	MapFactory();
 	/** */
-	~CMapFactory();
+	~MapFactory();
 	/** */
-	CCreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, CMapView *mapView, const CTerrainType *defaultTerrainType );
+	CreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const TerrainType *defaultTerrainType );
 };
 

@@ -4,7 +4,7 @@
 #include "TerrainTypeRepository.h"
 #include "TerrainTypeEditor.h"
 
-CEditorToolbox::CEditorToolbox(QWidget *parent)
+EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
 	GroupTerrainTypes(nullptr),
 	GroupBuildings(nullptr),
@@ -12,28 +12,28 @@ CEditorToolbox::CEditorToolbox(QWidget *parent)
 {
 }
 
-CEditorToolbox::~CEditorToolbox()
+EditorToolbox::~EditorToolbox()
 {
 
 }
 
-void CEditorToolbox::Create()
+void EditorToolbox::Create()
 {
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	connect(GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
-	QMap<int,CTerrainType*>::const_iterator terrainTypes = CTerrainTypeRepository::GetInstance()->GetFirstIterator();
+	QMap<int,TerrainType*>::const_iterator terrainTypes = TerrainTypeRepository::GetInstance()->GetFirstIterator();
 
 	//TODO: Wo werden die ganzen globalen Strings definiert!?
 	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	int rowIndex = 0;
-	while( terrainTypes != CTerrainTypeRepository::GetInstance()->GetLastIterator() )
+	while( terrainTypes != TerrainTypeRepository::GetInstance()->GetLastIterator() )
 	{
 		QString terrainPictureName(baseTerrainPicturePath);
 		terrainPictureName += terrainTypes.value()->GetPicturePath();
-		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), GroupTerrainTypes, new CConnectorButtonTerrainTypeId( terrainTypes.value()->GetId()), terrainPictureName ), rowIndex++, 0);
+		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), GroupTerrainTypes, new ConnectorButtonTerrainTypeId( terrainTypes.value()->GetId()), terrainPictureName ), rowIndex++, 0);
 		terrainTypes++;
 	}
 
@@ -59,7 +59,7 @@ void CEditorToolbox::Create()
 	}
 }
 
-QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, CConnectorButtonTerrainTypeId *connector, const QString& pictureName )
+QWidget *EditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector, const QString& pictureName )
 {
 	QIcon icon( pictureName );
 
@@ -82,7 +82,7 @@ QWidget *CEditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGro
 	return widget;
 }
 
-void CEditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
+void EditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 {
 	// 	QList<QAbstractButton *> buttons = m_ButtonGroupTerrainTypes->buttons();
 	// 	foreach (QAbstractButton *myButton, buttons) 
@@ -114,13 +114,13 @@ void CEditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 /************************************************************************/
 /* CConnectorButtonTerrainTypeId                                        */
 /************************************************************************/
-CConnectorButtonTerrainTypeId::CConnectorButtonTerrainTypeId( int terrainTypeId ) 
+ConnectorButtonTerrainTypeId::ConnectorButtonTerrainTypeId( int terrainTypeId ) 
 	: TerrainTypeId(terrainTypeId)
 {
 
 }
 
-void CConnectorButtonTerrainTypeId::Trigger()
+void ConnectorButtonTerrainTypeId::Trigger()
 {
 	emit TerrainTypeActive(TerrainTypeId);
 }

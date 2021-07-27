@@ -1,17 +1,17 @@
 #pragma once
 #include <qaction>
 
-class CAction : public QAction
+class Action : public QAction
 {
 public:
 /** */
-	CAction(QObject* parent);
+	Action(QObject* parent);
 /** */
-	CAction(const QString &text, QObject* parent);
+	Action(const QString &text, QObject* parent);
 /** */
-	CAction(const QIcon &icon, const QString &text, QObject* parent);
+	Action(const QIcon &icon, const QString &text, QObject* parent);
 /** */
-	virtual ~CAction();
+	virtual ~Action();
 /** */
 public slots:
 	virtual void triggered( bool checked = false );

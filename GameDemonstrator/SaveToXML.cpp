@@ -2,20 +2,20 @@
 #include "SaveToXML.h"
 
 
-CSaveToXML::CSaveToXML()
+SaveToXML::SaveToXML()
 {
 }
 
-CSaveToXML::~CSaveToXML()
+SaveToXML::~SaveToXML()
 {
 }
 
-bool CSaveToXML::SaveGame()
+bool SaveToXML::SaveGame()
 {
 	return false;
 }
 
-bool CSaveToXML::LoadGame()
+bool SaveToXML::LoadGame()
 {
 	return false;
 }

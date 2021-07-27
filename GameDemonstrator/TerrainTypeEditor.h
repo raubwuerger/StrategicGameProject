@@ -2,17 +2,17 @@
 #define TERRAINTYPEEDITOR_H
 
 #include <QObject>
-class CTerrainType;
-class CMapEventManager;
+class TerrainType;
+class MapEventManager;
 
-class CTerrainTypeEditor : public QObject
+class TerrainTypeEditor : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	CTerrainTypeEditor(QObject *parent);
+	TerrainTypeEditor(QObject *parent);
 	/** */
-	~CTerrainTypeEditor();
+	~TerrainTypeEditor();
 public slots:
 	/** */
 	void ActivateTerrainType( int terrainTypeId );
@@ -20,8 +20,8 @@ public slots:
 	void ChangeTerrainTypeHexItem( int row, int col );
 private:
 	friend class GameDemonstrator;
-	CTerrainType			*ActiveTerrainType;
-	CMapEventManager		*MapEventManager;
+	TerrainType			*ActiveTerrainType;
+	MapEventManager		*MapEventManager;
 };
 
 #endif // TERRAINTYPEEDITOR_H

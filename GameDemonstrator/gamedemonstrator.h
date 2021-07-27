@@ -5,16 +5,16 @@
 #include "ui_gamedemonstrator.h"
 
 class QActionRepository;
-class CGameTurnDialog;
-class CHexItemInfoDialog;
+class GameTurnDialog;
+class HexItemInfoDialog;
 class GameMainThread;
 class GameMainLoop;
-class CMapView;
-class CEditorToolbox;
-class CMapEventManager;
-class CTerrainTypeEditor;
-class COwnerTypeRepository;
-class CSerializerInterface;
+class MapView;
+class EditorToolbox;
+class MapEventManager;
+class TerrainTypeEditor;
+class OwnerTypeRepository;
+class SerializerInterface;
 
 namespace jha
 {
@@ -44,22 +44,22 @@ private:
 	bool LoadTerrainTypes();
 	bool LoadOwnerTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-	void CreateEditorToolbox( CTerrainTypeEditor *terrainTypeEditor );
-	CTerrainTypeEditor* CreateTerrainTypeEditor( CMapEventManager* mapEventManager );
+	void CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor );
+	TerrainTypeEditor* CreateTerrainTypeEditor( MapEventManager* mapEventManager );
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
 	QMenu	*InfoMenu;
 	QActionRepository	*ActionRepository;
-	CGameTurnDialog		*GameTurnDialog;
-	CHexItemInfoDialog	*HexItemInfoDialog;
+	GameTurnDialog		*GameTurnDialogInstance;
+	HexItemInfoDialog	*HexItemInfoDialogInstance;
 	GameMainThread		*MainThread;
 	GameMainLoop		*MainGameLoop;
 	jha::LoggingTableWidget	*DockWidgetLogging;
-	COwnerTypeRepository	*OwnerTypeRepository;
-	CMapView				*MapView;
-	CSerializerInterface* SerializerInterface;
-	CEditorToolbox		*EditorToolbox;
+	OwnerTypeRepository	*OwnerTypeRepository;
+	MapView				*MapViewInstance;
+	SerializerInterface* SerializerInterface;
+	EditorToolbox		*EditorToolboxInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

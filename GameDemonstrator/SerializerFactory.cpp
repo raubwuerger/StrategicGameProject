@@ -6,27 +6,27 @@
 #include "QObject.h"
 
 
-CSerializerInterface* CSerializerFactory::SerializerInterface = nullptr;
+SerializerInterface* SerializerFactory::SerializerInterfaceInstanze = nullptr;
 
-CSerializerFactory::CSerializerFactory()
+SerializerFactory::SerializerFactory()
 {
 }
 
-CSerializerFactory::~CSerializerFactory()
+SerializerFactory::~SerializerFactory()
 {
 }
 
-void CSerializerFactory::Release()
+void SerializerFactory::Release()
 {
-	delete SerializerInterface;
-	SerializerInterface = nullptr;
+	delete SerializerInterfaceInstanze;
+	SerializerInterfaceInstanze = nullptr;
 }
 
-CSerializerInterface* CSerializerFactory::CreateInterface()
+SerializerInterface* SerializerFactory::CreateInterface()
 {
 	//TODO: Will be set by config
 	//SerializeGameInterface = new CSaveToXML();
-	SerializerInterface = new CSerializerInterface;
-	SerializerInterface->SerializeGameInterface = new CSaveToXML;
-	return SerializerInterface;
+	SerializerInterfaceInstanze = new SerializerInterface;
+	SerializerInterfaceInstanze->SerializeGameInterface = new SaveToXML;
+	return SerializerInterfaceInstanze;
 }

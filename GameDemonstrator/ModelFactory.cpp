@@ -3,16 +3,16 @@
 #include "model\GameMap.h"
 #include "GameInitialisationData.h"
 
-CModelFactory::CModelFactory()
+ModelFactory::ModelFactory()
 {
 }
 
 
-CModelFactory::~CModelFactory()
+ModelFactory::~ModelFactory()
 {
 }
 
-void CModelFactory::CreateEmptyMap( const CGameInitialisationData& data, GameMap** gameMap )
+void ModelFactory::CreateEmptyMap( const GameInitialisationData& data, GameMap** gameMap )
 {
  	*gameMap = new GameMap;
  	(*gameMap)->Init( data.Rows, data.Cols );

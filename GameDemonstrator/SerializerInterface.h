@@ -3,22 +3,22 @@
 /** Serializes game data ... */
 class ISerializeGameInterface;
 
-class CSerializerInterface : public QObject
+class SerializerInterface : public QObject
 {
 public:
 	Q_OBJECT;
 public:
 	/** */
-	CSerializerInterface();
+	SerializerInterface();
 	/** */
-	virtual ~CSerializerInterface();
+	virtual ~SerializerInterface();
 public slots:
 	/** */
 	bool SaveGame();
 	/** */
 	bool LoadGame();
 private:
-	friend class CSerializerFactory;
+	friend class SerializerFactory;
 	ISerializeGameInterface* SerializeGameInterface;
 };
 
