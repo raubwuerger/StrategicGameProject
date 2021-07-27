@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "OwnerType.h"
 
-namespace GDModel
-{
-
 COwnerType::COwnerType( int id )
 	: Id(id)
 {
@@ -22,6 +19,4 @@ const QString& COwnerType::GetName() const
 int COwnerType::GetId() const
 {
 	return Id;
-}
-
 }

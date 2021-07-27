@@ -2,9 +2,6 @@
 
 class CGameInitialisationData;
 
-namespace GDModel
-{
-
 class GameMap;
 
 class CModelFactory
@@ -17,5 +14,3 @@ public:
 	/** */
 	void CreateEmptyMap( const CGameInitialisationData& data, GameMap** gameMap );
 };
-
-}

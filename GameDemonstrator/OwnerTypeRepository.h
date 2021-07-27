@@ -1,26 +1,26 @@
 #pragma once
 
 #include <QMap>
-namespace GDModel { class COwnerType; }
+class COwnerType;
 
 class COwnerTypeRepository
 {
 public:
 	static COwnerTypeRepository* GetInstance();
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
-	bool RegisterOwnerType( GDModel::COwnerType *ownerType  );
+	bool RegisterOwnerType( COwnerType *ownerType  );
 	/** */
-	GDModel::COwnerType* FindOwnerTypeById( int id );
+	COwnerType* FindOwnerTypeById( int id );
 	/** */
 	int GetCount() const;
 	/** */
-	QMap<int,GDModel::COwnerType*>::const_iterator GetFirstIterator() const;
+	QMap<int,COwnerType*>::const_iterator GetFirstIterator() const;
 	/** */
-	QMap<int,GDModel::COwnerType*>::const_iterator GetLastIterator() const;
+	QMap<int,COwnerType*>::const_iterator GetLastIterator() const;
 	/** Get m_DefaultTerrainType */
-	const GDModel::COwnerType* GetDefaultOwnerType() const;
+	const COwnerType* GetDefaultOwnerType() const;
 	/** Set m_DefaultTerrainType */
-	void SetDefaultOwnerType( const GDModel::COwnerType* val);
+	void SetDefaultOwnerType( const COwnerType* val);
 	/** */
 	void Release();
 private:
@@ -29,8 +29,8 @@ private:
 	/** */
 	~COwnerTypeRepository();
 private:
-	QMap<int,GDModel::COwnerType*>	OwnerTypes;
-	const GDModel::COwnerType*		DefaultOwnerType;
+	QMap<int,COwnerType*>	OwnerTypes;
+	const COwnerType*		DefaultOwnerType;
 	static COwnerTypeRepository*	Instance;
 };
 

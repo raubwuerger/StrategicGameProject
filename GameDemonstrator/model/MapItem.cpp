@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "MapItem.h"
 
-namespace GDModel
-{
-
 CMapItem::CMapItem( int row, int col )
 	: CenterPoint(0,0),
 		Row(row),
@@ -15,6 +12,4 @@ CMapItem::CMapItem( int row, int col )
 
 CMapItem::~CMapItem()
 {
-}
-
 }

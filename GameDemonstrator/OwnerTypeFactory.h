@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-namespace GDModel { class COwnerType; }
+class COwnerType;
 class COwnerTypeRepository;
 class QDomNode;
 
@@ -14,7 +14,7 @@ public:
 	/** */
 	~COwnerTypeFactory();
 	/** */
-	GDModel::COwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
+	COwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
 private:
 	COwnerTypeRepository	*OwnerTypeRepository;
 };

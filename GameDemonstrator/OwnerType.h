@@ -1,8 +1,5 @@
 #pragma once
 
-namespace GDModel
-{
-
 class COwnerType
 {
 public:
@@ -21,5 +18,3 @@ private:
 	QColor		Color;
 	QString		PicturePath;
 };
-
-}

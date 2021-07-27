@@ -3,8 +3,6 @@
 class CTerrainType;
 class COwnerType;
 
-namespace GDModel
-{
 /** Kartenteil im Speicher */
 class CMapItem
 {
@@ -20,5 +18,3 @@ private:
 	CTerrainType	*Type;
 	COwnerType		*Owner;
 };
-
-}

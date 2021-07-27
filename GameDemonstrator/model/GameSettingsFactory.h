@@ -2,9 +2,6 @@
 
 /** This class holds all game settings */
 
-namespace GDModel
-{
-
 /** Repräsentiert die Karte im Speicher */
 class GameSettingsFactory
 {
@@ -18,6 +15,3 @@ public:
 	/** */
 	void Release();
 };
-
-
-}

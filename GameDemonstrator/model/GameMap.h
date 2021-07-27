@@ -2,9 +2,6 @@
 
 #include "MapItem.h"
 
-namespace GDModel
-{
-
 /** Repräsentiert die Karte im Speicher */
 class GameMap
 {
@@ -20,12 +17,9 @@ public:
 	/** */
 	void Release();
 	/** Get MapItems */	
-	const QVector< QVector<GDModel::CMapItem*> >& GetMapItems() const;
+	const QVector< QVector<CMapItem*> >& GetMapItems() const;
 private:
-	QVector< QVector<GDModel::CMapItem*> >	MapItems;
+	QVector< QVector<CMapItem*> >	MapItems;
 	unsigned int Rows;
 	unsigned int Cols;
 };
-
-
-}

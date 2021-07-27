@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "GameMapFactory.h"
 
-namespace GDModel
-{
-
 GameMapFactory::GameMapFactory()
 {
 }
@@ -22,7 +19,5 @@ void GameMapFactory::Release()
 
 void GameMapFactory::CreateMap()
 {
-
-}
 
 }

@@ -2,8 +2,6 @@
 #include "GameMap.h"
 #include "MapItem.h"
 
-namespace GDModel
-{
 
 GameMap::GameMap()
 	: Rows(10),
@@ -19,10 +17,10 @@ void GameMap::Create()
 {
 	for( int row=0;row<Rows;row++ )
 	{
-		QVector<GDModel::CMapItem*> tempRow;
+		QVector<CMapItem*> tempRow;
 		for( int col=0;col<Cols;col++ )
 		{
-			tempRow.append( new GDModel::CMapItem(row,col) );
+			tempRow.append( new CMapItem(row,col) );
 		}
 		MapItems.append( tempRow );
 	}
@@ -32,10 +30,10 @@ void GameMap::Init( int rows, int cols )
 {
 	for( int row=0;row<rows;row++ )
 	{
-		QVector<GDModel::CMapItem*> tempRow;
+		QVector<CMapItem*> tempRow;
 		for( int col=0;col<cols;col++ )
 		{
-			tempRow.append( new GDModel::CMapItem(row,col) );
+			tempRow.append( new CMapItem(row,col) );
 		}
 		MapItems.append( tempRow );
 	}
@@ -43,10 +41,10 @@ void GameMap::Init( int rows, int cols )
 
 void GameMap::Release()
 {
-	QVector< QVector<GDModel::CMapItem*> >::iterator row = MapItems.begin();
+	QVector< QVector<CMapItem*> >::iterator row = MapItems.begin();
 	while( row != MapItems.end() )
 	{
-		QVector<GDModel::CMapItem*>::iterator col = (*row).begin();
+		QVector<CMapItem*>::iterator col = (*row).begin();
 		while( col != (*row).end() )
 		{
 			delete (*col);
@@ -57,9 +55,7 @@ void GameMap::Release()
 	MapItems.clear();
 }
 
-const QVector< QVector<GDModel::CMapItem*> >& GameMap::GetMapItems() const
+const QVector< QVector<CMapItem*> >& GameMap::GetMapItems() const
 {
 	return MapItems;
-}
-
 }

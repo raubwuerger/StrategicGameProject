@@ -3,9 +3,6 @@
 #include "model\GameMap.h"
 #include "GameInitialisationData.h"
 
-namespace GDModel
-{
-
 CModelFactory::CModelFactory()
 {
 }
@@ -19,6 +16,4 @@ void CModelFactory::CreateEmptyMap( const CGameInitialisationData& data, GameMap
 {
  	*gameMap = new GameMap;
  	(*gameMap)->Init( data.Rows, data.Cols );
-}
-
 }

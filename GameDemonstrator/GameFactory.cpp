@@ -6,7 +6,7 @@
 #include "SaveBinary.h"
 
 //Initialisierung von static membern
-GDModel::GameMap* CGameFactory::TheGameMap = nullptr;
+GameMap* CGameFactory::TheGameMap = nullptr;
 
 CGameFactory::CGameFactory()
 {
@@ -18,7 +18,7 @@ CGameFactory::~CGameFactory()
 
 void CGameFactory::CreateNewGame()
 {
-	TheGameMap = new GDModel::GameMap;
+	TheGameMap = new GameMap;
 	TheGameMap->Create();
 }
 
@@ -31,7 +31,7 @@ void CGameFactory::CreateNewGame( const CGameInitialisationData& data, CMapView 
 #include "ModelFactory.h"
 void CGameFactory::CreateModel( const CGameInitialisationData& data )
 {
-	GDModel::CModelFactory modelFactory;
+	CModelFactory modelFactory;
 
 	delete TheGameMap;
 
