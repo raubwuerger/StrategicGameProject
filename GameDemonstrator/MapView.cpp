@@ -24,8 +24,8 @@ MapView::~MapView()
 #include "model/GameDataConfig.h"
 void MapView::Create()
 {
-	unsigned int cols = GameDataConfig::GetInstance()->TheGameMapConfig.Cols;
-	unsigned int rows = GameDataConfig::GetInstance()->TheGameMapConfig.Rows;
+	unsigned int cols = GameDataConfig::GetInstance()->GetGameMapConfig()->Cols;
+	unsigned int rows = GameDataConfig::GetInstance()->GetGameMapConfig()->Rows;
 	MapEventManager->InitMapItemsRegistry( cols, rows );
 	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
 	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),Scene,SLOT(HexActive(int,int)));

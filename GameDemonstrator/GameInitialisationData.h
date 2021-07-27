@@ -2,6 +2,8 @@
 
 /** Enthält alle notwendigen Daten zum Erstellen eines neuen Spiels */
 
+//TODO: Should be removed!!!
+
 class GameInitialisationData
 {
 public:

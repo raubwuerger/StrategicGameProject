@@ -14,3 +14,8 @@ GameDataConfig* GameDataConfig::GetInstance()
 	Instance = new GameDataConfig;
 	return Instance;
 }
+
+GameMapConfig* GameDataConfig::GetGameMapConfig()
+{
+	return GameMapConfig::GetInstance();
+}

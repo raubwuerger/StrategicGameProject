@@ -4,6 +4,9 @@
 #include "model\GameMap.h"
 #include "MapView.h"
 #include "SaveBinary.h"
+#include "CreateNewMap.h"
+#include "MapFactory.h"
+#include "ModelFactory.h"
 
 //Initialisierung von static membern
 GameMap* GameFactory::TheGameMap = nullptr;
@@ -20,6 +23,17 @@ void GameFactory::CreateNewGame()
 {
 	TheGameMap = new GameMap;
 	TheGameMap->Create();
+
+	MapFactory::GetInstance()->CreateNewMapFunction();
+
+/*	CreateNewMap *newMapCreator = new CreateNewMap(parent);
+	newMapCreator->MapView = mapView;
+	newMapCreator->DefaultTerrainType = defaultTerrainType;
+	QObject::connect(action, SIGNAL(triggered()), newMapCreator, SLOT(DoCreateNewMap()), Qt::QueuedConnection );
+*/
+
+	ModelFactory modelFactory;
+	modelFactory.CreateEmptyMap( &TheGameMap );
 }
 
 void GameFactory::CreateNewGame( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType )

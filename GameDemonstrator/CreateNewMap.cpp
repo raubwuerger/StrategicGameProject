@@ -36,9 +36,10 @@ void CreateNewMap::DoCreateNewMap()
 
 	GameData->Cols = dialog.GetTilesX();
 	GameData->Rows = dialog.GetTilesY();
-*/
-	GameData->Cols = 60;
-	GameData->Rows = 120;
 	GameFactory().CreateNewGame( *GameData, MapView, DefaultTerrainType );
+*/
+	GameMapConfig::GetInstance()->Cols = 60;
+	GameMapConfig::GetInstance()->Rows = 120;
+	GameFactory().CreateNewGame();
 
 }

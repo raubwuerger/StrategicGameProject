@@ -1,8 +1,8 @@
 #pragma once
 
-/** This class holds all game settings */
+class GameSettings;
 
-/** Repräsentiert die Karte im Speicher */
+/** This class holds all game settings */
 class GameSettingsFactory
 {
 public:
@@ -11,7 +11,7 @@ public:
 	/** */
 	~GameSettingsFactory();
 	/** */
-	void Create();
-	/** */
-	void Release();
+	GameSettings* Create();
+private:
+	GameSettings* TheGameSettings;
 };

@@ -5,6 +5,7 @@
 class MapView;
 class TerrainType;
 class GameInitialisationData;
+class MapFactory;
 
 class CreateNewMap : public QObject
 {

@@ -17,6 +17,7 @@
 #include "Action.h"
 #include "LogFactory.h"
 #include "TerrainTypeRepository.h"
+#include "MapFactory.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -36,6 +37,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
 	MapViewInstance = new MapView(this);
+	MapFactory::GetInstance()->SetMapView(MapViewInstance);
+	MapFactory::GetInstance()->SetParent(this);
 
 	QActionRepository::GetInstanceFirstTimeInit(parent);
 	SerializerInterface = SerializerFactory().CreateInterface();
@@ -67,6 +70,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
 
+	MapFactory::GetInstance()->CreateNewMapFunction();
+
 	MapViewInstance->show();
 }
 
@@ -95,14 +100,13 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialogInstance, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
-#include "MapFactory.h"
 #include "TerrainTypeRepository.h"
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	MapFactory().CreateNewMapAction(this,createAction,MapViewInstance,TerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
+//	MapFactory().CreateNewMapAction(this,createAction,MapViewInstance,TerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
 	QActionRepository::GetInstance()->AddAction(createAction);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");

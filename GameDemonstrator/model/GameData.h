@@ -1,8 +1,8 @@
 #pragma once
 
-/** This class holds all game objects */
+class GameMapConfig;
 
-/** Repräsentiert die Karte im Speicher */
+/** This class holds all game objects */
 class GameData
 {
 public:
@@ -14,4 +14,7 @@ public:
 	void Init();
 	/** */
 	void Release();
+public:
+	GameMapConfig* GetGameMapConfig();
+private:
 };

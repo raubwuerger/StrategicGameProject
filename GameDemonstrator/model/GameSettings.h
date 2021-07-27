@@ -2,7 +2,6 @@
 
 /** This class holds all game settings */
 
-/** Repräsentiert die Karte im Speicher */
 class GameSettings
 {
 public:
@@ -10,8 +9,10 @@ public:
 	GameSettings();
 	/** */
 	~GameSettings();
-	/** */
-	void Init();
-	/** */
-	void Release();
+public:
+	QString SaveGamePath;
+	QString DifficultyLevel;
+	QString PlayerCount;
+	QVector<QString> Players;
+
 };

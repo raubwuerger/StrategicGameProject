@@ -4,13 +4,13 @@
 
 #include "GameMapConfig.h"
 
-/** Repräsentiert die Karte im Speicher */
+/** Repräsentiert alle Einstellungen des Spiels */
 class GameDataConfig
 {
 public:
 	static GameDataConfig* GetInstance();
-public:
-	GameMapConfig TheGameMapConfig;
+/** */
+	GameMapConfig* GetGameMapConfig();
 private:
 	/** */
 	GameDataConfig() {}

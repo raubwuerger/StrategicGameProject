@@ -3,16 +3,12 @@
 
 GameSettings::GameSettings()
 {
+	SaveGamePath = "C:\\";
+	DifficultyLevel = "1";
+	PlayerCount = "0";
 }
 
 GameSettings::~GameSettings()
 {
-}
-
-void GameSettings::Init()
-{
-}
-
-void GameSettings::Release()
-{
+	Players.clear();
 }

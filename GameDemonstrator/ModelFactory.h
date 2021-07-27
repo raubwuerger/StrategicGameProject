@@ -13,4 +13,6 @@ public:
 	~ModelFactory();
 	/** */
 	void CreateEmptyMap( const GameInitialisationData& data, GameMap** gameMap );
+	/** */
+	void CreateEmptyMap( GameMap** gameMap );
 };
