@@ -14,6 +14,7 @@ public:
 	bool SaveGame();
 	/** */
 	bool LoadGame();
-
+private:
+	bool CreateFramework();
 };
 
