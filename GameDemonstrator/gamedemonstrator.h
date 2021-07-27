@@ -14,6 +14,7 @@ class CEditorToolbox;
 class CMapEventManager;
 class CTerrainTypeEditor;
 class COwnerTypeRepository;
+class CSerializerInterface;
 
 namespace jha
 {
@@ -57,7 +58,7 @@ private:
 	jha::LoggingTableWidget	*DockWidgetLogging;
 	COwnerTypeRepository	*OwnerTypeRepository;
 	CMapView				*MapView;
-
+	CSerializerInterface* SerializerInterface;
 	CEditorToolbox		*EditorToolbox;
 };
 

@@ -6,7 +6,7 @@
 #include "QObject.h"
 
 
-CSerializerInterface* CSerializerFactory::Interfaces = nullptr;
+CSerializerInterface* CSerializerFactory::SerializerInterface = nullptr;
 
 CSerializerFactory::CSerializerFactory()
 {
@@ -18,13 +18,15 @@ CSerializerFactory::~CSerializerFactory()
 
 void CSerializerFactory::Release()
 {
-	delete Interfaces;
+	delete SerializerInterface;
+	SerializerInterface = nullptr;
 }
 
-CSerializerInterface* CSerializerFactory::CreateInterface( QAction *action )
+CSerializerInterface* CSerializerFactory::CreateInterface()
 {
-	Interfaces = new CSaveToXML;
-	QObject::connect( action, SIGNAL(triggered()), Interfaces, SLOT(SerializeMap()) );
-
-	return Interfaces;
+	//TODO: Will be set by config
+	//SerializeGameInterface = new CSaveToXML();
+	SerializerInterface = new CSerializerInterface;
+	SerializerInterface->SerializeGameInterface = new CSaveToXML;
+	return SerializerInterface;
 }

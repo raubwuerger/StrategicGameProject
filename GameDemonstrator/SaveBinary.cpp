@@ -12,9 +12,11 @@ CSaveBinary::~CSaveBinary()
 {
 }
 
-bool CSaveBinary::DoSerializeGame( const GDModel::GameMap& gameMap )
+bool CSaveBinary::SaveGame()
 {
-	QFile file("MapFile.dat");
+	//TODO: Not yet implemented!!!
+	return false;
+/*	QFile file("MapFile.dat");
 	file.open(QIODevice::WriteOnly);
 	QDataStream out(&file);
 
@@ -25,11 +27,11 @@ bool CSaveBinary::DoSerializeGame( const GDModel::GameMap& gameMap )
 			out << gameMap.GetMapItems().at(row).begin();
 		}
 	}
-
-	return false;
+*/
 }
 
-bool CSaveBinary::DoDeserializeGame( GDModel::GameMap& gameMap )
+bool CSaveBinary::LoadGame()
 {
+	//TODO: Not yet implemented!!!
 	return false;
 }

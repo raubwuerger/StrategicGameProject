@@ -1,18 +1,17 @@
 #pragma once
 
-#include "serializerinterface.h"
+#include "ISerializeGameInterface.h"
 
-class CSaveBinary :	public CSerializerInterface
+class CSaveBinary : public ISerializeGameInterface
 {
 public:
 	/** */
 	CSaveBinary();
 	/** */
 	~CSaveBinary();
-private:
 	/** */
-	virtual bool DoSerializeGame( const GDModel::GameMap& gameMap );
+	bool SaveGame();
 	/** */
-	virtual bool DoDeserializeGame( GDModel::GameMap& gameMap );
+	bool LoadGame();
 };
 

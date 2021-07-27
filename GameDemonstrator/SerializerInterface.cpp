@@ -1,29 +1,34 @@
 #include "stdafx.h"
 #include "SerializerInterface.h"
-
-const GDModel::GameMap *CSerializerInterface::TheGameMap = nullptr;
+#include "SaveToXML.h"
 
 CSerializerInterface::CSerializerInterface()
+	: SerializeGameInterface(nullptr)
 {
 }
 
 CSerializerInterface::~CSerializerInterface()
 {
+	delete SerializeGameInterface;
 }
 
-void CSerializerInterface::SetMap( const GDModel::GameMap* gameMap )
+bool CSerializerInterface::SaveGame()
 {
-	TheGameMap = gameMap;
+	if( nullptr == SerializeGameInterface )
+	{
+		Q_ASSERT( SerializeGameInterface != nullptr );
+		return false;
+	}
+	return SerializeGameInterface->SaveGame();
 }
 
-bool CSerializerInterface::SerializeGame()
+bool CSerializerInterface::LoadGame()
 {
-	return DoSerializeGame( *(this->TheGameMap) );
-}
-
-bool CSerializerInterface::DeserializeGame()
-{
-//	return DoDeserializeMap( *(this->TheGameMap) );
-	return false;
+	if( nullptr == SerializeGameInterface )
+	{
+		Q_ASSERT( SerializeGameInterface != nullptr );
+		return false;
+	}
+	return SerializeGameInterface->LoadGame();
 }
 

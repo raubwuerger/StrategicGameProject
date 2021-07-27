@@ -13,7 +13,7 @@ public:
 /** */
 	void Release();
 /** */
-	CSerializerInterface* CreateInterface( QAction *action );
+	CSerializerInterface* CreateInterface();
 private:
-	static CSerializerInterface* Interfaces;
+	static CSerializerInterface* SerializerInterface;
 };

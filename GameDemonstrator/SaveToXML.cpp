@@ -6,17 +6,16 @@ CSaveToXML::CSaveToXML()
 {
 }
 
-
 CSaveToXML::~CSaveToXML()
 {
 }
 
-bool CSaveToXML::DoSerializeGame( const GDModel::GameMap& gameMap )
+bool CSaveToXML::SaveGame()
 {
 	return false;
 }
 
-bool CSaveToXML::DoDeserializeGame( GDModel::GameMap& gameMap )
+bool CSaveToXML::LoadGame()
 {
 	return false;
 }

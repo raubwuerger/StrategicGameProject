@@ -429,6 +429,7 @@
     <ClInclude Include="model\GameSettings.h" />
     <ClInclude Include="model\GameSettingsFactory.h" />
     <ClInclude Include="OwnerTypeRepository.h" />
+    <ClInclude Include="ISerializeGameInterface.h" />
     <ClInclude Include="SaveToXML.h" />
     <ClInclude Include="SerializerFactory.h" />
     <ClInclude Include="XMLTools.h" />

@@ -38,6 +38,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapView = new CMapView(this);
 
 	QActionRepository::GetInstanceFirstTimeInit(parent);
+	SerializerInterface = CSerializerFactory().CreateInterface();
 	InitLoggingFramwork();
 	LoadTerrainTypes();
 	LoadOwnerTypes();
@@ -108,13 +109,13 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	QActionRepository::GetInstance()->AddAction( loadGameAction );
-//	CSerializerInterface* loadGameMap = CSerializerFactory().CreateInterface( loadGameAction );
+	connect(loadGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(LoadGame()), Qt::QueuedConnection );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	CAction* saveGameAction = new CAction(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
 	QActionRepository::GetInstance()->AddAction(saveGameAction);
-	CSerializerInterface* saveGameMap = CSerializerFactory().CreateInterface( saveGameAction );
+	connect(saveGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(SaveGame()), Qt::QueuedConnection );
 
 	QIcon start(":GameDemonstrator/Resources/media_play_green.ico");
 	QAction* startTurnAction = new QAction(start,tr("&Start"), this);

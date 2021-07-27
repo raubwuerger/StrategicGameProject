@@ -36,7 +36,6 @@ void CGameFactory::CreateModel( const CGameInitialisationData& data )
 	delete TheGameMap;
 
 	modelFactory.CreateEmptyMap( data, &TheGameMap );
-	CSaveBinary().SetMap(TheGameMap);
 }
 
 void CGameFactory::CreateMap( const CGameInitialisationData& data, CMapView *mapView, const CTerrainType * defaultTerrainType )

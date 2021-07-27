@@ -1,8 +1,7 @@
 #pragma once
 
-/** Serialisiert Spieldaten ... */
-
-namespace GDModel { class GameMap; }
+/** Serializes game data ... */
+class ISerializeGameInterface;
 
 class CSerializerInterface : public QObject
 {
@@ -13,20 +12,13 @@ public:
 	CSerializerInterface();
 	/** */
 	virtual ~CSerializerInterface();
-	/** */
-	static void SetMap( const GDModel::GameMap* gameMap );
 public slots:
 	/** */
-	virtual bool SerializeGame();
+	bool SaveGame();
 	/** */
-	virtual bool DeserializeGame();
+	bool LoadGame();
 private:
-	/** */
-	virtual bool DoSerializeGame( const GDModel::GameMap& gameMap ) = 0;
-	/** */
-	virtual bool DoDeserializeGame( GDModel::GameMap& gameMap ) = 0;
-private:
-	friend class CGameFactory;
-	static const GDModel::GameMap *TheGameMap;
+	friend class CSerializerFactory;
+	ISerializeGameInterface* SerializeGameInterface;
 };
 

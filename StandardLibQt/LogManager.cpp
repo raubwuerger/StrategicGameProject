@@ -130,7 +130,6 @@ void LogManager::ReinitLogger()
 	{
 		(*logger)->Init();
 	}
-//	InjectInitialLogMessage();
 }
 
 void LogManager::WorkMessages()
