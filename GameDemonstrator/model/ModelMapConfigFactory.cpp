@@ -1,39 +1,39 @@
 #include "stdafx.h"
-#include "GameMapFactory.h"
+#include "ModelMapConfigFactory.h"
 #include "GameMap.h"
 #include "ModelMapConfig.h"
 
-GameMapFactory* GameMapFactory::Instance = nullptr; 
+ModelMapConfigFactory* ModelMapConfigFactory::Instance = nullptr; 
 
-GameMapFactory* GameMapFactory::GetInstance()
+ModelMapConfigFactory* ModelMapConfigFactory::GetInstance()
 {
 	if( nullptr != Instance )
 	{
 		return Instance;
 	}
 
-	Instance = new GameMapFactory;
+	Instance = new ModelMapConfigFactory;
 	return Instance;
 }
 
-void GameMapFactory::Release()
+void ModelMapConfigFactory::Release()
 {
 	delete Instance;
 	Instance = nullptr;
 }
 
-GameMapFactory::GameMapFactory()
+ModelMapConfigFactory::ModelMapConfigFactory()
 	: TheGameMap(nullptr)
 {
 }
 
-GameMapFactory::~GameMapFactory()
+ModelMapConfigFactory::~ModelMapConfigFactory()
 {
 	delete TheGameMap;
 	TheGameMap = nullptr;
 }
 
-GameMap* GameMapFactory::CreateMap()
+GameMap* ModelMapConfigFactory::CreateMap()
 {
 	TheGameMap = new GameMap();
 	TheGameMap->Init( ModelMapConfig::GetInstance()->Rows, ModelMapConfig::GetInstance()->Cols );

@@ -3,21 +3,21 @@
 class GameMap;
 
 /** Creates game map representation */
-class GameMapFactory
+class ModelMapConfigFactory
 {
 public:
 	/** */
-	static GameMapFactory* GetInstance();
+	static ModelMapConfigFactory* GetInstance();
 	/** */
 	void Release();
 	/** Creates Map */
 	GameMap* CreateMap();
 private:
 	/** */
-	GameMapFactory();
+	ModelMapConfigFactory();
 	/** */
-	~GameMapFactory();
+	~ModelMapConfigFactory();
 private:
-	static GameMapFactory	*Instance;
+	static ModelMapConfigFactory	*Instance;
 	GameMap*	TheGameMap;
 };
