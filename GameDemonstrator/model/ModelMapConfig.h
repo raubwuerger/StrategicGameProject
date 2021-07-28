@@ -3,21 +3,21 @@
 #include "MapItem.h"
 
 /** Repräsentiert die Karte im Speicher */
-class GameMapConfig
+class ModelMapConfig
 {
 public:
 	/** */
-	static GameMapConfig* GetInstance();
+	static ModelMapConfig* GetInstance();
 	/** */
 	void Release();
 private:
 	/** */
-	GameMapConfig();
+	ModelMapConfig();
 	/** */
-	~GameMapConfig();
+	~ModelMapConfig();
 public:
 	unsigned int Rows;
 	unsigned int Cols;
 private:
-	static GameMapConfig* Instance;
+	static ModelMapConfig* Instance;
 };

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameMapFactory.h"
 #include "GameMap.h"
-#include "GameMapConfig.h"
+#include "ModelMapConfig.h"
 
 GameMapFactory* GameMapFactory::Instance = nullptr; 
 
@@ -36,6 +36,6 @@ GameMapFactory::~GameMapFactory()
 GameMap* GameMapFactory::CreateMap()
 {
 	TheGameMap = new GameMap();
-	TheGameMap->Init( GameMapConfig::GetInstance()->Rows, GameMapConfig::GetInstance()->Cols );
+	TheGameMap->Init( ModelMapConfig::GetInstance()->Rows, ModelMapConfig::GetInstance()->Cols );
 	return TheGameMap;
 }

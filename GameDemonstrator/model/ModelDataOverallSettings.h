@@ -2,7 +2,7 @@
 
 /** This class holds all game configs (Map, Settings, Player, ...) */
 
-#include "GameMapConfig.h"
+#include "ModelMapConfig.h"
 
 /** Repräsentiert alle Einstellungen des Spiels */
 class ModelDataOverallSettings
@@ -10,7 +10,7 @@ class ModelDataOverallSettings
 public:
 	static ModelDataOverallSettings* GetInstance();
 /** */
-	GameMapConfig* GetGameMapConfig();
+	ModelMapConfig* GetGameMapConfig();
 private:
 	/** */
 	ModelDataOverallSettings() {}

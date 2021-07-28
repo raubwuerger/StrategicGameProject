@@ -15,7 +15,7 @@ ModelDataOverallSettings* ModelDataOverallSettings::GetInstance()
 	return Instance;
 }
 
-GameMapConfig* ModelDataOverallSettings::GetGameMapConfig()
+ModelMapConfig* ModelDataOverallSettings::GetGameMapConfig()
 {
-	return GameMapConfig::GetInstance();
+	return ModelMapConfig::GetInstance();
 }
