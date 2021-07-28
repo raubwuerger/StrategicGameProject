@@ -12,7 +12,7 @@ public:
 	/** Get Name */	
 	const QString& GetName() const;
 private:
-	friend class OwnerTypeFactory;
+	friend class ModelOwnerTypeFactory;
 	const int Id;
 	QString		Name;
 	QColor		Color;
