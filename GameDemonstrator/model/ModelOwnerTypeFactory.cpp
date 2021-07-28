@@ -31,7 +31,7 @@ ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 bool ModelOwnerTypeFactory::Create()
 {
 	jha::GetLog()->Log("Loading OwnerTypes from file: " +ModelOwnerTypeConfig().ConfigFilePath, LEVEL::LL_MESSAGE);
-	QFile file;
+	QFile file(ModelOwnerTypeConfig().ConfigFilePath);
 	if( false == OpenFile(&file) )
 	{
 		return false;
@@ -65,20 +65,30 @@ bool ModelOwnerTypeFactory::Create()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
+		ModelOwnerType *tempModelOwnerType = CreateOwnerTypeFromXML( ownerTypeNodes.at(i) );
+		if( nullptr != tempModelOwnerType )
+		{
+			ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( tempModelOwnerType );
+		}
 	}
-	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+
+	int modelTypesRegistered = ModelOwnerTypeRepository::GetInstance()->GetCount();
+	if( modelTypesRegistered <= 0 )
+	{
+		jha::GetLog()->Log("No OwnerTypes have been registered!", LEVEL::LL_WARNING);
+	}
+	else
+	{
+		jha::GetLog()->Log("OwnerTypes registered: " +QString::number(modelTypesRegistered), LEVEL::LL_MESSAGE);
+	}
 	return true;
 }
 
 bool ModelOwnerTypeFactory::OpenFile( QFile* file  )
 {
-	QString fileName( ModelOwnerTypeConfig().ConfigFilePath );
-
-	file = new QFile(fileName);
 	if( file->open(QFile::ReadOnly | QFile::Text) == false )
 	{
-		jha::GetLog()->Log( tr("Cannot read file %1:\n%2.").arg(fileName).arg(file->errorString()), jha::LOGLEVEL::LL_WARNING );
+		jha::GetLog()->Log( tr("Cannot read file %1:\n%2.").arg(file->fileName()).arg(file->errorString()), jha::LOGLEVEL::LL_WARNING );
 		return false;
 	}
 	return true;
