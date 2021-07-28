@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "CreateNewMap.h"
 #include "CreateNewMapDialog.h"
-#include "MapView.h"
 #include "GameInitialisationData.h"
 #include "GameFactory.h"
 #include "model/GameDataConfig.h"
@@ -38,8 +37,9 @@ void CreateNewMap::DoCreateNewMap()
 	GameData->Rows = dialog.GetTilesY();
 	GameFactory().CreateNewGame( *GameData, MapView, DefaultTerrainType );
 */
+
 	GameMapConfig::GetInstance()->Cols = 60;
 	GameMapConfig::GetInstance()->Rows = 120;
-	GameFactory().CreateNewGame();
+	GameFactory::GetInstance()->CreateNewGame();
 
 }

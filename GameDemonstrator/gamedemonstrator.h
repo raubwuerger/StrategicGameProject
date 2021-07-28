@@ -15,6 +15,7 @@ class MapEventManager;
 class TerrainTypeEditor;
 class OwnerTypeRepository;
 class SerializerInterface;
+class CreateNewMap;
 
 namespace jha
 {
@@ -60,6 +61,7 @@ private:
 	MapView				*MapViewInstance;
 	SerializerInterface* SerializerInterface;
 	EditorToolbox		*EditorToolboxInstance;
+	CreateNewMap		*CreateNewMapInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

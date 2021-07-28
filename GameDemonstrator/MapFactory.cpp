@@ -26,6 +26,7 @@ CreateNewMap* MapFactory::CreateNewMapFunction()
 		jha::GetLog()->Log( "Handover parameter <parent> is null!", jha::LOGLEVEL::LL_ERROR );
 		return nullptr;
 	}
+
 	TheCreateNewMap = new CreateNewMap(Parent);
 	return TheCreateNewMap;
 }

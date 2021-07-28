@@ -18,6 +18,8 @@
 #include "LogFactory.h"
 #include "TerrainTypeRepository.h"
 #include "MapFactory.h"
+#include "GameFactory.h"
+#include "CreateNewMap.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -28,13 +30,16 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	EditorToolboxInstance(nullptr),
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
-	InfoMenu(nullptr)
+	InfoMenu(nullptr),
+	CreateNewMapInstance(nullptr)
 {
 	ui.setupUi(this);
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
+
+	CreateNewMapInstance = new CreateNewMap(this);
 
 	MapViewInstance = new MapView(this);
 	MapFactory::GetInstance()->SetMapView(MapViewInstance);
@@ -70,7 +75,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
 
-	MapFactory::GetInstance()->CreateNewMapFunction();
+	GameFactory::GetInstance()->SetMapView(MapViewInstance);
 
 	MapViewInstance->show();
 }
@@ -108,6 +113,8 @@ void GameDemonstrator::CreateMenuFile()
 	createAction->setStatusTip(tr("Create new game"));
 //	MapFactory().CreateNewMapAction(this,createAction,MapViewInstance,TerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
 	QActionRepository::GetInstance()->AddAction(createAction);
+	connect(createAction,SIGNAL(triggered()),CreateNewMapInstance, SLOT(DoCreateNewMap()), Qt::QueuedConnection );
+//	QObject::connect(action, SIGNAL(triggered()), newMapCreator, SLOT(DoCreateNewMap()), Qt::QueuedConnection );
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);

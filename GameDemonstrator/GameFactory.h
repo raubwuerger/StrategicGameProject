@@ -10,9 +10,7 @@ class GameFactory
 {
 public:
 	/** */
-	GameFactory();
-	/** */
-	~GameFactory();
+	static GameFactory* GetInstance();
 	/** */
 	void CreateNewGame();
 	/** */
@@ -21,13 +19,21 @@ public:
 	void CreateGameFromSavegame( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType ) {}
 	/** */
 	void CreateGameFromScenario( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType ) {}
+	/** */
+	void SetMapView( MapView* mapView ) { MapViewInstance = mapView; }
 private:
 	/** */
 	void CreateModel( const GameInitialisationData& data );
 	/** */
 	void CreateMap(  const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType );
+	/** */
+	GameFactory();
+	/** */
+	~GameFactory();
 private:
+	static GameFactory* Instance;
 	static 	GameMap *TheGameMap;
+	MapView		*MapViewInstance;
 };
 
 
