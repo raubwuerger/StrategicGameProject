@@ -111,10 +111,8 @@ void GameDemonstrator::CreateMenuFile()
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-//	MapFactory().CreateNewMapAction(this,createAction,MapViewInstance,TerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
 	QActionRepository::GetInstance()->AddAction(createAction);
 	connect(createAction,SIGNAL(triggered()),CreateNewMapInstance, SLOT(DoCreateNewMap()), Qt::QueuedConnection );
-//	QObject::connect(action, SIGNAL(triggered()), newMapCreator, SLOT(DoCreateNewMap()), Qt::QueuedConnection );
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);

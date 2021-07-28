@@ -381,7 +381,7 @@
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="MapCreatorSimple.cpp">
-      <Filter>Header Dateien</Filter>
+      <Filter>Source Dateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
