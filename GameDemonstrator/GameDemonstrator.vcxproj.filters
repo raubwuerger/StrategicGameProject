@@ -377,6 +377,9 @@
     <ClCompile Include="model\ModelOwnerTypeRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="ModelOwnerTypeConfig.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -497,6 +500,9 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelOwnerTypeRepository.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelOwnerTypeConfig.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

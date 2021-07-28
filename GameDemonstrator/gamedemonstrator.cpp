@@ -259,50 +259,9 @@ bool GameDemonstrator::LoadTerrainTypes()
 }
 
 #include "model/ModelOwnerTypeFactory.h"
-#include "model/ModelOwnerTypeRepository.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
-	jha::GetLog()->Log("Loading OwnerTypes.xml ...", LEVEL::LL_MESSAGE);
-	QString fileName(".\\conf\\OwnerTypes.xml");
-
-	QFile file(fileName);
-	if( file.open(QFile::ReadOnly | QFile::Text) == false )
-	{
-		QMessageBox::warning(this, tr("SAX Bookmarks"),	tr("Cannot read file %1:\n%2.").arg(fileName).arg(file.errorString()));
-		return false;
-	}
-
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-	QDomDocument domDocument;
-
-	if( domDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
-	{
-		QMessageBox::information(window(), tr("DOM Bookmarks"),	tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr));
-		return false;
-	}
-
-	QDomElement root = domDocument.documentElement();
-	if( root.tagName() != "OwnerTypes") 
-	{
-		QMessageBox::information(window(), tr("DOM Bookmarks"), tr("The file is not an OwnerTypes file."));
-		return false;
-	}
-
-	if (root.hasAttribute("version") && root.attribute("version") != "1.0") 
-	{
-		QMessageBox::information(window(), tr("DOM Bookmarks"), tr("The file is not an OwnerTypes version 1.0 file."));
-		return false;
-	}
-
-	QDomNodeList ownerTypeNodes = root.childNodes();
-	for( int i=0; i <ownerTypeNodes.count(); i++ )
-	{
-		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( ModelOwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
-	}
-	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
-	return true;
+	return ModelOwnerTypeFactory::GetInstance()->Create();
 }
 
 #include "TerrainType.h"

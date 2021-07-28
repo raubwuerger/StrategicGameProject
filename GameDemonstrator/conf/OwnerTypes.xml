@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <OwnerTypes>
-	<OwnerType strId="1" >
+	<OwnerType>
+		<Id>1</Id>
 		<Name>Nation 1</Name>
 		<PicturePath>.\Flags\Nation1.png</PicturePath>
 		<Color>Yellow</Color>
 	</OwnerType>
-	<OwnerType strId="2">
+	<OwnerType>
+		<Id>2</Id>
 		<Name>Nation 2</Name>
 		<PicturePath>.\Flags\Nation2.png</PicturePath>
 		<Color>Blue</Color>

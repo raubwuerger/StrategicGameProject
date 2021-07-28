@@ -12,34 +12,37 @@ DomElementFinder::DomElementFinder( const QDomNode& node )
 
 }
 
-void DomElementFinder::TryFindElement( const QString& elementName, int& value ) const
+bool DomElementFinder::TryFindElement( const QString& elementName, int& value ) const
 {
 	QDomElement element;
 	if( ValidateNode(elementName,element) == false )
 	{
-		return;
+		return false;
 	}
 	value = element.text().toInt();
+	return true;
 }
 
-void DomElementFinder::TryFindElement( const QString& elementName, QString& value ) const
+bool DomElementFinder::TryFindElement( const QString& elementName, QString& value ) const
 {
 	QDomElement element;
 	if( ValidateNode(elementName,element) == false )
 	{
-		return;
+		return false;
 	}
 	value = element.text();
+	return true;
 }
 
-void DomElementFinder::TryFindElement( const QString& elementName, QColor& value ) const
+bool DomElementFinder::TryFindElement( const QString& elementName, QColor& value ) const
 {
 	QDomElement element;
 	if( ValidateNode(elementName,element) == false )
 	{
-		return;
+		return false;
 	}
 	value = element.text();
+	return true;
 }
 
 bool DomElementFinder::ValidateNode( const QString& elementName, QDomElement& element ) const
