@@ -5,15 +5,15 @@
 #include "GameMapConfig.h"
 
 /** Repräsentiert alle Einstellungen des Spiels */
-class GameDataConfig
+class ModelDataOverallSettings
 {
 public:
-	static GameDataConfig* GetInstance();
+	static ModelDataOverallSettings* GetInstance();
 /** */
 	GameMapConfig* GetGameMapConfig();
 private:
 	/** */
-	GameDataConfig() {}
+	ModelDataOverallSettings() {}
 private:
-	static GameDataConfig* Instance;
+	static ModelDataOverallSettings* Instance;
 };
