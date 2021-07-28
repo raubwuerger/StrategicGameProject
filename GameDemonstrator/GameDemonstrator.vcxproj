@@ -381,7 +381,7 @@
     <ClCompile Include="model\ModelMapItem.cpp" />
     <ClCompile Include="ModelOwnerType.cpp" />
     <ClCompile Include="ModelOwnerTypeFactory.cpp" />
-    <ClCompile Include="OwnerTypeRepository.cpp" />
+    <ClCompile Include="ModelOwnerTypeRepository.cpp" />
     <ClCompile Include="QActionRepository.cpp" />
     <ClCompile Include="SaveBinary.cpp" />
     <ClCompile Include="SaveToXML.cpp" />
@@ -428,7 +428,7 @@
     <ClInclude Include="model\ModelMapConfigFactory.h" />
     <ClInclude Include="model\ModelSettings.h" />
     <ClInclude Include="model\ModelSettingsFactory.h" />
-    <ClInclude Include="OwnerTypeRepository.h" />
+    <ClInclude Include="ModelOwnerTypeRepository.h" />
     <ClInclude Include="ISerializeGameInterface.h" />
     <ClInclude Include="SaveToXML.h" />
     <ClInclude Include="SerializerFactory.h" />

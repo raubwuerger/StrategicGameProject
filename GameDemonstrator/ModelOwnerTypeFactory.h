@@ -2,7 +2,7 @@
 
 #include <QObject>
 class ModelOwnerType;
-class OwnerTypeRepository;
+class ModelOwnerTypeRepository;
 class QDomNode;
 
 class ModelOwnerTypeFactory : public QObject
@@ -16,6 +16,6 @@ public:
 	/** */
 	ModelOwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
 private:
-	OwnerTypeRepository	*OwnerTypeRepository;
+	ModelOwnerTypeRepository	*ModelOwnerTypeRepositoryInstance;
 };
 

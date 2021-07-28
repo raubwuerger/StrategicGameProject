@@ -3,10 +3,10 @@
 #include <QMap>
 class ModelOwnerType;
 
-class OwnerTypeRepository
+class ModelOwnerTypeRepository
 {
 public:
-	static OwnerTypeRepository* GetInstance();
+	static ModelOwnerTypeRepository* GetInstance();
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
 	bool RegisterOwnerType( ModelOwnerType *ownerType  );
 	/** */
@@ -25,12 +25,12 @@ public:
 	void Release();
 private:
 	/** */
-	OwnerTypeRepository();
+	ModelOwnerTypeRepository();
 	/** */
-	~OwnerTypeRepository();
+	~ModelOwnerTypeRepository();
 private:
 	QMap<int,ModelOwnerType*>	OwnerTypes;
 	const ModelOwnerType*		DefaultOwnerType;
-	static OwnerTypeRepository*	Instance;
+	static ModelOwnerTypeRepository*	Instance;
 };
 

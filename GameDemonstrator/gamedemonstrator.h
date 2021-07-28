@@ -13,7 +13,6 @@ class MapView;
 class EditorToolbox;
 class MapEventManager;
 class TerrainTypeEditor;
-class OwnerTypeRepository;
 class SerializerInterface;
 class CreateNewMap;
 
@@ -57,7 +56,6 @@ private:
 	GameMainThread		*MainThread;
 	GameMainLoop		*MainGameLoop;
 	jha::LoggingTableWidget	*DockWidgetLogging;
-	OwnerTypeRepository	*OwnerTypeRepository;
 	MapView				*MapViewInstance;
 	SerializerInterface* SerializerInterface;
 	EditorToolbox		*EditorToolboxInstance;

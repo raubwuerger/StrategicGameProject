@@ -9,7 +9,7 @@
 #include "MapEventManager.h"
 #include "HexItemEventManager.h"
 #include "TerrainTypeEditor.h"
-#include "OwnerTypeRepository.h"
+#include "ModelOwnerTypeRepository.h"
 #include "HexItemInfoDialog.h"
 #include "SerializerInterface.h"
 #include "SaveBinary.h"
@@ -26,7 +26,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameTurnDialogInstance(nullptr),
 	MainGameLoop(nullptr),
 	HexItemInfoDialogInstance(nullptr),
-	OwnerTypeRepository(nullptr),
 	EditorToolboxInstance(nullptr),
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
@@ -84,7 +83,7 @@ GameDemonstrator::~GameDemonstrator()
 {
 	TerrainTypeRepository::GetInstance()->Release();
 	QActionRepository::GetInstance()->Release();
-	OwnerTypeRepository::GetInstance()->Release();
+	ModelOwnerTypeRepository::GetInstance()->Release();
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()
@@ -260,7 +259,7 @@ bool GameDemonstrator::LoadTerrainTypes()
 }
 
 #include "ModelOwnerTypeFactory.h"
-#include "OwnerTypeRepository.h"
+#include "ModelOwnerTypeRepository.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
 	jha::GetLog()->Log("Loading OwnerTypes.xml ...", LEVEL::LL_MESSAGE);
@@ -300,9 +299,9 @@ bool GameDemonstrator::LoadOwnerTypes()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		OwnerTypeRepository::GetInstance()->RegisterOwnerType( ModelOwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
+		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( ModelOwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
 	}
-	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(OwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
 

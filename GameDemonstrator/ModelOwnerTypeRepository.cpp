@@ -1,32 +1,32 @@
 #include "stdafx.h"
-#include "OwnerTypeRepository.h"
+#include "ModelOwnerTypeRepository.h"
 #include "ModelOwnerType.h"
 
-OwnerTypeRepository* OwnerTypeRepository::Instance = nullptr;
+ModelOwnerTypeRepository* ModelOwnerTypeRepository::Instance = nullptr;
 
-OwnerTypeRepository* OwnerTypeRepository::GetInstance()
+ModelOwnerTypeRepository* ModelOwnerTypeRepository::GetInstance()
 {
 	if( nullptr != Instance )
 	{
 		return Instance;
 	}
 
-	Instance = new OwnerTypeRepository;
+	Instance = new ModelOwnerTypeRepository;
 	return Instance;
 }
 
-OwnerTypeRepository::OwnerTypeRepository()
+ModelOwnerTypeRepository::ModelOwnerTypeRepository()
 	: DefaultOwnerType(nullptr)
 {
 }
 
 
-OwnerTypeRepository::~OwnerTypeRepository()
+ModelOwnerTypeRepository::~ModelOwnerTypeRepository()
 {
 	OwnerTypes.clear();
 }
 
-bool OwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
+bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 {
 	if( ownerType == nullptr )
 	{
@@ -48,7 +48,7 @@ bool OwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 	return true;
 }
 
-ModelOwnerType* OwnerTypeRepository::FindOwnerTypeById( int id )
+ModelOwnerType* ModelOwnerTypeRepository::FindOwnerTypeById( int id )
 {
 	QMap<int,ModelOwnerType*>::iterator exists = OwnerTypes.find( id );
 	if( exists == OwnerTypes.end() )
@@ -58,32 +58,32 @@ ModelOwnerType* OwnerTypeRepository::FindOwnerTypeById( int id )
 	return exists.value();
 }
 
-int OwnerTypeRepository::GetCount() const
+int ModelOwnerTypeRepository::GetCount() const
 {
 	return OwnerTypes.size();
 }
 
-QMap<int,ModelOwnerType*>::const_iterator OwnerTypeRepository::GetFirstIterator() const
+QMap<int,ModelOwnerType*>::const_iterator ModelOwnerTypeRepository::GetFirstIterator() const
 {
 	return OwnerTypes.cbegin();
 }
 
-QMap<int,ModelOwnerType*>::const_iterator OwnerTypeRepository::GetLastIterator() const
+QMap<int,ModelOwnerType*>::const_iterator ModelOwnerTypeRepository::GetLastIterator() const
 {
 	return OwnerTypes.cend();
 }
 
-const ModelOwnerType* OwnerTypeRepository::GetDefaultOwnerType() const
+const ModelOwnerType* ModelOwnerTypeRepository::GetDefaultOwnerType() const
 {
 	return DefaultOwnerType;
 }
 
-void OwnerTypeRepository::SetDefaultOwnerType( const ModelOwnerType* val )
+void ModelOwnerTypeRepository::SetDefaultOwnerType( const ModelOwnerType* val )
 {
 	DefaultOwnerType = val;
 }
 
-void OwnerTypeRepository::Release()
+void ModelOwnerTypeRepository::Release()
 {
 	delete Instance;
 	Instance = nullptr;
