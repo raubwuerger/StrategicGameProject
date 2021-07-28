@@ -100,6 +100,24 @@ public:
 	void Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category );
 /** Nimmt eine Logmeldung auf */
 	void Log( const QString& message, jha::LOGLEVEL logLevel, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+/** Nimmt eine Logmeldung mit Loglevel NONE auf */
+	void Log_NONE( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel FATAL auf */
+	void Log_FATAL( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel ERROR auf */
+	void Log_ERROR( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel WARNING auf */
+	void Log_WARNING( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel MESSAGE auf */
+	void Log_MESSAGE( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel INFO auf */
+	void Log_INFO( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel TRACE auf */
+	void Log_TRACE( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel DEBUG auf */
+	void Log_DEBUG( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Nimmt eine Logmeldung mit Loglevel INIT auf */
+	void Log_INIT( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
 private:
 /** Initialisiert LogInterface */
 	bool Init();

@@ -105,6 +105,51 @@ void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const Lo
 	LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
 }
 
+void LogInterface::Log_NONE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_NONE, logCategory );
+}
+
+void LogInterface::Log_FATAL(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_FATAL, logCategory );
+}
+
+void LogInterface::Log_ERROR(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_ERROR, logCategory );
+}
+
+void LogInterface::Log_WARNING(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_WARNING, logCategory );
+}
+
+void LogInterface::Log_MESSAGE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_MESSAGE, logCategory );
+}
+
+void LogInterface::Log_INFO(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_INFO, logCategory );
+}
+
+void LogInterface::Log_TRACE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_TRACE, logCategory );
+}
+
+void LogInterface::Log_DEBUG(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_DEBUG, logCategory );
+}
+
+void LogInterface::Log_INIT(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+{
+	Log( message, jha::LOGLEVEL::LL_INIT, logCategory );
+}
+
 LogInterface* GetLog()
 {
 	return LogInterface::GetInstance();

@@ -75,11 +75,11 @@ bool ModelOwnerTypeFactory::Create()
 	int modelTypesRegistered = ModelOwnerTypeRepository::GetInstance()->GetCount();
 	if( modelTypesRegistered <= 0 )
 	{
-		jha::GetLog()->Log("No OwnerTypes have been registered!", LEVEL::LL_WARNING);
+		jha::GetLog()->Log_WARNING("No OwnerTypes have been registered!");
 	}
 	else
 	{
-		jha::GetLog()->Log("OwnerTypes registered: " +QString::number(modelTypesRegistered), LEVEL::LL_MESSAGE);
+		jha::GetLog()->Log_MESSAGE("OwnerTypes registered: " +QString::number(modelTypesRegistered) );
 	}
 	return true;
 }
