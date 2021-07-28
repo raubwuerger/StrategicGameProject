@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MapItem.h"
+#include "ModelMapItem.h"
 
 /** Repräsentiert die Karte im Speicher */
 class GameMap
@@ -17,9 +17,9 @@ public:
 	/** */
 	void Release();
 	/** Get MapItems */	
-	const QVector< QVector<MapItem*> >& GetMapItems() const;
+	const QVector< QVector<ModelMapItem*> >& GetMapItems() const;
 private:
-	QVector< QVector<MapItem*> >	MapItems;
+	QVector< QVector<ModelMapItem*> >	MapItems;
 	unsigned int Rows;
 	unsigned int Cols;
 };

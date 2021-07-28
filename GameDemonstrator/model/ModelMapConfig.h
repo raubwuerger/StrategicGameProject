@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MapItem.h"
+#include "ModelMapItem.h"
 
 /** Repräsentiert die Karte im Speicher */
 class ModelMapConfig

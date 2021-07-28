@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "MapItem.h"
+#include "ModelMapItem.h"
 
-MapItem::MapItem( int row, int col )
+ModelMapItem::ModelMapItem( int row, int col )
 	: CenterPoint(0,0),
 		Row(row),
 		Col(col),
@@ -10,6 +10,6 @@ MapItem::MapItem( int row, int col )
 {
 }
 
-MapItem::~MapItem()
+ModelMapItem::~ModelMapItem()
 {
 }

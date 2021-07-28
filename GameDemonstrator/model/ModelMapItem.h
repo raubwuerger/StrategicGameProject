@@ -4,13 +4,13 @@ class TerrainType;
 class OwnerType;
 
 /** Game tile */
-class MapItem
+class ModelMapItem
 {
 public:
 	/** */
-	MapItem( int row, int col );
+	ModelMapItem( int row, int col );
 	/** */
-	~MapItem();
+	~ModelMapItem();
 private:
 	QPoint			CenterPoint;
 	int				Row;
