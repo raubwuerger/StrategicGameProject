@@ -1,20 +1,23 @@
 #pragma once
 
-/** This class holds all game settings */
+class GameMap;
 
-/** Repräsentiert die Karte im Speicher */
-class GameMapFactory : public QObject
+/** Creates game map representation */
+class GameMapFactory
 {
 public:
+	/** */
+	static GameMapFactory* GetInstance();
+	/** */
+	void Release();
+	/** Creates Map */
+	GameMap* CreateMap();
+private:
 	/** */
 	GameMapFactory();
 	/** */
 	~GameMapFactory();
-	/** */
-	void Create();
-	/** */
-	void Release();
-public slots:
-	void CreateMap();
 private:
+	static GameMapFactory	*Instance;
+	GameMap*	TheGameMap;
 };

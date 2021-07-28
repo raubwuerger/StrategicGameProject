@@ -3,7 +3,7 @@
 class TerrainType;
 class OwnerType;
 
-/** Kartenteil im Speicher */
+/** Game tile */
 class MapItem
 {
 public:
@@ -15,6 +15,6 @@ private:
 	QPoint			CenterPoint;
 	int				Row;
 	int				Col;
-	TerrainType	*Type;
+	TerrainType		*Type;
 	OwnerType		*Owner;
 };

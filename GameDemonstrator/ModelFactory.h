@@ -2,6 +2,9 @@
 
 class GameMap;
 
+
+/** Creates all Models */
+
 class ModelFactory
 {
 public:
@@ -9,6 +12,4 @@ public:
 	ModelFactory();
 	/** */
 	~ModelFactory();
-	/** */
-	void CreateEmptyMap( GameMap** gameMap );
 };

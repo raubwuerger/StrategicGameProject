@@ -11,9 +11,3 @@ ModelFactory::ModelFactory()
 ModelFactory::~ModelFactory()
 {
 }
-
-void ModelFactory::CreateEmptyMap(GameMap** gameMap)
-{
-	*gameMap = new GameMap;
-	(*gameMap)->Init( GameMapConfig::GetInstance()->Rows, GameMapConfig::GetInstance()->Cols );
-}
