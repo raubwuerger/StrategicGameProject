@@ -9,7 +9,7 @@
 #include "MapEventManager.h"
 #include "HexItemEventManager.h"
 #include "TerrainTypeEditor.h"
-#include "ModelOwnerTypeRepository.h"
+#include "model/ModelOwnerTypeRepository.h"
 #include "HexItemInfoDialog.h"
 #include "SerializerInterface.h"
 #include "SaveBinary.h"
@@ -258,8 +258,8 @@ bool GameDemonstrator::LoadTerrainTypes()
 	return true;
 }
 
-#include "ModelOwnerTypeFactory.h"
-#include "ModelOwnerTypeRepository.h"
+#include "model/ModelOwnerTypeFactory.h"
+#include "model/ModelOwnerTypeRepository.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
 	jha::GetLog()->Log("Loading OwnerTypes.xml ...", LEVEL::LL_MESSAGE);

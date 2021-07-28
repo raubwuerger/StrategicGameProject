@@ -362,20 +362,20 @@
     <ClCompile Include="model\ModelMapItem.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="ModelOwnerType.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelOwnerTypeFactory.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ModelOwnerTypeFactory.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ModelOwnerTypeFactory.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="ModelOwnerTypeRepository.cpp">
-      <Filter>Source Dateien</Filter>
+    <ClCompile Include="model\ModelOwnerType.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelOwnerTypeFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelOwnerTypeRepository.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -493,11 +493,11 @@
     <ClInclude Include="model\ModelMapItem.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ModelOwnerType.h">
-      <Filter>Header Dateien</Filter>
+    <ClInclude Include="model\ModelOwnerType.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ModelOwnerTypeRepository.h">
-      <Filter>Header Dateien</Filter>
+    <ClInclude Include="model\ModelOwnerTypeRepository.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -582,8 +582,8 @@
     <CustomBuild Include="CreateNewMap.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="ModelOwnerTypeFactory.h">
-      <Filter>Header Dateien</Filter>
+    <CustomBuild Include="model\ModelOwnerTypeFactory.h">
+      <Filter>Header Dateien\Model</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
