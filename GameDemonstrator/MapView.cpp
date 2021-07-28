@@ -3,7 +3,6 @@
 #include "MapViewGraphicsScene.h"
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
-#include "GameInitialisationData.h"
 #include "HexItemEventManager.h"
 #include "TerrainTypeRepository.h"
 #include "TerrainType.h"
@@ -37,26 +36,6 @@ void MapView::Create()
 
 	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
-
-	setDragMode(ScrollHandDrag);
-}
-
-//TODO: Muss hier CTerrainTypeRepository übergeben werden, oder tut es defaultTerrainType auch???
-#include "TerrainType.h"
-void MapView::Init( const GameInitialisationData &data, const TerrainType* defaultTerrainType )
-{
-	MapEventManager->InitMapItemsRegistry(data.Rows,data.Cols);
-
-	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
-	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),Scene,SLOT(HexActive(int,int)));
-	Scene->HexItemEventManager = HexItemEventManager;
-
-	double defaultHexSize = 48.0;
-	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( data.Cols, data.Rows, hexagonTemplate, defaultTerrainType->GetImage() );
-
-	setScene(Scene);
-	setSceneRect(0, 0, CalcMapWidthInPixel(data.Cols,hexagonTemplate), CalcMapHeightInPixel(data.Rows,hexagonTemplate) );
 
 	setDragMode(ScrollHandDrag);
 }

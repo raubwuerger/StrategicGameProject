@@ -2,7 +2,6 @@
 
 class CreateNewMap;
 class MapView;
-class TerrainType;
 
 /** @stereotype factory*/
 class MapFactory
@@ -10,6 +9,8 @@ class MapFactory
 public:
 	/** */
 	static MapFactory* GetInstance();
+	/** */
+	void Release();
 	/** */
 	void SetMapView( MapView* mapView );
 	/** */
@@ -21,8 +22,6 @@ private:
 	MapFactory();
 	/** */
 	~MapFactory();
-	/** */
-	CreateNewMap* CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const TerrainType *defaultTerrainType );
 private:
 	static MapFactory* Instance;
 	CreateNewMap* TheCreateNewMap;

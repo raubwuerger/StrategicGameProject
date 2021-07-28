@@ -2,10 +2,6 @@
 #define CREATENEWMAP_H
 
 #include <QObject>
-class MapView;
-class TerrainType;
-class GameInitialisationData;
-class MapFactory;
 
 class CreateNewMap : public QObject
 {
@@ -17,11 +13,6 @@ public:
 	~CreateNewMap();
 public slots:
 	void DoCreateNewMap();
-private:
-	friend class MapFactory;
-	MapView	*MapView;
-	const TerrainType	*DefaultTerrainType;
-	GameInitialisationData *GameData;
 };
 
 #endif // CREATENEWMAP_H

@@ -18,6 +18,15 @@ MapFactory* MapFactory::GetInstance()
 	return Instance;
 }
 
+void MapFactory::SetMapView(MapView* mapView)
+{
+	MapViewInstance = mapView;
+}
+
+void MapFactory::SetParent(QObject *parent)
+{
+	Parent = parent;
+}
 
 CreateNewMap* MapFactory::CreateNewMapFunction()
 {
@@ -40,17 +49,8 @@ MapFactory::~MapFactory()
 {
 }
 
-CreateNewMap* MapFactory::CreateNewMapAction( QObject *parent, QAction *action, MapView *mapView, const TerrainType *defaultTerrainType )
+void MapFactory::Release()
 {
-	return nullptr;
-}
-
-void MapFactory::SetMapView(MapView* mapView)
-{
-	MapViewInstance = mapView;
-}
-
-void MapFactory::SetParent(QObject *parent)
-{
-	Parent = parent;
+	delete Instance;
+	Instance = nullptr;
 }

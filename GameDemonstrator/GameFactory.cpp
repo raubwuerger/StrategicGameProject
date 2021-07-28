@@ -1,14 +1,9 @@
 #include "stdafx.h"
 #include "GameFactory.h"
-#include "GameInitialisationData.h"
 #include "model\GameMap.h"
 #include "MapView.h"
-#include "SaveBinary.h"
 #include "MapFactory.h"
 #include "ModelFactory.h"
-
-//Initialisierung von static membern
-GameMap* GameFactory::TheGameMap = nullptr;
 
 GameFactory* GameFactory::Instance = nullptr;
 
@@ -23,12 +18,19 @@ GameFactory* GameFactory::GetInstance()
 	return Instance;
 }
 
+void GameFactory::Release()
+{
+	delete Instance;
+}
+
 GameFactory::GameFactory()
+	: TheGameMap(nullptr)
 {
 }
 
 GameFactory::~GameFactory()
 {
+	delete TheGameMap;
 }
 
 void GameFactory::CreateNewGame()
@@ -49,24 +51,8 @@ void GameFactory::CreateNewGame()
 	MapViewInstance->Create();
 }
 
-void GameFactory::CreateNewGame( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType )
+void GameFactory::SetMapView( MapView* mapView )
 {
-	CreateModel( data );
-	CreateMap( data, mapView, defaultTerrainType );
-}
-
-#include "ModelFactory.h"
-void GameFactory::CreateModel( const GameInitialisationData& data )
-{
-	ModelFactory modelFactory;
-
-	delete TheGameMap;
-
-	modelFactory.CreateEmptyMap( data, &TheGameMap );
-}
-
-void GameFactory::CreateMap( const GameInitialisationData& data, MapView *mapView, const TerrainType * defaultTerrainType )
-{
-	mapView->Init( data, defaultTerrainType );
+	MapViewInstance = mapView;
 }
 

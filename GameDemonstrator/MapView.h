@@ -8,8 +8,6 @@ class HexItemEventManager;
 class MapEventManager;
 class TerrainType;
 
-class GameInitialisationData;
-
 class MapView : public QGraphicsView
 {
 	Q_OBJECT
@@ -19,8 +17,6 @@ public:
 	MapView(QWidget *parent);
 	/** */
 	~MapView();
-	/** */
-	void Init( const GameInitialisationData &data, const TerrainType* defaultTerrainType );
 	/** */
 	void Create();
 public:
