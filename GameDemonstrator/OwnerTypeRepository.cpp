@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "OwnerTypeRepository.h"
-#include "OwnerType.h"
+#include "ModelOwnerType.h"
 
 OwnerTypeRepository* OwnerTypeRepository::Instance = nullptr;
 
@@ -26,14 +26,14 @@ OwnerTypeRepository::~OwnerTypeRepository()
 	OwnerTypes.clear();
 }
 
-bool OwnerTypeRepository::RegisterOwnerType( OwnerType *ownerType )
+bool OwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 {
 	if( ownerType == nullptr )
 	{
 		Q_ASSERT(false);
 		return false;
 	}
-	QMap<int,OwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
+	QMap<int,ModelOwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
 	if( allreadyExists != OwnerTypes.end() )
 	{
 		return false;
@@ -48,9 +48,9 @@ bool OwnerTypeRepository::RegisterOwnerType( OwnerType *ownerType )
 	return true;
 }
 
-OwnerType* OwnerTypeRepository::FindOwnerTypeById( int id )
+ModelOwnerType* OwnerTypeRepository::FindOwnerTypeById( int id )
 {
-	QMap<int,OwnerType*>::iterator exists = OwnerTypes.find( id );
+	QMap<int,ModelOwnerType*>::iterator exists = OwnerTypes.find( id );
 	if( exists == OwnerTypes.end() )
 	{
 		return nullptr;
@@ -63,22 +63,22 @@ int OwnerTypeRepository::GetCount() const
 	return OwnerTypes.size();
 }
 
-QMap<int,OwnerType*>::const_iterator OwnerTypeRepository::GetFirstIterator() const
+QMap<int,ModelOwnerType*>::const_iterator OwnerTypeRepository::GetFirstIterator() const
 {
 	return OwnerTypes.cbegin();
 }
 
-QMap<int,OwnerType*>::const_iterator OwnerTypeRepository::GetLastIterator() const
+QMap<int,ModelOwnerType*>::const_iterator OwnerTypeRepository::GetLastIterator() const
 {
 	return OwnerTypes.cend();
 }
 
-const OwnerType* OwnerTypeRepository::GetDefaultOwnerType() const
+const ModelOwnerType* OwnerTypeRepository::GetDefaultOwnerType() const
 {
 	return DefaultOwnerType;
 }
 
-void OwnerTypeRepository::SetDefaultOwnerType( const OwnerType* val )
+void OwnerTypeRepository::SetDefaultOwnerType( const ModelOwnerType* val )
 {
 	DefaultOwnerType = val;
 }

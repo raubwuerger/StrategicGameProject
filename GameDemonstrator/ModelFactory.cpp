@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ModelFactory.h"
 #include "model/GameMap.h"
-#include "model/GameMapConfig.h"
+#include "model/ModelMapConfig.h"
 
 ModelFactory::ModelFactory()
 {

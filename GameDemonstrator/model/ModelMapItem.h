@@ -1,7 +1,7 @@
 #pragma once
 
 class TerrainType;
-class OwnerType;
+class ModelOwnerType;
 
 /** Game tile */
 class ModelMapItem
@@ -16,5 +16,5 @@ private:
 	int				Row;
 	int				Col;
 	TerrainType		*Type;
-	OwnerType		*Owner;
+	ModelOwnerType		*Owner;
 };

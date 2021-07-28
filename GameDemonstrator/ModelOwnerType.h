@@ -1,12 +1,12 @@
 #pragma once
 
-class OwnerType
+class ModelOwnerType
 {
 public:
 	/** */
-	OwnerType( int id );
+	ModelOwnerType( int id );
 	/** */
-	~OwnerType();
+	~ModelOwnerType();
 	/** */
 	int GetId() const;
 	/** Get Name */	

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-class OwnerType;
+class ModelOwnerType;
 class OwnerTypeRepository;
 class QDomNode;
 
@@ -14,7 +14,7 @@ public:
 	/** */
 	~OwnerTypeFactory();
 	/** */
-	OwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
+	ModelOwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
 private:
 	OwnerTypeRepository	*OwnerTypeRepository;
 };

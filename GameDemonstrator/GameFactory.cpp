@@ -4,7 +4,7 @@
 #include "MapView.h"
 #include "MapFactory.h"
 #include "ModelFactory.h"
-#include "model\GameMapFactory.h"
+#include "model\ModelMapConfigFactory.h"
 
 GameFactory* GameFactory::Instance = nullptr;
 
@@ -42,7 +42,7 @@ void GameFactory::CreateNewGame()
 		return;
 	}
 
-	GameMapFactory::GetInstance()->CreateMap();
+	ModelMapConfigFactory::GetInstance()->CreateMap();
 
 //	ModelFactory modelFactory;
 //	modelFactory.CreateEmptyMap( &TheGameMap );

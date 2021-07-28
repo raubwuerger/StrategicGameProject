@@ -2,7 +2,7 @@
 #include "OwnerTypeFactory.h"
 #include <QDomNode>
 #include "LogInterface.h"
-#include "OwnerType.h"
+#include "ModelOwnerType.h"
 #include "XMLTools.h"
 
 OwnerTypeFactory::OwnerTypeFactory()
@@ -13,7 +13,7 @@ OwnerTypeFactory::~OwnerTypeFactory()
 {
 }
 
-OwnerType* OwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
+ModelOwnerType* OwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
 {
 	if( node.attributes().contains("strId") == false )
 	{
@@ -21,7 +21,7 @@ OwnerType* OwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
 		return nullptr;
 	}
 
-	OwnerType *newOwnerType = new OwnerType( node.attributes().namedItem("strId").nodeValue().toInt() );
+	ModelOwnerType *newOwnerType = new ModelOwnerType( node.attributes().namedItem("strId").nodeValue().toInt() );
 
 	DomElementFinder finder(node);
 	finder.TryFindElement( "Name", newOwnerType->Name );

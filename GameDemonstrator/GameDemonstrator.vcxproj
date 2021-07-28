@@ -372,15 +372,14 @@
     <ClCompile Include="MapViewGraphicsScene.cpp" />
     <ClCompile Include="MapViewHexItem.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
-    <ClCompile Include="model\GameData.cpp" />
-    <ClCompile Include="model\GameDataConfig.cpp" />
+    <ClCompile Include="model\ModelDataOverallSettings.cpp" />
     <ClCompile Include="model\GameMap.cpp" />
-    <ClCompile Include="model\GameMapConfig.cpp" />
-    <ClCompile Include="model\GameMapFactory.cpp" />
-    <ClCompile Include="model\GameSettings.cpp" />
-    <ClCompile Include="model\GameSettingsFactory.cpp" />
-    <ClCompile Include="model\MapItem.cpp" />
-    <ClCompile Include="OwnerType.cpp" />
+    <ClCompile Include="model\ModelMapConfig.cpp" />
+    <ClCompile Include="model\ModelMapConfigFactory.cpp" />
+    <ClCompile Include="model\ModelSettings.cpp" />
+    <ClCompile Include="model\ModelSettingsFactory.cpp" />
+    <ClCompile Include="model\ModelMapItem.cpp" />
+    <ClCompile Include="ModelOwnerType.cpp" />
     <ClCompile Include="OwnerTypeFactory.cpp" />
     <ClCompile Include="OwnerTypeRepository.cpp" />
     <ClCompile Include="QActionRepository.cpp" />
@@ -423,13 +422,12 @@
     </CustomBuild>
     <ClInclude Include="IMapCreator.h" />
     <ClInclude Include="MapCreatorSimple.h" />
-    <ClInclude Include="model\GameData.h" />
-    <ClInclude Include="model\GameDataConfig.h" />
+    <ClInclude Include="model\ModelDataOverallSettings.h" />
     <ClInclude Include="model\GameMap.h" />
-    <ClInclude Include="model\GameMapConfig.h" />
-    <ClInclude Include="model\GameMapFactory.h" />
-    <ClInclude Include="model\GameSettings.h" />
-    <ClInclude Include="model\GameSettingsFactory.h" />
+    <ClInclude Include="model\ModelMapConfig.h" />
+    <ClInclude Include="model\ModelMapConfigFactory.h" />
+    <ClInclude Include="model\ModelSettings.h" />
+    <ClInclude Include="model\ModelSettingsFactory.h" />
     <ClInclude Include="OwnerTypeRepository.h" />
     <ClInclude Include="ISerializeGameInterface.h" />
     <ClInclude Include="SaveToXML.h" />
@@ -496,8 +494,8 @@
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="ModelFactory.h" />
-    <ClInclude Include="model\MapItem.h" />
-    <ClInclude Include="OwnerType.h" />
+    <ClInclude Include="model\ModelMapItem.h" />
+    <ClInclude Include="ModelOwnerType.h" />
     <CustomBuild Include="OwnerTypeFactory.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

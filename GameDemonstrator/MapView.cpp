@@ -20,11 +20,11 @@ MapView::~MapView()
 	delete MapEventManager;
 }
 
-#include "model/GameDataConfig.h"
+#include "model/ModelDataOverallSettings.h"
 void MapView::Create()
 {
-	unsigned int cols = GameDataConfig::GetInstance()->GetGameMapConfig()->Cols;
-	unsigned int rows = GameDataConfig::GetInstance()->GetGameMapConfig()->Rows;
+	unsigned int cols = ModelDataOverallSettings::GetInstance()->GetGameMapConfig()->Cols;
+	unsigned int rows = ModelDataOverallSettings::GetInstance()->GetGameMapConfig()->Rows;
 	MapEventManager->InitMapItemsRegistry( rows, cols );
 	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
 	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),Scene,SLOT(HexActive(int,int)));

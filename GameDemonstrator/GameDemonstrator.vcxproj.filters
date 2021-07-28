@@ -293,16 +293,10 @@
     <ClCompile Include="MapView.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
-    <ClCompile Include="model\MapItem.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="ModelFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="GameFactory.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="OwnerType.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
     <ClCompile Include="OwnerTypeFactory.cpp">
@@ -359,25 +353,28 @@
     <ClCompile Include="model\GameMap.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
-    <ClCompile Include="model\GameData.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\GameMapFactory.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\GameSettings.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\GameSettingsFactory.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\GameMapConfig.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\GameDataConfig.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="MapCreatorSimple.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelDataOverallSettings.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapConfig.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapConfigFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelSettings.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelSettingsFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapItem.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelOwnerType.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -442,17 +439,11 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="model\MapItem.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="ModelFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="SaveBinary.h">
       <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
-    <ClInclude Include="OwnerType.h">
-      <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="XMLTools.h">
       <Filter>Header Dateien\Utilities</Filter>
@@ -475,26 +466,8 @@
     <ClInclude Include="model\GameMap.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="model\GameData.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\GameMapFactory.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\GameSettings.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\GameSettingsFactory.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="GameFactory.h">
       <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="model\GameMapConfig.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\GameDataConfig.h">
-      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="ISerializeGameInterface.h">
       <Filter>Header Dateien\IO</Filter>
@@ -503,6 +476,27 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="MapCreatorSimple.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelDataOverallSettings.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapConfig.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapConfigFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelSettings.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelSettingsFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapItem.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelOwnerType.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
