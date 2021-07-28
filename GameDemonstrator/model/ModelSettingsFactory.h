@@ -3,13 +3,13 @@
 class ModelSettings;
 
 /** This class holds all game settings */
-class GameSettingsFactory
+class ModelSettingsFactory
 {
 public:
 	/** */
-	GameSettingsFactory();
+	ModelSettingsFactory();
 	/** */
-	~GameSettingsFactory();
+	~ModelSettingsFactory();
 	/** */
 	ModelSettings* Create();
 private:

@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "GameSettingsFactory.h"
+#include "ModelSettingsFactory.h"
 #include "ModelSettings.h"
 
-GameSettingsFactory::GameSettingsFactory()
+ModelSettingsFactory::ModelSettingsFactory()
 {
 	TheGameSettings = new ModelSettings();
 }
 
-GameSettingsFactory::~GameSettingsFactory()
+ModelSettingsFactory::~ModelSettingsFactory()
 {
 	delete TheGameSettings;
 }
 
-ModelSettings* GameSettingsFactory::Create()
+ModelSettings* ModelSettingsFactory::Create()
 {
 	//TODO: Should be read from dialogs
 	TheGameSettings->SaveGamePath = "";
