@@ -5,14 +5,14 @@ class ModelOwnerType;
 class OwnerTypeRepository;
 class QDomNode;
 
-class OwnerTypeFactory : public QObject
+class ModelOwnerTypeFactory : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	OwnerTypeFactory();
+	ModelOwnerTypeFactory();
 	/** */
-	~OwnerTypeFactory();
+	~ModelOwnerTypeFactory();
 	/** */
 	ModelOwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
 private:

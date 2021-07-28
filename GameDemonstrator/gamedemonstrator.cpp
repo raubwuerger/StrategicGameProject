@@ -259,7 +259,7 @@ bool GameDemonstrator::LoadTerrainTypes()
 	return true;
 }
 
-#include "OwnerTypeFactory.h"
+#include "ModelOwnerTypeFactory.h"
 #include "OwnerTypeRepository.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
@@ -300,7 +300,7 @@ bool GameDemonstrator::LoadOwnerTypes()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		OwnerTypeRepository::GetInstance()->RegisterOwnerType( OwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
+		OwnerTypeRepository::GetInstance()->RegisterOwnerType( ModelOwnerTypeFactory().CreateOwnerTypeFromXML( ownerTypeNodes.at(i) ) );
 	}
 	jha::GetLog()->Log("OwnerTypes registered: " +QString::number(OwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;

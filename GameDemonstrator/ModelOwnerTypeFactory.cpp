@@ -1,19 +1,19 @@
 #include "stdafx.h"
-#include "OwnerTypeFactory.h"
+#include "ModelOwnerTypeFactory.h"
 #include <QDomNode>
 #include "LogInterface.h"
 #include "ModelOwnerType.h"
 #include "XMLTools.h"
 
-OwnerTypeFactory::OwnerTypeFactory()
+ModelOwnerTypeFactory::ModelOwnerTypeFactory()
 {
 }
 
-OwnerTypeFactory::~OwnerTypeFactory()
+ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 {
 }
 
-ModelOwnerType* OwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
+ModelOwnerType* ModelOwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
 {
 	if( node.attributes().contains("strId") == false )
 	{
