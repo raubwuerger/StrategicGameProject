@@ -1,6 +1,6 @@
 #pragma once
 
-class GameSettings;
+class ModelSettings;
 
 /** This class holds all game settings */
 class GameSettingsFactory
@@ -11,7 +11,7 @@ public:
 	/** */
 	~GameSettingsFactory();
 	/** */
-	GameSettings* Create();
+	ModelSettings* Create();
 private:
-	GameSettings* TheGameSettings;
+	ModelSettings* TheGameSettings;
 };

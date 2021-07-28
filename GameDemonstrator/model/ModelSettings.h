@@ -2,13 +2,13 @@
 
 /** This class holds all game settings */
 
-class GameSettings
+class ModelSettings
 {
 public:
 	/** */
-	GameSettings();
+	ModelSettings();
 	/** */
-	~GameSettings();
+	~ModelSettings();
 public:
 	QString SaveGamePath;
 	QString DifficultyLevel;

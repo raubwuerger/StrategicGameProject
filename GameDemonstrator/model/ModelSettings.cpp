@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "GameSettings.h"
+#include "ModelSettings.h"
 
-GameSettings::GameSettings()
+ModelSettings::ModelSettings()
 {
 	SaveGamePath = "C:\\";
 	DifficultyLevel = "1";
 	PlayerCount = "0";
 }
 
-GameSettings::~GameSettings()
+ModelSettings::~ModelSettings()
 {
 	Players.clear();
 }
