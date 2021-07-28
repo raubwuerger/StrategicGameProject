@@ -3,13 +3,13 @@
 class GameMapConfig;
 
 /** This class holds all game objects */
-class GameData
+class ModelDataOverall
 {
 public:
 	/** */
-	GameData();
+	ModelDataOverall();
 	/** */
-	~GameData();
+	~ModelDataOverall();
 	/** */
 	void Init();
 	/** */
