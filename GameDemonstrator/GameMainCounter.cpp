@@ -2,9 +2,8 @@
 #include "GameMainCounter.h"
 //#include "XMLTools.h"
 
-GameMainCounter::GameMainCounter(QObject *parent)
-	: QObject(parent),
-	MonthIncrement(1)
+GameMainCounter::GameMainCounter()
+	: MonthIncrement(1)
 {
 	//ToDo: SetStartDate from Config
 //	QString fileName(".\\conf\\Globals.xml");

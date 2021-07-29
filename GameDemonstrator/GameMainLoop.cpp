@@ -7,7 +7,7 @@ GameMainLoop::GameMainLoop(QObject *parent)
 	: QObject(parent),
 	RunLoop(false)
 {
-	GameCounter = new GameMainCounter(parent);
+	GameCounter = new GameMainCounter();
 }
 
 GameMainLoop::~GameMainLoop()

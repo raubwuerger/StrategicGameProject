@@ -1,15 +1,11 @@
 #ifndef GAMECOUNTER_H
 #define GAMECOUNTER_H
 
-#include <QObject>
-
-class GameMainCounter : public QObject
+class GameMainCounter
 {
-	Q_OBJECT
-
 public:
 	/** */
-	GameMainCounter(QObject *parent);
+	GameMainCounter();
 	/** */
 	~GameMainCounter();
 	/** */
