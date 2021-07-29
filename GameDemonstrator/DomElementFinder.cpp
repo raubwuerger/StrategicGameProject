@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "XMLTools.h"
+#include "DomElementFinder.h"
 #include <QDomNode>
 #include "LogInterface.h"
 
