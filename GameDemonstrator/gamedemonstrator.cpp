@@ -128,6 +128,12 @@ void GameDemonstrator::CreateMenuFile()
 	QActionRepository::GetInstance()->AddAction(saveGameAction);
 	connect(saveGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(SaveGame()), Qt::QueuedConnection );
 
+	QIcon next(":GameDemonstrator/Resources/media_end.ico");
+	QAction* nextTurnAction = new QAction(next,tr("&Next turn"), this);
+	nextTurnAction->setStatusTip(tr("Next turn"));
+	connect(nextTurnAction, SIGNAL(triggered()), MainGameLoop, SLOT(Step()), Qt::QueuedConnection );
+	QActionRepository::GetInstance()->AddAction(nextTurnAction);
+
 	QIcon start(":GameDemonstrator/Resources/media_play_green.ico");
 	QAction* startTurnAction = new QAction(start,tr("&Start"), this);
 	startTurnAction->setStatusTip(tr("Start turn"));
@@ -153,6 +159,7 @@ void GameDemonstrator::CreateMenuFile()
 	FileMenu->addSeparator();
 	FileMenu->addAction( startTurnAction );
 	FileMenu->addAction( stopTurnAction );
+	FileMenu->addAction( nextTurnAction );
 	FileMenu->addSeparator();
 	FileMenu->addAction( exitAction );
 }
