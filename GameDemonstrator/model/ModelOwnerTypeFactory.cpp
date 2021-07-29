@@ -3,7 +3,8 @@
 #include <QDomNode>
 #include "LogInterface.h"
 #include "ModelOwnerType.h"
-#include "XMLTools.h"
+#include "DomElementFinder.h"
+#include "DomValueExtractor.h"
 #include "ModelOwnerTypeConfig.h"
 #include "ModelOwnerTypeRepository.h"
 
@@ -30,8 +31,9 @@ ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 
 bool ModelOwnerTypeFactory::Create()
 {
-	jha::GetLog()->Log("Loading OwnerTypes from file: " +ModelOwnerTypeConfig().ConfigFilePath, LEVEL::LL_MESSAGE);
-	QFile file(ModelOwnerTypeConfig().ConfigFilePath);
+	ModelOwnerTypeConfig config;
+	jha::GetLog()->Log_MESSAGE("Loading OwnerTypes from file: " +config.ConfigFilePath);
+	QFile file(config.ConfigFilePath);
 	if( false == OpenFile(&file) )
 	{
 		return false;
@@ -45,27 +47,27 @@ bool ModelOwnerTypeFactory::Create()
 
 	if( domDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
 	{
-		jha::GetLog()->Log( tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr), jha::LOGLEVEL::LL_WARNING );
+		jha::GetLog()->Log_WARNING( QObject::tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr) );
 		return false;
 	}
 
 	QDomElement root = domDocument.documentElement();
-	if( root.tagName() != ModelOwnerTypeConfig().RootName ) 
+	if( root.tagName() != config.RootName ) 
 	{
-		jha::GetLog()->Log( tr("The file is not an OwnerTypes file."), jha::LOGLEVEL::LL_WARNING );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(config.RootName) );
 		return false;
 	}
 
-	if (root.hasAttribute( ModelOwnerTypeConfig().Version ) && root.attribute( ModelOwnerTypeConfig().Version ) != ModelOwnerTypeConfig().VersionNumber ) 
+	if (root.hasAttribute( config.Version ) && root.attribute( config.Version ) != config.VersionNumber ) 
 	{
-		jha::GetLog()->Log( tr("The file is not an OwnerTypes version 1.0 file."), jha::LOGLEVEL::LL_WARNING );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 version %2 file.").arg(config.RootName).arg(config.VersionNumber) );
 		return false;
 	}
 
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		ModelOwnerType *tempModelOwnerType = CreateOwnerTypeFromXML( ownerTypeNodes.at(i) );
+		ModelOwnerType *tempModelOwnerType = CreateFromXML( ownerTypeNodes.at(i) );
 		if( nullptr != tempModelOwnerType )
 		{
 			ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( tempModelOwnerType );
@@ -75,11 +77,11 @@ bool ModelOwnerTypeFactory::Create()
 	int modelTypesRegistered = ModelOwnerTypeRepository::GetInstance()->GetCount();
 	if( modelTypesRegistered <= 0 )
 	{
-		jha::GetLog()->Log_WARNING("No OwnerTypes have been registered!");
+		jha::GetLog()->Log_WARNING( QObject::tr("No OwnerTypes have been registered!"));
 	}
 	else
 	{
-		jha::GetLog()->Log_MESSAGE("OwnerTypes registered: " +QString::number(modelTypesRegistered) );
+		jha::GetLog()->Log_MESSAGE( QObject::tr("OwnerTypes registered: %1").arg( QString::number(modelTypesRegistered) ));
 	}
 	return true;
 }
@@ -88,39 +90,45 @@ bool ModelOwnerTypeFactory::OpenFile( QFile* file  )
 {
 	if( file->open(QFile::ReadOnly | QFile::Text) == false )
 	{
-		jha::GetLog()->Log( tr("Cannot read file %1:\n%2.").arg(file->fileName()).arg(file->errorString()), jha::LOGLEVEL::LL_WARNING );
+		jha::GetLog()->Log_WARNING( QObject::tr("Cannot read file %1:\n%2.").arg(file->fileName()).arg(file->errorString()) );
 		return false;
 	}
 	return true;
 }
 
-ModelOwnerType* ModelOwnerTypeFactory::CreateOwnerTypeFromXML( const QDomNode& node )
+ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 {
+	ModelOwnerTypeConfig config;
 	int ownerTypeId = 0;
-	DomElementFinder finder(node);
-	if( false == finder.TryFindElement( ModelOwnerTypeConfig().SubelementId, ownerTypeId ) )
+
+	DomValueExtractor extractor(node);
+	if( false == extractor.ExtractValue(config.SubelementId,ownerTypeId) )
 	{
-		jha::GetLog()->Log("OwnerType has not element of name: " +ModelOwnerTypeConfig().SubelementId, LEVEL::LL_WARNING);
+		jha::GetLog()->Log_WARNING( QObject::tr("OwnerType has not element of name: %1").arg(config.SubelementId) );
 		return nullptr;
 	}
 
 	ModelOwnerType *newOwnerType = new ModelOwnerType( ownerTypeId );
-
-	if( false == finder.TryFindElement( ModelOwnerTypeConfig().SubelementName, newOwnerType->Name ) )
+	bool allExtracted = true;
 	{
-		jha::GetLog()->Log("OwnerType has not element of name: " +ModelOwnerTypeConfig().SubelementName, LEVEL::LL_WARNING);
-		return nullptr;
+		DomValueExtractor extractor(node);
+		allExtracted &= extractor.ExtractValue(config.SubelementName,newOwnerType->Name);
 	}
 
-	if( false == finder.TryFindElement( ModelOwnerTypeConfig().SubelementPicturePath, newOwnerType->PicturePath ) )
 	{
-		jha::GetLog()->Log("OwnerType has not element of name: " +ModelOwnerTypeConfig().SubelementPicturePath, LEVEL::LL_WARNING);
-		return nullptr;
+		DomValueExtractor extractor(node);
+		allExtracted &= extractor.ExtractValue(config.SubelementPicturePath,newOwnerType->PicturePath);
 	}
 
-	if( false == finder.TryFindElement( ModelOwnerTypeConfig().SubelementColor, newOwnerType->Color ) )
 	{
-		jha::GetLog()->Log("OwnerType has not element of name: " +ModelOwnerTypeConfig().SubelementColor, LEVEL::LL_WARNING);
+		DomValueExtractor extractor(node);
+		allExtracted &= extractor.ExtractValue(config.SubelementColor,newOwnerType->Color);
+	}
+
+	if( false == allExtracted )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SubelementId).arg(QString::number(ownerTypeId)) );
+		delete newOwnerType;
 		return nullptr;
 	}
 

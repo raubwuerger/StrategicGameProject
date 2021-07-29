@@ -1,13 +1,11 @@
 #pragma once
 
-#include <QObject>
 class ModelOwnerType;
 class ModelOwnerTypeRepository;
 class QDomNode;
 
-class ModelOwnerTypeFactory : public QObject
+class ModelOwnerTypeFactory
 {
-	Q_OBJECT
 public:
 	static ModelOwnerTypeFactory* GetInstance();
 	/** */
@@ -20,7 +18,7 @@ private:
 	/** */
 	bool OpenFile( QFile* file );
 	/** */
-	ModelOwnerType* CreateOwnerTypeFromXML( const QDomNode& node );
+	ModelOwnerType* CreateFromXML( const QDomNode& node );
 private:
 	ModelOwnerTypeRepository		*ModelOwnerTypeRepositoryInstance;
 	static ModelOwnerTypeFactory	*Instance;
