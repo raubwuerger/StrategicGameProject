@@ -1,6 +1,6 @@
 #pragma once
 
-class TerrainType;
+class ModelTerrainType;
 class ModelOwnerType;
 
 /** Game tile */
@@ -15,6 +15,6 @@ private:
 	QPoint			CenterPoint;
 	int				Row;
 	int				Col;
-	TerrainType		*Type;
+	ModelTerrainType		*Type;
 	ModelOwnerType		*Owner;
 };

@@ -16,7 +16,7 @@
 #include "SerializerFactory.h"
 #include "Action.h"
 #include "LogFactory.h"
-#include "TerrainTypeRepository.h"
+#include "ModelTerrainTypeRepository.h"
 #include "MapFactory.h"
 #include "GameFactory.h"
 #include "CreateNewMap.h"
@@ -81,7 +81,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 GameDemonstrator::~GameDemonstrator()
 {
-	TerrainTypeRepository::GetInstance()->Release();
+	ModelTerrainTypeRepository::GetInstance()->Release();
 	QActionRepository::GetInstance()->Release();
 	ModelOwnerTypeRepository::GetInstance()->Release();
 }
@@ -104,7 +104,7 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialogInstance, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
-#include "TerrainTypeRepository.h"
+#include "ModelTerrainTypeRepository.h"
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
@@ -211,7 +211,7 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 }
 
-#include "TerrainTypeFactory.h"
+#include "ModelTerrainTypeFactory.h"
 #include <QDomDocument>
 bool GameDemonstrator::LoadTerrainTypes()
 {
@@ -252,9 +252,9 @@ bool GameDemonstrator::LoadTerrainTypes()
 	QDomNodeList terrainTypeNodes = root.childNodes();
 	for( int i=0; i <terrainTypeNodes.count(); i++ )
 	{
-		TerrainTypeRepository::GetInstance()->RegisterTerrainType( TerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
+		ModelTerrainTypeRepository::GetInstance()->RegisterTerrainType( ModelTerrainTypeFactory().CreateTerrainTypeFromXML( terrainTypeNodes.at(i) ) );
 	}
-	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(TerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(ModelTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 	return true;
 }
 
@@ -264,8 +264,8 @@ bool GameDemonstrator::LoadOwnerTypes()
 	return ModelOwnerTypeFactory::GetInstance()->Create();
 }
 
-#include "TerrainType.h"
-#include "TerrainTypeRepository.h"
+#include "ModelTerrainType.h"
+#include "ModelTerrainTypeRepository.h"
 #include "EditorToolbox.h"
 void GameDemonstrator::CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor )
 {

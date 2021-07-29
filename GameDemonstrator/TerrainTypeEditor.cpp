@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "TerrainTypeEditor.h"
 #include "MapEventManager.h"
-#include "TerrainTypeRepository.h"
+#include "ModelTerrainTypeRepository.h"
 #include "MapEventManager.h"
-#include "TerrainType.h"
+#include "ModelTerrainType.h"
 #include "MapViewHexItem.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
@@ -21,12 +21,12 @@ TerrainTypeEditor::~TerrainTypeEditor()
 
 void TerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
 {
-	ActiveTerrainType = TerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
+	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
 void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 {
-	Q_ASSERT(TerrainTypeRepository::GetInstance());
+	Q_ASSERT(ModelTerrainTypeRepository::GetInstance());
 	Q_ASSERT(MapEventManager);
 	if( ActiveTerrainType == nullptr )
 	{

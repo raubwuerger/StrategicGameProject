@@ -224,15 +224,6 @@
     <ClCompile Include="..\StandardLibQt\LoggingTableWidget.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
-    <ClCompile Include="TerrainType.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainTypeFactory.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainTypeRepository.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="CreateNewMap.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
@@ -380,6 +371,15 @@
     <ClCompile Include="ModelOwnerTypeConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="ModelTerrainType.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelTerrainTypeFactory.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelTerrainTypeRepository.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -414,15 +414,6 @@
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\LogMessage.h">
       <Filter>Header Dateien\StdLibQt</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainType.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainTypeFactory.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainTypeRepository.h">
-      <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h">
       <Filter>Generierte Dateien</Filter>
@@ -504,6 +495,15 @@
     </ClInclude>
     <ClInclude Include="ModelOwnerTypeConfig.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTerrainType.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTerrainTypeFactory.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTerrainTypeRepository.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 
-class TerrainType;
+class ModelTerrainType;
 class MapView;
 class GameMap;
 

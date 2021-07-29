@@ -6,7 +6,7 @@ class MapViewGraphicsScene;
 class HexagonData;
 class HexItemEventManager;
 class MapEventManager;
-class TerrainType;
+class ModelTerrainType;
 
 class MapView : public QGraphicsView
 {

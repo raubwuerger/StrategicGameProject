@@ -3,7 +3,7 @@
 
 //================================================================================
 #include <QToolBox>
-class TerrainTypeRepository;
+class ModelTerrainTypeRepository;
 class ConnectorButtonTerrainTypeId;
 class TerrainTypeEditor;
 

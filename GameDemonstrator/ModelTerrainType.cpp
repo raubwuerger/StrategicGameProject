@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "TerrainType.h"
+#include "ModelTerrainType.h"
 
-TerrainType::TerrainType( int id )
+ModelTerrainType::ModelTerrainType( int id )
 	: Id(id),
 	Oil(0),
 	Timber(0),
@@ -12,17 +12,17 @@ TerrainType::TerrainType( int id )
 {
 }
 
-TerrainType::~TerrainType()
+ModelTerrainType::~ModelTerrainType()
 {
 	delete Image;
 }
 
-int TerrainType::GetId() const
+int ModelTerrainType::GetId() const
 {
 	return Id;
 }
 
-QColor TerrainType::InterpolateColorByType() const
+QColor ModelTerrainType::InterpolateColorByType() const
 {
 	switch( Id )
 	{
@@ -41,17 +41,17 @@ QColor TerrainType::InterpolateColorByType() const
 	}
 }
 
-const QString& TerrainType::GetName() const
+const QString& ModelTerrainType::GetName() const
 {
 	return Name;
 }
 
-void TerrainType::SetImage( const QImage * val )
+void ModelTerrainType::SetImage( const QImage * val )
 {
 	Image = val;
 }
 
-const QImage * TerrainType::GetImage() const
+const QImage * ModelTerrainType::GetImage() const
 {
 	return Image;
 }

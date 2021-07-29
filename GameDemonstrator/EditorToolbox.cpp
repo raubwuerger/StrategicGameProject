@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EditorToolbox.h"
-#include "TerrainType.h"
-#include "TerrainTypeRepository.h"
+#include "ModelTerrainType.h"
+#include "ModelTerrainTypeRepository.h"
 #include "TerrainTypeEditor.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
@@ -24,12 +24,12 @@ void EditorToolbox::Create()
 	connect(GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
-	QMap<int,TerrainType*>::const_iterator terrainTypes = TerrainTypeRepository::GetInstance()->GetFirstIterator();
+	QMap<int,ModelTerrainType*>::const_iterator terrainTypes = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
 
 	//TODO: Wo werden die ganzen globalen Strings definiert!?
 	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	int rowIndex = 0;
-	while( terrainTypes != TerrainTypeRepository::GetInstance()->GetLastIterator() )
+	while( terrainTypes != ModelTerrainTypeRepository::GetInstance()->GetLastIterator() )
 	{
 		QString terrainPictureName(baseTerrainPicturePath);
 		terrainPictureName += terrainTypes.value()->GetPicturePath();

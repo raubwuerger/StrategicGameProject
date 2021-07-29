@@ -4,8 +4,8 @@
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
 #include "HexItemEventManager.h"
-#include "TerrainTypeRepository.h"
-#include "TerrainType.h"
+#include "ModelTerrainTypeRepository.h"
+#include "ModelTerrainType.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
@@ -32,7 +32,7 @@ void MapView::Create()
 
 	double defaultHexSize = 48.0;
 	HexagonData hexagonTemplate( defaultHexSize );
-	CreateTestMap( cols, rows, hexagonTemplate, TerrainTypeRepository::GetInstance()->GetDefaultTerrainType()->GetImage() );
+	CreateTestMap( cols, rows, hexagonTemplate, ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType()->GetImage() );
 
 	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(cols,hexagonTemplate), CalcMapHeightInPixel(rows,hexagonTemplate) );
