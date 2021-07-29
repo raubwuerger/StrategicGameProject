@@ -155,6 +155,55 @@ void LogInterface::SetGlobalLoglevel( LogLevel logLevel )
 	LogManagerInstance->SetGlobalLogLevel(logLevel);
 }
 
+void LogInterface::SetGlobalLoglevel( const QString& logLevel )
+{
+	LogManagerInstance->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
+}
+
+jha::LogLevel LogInterface::GetLogLevelFromName( const QString& logLevel ) const
+{
+	const int EQUALS = 0;
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_NONE.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_NONE;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_FATAL.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_FATAL;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_ERROR.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_ERROR;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_WARNING.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_WARNING;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_MESSAGE.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_MESSAGE;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_INFO.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_INFO;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_TRACE.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_TRACE;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_DEBUG.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_DEBUG;
+	}
+	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_INIT.GetName(), Qt::CaseInsensitive) )
+	{
+		return jha::LogInterface::LOGLEVEL_INIT;
+	}
+
+	Q_ASSERT(nullptr);
+	return jha::LogInterface::LOGLEVEL_DEBUG;
+}
+
 LogInterface* GetLog()
 {
 	return LogInterface::GetInstance();

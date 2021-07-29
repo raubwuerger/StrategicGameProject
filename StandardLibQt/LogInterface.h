@@ -120,6 +120,8 @@ public:
 	void Log_INIT( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
 	/** Setzt Globales Loglevel */
 	void SetGlobalLoglevel( LogLevel logLevel );
+	/** Setzt Globales Loglevel */
+	void SetGlobalLoglevel( const QString& logLevel );
 private:
 /** Initialisiert LogInterface */
 	bool Init();
@@ -135,6 +137,8 @@ private:
 	LogInterface& operator=( const LogInterface& rhs );
 /** Move operator restricted */
 	LogInterface& operator==( LogInterface&& rhs );
+/** */
+	LogLevel GetLogLevelFromName( const QString& logLevel ) const;
 signals:
 	void PostLogMessage( jha::LogMessage *logMessage );
 private:
