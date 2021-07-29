@@ -4,8 +4,8 @@
 #include "MapViewHexItem.h"
 #include "MapEventManager.h"
 #include "HexItemEventManager.h"
-#include "ModelTerrainTypeRepository.h"
-#include "ModelTerrainType.h"
+#include "model/ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainType.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)

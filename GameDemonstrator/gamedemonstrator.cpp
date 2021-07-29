@@ -16,7 +16,7 @@
 #include "SerializerFactory.h"
 #include "Action.h"
 #include "LogFactory.h"
-#include "ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainTypeRepository.h"
 #include "MapFactory.h"
 #include "GameFactory.h"
 #include "CreateNewMap.h"
@@ -104,7 +104,7 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialogInstance, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
-#include "ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainTypeRepository.h"
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
@@ -211,7 +211,7 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 }
 
-#include "ModelTerrainTypeFactory.h"
+#include "model/ModelTerrainTypeFactory.h"
 #include <QDomDocument>
 bool GameDemonstrator::LoadTerrainTypes()
 {
@@ -264,8 +264,8 @@ bool GameDemonstrator::LoadOwnerTypes()
 	return ModelOwnerTypeFactory::GetInstance()->Create();
 }
 
-#include "ModelTerrainType.h"
-#include "ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainType.h"
+#include "model/ModelTerrainTypeRepository.h"
 #include "EditorToolbox.h"
 void GameDemonstrator::CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor )
 {

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EditorToolbox.h"
-#include "ModelTerrainType.h"
-#include "ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainType.h"
+#include "model/ModelTerrainTypeRepository.h"
 #include "TerrainTypeEditor.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
