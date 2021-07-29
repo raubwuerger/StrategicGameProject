@@ -24,17 +24,13 @@ void EditorToolbox::Create()
 	connect(GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
-	QMap<int,ModelTerrainType*>::const_iterator terrainTypes = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
+	QMap<int,ModelTerrainType*>::const_iterator currentTerrainTypeIterator = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
 
-	//TODO: Wo werden die ganzen globalen Strings definiert!?
-	QString baseTerrainPicturePath("../GameDemonstrator/Resources/");
 	int rowIndex = 0;
-	while( terrainTypes != ModelTerrainTypeRepository::GetInstance()->GetLastIterator() )
+	while( currentTerrainTypeIterator != ModelTerrainTypeRepository::GetInstance()->GetLastIterator() )
 	{
-		QString terrainPictureName(baseTerrainPicturePath);
-		terrainPictureName += terrainTypes.value()->GetPicturePath();
-		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( terrainTypes.value()->GetName(), GroupTerrainTypes, new ConnectorButtonTerrainTypeId( terrainTypes.value()->GetId()), terrainPictureName ), rowIndex++, 0);
-		terrainTypes++;
+		layoutTerrainTypes->addWidget( CreateTerrainTypeWidget( currentTerrainTypeIterator.value(), GroupTerrainTypes, new ConnectorButtonTerrainTypeId( currentTerrainTypeIterator.value()->GetId() ) ), rowIndex++, 0);
+		currentTerrainTypeIterator++;
 	}
 
 	layoutTerrainTypes->setRowStretch(10, 10); //Damit werden die vorhandenen Elemente kleiner dargestellt
@@ -59,9 +55,9 @@ void EditorToolbox::Create()
 	}
 }
 
-QWidget *EditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector, const QString& pictureName )
+QWidget *EditorToolbox::CreateTerrainTypeWidget( const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector  )
 {
-	QIcon icon( pictureName );
+	QIcon icon( modelTerrainType->GetPicturePath() );
 
 	QToolButton *button = new QToolButton;
 	button->setIcon(icon);
@@ -74,7 +70,7 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const QString &text, QButtonGrou
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-	layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
+	layout->addWidget(new QLabel(modelTerrainType->GetName()), 1, 0, Qt::AlignCenter);
 
 	QWidget *widget = new QWidget;
 	widget->setLayout(layout);

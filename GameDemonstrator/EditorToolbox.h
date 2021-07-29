@@ -5,6 +5,7 @@
 #include <QToolBox>
 class ModelTerrainTypeRepository;
 class ConnectorButtonTerrainTypeId;
+class ModelTerrainType;
 class TerrainTypeEditor;
 
 class EditorToolbox : public QToolBox
@@ -19,7 +20,7 @@ public:
 	void Create();
 private:
 	/** */
-	QWidget *CreateTerrainTypeWidget(const QString &text, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector, const QString& pictureName=":GameDemonstrator/Resources/gear_run.ico" );
+	QWidget *CreateTerrainTypeWidget( const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector );
 private slots:
 	/** */
 	void ButtonGroupTerrainTypes(QAbstractButton *button);
