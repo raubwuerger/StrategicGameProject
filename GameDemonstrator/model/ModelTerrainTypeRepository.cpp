@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ModelTerrainTypeRepository.h"
 #include "ModelTerrainType.h"
+#include "LogInterface.h"
 
 ModelTerrainTypeRepository* ModelTerrainTypeRepository::Instance = nullptr;
 
@@ -29,7 +30,7 @@ bool ModelTerrainTypeRepository::RegisterTerrainType( ModelTerrainType *terrainT
 {
 	if( terrainType == nullptr )
 	{
-		Q_ASSERT(false);
+		jha::GetLog()->Log_MESSAGE( QObject::tr( "ModelTerrainType must not be null!"));
 		return false;
 	}
 	

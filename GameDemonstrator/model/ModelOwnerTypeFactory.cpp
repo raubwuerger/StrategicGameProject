@@ -67,11 +67,7 @@ bool ModelOwnerTypeFactory::Create()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		ModelOwnerType *tempModelOwnerType = CreateFromXML( ownerTypeNodes.at(i) );
-		if( nullptr != tempModelOwnerType )
-		{
-			ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( tempModelOwnerType );
-		}
+		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( CreateFromXML( ownerTypeNodes.at(i) ) );
 	}
 
 	int modelTypesRegistered = ModelOwnerTypeRepository::GetInstance()->GetCount();
@@ -109,23 +105,23 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 	}
 
 	ModelOwnerType *newOwnerType = new ModelOwnerType( ownerTypeId );
-	bool allExtracted = true;
+	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allExtracted &= extractor.ExtractValue(config.SubelementName,newOwnerType->Name);
+		allElementsExtracted &= extractor.ExtractValue(config.SubelementName,newOwnerType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allExtracted &= extractor.ExtractValue(config.SubelementPicturePath,newOwnerType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SubelementPicturePath,newOwnerType->PicturePath);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allExtracted &= extractor.ExtractValue(config.SubelementColor,newOwnerType->Color);
+		allElementsExtracted &= extractor.ExtractValue(config.SubelementColor,newOwnerType->Color);
 	}
 
-	if( false == allExtracted )
+	if( false == allElementsExtracted )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SubelementId).arg(QString::number(ownerTypeId)) );
 		delete newOwnerType;

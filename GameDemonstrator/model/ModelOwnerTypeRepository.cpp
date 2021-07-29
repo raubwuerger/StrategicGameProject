@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ModelOwnerTypeRepository.h"
 #include "ModelOwnerType.h"
+#include "LogInterface.h"
 
 ModelOwnerTypeRepository* ModelOwnerTypeRepository::Instance = nullptr;
 
@@ -30,7 +31,7 @@ bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 {
 	if( ownerType == nullptr )
 	{
-		Q_ASSERT(false);
+		jha::GetLog()->Log_MESSAGE( QObject::tr( "ModelOwnerType must not be null!"));
 		return false;
 	}
 	QMap<int,ModelOwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
@@ -44,6 +45,8 @@ bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 		SetDefaultOwnerType(ownerType);
 	}
 
+	jha::GetLog()->Log_MESSAGE( QObject::tr( "ModelOwnerType must not be null!"));
+	//TODO: insert kann prinzipiell auch fehlschlagen. Falls ein type schon vorhanden ist
 	OwnerTypes.insert( ownerType->GetId(), ownerType );
 	return true;
 }

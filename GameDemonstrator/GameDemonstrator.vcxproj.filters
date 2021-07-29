@@ -290,9 +290,6 @@
     <ClCompile Include="GameFactory.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
-    <ClCompile Include="XMLTools.cpp">
-      <Filter>Source Dateien\Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="EditorToolbox.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
@@ -353,12 +350,6 @@
     <ClCompile Include="model\ModelMapItem.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ModelOwnerTypeFactory.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ModelOwnerTypeFactory.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelOwnerTypeFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -379,6 +370,15 @@
     </ClCompile>
     <ClCompile Include="model\ModelOwnerType.cpp">
       <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelTerrainTypeConfig.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="DomElementFinder.cpp">
+      <Filter>Source Dateien\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="DomValueExtractor.cpp">
+      <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -438,9 +438,6 @@
     </ClInclude>
     <ClInclude Include="SaveBinary.h">
       <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLTools.h">
-      <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="SerializerFactory.h">
       <Filter>Header Dateien\IO</Filter>
@@ -504,6 +501,15 @@
     </ClInclude>
     <ClInclude Include="model\ModelOwnerTypeConfig.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelTerrainTypeConfig.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DomElementFinder.h">
+      <Filter>Header Dateien\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="DomValueExtractor.h">
+      <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

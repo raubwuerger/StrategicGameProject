@@ -3,11 +3,13 @@
 
 ModelTerrainType::ModelTerrainType( int id )
 	: Id(id),
+	Infrastructure(0),
 	Oil(0),
 	Timber(0),
+	Stone(0),
 	MovementModifier(0),
 	DefenseModifier(0),
-	Infrastructure(0),
+	AttackModifier(0),
 	Image(nullptr)
 {
 }

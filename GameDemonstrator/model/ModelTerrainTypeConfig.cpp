@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ModelTerrainTypeConfig.h"
 
-QString ModelTerrainTypeConfig::ConfigFilePath = ".\\conf\\OwnerTypes.xml";
+QString ModelTerrainTypeConfig::ConfigFilePath = ".\\conf\\TerrainTypes.xml";
 QString ModelTerrainTypeConfig::Version = "version";
 QString ModelTerrainTypeConfig::VersionNumber = "1.0";
 QString ModelTerrainTypeConfig::RootName = "TerrainTypes";

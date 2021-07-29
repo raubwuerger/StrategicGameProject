@@ -24,11 +24,13 @@ private:
 	int			Id;
 	QString		Name;
 	QString		PicturePath;
+	int			Infrastructure;
 	int			Oil;
 	int			Timber;
+	int			Stone;
 	int			MovementModifier;
 	int			DefenseModifier;
-	int			Infrastructure;
+	int			AttackModifier;
 	const QImage		*Image;
 };
 

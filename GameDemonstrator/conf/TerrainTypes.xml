@@ -1,48 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TerrainTypes>
 	<TerrainType strId="1" >
+		<Id>1</Id>
 		<Name>Plains</Name>
-		<PicturePath>.\Terrain\Plains.png</PicturePath>
+		<PicturePath>.\Resources\Terrain\Plains.png</PicturePath>
 		<Infrastructure>10</Infrastructure>
 		<Oil>20</Oil>
 		<Timber>30</Timber>
+		<Stone>0</Stone>
 		<MovementModifier>0</MovementModifier>
 		<DefenseModifier>0</DefenseModifier>
+		<AttackModifier>10</AttackModifier>
 	</TerrainType>
-	<TerrainType strId="2">
+	<TerrainType>
+		<Id>2</Id>
 		<Name>Woods</Name>
-		<PicturePath>.\Terrain\Woods.png</PicturePath>
+		<PicturePath>.\Resources\Terrain\Woods.png</PicturePath>
 		<Infrastructure>5</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>100</Timber>
+		<Stone>10</Stone>
 		<MovementModifier>20</MovementModifier>
 		<DefenseModifier>50</DefenseModifier>
+		<AttackModifier>0</AttackModifier>
 	</TerrainType>
-	<TerrainType strId="3">
+	<TerrainType>
+		<Id>3</Id>
 		<Name>Ocean</Name>
-		<PicturePath>.\Terrain\Ocean.png</PicturePath>
+		<PicturePath>.\Resources\Terrain\Ocean.png</PicturePath>
 		<Infrastructure>0</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>0</Timber>
+		<Stone>0</Stone>
 		<MovementModifier>0</MovementModifier>
 		<DefenseModifier>0</DefenseModifier>
+		<AttackModifier>0</AttackModifier>
 	</TerrainType>
-	<TerrainType strId="4">
+	<TerrainType>
+		<Id>4</Id>
 		<Name>Hills</Name>
-		<PicturePath>.\Terrain\Hills.png</PicturePath>
+		<PicturePath>.\Resources\Terrain\Hills.png</PicturePath>
 		<Infrastructure>50</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>20</Timber>
+		<Stone>20</Stone>
 		<MovementModifier>50</MovementModifier>
 		<DefenseModifier>50</DefenseModifier>
+		<AttackModifier>0</AttackModifier>
 	</TerrainType>
-	<TerrainType strId="5">
+	<TerrainType>
+		<Id>5</Id>
 		<Name>Mountains</Name>
-		<PicturePath>.\Terrain\Mountains.png</PicturePath>
+		<PicturePath>.\Resources\Terrain\Mountains.png</PicturePath>
 		<Infrastructure>20</Infrastructure>
 		<Oil>0</Oil>
 		<Timber>10</Timber>
+		<Stone>50</Stone>
 		<MovementModifier>100</MovementModifier>
 		<DefenseModifier>100</DefenseModifier>
+		<AttackModifier>0</AttackModifier>
 	</TerrainType>
 </TerrainTypes>
