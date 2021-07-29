@@ -21,6 +21,8 @@ public slots:
 	void Stop();
 	/** */
 	void Pause();
+	/** */
+	void Step();
 signals:
 	void TurnFinished( QDate date );
 private:

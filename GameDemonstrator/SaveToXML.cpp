@@ -15,7 +15,6 @@ bool SaveToXML::SaveGame()
 {
 	if( false == CreateFramework() )
 	{
-		jha::GetLog()->Log( "Unable to create Savegame framework!", jha::LOGLEVEL::LL_ERROR );
 		return false;
 	}
 	return false;
@@ -28,12 +27,14 @@ bool SaveToXML::LoadGame()
 
 bool SaveToXML::CreateFramework()
 {
-	QString saveGameFileName("E:\\Projects\\StrategicGameProject\\GameDemonstrator\\save\\Testsavegame.xml");
-	QFile file(saveGameFileName);
+	QString saveGamePath(".\\savegames\\");
+	QString saveGameFile(".\\savegames\\Testsavegame.xml");
+
+	QFile file(saveGameFile);
 
 	if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		jha::GetLog()->Log( "Unable to create savegame file: " +saveGameFileName, jha::LOGLEVEL::LL_ERROR );
+		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create savegame file: %1 ").arg(saveGameFile) );
 		return false;
 	}
 
@@ -43,23 +44,64 @@ bool SaveToXML::CreateFramework()
 
 	xmlWriter.writeStartElement("Savegame");
 
-		xmlWriter.writeStartElement("Game");
-			xmlWriter.writeTextElement("Version", "0.9" );
-			xmlWriter.writeTextElement("Playercount", "2");
-		xmlWriter.writeEndElement();
-	
-		xmlWriter.writeStartElement("Players");
-			xmlWriter.writeTextElement("Player", "Spieler 1" );
-			xmlWriter.writeTextElement("Player", "Spieler 2" );
-		xmlWriter.writeEndElement();
+	if( false == SaveGame(xmlWriter) )
+	{
+		file.close();
+		return false;
+	}
 
-		xmlWriter.writeStartElement("Map");
-		xmlWriter.writeEndElement();
-
-		xmlWriter.writeEndElement();
+	xmlWriter.writeEndElement();
 
 	file.close();
-	jha::GetLog()->Log( "Succesfull create savegame: " +saveGameFileName, jha::LOGLEVEL::LL_INFO );
+	jha::GetLog()->Log_INFO( QObject::tr("Succesfull create savegame: %1").arg(saveGameFile) );
 
+	return true;
+}
+
+
+bool SaveToXML::SaveGame( QXmlStreamWriter& xmlWriter )
+{
+	if( false == SaveGameData(xmlWriter) )
+	{
+		return false;
+	}
+	if( false == SavePlayerData(xmlWriter) )
+	{
+		return false;
+	}
+	if( false == SaveMapData(xmlWriter) )
+	{
+		return false;
+	}
+	return true;
+}
+
+bool SaveToXML::SaveGameData( QXmlStreamWriter& xmlWriter )
+{
+	xmlWriter.writeStartElement("Game");
+		xmlWriter.writeTextElement("Version", "0.9" );
+		xmlWriter.writeTextElement("Playercount", "2");
+		xmlWriter.writeTextElement("Game Turn", "1");
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+bool SaveToXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
+{
+	xmlWriter.writeStartElement("Players");
+		xmlWriter.writeTextElement("Player", "Spieler 1" );
+		xmlWriter.writeTextElement("Player", "Spieler 2" );
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+bool SaveToXML::SaveMapData( QXmlStreamWriter& xmlWriter )
+{
+	xmlWriter.writeStartElement("Map");
+	for(int i=0;i<100;i++)
+	{
+		xmlWriter.writeTextElement("Tile", QString::number(i) );
+	}
+	xmlWriter.writeEndElement();
 	return true;
 }

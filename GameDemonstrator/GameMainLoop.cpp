@@ -42,3 +42,8 @@ void GameMainLoop::Run()
 	emit TurnFinished( GameCounter->GetGameDate() );
 }
 
+void GameMainLoop::Step()
+{
+	GameCounter->Increment();
+}
+

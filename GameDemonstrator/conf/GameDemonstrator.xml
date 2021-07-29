@@ -4,4 +4,5 @@
 		<!--ValidLogleves: None, Fatal, Error, Warning, Message, Info, Trace, Debug -->
 		<GlobalLogLevel>Debug</GlobalLogLevel>
 	</Logging>
+	<SaveGamePath>.//savegames//</SaveGamePath>
 </GameDemonstrator>
