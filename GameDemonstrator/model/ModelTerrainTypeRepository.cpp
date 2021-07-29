@@ -45,6 +45,8 @@ bool ModelTerrainTypeRepository::RegisterTerrainType( ModelTerrainType *terrainT
 		SetDefaultTerrainType( terrainType );
 	}
 
+	jha::GetLog()->Log_DEBUG( QObject::tr( "ModelTerrainType registered: ") +terrainType->toString() );
+
 	TerrainTypes.insert( terrainType->GetId(), terrainType );
 	return true;
 }

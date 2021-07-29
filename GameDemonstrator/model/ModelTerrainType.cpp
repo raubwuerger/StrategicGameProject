@@ -57,3 +57,18 @@ const QImage * ModelTerrainType::GetImage() const
 {
 	return Image;
 }
+
+QString ModelTerrainType::toString() const
+{
+	return QObject::tr("ModelTerrainType - Id: %1, Name: %2, PicturePath: %3, Infrastructure: %4, Oil: %5, Timber: %6, Stone: %7, MovementModifier: %8, AttackModifier: %9" )
+		.arg(QString::number(Id))
+		.arg(Name)
+		.arg(PicturePath)
+		.arg(QString::number(Infrastructure))
+		.arg(QString::number(Oil))
+		.arg(QString::number(Timber))
+		.arg(QString::number(Stone))
+		.arg(QString::number(MovementModifier))
+		.arg(QString::number(DefenseModifier))
+		.arg(QString::number(AttackModifier));
+}

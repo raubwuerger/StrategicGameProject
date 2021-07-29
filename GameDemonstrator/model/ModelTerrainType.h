@@ -19,6 +19,8 @@ public:
 	const QImage * GetImage() const;
 	/** Set m_Image */
 	void SetImage( const QImage * val);
+	/** */
+	QString toString() const;
 private:
 	friend class ModelTerrainTypeFactory;
 	int			Id;

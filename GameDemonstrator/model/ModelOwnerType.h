@@ -11,6 +11,8 @@ public:
 	int GetId() const;
 	/** Get Name */	
 	const QString& GetName() const;
+	/** */
+	QString toString() const;
 private:
 	friend class ModelOwnerTypeFactory;
 	const int Id;

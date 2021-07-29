@@ -45,7 +45,7 @@ bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 		SetDefaultOwnerType(ownerType);
 	}
 
-	jha::GetLog()->Log_DEBUG( QObject::tr( "ModelOwnerType registered!"));
+	jha::GetLog()->Log_DEBUG( QObject::tr( "ModelOwnerType registered: ") +ownerType->toString());
 	//TODO: insert kann prinzipiell auch fehlschlagen. Falls ein type schon vorhanden ist
 	OwnerTypes.insert( ownerType->GetId(), ownerType );
 	return true;
