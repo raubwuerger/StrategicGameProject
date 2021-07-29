@@ -3,17 +3,17 @@
 #include "ModelMapItem.h"
 
 
-GameMap::GameMap()
+ModelMapRepository::ModelMapRepository()
 	: Rows(10),
 	Cols(10)
 {
 }
 
-GameMap::~GameMap()
+ModelMapRepository::~ModelMapRepository()
 {
 }
 
-void GameMap::Create()
+void ModelMapRepository::Create()
 {
 	for( int row=0;row<Rows;row++ )
 	{
@@ -26,7 +26,7 @@ void GameMap::Create()
 	}
 }
 
-void GameMap::Init( int rows, int cols )
+void ModelMapRepository::Init( int rows, int cols )
 {
 	for( int row=0;row<rows;row++ )
 	{
@@ -39,7 +39,7 @@ void GameMap::Init( int rows, int cols )
 	}
 }
 
-void GameMap::Release()
+void ModelMapRepository::Release()
 {
 	QVector< QVector<ModelMapItem*> >::iterator row = MapItems.begin();
 	while( row != MapItems.end() )
@@ -55,7 +55,7 @@ void GameMap::Release()
 	MapItems.clear();
 }
 
-const QVector< QVector<ModelMapItem*> >& GameMap::GetMapItems() const
+const QVector< QVector<ModelMapItem*> >& ModelMapRepository::GetMapItems() const
 {
 	return MapItems;
 }

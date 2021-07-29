@@ -2,7 +2,7 @@
 
 class ModelTerrainType;
 class MapView;
-class GameMap;
+class ModelMapRepository;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
 class GameFactory
@@ -23,7 +23,7 @@ private:
 	~GameFactory();
 private:
 	static GameFactory	*Instance;
-	GameMap				*TheGameMap;
+	ModelMapRepository				*TheGameMap;
 	MapView				*MapViewInstance;
 };
 

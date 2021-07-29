@@ -47,7 +47,7 @@ void GameFactory::CreateNewGame()
 //	ModelFactory modelFactory;
 //	modelFactory.CreateEmptyMap( &TheGameMap );
 
-	TheGameMap = new GameMap;
+	TheGameMap = new ModelMapRepository;
 	TheGameMap->Create();
 
 	MapFactory::GetInstance()->CreateNewMapFunction();

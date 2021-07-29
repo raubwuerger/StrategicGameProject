@@ -1,6 +1,6 @@
 #pragma once
 
-class GameMap;
+class ModelMapRepository;
 
 /** Creates game map representation */
 class ModelMapConfigFactory
@@ -11,7 +11,7 @@ public:
 	/** */
 	void Release();
 	/** Creates Map */
-	GameMap* CreateMap();
+	ModelMapRepository* CreateMap();
 private:
 	/** */
 	ModelMapConfigFactory();
@@ -19,5 +19,5 @@ private:
 	~ModelMapConfigFactory();
 private:
 	static ModelMapConfigFactory	*Instance;
-	GameMap*	TheGameMap;
+	ModelMapRepository*	TheGameMap;
 };

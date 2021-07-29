@@ -3,13 +3,13 @@
 #include "ModelMapItem.h"
 
 /** Repräsentiert die Karte im Speicher */
-class GameMap
+class ModelMapRepository
 {
 public:
 	/** */
-	GameMap();
+	ModelMapRepository();
 	/** */
-	~GameMap();
+	~ModelMapRepository();
 	/** */
 	void Create();
 	/** */

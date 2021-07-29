@@ -2,6 +2,7 @@
 #include "SaveToXML.h"
 #include "LogInterface.h"
 #include <QtXML>
+#include "GameMainCounter.h"
 
 SaveToXML::SaveToXML()
 {
@@ -28,7 +29,10 @@ bool SaveToXML::LoadGame()
 bool SaveToXML::CreateFramework()
 {
 	QString saveGamePath(".\\savegames\\");
-	QString saveGameFile(".\\savegames\\Testsavegame.xml");
+	QString saveGameFile(saveGamePath);
+	saveGameFile += "PlayerName_";
+	saveGameFile += GameMainCounter::GetInstance()->GetCurrentDate().toString( "yyyy_MM" );
+	saveGameFile += ".xml";
 
 	QFile file(saveGameFile);
 
@@ -81,7 +85,7 @@ bool SaveToXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 	xmlWriter.writeStartElement("Game");
 		xmlWriter.writeTextElement("Version", "0.9" );
 		xmlWriter.writeTextElement("Playercount", "2");
-		xmlWriter.writeTextElement("Game Turn", "1");
+		xmlWriter.writeTextElement("Game Turn", GameMainCounter::GetInstance()->GetCurrentDate().toString("yyyy-MM"));
 	xmlWriter.writeEndElement();
 	return true;
 }

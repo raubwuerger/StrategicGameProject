@@ -33,9 +33,9 @@ ModelMapConfigFactory::~ModelMapConfigFactory()
 	TheGameMap = nullptr;
 }
 
-GameMap* ModelMapConfigFactory::CreateMap()
+ModelMapRepository* ModelMapConfigFactory::CreateMap()
 {
-	TheGameMap = new GameMap();
+	TheGameMap = new ModelMapRepository();
 	TheGameMap->Init( ModelMapConfig::GetInstance()->Rows, ModelMapConfig::GetInstance()->Cols );
 	return TheGameMap;
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-class GameMap;
+class ModelMapRepository;
 
 
 /** Creates all Models */
