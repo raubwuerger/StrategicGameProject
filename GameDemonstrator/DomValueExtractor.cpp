@@ -24,7 +24,7 @@ bool DomValueExtractor::ExtractValue( const QString& valueName, QString& value )
 		return false;
 	}
 
-	jha::GetLog()->Log_DEBUG( QObject::tr("XML element found $1 with value: $2 ").arg(valueName).arg(value) );
+	jha::GetLog()->Log_DEBUG( QObject::tr("XML element (QString) found %1 with value: %2 ").arg(valueName).arg(value) );
 	return true;
 }
 
@@ -41,7 +41,7 @@ bool DomValueExtractor::ExtractValue( const QString& valueName, QColor& value )
 		return false;
 	}
 
-	jha::GetLog()->Log_DEBUG( QObject::tr("XML element found $1 with value: $2 ").arg(valueName).arg(value.name()) );
+	jha::GetLog()->Log_DEBUG( QObject::tr("XML element (QColor) found %1 with value: %2 ").arg(valueName).arg(value.name()) );
 	return true;
 }
 
@@ -58,7 +58,7 @@ bool DomValueExtractor::ExtractValue( const QString& valueName, int& value )
 		return false;
 	}
 
-	jha::GetLog()->Log_DEBUG( QObject::tr("XML element found $1 with value: $2 ").arg(valueName).arg(QString::number(value)) );
+	jha::GetLog()->Log_DEBUG( QObject::tr("XML element (int) found %1 with value: %2 ").arg(valueName).arg(QString::number(value)) );
 	return true;
 }
 
