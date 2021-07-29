@@ -118,6 +118,8 @@ public:
 	void Log_DEBUG( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
 	/** Nimmt eine Logmeldung mit Loglevel INIT auf */
 	void Log_INIT( const QString& message, const LogCategoryInterface& logCategory = LogCategoryDefault() );
+	/** Setzt Globales Loglevel */
+	void SetGlobalLoglevel( LogLevel logLevel );
 private:
 /** Initialisiert LogInterface */
 	bool Init();

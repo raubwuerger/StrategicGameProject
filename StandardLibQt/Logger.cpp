@@ -13,7 +13,7 @@ QString Logger::Separator = "\t";
 Logger::Logger( const QString& name )
 	: Name(name),
 	Enabled(true),
-	LogLevel(LogInterface::LOGLEVEL_DEBUG)
+	LogLevelInstance(LogInterface::LOGLEVEL_DEBUG)
 {
 }
 
@@ -56,7 +56,12 @@ bool Logger::LogThisLogLevel( jha::LogMessage *message ) const
 	{
 		return false;
 	}
-	return message->GetLogLevel() < LogLevel;
+	return message->GetLogLevel() <= LogLevelInstance;
+}
+
+void Logger::SetLogLevel( LogLevel logLevel )
+{
+	LogLevelInstance = logLevel;
 }
 
 

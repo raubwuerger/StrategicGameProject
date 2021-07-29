@@ -150,6 +150,11 @@ void LogInterface::Log_INIT(const QString& message, const LogCategoryInterface& 
 	Log( message, jha::LOGLEVEL::LL_INIT, logCategory );
 }
 
+void LogInterface::SetGlobalLoglevel( LogLevel logLevel )
+{
+	LogManagerInstance->SetGlobalLogLevel(logLevel);
+}
+
 LogInterface* GetLog()
 {
 	return LogInterface::GetInstance();

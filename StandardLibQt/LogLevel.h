@@ -24,6 +24,10 @@ public:
 	int operator==( const LogLevel& rhs ) const;
 /** Lesser than operator */
 	int operator<( const LogLevel& rhs ) const;
+/** Equals operator */
+	int operator<=( const LogLevel& rhs ) const;
+/** Equals operator */
+	int operator>=( const LogLevel& rhs ) const;
 /** Liefert Namen */
 	const QString& GetName() const;
 /** Liefert LogFilePrefix */

@@ -26,6 +26,8 @@ public:
 	bool GetEnabled() const;
 /** */
 	void SetEnabled( bool enable );
+/** */
+	virtual void SetLogLevel( LogLevel logLevel );
 protected:
 /** */
 	QString CreateDefaultLogString( jha::LogMessage *message ) const;
@@ -38,7 +40,7 @@ private:
 	QString	Name;
 	static QString Separator;
 	bool	Enabled;
-	LogLevel LogLevel;
+	LogLevel LogLevelInstance;
 };
 
 }

@@ -52,6 +52,16 @@ int LogLevel::operator<( const LogLevel& rhs ) const
 	return Value < rhs.Value;
 }
 
+int LogLevel::operator<=( const LogLevel& rhs ) const
+{
+	return Value <= rhs.Value;
+}
+
+int LogLevel::operator>=( const LogLevel& rhs ) const
+{
+	return Value >= rhs.Value;
+}
+
 const QString& LogLevel::GetName() const
 {
 	return Name;

@@ -19,11 +19,11 @@ LogManager::LogManager()
 
 LogManager::~LogManager()
 {
-	for( size_t i=0;i<Logger.size();i++ )
+	for( size_t i=0;i<Loggers.size();i++ )
 	{
-		delete Logger.at(i);
+		delete Loggers.at(i);
 	}
-	Logger.clear();
+	Loggers.clear();
 
 	delete LogMessagesProcessing;
 	LogMessagesProcessing = nullptr;
@@ -41,7 +41,7 @@ bool LogManager::RegisterLogger( jha::Logger* logger )
 		return false;
 	}
 
-	int index = Logger.indexOf(logger);
+	int index = Loggers.indexOf(logger);
 	if( index != -1 )
 	{
 		return false;
@@ -51,7 +51,7 @@ bool LogManager::RegisterLogger( jha::Logger* logger )
 		return false;
 	}
 
-	Logger.push_back(logger);
+	Loggers.push_back(logger);
 	return true;
 }
 
@@ -63,11 +63,11 @@ bool LogManager::ProcessMessages()
 		ReinitLogger();
 		return allMessagesProcessed;
 	}
-	for( size_t i=0;i<Logger.size();i++ )
+	for( size_t i=0;i<Loggers.size();i++ )
 	{
 		try
 		{
-			Logger.at(i)->LogMessage( *LogMessagesProcessing );
+			Loggers.at(i)->LogMessage( *LogMessagesProcessing );
 		}
 		catch (...)
 		{
@@ -125,8 +125,8 @@ bool LogManager::CheckReinitLogger() const
 
 void LogManager::ReinitLogger()
 {
-	QVector<jha::Logger*>::iterator logger = Logger.begin();
-	for( logger; logger != Logger.end(); logger++ )
+	QVector<jha::Logger*>::iterator logger = Loggers.begin();
+	for( logger; logger != Loggers.end(); logger++ )
 	{
 		(*logger)->Init();
 	}
@@ -144,6 +144,15 @@ void LogManager::InjectInitialLogMessage()
 	InitialLogmessage = new LogMessage(QTime::currentTime(),LogInterface::LOGLEVEL_INIT,initialLogMessage,QCoreApplication::applicationName());
 	InitialLogmessage->SetLogIndex(0);
 	LogMessagesReady->push_back(InitialLogmessage);
+}
+
+void LogManager::SetGlobalLogLevel( jha::LogLevel logLevel )
+{
+	QMutexLocker lock(&Mutex);
+	for(auto it = std::begin(Loggers); it != std::end(Loggers); ++it) 
+	{
+		(*it)->SetLogLevel(logLevel);
+	}
 }
 
 }

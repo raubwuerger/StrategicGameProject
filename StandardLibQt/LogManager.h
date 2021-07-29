@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "LogLevel.h"
 
 namespace jha
 {
@@ -24,6 +25,8 @@ public slots:
 	bool RegisterLogger( jha::Logger* logger );
 /** Fügt LogMessage ein */
 	void AddLogMessage( jha::LogMessage *logMessage );
+/** */
+	void SetGlobalLogLevel( jha::LogLevel logLevel );
 signals:
 	void Finished();
 protected:
@@ -44,7 +47,7 @@ private:
 /** */
 	void InjectInitialLogMessage();
 private:
-	QVector<Logger*>		Logger;
+	QVector<Logger*>		Loggers;
 	QVector<LogMessage*>	*LogMessagesProcessing;
 	QVector<LogMessage*>	*LogMessagesReady;
 	LogMessage*				InitialLogmessage;

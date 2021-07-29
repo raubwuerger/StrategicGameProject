@@ -209,6 +209,7 @@ void GameDemonstrator::InitLoggingFramwork()
 
 	jha::LogFactory::GetInstance()->RegisterLogger( loggerFile );
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
+	jha::GetLog()->SetGlobalLoglevel(jha::LogInterface::LOGLEVEL_DEBUG);
 }
 
 #include "model/ModelTerrainTypeFactory.h"
