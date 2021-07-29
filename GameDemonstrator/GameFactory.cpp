@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameFactory.h"
-#include "model\GameMap.h"
+#include "model\ModelMapRepository.h"
 #include "MapView.h"
 #include "MapFactory.h"
 #include "ModelFactory.h"

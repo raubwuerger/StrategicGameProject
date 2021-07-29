@@ -360,7 +360,7 @@
     <ClCompile Include="MapViewHexItem.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="model\ModelDataOverallSettings.cpp" />
-    <ClCompile Include="model\GameMap.cpp" />
+    <ClCompile Include="model\ModelMapRepository.cpp" />
     <ClCompile Include="model\ModelMapConfig.cpp" />
     <ClCompile Include="model\ModelMapConfigFactory.cpp" />
     <ClCompile Include="model\ModelOwnerType.cpp" />
@@ -415,7 +415,7 @@
     <ClInclude Include="IMapCreator.h" />
     <ClInclude Include="MapCreatorSimple.h" />
     <ClInclude Include="model\ModelDataOverallSettings.h" />
-    <ClInclude Include="model\GameMap.h" />
+    <ClInclude Include="model\ModelMapRepository.h" />
     <ClInclude Include="model\ModelMapConfig.h" />
     <ClInclude Include="model\ModelMapConfigFactory.h" />
     <ClInclude Include="model\ModelOwnerType.h" />

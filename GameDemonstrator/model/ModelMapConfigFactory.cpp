@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ModelMapConfigFactory.h"
-#include "GameMap.h"
+#include "ModelMapRepository.h"
 #include "ModelMapConfig.h"
 
 ModelMapConfigFactory* ModelMapConfigFactory::Instance = nullptr; 

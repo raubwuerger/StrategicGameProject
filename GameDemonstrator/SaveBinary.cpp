@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SaveBinary.h"
-#include "Model\GameMap.h"
+#include "Model\ModelMapRepository.h"
 
 
 SaveBinary::SaveBinary()
