@@ -378,7 +378,7 @@
       <Filter>Source Dateien</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelMapRepository.cpp">
-      <Filter>Source Dateien</Filter>
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -515,7 +515,7 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapRepository.h">
-      <Filter>Header Dateien</Filter>
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
