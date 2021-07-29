@@ -380,6 +380,12 @@
     <ClCompile Include="DomValueExtractor.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="GameDemonstratorConfig.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDemonstratorFactory.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -510,6 +516,12 @@
     </ClInclude>
     <ClInclude Include="DomValueExtractor.h">
       <Filter>Header Dateien\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDemonstratorConfig.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDemonstratorFactory.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

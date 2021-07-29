@@ -20,6 +20,8 @@
 #include "MapFactory.h"
 #include "GameFactory.h"
 #include "CreateNewMap.h"
+#include "GameDemonstratorFactory.h"
+#include "GameDemonstratorConfig.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -37,6 +39,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
+
 
 	CreateNewMapInstance = new CreateNewMap(this);
 
@@ -209,7 +212,10 @@ void GameDemonstrator::InitLoggingFramwork()
 
 	jha::LogFactory::GetInstance()->RegisterLogger( loggerFile );
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
-	jha::GetLog()->SetGlobalLoglevel(jha::LogInterface::LOGLEVEL_DEBUG);
+
+	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
+	GameDemonstratorFactory::GetInstance()->Create();
+	jha::GetLog()->SetGlobalLoglevel(GameDemonstratorFactory::GetInstance()->GetConfig()->GlobalLogLevel);
 }
 
 #include "model/ModelTerrainTypeFactory.h"

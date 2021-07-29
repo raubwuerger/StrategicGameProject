@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameDemonstrator>
+	<Logging>
+		<!--ValidLogleves: None, Fatal, Error, Warning, Message, Info, Trace, Debug -->
+		<GlobalLogLevel>Debug</GlobalLogLevel>
+	</Logging>
+</GameDemonstrator>

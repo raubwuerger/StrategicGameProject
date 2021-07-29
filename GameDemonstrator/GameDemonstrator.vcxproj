@@ -167,6 +167,8 @@
     <ClCompile Include="EditorToolbox.cpp" />
     <ClCompile Include="CreateNewMap.cpp" />
     <ClCompile Include="CreateNewMapDialog.cpp" />
+    <ClCompile Include="GameDemonstratorConfig.cpp" />
+    <ClCompile Include="GameDemonstratorFactory.cpp" />
     <ClCompile Include="GameFactory.cpp" />
     <ClCompile Include="GameMainCounter.cpp" />
     <ClCompile Include="gamedemonstrator.cpp" />
@@ -397,6 +399,8 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="DomValueExtractor.h" />
+    <ClInclude Include="GameDemonstratorConfig.h" />
+    <ClInclude Include="GameDemonstratorFactory.h" />
     <ClInclude Include="HexagonData.h" />
     <CustomBuild Include="HexItemEventManager.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
