@@ -7,12 +7,10 @@ GameMainLoop::GameMainLoop(QObject *parent)
 	: QObject(parent),
 	RunLoop(false)
 {
-	GameCounter = new GameMainCounter();
 }
 
 GameMainLoop::~GameMainLoop()
 {
-	delete GameCounter;
 }
 
 void GameMainLoop::Start()
@@ -38,13 +36,13 @@ void GameMainLoop::Run()
 	{
 		return;
 	}
-	GameCounter->Increment();
-	emit TurnFinished( GameCounter->GetGameDate() );
+	GameMainCounter::GetInstance()->Increment();
+	emit TurnFinished( GameMainCounter::GetInstance()->GetCurrentDate() );
 }
 
 void GameMainLoop::Step()
 {
-	GameCounter->Increment();
-	emit TurnFinished( GameCounter->GetGameDate() );
+	GameMainCounter::GetInstance()->Increment();
+	emit TurnFinished( GameMainCounter::GetInstance()->GetCurrentDate() );
 }
 

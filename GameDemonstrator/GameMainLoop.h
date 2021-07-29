@@ -2,7 +2,6 @@
 #define GAMEMAINLOOP_H
 
 #include <QObject>
-class GameMainCounter;
 
 class GameMainLoop : public QObject
 {
@@ -26,7 +25,6 @@ public slots:
 signals:
 	void TurnFinished( QDate date );
 private:
-	GameMainCounter	*GameCounter;
 	bool	RunLoop;
 };
 

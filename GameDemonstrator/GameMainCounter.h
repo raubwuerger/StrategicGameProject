@@ -5,16 +5,22 @@ class GameMainCounter
 {
 public:
 	/** */
-	GameMainCounter();
-	/** */
-	~GameMainCounter();
+	static GameMainCounter* GetInstance();
 	/** */
 	void Increment();
 	/** Get GameDate */	
-	const QDate& GetGameDate() const;
+	const QDate& GetCurrentDate() const;
 private:
-	QDate	GameDate;
+	/** */
+	GameMainCounter();
+	/** */
+	~GameMainCounter();
+private:
+	friend class GameFactory;
+	QDate	CurrentDate;
+	QDate	StartDate;
 	int		MonthIncrement;
+	static GameMainCounter* Instance;
 };
 
 #endif // GAMECOUNTER_H
