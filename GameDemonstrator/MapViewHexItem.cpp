@@ -7,18 +7,18 @@
 /* MapViewHexItem                                                       */
 /************************************************************************/
 MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft, QGraphicsPolygonItem *parent /*= 0*/ )
-	: data(data),
-	topLeft(topLeft),
-	col(-1),
-	row(-1),
-	eventItem(nullptr),
+	: HexData(data),
+	TopLeftPoint(topLeft),
+	Col(-1),
+	Row(-1),
+	EventItem(nullptr),
 	TerrainImage(nullptr)
 {
-	this->data.MovePosition(topLeft);
-	this->centerPoint.rx() = topLeft.x() + (data.Width / 2.0);
-	this->centerPoint.ry() = topLeft.y() + (data.Height / 2.0);
+	this->HexData.MovePosition(topLeft);
+	this->CenterPoint.rx() = topLeft.x() + (data.Width / 2.0);
+	this->CenterPoint.ry() = topLeft.y() + (data.Height / 2.0);
 	
-	CreateHexPolygon(this->data);
+	CreateHexPolygon(this->HexData);
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 }
@@ -31,23 +31,23 @@ MapViewHexItem::~MapViewHexItem()
 void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = data.BoundingRect;
+	QRectF textBoundingRect = HexData.BoundingRect;
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
 	textBoundingRect.setHeight( textBoundingRect.height() * 0.2 );
 	
-	QPointF centerPosText( centerPoint );
-	centerPosText.setX( data.BoundingRect.x() + ((data.BoundingRect.width() - textBoundingRect.width()) / 2.0) );
-	centerPosText.setY( data.BoundingRect.y() + ((data.BoundingRect.height() - textBoundingRect.height()) / 2.0) );
+	QPointF centerPosText( CenterPoint );
+	centerPosText.setX( HexData.BoundingRect.x() + ((HexData.BoundingRect.width() - textBoundingRect.width()) / 2.0) );
+	centerPosText.setY( HexData.BoundingRect.y() + ((HexData.BoundingRect.height() - textBoundingRect.height()) / 2.0) );
 
 	textBoundingRect.moveTopLeft( centerPosText );
 	
 	QTextOption textOption;
 	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
-	painter->drawText( textBoundingRect, stringRowCol, textOption );
+	painter->drawText( textBoundingRect, StringRowCol, textOption );
 
 	if( TerrainImage != nullptr )
 	{
-		painter->drawImage( data.BoundingRect.topLeft(), *TerrainImage );
+		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
 	}
 
 	QGraphicsPolygonItem::paint(painter,option,widget);
@@ -55,7 +55,7 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 
 QRectF MapViewHexItem::boundingRect() const
 {
-	return data.BoundingRect;
+	return HexData.BoundingRect;
 }
 
 void MapViewHexItem::CreateHexPolygon( const HexagonData &data )
@@ -68,9 +68,9 @@ void MapViewHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 {
 	setZValue( 255 );
 	ShowSelected();
-	if( eventItem != nullptr )
+	if( EventItem != nullptr )
 	{
-		emit eventItem->HexItemEntered( row, col );
+		emit EventItem->HexItemEntered( Row, Col );
 	}
 	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();
@@ -98,10 +98,10 @@ void MapViewHexItem::ShowOriginal()
 
 void MapViewHexItem::SetRowAndCol( int row, int col )
 {
-	this->row = row; 
-	this->col = col;
+	this->Row = row; 
+	this->Col = col;
 
-	stringRowCol = QString::number(row) +"|" +QString::number(col);
+	StringRowCol = QString::number(row) +"|" +QString::number(col);
 }
 
 void MapViewHexItem::SetTerrainImage( const QImage * val )

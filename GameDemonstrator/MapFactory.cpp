@@ -4,6 +4,8 @@
 #include "QObject.h"
 #include "LogInterface.h"
 
+using namespace jha;
+
 MapFactory* MapFactory::Instance = nullptr;
 
 MapFactory* MapFactory::GetInstance()
@@ -32,7 +34,7 @@ CreateNewMap* MapFactory::CreateNewMapFunction()
 {
 	if( nullptr == Parent )
 	{
-		jha::GetLog()->Log( "Handover parameter <parent> is null!", jha::LOGLEVEL::LL_ERROR );
+		GetLog()->Log_ERROR( QObject::tr("Member <QObject Parentis null! -> SetParent()"));
 		return nullptr;
 	}
 

@@ -20,15 +20,15 @@ public:
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 	/** Set eventItem */
-	void SetHexItemEventManager( HexItemEventManager * val) { eventItem = val; }
+	void SetHexItemEventManager( HexItemEventManager * val) { EventItem = val; }
 	/** */
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	/** Get row */
-	 int GetRow() const { return row; }
+	 int GetRow() const { return Row; }
 	/** Set row */
 	void SetRowAndCol( int row, int col );
 	/** Get col */
-	int GetCol() const { return col; }
+	int GetCol() const { return Col; }
 	/** Set m_TerrainImage */
 	void SetTerrainImage( const QImage * val);
 private:
@@ -39,13 +39,13 @@ private:
 	/** */
 	void ShowOriginal();
 private:
-	HexagonData data;
-	QPointF centerPoint;
-	QPointF topLeft;
-	HexItemEventManager	*eventItem;
-	int row;
-	int col;
-	QString	stringRowCol;
+	int Row;
+	int Col;
+	HexagonData		HexData;
+	QPointF			CenterPoint;
+	QPointF			TopLeftPoint;
+	HexItemEventManager	*EventItem;
+	QString			StringRowCol;
 	const QImage	*TerrainImage;
 };
 

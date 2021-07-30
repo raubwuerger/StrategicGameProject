@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "HexagonData.h"
 
+static float const ROUND_VALUE = 0.5F;
+
 /************************************************************************/
 /* HexagonData                                                          */
 /************************************************************************/
@@ -39,12 +41,12 @@ void HexagonData::calcBoundingRect()
 
 void HexagonData::calcHexPointsOrigin()
 {
-	HexPoints << QPointF(0,Height*0.5) 
-		<< QPointF(Width - Side,0.0) 
-		<< QPointF(Side,0.0) 
-		<< QPointF(Width,Height*0.5) 
-		<< QPointF(Side,Height) 
-		<< QPointF(Width - Side,Height);
+	HexPoints << QPointF( 0, Height * ROUND_VALUE) 
+		<< QPointF( Width - Side, 0.0 ) 
+		<< QPointF( Side,0.0 ) 
+		<< QPointF( Width,Height * ROUND_VALUE ) 
+		<< QPointF( Side,Height ) 
+		<< QPointF( Width - Side,Height );
 }
 
 void HexagonData::MovePosition( const QPointF& topLeft )
