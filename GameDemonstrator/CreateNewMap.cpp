@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CreateNewMap.h"
-#include "GameFactory.h"
+#include "game/GameFactory.h"
 #include "model/ModelDataOverallSettings.h"
 
 CreateNewMap::CreateNewMap(QObject *parent)

@@ -2,7 +2,7 @@
 #include "SaveToXML.h"
 #include "LogInterface.h"
 #include <QtXML>
-#include "GameMainCounter.h"
+#include "game/GameMainCounter.h"
 
 SaveToXML::SaveToXML()
 {

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "gamedemonstrator.h"
 #include "QActionRepository.h"
-#include "GameMainThread.h"
-#include "GameMainLoop.h"
+#include "game/GameMainThread.h"
+#include "game/GameMainLoop.h"
 #include "GameTurnDialog.h"
 #include "MapView.h"
 #include "MapViewHexItem.h"
@@ -17,10 +17,10 @@
 #include "Action.h"
 #include "LogFactory.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "GameFactory.h"
+#include "game/GameFactory.h"
 #include "CreateNewMap.h"
-#include "GameDemonstratorFactory.h"
-#include "GameDemonstratorConfig.h"
+#include "game/GameDemonstratorFactory.h"
+#include "game/GameDemonstratorConfig.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
