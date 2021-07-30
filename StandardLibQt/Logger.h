@@ -37,10 +37,10 @@ private:
 	/** */
 	virtual bool DoLogMessage( const QVector<jha::LogMessage*>& logMessage ) = 0;
 private:
-	QString	Name;
-	static QString Separator;
-	bool	Enabled;
-	LogLevel LogLevelInstance;
+	QString			Name;
+	static QString	Separator;
+	bool			Enabled;
+	LogLevel		LogLevelInstance;
 };
 
 }

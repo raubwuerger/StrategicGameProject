@@ -36,11 +36,10 @@ namespace jha
 		LogInterface::LOGLEVEL_TRACE,
 		LogInterface::LOGLEVEL_DEBUG};
 
-LogInterface* LogInterface::GetInstance()
-{
-	//TODO: Diese Funktion könnte gleichzeitig aufgerufen werden! Durch Semaphore absichern!
-	try
+	//==============================================================================
+	LogInterface* LogInterface::GetInstance()
 	{
+		//TODO: Diese Funktion könnte gleichzeitig aufgerufen werden! Durch Semaphore absichern!
 		if( Instance != nullptr )
 		{
 			return Instance;
@@ -50,163 +49,176 @@ LogInterface* LogInterface::GetInstance()
 
 		return Instance;
 	}
-	catch (...)
+
+	//==============================================================================
+	bool LogInterface::Init()
 	{
-		return nullptr;
+		if( nullptr == LogManagerInstance )
+		{
+			std::cout << "Internal error! LogManagerInstance is null!" << endl;
+			return false;
+		}
+		if( LogInterfaceVisitor == nullptr )
+		{
+			LogInterfaceVisitor = new LogCategoryVisitor;
+			LogCategoryDefault().SetCategory( QCoreApplication::applicationName() );
+		}
+		connect( this, SIGNAL(PostLogMessage(jha::LogMessage *)), LogManagerInstance, SLOT(AddLogMessage( jha::LogMessage *)) );
+		QString message("Starting ");
+		message += QCoreApplication::applicationName();
+		message += ", version=";
+		message += 	QCoreApplication::applicationVersion();
+		Log( message, jha::LOGLEVEL::LL_MESSAGE);
+		return true;
 	}
-}
 
-bool LogInterface::Init()
-{
-	if( nullptr == LogManagerInstance )
+	//==============================================================================
+	void LogInterface::Release()
 	{
-		std::cout << "Internal error! LogManagerInstance is null!" << endl;
-		return false;
+		delete LogInterfaceVisitor;
+		LogInterfaceVisitor = nullptr;
+
+		delete Instance;
+		Instance = nullptr;
 	}
-	if( LogInterfaceVisitor == nullptr )
+
+	//==============================================================================
+	LogInterface::LogInterface()
 	{
-		LogInterfaceVisitor = new LogCategoryVisitor;
-		LogCategoryDefault().SetCategory( QCoreApplication::applicationName() );
 	}
-	connect( this, SIGNAL(PostLogMessage(jha::LogMessage *)), LogManagerInstance, SLOT(AddLogMessage( jha::LogMessage *)) );
-	QString message("Starting ");
-	message += QCoreApplication::applicationName();
-	message += ", version=";
-	message += 	QCoreApplication::applicationVersion();
-	Log( message, jha::LOGLEVEL::LL_MESSAGE);
-	return true;
-}
 
-void LogInterface::Release()
-{
-	delete LogInterfaceVisitor;
-	LogInterfaceVisitor = nullptr;
-
-	delete Instance;
-	Instance = nullptr;
-}
-
-LogInterface::LogInterface()
-{
-}
-
-void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category )
-{
-	LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
-}
-
-void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const LogCategoryInterface& logCategory )
-{
-	QString category = "-";
-	if( LogInterfaceVisitor != nullptr )
+	//==============================================================================
+	void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category )
 	{
-		category = LogInterfaceVisitor->GetCategory( &logCategory );
+		LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
 	}
-	LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
-}
 
-void LogInterface::Log_NONE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_NONE, logCategory );
-}
-
-void LogInterface::Log_FATAL(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_FATAL, logCategory );
-}
-
-void LogInterface::Log_ERROR(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_ERROR, logCategory );
-}
-
-void LogInterface::Log_WARNING(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_WARNING, logCategory );
-}
-
-void LogInterface::Log_MESSAGE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_MESSAGE, logCategory );
-}
-
-void LogInterface::Log_INFO(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_INFO, logCategory );
-}
-
-void LogInterface::Log_TRACE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_TRACE, logCategory );
-}
-
-void LogInterface::Log_DEBUG(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_DEBUG, logCategory );
-}
-
-void LogInterface::Log_INIT(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
-{
-	Log( message, jha::LOGLEVEL::LL_INIT, logCategory );
-}
-
-void LogInterface::SetGlobalLoglevel( LogLevel logLevel )
-{
-	LogManagerInstance->SetGlobalLogLevel(logLevel);
-}
-
-void LogInterface::SetGlobalLoglevel( const QString& logLevel )
-{
-	LogManagerInstance->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
-}
-
-jha::LogLevel LogInterface::GetLogLevelFromName( const QString& logLevel ) const
-{
-	const int EQUALS = 0;
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_NONE.GetName(), Qt::CaseInsensitive) )
+	//==============================================================================
+	void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const LogCategoryInterface& logCategory )
 	{
-		return jha::LogInterface::LOGLEVEL_NONE;
+		QString category = "-";
+		if( LogInterfaceVisitor != nullptr )
+		{
+			category = LogInterfaceVisitor->GetCategory( &logCategory );
+		}
+		LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_FATAL.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_NONE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
-		return jha::LogInterface::LOGLEVEL_FATAL;
+		Log( message, jha::LOGLEVEL::LL_NONE, logCategory );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_ERROR.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_FATAL(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
-		return jha::LogInterface::LOGLEVEL_ERROR;
+		Log( message, jha::LOGLEVEL::LL_FATAL, logCategory );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_WARNING.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_ERROR(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
-		return jha::LogInterface::LOGLEVEL_WARNING;
+		Log( message, jha::LOGLEVEL::LL_ERROR, logCategory );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_MESSAGE.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_WARNING(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
-		return jha::LogInterface::LOGLEVEL_MESSAGE;
+		Log( message, jha::LOGLEVEL::LL_WARNING, logCategory );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_INFO.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_MESSAGE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
-		return jha::LogInterface::LOGLEVEL_INFO;
+		Log( message, jha::LOGLEVEL::LL_MESSAGE, logCategory );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_TRACE.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_INFO(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
-		return jha::LogInterface::LOGLEVEL_TRACE;
+		Log( message, jha::LOGLEVEL::LL_INFO, logCategory );
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_DEBUG.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	void LogInterface::Log_TRACE(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
 	{
+		Log( message, jha::LOGLEVEL::LL_TRACE, logCategory );
+	}
+
+	//==============================================================================
+	void LogInterface::Log_DEBUG(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+	{
+		Log( message, jha::LOGLEVEL::LL_DEBUG, logCategory );
+	}
+
+	//==============================================================================
+	void LogInterface::Log_INIT(const QString& message, const LogCategoryInterface& logCategory /*= LogCategoryDefault() */)
+	{
+		Log( message, jha::LOGLEVEL::LL_INIT, logCategory );
+	}
+
+	//==============================================================================
+	void LogInterface::SetGlobalLoglevel( LogLevel logLevel )
+	{
+		LogManagerInstance->SetGlobalLogLevel(logLevel);
+	}
+
+	//==============================================================================
+	void LogInterface::SetGlobalLoglevel( const QString& logLevel )
+	{
+		LogManagerInstance->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
+	}
+
+	//==============================================================================
+	jha::LogLevel LogInterface::GetLogLevelFromName( const QString& logLevel ) const
+	{
+		const int EQUALS = 0;
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_NONE.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_NONE;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_FATAL.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_FATAL;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_ERROR.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_ERROR;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_WARNING.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_WARNING;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_MESSAGE.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_MESSAGE;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_INFO.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_INFO;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_TRACE.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_TRACE;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_DEBUG.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_DEBUG;
+		}
+		if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_INIT.GetName(), Qt::CaseInsensitive) )
+		{
+			return jha::LogInterface::LOGLEVEL_INIT;
+		}
+
+		Q_ASSERT(nullptr);
 		return jha::LogInterface::LOGLEVEL_DEBUG;
 	}
-	if( EQUALS == QString::compare(logLevel, jha::LogInterface::LOGLEVEL_INIT.GetName(), Qt::CaseInsensitive) )
+
+	//==============================================================================
+	LogInterface* GetLog()
 	{
-		return jha::LogInterface::LOGLEVEL_INIT;
+		return LogInterface::GetInstance();
 	}
-
-	Q_ASSERT(nullptr);
-	return jha::LogInterface::LOGLEVEL_DEBUG;
-}
-
-LogInterface* GetLog()
-{
-	return LogInterface::GetInstance();
-}
 
 }

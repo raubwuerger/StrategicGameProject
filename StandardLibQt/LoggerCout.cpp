@@ -6,23 +6,26 @@
 namespace jha
 {
 
-LoggerCout::LoggerCout()
-	: Logger("LoggerCout")
-{
-}
-
-bool LoggerCout::Init()
-{
-	return true;
-}
-
-bool LoggerCout::DoLogMessage( const QVector<jha::LogMessage*>& logMessage )
-{
-	for( size_t i=0;i<logMessage.size();i++ )
+	//==============================================================================
+	LoggerCout::LoggerCout()
+		: Logger("LoggerCout")
 	{
-		std::cout << CreateDefaultLogString(logMessage.at(i)).toStdString() << endl;
 	}
-	return true;
-}
+
+	//==============================================================================
+	bool LoggerCout::Init()
+	{
+		return true;
+	}
+
+	//==============================================================================
+	bool LoggerCout::DoLogMessage( const QVector<jha::LogMessage*>& logMessage )
+	{
+		for( size_t i=0;i<logMessage.size();i++ )
+		{
+			std::cout << CreateDefaultLogString(logMessage.at(i)).toStdString() << endl;
+		}
+		return true;
+	}
 
 }

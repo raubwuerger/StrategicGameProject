@@ -6,63 +6,70 @@
 namespace jha
 {
 
-const QString Logger::DEFAULT_TIME_FORMAT = "hh:mm:ss.zzz";
-const QString Logger::DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
-QString Logger::Separator = "\t";
+	const QString Logger::DEFAULT_TIME_FORMAT = "hh:mm:ss.zzz";
+	const QString Logger::DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+	QString Logger::Separator = "\t";
 
-Logger::Logger( const QString& name )
-	: Name(name),
-	Enabled(true),
-	LogLevelInstance(LogInterface::LOGLEVEL_DEBUG)
-{
-}
-
-const QString& Logger::GetName() const
-{
-	return Name;
-}
-
-bool Logger::GetEnabled() const
-{
-	return Enabled;
-}
-
-void Logger::SetEnabled( bool enable )
-{
-	Enabled = enable;
-}
-
-bool Logger::LogMessage( const QVector<jha::LogMessage*>& logMessage )
-{
-	if( Enabled == false )
+	//==============================================================================
+	Logger::Logger( const QString& name )
+		: Name(name),
+		Enabled(true),
+		LogLevelInstance(LogInterface::LOGLEVEL_DEBUG)
 	{
-		return false;
 	}
-	return DoLogMessage(logMessage);
-}
 
-QString Logger::CreateDefaultLogString( jha::LogMessage *message ) const
-{
-	if( message == nullptr )
+	//==============================================================================
+	const QString& Logger::GetName() const
 	{
-		return QString();
+		return Name;
 	}
-	return QString(message->GetLogTime().toString(jha::Logger::DEFAULT_TIME_FORMAT)) +Separator +QString(message->GetLogLevel().GetName()) +Separator +Separator +QString(message->GetCategory())  +Separator +Separator +QString(message->GetMessage());
-}
 
-bool Logger::LogThisLogLevel( jha::LogMessage *message ) const
-{
-	if( message == nullptr )
+	//==============================================================================
+	bool Logger::GetEnabled() const
 	{
-		return false;
+		return Enabled;
 	}
-	return message->GetLogLevel() <= LogLevelInstance;
-}
 
-void Logger::SetLogLevel( LogLevel logLevel )
-{
-	LogLevelInstance = logLevel;
-}
+	//==============================================================================
+	void Logger::SetEnabled( bool enable )
+	{
+		Enabled = enable;
+	}
 
+	//==============================================================================
+	bool Logger::LogMessage( const QVector<jha::LogMessage*>& logMessage )
+	{
+		if( Enabled == false )
+		{
+			return false;
+		}
+		return DoLogMessage(logMessage);
+	}
+
+	//==============================================================================
+	QString Logger::CreateDefaultLogString( jha::LogMessage *message ) const
+	{
+		if( message == nullptr )
+		{
+			return QString();
+		}
+		return QString(message->GetLogTime().toString(jha::Logger::DEFAULT_TIME_FORMAT)) +Separator +QString(message->GetLogLevel().GetName()) +Separator +Separator +QString(message->GetCategory())  +Separator +Separator +QString(message->GetMessage());
+	}
+
+	//==============================================================================
+	bool Logger::LogThisLogLevel( jha::LogMessage *message ) const
+	{
+		if( message == nullptr )
+		{
+			return false;
+		}
+		return message->GetLogLevel() <= LogLevelInstance;
+	}
+
+	//==============================================================================
+	void Logger::SetLogLevel( LogLevel logLevel )
+	{
+		LogLevelInstance = logLevel;
+	}
 
 }
