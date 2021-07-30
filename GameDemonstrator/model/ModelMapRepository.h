@@ -7,19 +7,16 @@ class ModelMapRepository
 {
 public:
 	/** */
-	ModelMapRepository();
-	/** */
-	~ModelMapRepository();
-	/** */
-	void Create();
-	/** */
-	void Init( int rows, int cols );
-	/** */
-	void Release();
+	static ModelMapRepository* GetInstance();
 	/** Get MapItems */	
 	const QVector< QVector<ModelMapItem*> >& GetMapItems() const;
 private:
+	/** */
+	ModelMapRepository();
+	/** */
+	~ModelMapRepository();
+private:
+	friend class ModelMapFactory;
 	QVector< QVector<ModelMapItem*> >	MapItems;
-	unsigned int Rows;
-	unsigned int Cols;
+	static ModelMapRepository* Instance;
 };

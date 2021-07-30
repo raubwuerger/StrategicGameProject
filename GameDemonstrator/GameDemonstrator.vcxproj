@@ -354,7 +354,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapCreatorSimple.cpp" />
     <ClCompile Include="MapEventManager.cpp" />
-    <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MapView.cpp" />
     <ClCompile Include="MapViewGraphicsScene.cpp" />
     <ClCompile Include="MapViewHexItem.cpp" />
@@ -362,7 +361,7 @@
     <ClCompile Include="model\ModelDataOverallSettings.cpp" />
     <ClCompile Include="model\ModelMapRepository.cpp" />
     <ClCompile Include="model\ModelMapConfig.cpp" />
-    <ClCompile Include="model\ModelMapConfigFactory.cpp" />
+    <ClCompile Include="model\ModelMapFactory.cpp" />
     <ClCompile Include="model\ModelOwnerType.cpp" />
     <ClCompile Include="model\ModelOwnerTypeConfig.cpp" />
     <ClCompile Include="model\ModelOwnerTypeFactory.cpp" />
@@ -417,7 +416,7 @@
     <ClInclude Include="model\ModelDataOverallSettings.h" />
     <ClInclude Include="model\ModelMapRepository.h" />
     <ClInclude Include="model\ModelMapConfig.h" />
-    <ClInclude Include="model\ModelMapConfigFactory.h" />
+    <ClInclude Include="model\ModelMapFactory.h" />
     <ClInclude Include="model\ModelOwnerType.h" />
     <CustomBuild Include="model\ModelOwnerTypeFactory.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -516,7 +515,6 @@
     <ClInclude Include="GameModeEditor.h" />
     <ClInclude Include="GameModeStandard.h" />
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h" />
-    <ClInclude Include="MapFactory.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="model\ModelMapItem.h" />
     <ClInclude Include="SaveBinary.h" />

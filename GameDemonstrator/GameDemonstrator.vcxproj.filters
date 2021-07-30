@@ -233,9 +233,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMapDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="MapFactory.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="GameMode.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
@@ -329,9 +326,6 @@
     <ClCompile Include="model\ModelMapConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelMapConfigFactory.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelSettings.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -380,6 +374,9 @@
     <ClCompile Include="model\ModelMapRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelMapFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -417,9 +414,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h">
       <Filter>Generierte Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MapFactory.h">
-      <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="GameMode.h">
       <Filter>Header Dateien</Filter>
@@ -469,9 +463,6 @@
     <ClInclude Include="model\ModelMapConfig.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelMapConfigFactory.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="model\ModelSettings.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -515,6 +506,9 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapRepository.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,7 +17,6 @@
 #include "Action.h"
 #include "LogFactory.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "MapFactory.h"
 #include "GameFactory.h"
 #include "CreateNewMap.h"
 #include "GameDemonstratorFactory.h"
@@ -44,8 +43,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateNewMapInstance = new CreateNewMap(this);
 
 	MapViewInstance = new MapView(this);
-	MapFactory::GetInstance()->SetMapView(MapViewInstance);
-	MapFactory::GetInstance()->SetParent(this);
+//	MapFactory::GetInstance()->SetMapView(MapViewInstance);
+//	MapFactory::GetInstance()->SetParent(this);
 
 	QActionRepository::GetInstanceFirstTimeInit(parent);
 	SerializerInterface = SerializerFactory().CreateInterface();

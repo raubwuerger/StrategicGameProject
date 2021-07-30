@@ -3,21 +3,21 @@
 class ModelMapRepository;
 
 /** Creates game map representation */
-class ModelMapConfigFactory
+class ModelMapFactory
 {
 public:
 	/** */
-	static ModelMapConfigFactory* GetInstance();
+	static ModelMapFactory* GetInstance();
 	/** */
 	void Release();
 	/** Creates Map */
 	ModelMapRepository* CreateMap();
 private:
 	/** */
-	ModelMapConfigFactory();
+	ModelMapFactory();
 	/** */
-	~ModelMapConfigFactory();
+	~ModelMapFactory();
 private:
-	static ModelMapConfigFactory	*Instance;
+	static ModelMapFactory	*Instance;
 	ModelMapRepository*	TheGameMap;
 };

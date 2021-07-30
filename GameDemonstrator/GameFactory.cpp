@@ -2,9 +2,8 @@
 #include "GameFactory.h"
 #include "model\ModelMapRepository.h"
 #include "MapView.h"
-#include "MapFactory.h"
 #include "ModelFactory.h"
-#include "model\ModelMapConfigFactory.h"
+#include "model\ModelMapFactory.h"
 
 GameFactory* GameFactory::Instance = nullptr;
 
@@ -31,7 +30,6 @@ GameFactory::GameFactory()
 
 GameFactory::~GameFactory()
 {
-	delete TheGameMap;
 }
 
 void GameFactory::CreateNewGame()
@@ -42,15 +40,8 @@ void GameFactory::CreateNewGame()
 		return;
 	}
 
-	ModelMapConfigFactory::GetInstance()->CreateMap();
+	ModelMapFactory::GetInstance()->CreateMap();
 
-//	ModelFactory modelFactory;
-//	modelFactory.CreateEmptyMap( &TheGameMap );
-
-	TheGameMap = new ModelMapRepository;
-	TheGameMap->Create();
-
-	MapFactory::GetInstance()->CreateNewMapFunction();
 	MapViewInstance->Create();
 }
 
