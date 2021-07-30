@@ -1,6 +1,7 @@
 #pragma once
 
 class ModelMapRepository;
+class IMapCreator;
 
 /** Creates game map representation */
 class ModelMapFactory
@@ -20,4 +21,5 @@ private:
 private:
 	static ModelMapFactory	*Instance;
 	ModelMapRepository*	TheGameMap;
+	IMapCreator*		MapCreator;
 };

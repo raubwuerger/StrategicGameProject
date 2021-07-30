@@ -290,9 +290,6 @@
     <ClCompile Include="SaveToXML.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
-    <ClCompile Include="MapCreatorSimple.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelDataOverallSettings.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -383,6 +380,9 @@
     <ClCompile Include="game\GameModeStandard.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="model\MapCreatorSimple.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -444,12 +444,6 @@
     </ClInclude>
     <ClInclude Include="ISerializeGameInterface.h">
       <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
-    <ClInclude Include="IMapCreator.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MapCreatorSimple.h">
-      <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelDataOverallSettings.h">
       <Filter>Header Dateien\Model</Filter>
@@ -519,6 +513,12 @@
     </ClInclude>
     <ClInclude Include="game\GameModeStandard.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="model\IMapCreator.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\MapCreatorSimple.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
