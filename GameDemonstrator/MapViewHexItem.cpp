@@ -30,6 +30,11 @@ MapViewHexItem::~MapViewHexItem()
 
 void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
+	if( TerrainImage != nullptr )
+	{
+		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
+	}
+
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
 	QRectF textBoundingRect = HexData.BoundingRect;
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
@@ -44,11 +49,6 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 	QTextOption textOption;
 	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
 	painter->drawText( textBoundingRect, StringRowCol, textOption );
-
-	if( TerrainImage != nullptr )
-	{
-		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
-	}
 
 	QGraphicsPolygonItem::paint(painter,option,widget);
 }
