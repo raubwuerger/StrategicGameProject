@@ -12,7 +12,7 @@ public:
 	/** */
 	void Release();
 	/** Creates Map */
-	ModelMapRepository* CreateMap();
+	ModelMapRepository* CreateModelMap();
 private:
 	/** */
 	ModelMapFactory();

@@ -40,7 +40,7 @@ void GameFactory::CreateNewGame()
 		return;
 	}
 
-	ModelMapFactory::GetInstance()->CreateMap();
+	ModelMapFactory::GetInstance()->CreateModelMap();
 
 	MapViewInstance->Create();
 }

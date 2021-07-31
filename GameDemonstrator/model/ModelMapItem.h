@@ -11,10 +11,15 @@ public:
 	ModelMapItem( int row, int col );
 	/** */
 	~ModelMapItem();
+	/** */
+	void SetModelTerrainType( const ModelTerrainType *type );
+	/** */
+	const ModelTerrainType* GetTerrainType() const;
 private:
 	QPoint			CenterPoint;
-	int				Row;
-	int				Col;
-	ModelTerrainType		*Type;
-	ModelOwnerType		*Owner;
+	const int		Row;
+	const int		Col;
+	const int		Id;
+	const ModelTerrainType	*TerrainType;
+	const ModelOwnerType	*OwnerType;
 };

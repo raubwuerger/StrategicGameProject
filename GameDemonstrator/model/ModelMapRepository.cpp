@@ -15,15 +15,26 @@ ModelMapRepository* ModelMapRepository::GetInstance()
 	return Instance;
 }
 
+void ModelMapRepository::Release()
+{
+
+}
+
+const QVector< QVector<ModelMapItem*> >* ModelMapRepository::GetMapItems() const
+{
+	return MapItems;
+}
+
+void ModelMapRepository::SetMapItems( const QVector< QVector<ModelMapItem*>>* mapItems)
+{
+	MapItems = MapItems;
+}
+
 ModelMapRepository::ModelMapRepository()
 {
 }
 
 ModelMapRepository::~ModelMapRepository()
 {
-}
-
-const QVector< QVector<ModelMapItem*> >& ModelMapRepository::GetMapItems() const
-{
-	return MapItems;
+	delete MapItems;
 }

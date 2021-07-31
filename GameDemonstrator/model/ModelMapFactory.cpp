@@ -33,8 +33,9 @@ ModelMapFactory::~ModelMapFactory()
 	TheGameMap = nullptr;
 }
 
-ModelMapRepository* ModelMapFactory::CreateMap()
+ModelMapRepository* ModelMapFactory::CreateModelMap()
 {
 	MapCreator = new MapCreatorSimple;
+	MapCreator->CreateMap();
 	return TheGameMap;
 }
