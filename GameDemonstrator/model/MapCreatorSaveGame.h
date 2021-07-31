@@ -4,7 +4,7 @@
 
 class ModelMapRepository;
 
-class ModelMapCreatorSaveGame : public IMapCreator
+class MapCreatorSaveGame : public IMapCreator
 {
 /** */
 	virtual bool CreateMap();

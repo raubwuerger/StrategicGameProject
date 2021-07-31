@@ -1,13 +1,13 @@
 #include "stdafx.h"
-#include "ModelMapCreatorSaveGame.h"
+#include "MapCreatorSaveGame.h"
 
 
-bool ModelMapCreatorSaveGame::CreateMap()
+bool MapCreatorSaveGame::CreateMap()
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-ModelMapRepository* ModelMapCreatorSaveGame::GetMap()
+ModelMapRepository* MapCreatorSaveGame::GetMap()
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
