@@ -22,8 +22,8 @@ void ModelMapConfig::Release()
 }
 
 ModelMapConfig::ModelMapConfig()
-	: Rows(1),
-	Cols(1)
+	: Rows(9),
+	Cols(12)
 {
 }
 

@@ -11,6 +11,11 @@ public:
 	HexagonData( double sideLength );
 	/** */
 	void MovePosition( const QPointF& topLeft );
+public:
+	static const double DEFAULT_HEXE_SIZE;
+	static const double WIDTH_SIDE_MULTIPLICATOR;
+	static const double ZERO;
+	static const float	ROUND_VALUE;
 private:
 	/** */
 	HexagonData();
@@ -25,12 +30,12 @@ private:
 	/** */
 	void calcHexPointsOrigin();
 public:
-	double SideLength;
-	double Width;
-	double Height;
-	double Side;
-	QRectF	BoundingRect;
-	QPolygonF HexPoints;
+	double		SideLength;
+	double		Width;
+	double		Height;
+	double		Side;
+	QRectF		BoundingRect;
+	QPolygonF	HexPoints;
 };
 
 #endif // HEXAGONDATA_H

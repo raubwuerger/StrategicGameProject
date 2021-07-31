@@ -14,6 +14,10 @@ public:
 	const QVector< QVector<ModelMapItem*> >* GetMapItems() const;
 	/** */
 	void SetMapItems( const QVector< QVector<ModelMapItem*>>* mapItems );
+	/** */
+	int GetCols() const;
+	/** */
+	int GetRows() const;
 private:
 	/** */
 	ModelMapRepository();
@@ -21,6 +25,6 @@ private:
 	~ModelMapRepository();
 private:
 	friend class ModelMapFactory;
-	QVector< QVector<ModelMapItem*> >*	MapItems;
+	const QVector< QVector<ModelMapItem*> >*	MapItems;
 	static ModelMapRepository* Instance;
 };

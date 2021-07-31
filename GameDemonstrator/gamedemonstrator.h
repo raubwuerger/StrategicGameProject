@@ -59,7 +59,6 @@ private:
 	MapView				*MapViewInstance;
 	SerializerInterface* SerializerInterface;
 	EditorToolbox		*EditorToolboxInstance;
-	CreateNewMap		*CreateNewMapInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

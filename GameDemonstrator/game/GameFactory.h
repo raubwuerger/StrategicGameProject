@@ -5,17 +5,18 @@ class MapView;
 class ModelMapRepository;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
-class GameFactory
+class GameFactory : public QObject
 {
+	Q_OBJECT
 public:
 	/** */
 	static GameFactory* GetInstance();
 	/** */
 	void Release();
 	/** */
-	void CreateNewGame();
-	/** */
 	void SetMapView( MapView* mapView );
+public slots:
+		void CreateNewGame();
 private:
 	/** */
 	GameFactory();

@@ -203,15 +203,6 @@
     <ClCompile Include="..\StandardLibQt\LoggingTableWidget.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
-    <ClCompile Include="CreateNewMap.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMap.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMap.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMapDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -383,6 +374,18 @@
     <ClCompile Include="model\MapCreatorSimple.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameMapFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="model\MapCreatorSaveGame.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameFactory.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameFactory.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -499,9 +502,6 @@
     <ClInclude Include="game\GameDemonstratorFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameMainCounter.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -518,6 +518,12 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\MapCreatorSimple.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="model\MapCreatorSaveGame.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
@@ -591,9 +597,6 @@
     <CustomBuild Include="HexItemEventManager.h">
       <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
-    <CustomBuild Include="CreateNewMap.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="model\ModelOwnerTypeFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </CustomBuild>
@@ -601,6 +604,9 @@
       <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
     <CustomBuild Include="game\GameMainThread.h">
+      <Filter>Header Dateien\Game</Filter>
+    </CustomBuild>
+    <CustomBuild Include="game\GameFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
   </ItemGroup>

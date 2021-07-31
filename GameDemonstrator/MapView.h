@@ -7,6 +7,7 @@ class HexagonData;
 class HexItemEventManager;
 class MapEventManager;
 class ModelTerrainType;
+class HexagonData;
 
 class MapView : public QGraphicsView
 {
@@ -20,17 +21,18 @@ public:
 	/** */
 	void Create();
 public:
-	MapViewGraphicsScene	*Scene;
-	HexItemEventManager		*HexItemEventManager;
-	MapEventManager		*MapEventManager;
+	MapViewGraphicsScene	*Scene;					//TODO: Setter
+	HexItemEventManager		*HexItemEventManager;	//TODO: Setter
+	MapEventManager			*MapEventManager;		//TODO: Setter
 private:
 	/** */
-	void CreateTestMap( int mapWidth, int mapHeight, const HexagonData& defaultHexagon, const QImage* defaultTerrainType );
+	void CreateMap();
 	/** */
-	double CalcMapWidthInPixel( int hexagonCountCols, const HexagonData& hexagon ) const;
+	void InitMapEventManager();
 	/** */
-	double CalcMapHeightInPixel( int hexagonCountRows, const HexagonData& hexagon ) const;
-private:
+	double CalcMapWidthInPixel() const;
+	/** */
+	double CalcMapHeightInPixel() const;
 };
 
 #endif // CMAPVIEW_H
