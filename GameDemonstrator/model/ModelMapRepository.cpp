@@ -67,3 +67,34 @@ int ModelMapRepository::GetRows() const
 	}
 	return MapItems->size();
 }
+
+const ModelMapItem* ModelMapRepository::GetModelMapItem(const unsigned int row, const unsigned int col)
+{
+	int rowCount = GetRows();
+	if( row > rowCount )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Requested row index %1 out of bounds: %2" ).arg(row).arg(rowCount) );
+		return nullptr;
+	}
+
+	QVector<ModelMapItem*> concreteRow = MapItems->at(row);
+
+	int colCount = GetCols();
+	if( col > colCount )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Requested column index %1 out of bounds: %2" ).arg(col).arg(colCount) );
+		return nullptr;
+	}
+	return concreteRow.at(col);
+}
+
+int ModelMapRepository::GetModelMapItemId(const unsigned int row, const unsigned int col)
+{
+	const ModelMapItem* found = GetModelMapItem(row,col);
+	if( nullptr == found )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Requested map item not found: column|row: %1|%2" ).arg(col).arg(row) );
+		return -1;
+	}
+	return found->GetId();
+}

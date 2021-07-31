@@ -15,6 +15,8 @@ public:
 	void SetModelTerrainType( const ModelTerrainType *type );
 	/** */
 	const ModelTerrainType* GetTerrainType() const;
+	/** */
+	const int GetId() const;
 private:
 	QPoint			CenterPoint;
 	const int		Row;

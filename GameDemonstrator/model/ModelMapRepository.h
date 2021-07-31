@@ -18,6 +18,10 @@ public:
 	int GetCols() const;
 	/** */
 	int GetRows() const;
+	/** */
+	const ModelMapItem* GetModelMapItem( const unsigned int row, const unsigned int col );
+	/** */
+	int GetModelMapItemId( const unsigned int row, const unsigned int col );
 private:
 	/** */
 	ModelMapRepository();

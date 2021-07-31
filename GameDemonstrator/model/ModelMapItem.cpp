@@ -24,3 +24,8 @@ const ModelTerrainType* ModelMapItem::GetTerrainType() const
 {
 	return TerrainType;
 }
+
+const int ModelMapItem::GetId() const
+{
+	return Id;
+}

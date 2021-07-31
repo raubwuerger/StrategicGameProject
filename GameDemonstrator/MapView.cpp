@@ -72,6 +72,7 @@ void MapView::CreateMap()
 			MapViewHexItem *mapItem = new MapViewHexItem( hexagonTemplate, QPointF(cordX,cordY) );
 			mapItem->SetRowAndCol(row,col);
 			mapItem->SetHexItemEventManager( HexItemEventManager );
+//TODO:	Load image from modelTerrainType
 //			mapItem->SetTerrainImage( defaultTerrainType );
 			Scene->addItem( mapItem );
 			MapEventManager->RegisterMapItem( mapItem );

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MapEventManager.h"
+#include "model\ModelMapRepository.h"
 
 MapEventManager::MapEventManager(QObject *parent)
 	: QObject(parent),
@@ -48,6 +49,7 @@ void MapEventManager::UpdateMapItemInfo( int row, int col )
 	}
 
 	MapViewHexItem *item = MapItems[row][col];
+	HexItemInfoDialog->ui.lineEditID->setText( QString::number(ModelMapRepository::GetInstance()->GetModelMapItemId(row,col)) );
 	HexItemInfoDialog->ui.lineEditCol->setText( QString::number(item->GetCol()) );
 	HexItemInfoDialog->ui.lineEditRow->setText( QString::number(item->GetRow()) );
 }

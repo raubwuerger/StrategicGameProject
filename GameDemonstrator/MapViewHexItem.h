@@ -24,7 +24,7 @@ public:
 	/** */
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	/** Get row */
-	 int GetRow() const { return Row; }
+	int GetRow() const { return Row; }
 	/** Set row */
 	void SetRowAndCol( int row, int col );
 	/** Get col */
