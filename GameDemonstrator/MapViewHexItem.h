@@ -10,7 +10,7 @@ class MapViewHexItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapViewHexItem( const HexagonData& data, const QPointF& topLeft, QGraphicsPolygonItem *parent = 0 );
+	MapViewHexItem( const HexagonData& data, const QPointF& topLeft );
 	/** */
 	~MapViewHexItem();
 	/** */

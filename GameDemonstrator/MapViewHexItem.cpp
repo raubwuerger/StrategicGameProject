@@ -6,7 +6,7 @@
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft, QGraphicsPolygonItem *parent /*= 0*/ )
+MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft )
 	: HexData(data),
 	TopLeftPoint(topLeft),
 	Col(-1),

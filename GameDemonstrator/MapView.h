@@ -26,6 +26,8 @@ public:
 	MapEventManager			*MapEventManager;		//TODO: Setter
 private:
 	/** */
+	void CreateMapFromModel();
+	/** */
 	void CreateMap();
 	/** */
 	void InitMapEventManager();
@@ -33,6 +35,8 @@ private:
 	double CalcMapWidthInPixel() const;
 	/** */
 	double CalcMapHeightInPixel() const;
+	/** */
+	bool CreateTopLeftPosition( int col, int row, QPointF &topLeftPosition );
 };
 
 #endif // CMAPVIEW_H

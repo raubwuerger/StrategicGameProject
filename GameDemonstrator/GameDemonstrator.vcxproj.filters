@@ -621,6 +621,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="CompleteOverview.cd" />
   </ItemGroup>
 </Project>

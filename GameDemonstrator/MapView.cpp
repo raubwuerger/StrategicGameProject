@@ -44,8 +44,7 @@ void MapView::InitMapEventManager()
 #include "MapViewHexItem.h"
 void MapView::CreateMap()
 {
-	double defaultHexSize = 48.0;
-	HexagonData hexagonTemplate( defaultHexSize );
+	HexagonData hexagonTemplate( HexagonData::DEFAULT_HEXE_SIZE );
 
 	const QVector< QVector<ModelMapItem*> >*modelMap = ModelMapRepository::GetInstance()->GetMapItems();
 	unsigned int rows = modelMap->length();
@@ -70,6 +69,10 @@ void MapView::CreateMap()
 				cordY += offsetYEvenCol;
 			}
 			MapViewHexItem *mapItem = new MapViewHexItem( hexagonTemplate, QPointF(cordX,cordY) );
+
+			QPointF calculatedByFunction;
+			CreateTopLeftPosition(col,row,calculatedByFunction);
+
 			mapItem->SetRowAndCol(row,col);
 			mapItem->SetHexItemEventManager( HexItemEventManager );
 //TODO:	Load image from modelTerrainType
@@ -79,6 +82,38 @@ void MapView::CreateMap()
 		}
 	}
 }
+
+//TODO: Performance optimierung: Jede Zeile und Spalte hat immer genau zwei Werte. Diese kann man berechnen und dann entsprechend verwenden.
+bool MapView::CreateTopLeftPosition(int col, int row, QPointF &topLeftPosition)
+{
+	HexagonData hexagonTemplate( HexagonData::DEFAULT_HEXE_SIZE );
+
+	double startX = 0.0;
+	double offsetX = hexagonTemplate.Side;
+
+	double startY = 0.0;
+	double offsetY = hexagonTemplate.Height;
+
+	double offsetYEvenCol = hexagonTemplate.Height / 2.0;
+	double cordX = startX + col * offsetX;
+	double cordY = startY + row * offsetY;
+	if( (col % 2) == 1 )
+	{
+		cordY += offsetYEvenCol;
+	}
+
+	topLeftPosition.setX(cordX);
+	topLeftPosition.setY(cordY);
+	return true;
+}
+
+
+
+void MapView::CreateMapFromModel()
+{
+
+}
+
 
 double MapView::CalcMapWidthInPixel() const
 {
