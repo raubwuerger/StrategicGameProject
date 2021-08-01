@@ -152,7 +152,7 @@ namespace jha
 	//==============================================================================
 	void LogManager::InjectInitialLogMessage()
 	{
-		QString initialLogMessage("#################### START LOGGING ####################");
+		QString initialLogMessage( tr("#################### START LOGGING (%1) ####################").arg(QDate::currentDate().toString("yyyy-MM-dd")) );
 		InitialLogmessage = new LogMessage(QTime::currentTime(),LogInterface::LOGLEVEL_INIT,initialLogMessage,QCoreApplication::applicationName());
 		InitialLogmessage->SetLogIndex(0);
 		LogMessagesReady->push_back(InitialLogmessage);
