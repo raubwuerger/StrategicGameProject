@@ -37,6 +37,8 @@ bool SaveToXML::CreateFramework()
 	saveGameFile += GameMainCounter::GetInstance()->GetCurrentDate().toString( "yyyy_MM" );
 	saveGameFile += ".xml";
 
+	QDir().mkpath(".\\savegames\\");
+
 	QFile file(saveGameFile);
 
 	if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
