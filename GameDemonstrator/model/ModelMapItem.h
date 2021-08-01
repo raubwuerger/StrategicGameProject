@@ -8,7 +8,7 @@ class ModelMapItem
 {
 public:
 	/** */
-	ModelMapItem( int row, int col );
+	ModelMapItem( int row, int col, int id );
 	/** */
 	~ModelMapItem();
 	/** */

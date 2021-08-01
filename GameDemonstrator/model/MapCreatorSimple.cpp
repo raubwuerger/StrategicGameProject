@@ -5,8 +5,16 @@
 #include "ModelTerrainTypeRepository.h"
 #include "ModelMapItem.h"
 
+
+MapCreatorSimple::MapCreatorSimple()
+	: MapItemId(0)
+{
+
+}
+
 bool MapCreatorSimple::CreateMap()
 {
+	MapItemId = 0;
 	unsigned int cols = ModelMapConfig::GetInstance()->Cols;
 	unsigned int rows = ModelMapConfig::GetInstance()->Rows;
 
@@ -20,7 +28,7 @@ bool MapCreatorSimple::CreateMap()
 		tempRow.reserve(cols);
 		for( unsigned int currentCol = 0; currentCol < cols; currentCol++ )
 		{
-			ModelMapItem* modelMapItem = new ModelMapItem(currentRow,currentCol);
+			ModelMapItem* modelMapItem = new ModelMapItem(currentRow,currentCol,++MapItemId);
 			modelMapItem->SetModelTerrainType( defaultTerrainType );
 			tempRow.append( modelMapItem );
 		}

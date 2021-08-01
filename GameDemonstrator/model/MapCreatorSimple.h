@@ -5,10 +5,15 @@
 
 class MapCreatorSimple : public IMapCreator
 {
+public:
+	/** */
+	MapCreatorSimple();
 	/** */
 	virtual bool CreateMap();
 	/** */
 	ModelMapRepository* GetMap();
+private:
+	int MapItemId;
 };
 
 #endif // MAPCREATORSIMPLE_H

@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "ModelMapItem.h"
 
-ModelMapItem::ModelMapItem( int row, int col )
+ModelMapItem::ModelMapItem( int row, int col, int id )
 	: CenterPoint(0,0),
 		Row(row),
 		Col(col),
-		Id(row*col+col),
+		Id(id),
 		TerrainType(nullptr),
 		OwnerType(nullptr)
 {
