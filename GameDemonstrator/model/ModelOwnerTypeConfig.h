@@ -7,8 +7,6 @@ public:
 private:
 	friend class ModelOwnerTypeFactory;
 	static QString ConfigFilePath;
-	static QString Version;
-	static QString VersionNumber;
 	static QString RootName;
 	static QString ElementName;
 	static QString SubelementId;

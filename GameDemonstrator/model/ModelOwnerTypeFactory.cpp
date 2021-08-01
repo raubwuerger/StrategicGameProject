@@ -7,6 +7,7 @@
 #include "DomValueExtractor.h"
 #include "ModelOwnerTypeConfig.h"
 #include "ModelOwnerTypeRepository.h"
+#include "ModelHeaderXMLConfig.h"
 
 ModelOwnerTypeFactory*	ModelOwnerTypeFactory::Instance = nullptr;
 
@@ -58,9 +59,9 @@ bool ModelOwnerTypeFactory::Create()
 		return false;
 	}
 
-	if (root.hasAttribute( config.Version ) && root.attribute( config.Version ) != config.VersionNumber ) 
+	if (root.hasAttribute( ModelHeaderXMLConfig::VERSION ) && root.attribute( ModelHeaderXMLConfig::VERSION ) != ModelHeaderXMLConfig::VERSION_NUMBER ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 version %2 file.").arg(config.RootName).arg(config.VersionNumber) );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 version %2 file.").arg(config.RootName).arg(ModelHeaderXMLConfig::VERSION_NUMBER) );
 		return false;
 	}
 

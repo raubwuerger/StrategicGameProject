@@ -389,6 +389,9 @@
     <ClCompile Include="SerializeXMLItems.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
+    <ClCompile Include="ModelHeaderXMLConfig.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -532,6 +535,9 @@
     <ClInclude Include="SerializeXMLItems.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
+    <ClInclude Include="ModelHeaderXMLConfig.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -628,5 +634,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CompleteOverview.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
 </Project>

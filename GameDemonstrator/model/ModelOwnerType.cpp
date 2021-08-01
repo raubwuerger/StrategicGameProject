@@ -2,10 +2,11 @@
 #include "ModelOwnerType.h"
 
 ModelOwnerType::ModelOwnerType( int id )
-	: Id(id)
+	: Id(id),
+	Human(true),
+	Color(Qt::green)
 {
 }
-
 
 ModelOwnerType::~ModelOwnerType()
 {
@@ -24,4 +25,9 @@ int ModelOwnerType::GetId() const
 QString ModelOwnerType::toString() const
 {
 	return QObject::tr("ModelOwnerType - Id: %1, Name: %2, PicturePath: %3").arg(QString::number(Id)).arg(Name).arg(PicturePath);
+}
+
+bool ModelOwnerType::GetHuman() const
+{
+	return Human;
 }
