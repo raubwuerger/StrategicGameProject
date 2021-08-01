@@ -72,3 +72,8 @@ QString ModelTerrainType::toString() const
 		.arg(QString::number(DefenseModifier))
 		.arg(QString::number(AttackModifier));
 }
+
+const QString& ModelTerrainType::GetPicturePath() const
+{
+	return PicturePath;
+}

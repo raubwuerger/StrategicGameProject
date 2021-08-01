@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MapEventManager.h"
 #include "model\ModelMapRepository.h"
+#include "model\ModelTerrainType.h"
 
 MapEventManager::MapEventManager(QObject *parent)
 	: QObject(parent),
@@ -43,13 +44,15 @@ void MapEventManager::UpdateMapItemInfo( int row, int col )
 	{
 		return;
 	}
+	
 	if( HexItemInfoDialog == nullptr )
 	{
 		return;
 	}
 
-	MapViewHexItem *item = MapItems[row][col];
-	HexItemInfoDialog->ui.lineEditID->setText( QString::number(ModelMapRepository::GetInstance()->GetModelMapItemId(row,col)) );
-	HexItemInfoDialog->ui.lineEditCol->setText( QString::number(item->GetCol()) );
-	HexItemInfoDialog->ui.lineEditRow->setText( QString::number(item->GetRow()) );
+	const ModelMapItem* modelMapItem = ModelMapRepository::GetInstance()->GetModelMapItem(row,col);
+	HexItemInfoDialog->ui.lineEditID->setText( QString::number(modelMapItem->GetId()) );
+	HexItemInfoDialog->ui.lineEditCol->setText( QString::number(col) );
+	HexItemInfoDialog->ui.lineEditRow->setText( QString::number(row) );
+	HexItemInfoDialog->ui.lineEditType->setText( modelMapItem->GetTerrainType()->GetName() );
 }

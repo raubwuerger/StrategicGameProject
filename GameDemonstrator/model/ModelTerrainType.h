@@ -14,7 +14,7 @@ public:
 	/** Get m_Name */	
 	const QString& GetName() const;
 	/** Get m_PicturePath */
-	const QString& GetPicturePath() const { return PicturePath; }
+	const QString& GetPicturePath() const;
 	/** Get m_Image */
 	const QImage * GetImage() const;
 	/** Set m_Image */

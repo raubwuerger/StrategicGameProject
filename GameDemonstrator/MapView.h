@@ -28,8 +28,6 @@ private:
 	/** */
 	void CreateMapFromModel();
 	/** */
-	void CreateMap();
-	/** */
 	void InitMapEventManager();
 	/** */
 	double CalcMapWidthInPixel() const;
