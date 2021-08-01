@@ -386,6 +386,9 @@
     <ClCompile Include="SerializeXML.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
+    <ClCompile Include="SerializeXMLItems.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -524,6 +527,9 @@
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
     <ClInclude Include="SerializeXML.h">
+      <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializeXMLItems.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
   </ItemGroup>

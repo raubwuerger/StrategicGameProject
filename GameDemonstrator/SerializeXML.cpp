@@ -2,6 +2,7 @@
 #include "SerializeXML.h"
 #include "LogInterface.h"
 #include <QtXML>
+#include "SerializeXMLItems.h"
 #include "game/GameMainCounter.h"
 #include "model/ModelMapRepository.h"
 #include "model/ModelMapItem.h"
@@ -51,7 +52,7 @@ bool SerializeXML::CreateFramework()
 	xmlWriter.setAutoFormatting(true);
 	xmlWriter.writeStartDocument();
 
-	xmlWriter.writeStartElement("Savegame");
+	xmlWriter.writeStartElement( SerializeXMLItems::SAVEGAME );
 
 	if( false == SaveGame(xmlWriter) )
 	{
@@ -87,26 +88,29 @@ bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 
 bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 {
-	xmlWriter.writeStartElement("Game");
-		xmlWriter.writeTextElement("Version", "0.9" );
-		xmlWriter.writeTextElement("Playercount", "2");
-		xmlWriter.writeTextElement("Game Turn", GameMainCounter::GetInstance()->GetCurrentDate().toString("yyyy-MM"));
+	xmlWriter.writeStartElement( SerializeXMLItems::GAME );
+		xmlWriter.writeTextElement( SerializeXMLItems::VERSION, "0.9" );
+		xmlWriter.writeTextElement( SerializeXMLItems::PLAYERCOUNT, "2");
+		xmlWriter.writeTextElement( SerializeXMLItems::GAMETURN, GameMainCounter::GetInstance()->GetCurrentDate().toString("yyyy-MM"));
 	xmlWriter.writeEndElement();
 	return true;
 }
 
 bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 {
-	xmlWriter.writeStartElement("Players");
-		xmlWriter.writeTextElement("Player", "Spieler 1" );
-		xmlWriter.writeTextElement("Player", "Spieler 2" );
+	xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS );
+		xmlWriter.writeStartElement( SerializeXMLItems::PLAYER );
+			xmlWriter.writeTextElement( SerializeXMLItems::ID, "1" );
+			xmlWriter.writeTextElement( SerializeXMLItems::NAME, "Spieler 1" );
+			xmlWriter.writeTextElement( SerializeXMLItems::HUMAN, "1" );
+		xmlWriter.writeEndElement();
 	xmlWriter.writeEndElement();
 	return true;
 }
 
 bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 {
-	xmlWriter.writeStartElement("Map");
+	xmlWriter.writeStartElement( SerializeXMLItems::MAP );
 	if( false == CreateMapItems(xmlWriter) )
 	{
 		xmlWriter.writeEndElement();
@@ -118,7 +122,7 @@ bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 
 bool SerializeXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
 {
-	xmlWriter.writeStartElement("MapItems");
+	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEMS );
 
 	const QVector< QVector<ModelMapItem*> >* modelMap = ModelMapRepository::GetInstance()->GetMapItems();
 	if( nullptr == modelMap )
@@ -148,11 +152,11 @@ bool SerializeXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
 
 bool SerializeXML::CreateMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
 {
-	xmlWriter.writeStartElement("MapItem");
-		xmlWriter.writeTextElement("ID",QString::number(modelMapItem->GetId()));
-		xmlWriter.writeTextElement("Row",QString::number(modelMapItem->GetRow()));
-		xmlWriter.writeTextElement("Col",QString::number(modelMapItem->GetCol()));
-		xmlWriter.writeTextElement("TerrainType",QString::number(modelMapItem->GetTerrainType()->GetId()));
+	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEM );
+		xmlWriter.writeTextElement( SerializeXMLItems::ID, QString::number(modelMapItem->GetId()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::ROW, QString::number(modelMapItem->GetRow()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::COL, QString::number(modelMapItem->GetCol()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::TERRAINTYPE, QString::number(modelMapItem->GetTerrainType()->GetId()) );
 	xmlWriter.writeEndElement();
 	return true;
 }
