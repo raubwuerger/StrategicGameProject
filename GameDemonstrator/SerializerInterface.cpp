@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SerializerInterface.h"
-#include "SaveToXML.h"
+#include "SerializeXML.h"
 
 SerializerInterface::SerializerInterface()
 	: SerializeGameInterface(nullptr)

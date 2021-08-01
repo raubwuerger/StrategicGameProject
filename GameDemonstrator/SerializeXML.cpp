@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SaveToXML.h"
+#include "SerializeXML.h"
 #include "LogInterface.h"
 #include <QtXML>
 #include "game/GameMainCounter.h"
@@ -7,15 +7,15 @@
 #include "model/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
 
-SaveToXML::SaveToXML()
+SerializeXML::SerializeXML()
 {
 }
 
-SaveToXML::~SaveToXML()
+SerializeXML::~SerializeXML()
 {
 }
 
-bool SaveToXML::SaveGame()
+bool SerializeXML::SaveGame()
 {
 	if( false == CreateFramework() )
 	{
@@ -24,12 +24,12 @@ bool SaveToXML::SaveGame()
 	return false;
 }
 
-bool SaveToXML::LoadGame()
+bool SerializeXML::LoadGame()
 {
 	return false;
 }
 
-bool SaveToXML::CreateFramework()
+bool SerializeXML::CreateFramework()
 {
 	QString saveGamePath(".\\savegames\\");
 	QString saveGameFile(saveGamePath);
@@ -68,7 +68,7 @@ bool SaveToXML::CreateFramework()
 }
 
 
-bool SaveToXML::SaveGame( QXmlStreamWriter& xmlWriter )
+bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 {
 	if( false == SaveGameData(xmlWriter) )
 	{
@@ -85,7 +85,7 @@ bool SaveToXML::SaveGame( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
-bool SaveToXML::SaveGameData( QXmlStreamWriter& xmlWriter )
+bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement("Game");
 		xmlWriter.writeTextElement("Version", "0.9" );
@@ -95,7 +95,7 @@ bool SaveToXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
-bool SaveToXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
+bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement("Players");
 		xmlWriter.writeTextElement("Player", "Spieler 1" );
@@ -104,7 +104,7 @@ bool SaveToXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
-bool SaveToXML::SaveMapData( QXmlStreamWriter& xmlWriter )
+bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement("Map");
 	if( false == CreateMapItems(xmlWriter) )
@@ -116,7 +116,7 @@ bool SaveToXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
-bool SaveToXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
+bool SerializeXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement("MapItems");
 
@@ -146,7 +146,7 @@ bool SaveToXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
 	return true;
 }
 
-bool SaveToXML::CreateMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
+bool SerializeXML::CreateMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
 {
 	xmlWriter.writeStartElement("MapItem");
 		xmlWriter.writeTextElement("ID",QString::number(modelMapItem->GetId()));

@@ -248,9 +248,6 @@
     <ClCompile Include="EditorToolbox.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="SaveBinary.cpp">
-      <Filter>Source Dateien\IO</Filter>
-    </ClCompile>
     <ClCompile Include="SerializerInterface.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
@@ -277,9 +274,6 @@
     </ClCompile>
     <ClCompile Include="HexItemEventManager.cpp">
       <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveToXML.cpp">
-      <Filter>Source Dateien\IO</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelDataOverallSettings.cpp">
       <Filter>Source Dateien\Model</Filter>
@@ -386,6 +380,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameFactory.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="SerializeBinary.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="SerializeXML.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -430,9 +430,6 @@
     <ClInclude Include="ModelFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="SaveBinary.h">
-      <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
     <ClInclude Include="SerializerFactory.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
@@ -441,9 +438,6 @@
     </ClInclude>
     <ClInclude Include="HexagonData.h">
       <Filter>Header Dateien\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveToXML.h">
-      <Filter>Header Dateien\IO</Filter>
     </ClInclude>
     <ClInclude Include="ISerializeGameInterface.h">
       <Filter>Header Dateien\IO</Filter>
@@ -525,6 +519,12 @@
     </ClInclude>
     <ClInclude Include="model\MapCreatorSaveGame.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializeBinary.h">
+      <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializeXML.h">
+      <Filter>Header Dateien\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,13 +4,13 @@
 #include <QXmlStreamWriter>
 class ModelMapItem;
 
-class SaveToXML : public ISerializeGameInterface
+class SerializeXML : public ISerializeGameInterface
 {
 public:
 /** */
-	SaveToXML();
+	SerializeXML();
 /** */
-	~SaveToXML();
+	~SerializeXML();
 public:
 	/** */
 	bool SaveGame();

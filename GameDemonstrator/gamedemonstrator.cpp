@@ -11,7 +11,7 @@
 #include "model/ModelOwnerTypeRepository.h"
 #include "HexItemInfoDialog.h"
 #include "SerializerInterface.h"
-#include "SaveBinary.h"
+#include "SerializeBinary.h"
 #include "SerializerFactory.h"
 #include "Action.h"
 #include "LogFactory.h"

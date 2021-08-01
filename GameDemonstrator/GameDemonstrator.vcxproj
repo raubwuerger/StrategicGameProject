@@ -375,8 +375,8 @@
     <ClCompile Include="model\ModelTerrainTypeFactory.cpp" />
     <ClCompile Include="model\ModelTerrainTypeRepository.cpp" />
     <ClCompile Include="QActionRepository.cpp" />
-    <ClCompile Include="SaveBinary.cpp" />
-    <ClCompile Include="SaveToXML.cpp" />
+    <ClCompile Include="SerializeBinary.cpp" />
+    <ClCompile Include="SerializeXML.cpp" />
     <ClCompile Include="SerializerFactory.cpp" />
     <ClCompile Include="SerializerInterface.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -514,7 +514,7 @@
     <ClInclude Include="model\ModelTerrainTypeConfig.h" />
     <ClInclude Include="model\ModelTerrainTypeFactory.h" />
     <ClInclude Include="model\ModelTerrainTypeRepository.h" />
-    <ClInclude Include="SaveToXML.h" />
+    <ClInclude Include="SerializeXML.h" />
     <ClInclude Include="SerializerFactory.h" />
     <ClInclude Include="DomElementFinder.h" />
     <CustomBuild Include="CreateNewMapDialog.h">
@@ -556,7 +556,7 @@
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="model\ModelMapItem.h" />
-    <ClInclude Include="SaveBinary.h" />
+    <ClInclude Include="SerializeBinary.h" />
     <CustomBuild Include="SerializerInterface.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SerializerInterface.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>

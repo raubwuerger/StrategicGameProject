@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "SaveBinary.h"
+#include "SerializeBinary.h"
 #include "Model\ModelMapRepository.h"
 
 
-SaveBinary::SaveBinary()
+SerializeBinary::SerializeBinary()
 {
 }
 
 
-SaveBinary::~SaveBinary()
+SerializeBinary::~SerializeBinary()
 {
 }
 
-bool SaveBinary::SaveGame()
+bool SerializeBinary::SaveGame()
 {
 	//TODO: Not yet implemented!!!
 	return false;
@@ -30,7 +30,7 @@ bool SaveBinary::SaveGame()
 */
 }
 
-bool SaveBinary::LoadGame()
+bool SerializeBinary::LoadGame()
 {
 	//TODO: Not yet implemented!!!
 	return false;
