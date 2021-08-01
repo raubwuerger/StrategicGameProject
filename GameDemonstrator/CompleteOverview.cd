@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Action" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Action.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameDemonstrator" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAVBAAAFAAAEBAACEAAAAA4AgAAxAAAAAAAjBIAgAA=</HashCode>
+      <FileName>gamedemonstrator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QActionRepository" Collapsed="true">
+    <Position X="14.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAIAAAAAAAAAAAAAAABAAAAAAAQAQAABAgAAA=</HashCode>
+      <FileName>QActionRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapEventManager" Collapsed="true">
+    <Position X="21.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAIAAAACAAAAAAAAAAAAIAAACAAAAABAg=</HashCode>
+      <FileName>MapEventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HexagonData" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgQBAEBgAABAAAASGAQAAAQAAAAAMAAAEAAAQA=</HashCode>
+      <FileName>HexagonData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HexItemEventManager" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HexItemEventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreateNewMapDialog" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAABCAAAAAAAAAAAAA=</HashCode>
+      <FileName>CreateNewMapDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameTurnDialog" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameTurnDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapView" Collapsed="true">
+    <Position X="23.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAIgAAAAAAAAAAAAkAAAAAABACEEAA=</HashCode>
+      <FileName>MapView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapViewGraphicsScene" Collapsed="true">
+    <Position X="25.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAABAAAAQAgAEAAAAAACAAAA=</HashCode>
+      <FileName>MapViewGraphicsScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapViewHexItem" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgAAAAAAAQAAAACAACAACBAEAEAggAQBCAAIAASCgI=</HashCode>
+      <FileName>MapViewHexItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HexItemInfoDialog" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>HexItemInfoDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EditorToolbox" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAACAAAAAQAAIEAAIAAAAAAAAAA=</HashCode>
+      <FileName>EditorToolbox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConnectorButtonTerrainTypeId" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EditorToolbox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TerrainTypeEditor" Collapsed="true">
+    <Position X="20" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAQAA=</HashCode>
+      <FileName>TerrainTypeEditor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IMapCreator" Collapsed="true">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>model\IMapCreator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapCreatorSimple" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>model\MapCreatorSimple.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelDataOverallSettings" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>model\ModelDataOverallSettings.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapCreatorSaveGame" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>model\MapCreatorSaveGame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapRepository" Collapsed="true">
+    <Position X="23.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAgIABAAIAAAAABAAAABAAAAAAASAAAABAAACA=</HashCode>
+      <FileName>model\ModelMapRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapConfig" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAAAIAABAAgAAAAQAAAABAAAAA=</HashCode>
+      <FileName>model\ModelMapConfig.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapFactory" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAABAAAAAAAAABAAAAAAAYAEAQBAAAAA=</HashCode>
+      <FileName>model\ModelMapFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelOwnerType" Collapsed="true">
+    <Position X="25.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIIBAAAAAAAAAABAQAAAAAAAAAAAAAgAIABAA=</HashCode>
+      <FileName>model\ModelOwnerType.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelOwnerTypeConfig" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICAAAAAAAIAAAEQEAAAAAAAAAgAAAAAAAAIAAAAEAgA=</HashCode>
+      <FileName>model\ModelOwnerTypeConfig.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelOwnerTypeRepository" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAABBQEAAAAAAAAACAAAAABIIgACAAQAAAABAAAAA=</HashCode>
+      <FileName>model\ModelOwnerTypeRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelSettings" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAABAAAAAAAEAoAAACAAAAAAAAAAA=</HashCode>
+      <FileName>model\ModelSettings.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelSettingsFactory" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAEAAAAAAEAAAAAAACAAAAA=</HashCode>
+      <FileName>model\ModelSettingsFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainType" Collapsed="true">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFACgAAAoAAAiAAAQQAABAcQAAAAABABEAAAAAIABAA=</HashCode>
+      <FileName>model\ModelTerrainType.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainTypeConfig" Collapsed="true">
+    <Position X="23.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICARAAAAEIAAAEAEAAAAAAAAQgCEAAAAABIAAAEEAAA=</HashCode>
+      <FileName>model\ModelTerrainTypeConfig.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainTypeFactory" Collapsed="true">
+    <Position X="25.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgEAAAAAAAAAAAAAAEBAAAAEAASCAAABAAAAA=</HashCode>
+      <FileName>model\ModelTerrainTypeFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainTypeRepository" Collapsed="true">
+    <Position X="13" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAQGAAAAgAAAAAAAAgABACAAAgAQAAAIBAAgAA=</HashCode>
+      <FileName>model\ModelTerrainTypeRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelFactory" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>ModelFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapItem" Collapsed="true">
+    <Position X="21.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAACAAAAAAECAAAAAAAAAEAAgAABEABAAIAAAA=</HashCode>
+      <FileName>model\ModelMapItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelOwnerTypeFactory" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAgAAAAAAAAAAAAAAABAAEAEAAQCAAAAAAAAA=</HashCode>
+      <FileName>model\ModelOwnerTypeFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ISerializeGameInterface" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>ISerializeGameInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveToXML" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAASAAAAAAAIAAAAAAAAAAACMAAAAAAAAAE=</HashCode>
+      <FileName>SaveToXML.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerializerFactory" Collapsed="true">
+    <Position X="16.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAACAAAgAAAAABAAAAAAAABAAAAA=</HashCode>
+      <FileName>SerializerFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveBinary" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgABAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>SaveBinary.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SerializerInterface" Collapsed="true">
+    <Position X="18.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAE=</HashCode>
+      <FileName>SerializerInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomValueExtractor" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAACAAAAAAAAAAAAAAAAAgAIAAAAAA=</HashCode>
+      <FileName>DomValueExtractor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomElementFinder" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAABEAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomElementFinder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameDemonstratorConfig" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAQAAACAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\GameDemonstratorConfig.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameDemonstratorFactory" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAgAAAAAIAAAAAAAAJAAAAEgAQAAAABAAAAA=</HashCode>
+      <FileName>game\GameDemonstratorFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMainCounter" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAgAAAAAAIAAAAQAABAEAAQAAQAAAAEAAAAA=</HashCode>
+      <FileName>game\GameMainCounter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMapFactory" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\GameMapFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMode" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAgAAAAABAAA=</HashCode>
+      <FileName>game\GameMode.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameModeEditor" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\GameModeEditor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameModeStandard" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\GameModeStandard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameFactory" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAQAAAAAAAAAAAAAAAAgAAAAAAAAQAEAgBAAAAA=</HashCode>
+      <FileName>game\GameFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMainLoop" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAAAACAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>game\GameMainLoop.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMainThread" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIACgEAAAAAAAAIAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>game\GameMainThread.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_CreateNewMapDialog" Collapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIAAAIAAAAAAEAAAAAAQAAAAAAYAIAAACIAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CreateNewMapDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_GameDemonstratorClass" Collapsed="true">
+    <Position X="3.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAQAAAAAAAAIAAAAQAIAAAgAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_gamedemonstrator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_GameTurnDialog" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAQAIAAAAAAAAAAAAAE=</HashCode>
+      <FileName>GeneratedFiles\ui_GameTurnDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_HexItemInfoDialog" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAABAAgAAAABAAAAAAAAAAAIQAIAAAAAAIQAgAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_HexItemInfoDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LoggingTableWidget" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAEAACAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LoggingTableWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::Command" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAABAQAAAAABQQAAAAIAAAAACAAAAAABAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\Command.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogManager" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABABEABAgIQAAAgAECIQCEAAAACAAgAABAgAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogManagerThreadContainer" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACIAAAAAAAAAAAAAAAAABAAAIAACAAAwAAQ=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogManagerThread.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::Logger" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAwAAAAIAAIAAAAggAAQAAAABABBAAAACAAkABIA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\Logger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogFactory" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEJAAAAAAAQAAGABAgAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogMessage" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAQAAAAAAAAAQAAAIAQAAACgAgAIAAAEgIAAACQA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogMessage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LoggerCout" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LoggerCout.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LoggerFile" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAhAAgAAAAMAQAAAQAAAAAQAAEAAAAAAEAQCAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LoggerFile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogLevel" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEIAAAAAAAAAAAAQUAAAAAAAKAAQAggAAABAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogLevel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogInterface" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAEAKAAACCAEhAAAABCABQAgBAgAQAAAYAAmEBQAKBI=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LoggingTableWidgetRow" Collapsed="true">
+    <Position X="25.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LoggingTableWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::CWidgetConnector" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LoggerTableWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LoggerTableWidget" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAABQAAAAAAAAIAAAABAAAACAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LoggerTableWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogCategoryInterface" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAQAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogCategoryByName" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAQAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogCategoryDefault" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEIAAAAAAAIAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jha::LogCategoryVisitor" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAgAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::CreateNewMapDialog" Collapsed="true">
+    <Position X="6.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CreateNewMapDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::GameDemonstratorClass" Collapsed="true">
+    <Position X="3.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_gamedemonstrator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::GameTurnDialog" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_GameTurnDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::HexItemInfoDialog" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_HexItemInfoDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="qt_meta_stringdata_CreateNewMapDialog_t" Collapsed="true">
+    <Position X="14.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_CreateNewMapDialog.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_EditorToolbox_t" Collapsed="true">
+    <Position X="16.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_EditorToolbox.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_ConnectorButtonTerrainTypeId_t" Collapsed="true">
+    <Position X="13" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_EditorToolbox.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_GameDemonstrator_t" Collapsed="true">
+    <Position X="18.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_gamedemonstrator.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_GameFactory_t" Collapsed="true">
+    <Position X="20" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_GameFactory.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_GameMainLoop_t" Collapsed="true">
+    <Position X="21.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_GameMainLoop.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_GameMainThread_t" Collapsed="true">
+    <Position X="23.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_GameMainThread.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_GameTurnDialog_t" Collapsed="true">
+    <Position X="25.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_GameTurnDialog.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_HexItemEventManager_t" Collapsed="true">
+    <Position X="13" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_HexItemEventManager.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_HexItemInfoDialog_t" Collapsed="true">
+    <Position X="14.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_HexItemInfoDialog.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_jha__CWidgetConnector_t" Collapsed="true">
+    <Position X="16.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_LoggerTableWidget.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_jha__LoggingTableWidget_t" Collapsed="true">
+    <Position X="18.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_LoggingTableWidget.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_jha__LogInterface_t" Collapsed="true">
+    <Position X="20" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_LogInterface.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_jha__LogManager_t" Collapsed="true">
+    <Position X="21.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_LogManager.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_jha__LogManagerThreadContainer_t" Collapsed="true">
+    <Position X="23.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_LogManagerThread.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_MapEventManager_t" Collapsed="true">
+    <Position X="25.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_MapEventManager.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_MapView_t" Collapsed="true">
+    <Position X="13" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_MapView.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_MapViewGraphicsScene_t" Collapsed="true">
+    <Position X="14.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_MapViewGraphicsScene.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_QActionRepository_t" Collapsed="true">
+    <Position X="16.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_QActionRepository.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_SerializerInterface_t" Collapsed="true">
+    <Position X="18.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_SerializerInterface.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_TerrainTypeEditor_t" Collapsed="true">
+    <Position X="20" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_TerrainTypeEditor.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="LEVEL" Collapsed="true">
+    <Position X="10.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="jha::LOGLEVEL" Collapsed="true">
+    <Position X="10.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQCEAAAgAAAAAAAAAAACABAAAQAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\LogInterface.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
