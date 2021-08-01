@@ -2,6 +2,7 @@
 
 #include "ISerializeGameInterface.h"
 #include <QXmlStreamWriter>
+class ModelMapItem;
 
 class SaveToXML : public ISerializeGameInterface
 {
@@ -26,5 +27,9 @@ private:
 	bool SavePlayerData( QXmlStreamWriter& xmlWriter );
 	/** */
 	bool SaveMapData( QXmlStreamWriter& xmlWriter );
+	/** */
+	bool CreateMapItems( QXmlStreamWriter& xmlWriter );
+	/** */
+	bool CreateMapItem( QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem );
 };
 

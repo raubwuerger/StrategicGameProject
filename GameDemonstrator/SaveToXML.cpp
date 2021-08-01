@@ -3,6 +3,9 @@
 #include "LogInterface.h"
 #include <QtXML>
 #include "game/GameMainCounter.h"
+#include "model/ModelMapRepository.h"
+#include "model/ModelMapItem.h"
+#include "model/ModelTerrainType.h"
 
 SaveToXML::SaveToXML()
 {
@@ -102,10 +105,52 @@ bool SaveToXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 bool SaveToXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement("Map");
-	for(int i=0;i<100;i++)
+	if( false == CreateMapItems(xmlWriter) )
 	{
-		xmlWriter.writeTextElement("Tile", QString::number(i) );
+		xmlWriter.writeEndElement();
+		return false;
 	}
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+bool SaveToXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
+{
+	xmlWriter.writeStartElement("MapItems");
+
+	const QVector< QVector<ModelMapItem*> >* modelMap = ModelMapRepository::GetInstance()->GetMapItems();
+	if( nullptr == modelMap )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Unable to save game map!") );
+		xmlWriter.writeEndElement();
+		return false;
+	}
+
+	int rows = modelMap->size();
+	for( int currentRow = 0; currentRow < rows; currentRow++ )
+	{
+		QVector<ModelMapItem*> row = modelMap->at(currentRow);
+		int cols = row.size();
+		for( int currentCol = 0; currentCol < cols; currentCol++ )
+		{
+			if( false == CreateMapItem( xmlWriter, row.at(currentCol) ) )
+			{
+				return false;
+			}
+		}
+	}
+
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+bool SaveToXML::CreateMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
+{
+	xmlWriter.writeStartElement("MapItem");
+		xmlWriter.writeTextElement("ID",QString::number(modelMapItem->GetId()));
+		xmlWriter.writeTextElement("Row",QString::number(modelMapItem->GetRow()));
+		xmlWriter.writeTextElement("Col",QString::number(modelMapItem->GetCol()));
+		xmlWriter.writeTextElement("TerrainType",QString::number(modelMapItem->GetTerrainType()->GetId()));
 	xmlWriter.writeEndElement();
 	return true;
 }

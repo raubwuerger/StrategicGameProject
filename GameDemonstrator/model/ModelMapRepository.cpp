@@ -32,6 +32,7 @@ void ModelMapRepository::SetMapItems( const QVector< QVector<ModelMapItem*>>* ma
 }
 
 ModelMapRepository::ModelMapRepository()
+	: MapItems(nullptr)
 {
 }
 

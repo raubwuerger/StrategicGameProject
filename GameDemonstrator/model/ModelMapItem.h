@@ -17,6 +17,10 @@ public:
 	const ModelTerrainType* GetTerrainType() const;
 	/** */
 	const int GetId() const;
+	/** */
+	const int GetRow() const { return Row; }
+	/** */
+	const int GetCol() const { return Col; }
 private:
 	QPoint			CenterPoint;
 	const int		Row;
