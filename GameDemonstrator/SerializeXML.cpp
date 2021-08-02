@@ -172,7 +172,7 @@ bool SerializeXML::LoadGame( const QString& saveGameName )
 bool SerializeXML::LoadFramework( const QString& saveGameName )
 {
 	QString saveGamePath(".\\savegames\\");
-	QString saveGameFile( saveGamePath +saveGamePath );
+	QString saveGameFile( saveGamePath +saveGameName );
 
 	QFile file(saveGameFile);
 
