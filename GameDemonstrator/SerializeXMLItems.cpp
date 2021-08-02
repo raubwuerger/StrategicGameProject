@@ -17,3 +17,6 @@ const QString SerializeXMLItems::ID = "ID";
 const QString SerializeXMLItems::ROW = "Row";
 const QString SerializeXMLItems::COL = "Col";
 const QString SerializeXMLItems::TERRAINTYPE = "TerrainType";
+const QString SerializeXMLItems::SETTINGS = "Settings";
+const QString SerializeXMLItems::ROWS = "Rows";
+const QString SerializeXMLItems::COLS = "Cols";

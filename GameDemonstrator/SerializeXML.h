@@ -17,7 +17,7 @@ public:
 	bool SaveGame( const QString& saveGameName );
 private:
 	/** */
-	bool SaveFramework( const QString& saveGameName );
+	bool SaveXMLHeader( const QString& saveGameName );
 	/** */
 	bool SaveGame( QXmlStreamWriter& xmlWriter );
 	/** */
@@ -27,6 +27,8 @@ private:
 	/** */
 	bool SaveMapData( QXmlStreamWriter& xmlWriter );
 	/** */
+	bool SaveMapSettings( QXmlStreamWriter& xmlWriter );
+	/** */
 	bool SaveMapItems( QXmlStreamWriter& xmlWriter );
 	/** */
 	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem );
@@ -35,7 +37,7 @@ public:
 	bool LoadGame( const QString& saveGameName );
 private:
 	/** */
-	bool LoadFramework( const QString& saveGameName );
+	bool LoadXMLHeader( const QString& saveGameName );
 	/** */
 	bool LoadGame( const QDomElement& xmlElement );
 	/** */
@@ -44,9 +46,5 @@ private:
 	bool LoadPlayerData( const QDomElement& xmlElement );
 	/** */
 	bool LoadMapData( const QDomElement& xmlElement );
-	/** */
-	bool LoadMapItems( const QDomElement& xmlElement );
-	/** */
-	bool LoadMapItem( const QDomElement& xmlElement, const ModelMapItem* modelMapItem );
 };
 
