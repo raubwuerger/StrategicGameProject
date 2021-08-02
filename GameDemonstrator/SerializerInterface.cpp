@@ -2,8 +2,7 @@
 #include "SerializerInterface.h"
 #include "SerializeXML.h"
 #include "game\GameMainCounter.h"
-#include "model\ModelSettingsFactory.h"
-#include "model\ModelSettings.h"
+#include "GameSetting.h"
 
 SerializerInterface::SerializerInterface()
 	: SerializeGameInterface(nullptr)
@@ -32,7 +31,7 @@ bool SerializerInterface::LoadGame()
 		Q_ASSERT( SerializeGameInterface != nullptr );
 		return false;
 	}
-	return SerializeGameInterface->LoadGame( ModelSettingsFactory::GetInstance()->Create()->CurrentSaveGameFileName );
+	return SerializeGameInterface->LoadGame( GameSetting::CurrentSaveGameName );
 }
 
 QString SerializerInterface::CreateSaveGameFileName() const
