@@ -3,6 +3,7 @@
 #include "ISerializeGameInterface.h"
 #include <QXmlStreamWriter>
 class ModelMapItem;
+class QDomElement;
 
 class SerializeXML : public ISerializeGameInterface
 {
@@ -13,12 +14,10 @@ public:
 	~SerializeXML();
 public:
 	/** */
-	bool SaveGame();
-	/** */
-	bool LoadGame();
+	bool SaveGame( const QString& saveGameName );
 private:
 	/** */
-	bool CreateFramework();
+	bool SaveFramework( const QString& saveGameName );
 	/** */
 	bool SaveGame( QXmlStreamWriter& xmlWriter );
 	/** */
@@ -28,8 +27,26 @@ private:
 	/** */
 	bool SaveMapData( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool CreateMapItems( QXmlStreamWriter& xmlWriter );
+	bool SaveMapItems( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool CreateMapItem( QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem );
+	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem );
+public:
+	/** */
+	bool LoadGame( const QString& saveGameName );
+private:
+	/** */
+	bool LoadFramework( const QString& saveGameName );
+	/** */
+	bool LoadGame( const QDomElement& xmlElement );
+	/** */
+	bool LoadGameData( const QDomElement& xmlElement );
+	/** */
+	bool LoadPlayerData( const QDomElement& xmlElement );
+	/** */
+	bool LoadMapData( const QDomElement& xmlElement );
+	/** */
+	bool LoadMapItems( const QDomElement& xmlElement );
+	/** */
+	bool LoadMapItem( const QDomElement& xmlElement, const ModelMapItem* modelMapItem );
 };
 

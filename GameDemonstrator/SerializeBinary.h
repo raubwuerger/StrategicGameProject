@@ -10,8 +10,8 @@ public:
 	/** */
 	~SerializeBinary();
 	/** */
-	bool SaveGame();
+	bool SaveGame( const QString& saveGameName );
 	/** */
-	bool LoadGame();
+	bool LoadGame( const QString& saveGameName );
 };
 

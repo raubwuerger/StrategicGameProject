@@ -7,11 +7,17 @@ class ModelSettingsFactory
 {
 public:
 	/** */
-	ModelSettingsFactory();
+	static ModelSettingsFactory* GetInstance();
 	/** */
-	~ModelSettingsFactory();
+	void Release();
 	/** */
 	ModelSettings* Create();
 private:
+	/** */
+	ModelSettingsFactory();
+	/** */
+	~ModelSettingsFactory();
+private:
 	ModelSettings* TheGameSettings;
+	static ModelSettingsFactory* Instance;
 };

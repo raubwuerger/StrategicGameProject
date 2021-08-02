@@ -8,43 +8,34 @@
 #include "model/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
 
+//==============================================================================
 SerializeXML::SerializeXML()
 {
 }
 
+//==============================================================================
 SerializeXML::~SerializeXML()
 {
 }
 
-bool SerializeXML::SaveGame()
+//==============================================================================
+bool SerializeXML::SaveGame( const QString& saveGameName )
 {
-	if( false == CreateFramework() )
+	if( false == SaveFramework(saveGameName) )
 	{
 		return false;
 	}
 	return false;
 }
 
-bool SerializeXML::LoadGame()
+//==============================================================================
+bool SerializeXML::SaveFramework( const QString& saveGameName )
 {
-	return false;
-}
-
-bool SerializeXML::CreateFramework()
-{
-	QString saveGamePath(".\\savegames\\");
-	QString saveGameFile(saveGamePath);
-	saveGameFile += "PlayerName_";
-	saveGameFile += GameMainCounter::GetInstance()->GetCurrentDate().toString( "yyyy_MM" );
-	saveGameFile += ".xml";
-
-	QDir().mkpath(".\\savegames\\");
-
-	QFile file(saveGameFile);
+	QFile file(saveGameName);
 
 	if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create savegame file: %1 ").arg(saveGameFile) );
+		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create savegame file: %1 ").arg(saveGameName) );
 		return false;
 	}
 
@@ -63,12 +54,13 @@ bool SerializeXML::CreateFramework()
 	xmlWriter.writeEndElement();
 
 	file.close();
-	jha::GetLog()->Log_INFO( QObject::tr("Succesfull create savegame: %1").arg(saveGameFile) );
+	jha::GetLog()->Log_INFO( QObject::tr("Succesfull create savegame: %1").arg(saveGameName) );
 
 	return true;
 }
 
 
+//==============================================================================
 bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 {
 	if( false == SaveGameData(xmlWriter) )
@@ -86,6 +78,7 @@ bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
+//==============================================================================
 bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::GAME );
@@ -96,6 +89,7 @@ bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
+//==============================================================================
 bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS );
@@ -108,10 +102,11 @@ bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
+//==============================================================================
 bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAP );
-	if( false == CreateMapItems(xmlWriter) )
+	if( false == SaveMapItems(xmlWriter) )
 	{
 		xmlWriter.writeEndElement();
 		return false;
@@ -120,7 +115,8 @@ bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 	return true;
 }
 
-bool SerializeXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
+//==============================================================================
+bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEMS );
 
@@ -139,7 +135,7 @@ bool SerializeXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
 		int cols = row.size();
 		for( int currentCol = 0; currentCol < cols; currentCol++ )
 		{
-			if( false == CreateMapItem( xmlWriter, row.at(currentCol) ) )
+			if( false == SaveMapItem( xmlWriter, row.at(currentCol) ) )
 			{
 				return false;
 			}
@@ -150,7 +146,8 @@ bool SerializeXML::CreateMapItems(QXmlStreamWriter& xmlWriter)
 	return true;
 }
 
-bool SerializeXML::CreateMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
+//==============================================================================
+bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEM );
 		xmlWriter.writeTextElement( SerializeXMLItems::ID, QString::number(modelMapItem->GetId()) );
@@ -158,5 +155,93 @@ bool SerializeXML::CreateMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem
 		xmlWriter.writeTextElement( SerializeXMLItems::COL, QString::number(modelMapItem->GetCol()) );
 		xmlWriter.writeTextElement( SerializeXMLItems::TERRAINTYPE, QString::number(modelMapItem->GetTerrainType()->GetId()) );
 	xmlWriter.writeEndElement();
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadGame( const QString& saveGameName )
+{
+	if( false == LoadFramework(saveGameName) )
+	{
+		return false;
+	}
+	return false;
+}
+
+//==============================================================================
+bool SerializeXML::LoadFramework( const QString& saveGameName )
+{
+	QString saveGamePath(".\\savegames\\");
+	QString saveGameFile( saveGamePath +saveGamePath );
+
+	QFile file(saveGameFile);
+
+	if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create savegame file: %1 ").arg(saveGameFile) );
+		return false;
+	}
+
+	QDomDocument saveGameDocument;
+	saveGameDocument.setContent(&file);
+
+	if( false == LoadGame(saveGameDocument.documentElement()) )
+	{
+		file.close();
+		return false;
+	}
+
+	file.close();
+	jha::GetLog()->Log_INFO( QObject::tr("Succesfull loaded savegame: %1").arg(saveGameFile) );
+
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadGame( const QDomElement& xmlElement )
+{
+	if( false == LoadGameData(xmlElement) )
+	{
+		return false;
+	}
+	if( false == LoadPlayerData(xmlElement) )
+	{
+		return false;
+	}
+	if( false == LoadMapData(xmlElement) )
+	{
+		return false;
+	}
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadGameData( const QDomElement& xmlElement )
+{
+	QString tagName = xmlElement.tagName();
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadPlayerData( const QDomElement& xmlElement )
+{
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadMapData( const QDomElement& xmlElement )
+{
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadMapItems( const QDomElement& xmlElement )
+{
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::LoadMapItem( const QDomElement& xmlElement, const ModelMapItem* modelMapItem)
+{
 	return true;
 }

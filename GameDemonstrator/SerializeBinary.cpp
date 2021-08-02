@@ -12,7 +12,7 @@ SerializeBinary::~SerializeBinary()
 {
 }
 
-bool SerializeBinary::SaveGame()
+bool SerializeBinary::SaveGame( const QString& saveGameName )
 {
 	//TODO: Not yet implemented!!!
 	return false;
@@ -30,7 +30,7 @@ bool SerializeBinary::SaveGame()
 */
 }
 
-bool SerializeBinary::LoadGame()
+bool SerializeBinary::LoadGame( const QString& saveGameName )
 {
 	//TODO: Not yet implemented!!!
 	return false;

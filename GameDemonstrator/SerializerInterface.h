@@ -18,6 +18,8 @@ public slots:
 	/** */
 	bool LoadGame();
 private:
+	QString CreateSaveGameFileName() const;
+private:
 	friend class SerializerFactory;
 	ISerializeGameInterface* SerializeGameInterface;
 };

@@ -4,7 +4,7 @@ class ISerializeGameInterface
 {
 public:
 	/** */
-	virtual bool SaveGame() = 0;
+	virtual bool SaveGame( const QString& saveGameName ) = 0;
 	/** */
-	virtual bool LoadGame() = 0;
+	virtual bool LoadGame( const QString& saveGameName ) = 0;
 };
