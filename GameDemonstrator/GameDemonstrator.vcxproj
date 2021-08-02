@@ -167,6 +167,7 @@
     <ClCompile Include="EditorToolbox.cpp" />
     <ClCompile Include="CreateNewMapDialog.cpp" />
     <ClCompile Include="gamedemonstrator.cpp" />
+    <ClCompile Include="GameSetting.cpp" />
     <ClCompile Include="GameTurnDialog.cpp" />
     <ClCompile Include="game\GameDemonstratorConfig.cpp" />
     <ClCompile Include="game\GameDemonstratorFactory.cpp" />
@@ -393,6 +394,7 @@
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="DomValueExtractor.h" />
+    <ClInclude Include="GameSetting.h" />
     <ClInclude Include="game\GameDemonstratorConfig.h" />
     <ClInclude Include="game\GameDemonstratorFactory.h" />
     <CustomBuild Include="game\GameFactory.h">

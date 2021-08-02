@@ -392,6 +392,9 @@
     <ClCompile Include="ModelHeaderXMLConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="GameSetting.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -537,6 +540,9 @@
     </ClInclude>
     <ClInclude Include="ModelHeaderXMLConfig.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSetting.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
