@@ -8,6 +8,7 @@
 #include "model/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/MapCreatorSaveGame.h"
+#include "DomNodeFinder.h"
 
 //==============================================================================
 SerializeXML::SerializeXML()
@@ -202,7 +203,14 @@ bool SerializeXML::LoadXMLHeader( const QString& saveGameName )
 	QDomDocument saveGameDocument;
 	saveGameDocument.setContent(&file);
 
-	if( false == LoadGame(saveGameDocument.documentElement()) )
+	QDomNodeList rootNodeList = saveGameDocument.elementsByTagName(SerializeXMLItems::SAVEGAME);
+	if( 0 == rootNodeList.count() )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("No root node named: %1").arg(SerializeXMLItems::SAVEGAME) );
+		return false;
+	}
+
+	if( false == LoadGame( rootNodeList.at(0).cloneNode(true) ) )
 	{
 		file.close();
 		return false;
@@ -215,17 +223,17 @@ bool SerializeXML::LoadXMLHeader( const QString& saveGameName )
 }
 
 //==============================================================================
-bool SerializeXML::LoadGame( const QDomElement& xmlElement )
+bool SerializeXML::LoadGame( const QDomNode& domNode )
 {
-	if( false == LoadGameData(xmlElement) )
+	if( false == LoadGameData(domNode.cloneNode(true)) )
 	{
 		return false;
 	}
-	if( false == LoadPlayerData(xmlElement) )
+	if( false == LoadPlayerData(domNode.cloneNode(true)) )
 	{
 		return false;
 	}
-	if( false == LoadMapData(xmlElement) )
+	if( false == LoadMapData(domNode.cloneNode(true)) )
 	{
 		return false;
 	}
@@ -233,32 +241,25 @@ bool SerializeXML::LoadGame( const QDomElement& xmlElement )
 }
 
 //==============================================================================
-bool SerializeXML::LoadGameData( const QDomElement& xmlElement )
+bool SerializeXML::LoadGameData( const QDomNode& domNode )
 {
-	QString tagName = xmlElement.tagName();
+	QString domNodeName = domNode.nodeName();
 	return true;
 }
 
 //==============================================================================
-bool SerializeXML::LoadPlayerData( const QDomElement& xmlElement )
+bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 {
-	QString tagName = xmlElement.tagName();
+	QString domNodeName = domNode.nodeName();
 	return true;
 }
 
 //==============================================================================
-bool SerializeXML::LoadMapData( const QDomElement& xmlElement )
+bool SerializeXML::LoadMapData( const QDomNode& domNode )
 {
-	QString tagName = xmlElement.tagName();
-	QDomNodeList elements = xmlElement.elementsByTagName(SerializeXMLItems::MAP);
-	if( true == elements.isEmpty() )
-	{
-		jha::GetLog()->Log_INFO( QObject::tr("Node %1 not found in savegame.").arg(SerializeXMLItems::MAP) );
-		return false;
-	}
+	QString domNodeName = domNode.nodeName();
 
-	int elementCount = elements.count();
-
-	MapCreatorSaveGame mapCreatorSaveGame(elements);
+	DomNodeFinder domNodeFinder(domNode);
+	MapCreatorSaveGame mapCreatorSaveGame( domNode.cloneNode() );
 	return mapCreatorSaveGame.CreateMap();
 }

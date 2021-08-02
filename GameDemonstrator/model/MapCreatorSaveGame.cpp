@@ -4,26 +4,29 @@
 #include "SerializeXMLItems.h"
 #include "LogInterface.h"
 #include "DomNodeListValueExtractor.h"
+#include "DomNodeFinder.h"
 
-MapCreatorSaveGame::MapCreatorSaveGame(const QDomNodeList& mapElements)
+MapCreatorSaveGame::MapCreatorSaveGame( const QDomNode& mapElements )
 	: MapElements(mapElements)
 {
 }
 
+MapCreatorSaveGame::~MapCreatorSaveGame()
+{
+
+}
+
 bool MapCreatorSaveGame::CreateMap()
 {
-	const QDomNode *settings = FindDomNodeByName(SerializeXMLItems::SETTINGS);
-	if( nullptr == settings )
+	DomNodeFinder domNodeFinder(MapElements);
+
+	if( false == InitializeMap(MapElements) )
+//	if( false == InitializeMap(domNodeFinder.FindDomeNodeByNameClone(SerializeXMLItems::SETTINGS)) )
 	{
 		return false;
 	}
 
-	if( false == InitializeMap(settings) )
-	{
-		return false;
-	}
-
-	const QDomNode *mapItems = FindDomNodeByName(SerializeXMLItems::MAPITEMS);
+	const QDomNode *mapItems = domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAPITEMS);
 	if( nullptr == mapItems )
 	{
 		return false;
@@ -42,31 +45,9 @@ ModelMapRepository* MapCreatorSaveGame::GetMap()
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-const QDomNode* MapCreatorSaveGame::FindDomNodeByName(const QString& domNodeName)
+bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 {
-	if( true == MapElements.isEmpty() )
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child elements!") );
-		return nullptr;
-	}
-
-	for( int currentDomNode = 0; currentDomNode < MapElements.size(); currentDomNode++ )
-	{
-		QString nodeName = MapElements.at(currentDomNode).nodeName();
-		if( MapElements.at(currentDomNode).nodeName() != domNodeName )
-		{
-			continue;
-		}
-		return &MapElements.at(currentDomNode);
-	}
-
-	jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child element with name: %1").arg(domNodeName) );
-	return nullptr;
-}
-
-bool MapCreatorSaveGame::InitializeMap(const QDomNode *settings)
-{
-	QDomNodeList settingsNodeList = settings->childNodes();
+	QDomNodeList settingsNodeList = settings.childNodes();
 	if( true == settingsNodeList.isEmpty() )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child elements") );
@@ -75,7 +56,7 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode *settings)
 
 	int rows = -1;
 	{
-		DomNodeListValueExtractor domNodeListValueExtractor( settings->childNodes() );
+		DomNodeListValueExtractor domNodeListValueExtractor( settings.childNodes() );
 		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::ROWS, rows ) )
 		{
 			return false;
@@ -84,7 +65,7 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode *settings)
 
 	int cols = -1;
 	{
-		DomNodeListValueExtractor domNodeListValueExtractor( settings->childNodes() );
+		DomNodeListValueExtractor domNodeListValueExtractor( settings.childNodes() );
 		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::COLS, cols ) )
 		{
 			return false;
@@ -109,7 +90,7 @@ bool MapCreatorSaveGame::CreateMapItems(const QDomNode *mapItems)
 		{
 			continue;
 		}
-		return &MapElements.at(currentDomNode);
+		return true;
 	}
 
 	jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child element with name: %1").arg(SerializeXMLItems::MAPITEM) );

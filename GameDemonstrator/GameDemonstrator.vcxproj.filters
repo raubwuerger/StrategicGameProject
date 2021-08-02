@@ -398,6 +398,9 @@
     <ClCompile Include="DomNodeListValueExtractor.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="DomNodeFinder.cpp">
+      <Filter>Source Dateien\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -548,6 +551,9 @@
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="DomNodeListValueExtractor.h">
+      <Filter>Header Dateien\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="DomNodeFinder.h">
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
