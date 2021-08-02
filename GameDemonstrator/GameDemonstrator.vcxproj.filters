@@ -395,6 +395,9 @@
     <ClCompile Include="GameSetting.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="DomNodeListValueExtractor.cpp">
+      <Filter>Source Dateien\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -543,6 +546,9 @@
     </ClInclude>
     <ClInclude Include="GameSetting.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="DomNodeListValueExtractor.h">
+      <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

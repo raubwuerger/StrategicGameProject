@@ -242,12 +242,14 @@ bool SerializeXML::LoadGameData( const QDomElement& xmlElement )
 //==============================================================================
 bool SerializeXML::LoadPlayerData( const QDomElement& xmlElement )
 {
+	QString tagName = xmlElement.tagName();
 	return true;
 }
 
 //==============================================================================
 bool SerializeXML::LoadMapData( const QDomElement& xmlElement )
 {
+	QString tagName = xmlElement.tagName();
 	QDomNodeList elements = xmlElement.elementsByTagName(SerializeXMLItems::MAP);
 	if( true == elements.isEmpty() )
 	{
@@ -255,13 +257,7 @@ bool SerializeXML::LoadMapData( const QDomElement& xmlElement )
 		return false;
 	}
 
-	QDomNode nodeMap = elements.at(0);
-	QDomElement nodeMapItems = nodeMap.firstChildElement();
-	if( nodeMapItems.nodeName() != SerializeXMLItems::MAPITEMS )
-	{
-		jha::GetLog()->Log_INFO( QObject::tr("Node %1 not found in savegame.").arg(SerializeXMLItems::MAPITEMS) );
-		return false;
-	}
+	int elementCount = elements.count();
 
 	MapCreatorSaveGame mapCreatorSaveGame(elements);
 	return mapCreatorSaveGame.CreateMap();

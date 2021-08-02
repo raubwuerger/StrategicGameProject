@@ -163,6 +163,7 @@
     <ClCompile Include="..\StandardLibQt\LogManagerThread.cpp" />
     <ClCompile Include="..\StandardLibQt\LogMessage.cpp" />
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="DomNodeListValueExtractor.cpp" />
     <ClCompile Include="DomValueExtractor.cpp" />
     <ClCompile Include="EditorToolbox.cpp" />
     <ClCompile Include="CreateNewMapDialog.cpp" />
@@ -393,6 +394,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="DomNodeListValueExtractor.h" />
     <ClInclude Include="DomValueExtractor.h" />
     <ClInclude Include="GameSetting.h" />
     <ClInclude Include="game\GameDemonstratorConfig.h" />
