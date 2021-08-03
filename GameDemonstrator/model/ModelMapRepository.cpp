@@ -28,6 +28,8 @@ const QVector< QVector<ModelMapItem*> >* ModelMapRepository::GetMapItems() const
 
 void ModelMapRepository::SetMapItems( const QVector< QVector<ModelMapItem*>>* mapItems)
 {
+	delete MapItems;
+	MapItems = nullptr;
 	MapItems = mapItems;
 }
 
@@ -69,7 +71,7 @@ int ModelMapRepository::GetRows() const
 	return MapItems->size();
 }
 
-const ModelMapItem* ModelMapRepository::GetModelMapItem(const unsigned int row, const unsigned int col)
+const ModelMapItem* ModelMapRepository::GetModelMapItem( unsigned int row, unsigned int col)
 {
 	int rowCount = GetRows();
 	if( row > rowCount )
@@ -89,7 +91,7 @@ const ModelMapItem* ModelMapRepository::GetModelMapItem(const unsigned int row, 
 	return concreteRow.at(col);
 }
 
-int ModelMapRepository::GetModelMapItemId(const unsigned int row, const unsigned int col)
+int ModelMapRepository::GetModelMapItemId( unsigned int row, unsigned int col)
 {
 	const ModelMapItem* found = GetModelMapItem(row,col);
 	if( nullptr == found )

@@ -19,9 +19,9 @@ public:
 	/** */
 	int GetRows() const;
 	/** */
-	const ModelMapItem* GetModelMapItem( const unsigned int row, const unsigned int col );
+	const ModelMapItem* GetModelMapItem( unsigned int row, unsigned int col );
 	/** */
-	int GetModelMapItemId( const unsigned int row, const unsigned int col );
+	int GetModelMapItemId( unsigned int row, unsigned int col );
 private:
 	/** */
 	ModelMapRepository();
@@ -29,6 +29,6 @@ private:
 	~ModelMapRepository();
 private:
 	friend class ModelMapFactory;
-	const QVector< QVector<ModelMapItem*> >*	MapItems;
+	mutable const QVector< QVector<ModelMapItem*> >*	MapItems;
 	static ModelMapRepository* Instance;
 };
