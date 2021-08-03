@@ -50,12 +50,6 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 		return false;
 	}
 
-	for( int i=0;i<settingsNodeList.count();i++)
-	{
-		QString nodeName = settingsNodeList.at(i).nodeName();
-		QString doSomethingDifferent;
-	}
-
 	{
 		DomValueExtractor domNodeListValueExtractor( settings );
 		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::ROWS, Rows ) )
@@ -77,15 +71,26 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 
 bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 {
-	return true;
-/*	QDomNodeList mapItemNodeList = mapItems.childNodes();
+	QDomNodeList mapItemNodeList = mapItems.childNodes();
 	if( true == mapItemNodeList.isEmpty() )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child elements") );
 		return false;
 	}
 
-	const ModelTerrainType* defaultTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
+	QVector<ModelMapItem*> mapItemsUnsorted;
+	for( int nodeIndex = 0; nodeIndex < mapItemNodeList.count(); nodeIndex++ )
+	{
+		ModelMapItem* created = CreateFromXML( mapItemNodeList.at(nodeIndex) );
+		if( nullptr == created )
+		{
+			jha::GetLog()->Log_WARNING( QObject::tr("Unable to create ModelMapItem from savegame line number: %1").arg(QString::number(mapItemNodeList.at(nodeIndex).columnNumber())) );
+			return false;
+		}
+		mapItemsUnsorted.push_back(created);
+	}
+	return false;
+/*	const ModelTerrainType* defaultTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
 
 	QVector< QVector<ModelMapItem*> >* theCreatedMap = new QVector< QVector<ModelMapItem*> >();
 	theCreatedMap->reserve(Rows);
@@ -117,9 +122,54 @@ bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 	return false;*/
 }
 
-ModelMapItem* MapCreatorSaveGame::CreateFromXML(const QDomNode& node)
+ModelMapItem* MapCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
 {
-	return nullptr;
+	QDomNodeList mapNodes = mapNode.childNodes();
+	if( true == mapNodes.isEmpty() )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("QDomNode has no child elements!") );
+		return false;
+	}
+
+	int currentId = -1;
+	{
+		DomValueExtractor domNodeListValueExtractor( mapNode );
+		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::ID, currentId ) )
+		{
+			return false;
+		}
+	}
+
+	int currentRow = -1;
+	{
+		DomValueExtractor domNodeListValueExtractor( mapNode );
+		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::ROW, currentRow ) )
+		{
+			return false;
+		}
+	}
+
+	int currentCol = -1;
+	{
+		DomValueExtractor domNodeListValueExtractor( mapNode );
+		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::COL, currentCol ) )
+		{
+			return false;
+		}
+	}
+
+	int currentTerrainTyp = -1;
+	{
+		DomValueExtractor domNodeListValueExtractor( mapNode );
+		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::TERRAINTYPE, currentTerrainTyp ) )
+		{
+			return false;
+		}
+	}
+
+	ModelMapItem *newModelMapItem = new ModelMapItem( currentRow, currentCol, currentId );
+	newModelMapItem->SetModelTerrainType( ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp) );
+	return newModelMapItem;
 }
 
 /*

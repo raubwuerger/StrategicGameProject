@@ -22,6 +22,8 @@ public:
 	const ModelMapItem* GetModelMapItem( unsigned int row, unsigned int col );
 	/** */
 	int GetModelMapItemId( unsigned int row, unsigned int col );
+	/** */
+	bool UpdateItem( const ModelMapItem* ItemToUpdate );
 private:
 	/** */
 	ModelMapRepository();

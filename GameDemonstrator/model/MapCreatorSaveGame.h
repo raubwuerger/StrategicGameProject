@@ -23,7 +23,7 @@ private:
 /** */
 	bool CreateMapItems( const QDomNode& mapItems );
 /** */
-	ModelMapItem* CreateFromXML( const QDomNode& node );
+	ModelMapItem* CreateFromXML( const QDomNode& mapNode );
 private:
 	const QDomNode* MapElements;
 	int				Rows;

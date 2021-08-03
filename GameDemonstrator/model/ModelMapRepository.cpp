@@ -101,3 +101,9 @@ int ModelMapRepository::GetModelMapItemId( unsigned int row, unsigned int col)
 	}
 	return found->GetId();
 }
+
+bool ModelMapRepository::UpdateItem( const ModelMapItem* ItemToUpdate )
+{
+	jha::GetLog()->Log_DEBUG( QObject::tr("Not yet implemented!") );
+	return false;
+}
