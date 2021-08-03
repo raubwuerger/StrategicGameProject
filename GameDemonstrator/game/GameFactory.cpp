@@ -4,6 +4,8 @@
 #include "MapView.h"
 #include "ModelFactory.h"
 #include "model\ModelMapFactory.h"
+#include "SerializerFactory.h"
+#include "SerializerInterface.h"
 
 GameFactory* GameFactory::Instance = nullptr;
 
@@ -41,6 +43,19 @@ void GameFactory::CreateNewGame()
 	}
 
 	ModelMapFactory::GetInstance()->CreateModelMap();
+
+	MapViewInstance->Create();
+}
+
+void GameFactory::LoadSaveGame()
+{
+	if( nullptr == MapViewInstance )
+	{
+		Q_ASSERT(MapViewInstance);
+		return;
+	}
+
+	SerializerFactory().CreateInterface()->LoadGame();
 
 	MapViewInstance->Create();
 }

@@ -6,7 +6,8 @@
 #include "HexItemEventManager.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
-#include "../model/ModelMapRepository.h"
+#include "model/ModelMapRepository.h"
+#include "LogInterface.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
@@ -25,7 +26,10 @@ MapView::~MapView()
 void MapView::Create()
 {
 	InitMapEventManager();
-	CreateMapFromModel();
+	if( false == CreateMapFromModel() )
+	{
+		return;
+	}
 
 	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(), CalcMapHeightInPixel() );
@@ -42,11 +46,17 @@ void MapView::InitMapEventManager()
 }
 
 #include "MapViewHexItem.h"
-void MapView::CreateMapFromModel()
+bool MapView::CreateMapFromModel()
 {
 	HexagonData hexagonTemplate( HexagonData::DEFAULT_HEXE_SIZE );
 
 	const QVector< QVector<ModelMapItem*> >* modelMap = ModelMapRepository::GetInstance()->GetMapItems();
+	if( nullptr == modelMap )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("ModelMapRepository contains no items!") );
+		return false;
+	}
+
 	int rows = modelMap->size();
 	for( int currentRow = 0; currentRow < rows; currentRow++ )
 	{
@@ -67,6 +77,7 @@ void MapView::CreateMapFromModel()
 
 		}
 	}
+	return true;
 }
 
 //TODO: Performance optimierung: Jede Zeile und Spalte hat immer genau zwei Werte. Diese kann man berechnen und dann entsprechend verwenden.

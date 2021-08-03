@@ -50,15 +50,15 @@ private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
 	QMenu	*InfoMenu;
-	QActionRepository	*ActionRepository;
-	GameTurnDialog		*GameTurnDialogInstance;
-	HexItemInfoDialog	*HexItemInfoDialogInstance;
-	GameMainThread		*MainThread;
-	GameMainLoop		*MainGameLoop;
-	jha::LoggingTableWidget	*DockWidgetLogging;
-	MapView				*MapViewInstance;
-	SerializerInterface* SerializerInterface;
-	EditorToolbox		*EditorToolboxInstance;
+	QActionRepository*			ActionRepository;
+	GameTurnDialog*				GameTurnDialogInstance;
+	HexItemInfoDialog*			HexItemInfoDialogInstance;
+	GameMainThread*				MainThread;
+	GameMainLoop*				MainGameLoop;
+	jha::LoggingTableWidget*	DockWidgetLogging;
+	MapView*					MapViewInstance;
+	SerializerInterface*		SerializerInterface;
+	EditorToolbox*				EditorToolboxInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

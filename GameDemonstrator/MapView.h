@@ -26,7 +26,7 @@ public:
 	MapEventManager			*MapEventManager;		//TODO: Setter
 private:
 	/** */
-	void CreateMapFromModel();
+	bool CreateMapFromModel();
 	/** */
 	void InitMapEventManager();
 	/** */

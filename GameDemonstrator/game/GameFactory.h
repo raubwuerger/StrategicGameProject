@@ -16,7 +16,10 @@ public:
 	/** */
 	void SetMapView( MapView* mapView );
 public slots:
-		void CreateNewGame();
+	/** */
+	void CreateNewGame();
+	/** */
+	void LoadSaveGame();
 private:
 	/** */
 	GameFactory();

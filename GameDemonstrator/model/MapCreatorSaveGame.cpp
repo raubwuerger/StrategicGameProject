@@ -7,6 +7,7 @@
 #include "DomValueExtractor.h"
 #include "ModelTerrainTypeRepository.h"
 #include "ModelMapItem.h"
+#include "ModelMapRepository.h"
 
 MapCreatorSaveGame::MapCreatorSaveGame( const QDomNode mapElements )
 	: Rows(-1), Cols(-1)
@@ -103,6 +104,7 @@ bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 		gameMap->append(row);
 	}
 
+	ModelMapRepository::GetInstance()->SetMapItems(gameMap);
 	return true;
 }
 

@@ -113,7 +113,8 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	QActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(LoadGame()), Qt::QueuedConnection );
+//	connect(loadGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(LoadGame()), Qt::QueuedConnection );
+	connect(loadGameAction, SIGNAL(triggered()),GameFactory::GetInstance(),SLOT(LoadSaveGame()), Qt::QueuedConnection );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);

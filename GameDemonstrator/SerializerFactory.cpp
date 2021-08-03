@@ -26,6 +26,11 @@ SerializerInterface* SerializerFactory::CreateInterface()
 {
 	//TODO: Will be set by config
 	//SerializeGameInterface = new CSaveToXML();
+	if( nullptr != SerializerInterfaceInstanze )
+	{
+		return SerializerInterfaceInstanze;
+	}
+
 	SerializerInterfaceInstanze = new SerializerInterface;
 	SerializerInterfaceInstanze->SerializeGameInterface = new SerializeXML;
 	return SerializerInterfaceInstanze;
