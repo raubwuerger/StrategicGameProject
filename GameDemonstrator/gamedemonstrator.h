@@ -15,6 +15,7 @@ class MapEventManager;
 class TerrainTypeEditor;
 class SerializerInterface;
 class CreateNewMap;
+class ConnectorEditorModelRepository;
 
 namespace jha
 {
@@ -59,6 +60,7 @@ private:
 	MapView*					MapViewInstance;
 	SerializerInterface*		SerializerInterface;
 	EditorToolbox*				EditorToolboxInstance;
+	ConnectorEditorModelRepository*	ConnectorEditorModelRepositoryInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

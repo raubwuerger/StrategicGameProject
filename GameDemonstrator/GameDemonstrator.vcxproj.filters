@@ -75,6 +75,12 @@
     <Filter Include="Header Dateien\Game">
       <UniqueIdentifier>{6c2f3ced-d2b0-4d43-947b-a8e622927f7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Connectors">
+      <UniqueIdentifier>{8293fe19-f006-46c6-86ac-0bba7fed9d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Connectors">
+      <UniqueIdentifier>{a3bcf715-24d3-4464-86de-be2beeb986d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -401,6 +407,15 @@
     <ClCompile Include="DomNodeFinder.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="connectors\ConnectorEditorModelRepository.cpp">
+      <Filter>Source Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorEditorModelRepository.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorEditorModelRepository.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -638,6 +653,9 @@
     </CustomBuild>
     <CustomBuild Include="game\GameFactory.h">
       <Filter>Header Dateien\Game</Filter>
+    </CustomBuild>
+    <CustomBuild Include="connectors\ConnectorEditorModelRepository.h">
+      <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

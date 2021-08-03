@@ -19,6 +19,7 @@
 #include "game/GameFactory.h"
 #include "game/GameDemonstratorFactory.h"
 #include "game/GameDemonstratorConfig.h"
+#include "connectors/ConnectorEditorModelRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -31,6 +32,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu(nullptr)
 {
 	ui.setupUi(this);
+
+	ConnectorEditorModelRepositoryInstance = new ConnectorEditorModelRepository();
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
