@@ -18,8 +18,6 @@ bool MapCreatorSimple::CreateMap()
 	unsigned int cols = ModelMapConfig::GetInstance()->Cols;
 	unsigned int rows = ModelMapConfig::GetInstance()->Rows;
 
-	const ModelTerrainType* defaultTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
-
 	QVector< QVector<ModelMapItem*> >* theCreatedMap = new QVector< QVector<ModelMapItem*> >();
 	theCreatedMap->reserve(rows);
 	for( unsigned int currentRow = 0; currentRow < rows; currentRow++ )
@@ -28,9 +26,7 @@ bool MapCreatorSimple::CreateMap()
 		tempRow.reserve(cols);
 		for( unsigned int currentCol = 0; currentCol < cols; currentCol++ )
 		{
-			ModelMapItem* modelMapItem = new ModelMapItem(currentRow,currentCol,++MapItemId);
-			modelMapItem->SetModelTerrainType( defaultTerrainType );
-			tempRow.append( modelMapItem );
+			tempRow.append( CreateModelMapItem(currentRow,currentCol) );
 		}
 		theCreatedMap->append(tempRow);
 	}
@@ -42,5 +38,12 @@ bool MapCreatorSimple::CreateMap()
 ModelMapRepository* MapCreatorSimple::GetMap()
 {
 	return ModelMapRepository::GetInstance();
+}
+
+ModelMapItem* MapCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
+{
+	ModelMapItem* modelMapItem = new ModelMapItem(row,col,++MapItemId);
+	modelMapItem->SetModelTerrainType( ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType() );
+	return modelMapItem;
 }
 
