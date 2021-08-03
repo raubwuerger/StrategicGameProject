@@ -3,6 +3,7 @@
 #include "IMapCreator.h"
 
 class ModelMapRepository;
+class ModelMapItem;
 class QDomNode;
 
 class MapCreatorSaveGame : public IMapCreator
@@ -21,6 +22,10 @@ private:
 	bool InitializeMap( const QDomNode& settings );
 /** */
 	bool CreateMapItems( const QDomNode& mapItems );
+/** */
+	ModelMapItem* CreateFromXML( const QDomNode& node );
 private:
 	const QDomNode* MapElements;
+	int				Rows;
+	int				Cols;
 };
