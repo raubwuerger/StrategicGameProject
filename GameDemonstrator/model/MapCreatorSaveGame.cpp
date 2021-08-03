@@ -89,6 +89,12 @@ bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 		}
 		mapItemsUnsorted.push_back(created);
 	}
+
+	for( int mapItemsUnsortedIndex = 0; 0 < mapItemsUnsorted.size(); mapItemsUnsortedIndex++ )
+	{
+
+	}
+
 	return false;
 /*	const ModelTerrainType* defaultTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
 
