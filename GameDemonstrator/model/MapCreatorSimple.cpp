@@ -18,8 +18,8 @@ bool MapCreatorSimple::CreateMap()
 	unsigned int cols = ModelMapConfig::GetInstance()->Cols;
 	unsigned int rows = ModelMapConfig::GetInstance()->Rows;
 
-	QVector< QVector<ModelMapItem*> >* theCreatedMap = new QVector< QVector<ModelMapItem*> >();
-	theCreatedMap->reserve(rows);
+	QVector< QVector<ModelMapItem*> >* simpleMap = new QVector< QVector<ModelMapItem*> >();
+	simpleMap->reserve(rows);
 	for( unsigned int currentRow = 0; currentRow < rows; currentRow++ )
 	{
 		QVector<ModelMapItem*> tempRow;
@@ -28,10 +28,10 @@ bool MapCreatorSimple::CreateMap()
 		{
 			tempRow.append( CreateModelMapItem(currentRow,currentCol) );
 		}
-		theCreatedMap->append(tempRow);
+		simpleMap->append(tempRow);
 	}
 
-	ModelMapRepository::GetInstance()->SetMapItems( theCreatedMap );
+	ModelMapRepository::GetInstance()->SetModelMapItems( simpleMap );
 	return true;
 }
 

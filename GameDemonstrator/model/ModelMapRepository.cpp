@@ -26,11 +26,27 @@ const QVector< QVector<ModelMapItem*> >* ModelMapRepository::GetMapItems() const
 	return MapItems;
 }
 
-void ModelMapRepository::SetMapItems( const QVector< QVector<ModelMapItem*>>* mapItems)
+void ModelMapRepository::SetModelMapItems( const QVector< QVector<ModelMapItem*>>* mapItems)
 {
 	delete MapItems;
 	MapItems = nullptr;
 	MapItems = mapItems;
+	UpdateIdToModelMapItem();
+}
+
+void ModelMapRepository::UpdateIdToModelMapItem()
+{
+	IdToModelMapItem.clear();
+	int rows = GetRows();
+	int cols = GetCols();
+	for( unsigned int currentRow = 0; currentRow < rows; currentRow++ )
+	{
+		for( unsigned int currentCol = 0; currentCol < cols; currentCol++ )
+		{
+			QVector<ModelMapItem*> row = MapItems->at(currentRow);
+			IdToModelMapItem.insert( row.at(currentCol)->GetId(), row.at(currentCol) );
+		}
+	}
 }
 
 ModelMapRepository::ModelMapRepository()
@@ -71,7 +87,7 @@ int ModelMapRepository::GetRows() const
 	return MapItems->size();
 }
 
-const ModelMapItem* ModelMapRepository::GetModelMapItem( unsigned int row, unsigned int col)
+ModelMapItem* ModelMapRepository::GetModelMapItem( unsigned int row, unsigned int col)
 {
 	int rowCount = GetRows();
 	if( row > rowCount )
@@ -106,4 +122,9 @@ bool ModelMapRepository::UpdateItem( const ModelMapItem* ItemToUpdate )
 {
 	jha::GetLog()->Log_DEBUG( QObject::tr("Not yet implemented!") );
 	return false;
+}
+
+ModelMapItem* ModelMapRepository::GetModelMapItemById(unsigned int id)
+{
+	return nullptr;
 }
