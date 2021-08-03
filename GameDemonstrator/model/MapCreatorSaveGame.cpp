@@ -90,42 +90,20 @@ bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 		mapItemsUnsorted.push_back(created);
 	}
 
-	for( int mapItemsUnsortedIndex = 0; 0 < mapItemsUnsorted.size(); mapItemsUnsortedIndex++ )
+	int mapItemsUnsortedIndex = 0;
+	QVector< QVector<ModelMapItem*> >* gameMap = new QVector< QVector<ModelMapItem*> >();
+	for( int rowIndex = 0; rowIndex < Rows; rowIndex++ )
 	{
-
-	}
-
-	return false;
-/*	const ModelTerrainType* defaultTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
-
-	QVector< QVector<ModelMapItem*> >* theCreatedMap = new QVector< QVector<ModelMapItem*> >();
-	theCreatedMap->reserve(Rows);
-	for( unsigned int currentRow = 0; currentRow < Rows; currentRow++ )
-	{
-		QVector<ModelMapItem*> tempRow;
-		tempRow.reserve(Cols);
-		for( unsigned int currentCol = 0; currentCol < Cols; currentCol++ )
+		QVector<ModelMapItem*> row;
+		row.reserve(Cols);
+		for( int colIndex = 0; colIndex < Cols; colIndex++ )
 		{
-			ModelMapItem* modelMapItem = new ModelMapItem(currentRow,currentCol,++MapItemId);
-			modelMapItem->SetModelTerrainType( defaultTerrainType );
-			tempRow.append( modelMapItem );
+			row.append(mapItemsUnsorted.at(mapItemsUnsortedIndex++));
 		}
-		theCreatedMap->append(tempRow);
+		gameMap->append(row);
 	}
 
-	ModelMapRepository::GetInstance()->SetMapItems( theCreatedMap );
-
-	for( int currentDomNode = 0; currentDomNode < mapItemNodeList.size(); currentDomNode++ )
-	{
-		if( mapItemNodeList.at(currentDomNode).nodeName() != SerializeXMLItems::MAPITEM )
-		{
-			continue;
-		}
-		return true;
-	}
-
-	jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child element with name: %1").arg(SerializeXMLItems::MAPITEM) );
-	return false;*/
+	return true;
 }
 
 ModelMapItem* MapCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
@@ -203,5 +181,6 @@ theCreatedMap->append(tempRow);
 ModelMapRepository::GetInstance()->SetMapItems( theCreatedMap );
 return true;
 */
+
 
 

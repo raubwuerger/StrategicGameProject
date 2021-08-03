@@ -18,9 +18,11 @@ public:
 	/** */
 	const int GetId() const;
 	/** */
-	const int GetRow() const { return Row; }
+	const int GetRow() const;
 	/** */
-	const int GetCol() const { return Col; }
+	const int GetCol() const;
+	/** */
+	bool operator < (const ModelMapItem& rhs) const;
 private:
 	QPoint			CenterPoint;
 	const int		Row;

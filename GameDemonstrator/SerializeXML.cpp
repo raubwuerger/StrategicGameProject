@@ -183,7 +183,7 @@ bool SerializeXML::LoadGame( const QString& saveGameName )
 	{
 		return false;
 	}
-	return false;
+	return true;
 }
 
 //==============================================================================

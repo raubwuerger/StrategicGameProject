@@ -29,3 +29,18 @@ const int ModelMapItem::GetId() const
 {
 	return Id;
 }
+
+const int ModelMapItem::GetRow() const
+{
+	return Row;
+}
+
+const int ModelMapItem::GetCol() const
+{
+	return Col;
+}
+
+bool ModelMapItem::operator<(const ModelMapItem& rhs) const
+{
+	return Id < rhs.Id;
+}
