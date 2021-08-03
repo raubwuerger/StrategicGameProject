@@ -3,12 +3,12 @@
 #include <QtXml>
 #include "SerializeXMLItems.h"
 #include "LogInterface.h"
-#include "DomNodeListValueExtractor.h"
 #include "DomNodeFinder.h"
+#include "DomValueExtractor.h"
 
-MapCreatorSaveGame::MapCreatorSaveGame( const QDomNode& mapElements )
-	: MapElements(mapElements)
+MapCreatorSaveGame::MapCreatorSaveGame( const QDomNode mapElements )
 {
+	MapElements = new QDomNode(mapElements);
 }
 
 MapCreatorSaveGame::~MapCreatorSaveGame()
@@ -18,21 +18,14 @@ MapCreatorSaveGame::~MapCreatorSaveGame()
 
 bool MapCreatorSaveGame::CreateMap()
 {
-	DomNodeFinder domNodeFinder(MapElements);
+	DomNodeFinder domNodeFinder(*MapElements);
 
-	if( false == InitializeMap(MapElements) )
-//	if( false == InitializeMap(domNodeFinder.FindDomeNodeByNameClone(SerializeXMLItems::SETTINGS)) )
+	if( false == InitializeMap(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::SETTINGS)) )
 	{
 		return false;
 	}
 
-	const QDomNode *mapItems = domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAPITEMS);
-	if( nullptr == mapItems )
-	{
-		return false;
-	}
-
-	if( false == CreateMapItems(mapItems) )
+	if( false == CreateMapItems(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAPITEMS)) )
 	{
 		return false;
 	}
@@ -54,9 +47,15 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 		return false;
 	}
 
+	for( int i=0;i<settingsNodeList.count();i++)
+	{
+		QString nodeName = settingsNodeList.at(i).nodeName();
+		QString doSomethingDifferent;
+	}
+
 	int rows = -1;
 	{
-		DomNodeListValueExtractor domNodeListValueExtractor( settings.childNodes() );
+		DomValueExtractor domNodeListValueExtractor( settings );
 		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::ROWS, rows ) )
 		{
 			return false;
@@ -65,7 +64,7 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 
 	int cols = -1;
 	{
-		DomNodeListValueExtractor domNodeListValueExtractor( settings.childNodes() );
+		DomValueExtractor domNodeListValueExtractor( settings );
 		if( false == domNodeListValueExtractor.ExtractValue( SerializeXMLItems::COLS, cols ) )
 		{
 			return false;
@@ -75,9 +74,9 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 	return true;
 }
 
-bool MapCreatorSaveGame::CreateMapItems(const QDomNode *mapItems)
+bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 {
-	QDomNodeList mapItemNodeList = mapItems->childNodes();
+	QDomNodeList mapItemNodeList = mapItems.childNodes();
 	if( true == mapItemNodeList.isEmpty() )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child elements") );

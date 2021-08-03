@@ -10,30 +10,7 @@ DomNodeFinder::DomNodeFinder(const QDomNode& domNode)
 
 }
 
-const QDomNode* DomNodeFinder::FindDomeNodeByName(const QString& childName)
-{
-	QDomNodeList childNodes = DomeNode.childNodes();
-	if( true == childNodes.isEmpty() )
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("QDomNode <%1> has no childs!").arg(DomeNode.nodeName()) );
-		return nullptr;
-	}
-
-	int childCount = childNodes.length();
-	for( int childIndex = 0; childIndex < childCount; childIndex++ )
-	{
-		if( childNodes.at(childIndex).nodeName() != childName )
-		{
-			continue;
-		}
-		return &childNodes.at(childIndex);
-	}
-
-	jha::GetLog()->Log_WARNING( QObject::tr("QDomNode <%1> has no child with name: %2").arg(DomeNode.nodeName()).arg(childName) );
-	return nullptr;
-}
-
-const QDomNode DomNodeFinder::FindDomeNodeByNameClone(const QString& childName)
+const QDomNode DomNodeFinder::FindDomeNodeByName(const QString& childName)
 {
 	QDomNodeList childNodes = DomeNode.childNodes();
 	if( true == childNodes.isEmpty() )
@@ -49,10 +26,14 @@ const QDomNode DomNodeFinder::FindDomeNodeByNameClone(const QString& childName)
 		{
 			continue;
 		}
-		return childNodes.at(childIndex).cloneNode(true);
+		return childNodes.at(childIndex);
 	}
 
 	jha::GetLog()->Log_WARNING( QObject::tr("QDomNode <%1> has no child with name: %2").arg(DomeNode.nodeName()).arg(childName) );
 	return QDomNode();
+}
 
+const QDomNode DomNodeFinder::FindDomeNodeByNameClone(const QString& childName)
+{
+	return FindDomeNodeByName(childName).cloneNode(true);
 }

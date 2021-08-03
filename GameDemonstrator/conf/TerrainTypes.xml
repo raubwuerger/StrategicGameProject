@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TerrainTypes>
-	<TerrainType strId="1" >
+	<TerrainType>
 		<Id>1</Id>
 		<Name>Plains</Name>
 		<PicturePath>.\Resources\Terrain\Plains.png</PicturePath>

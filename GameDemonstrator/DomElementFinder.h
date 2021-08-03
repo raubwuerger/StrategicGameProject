@@ -16,8 +16,8 @@ public:
 	/** */
 	bool TryFindElement( const QString& elementName, QColor& value ) const;
 private:
-	bool ValidateNode( const QString& elementName, QDomElement& element ) const;
+	bool ExtractElement( const QString& elementName, QDomElement& element ) const;
 
 private:
-	const QDomNode& theNode;
+	const QDomNode& DomNode;
 };

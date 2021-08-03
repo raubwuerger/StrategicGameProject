@@ -210,7 +210,7 @@ bool SerializeXML::LoadXMLHeader( const QString& saveGameName )
 		return false;
 	}
 
-	if( false == LoadGame( rootNodeList.at(0).cloneNode(true) ) )
+	if( false == LoadGame( rootNodeList.at(0) ) )
 	{
 		file.close();
 		return false;
@@ -225,15 +225,15 @@ bool SerializeXML::LoadXMLHeader( const QString& saveGameName )
 //==============================================================================
 bool SerializeXML::LoadGame( const QDomNode& domNode )
 {
-	if( false == LoadGameData(domNode.cloneNode(true)) )
+	if( false == LoadGameData(domNode) )
 	{
 		return false;
 	}
-	if( false == LoadPlayerData(domNode.cloneNode(true)) )
+	if( false == LoadPlayerData(domNode) )
 	{
 		return false;
 	}
-	if( false == LoadMapData(domNode.cloneNode(true)) )
+	if( false == LoadMapData(domNode) )
 	{
 		return false;
 	}
@@ -260,6 +260,7 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 	QString domNodeName = domNode.nodeName();
 
 	DomNodeFinder domNodeFinder(domNode);
-	MapCreatorSaveGame mapCreatorSaveGame( domNode.cloneNode() );
+	const QDomNode mapNode = domNodeFinder.FindDomeNodeByNameClone(SerializeXMLItems::MAP);
+	MapCreatorSaveGame mapCreatorSaveGame( mapNode.cloneNode(true) );
 	return mapCreatorSaveGame.CreateMap();
 }

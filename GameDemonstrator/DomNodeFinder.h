@@ -8,7 +8,7 @@ public:
 	/** */
 	DomNodeFinder( const QDomNode& domNode );
 	/** */
-	const QDomNode* FindDomeNodeByName( const QString& childName );
+	const QDomNode FindDomeNodeByName( const QString& childName );
 	/** */
 	const QDomNode FindDomeNodeByNameClone( const QString& childName );
 private:

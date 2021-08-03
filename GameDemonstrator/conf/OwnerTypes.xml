@@ -4,12 +4,12 @@
 		<Id>1</Id>
 		<Name>Nation 1</Name>
 		<PicturePath>.\Flags\Nation1.png</PicturePath>
-		<Color>Yellow</Color>
+		<Color>red</Color>
 	</OwnerType>
 	<OwnerType>
 		<Id>2</Id>
 		<Name>Nation 2</Name>
 		<PicturePath>.\Flags\Nation2.png</PicturePath>
-		<Color>Blue</Color>
+		<Color>blue</Color>
 	</OwnerType>
 </OwnerTypes>

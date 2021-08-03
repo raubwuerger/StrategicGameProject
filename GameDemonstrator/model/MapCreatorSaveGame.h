@@ -9,7 +9,7 @@ class MapCreatorSaveGame : public IMapCreator
 {
 public:
 /** */
-	MapCreatorSaveGame( const QDomNode& mapElements );
+	MapCreatorSaveGame( const QDomNode mapElements );
 /** */
 	~MapCreatorSaveGame();
 /** */
@@ -20,7 +20,7 @@ private:
 /** */
 	bool InitializeMap( const QDomNode& settings );
 /** */
-	bool CreateMapItems( const QDomNode *mapItems );
+	bool CreateMapItems( const QDomNode& mapItems );
 private:
-	const QDomNode& MapElements;
+	const QDomNode* MapElements;
 };

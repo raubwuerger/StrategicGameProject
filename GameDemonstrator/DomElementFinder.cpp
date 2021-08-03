@@ -7,7 +7,7 @@
 /* CDomElementFinder                                                    */
 /************************************************************************/
 DomElementFinder::DomElementFinder( const QDomNode& node ) 
-	: theNode(node)
+	: DomNode(node)
 {
 
 }
@@ -15,7 +15,7 @@ DomElementFinder::DomElementFinder( const QDomNode& node )
 bool DomElementFinder::TryFindElement( const QString& elementName, int& value ) const
 {
 	QDomElement element;
-	if( ValidateNode(elementName,element) == false )
+	if( ExtractElement(elementName,element) == false )
 	{
 		return false;
 	}
@@ -27,7 +27,7 @@ bool DomElementFinder::TryFindElement( const QString& elementName, int& value ) 
 bool DomElementFinder::TryFindElement( const QString& elementName, QString& value ) const
 {
 	QDomElement element;
-	if( ValidateNode(elementName,element) == false )
+	if( ExtractElement(elementName,element) == false )
 	{
 		return false;
 	}
@@ -39,7 +39,7 @@ bool DomElementFinder::TryFindElement( const QString& elementName, QString& valu
 bool DomElementFinder::TryFindElement( const QString& elementName, QColor& value ) const
 {
 	QDomElement element;
-	if( ValidateNode(elementName,element) == false )
+	if( ExtractElement(elementName,element) == false )
 	{
 		return false;
 	}
@@ -48,9 +48,9 @@ bool DomElementFinder::TryFindElement( const QString& elementName, QColor& value
 	return true;
 }
 
-bool DomElementFinder::ValidateNode( const QString& elementName, QDomElement& element ) const
+bool DomElementFinder::ExtractElement( const QString& elementName, QDomElement& element ) const
 {
-	element = theNode.firstChildElement(elementName);
+	element = DomNode.firstChildElement(elementName);
 	if( element.isNull() == true )
 	{
 		jha::GetLog()->Log_MESSAGE( QObject::tr("Element not found: %1").arg(elementName) );
