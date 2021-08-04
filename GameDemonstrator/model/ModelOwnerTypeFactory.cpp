@@ -5,7 +5,7 @@
 #include "ModelOwnerType.h"
 #include "DomElementFinder.h"
 #include "DomValueExtractor.h"
-#include "ModelOwnerTypeConfig.h"
+#include "ModelOwnerTypeXMLItems.h"
 #include "ModelOwnerTypeRepository.h"
 #include "ModelHeaderXMLConfig.h"
 
@@ -32,9 +32,9 @@ ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 
 bool ModelOwnerTypeFactory::Create()
 {
-	ModelOwnerTypeConfig config;
-	jha::GetLog()->Log_MESSAGE("Loading OwnerTypes from file: " +config.ConfigFilePath);
-	QFile file(config.ConfigFilePath);
+	ModelOwnerTypeXMLItems config;
+	jha::GetLog()->Log_MESSAGE("Loading OwnerTypes from file: " +config.CONFIG_FILE_PATH);
+	QFile file(config.CONFIG_FILE_PATH);
 	if( false == OpenFile(&file) )
 	{
 		return false;
@@ -53,15 +53,15 @@ bool ModelOwnerTypeFactory::Create()
 	}
 
 	QDomElement root = domDocument.documentElement();
-	if( root.tagName() != config.RootName ) 
+	if( root.tagName() != config.ROOT_NAME ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(config.RootName) );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(config.ROOT_NAME) );
 		return false;
 	}
 
 	if (root.hasAttribute( ModelHeaderXMLConfig::VERSION ) && root.attribute( ModelHeaderXMLConfig::VERSION ) != ModelHeaderXMLConfig::VERSION_NUMBER ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 version %2 file.").arg(config.RootName).arg(ModelHeaderXMLConfig::VERSION_NUMBER) );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 version %2 file.").arg(config.ROOT_NAME).arg(ModelHeaderXMLConfig::VERSION_NUMBER) );
 		return false;
 	}
 
@@ -95,13 +95,13 @@ bool ModelOwnerTypeFactory::OpenFile( QFile* file  )
 
 ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 {
-	ModelOwnerTypeConfig config;
+	ModelOwnerTypeXMLItems config;
 	int ownerTypeId = 0;
 
 	DomValueExtractor extractor(node);
-	if( false == extractor.ExtractValue(config.SubelementId,ownerTypeId) )
+	if( false == extractor.ExtractValue(config.SUBELEMENT_ID,ownerTypeId) )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("OwnerType has not element of name: %1").arg(config.SubelementId) );
+		jha::GetLog()->Log_WARNING( QObject::tr("OwnerType has not element of name: %1").arg(config.SUBELEMENT_ID) );
 		return nullptr;
 	}
 
@@ -109,22 +109,22 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementName,newOwnerType->Name);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_NAME,newOwnerType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementPicturePath,newOwnerType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTUREPATH,newOwnerType->PicturePath);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementColor,newOwnerType->Color);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_COLOR,newOwnerType->Color);
 	}
 
 	if( false == allElementsExtracted )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SubelementId).arg(QString::number(ownerTypeId)) );
+		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(ownerTypeId)) );
 		delete newOwnerType;
 		return nullptr;
 	}

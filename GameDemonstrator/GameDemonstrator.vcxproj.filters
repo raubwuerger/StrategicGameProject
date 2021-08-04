@@ -311,9 +311,6 @@
     <ClCompile Include="model\ModelTerrainType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelOwnerTypeConfig.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelOwnerType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -416,6 +413,9 @@
     <ClCompile Include="model\ModelTerrainXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelOwnerTypeXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -502,9 +502,6 @@
     <ClInclude Include="model\ModelTerrainType.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelOwnerTypeConfig.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="DomElementFinder.h">
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
@@ -569,6 +566,9 @@
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelTerrainXMLItems.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelOwnerTypeXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

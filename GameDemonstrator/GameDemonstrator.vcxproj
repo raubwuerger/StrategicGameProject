@@ -377,7 +377,7 @@
     <ClCompile Include="model\ModelMapConfig.cpp" />
     <ClCompile Include="model\ModelMapFactory.cpp" />
     <ClCompile Include="model\ModelOwnerType.cpp" />
-    <ClCompile Include="model\ModelOwnerTypeConfig.cpp" />
+    <ClCompile Include="model\ModelOwnerTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelOwnerTypeFactory.cpp" />
     <ClCompile Include="model\ModelOwnerTypeRepository.cpp" />
     <ClCompile Include="model\ModelSettings.cpp" />
@@ -541,7 +541,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
     </CustomBuild>
-    <ClInclude Include="model\ModelOwnerTypeConfig.h" />
+    <ClInclude Include="model\ModelOwnerTypeXMLItems.h" />
     <ClInclude Include="model\ModelOwnerTypeRepository.h" />
     <ClInclude Include="model\ModelSettings.h" />
     <ClInclude Include="model\ModelSettingsFactory.h" />
