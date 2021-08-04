@@ -37,8 +37,8 @@ void ModelTerrainTypeFactory::Release()
 bool ModelTerrainTypeFactory::Create()
 {
 	ModelTerrainXMLItems config;
-	jha::GetLog()->Log_MESSAGE( QObject::tr("Loading %1 from file: %2").arg(config.RootName).arg(config.ConfigFilePath));
-	QFile file(config.ConfigFilePath);
+	jha::GetLog()->Log_MESSAGE( QObject::tr("Loading %1 from file: %2").arg(config.ROOT_NAME).arg(config.CONFIG_FILE_NAME));
+	QFile file(config.CONFIG_FILE_NAME);
 	if( false == OpenFile(&file) )
 	{
 		return false;
@@ -56,15 +56,15 @@ bool ModelTerrainTypeFactory::Create()
 	}
 
 	QDomElement root = domDocument.documentElement();
-	if( root.tagName() != config.RootName) 
+	if( root.tagName() != config.ROOT_NAME) 
 	{
-		jha::GetLog()->Log( QObject::tr("The file is not an %1 file.").arg(config.RootName), jha::LOGLEVEL::LL_WARNING );
+		jha::GetLog()->Log( QObject::tr("The file is not an %1 file.").arg(config.ROOT_NAME), jha::LOGLEVEL::LL_WARNING );
 		return false;
 	}
 
 	if (root.hasAttribute(config.Version) && root.attribute(config.Version) != config.VersionNumber ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(config.RootName) );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(config.ROOT_NAME) );
 		return false;
 	}
 
@@ -94,9 +94,9 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 	int terrainTypeId = 0;
 
 	DomValueExtractor extractor(node);
-	if( false == extractor.ExtractValue(config.SubelementId,terrainTypeId) )
+	if( false == extractor.ExtractValue(config.SUBELEMENT_ID,terrainTypeId) )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("ModelTerrainType has not element of name: %1").arg(config.SubelementId) );
+		jha::GetLog()->Log_WARNING( QObject::tr("ModelTerrainType has not element of name: %1").arg(config.SUBELEMENT_ID) );
 		return nullptr;
 	}
 
@@ -105,53 +105,53 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementName,newTerrainType->Name);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_NAME,newTerrainType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementPicturePath,newTerrainType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newTerrainType->PicturePath);
 		allElementsExtracted &= AttacheImage( newTerrainType );
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementInfrastructure,newTerrainType->Infrastructure);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_INFRASTRUCTURE,newTerrainType->Infrastructure);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementOil,newTerrainType->Oil);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_OIL,newTerrainType->Oil);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementTimber,newTerrainType->Timber);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_TIMBER,newTerrainType->Timber);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementStone,newTerrainType->Stone);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_STONE,newTerrainType->Stone);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementMovementModifier,newTerrainType->MovementModifier);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_MOVEMENT_MODIFIER,newTerrainType->MovementModifier);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementDefenseModifier,newTerrainType->DefenseModifier);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENSE_MODIFIER,newTerrainType->DefenseModifier);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SubelementAttackModifier,newTerrainType->AttackModifier);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_ATTACK_MODIFIER,newTerrainType->AttackModifier);
 	}
 
 	if( false == allElementsExtracted )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SubelementId).arg(QString::number(terrainTypeId)) );
+		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(terrainTypeId)) );
 		delete newTerrainType;
 		return nullptr;
 	}
