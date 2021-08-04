@@ -1,9 +1,9 @@
 #pragma once
 
-class ModelTerrainTypeConfig
+class ModelTerrainXMLItems
 {
 public:
-	ModelTerrainTypeConfig();
+	ModelTerrainXMLItems();
 private:
 	friend class ModelTerrainTypeFactory;
 	static QString ConfigFilePath;

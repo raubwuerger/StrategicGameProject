@@ -317,9 +317,6 @@
     <ClCompile Include="model\ModelOwnerType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelTerrainTypeConfig.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="DomElementFinder.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
@@ -416,6 +413,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorEditorModelRepository.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelTerrainXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -505,9 +505,6 @@
     <ClInclude Include="model\ModelOwnerTypeConfig.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelTerrainTypeConfig.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="DomElementFinder.h">
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
@@ -570,6 +567,9 @@
     </ClInclude>
     <ClInclude Include="DomNodeFinder.h">
       <Filter>Header Dateien\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelTerrainXMLItems.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

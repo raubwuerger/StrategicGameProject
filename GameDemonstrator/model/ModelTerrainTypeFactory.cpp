@@ -3,7 +3,7 @@
 #include <QDomNode>
 #include "LogInterface.h"
 #include "ModelTerrainType.h"
-#include "ModelTerrainTypeConfig.h"
+#include "ModelTerrainXMLItems.h"
 #include "ModelTerrainTypeRepository.h"
 #include "DomValueExtractor.h"
 
@@ -36,7 +36,7 @@ void ModelTerrainTypeFactory::Release()
 
 bool ModelTerrainTypeFactory::Create()
 {
-	ModelTerrainTypeConfig config;
+	ModelTerrainXMLItems config;
 	jha::GetLog()->Log_MESSAGE( QObject::tr("Loading %1 from file: %2").arg(config.RootName).arg(config.ConfigFilePath));
 	QFile file(config.ConfigFilePath);
 	if( false == OpenFile(&file) )
@@ -90,7 +90,7 @@ bool ModelTerrainTypeFactory::OpenFile( QFile* file )
 
 ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 {
-	ModelTerrainTypeConfig config;
+	ModelTerrainXMLItems config;
 	int terrainTypeId = 0;
 
 	DomValueExtractor extractor(node);
