@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameDemonstratorFactory.h"
-#include "GameDemonstratorConfig.h"
+#include "ModelGameXMLItems.h"
 #include "LogInterface.h"
 #include <QDomNode>
 #include "DomValueExtractor.h"
@@ -39,28 +39,28 @@ bool GameDemonstratorFactory::Create()
 	}
 
 	QDomElement root = DomDocument.documentElement();
-	if( root.tagName() != GameDemonstratorConfig::RootName ) 
+	if( root.tagName() != ModelGameXMLItems::RootName ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(GameDemonstratorConfig::RootName) );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(ModelGameXMLItems::RootName) );
 		return false;
 	}
 
-	GameDemonstratorConfigInstance = new GameDemonstratorConfig();
+	GameDemonstratorConfigInstance = new ModelGameXMLItems();
 
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		if( ownerTypeNodes.at(i).nodeName() == GameDemonstratorConfig::NodeLogging )
+		if( ownerTypeNodes.at(i).nodeName() == ModelGameXMLItems::NodeLogging )
 		{
 			DomValueExtractor extractor(ownerTypeNodes.at(i));
-			extractor.ExtractValue(GameDemonstratorConfig::NodeLoggingGlobalLogLevel,GameDemonstratorConfig::GlobalLogLevel);
+			extractor.ExtractValue(ModelGameXMLItems::NodeLoggingGlobalLogLevel,ModelGameXMLItems::GlobalLogLevel);
 		}
 	}
 
 	return true;
 }
 
-GameDemonstratorConfig* GameDemonstratorFactory::GetConfig()
+ModelGameXMLItems* GameDemonstratorFactory::GetConfig()
 {
 	return GameDemonstratorConfigInstance;
 }

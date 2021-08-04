@@ -338,9 +338,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameMainThread.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameDemonstratorConfig.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="game\GameDemonstratorFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
@@ -415,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="model\ModelOwnerTypeXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="game\ModelGameXMLItems.cpp">
+      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -514,9 +514,6 @@
     <ClInclude Include="model\ModelMapFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameDemonstratorConfig.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameDemonstratorFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -570,6 +567,9 @@
     </ClInclude>
     <ClInclude Include="model\ModelOwnerTypeXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="game\ModelGameXMLItems.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

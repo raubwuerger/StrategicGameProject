@@ -3,7 +3,7 @@ class QDomElement;
 class QDomNode;
 class QDomNodeList;
 
-class GameDemonstratorConfig
+class ModelGameXMLItems
 {
 public:
 	static QString GlobalLogLevel;

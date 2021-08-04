@@ -33,8 +33,8 @@ ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 bool ModelOwnerTypeFactory::Create()
 {
 	ModelOwnerTypeXMLItems config;
-	jha::GetLog()->Log_MESSAGE("Loading OwnerTypes from file: " +config.CONFIG_FILE_PATH);
-	QFile file(config.CONFIG_FILE_PATH);
+	jha::GetLog()->Log_MESSAGE("Loading OwnerTypes from file: " +config.CONFIG_FILE_NAME);
+	QFile file(config.CONFIG_FILE_NAME);
 	if( false == OpenFile(&file) )
 	{
 		return false;
@@ -114,7 +114,7 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTUREPATH,newOwnerType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newOwnerType->PicturePath);
 	}
 
 	{
