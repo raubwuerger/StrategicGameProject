@@ -8,7 +8,7 @@ class ModelProgramXMLItems
 public:
 	static QString GlobalLogLevel;
 public:
-	static QString RootName;
-	static QString NodeLogging;
-	static QString NodeLoggingGlobalLogLevel;
+	const static QString ROOT_NAME;
+	const static QString NODE_LOGGING;
+	const static QString SUBELEMENT_GLOBAL_LOG_LEVEL;
 };

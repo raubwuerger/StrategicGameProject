@@ -39,9 +39,9 @@ bool ModelProgramFactory::Create()
 	}
 
 	QDomElement root = DomDocument.documentElement();
-	if( root.tagName() != ModelProgramXMLItems::RootName ) 
+	if( root.tagName() != ModelProgramXMLItems::ROOT_NAME ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(ModelProgramXMLItems::RootName) );
+		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(ModelProgramXMLItems::ROOT_NAME) );
 		return false;
 	}
 
@@ -50,10 +50,10 @@ bool ModelProgramFactory::Create()
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		if( ownerTypeNodes.at(i).nodeName() == ModelProgramXMLItems::NodeLogging )
+		if( ownerTypeNodes.at(i).nodeName() == ModelProgramXMLItems::NODE_LOGGING )
 		{
 			DomValueExtractor extractor(ownerTypeNodes.at(i));
-			extractor.ExtractValue(ModelProgramXMLItems::NodeLoggingGlobalLogLevel,ModelProgramXMLItems::GlobalLogLevel);
+			extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL,ModelProgramXMLItems::GlobalLogLevel);
 		}
 	}
 
