@@ -377,9 +377,6 @@
     <ClCompile Include="ModelHeaderXMLConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="GameSetting.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="DomNodeListValueExtractor.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
@@ -406,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="model\ModelProgramXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameConfig.cpp">
+      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -532,9 +532,6 @@
     <ClInclude Include="ModelHeaderXMLConfig.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="GameSetting.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="DomNodeListValueExtractor.h">
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
@@ -552,6 +549,9 @@
     </ClInclude>
     <ClInclude Include="model\ModelProgramXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GameConfig.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

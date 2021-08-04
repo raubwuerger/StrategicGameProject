@@ -1,6 +1,6 @@
 #pragma once
 
-class GameSetting
+class GameConfig
 {
 public:
 	static QString		CurrentSaveGameName;
