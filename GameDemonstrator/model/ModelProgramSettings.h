@@ -7,6 +7,6 @@ public:
 public:
 	static QString	GlobalLogLevel;
 	static QString	SaveGamePath;
-	static QString	DebugRows;
-	static QString	DebugCols;
+	static int		DebugRows;
+	static int		DebugCols;
 };

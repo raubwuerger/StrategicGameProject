@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "MapCreatorSimple.h"
 #include "ModelMapRepository.h"
-#include "ModelMapConfig.h"
 #include "ModelTerrainTypeRepository.h"
 #include "ModelMapItem.h"
-
+#include "ModelProgramFactory.h"
+#include "ModelProgramSettings.h"
 
 MapCreatorSimple::MapCreatorSimple()
 	: MapItemId(0)
@@ -15,8 +15,8 @@ MapCreatorSimple::MapCreatorSimple()
 bool MapCreatorSimple::CreateMap()
 {
 	MapItemId = 0;
-	unsigned int cols = ModelMapConfig::GetInstance()->Cols;
-	unsigned int rows = ModelMapConfig::GetInstance()->Rows;
+	unsigned int cols = ModelProgramFactory::GetInstance()->GetConfig()->DebugCols;
+	unsigned int rows = ModelProgramFactory::GetInstance()->GetConfig()->DebugRows;
 
 	QVector< QVector<ModelMapItem*> >* simpleMap = new QVector< QVector<ModelMapItem*> >();
 	simpleMap->reserve(rows);

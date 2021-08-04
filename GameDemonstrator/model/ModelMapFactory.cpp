@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ModelMapFactory.h"
-#include "ModelMapConfig.h"
 #include "MapCreatorSimple.h"
 
 ModelMapFactory* ModelMapFactory::Instance = nullptr; 

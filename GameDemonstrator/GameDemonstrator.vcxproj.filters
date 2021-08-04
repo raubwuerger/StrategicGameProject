@@ -281,9 +281,6 @@
     <ClCompile Include="HexItemEventManager.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelMapConfig.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelMapItem.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -312,9 +309,6 @@
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelMapRepository.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\ModelMapFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameMainLoop.cpp">
@@ -410,6 +404,9 @@
     <ClCompile Include="model\ModelProgramSettings.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelMapFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -466,9 +463,6 @@
     <ClInclude Include="ISerializeGameInterface.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelMapConfig.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="model\ModelMapItem.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -494,9 +488,6 @@
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapRepository.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\ModelMapFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="game\GameMainCounter.h">
@@ -554,6 +545,9 @@
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="ModelConfigurationHeaderXMLItems.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

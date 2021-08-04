@@ -3,9 +3,9 @@
 #include "model\ModelMapRepository.h"
 #include "MapView.h"
 #include "ModelFactory.h"
-#include "model\ModelMapFactory.h"
 #include "SerializerFactory.h"
 #include "SerializerInterface.h"
+#include ".\model\ModelMapFactory.h"
 
 GameFactory* GameFactory::Instance = nullptr;
 
