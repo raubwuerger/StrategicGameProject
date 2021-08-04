@@ -23,5 +23,4 @@ private:
 private:
 	static ModelProgramFactory* Instance;
 	ModelProgramSettings*		ModelProgramSettingsInstance;
-	QString						GameDemonstratorConfigName;
 };

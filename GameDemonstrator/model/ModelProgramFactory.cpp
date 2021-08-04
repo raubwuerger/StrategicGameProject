@@ -21,8 +21,10 @@ ModelProgramFactory* ModelProgramFactory::GetInstance()
 
 bool ModelProgramFactory::Create()
 {
-	jha::GetLog()->Log_MESSAGE("Loading GameDemonstratorConfig from file: " +GameDemonstratorConfigName);
-	QFile file(GameDemonstratorConfigName);
+	ModelProgramSettingsInstance = new ModelProgramSettings();
+
+	jha::GetLog()->Log_MESSAGE("Loading GameDemonstratorConfig from file: " +ModelProgramSettings::FileName);
+	QFile file(ModelProgramSettings::FileName);
 	if( false == OpenFile(&file) )
 	{
 		return false;
@@ -42,20 +44,45 @@ bool ModelProgramFactory::Create()
 	QDomElement root = DomDocument.documentElement();
 	if( root.tagName() != ModelProgramXMLItems::ROOT_NAME ) 
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(ModelProgramXMLItems::ROOT_NAME) );
+		jha::GetLog()->Log_WARNING( QObject::tr("File %1 is not an %2 file.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::ROOT_NAME) );
 		return false;
 	}
-
-	ModelProgramSettingsInstance = new ModelProgramSettings();
 
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
 	{
-		if( ownerTypeNodes.at(i).nodeName() == ModelProgramXMLItems::NODE_LOGGING )
+		QString currentNodeName = ownerTypeNodes.at(i).nodeName();
+		if( currentNodeName == ModelProgramXMLItems::NODE_LOGGING )
 		{
 			DomValueExtractor extractor(ownerTypeNodes.at(i));
-			extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL,ModelProgramSettings::GlobalLogLevel);
+			if( false == extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL,ModelProgramSettings::GlobalLogLevel) )
+			{
+				jha::GetLog()->Log_WARNING( QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL) );
+				return false;
+			}
 		}
+
+		if( currentNodeName == ModelProgramXMLItems::NODE_DEBUG_MAP_SETTINGS )
+		{
+			{
+				DomValueExtractor extractor(ownerTypeNodes.at(i));
+				if( false == extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_DEBUG_ROWS,ModelProgramSettings::DebugRows) )
+				{
+					jha::GetLog()->Log_WARNING( QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::SUBELEMENT_DEBUG_ROWS) );
+					return false;
+				}
+			}
+
+			{
+				DomValueExtractor extractor(ownerTypeNodes.at(i));
+				if( false == extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_DEBUG_COLS,ModelProgramSettings::DebugCols) )
+				{
+					jha::GetLog()->Log_WARNING( QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::SUBELEMENT_DEBUG_COLS) );
+					return false;
+				}
+			}
+		}
+
 	}
 
 	return true;
@@ -67,8 +94,7 @@ ModelProgramSettings* ModelProgramFactory::GetConfig()
 }
 
 ModelProgramFactory::ModelProgramFactory()
-	: GameDemonstratorConfigName(".\\conf\\GameDemonstrator.xml"),
-	ModelProgramSettingsInstance(nullptr)
+	: ModelProgramSettingsInstance(nullptr)
 {
 }
 

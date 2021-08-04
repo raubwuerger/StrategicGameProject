@@ -3,8 +3,10 @@
 class ModelProgramSettings
 {
 public:
+	const static QString	FileName;
+public:
 	static QString	GlobalLogLevel;
 	static QString	SaveGamePath;
-	static QString	DEBUG_ROWS;
-	static QString	DEBUG_COLS;
+	static QString	DebugRows;
+	static QString	DebugCols;
 };

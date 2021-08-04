@@ -5,8 +5,10 @@
 		<GlobalLogLevel>Debug</GlobalLogLevel>
 	</Logging>
 	<SaveGamePath>.//savegames//</SaveGamePath>
-	<DebugRows>60</DebugRows>
-	<DebugCols>120</DebugCols>
+	<DebugMapSettings>
+		<DebugRows>60</DebugRows>
+		<DebugCols>120</DebugCols>
+	</DebugMapSettings>
 	<MapTypes>
 		<MapType>
 			<Id>1</Id>
