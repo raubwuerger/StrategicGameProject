@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameDemonstratorFactory.h"
-#include "ModelGameXMLItems.h"
+#include "..\model\ModelGameXMLItems.h"
 #include "LogInterface.h"
 #include <QDomNode>
 #include "DomValueExtractor.h"

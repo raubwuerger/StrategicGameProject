@@ -172,7 +172,6 @@
     <ClCompile Include="gamedemonstrator.cpp" />
     <ClCompile Include="GameSetting.cpp" />
     <ClCompile Include="GameTurnDialog.cpp" />
-    <ClCompile Include="game\ModelGameXMLItems.cpp" />
     <ClCompile Include="game\GameDemonstratorFactory.cpp" />
     <ClCompile Include="game\GameFactory.cpp" />
     <ClCompile Include="game\GameMainCounter.cpp" />
@@ -373,6 +372,7 @@
     <ClCompile Include="model\MapCreatorSimple.cpp" />
     <ClCompile Include="model\ModelDataOverallSettings.cpp" />
     <ClCompile Include="model\MapCreatorSaveGame.cpp" />
+    <ClCompile Include="model\ModelGameXMLItems.cpp" />
     <ClCompile Include="model\ModelMapRepository.cpp" />
     <ClCompile Include="model\ModelMapConfig.cpp" />
     <ClCompile Include="model\ModelMapFactory.cpp" />
@@ -426,7 +426,6 @@
     <ClInclude Include="DomNodeListValueExtractor.h" />
     <ClInclude Include="DomValueExtractor.h" />
     <ClInclude Include="GameSetting.h" />
-    <ClInclude Include="game\ModelGameXMLItems.h" />
     <ClInclude Include="game\GameDemonstratorFactory.h" />
     <CustomBuild Include="game\GameFactory.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -511,6 +510,7 @@
     <ClInclude Include="model\MapCreatorSimple.h" />
     <ClInclude Include="model\ModelDataOverallSettings.h" />
     <ClInclude Include="model\MapCreatorSaveGame.h" />
+    <ClInclude Include="model\ModelGameXMLItems.h" />
     <ClInclude Include="model\ModelMapRepository.h" />
     <ClInclude Include="model\ModelMapConfig.h" />
     <ClInclude Include="model\ModelMapFactory.h" />
