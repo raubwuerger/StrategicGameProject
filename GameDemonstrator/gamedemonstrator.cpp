@@ -17,7 +17,7 @@
 #include "LogFactory.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "game/GameFactory.h"
-#include "game/GameDemonstratorFactory.h"
+#include "game/ModelProgramFactory.h"
 #include "model/ModelGameXMLItems.h"
 #include "connectors/ConnectorEditorModelRepository.h"
 
@@ -217,8 +217,8 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 
 	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
-	GameDemonstratorFactory::GetInstance()->Create();
-	jha::GetLog()->SetGlobalLoglevel(GameDemonstratorFactory::GetInstance()->GetConfig()->GlobalLogLevel);
+	ModelProgramFactory::GetInstance()->Create();
+	jha::GetLog()->SetGlobalLoglevel(ModelProgramFactory::GetInstance()->GetConfig()->GlobalLogLevel);
 }
 
 #include "model/ModelTerrainTypeFactory.h"

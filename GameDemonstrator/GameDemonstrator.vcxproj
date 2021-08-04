@@ -172,7 +172,7 @@
     <ClCompile Include="gamedemonstrator.cpp" />
     <ClCompile Include="GameSetting.cpp" />
     <ClCompile Include="GameTurnDialog.cpp" />
-    <ClCompile Include="game\GameDemonstratorFactory.cpp" />
+    <ClCompile Include="game\ModelProgramFactory.cpp" />
     <ClCompile Include="game\GameFactory.cpp" />
     <ClCompile Include="game\GameMainCounter.cpp" />
     <ClCompile Include="game\GameMainLoop.cpp" />
@@ -426,7 +426,7 @@
     <ClInclude Include="DomNodeListValueExtractor.h" />
     <ClInclude Include="DomValueExtractor.h" />
     <ClInclude Include="GameSetting.h" />
-    <ClInclude Include="game\GameDemonstratorFactory.h" />
+    <ClInclude Include="game\ModelProgramFactory.h" />
     <CustomBuild Include="game\GameFactory.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GameFactory.h...</Message>
