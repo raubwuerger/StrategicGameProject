@@ -17,7 +17,7 @@
 #include "LogFactory.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "game/GameFactory.h"
-#include "game/ModelProgramFactory.h"
+#include "model/ModelProgramFactory.h"
 #include "model/ModelGameXMLItems.h"
 #include "connectors/ConnectorEditorModelRepository.h"
 

@@ -413,8 +413,8 @@
     <ClCompile Include="model\ModelGameXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="game\ModelProgramFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
+    <ClCompile Include="model\ModelProgramFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -568,8 +568,8 @@
     <ClInclude Include="model\ModelGameXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="game\ModelProgramFactory.h">
-      <Filter>Header Dateien\Game</Filter>
+    <ClInclude Include="model\ModelProgramFactory.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

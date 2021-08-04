@@ -172,7 +172,6 @@
     <ClCompile Include="gamedemonstrator.cpp" />
     <ClCompile Include="GameSetting.cpp" />
     <ClCompile Include="GameTurnDialog.cpp" />
-    <ClCompile Include="game\ModelProgramFactory.cpp" />
     <ClCompile Include="game\GameFactory.cpp" />
     <ClCompile Include="game\GameMainCounter.cpp" />
     <ClCompile Include="game\GameMainLoop.cpp" />
@@ -380,6 +379,7 @@
     <ClCompile Include="model\ModelOwnerTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelOwnerTypeFactory.cpp" />
     <ClCompile Include="model\ModelOwnerTypeRepository.cpp" />
+    <ClCompile Include="model\ModelProgramFactory.cpp" />
     <ClCompile Include="model\ModelSettings.cpp" />
     <ClCompile Include="model\ModelSettingsFactory.cpp" />
     <ClCompile Include="model\ModelMapItem.cpp" />
@@ -426,7 +426,6 @@
     <ClInclude Include="DomNodeListValueExtractor.h" />
     <ClInclude Include="DomValueExtractor.h" />
     <ClInclude Include="GameSetting.h" />
-    <ClInclude Include="game\ModelProgramFactory.h" />
     <CustomBuild Include="game\GameFactory.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GameFactory.h...</Message>
@@ -543,6 +542,7 @@
     </CustomBuild>
     <ClInclude Include="model\ModelOwnerTypeXMLItems.h" />
     <ClInclude Include="model\ModelOwnerTypeRepository.h" />
+    <ClInclude Include="model\ModelProgramFactory.h" />
     <ClInclude Include="model\ModelSettings.h" />
     <ClInclude Include="model\ModelSettingsFactory.h" />
     <ClInclude Include="ISerializeGameInterface.h" />
