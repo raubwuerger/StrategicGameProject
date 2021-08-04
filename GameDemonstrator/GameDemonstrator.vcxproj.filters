@@ -410,10 +410,10 @@
     <ClCompile Include="model\ModelOwnerTypeXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelGameXMLItems.cpp">
+    <ClCompile Include="model\ModelProgramFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelProgramFactory.cpp">
+    <ClCompile Include="model\ModelProgramXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -565,10 +565,10 @@
     <ClInclude Include="model\ModelOwnerTypeXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelGameXMLItems.h">
+    <ClInclude Include="model\ModelProgramFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelProgramFactory.h">
+    <ClInclude Include="model\ModelProgramXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

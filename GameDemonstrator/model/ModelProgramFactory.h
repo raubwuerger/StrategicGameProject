@@ -1,6 +1,6 @@
 #pragma once
 
-class ModelGameXMLItems;
+class ModelProgramXMLItems;
 
 class ModelProgramFactory
 {
@@ -12,7 +12,7 @@ public:
 	/** */
 	bool Create();
 	/** */
-	ModelGameXMLItems* GetConfig();
+	ModelProgramXMLItems* GetConfig();
 private:
 	/** */
 	ModelProgramFactory();
@@ -22,6 +22,6 @@ private:
 	bool OpenFile( QFile* file );
 private:
 	static ModelProgramFactory* Instance;
-	ModelGameXMLItems* GameDemonstratorConfigInstance;
+	ModelProgramXMLItems* GameDemonstratorConfigInstance;
 	QString GameDemonstratorConfigName;
 };
