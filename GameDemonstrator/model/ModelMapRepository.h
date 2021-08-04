@@ -37,5 +37,5 @@ private:
 	friend class ModelMapFactory;
 	mutable const QVector< QVector<ModelMapItem*> >*	MapItems;
 	static ModelMapRepository*							Instance;
-	QMap<int, const ModelMapItem*>						IdToModelMapItem;
+	QMap<int, ModelMapItem*>							IdToModelMapItem;
 };

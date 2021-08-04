@@ -10,10 +10,16 @@ public:
 	/** */
 	~ModelSettings();
 public:
+	//Theese attributes couldn't be read from config file. Bootstrapping!!!
+	QString	RootName;
+	QString ModelSettingsFileName;
+public:
 	QString SaveGamePath;
 	QString DifficultyLevel;
 	QString PlayerCount;
 	QString CurrentSaveGameFileName;
+	QString DefaultMapRows;
+	QString DefaultMapCols;
 	QVector<QString> Players;
 
 };

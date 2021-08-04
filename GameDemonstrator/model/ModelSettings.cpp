@@ -2,6 +2,8 @@
 #include "ModelSettings.h"
 
 ModelSettings::ModelSettings()
+	: ModelSettingsFileName(".\\conf\\GameDemonstrator.xml"),
+		RootName("GameDemonstrator")
 {
 	SaveGamePath = "C:\\";
 	DifficultyLevel = "1";

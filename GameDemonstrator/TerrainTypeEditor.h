@@ -13,6 +13,9 @@ public:
 	TerrainTypeEditor(QObject *parent);
 	/** */
 	~TerrainTypeEditor();
+signals:
+	/** */
+	void TerrainTypeChanged( int mapItemId, int terrainTypeId );
 public slots:
 	/** */
 	void ActivateTerrainType( int terrainTypeId );

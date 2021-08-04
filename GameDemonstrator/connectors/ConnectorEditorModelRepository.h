@@ -10,7 +10,7 @@ public:
 	~ConnectorEditorModelRepository();
 public slots:
 	/** */
-	void UpdateTerrainType( int modelMapId, int terrainTypeId );
+	void TerrainTypeChanged( int modelMapId, int terrainTypeId );
 };
 
 

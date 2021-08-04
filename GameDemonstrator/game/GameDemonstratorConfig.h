@@ -7,8 +7,7 @@ class GameDemonstratorConfig
 {
 public:
 	static QString GlobalLogLevel;
-private:
-	friend class GameDemonstratorFactory;
+public:
 	static QString RootName;
 	static QString NodeLogging;
 	static QString NodeLoggingGlobalLogLevel;

@@ -12,7 +12,8 @@ MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft 
 	Col(-1),
 	Row(-1),
 	EventItem(nullptr),
-	TerrainImage(nullptr)
+	TerrainImage(nullptr),
+	ModelMapItemId(-1)
 {
 	this->HexData.MovePosition(topLeft);
 	this->CenterPoint.rx() = topLeft.x() + (data.Width / 2.0);
@@ -107,4 +108,14 @@ void MapViewHexItem::SetRowAndCol( int row, int col )
 void MapViewHexItem::SetTerrainImage( const QImage * val )
 {
 	TerrainImage = val;
+}
+
+void MapViewHexItem::SetModelMapItemId(int modelMapItemId)
+{
+	ModelMapItemId = modelMapItemId;
+}
+
+int MapViewHexItem::GetModelMapItemId() const
+{
+	return ModelMapItemId;
 }

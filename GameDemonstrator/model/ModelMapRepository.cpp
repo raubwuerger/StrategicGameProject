@@ -126,5 +126,17 @@ bool ModelMapRepository::UpdateItem( const ModelMapItem* ItemToUpdate )
 
 ModelMapItem* ModelMapRepository::GetModelMapItemById(unsigned int id)
 {
-	return nullptr;
+	if( id < 0 )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Requested map item id is invalid (below zero)!" ) );
+		return nullptr;
+	}
+
+	ModelMapItem* modelMapItem = IdToModelMapItem.value(id);
+	if( nullptr == modelMapItem )
+	{
+		jha::GetLog()->Log_WARNING( QObject::tr("Requested map item id %1 is not registered!" ).arg(QString::number(id)) );
+		return nullptr;
+	}
+	return modelMapItem;
 }

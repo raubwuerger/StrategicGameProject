@@ -5,4 +5,12 @@
 		<GlobalLogLevel>Debug</GlobalLogLevel>
 	</Logging>
 	<SaveGamePath>.//savegames//</SaveGamePath>
+	<MapTypes>
+		<MapType>
+			<Id>1</Id>
+			<Name>Tiny</Name>
+			<Rows>60</Rows>
+			<Cols>120</Cols>
+		</MapType>
+	</MapTypes>
 </GameDemonstrator>

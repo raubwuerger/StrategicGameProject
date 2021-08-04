@@ -31,6 +31,10 @@ public:
 	int GetCol() const { return Col; }
 	/** Set m_TerrainImage */
 	void SetTerrainImage( const QImage * val);
+	/** */
+	void SetModelMapItemId( int modelMapItemId );
+	/** */
+	int GetModelMapItemId() const;
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );
@@ -47,6 +51,7 @@ private:
 	HexItemEventManager	*EventItem;
 	QString			StringRowCol;
 	const QImage	*TerrainImage;
+	int				ModelMapItemId;
 };
 
 #endif // MAPVIEWHEXITEM_H

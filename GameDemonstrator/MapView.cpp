@@ -45,7 +45,6 @@ void MapView::InitMapEventManager()
 	Scene->HexItemEventManager = HexItemEventManager;
 }
 
-#include "MapViewHexItem.h"
 bool MapView::CreateMapFromModel()
 {
 	HexagonData hexagonTemplate( HexagonData::DEFAULT_HEXE_SIZE );
@@ -70,6 +69,7 @@ bool MapView::CreateMapFromModel()
 			MapViewHexItem *mapItem = new MapViewHexItem( hexagonTemplate, topLeftPosition );
 			mapItem->SetRowAndCol(currentRow,currentCol);
 			mapItem->SetHexItemEventManager( HexItemEventManager );
+			mapItem->SetModelMapItemId( modelMapItem->GetId() );
 			const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
 			mapItem->SetTerrainImage( modelTerrainType->GetImage() );
 			Scene->addItem( mapItem );

@@ -39,4 +39,5 @@ void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 	item->SetTerrainImage( ActiveTerrainType->GetImage() );
+	emit TerrainTypeChanged( item->GetModelMapItemId(), ActiveTerrainType->GetId() );
 }

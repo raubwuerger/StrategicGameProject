@@ -116,7 +116,6 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	QActionRepository::GetInstance()->AddAction( loadGameAction );
-//	connect(loadGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(LoadGame()), Qt::QueuedConnection );
 	connect(loadGameAction, SIGNAL(triggered()),GameFactory::GetInstance(),SLOT(LoadSaveGame()), Qt::QueuedConnection );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
@@ -249,6 +248,7 @@ void GameDemonstrator::CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor
 	dockCountry->setWidget( EditorToolboxInstance );
 	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
 	ViewMenu->addAction(dockCountry->toggleViewAction());
+
 }
 
 #include "TerrainTypeEditor.h"
@@ -256,5 +256,7 @@ TerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( MapEventManager*ma
 {
 	TerrainTypeEditor *terrainTypeEditor = new TerrainTypeEditor(nullptr);
 	terrainTypeEditor->MapEventManager = mapEventManager;
+	QObject::connect(terrainTypeEditor, &TerrainTypeEditor::TerrainTypeChanged,
+		ConnectorEditorModelRepositoryInstance, &ConnectorEditorModelRepository::TerrainTypeChanged);
 	return terrainTypeEditor;
 }

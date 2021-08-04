@@ -15,7 +15,7 @@ ConnectorEditorModelRepository::~ConnectorEditorModelRepository()
 {
 }
 
-void ConnectorEditorModelRepository::UpdateTerrainType(int modelMapId, int terrainTypeId)
+void ConnectorEditorModelRepository::TerrainTypeChanged(int modelMapId, int terrainTypeId)
 {
 	ModelMapItem *modelMapToUpdate = ModelMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
 	if( nullptr == modelMapToUpdate )
