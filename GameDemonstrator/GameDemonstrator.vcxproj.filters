@@ -374,9 +374,6 @@
     <ClCompile Include="SerializeXMLItems.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
-    <ClCompile Include="ModelHeaderXMLConfig.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="DomNodeListValueExtractor.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
@@ -406,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="GameConfig.cpp">
       <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelConfigurationHeaderXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -529,9 +529,6 @@
     <ClInclude Include="SerializeXMLItems.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
-    <ClInclude Include="ModelHeaderXMLConfig.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="DomNodeListValueExtractor.h">
       <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
@@ -552,6 +549,9 @@
     </ClInclude>
     <ClInclude Include="GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelConfigurationHeaderXMLItems.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 
-class ModelHeaderXMLConfig
+class ModelConfigurationHeaderXMLItems
 {
 public:
 	static const QString VERSION;
