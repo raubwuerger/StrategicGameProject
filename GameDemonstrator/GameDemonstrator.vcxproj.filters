@@ -281,9 +281,6 @@
     <ClCompile Include="HexItemEventManager.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelDataOverallSettings.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelMapConfig.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -465,9 +462,6 @@
     </ClInclude>
     <ClInclude Include="ISerializeGameInterface.h">
       <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
-    <ClInclude Include="model\ModelDataOverallSettings.h">
-      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapConfig.h">
       <Filter>Header Dateien\Model</Filter>

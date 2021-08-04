@@ -22,7 +22,6 @@ MapView::~MapView()
 	delete MapEventManager;
 }
 
-#include "model/ModelDataOverallSettings.h"
 void MapView::Create()
 {
 	InitMapEventManager();

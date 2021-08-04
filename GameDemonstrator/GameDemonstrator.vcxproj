@@ -369,7 +369,6 @@
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="ModelHeaderXMLConfig.cpp" />
     <ClCompile Include="model\MapCreatorSimple.cpp" />
-    <ClCompile Include="model\ModelDataOverallSettings.cpp" />
     <ClCompile Include="model\MapCreatorSaveGame.cpp" />
     <ClCompile Include="model\ModelProgramXMLItems.cpp" />
     <ClCompile Include="model\ModelMapRepository.cpp" />
@@ -505,7 +504,6 @@
     <ClInclude Include="ModelHeaderXMLConfig.h" />
     <ClInclude Include="model\IMapCreator.h" />
     <ClInclude Include="model\MapCreatorSimple.h" />
-    <ClInclude Include="model\ModelDataOverallSettings.h" />
     <ClInclude Include="model\MapCreatorSaveGame.h" />
     <ClInclude Include="model\ModelProgramXMLItems.h" />
     <ClInclude Include="model\ModelMapRepository.h" />
