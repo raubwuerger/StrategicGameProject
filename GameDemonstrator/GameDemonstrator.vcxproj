@@ -380,8 +380,6 @@
     <ClCompile Include="model\ModelOwnerTypeFactory.cpp" />
     <ClCompile Include="model\ModelOwnerTypeRepository.cpp" />
     <ClCompile Include="model\ModelProgramFactory.cpp" />
-    <ClCompile Include="model\ModelSettings.cpp" />
-    <ClCompile Include="model\ModelSettingsFactory.cpp" />
     <ClCompile Include="model\ModelMapItem.cpp" />
     <ClCompile Include="model\ModelTerrainType.cpp" />
     <ClCompile Include="model\ModelTerrainXMLItems.cpp" />
@@ -543,8 +541,6 @@
     <ClInclude Include="model\ModelOwnerTypeXMLItems.h" />
     <ClInclude Include="model\ModelOwnerTypeRepository.h" />
     <ClInclude Include="model\ModelProgramFactory.h" />
-    <ClInclude Include="model\ModelSettings.h" />
-    <ClInclude Include="model\ModelSettingsFactory.h" />
     <ClInclude Include="ISerializeGameInterface.h" />
     <ClInclude Include="model\ModelTerrainType.h" />
     <ClInclude Include="model\ModelTerrainXMLItems.h" />
