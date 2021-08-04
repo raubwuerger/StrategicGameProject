@@ -407,6 +407,9 @@
     <ClCompile Include="ModelConfigurationHeaderXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelProgramSettings.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

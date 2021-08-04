@@ -18,7 +18,7 @@
 #include "model/ModelTerrainTypeRepository.h"
 #include "game/GameFactory.h"
 #include "model/ModelProgramFactory.h"
-#include "model/ModelProgramXMLItems.h"
+#include "model/ModelProgramSettings.h"
 #include "connectors/ConnectorEditorModelRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)

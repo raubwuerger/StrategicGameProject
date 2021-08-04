@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ModelProgramFactory.h"
 #include "ModelProgramXMLItems.h"
+#include "ModelProgramSettings.h"
 #include "LogInterface.h"
 #include <QDomNode>
 #include "DomValueExtractor.h"
@@ -45,7 +46,7 @@ bool ModelProgramFactory::Create()
 		return false;
 	}
 
-	GameDemonstratorConfigInstance = new ModelProgramXMLItems();
+	ModelProgramSettingsInstance = new ModelProgramSettings();
 
 	QDomNodeList ownerTypeNodes = root.childNodes();
 	for( int i=0; i <ownerTypeNodes.count(); i++ )
@@ -53,28 +54,28 @@ bool ModelProgramFactory::Create()
 		if( ownerTypeNodes.at(i).nodeName() == ModelProgramXMLItems::NODE_LOGGING )
 		{
 			DomValueExtractor extractor(ownerTypeNodes.at(i));
-			extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL,ModelProgramXMLItems::GlobalLogLevel);
+			extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL,ModelProgramSettings::GlobalLogLevel);
 		}
 	}
 
 	return true;
 }
 
-ModelProgramXMLItems* ModelProgramFactory::GetConfig()
+ModelProgramSettings* ModelProgramFactory::GetConfig()
 {
-	return GameDemonstratorConfigInstance;
+	return ModelProgramSettingsInstance;
 }
 
 ModelProgramFactory::ModelProgramFactory()
 	: GameDemonstratorConfigName(".\\conf\\GameDemonstrator.xml"),
-	GameDemonstratorConfigInstance(nullptr)
+	ModelProgramSettingsInstance(nullptr)
 {
 }
 
 ModelProgramFactory::~ModelProgramFactory()
 {
-	delete GameDemonstratorConfigInstance;
-	GameDemonstratorConfigInstance = nullptr;
+	delete ModelProgramSettingsInstance;
+	ModelProgramSettingsInstance = nullptr;
 }
 
 bool ModelProgramFactory::OpenFile( QFile* file )

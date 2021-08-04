@@ -370,6 +370,7 @@
     <ClCompile Include="ModelConfigurationHeaderXMLItems.cpp" />
     <ClCompile Include="model\MapCreatorSimple.cpp" />
     <ClCompile Include="model\MapCreatorSaveGame.cpp" />
+    <ClCompile Include="model\ModelProgramSettings.cpp" />
     <ClCompile Include="model\ModelProgramXMLItems.cpp" />
     <ClCompile Include="model\ModelMapRepository.cpp" />
     <ClCompile Include="model\ModelMapConfig.cpp" />
