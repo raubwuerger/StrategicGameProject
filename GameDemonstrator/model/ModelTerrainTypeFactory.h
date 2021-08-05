@@ -3,7 +3,6 @@
 
 class ModelTerrainType;
 class QDomNode;
-class QDomElement;
 
 //================================================================================
 /** @stereotype factory*/

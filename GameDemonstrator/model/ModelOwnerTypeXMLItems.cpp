@@ -6,10 +6,5 @@ const QString ModelOwnerTypeXMLItems::ROOT_NAME = "OwnerTypes";
 const QString ModelOwnerTypeXMLItems::ELEMENT_NAME = "OwnerType";
 const QString ModelOwnerTypeXMLItems::SUBELEMENT_ID = "Id";
 const QString ModelOwnerTypeXMLItems::SUBELEMENT_NAME = "Name";
-const QString ModelOwnerTypeXMLItems::SUBELEMENT_PICTURENAME = "PicturePath";
+const QString ModelOwnerTypeXMLItems::SUBELEMENT_PICTURENAME = "PictureName";
 const QString ModelOwnerTypeXMLItems::SUBELEMENT_COLOR = "Color";
-
-ModelOwnerTypeXMLItems::ModelOwnerTypeXMLItems()
-{
-
-}

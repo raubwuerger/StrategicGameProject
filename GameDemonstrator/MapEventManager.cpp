@@ -29,7 +29,13 @@ void MapEventManager::RegisterMapItem( MapViewHexItem* mapItem )
 
 void MapEventManager::RegisterUnitItem( MapViewUnitItem* unitItem )
 {
-	UnitItems.
+	//TODO: Sollte eine Map (ID) sein. Es wird sicherlich mehr als ein Item von jedem Type geben!!!
+	if (true == UnitItems.contains(unitItem))
+	{
+		//TODO: Fehlermeldung ausgeben
+		return;
+	}
+	UnitItems.push_back(unitItem);
 }
 
 const MapViewHexItem* MapEventManager::FindItemByIndex( int row, int col ) const
