@@ -19,6 +19,7 @@
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
+#include "model/ModelMapRepository.h"
 #include "connectors/ConnectorEditorModelRepository.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 
@@ -86,8 +87,10 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 GameDemonstrator::~GameDemonstrator()
 {
 	ModelTerrainTypeRepository::GetInstance()->Release();
-	ActionRepository::GetInstance()->Release();
 	ModelOwnerTypeRepository::GetInstance()->Release();
+	ModelOwnerTypeRepository::GetInstance()->Release();
+	ActionRepository::GetInstance()->Release();
+	ModelMapRepository::GetInstance()->Release();
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()
