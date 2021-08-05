@@ -39,9 +39,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
-
-
 	MapViewInstance = new MapView(this);
+	MapViewInstance->setViewport( new QOpenGLWidget(this) );
 
 	ActionRepository::GetInstanceFirstTimeInit(parent);
 	SerializerInterface = SerializerFactory().CreateInterface();

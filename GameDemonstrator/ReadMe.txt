@@ -1,3 +1,10 @@
+
+Compiles with Visual Studio 2019 and Qt 5.4.2 msvc2013_opengl -> OpenGlWidget
+	MapViewInstance = new MapView(this);
+	MapViewInstance->setViewport( new QOpenGLWidget(this) );
+
+
+
 Basic Development Concepts:
 
 xxxSetting					-> Feste Einstellung, sind in Datei hinterlegt.
