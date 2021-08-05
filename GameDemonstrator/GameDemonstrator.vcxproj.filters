@@ -383,9 +383,6 @@
     <ClCompile Include="GameConfig.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
-    <ClCompile Include="ModelConfigurationHeaderXMLItems.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelProgramSettings.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -406,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ActionRepository.cpp">
       <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelConfigurationHeaderXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -535,9 +535,6 @@
     <ClInclude Include="GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="ModelConfigurationHeaderXMLItems.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="model\ModelMapFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -548,6 +545,9 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapCreatorSaveGame.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelConfigurationHeaderXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
