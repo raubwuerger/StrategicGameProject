@@ -20,7 +20,7 @@
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
 #include "connectors/ConnectorEditorModelRepository.h"
-#include "connectors/GameConnector.h"
+#include "connectors/ConnectorLoadCreateGame.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -44,7 +44,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapViewInstance = new MapView(this);
 	MapViewInstance->setViewport( new QOpenGLWidget(this) );
 
-	GameConnectorInstance = new GameConnector;
+	GameConnectorInstance = new ConnectorLoadCreateGame;
 
 	InitLoggingFramwork();
 

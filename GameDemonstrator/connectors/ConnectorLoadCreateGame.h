@@ -6,14 +6,14 @@ class MapView;
 class ModelMapRepository;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
-class GameConnector : public QObject
+class ConnectorLoadCreateGame : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	GameConnector();
+	ConnectorLoadCreateGame();
 	/** */
-	~GameConnector();
+	~ConnectorLoadCreateGame();
 	/** */
 	void Release();
 	/** */

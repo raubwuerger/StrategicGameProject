@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GameConnector.h"
+#include "ConnectorLoadCreateGame.h"
 #include "model\ModelMapRepository.h"
 #include "MapView.h"
 #include "ModelFactory.h"
@@ -7,15 +7,15 @@
 #include "SerializerInterface.h"
 #include ".\model\ModelMapFactory.h"
 
-GameConnector::GameConnector()
+ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {
 }
 
-GameConnector::~GameConnector()
+ConnectorLoadCreateGame::~ConnectorLoadCreateGame()
 {
 }
 
-void GameConnector::CreateNewGame()
+void ConnectorLoadCreateGame::CreateNewGame()
 {
 	if( nullptr == MapViewInstance )
 	{
@@ -29,7 +29,7 @@ void GameConnector::CreateNewGame()
 	MapViewInstance->Create();
 }
 
-void GameConnector::LoadSaveGame()
+void ConnectorLoadCreateGame::LoadSaveGame()
 {
 	if( nullptr == MapViewInstance )
 	{
@@ -42,7 +42,7 @@ void GameConnector::LoadSaveGame()
 	MapViewInstance->Create();
 }
 
-void GameConnector::SetMapView( MapView* mapView )
+void ConnectorLoadCreateGame::SetMapView( MapView* mapView )
 {
 	MapViewInstance = mapView;
 }

@@ -422,13 +422,13 @@
     <ClCompile Include="model\ModelUnitTypeRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="connectors\GameConnector.cpp">
+    <ClCompile Include="connectors\ConnectorLoadCreateGame.cpp">
       <Filter>Source Dateien\Connectors</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameConnector.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorLoadCreateGame.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameConnector.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorLoadCreateGame.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -675,7 +675,7 @@
     <CustomBuild Include="ActionRepository.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="connectors\GameConnector.h">
+    <CustomBuild Include="connectors\ConnectorLoadCreateGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
