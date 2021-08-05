@@ -42,7 +42,8 @@ void GameFactory::CreateNewGame()
 		return;
 	}
 
-	ModelMapFactory::GetInstance()->CreateModelMap();
+	ModelMapFactory factory;
+	factory.CreateModelMap();
 
 	MapViewInstance->Create();
 }

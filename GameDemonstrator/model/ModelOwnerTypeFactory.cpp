@@ -9,19 +9,6 @@
 #include "ModelOwnerTypeRepository.h"
 #include "ModelConfigurationHeaderXMLItems.h"
 
-ModelOwnerTypeFactory*	ModelOwnerTypeFactory::Instance = nullptr;
-
-ModelOwnerTypeFactory* ModelOwnerTypeFactory::GetInstance()
-{
-	if( nullptr != Instance ) 
-	{
-		return Instance;
-	}
-
-	Instance = new ModelOwnerTypeFactory;
-	return Instance;
-}
-
 ModelOwnerTypeFactory::ModelOwnerTypeFactory()
 {
 }

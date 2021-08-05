@@ -226,13 +226,15 @@ void GameDemonstrator::InitLoggingFramwork()
 #include "model/ModelTerrainTypeFactory.h"
 bool GameDemonstrator::LoadTerrainTypes()
 {
-	return ModelTerrainTypeFactory::GetInstance()->Create();
+	ModelTerrainTypeFactory factory;
+	return factory.Create();
 }
 
 #include "model/ModelOwnerTypeFactory.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
-	return ModelOwnerTypeFactory::GetInstance()->Create();
+	ModelOwnerTypeFactory factory;
+	return factory.Create();
 }
 
 bool GameDemonstrator::LoadUnitTypes()

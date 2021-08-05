@@ -10,16 +10,12 @@ class ModelTerrainTypeFactory
 {
 public:
 	/** */
-	static ModelTerrainTypeFactory* GetInstance();
-	/** */
-	void Release();
-	/** */
-	bool Create();
-private:
-	/** */
 	ModelTerrainTypeFactory();
 	/** */
 	~ModelTerrainTypeFactory();
+	/** */
+	bool Create();
+private:
 	/** */
 	bool OpenFile( QFile* file );
 	/** */
@@ -28,9 +24,6 @@ private:
 	const QImage* LoadTerrainTypeImage( const QString& path );
 	/** */
 	bool AttacheImage( ModelTerrainType* modelTerrainType );
-private:
-	/** */
-	static ModelTerrainTypeFactory* Instance;
 };
 
 #endif

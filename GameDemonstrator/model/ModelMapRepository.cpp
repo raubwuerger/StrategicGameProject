@@ -18,7 +18,7 @@ ModelMapRepository* ModelMapRepository::GetInstance()
 
 void ModelMapRepository::Release()
 {
-
+	delete Instance;
 }
 
 const QVector< QVector<ModelMapItem*> >* ModelMapRepository::GetMapItems() const

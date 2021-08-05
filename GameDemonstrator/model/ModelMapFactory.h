@@ -9,19 +9,15 @@ class ModelMapFactory
 {
 public:
 	/** */
-	static ModelMapFactory* GetInstance();
+	ModelMapFactory();
+	/** */
+	~ModelMapFactory();
 	/** */
 	void Release();
 	/** Creates Map */
 	ModelMapRepository* CreateModelMap();
 private:
-	/** */
-	ModelMapFactory();
-	/** */
-	~ModelMapFactory();
-private:
-	static ModelMapFactory	*Instance;
-	ModelMapRepository*	TheGameMap;
+	ModelMapRepository*		TheGameMap;
 	IModelMapCreator*		MapCreator;
 };
 

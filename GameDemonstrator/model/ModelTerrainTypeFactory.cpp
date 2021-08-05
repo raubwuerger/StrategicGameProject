@@ -7,31 +7,12 @@
 #include "ModelTerrainTypeRepository.h"
 #include "DomValueExtractor.h"
 
-ModelTerrainTypeFactory*	ModelTerrainTypeFactory::Instance = nullptr;
-
-ModelTerrainTypeFactory* ModelTerrainTypeFactory::GetInstance()
-{
-	if( nullptr != Instance )
-	{
-		return Instance;
-	}
-
-	Instance = new ModelTerrainTypeFactory;
-	return Instance;
-}
-
 ModelTerrainTypeFactory::ModelTerrainTypeFactory()
 {
 }
 
 ModelTerrainTypeFactory::~ModelTerrainTypeFactory()
 {
-}
-
-void ModelTerrainTypeFactory::Release()
-{
-	delete Instance;
-	Instance = nullptr;
 }
 
 bool ModelTerrainTypeFactory::Create()
