@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelOwnerType_H
+#define ModelOwnerType_H
 
 class ModelOwnerType
 {
@@ -23,3 +24,5 @@ private:
 	QColor		Color;
 	QString		PicturePath;
 };
+
+#endif

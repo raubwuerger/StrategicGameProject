@@ -1,7 +1,9 @@
-#pragma once
+#ifndef ModelTerrainTypeRepository_H
+#define ModelTerrainTypeRepository_H
 
 #include <QMap>
 class ModelTerrainType;
+
 class ModelTerrainTypeRepository
 {
 public:
@@ -32,4 +34,6 @@ private:
 	const ModelTerrainType*				DefaultTerrainType;
 	static ModelTerrainTypeRepository* Instance;
 };
+
+#endif
 

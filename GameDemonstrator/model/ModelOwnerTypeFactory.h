@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelOwnerTypeFactory_H
+#define ModelOwnerTypeFactory_H
 
 class ModelOwnerType;
 class ModelOwnerTypeRepository;
@@ -23,4 +24,6 @@ private:
 	ModelOwnerTypeRepository		*ModelOwnerTypeRepositoryInstance;
 	static ModelOwnerTypeFactory	*Instance;
 };
+
+#endif
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SerializeXMLItems_H
+#define SerializeXMLItems_H
 
 class SerializeXMLItems
 {
@@ -29,3 +30,5 @@ public:
 	static const QString TERRAINTYPE;
 
 };
+
+#endif

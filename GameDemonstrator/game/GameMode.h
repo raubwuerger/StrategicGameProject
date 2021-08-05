@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GameMode_H
+#define GameMode_H
+
 /** @stereotype Strategie*/
 class GameMode
 {
@@ -12,6 +14,8 @@ public:
 	/** */
 	virtual void Deavtivate() = 0;
 };
+
+#endif
 
 
 

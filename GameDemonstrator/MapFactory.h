@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MapFactory_H
+#define MapFactory_H
 
 class CreateNewMap;
 class MapView;
@@ -28,4 +29,6 @@ private:
 	MapView		*MapViewInstance;
 	QObject		*Parent;
 };
+
+#endif
 

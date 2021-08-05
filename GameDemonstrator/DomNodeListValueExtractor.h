@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DOMNODELISTVALUEEXTRACTOR_H
+#define DOMNODELISTVALUEEXTRACTOR_H
 
 class QDomNodeList;
 
@@ -20,3 +21,5 @@ private:
 private:
 	const QDomNodeList& DomNodeList;
 };
+
+#endif

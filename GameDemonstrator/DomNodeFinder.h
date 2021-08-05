@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DOMNODEFINDER_H
+#define DOMNODEFINDER_H
 
 class QDomNode;
 
@@ -14,3 +15,5 @@ public:
 private:
 	const QDomNode& DomeNode;
 };
+
+#endif

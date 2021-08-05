@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelMapFactory_H
+#define ModelMapFactory_H
 
 class ModelMapRepository;
 class IMapCreator;
@@ -23,3 +24,5 @@ private:
 	ModelMapRepository*	TheGameMap;
 	IMapCreator*		MapCreator;
 };
+
+#endif

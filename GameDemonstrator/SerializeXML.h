@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SerializeXML_H
+#define SerializeXML_H
 
 #include "ISerializeGameInterface.h"
 #include <QXmlStreamWriter>
@@ -47,4 +48,6 @@ private:
 	/** */
 	bool LoadMapData( const QDomNode& domNode );
 };
+
+#endif
 

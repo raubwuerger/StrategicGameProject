@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ISerializeGameInterface_H
+#define ISerializeGameInterface_H
 
 class ISerializeGameInterface
 {
@@ -8,3 +9,5 @@ public:
 	/** */
 	virtual bool LoadGame( const QString& saveGameName ) = 0;
 };
+
+#endif

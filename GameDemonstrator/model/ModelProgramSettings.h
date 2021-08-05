@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelProgramSettings_H
+#define ModelProgramSettings_H
 
 class ModelProgramSettings
 {
@@ -10,3 +11,5 @@ public:
 	static int		DebugRows;
 	static int		DebugCols;
 };
+
+#endif

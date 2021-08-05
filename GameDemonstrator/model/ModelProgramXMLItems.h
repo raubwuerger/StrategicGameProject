@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelProgramXMLItems_H
+#define ModelProgramXMLItems_H
 class QDomElement;
 class QDomNode;
 class QDomNodeList;
@@ -14,3 +15,5 @@ public:
 	const static QString SUBELEMENT_DEBUG_ROWS;
 	const static QString SUBELEMENT_DEBUG_COLS;
 };
+
+#endif

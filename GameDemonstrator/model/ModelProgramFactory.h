@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelProgramFactory_H
+#define ModelProgramFactory_H
 
 class ModelProgramSettings;
 
@@ -24,3 +25,5 @@ private:
 	static ModelProgramFactory* Instance;
 	ModelProgramSettings*		ModelProgramSettingsInstance;
 };
+
+#endif

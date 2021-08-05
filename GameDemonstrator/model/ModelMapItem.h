@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelMapItem_H
+#define ModelMapItem_H
 
 class ModelTerrainType;
 class ModelOwnerType;
@@ -31,3 +32,5 @@ private:
 	const ModelTerrainType	*TerrainType;
 	const ModelOwnerType	*OwnerType;
 };
+
+#endif

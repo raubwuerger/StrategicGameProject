@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelTerrainTypeFactory_H
+#define ModelTerrainTypeFactory_H
 
 class ModelTerrainType;
 class QDomNode;
@@ -32,3 +33,5 @@ private:
 	/** */
 	static ModelTerrainTypeFactory* Instance;
 };
+
+#endif

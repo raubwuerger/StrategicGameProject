@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SerializerFactory_H
+#define SerializerFactory_H
 
 class SerializerInterface;
 #include <QVector>
@@ -17,3 +18,5 @@ public:
 private:
 	static SerializerInterface* SerializerInterfaceInstanze;
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelMapRepository_H
+#define ModelMapRepository_H
 
 #include "ModelMapItem.h"
 
@@ -39,3 +40,5 @@ private:
 	static ModelMapRepository*							Instance;
 	QMap<int, ModelMapItem*>							IdToModelMapItem;
 };
+
+#endif

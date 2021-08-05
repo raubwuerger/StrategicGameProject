@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelTerrainType_H
+#define ModelTerrainType_H
 
 class ModelTerrainType
 {
@@ -35,4 +36,6 @@ private:
 	int			AttackModifier;
 	const QImage		*Image;
 };
+
+#endif
 

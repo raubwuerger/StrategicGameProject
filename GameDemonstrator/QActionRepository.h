@@ -1,4 +1,5 @@
-#pragma once
+#ifndef QActionRepository_H
+#define QActionRepository_H
 
 #include <QObject>
 
@@ -24,4 +25,6 @@ private:
 	QList<QAction*>	Actions;
 	static QActionRepository* Instance;
 };
+
+#endif
 

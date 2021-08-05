@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelMapRepository_H
+#define ModelMapRepository_H
 
 class ModelMapRepository;
 
@@ -13,3 +14,5 @@ public:
 	/** */
 	~ModelFactory();
 };
+
+#endif

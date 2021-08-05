@@ -1,7 +1,8 @@
 // ID: $Id: config.properties,v 1.6 2006/10/05 08:51:42 jha Exp $
 //--------------------------------
 
-#pragma once
+#ifndef GameModeStandard_H
+#define GameModeStandard_H
 
 #include "GameMode.h"
 
@@ -14,3 +15,5 @@ public:
 	/** */
 	virtual void Deavtivate();
 };
+
+#endif

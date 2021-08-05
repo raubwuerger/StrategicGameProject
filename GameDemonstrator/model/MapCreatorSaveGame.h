@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MapCreatorSaveGame_H
+#define MapCreatorSaveGame_H
 
 #include "IMapCreator.h"
 
@@ -29,3 +30,5 @@ private:
 	int				Rows;
 	int				Cols;
 };
+
+#endif

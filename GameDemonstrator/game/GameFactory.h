@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GameFactory_H
+#define GameFactory_H
 
 class ModelTerrainType;
 class MapView;
@@ -30,6 +31,8 @@ private:
 	ModelMapRepository				*TheGameMap;
 	MapView				*MapViewInstance;
 };
+
+#endif
 
 
 

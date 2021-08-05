@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SerializerInterface_H
+#define SerializerInterface_H
 
 /** Serializes game data ... */
 class ISerializeGameInterface;
@@ -23,4 +24,6 @@ private:
 	friend class SerializerFactory;
 	ISerializeGameInterface* SerializeGameInterface;
 };
+
+#endif
 

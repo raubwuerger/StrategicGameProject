@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ModelOwnerTypeRepository_H
+#define ModelOwnerTypeRepository_H
 
 #include <QMap>
 class ModelOwnerType;
@@ -33,4 +34,6 @@ private:
 	const ModelOwnerType*		DefaultOwnerType;
 	static ModelOwnerTypeRepository*	Instance;
 };
+
+#endif
 

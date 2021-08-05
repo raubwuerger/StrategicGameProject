@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SerializeBinary_H
+#define SerializeBinary_H
 
 #include "ISerializeGameInterface.h"
 
@@ -14,4 +15,6 @@ public:
 	/** */
 	bool LoadGame( const QString& saveGameName );
 };
+
+#endif
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DomValueExtractor_H
+#define DomValueExtractor_H
 
 class QDomNode;
 class QDomElement;
@@ -21,3 +22,5 @@ private:
 private:
 	const QDomNode& DomNode;
 };
+
+#endif
