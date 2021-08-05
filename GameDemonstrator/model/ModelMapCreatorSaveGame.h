@@ -1,19 +1,19 @@
 #ifndef MapCreatorSaveGame_H
 #define MapCreatorSaveGame_H
 
-#include "IMapCreator.h"
+#include "IModelMapCreator.h"
 
 class ModelMapRepository;
 class ModelMapItem;
 class QDomNode;
 
-class MapCreatorSaveGame : public IMapCreator
+class ModelMapCreatorSaveGame : public IModelMapCreator
 {
 public:
 /** */
-	MapCreatorSaveGame( const QDomNode mapElements );
+	ModelMapCreatorSaveGame( const QDomNode mapElements );
 /** */
-	~MapCreatorSaveGame();
+	~ModelMapCreatorSaveGame();
 /** */
 	virtual bool CreateMap();
 /** */

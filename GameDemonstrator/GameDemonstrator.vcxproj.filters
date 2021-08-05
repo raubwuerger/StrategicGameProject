@@ -344,14 +344,8 @@
     <ClCompile Include="game\GameModeStandard.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
-    <ClCompile Include="model\MapCreatorSimple.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="game\GameMapFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="model\MapCreatorSaveGame.cpp">
-      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameFactory.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
@@ -405,6 +399,12 @@
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelMapFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapCreatorSimple.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapCreatorSaveGame.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -502,17 +502,8 @@
     <ClInclude Include="game\GameModeStandard.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="model\IMapCreator.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\MapCreatorSimple.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameMapFactory.h">
       <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="model\MapCreatorSaveGame.h">
-      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="SerializeBinary.h">
       <Filter>Header Dateien\IO</Filter>
@@ -548,6 +539,15 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\IModelMapCreator.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapCreatorSimple.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapCreatorSaveGame.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

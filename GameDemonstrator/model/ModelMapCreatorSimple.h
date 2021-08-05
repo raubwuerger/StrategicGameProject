@@ -1,14 +1,14 @@
 #ifndef MAPCREATORSIMPLE_H
 #define MAPCREATORSIMPLE_H
 
-#include "IMapCreator.h"
+#include "IModelMapCreator.h"
 class ModelMapItem;
 
-class MapCreatorSimple : public IMapCreator
+class ModelMapCreatorSimple : public IModelMapCreator
 {
 public:
 	/** */
-	MapCreatorSimple();
+	ModelMapCreatorSimple();
 	/** */
 	virtual bool CreateMap();
 	/** */

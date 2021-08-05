@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ModelMapFactory.h"
-#include "MapCreatorSimple.h"
+#include "ModelMapCreatorSimple.h"
 
 ModelMapFactory* ModelMapFactory::Instance = nullptr; 
 
@@ -34,7 +34,7 @@ ModelMapFactory::~ModelMapFactory()
 
 ModelMapRepository* ModelMapFactory::CreateModelMap()
 {
-	MapCreator = new MapCreatorSimple;
+	MapCreator = new ModelMapCreatorSimple;
 	MapCreator->CreateMap();
 	return TheGameMap;
 }

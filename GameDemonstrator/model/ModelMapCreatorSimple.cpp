@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "MapCreatorSimple.h"
+#include "ModelMapCreatorSimple.h"
 #include "ModelMapRepository.h"
 #include "ModelTerrainTypeRepository.h"
 #include "ModelMapItem.h"
 #include "ModelProgramFactory.h"
 #include "ModelProgramSettings.h"
 
-MapCreatorSimple::MapCreatorSimple()
+ModelMapCreatorSimple::ModelMapCreatorSimple()
 	: MapItemId(0)
 {
 
 }
 
-bool MapCreatorSimple::CreateMap()
+bool ModelMapCreatorSimple::CreateMap()
 {
 	MapItemId = 0;
 	unsigned int cols = ModelProgramFactory::GetInstance()->GetConfig()->DebugCols;
@@ -35,12 +35,12 @@ bool MapCreatorSimple::CreateMap()
 	return true;
 }
 
-ModelMapRepository* MapCreatorSimple::GetMap()
+ModelMapRepository* ModelMapCreatorSimple::GetMap()
 {
 	return ModelMapRepository::GetInstance();
 }
 
-ModelMapItem* MapCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
+ModelMapItem* ModelMapCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
 {
 	ModelMapItem* modelMapItem = new ModelMapItem(row,col,++MapItemId);
 	modelMapItem->SetModelTerrainType( ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType() );

@@ -3,7 +3,7 @@
 
 class ModelMapRepository;
 
-class IMapCreator
+class IModelMapCreator
 {
 public:
 	/** */

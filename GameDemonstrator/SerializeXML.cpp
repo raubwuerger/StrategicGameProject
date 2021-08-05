@@ -7,7 +7,7 @@
 #include "model/ModelMapRepository.h"
 #include "model/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
-#include "model/MapCreatorSaveGame.h"
+#include "model/ModelMapCreatorSaveGame.h"
 #include "DomNodeFinder.h"
 
 //==============================================================================
@@ -261,6 +261,6 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 
 	DomNodeFinder domNodeFinder(domNode);
 	const QDomNode mapNode = domNodeFinder.FindDomeNodeByNameClone(SerializeXMLItems::MAP);
-	MapCreatorSaveGame mapCreatorSaveGame( mapNode.cloneNode(true) );
+	ModelMapCreatorSaveGame mapCreatorSaveGame( mapNode.cloneNode(true) );
 	return mapCreatorSaveGame.CreateMap();
 }

@@ -2,7 +2,7 @@
 #define ModelMapFactory_H
 
 class ModelMapRepository;
-class IMapCreator;
+class IModelMapCreator;
 
 /** Creates game map representation */
 class ModelMapFactory
@@ -22,7 +22,7 @@ private:
 private:
 	static ModelMapFactory	*Instance;
 	ModelMapRepository*	TheGameMap;
-	IMapCreator*		MapCreator;
+	IModelMapCreator*		MapCreator;
 };
 
 #endif

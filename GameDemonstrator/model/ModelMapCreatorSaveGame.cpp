@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "MapCreatorSaveGame.h"
+#include "ModelMapCreatorSaveGame.h"
 #include <QtXml>
 #include "SerializeXMLItems.h"
 #include "LogInterface.h"
@@ -9,18 +9,18 @@
 #include "ModelMapItem.h"
 #include "ModelMapRepository.h"
 
-MapCreatorSaveGame::MapCreatorSaveGame( const QDomNode mapElements )
+ModelMapCreatorSaveGame::ModelMapCreatorSaveGame( const QDomNode mapElements )
 	: Rows(-1), Cols(-1)
 {
 	MapElements = new QDomNode(mapElements);
 }
 
-MapCreatorSaveGame::~MapCreatorSaveGame()
+ModelMapCreatorSaveGame::~ModelMapCreatorSaveGame()
 {
 
 }
 
-bool MapCreatorSaveGame::CreateMap()
+bool ModelMapCreatorSaveGame::CreateMap()
 {
 	DomNodeFinder domNodeFinder(*MapElements);
 
@@ -37,12 +37,12 @@ bool MapCreatorSaveGame::CreateMap()
 	return true;
 }
 
-ModelMapRepository* MapCreatorSaveGame::GetMap()
+ModelMapRepository* ModelMapCreatorSaveGame::GetMap()
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
+bool ModelMapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 {
 	QDomNodeList settingsNodeList = settings.childNodes();
 	if( true == settingsNodeList.isEmpty() )
@@ -70,7 +70,7 @@ bool MapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 	return true;
 }
 
-bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
+bool ModelMapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 {
 	QDomNodeList mapItemNodeList = mapItems.childNodes();
 	if( true == mapItemNodeList.isEmpty() )
@@ -108,7 +108,7 @@ bool MapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 	return true;
 }
 
-ModelMapItem* MapCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
+ModelMapItem* ModelMapCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
 {
 	QDomNodeList mapNodes = mapNode.childNodes();
 	if( true == mapNodes.isEmpty() )
