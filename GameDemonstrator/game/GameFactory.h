@@ -28,7 +28,7 @@ private:
 	~GameFactory();
 private:
 	static GameFactory	*Instance;
-	ModelMapRepository				*TheGameMap;
+	ModelMapRepository	*TheGameMap;
 	MapView				*MapViewInstance;
 };
 

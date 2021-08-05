@@ -20,10 +20,16 @@ public:
 	~MapView();
 	/** */
 	void Create();
-public:
-	MapViewGraphicsScene	*Scene;					//TODO: Setter
-	HexItemEventManager		*HexItemEventManager;	//TODO: Setter
-	MapEventManager			*MapEventManager;		//TODO: Setter
+public slots:
+	/** */
+	void HexActive( int row, int col );
+protected:
+	/** */
+	virtual void mouseReleaseEvent(QMouseEvent * event);
+	/** */
+	virtual void mousePressEvent(QMouseEvent *event);
+	/** */
+	virtual void mouseMoveEvent(QMouseEvent *event);
 private:
 	/** */
 	bool CreateMapFromModel();
@@ -35,6 +41,18 @@ private:
 	double CalcMapHeightInPixel() const;
 	/** */
 	bool CreateTopLeftPosition( int col, int row, QPointF &topLeftPosition );
+	/** */
+	void EmitHexItemPressed();
+public:
+	MapViewGraphicsScene	*Scene;					//TODO: Setter
+	HexItemEventManager		*HexItemEventManager;	//TODO: Setter
+	MapEventManager			*MapEventManager;		//TODO: Setter
+private:
+	const int	ROW_COL_NOT_INITIALIZED;
+	int			ActiveRow;
+	int			ActiveCol;
+	bool		SelectedItemChanged;
+
 };
 
 #endif // CMAPVIEW_H

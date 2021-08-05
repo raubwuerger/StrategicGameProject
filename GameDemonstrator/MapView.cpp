@@ -10,7 +10,11 @@
 #include "LogInterface.h"
 
 MapView::MapView(QWidget *parent)
-	: QGraphicsView(parent)
+	: QGraphicsView(parent),
+	ROW_COL_NOT_INITIALIZED(-1),
+	ActiveRow(ROW_COL_NOT_INITIALIZED),
+	ActiveCol(ROW_COL_NOT_INITIALIZED),
+	SelectedItemChanged(false)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	Scene = new MapViewGraphicsScene(this);
@@ -40,7 +44,7 @@ void MapView::InitMapEventManager()
 {
 	MapEventManager->InitMapItemsRegistry( ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols() );
 	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
-	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),Scene,SLOT(HexActive(int,int)));
+	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),this,SLOT(HexActive(int,int)));
 	Scene->HexItemEventManager = HexItemEventManager;
 }
 
@@ -113,4 +117,59 @@ double MapView::CalcMapHeightInPixel() const
 {
 	HexagonData hexagondata(HexagonData::DEFAULT_HEXE_SIZE);
 	return (hexagondata.Height * ModelMapRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
+}
+
+void MapView::mouseReleaseEvent(QMouseEvent * event)
+{
+	QGraphicsView::mouseReleaseEvent(event);
+}
+
+void MapView::mousePressEvent(QMouseEvent *event)
+{
+	EmitHexItemPressed();
+	QGraphicsView::mousePressEvent(event);
+}
+
+void MapView::mouseMoveEvent(QMouseEvent *event)
+{
+	if( event->buttons() == Qt::LeftButton )
+	{
+		EmitHexItemPressed();
+	}
+	QGraphicsView::mouseMoveEvent(event);
+}
+
+void MapView::HexActive(int row, int col)
+{
+	if( row != ActiveRow || col != ActiveCol )
+	{
+		SelectedItemChanged = true;
+		ActiveRow = row;
+		ActiveCol = col;
+		return;
+	}
+	SelectedItemChanged = false;
+}
+
+void MapView::EmitHexItemPressed()
+{
+	if( nullptr == HexItemEventManager )
+	{
+		return;
+	}
+	
+	if( ROW_COL_NOT_INITIALIZED == ActiveRow )
+	{
+		return;
+	}
+
+	if( ROW_COL_NOT_INITIALIZED == ActiveCol )
+	{
+		return;
+	}
+
+	if( true == SelectedItemChanged )
+	{
+		emit HexItemEventManager->HexItemPressed( ActiveRow, ActiveCol );
+	}
 }

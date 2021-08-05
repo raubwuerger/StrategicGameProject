@@ -6,8 +6,8 @@
 	</Logging>
 	<SaveGamePath>.//savegames//</SaveGamePath>
 	<DebugMapSettings>
-		<DebugRows>60</DebugRows>
-		<DebugCols>120</DebugCols>
+		<DebugRows>18</DebugRows>
+		<DebugCols>46</DebugCols>
 	</DebugMapSettings>
 	<MapTypes>
 		<MapType>
