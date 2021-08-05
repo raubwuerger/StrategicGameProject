@@ -8,19 +8,19 @@
 #include "MapEventManager.h"
 #include "HexItemEventManager.h"
 #include "TerrainTypeEditor.h"
-#include "model/ModelOwnerTypeRepository.h"
 #include "HexItemInfoDialog.h"
 #include "SerializerInterface.h"
 #include "SerializeBinary.h"
 #include "SerializerFactory.h"
 #include "Action.h"
 #include "LogFactory.h"
+#include "model/ModelOwnerTypeRepository.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "game/GameConnector.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
 #include "connectors/ConnectorEditorModelRepository.h"
+#include "connectors/GameConnector.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
