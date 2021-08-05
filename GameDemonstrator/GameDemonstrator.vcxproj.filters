@@ -81,6 +81,12 @@
     <Filter Include="Source Dateien\Connectors">
       <UniqueIdentifier>{a3bcf715-24d3-4464-86de-be2beeb986d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Map">
+      <UniqueIdentifier>{32231a99-e1be-4f66-bd95-950e4bdaa3a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Map">
+      <UniqueIdentifier>{9f0648e3-7e57-47b0-be63-aecb0d7bcdb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -407,6 +413,12 @@
     <ClCompile Include="model\ModelConfigurationHeaderXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="map\MapViewUnitItem.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\MapViewUnitItemFactory.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -549,6 +561,12 @@
     </ClInclude>
     <ClInclude Include="model\ModelConfigurationHeaderXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapViewUnitItem.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapViewUnitItemFactory.h">
+      <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
