@@ -3,27 +3,27 @@
 
 #include <QObject>
 
-class QActionRepository : public QObject
+class ActionRepository : public QObject
 {
 	Q_OBJECT
 
 public:
 	/** */
-	static QActionRepository* GetInstanceFirstTimeInit(QObject *parent);
+	static ActionRepository* GetInstanceFirstTimeInit(QObject *parent);
 	/** */
-	static QActionRepository* GetInstance();
+	static ActionRepository* GetInstance();
 	/** */
 	void AddAction( QAction* action );
 	/** */
 	void Release();
 private:
 	/** */
-	QActionRepository(QObject *parent);
+	ActionRepository(QObject *parent);
 	/** */
-	~QActionRepository();
+	~ActionRepository();
 private:
 	QList<QAction*>	Actions;
-	static QActionRepository* Instance;
+	static ActionRepository* Instance;
 };
 
 #endif

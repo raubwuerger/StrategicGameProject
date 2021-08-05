@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "gamedemonstrator.h"
-#include "QActionRepository.h"
+#include "ActionRepository.h"
 #include "game/GameMainThread.h"
 #include "game/GameMainLoop.h"
 #include "GameTurnDialog.h"
@@ -43,7 +43,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	MapViewInstance = new MapView(this);
 
-	QActionRepository::GetInstanceFirstTimeInit(parent);
+	ActionRepository::GetInstanceFirstTimeInit(parent);
 	SerializerInterface = SerializerFactory().CreateInterface();
 	InitLoggingFramwork();
 	LoadTerrainTypes();
@@ -81,7 +81,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 GameDemonstrator::~GameDemonstrator()
 {
 	ModelTerrainTypeRepository::GetInstance()->Release();
-	QActionRepository::GetInstance()->Release();
+	ActionRepository::GetInstance()->Release();
 	ModelOwnerTypeRepository::GetInstance()->Release();
 }
 
@@ -109,45 +109,45 @@ void GameDemonstrator::CreateMenuFile()
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
-	QActionRepository::GetInstance()->AddAction(createAction);
+	ActionRepository::GetInstance()->AddAction(createAction);
 	connect(createAction,SIGNAL(triggered()),GameFactory::GetInstance(), SLOT(CreateNewGame()), Qt::QueuedConnection );
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
-	QActionRepository::GetInstance()->AddAction( loadGameAction );
+	ActionRepository::GetInstance()->AddAction( loadGameAction );
 	connect(loadGameAction, SIGNAL(triggered()),GameFactory::GetInstance(),SLOT(LoadSaveGame()), Qt::QueuedConnection );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
-	QActionRepository::GetInstance()->AddAction(saveGameAction);
+	ActionRepository::GetInstance()->AddAction(saveGameAction);
 	connect(saveGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(SaveGame()), Qt::QueuedConnection );
 
 	QIcon next(":GameDemonstrator/Resources/media_end.ico");
 	QAction* nextTurnAction = new QAction(next,tr("&Next turn"), this);
 	nextTurnAction->setStatusTip(tr("Next turn"));
 	connect(nextTurnAction, SIGNAL(triggered()), MainGameLoop, SLOT(Step()), Qt::QueuedConnection );
-	QActionRepository::GetInstance()->AddAction(nextTurnAction);
+	ActionRepository::GetInstance()->AddAction(nextTurnAction);
 
 	QIcon start(":GameDemonstrator/Resources/media_play_green.ico");
 	QAction* startTurnAction = new QAction(start,tr("&Start"), this);
 	startTurnAction->setStatusTip(tr("Start turn"));
 	connect(startTurnAction, SIGNAL(triggered()), MainGameLoop, SLOT(Start()), Qt::QueuedConnection );
-	QActionRepository::GetInstance()->AddAction(startTurnAction);
+	ActionRepository::GetInstance()->AddAction(startTurnAction);
 
 	QIcon stop(":GameDemonstrator/Resources/media_stop_red.ico");
 	QAction* stopTurnAction = new QAction(stop,tr("S&top"), this);
 	stopTurnAction->setStatusTip(tr("Stop turn"));
 	connect(stopTurnAction, &QAction::triggered, MainGameLoop, &GameMainLoop::Pause, Qt::QueuedConnection);
-	QActionRepository::GetInstance()->AddAction(stopTurnAction);
+	ActionRepository::GetInstance()->AddAction(stopTurnAction);
 
 	QIcon exit(":GameDemonstrator/Resources/exit.ico");
 	QAction* exitAction = new QAction(exit,tr("E&xit"), this);
 	exitAction->setShortcuts(QKeySequence::Quit);
 	exitAction->setStatusTip(tr("Quit application"));
 	connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
-	QActionRepository::GetInstance()->AddAction(exitAction);
+	ActionRepository::GetInstance()->AddAction(exitAction);
 
 	FileMenu->addAction( createAction );
 	FileMenu->addAction( loadGameAction );
@@ -172,7 +172,7 @@ void GameDemonstrator::CreateMenuAbout()
 	QAction* aboutAction = new QAction(info,tr("&About"), this);
 	aboutAction->setStatusTip(tr("Info about application"));
 //	connect(aboutAction, SIGNAL(triggered()), aboutAction, SLOT(show()));
-	QActionRepository::GetInstance()->AddAction(aboutAction);
+	ActionRepository::GetInstance()->AddAction(aboutAction);
 
 	InfoMenu->addAction( aboutAction );
 }

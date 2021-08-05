@@ -4,7 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_gamedemonstrator.h"
 
-class QActionRepository;
+class ActionRepository;
 class GameTurnDialog;
 class HexItemInfoDialog;
 class GameMainThread;
@@ -51,7 +51,7 @@ private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
 	QMenu	*InfoMenu;
-	QActionRepository*			ActionRepository;
+	ActionRepository*			ActionRepository;
 	GameTurnDialog*				GameTurnDialogInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
 	GameMainThread*				MainThread;
