@@ -34,6 +34,8 @@ void MapView::Create()
 		return;
 	}
 	this->setRenderHint(QPainter::Antialiasing);
+	this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(), CalcMapHeightInPixel() );
 
