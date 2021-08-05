@@ -387,9 +387,10 @@
     <ClCompile Include="model\ModelTerrainTypeFactory.cpp" />
     <ClCompile Include="model\ModelTerrainTypeRepository.cpp" />
     <ClCompile Include="ActionRepository.cpp" />
-    <ClCompile Include="model\ModelUnit.cpp" />
-    <ClCompile Include="model\ModelUnitFactory.cpp" />
-    <ClCompile Include="model\ModelUnitRepository.cpp" />
+    <ClCompile Include="model\ModelUnitType.cpp" />
+    <ClCompile Include="model\ModelUnitTypeFactory.cpp" />
+    <ClCompile Include="model\ModelUnitTypeRepository.cpp" />
+    <ClCompile Include="model\ModelUnitTypeXMLItems.cpp" />
     <ClCompile Include="SerializeBinary.cpp" />
     <ClCompile Include="SerializeXML.cpp" />
     <ClCompile Include="SerializerFactory.cpp" />
@@ -550,9 +551,10 @@
     <ClInclude Include="model\ModelTerrainXMLItems.h" />
     <ClInclude Include="model\ModelTerrainTypeFactory.h" />
     <ClInclude Include="model\ModelTerrainTypeRepository.h" />
-    <ClInclude Include="model\ModelUnit.h" />
-    <ClInclude Include="model\ModelUnitFactory.h" />
-    <ClInclude Include="model\ModelUnitRepository.h" />
+    <ClInclude Include="model\ModelUnitType.h" />
+    <ClInclude Include="model\ModelUnitTypeFactory.h" />
+    <ClInclude Include="model\ModelUnitTypeRepository.h" />
+    <ClInclude Include="model\ModelUnitTypeXMLItems.h" />
     <ClInclude Include="SerializeXML.h" />
     <ClInclude Include="SerializerFactory.h" />
     <ClInclude Include="DomElementFinder.h" />

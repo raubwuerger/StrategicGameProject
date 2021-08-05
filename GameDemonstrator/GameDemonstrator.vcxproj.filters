@@ -419,13 +419,16 @@
     <ClCompile Include="map\MapViewUnitItemFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelUnitFactory.cpp">
+    <ClCompile Include="model\ModelUnitType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelUnit.cpp">
+    <ClCompile Include="model\ModelUnitTypeFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelUnitRepository.cpp">
+    <ClCompile Include="model\ModelUnitTypeXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelUnitTypeRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -577,13 +580,16 @@
     <ClInclude Include="map\MapViewUnitItemFactory.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelUnitFactory.h">
+    <ClInclude Include="model\ModelUnitType.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelUnit.h">
+    <ClInclude Include="model\ModelUnitTypeFactory.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelUnitRepository.h">
+    <ClInclude Include="model\ModelUnitTypeXMLItems.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelUnitTypeRepository.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

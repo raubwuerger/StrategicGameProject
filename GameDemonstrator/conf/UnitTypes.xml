@@ -3,16 +3,16 @@
 	<UnitType>
 		<Id>1</Id>
 		<Name>Infantery</Name>
-		<PicturePath>.\Resources\Units\Infantry_64.png</PicturePath>
+		<PictureName>.\Resources\Units\Infantry_64.png</PictureName>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
 		<Name>Tank</Name>
-		<PicturePath>.\Resources\Units\Tank_64.png"</PicturePath>
+		<PictureName>.\Resources\Units\Tank_64.png</PictureName>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
 		<Name>Artillery</Name>
-		<PicturePath>.\Resources\Units\Artillery_64.png</PicturePath>
+		<PictureName>.\Resources\Units\Artillery_64.png</PictureName>
 	</UnitType>
 </UnitTypes>

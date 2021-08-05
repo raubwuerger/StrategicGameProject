@@ -44,6 +44,7 @@ private:
 	void InitLoggingFramwork();
 	bool LoadTerrainTypes();
 	bool LoadOwnerTypes();
+	bool LoadUnitTypes();
 	bool ReadTerrainTypes(QIODevice *device);
 	void CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor );
 	TerrainTypeEditor* CreateTerrainTypeEditor( MapEventManager* mapEventManager );

@@ -19,6 +19,7 @@
 #include "game/GameFactory.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
+#include "model/ModelUnitTypeFactory.h"
 #include "connectors/ConnectorEditorModelRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
@@ -42,11 +43,13 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapViewInstance = new MapView(this);
 	MapViewInstance->setViewport( new QOpenGLWidget(this) );
 
+	InitLoggingFramwork();
+
 	ActionRepository::GetInstanceFirstTimeInit(parent);
 	SerializerInterface = SerializerFactory().CreateInterface();
-	InitLoggingFramwork();
 	LoadTerrainTypes();
 	LoadOwnerTypes();
+	LoadUnitTypes();
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
@@ -230,6 +233,12 @@ bool GameDemonstrator::LoadTerrainTypes()
 bool GameDemonstrator::LoadOwnerTypes()
 {
 	return ModelOwnerTypeFactory::GetInstance()->Create();
+}
+
+bool GameDemonstrator::LoadUnitTypes()
+{
+	ModelUnitTypeFactory factory;
+	return factory.Create();
 }
 
 #include "model/ModelTerrainType.h"
