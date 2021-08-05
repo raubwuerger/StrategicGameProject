@@ -110,7 +110,7 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newTerrainType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newTerrainType->PictureName);
 		allElementsExtracted &= AttacheImage( newTerrainType );
 	}
 
@@ -160,12 +160,12 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 
 bool ModelTerrainTypeFactory::AttacheImage( ModelTerrainType* modelTerrainType )
 {
-	QString terrainPicturePath(modelTerrainType->GetPicturePath());
-	const QImage *terrainTypeImage = LoadTerrainTypeImage( terrainPicturePath );
+	QString terrainPictureName(modelTerrainType->GetPictureName());
+	const QImage *terrainTypeImage = LoadTerrainTypeImage( terrainPictureName );
 
 	if( terrainTypeImage == nullptr )
 	{
-		jha::GetLog()->Log_MESSAGE( QObject::tr("Unable to load terrain image: %1").arg(terrainPicturePath));
+		jha::GetLog()->Log_MESSAGE( QObject::tr("Unable to load terrain image: %1").arg(terrainPictureName));
 		return false;
 	}
 	

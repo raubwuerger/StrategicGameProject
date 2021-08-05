@@ -22,7 +22,7 @@ private:
 	bool		Human;
 	QString		Name;
 	QColor		Color;
-	QString		PicturePath;
+	QString		PictureName;
 };
 
 #endif

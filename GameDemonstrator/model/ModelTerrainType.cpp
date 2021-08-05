@@ -60,10 +60,10 @@ const QImage * ModelTerrainType::GetImage() const
 
 QString ModelTerrainType::toString() const
 {
-	return QObject::tr("ModelTerrainType - Id: %1, Name: %2, PicturePath: %3, Infrastructure: %4, Oil: %5, Timber: %6, Stone: %7, MovementModifier: %8, AttackModifier: %9" )
+	return QObject::tr("ModelTerrainType - Id: %1, Name: %2, PictureName: %3, Infrastructure: %4, Oil: %5, Timber: %6, Stone: %7, MovementModifier: %8, AttackModifier: %9" )
 		.arg(QString::number(Id))
 		.arg(Name)
-		.arg(PicturePath)
+		.arg(PictureName)
 		.arg(QString::number(Infrastructure))
 		.arg(QString::number(Oil))
 		.arg(QString::number(Timber))
@@ -73,7 +73,7 @@ QString ModelTerrainType::toString() const
 		.arg(QString::number(AttackModifier));
 }
 
-const QString& ModelTerrainType::GetPicturePath() const
+const QString& ModelTerrainType::GetPictureName() const
 {
-	return PicturePath;
+	return PictureName;
 }

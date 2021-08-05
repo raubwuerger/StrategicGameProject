@@ -14,8 +14,8 @@ public:
 	QColor InterpolateColorByType( ) const;
 	/** Get m_Name */	
 	const QString& GetName() const;
-	/** Get m_PicturePath */
-	const QString& GetPicturePath() const;
+	/** Get m_PictureName */
+	const QString& GetPictureName() const;
 	/** Get m_Image */
 	const QImage * GetImage() const;
 	/** Set m_Image */
@@ -26,7 +26,7 @@ private:
 	friend class ModelTerrainTypeFactory;
 	int			Id;
 	QString		Name;
-	QString		PicturePath;
+	QString		PictureName;
 	int			Infrastructure;
 	int			Oil;
 	int			Timber;

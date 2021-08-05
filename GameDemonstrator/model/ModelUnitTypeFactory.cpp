@@ -94,7 +94,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME, newUnitType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME, newUnitType->PictureName);
 		allElementsExtracted &= AttacheImage(newUnitType);
 	}
 
@@ -109,7 +109,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 
 bool ModelUnitTypeFactory::AttacheImage(ModelUnitType* modelUnit)
 {
-	QString imageName(modelUnit->GetPicturePath());
+	QString imageName(modelUnit->GetPictureName());
 	const QImage *image = LoadImage(imageName);
 
 	if (image == nullptr)

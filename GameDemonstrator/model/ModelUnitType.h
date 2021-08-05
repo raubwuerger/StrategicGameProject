@@ -13,14 +13,14 @@ public:
 	/** */
 	const QString& GetName() const;
 	/** */
-	const QString& GetPicturePath() const;
+	const QString& GetPictureName() const;
 	/** */
 	void SetImage(const QImage* image);
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
 	QString			Name;
-	QString			PicturePath;
+	QString			PictureName;
 	const QImage	*Image;
 };
 

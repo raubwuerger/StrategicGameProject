@@ -114,7 +114,7 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newOwnerType->PicturePath);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newOwnerType->PictureName);
 	}
 
 	{

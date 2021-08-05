@@ -21,9 +21,9 @@ const QString& ModelUnitType::GetName() const
 	return Name;
 }
 
-const QString& ModelUnitType::GetPicturePath() const
+const QString& ModelUnitType::GetPictureName() const
 {
-	return PicturePath;
+	return PictureName;
 }
 
 void ModelUnitType::SetImage(const QImage* image)

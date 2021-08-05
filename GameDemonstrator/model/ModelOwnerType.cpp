@@ -24,7 +24,7 @@ int ModelOwnerType::GetId() const
 
 QString ModelOwnerType::toString() const
 {
-	return QObject::tr("ModelOwnerType - Id: %1, Name: %2, PicturePath: %3").arg(QString::number(Id)).arg(Name).arg(PicturePath);
+	return QObject::tr("ModelOwnerType - Id: %1, Name: %2, PictureName: %3").arg(QString::number(Id)).arg(Name).arg(PictureName);
 }
 
 bool ModelOwnerType::GetHuman() const

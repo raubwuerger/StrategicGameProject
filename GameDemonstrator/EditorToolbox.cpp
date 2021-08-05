@@ -57,7 +57,7 @@ void EditorToolbox::Create()
 
 QWidget *EditorToolbox::CreateTerrainTypeWidget( const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector  )
 {
-	QIcon icon( modelTerrainType->GetPicturePath() );
+	QIcon icon( modelTerrainType->GetPictureName() );
 
 	QToolButton *button = new QToolButton;
 	button->setIcon(icon);
