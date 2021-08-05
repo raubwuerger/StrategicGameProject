@@ -7,24 +7,6 @@
 #include "SerializerInterface.h"
 #include ".\model\ModelMapFactory.h"
 
-GameConnector* GameConnector::Instance = nullptr;
-
-GameConnector* GameConnector::GetInstance()
-{
-	if( nullptr != Instance )
-	{
-		return Instance;
-	}
-
-	Instance = new GameConnector();
-	return Instance;
-}
-
-void GameConnector::Release()
-{
-	delete Instance;
-}
-
 GameConnector::GameConnector()
 {
 }

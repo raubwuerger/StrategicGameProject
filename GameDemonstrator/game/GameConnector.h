@@ -11,7 +11,9 @@ class GameConnector : public QObject
 	Q_OBJECT
 public:
 	/** */
-	static GameConnector* GetInstance();
+	GameConnector();
+	/** */
+	~GameConnector();
 	/** */
 	void Release();
 	/** */
@@ -22,12 +24,6 @@ public slots:
 	/** */
 	void LoadSaveGame();
 private:
-	/** */
-	GameConnector();
-	/** */
-	~GameConnector();
-private:
-	static GameConnector	*Instance;
 	MapView				*MapViewInstance;
 };
 
