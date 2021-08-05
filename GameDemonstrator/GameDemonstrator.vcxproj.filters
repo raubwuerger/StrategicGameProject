@@ -320,9 +320,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameMainThread.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="game\GameMainCounter.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
@@ -343,12 +340,6 @@
     </ClCompile>
     <ClCompile Include="game\GameMapFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameFactory.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameFactory.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="SerializeBinary.cpp">
       <Filter>Source Dateien\IO</Filter>
@@ -430,6 +421,15 @@
     </ClCompile>
     <ClCompile Include="model\ModelUnitTypeRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameConnector.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameConnector.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameConnector.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -669,14 +669,14 @@
     <CustomBuild Include="game\GameMainThread.h">
       <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
-    <CustomBuild Include="game\GameFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </CustomBuild>
     <CustomBuild Include="connectors\ConnectorEditorModelRepository.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
     <CustomBuild Include="ActionRepository.h">
       <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="game\GameConnector.h">
+      <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

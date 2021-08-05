@@ -6,12 +6,12 @@ class MapView;
 class ModelMapRepository;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
-class GameFactory : public QObject
+class GameConnector : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	static GameFactory* GetInstance();
+	static GameConnector* GetInstance();
 	/** */
 	void Release();
 	/** */
@@ -23,12 +23,11 @@ public slots:
 	void LoadSaveGame();
 private:
 	/** */
-	GameFactory();
+	GameConnector();
 	/** */
-	~GameFactory();
+	~GameConnector();
 private:
-	static GameFactory	*Instance;
-	ModelMapRepository	*TheGameMap;
+	static GameConnector	*Instance;
 	MapView				*MapViewInstance;
 };
 

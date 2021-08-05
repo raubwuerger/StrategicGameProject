@@ -16,7 +16,7 @@ private:
 	/** */
 	~GameMainCounter();
 private:
-	friend class GameFactory;
+	friend class GameConnector;
 	QDate	CurrentDate;
 	QDate	StartDate;
 	int		MonthIncrement;

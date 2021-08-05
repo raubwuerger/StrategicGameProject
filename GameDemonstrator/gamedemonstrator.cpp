@@ -16,7 +16,7 @@
 #include "Action.h"
 #include "LogFactory.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "game/GameFactory.h"
+#include "game/GameConnector.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
@@ -75,7 +75,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
 
-	GameFactory::GetInstance()->SetMapView(MapViewInstance);
+	GameConnector::GetInstance()->SetMapView(MapViewInstance);
 
 	MapViewInstance->show();
 }
@@ -112,13 +112,13 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
 	ActionRepository::GetInstance()->AddAction(createAction);
-	connect(createAction,SIGNAL(triggered()),GameFactory::GetInstance(), SLOT(CreateNewGame()), Qt::QueuedConnection );
+	connect(createAction,SIGNAL(triggered()),GameConnector::GetInstance(), SLOT(CreateNewGame()), Qt::QueuedConnection );
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	ActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, SIGNAL(triggered()),GameFactory::GetInstance(),SLOT(LoadSaveGame()), Qt::QueuedConnection );
+	connect(loadGameAction, SIGNAL(triggered()),GameConnector::GetInstance(),SLOT(LoadSaveGame()), Qt::QueuedConnection );
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);
