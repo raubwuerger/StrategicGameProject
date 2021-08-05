@@ -33,7 +33,7 @@ void MapView::Create()
 	{
 		return;
 	}
-
+	this->setRenderHint(QPainter::Antialiasing);
 	setScene(Scene);
 	setSceneRect(0, 0, CalcMapWidthInPixel(), CalcMapHeightInPixel() );
 
@@ -126,17 +126,17 @@ void MapView::mouseReleaseEvent(QMouseEvent * event)
 
 void MapView::mousePressEvent(QMouseEvent *event)
 {
-	EmitHexItemPressed();
 	QGraphicsView::mousePressEvent(event);
+	EmitHexItemPressed();
 }
 
 void MapView::mouseMoveEvent(QMouseEvent *event)
 {
+	QGraphicsView::mouseMoveEvent(event);
 	if( event->buttons() == Qt::LeftButton )
 	{
 		EmitHexItemPressed();
 	}
-	QGraphicsView::mouseMoveEvent(event);
 }
 
 void MapView::HexActive(int row, int col)
@@ -172,4 +172,23 @@ void MapView::EmitHexItemPressed()
 	{
 		emit HexItemEventManager->HexItemPressed( ActiveRow, ActiveCol );
 	}
+}
+
+void MapView::wheelEvent(QWheelEvent *event)
+{
+	QGraphicsView::wheelEvent(event);
+	if( true == event->isAccepted() )
+	{
+		return;
+	}
+	const qreal factor = 1.1;
+	if( event->angleDelta().y() > 0 )
+	{
+		scale(factor,factor);
+	}
+	else
+	{
+		scale(1 / factor, 1 / factor );
+	}
+	event->accept();
 }
