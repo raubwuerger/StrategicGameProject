@@ -4,6 +4,7 @@
 #include <QObject>
 class MapViewHexItem;
 class HexItemInfoDialog;
+class MapViewUnitItem;
 
 class MapEventManager : public QObject
 {
@@ -21,11 +22,14 @@ public:
 	const MapViewHexItem* FindItemByIndex( int row, int col ) const;
 	/** */
 	MapViewHexItem* FindItemByIndexNonConst( int row, int col );
+	/** */
+	void RegisterUnitItem(MapViewUnitItem* unitItem);
 public slots:
 	/** */
 	void UpdateMapItemInfo( int row, int col );
 private:
 	QVector< QVector<MapViewHexItem*> >	MapItems;
+	QVector< MapViewUnitItem* >			UnitItems;
 
 	friend class GameDemonstrator;
 	HexItemInfoDialog *HexItemInfoDialog;

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MODELOWNERTYPEXMLITEMS_H
+#define MODELOWNERTYPEXMLITEMS_H
 
 class ModelOwnerTypeXMLItems
 {
@@ -14,3 +15,5 @@ private:
 	const static QString SUBELEMENT_PICTURENAME;
 	const static QString SUBELEMENT_COLOR;
 };
+
+#endif

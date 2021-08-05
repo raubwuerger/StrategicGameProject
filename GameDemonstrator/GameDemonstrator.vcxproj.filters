@@ -419,6 +419,15 @@
     <ClCompile Include="map\MapViewUnitItemFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelUnitFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelUnit.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelUnitRepository.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -567,6 +576,15 @@
     </ClInclude>
     <ClInclude Include="map\MapViewUnitItemFactory.h">
       <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelUnitFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelUnit.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelUnitRepository.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

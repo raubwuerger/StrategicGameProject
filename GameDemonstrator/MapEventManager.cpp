@@ -27,6 +27,11 @@ void MapEventManager::RegisterMapItem( MapViewHexItem* mapItem )
 	MapItems[mapItem->GetRow()][mapItem->GetCol()] = mapItem;
 }
 
+void MapEventManager::RegisterUnitItem( MapViewUnitItem* unitItem )
+{
+	UnitItems.
+}
+
 const MapViewHexItem* MapEventManager::FindItemByIndex( int row, int col ) const
 {
 	return MapItems[row][col];
