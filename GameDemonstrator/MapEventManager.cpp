@@ -15,7 +15,7 @@ MapEventManager::~MapEventManager()
 
 }
 
-#include "MapHexItem.h"
+#include "map\MapHexItem.h"
 void MapEventManager::InitMapItemsRegistry( int rows, int cols )
 {
 	QVector<MapHexItem*> row(cols);

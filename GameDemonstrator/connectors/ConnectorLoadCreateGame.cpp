@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ConnectorLoadCreateGame.h"
 #include "model\ModelMapRepository.h"
-#include "MapView.h"
+#include ".\map\MapView.h"
 #include "ModelFactory.h"
 #include "SerializerFactory.h"
 #include "SerializerInterface.h"

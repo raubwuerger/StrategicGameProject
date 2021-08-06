@@ -4,7 +4,7 @@
 #include "model/ModelTerrainTypeRepository.h"
 #include "MapEventManager.h"
 #include "model/ModelTerrainType.h"
-#include "MapHexItem.h"
+#include "map\MapHexItem.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),
