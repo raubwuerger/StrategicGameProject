@@ -1,7 +1,7 @@
 #ifndef SerializerFactory_H
 #define SerializerFactory_H
 
-class ConnectorSaveGame;
+class SerializerGame;
 #include <QVector>
 
 class SerializerFactory
@@ -14,9 +14,9 @@ public:
 /** */
 	void Release();
 /** */
-	ConnectorSaveGame* CreateInterface();
+	SerializerGame* CreateInterface();
 private:
-	static ConnectorSaveGame* SerializerInterfaceInstanze;
+	static SerializerGame* SerializerInterfaceInstanze;
 };
 
 #endif

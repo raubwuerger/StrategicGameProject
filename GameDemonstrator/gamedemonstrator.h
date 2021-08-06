@@ -18,7 +18,7 @@ class CreateNewMap;
 class ConnectorTerrainEditorGameMap;
 class ConnectorUnitTypeGameMap;
 class ConnectorLoadCreateGame;
-class ConnectorSaveGame;
+class SerializerGame;
 
 namespace jha
 {
@@ -63,7 +63,7 @@ private:
 	GameMainLoop*				MainGameLoop;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
-	ConnectorSaveGame*			ConnectorSaveGameInstance;
+	SerializerGame*			ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;

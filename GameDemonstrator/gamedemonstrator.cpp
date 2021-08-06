@@ -8,7 +8,7 @@
 #include "map/MapView.h"
 #include "map/MapEventManager.h"
 #include "HexItemEventManager.h"
-#include "io\ConnectorSaveGame.h"
+#include "io\SerializerGame.h"
 #include "io\SerializeBinary.h"
 #include "io\SerializerFactory.h"
 #include "Action.h"

@@ -1,22 +1,22 @@
 #include "stdafx.h"
-#include "ConnectorSaveGame.h"
+#include "SerializerGame.h"
 #include "SerializeXML.h"
 #include "game\GameMainCounter.h"
 #include "GameConfig.h"
 #include "model\ModelProgramFactory.h"
 #include "model\ModelProgramSettings.h"
 
-ConnectorSaveGame::ConnectorSaveGame()
+SerializerGame::SerializerGame()
 	: SerializeGameInterface(nullptr)
 {
 }
 
-ConnectorSaveGame::~ConnectorSaveGame()
+SerializerGame::~SerializerGame()
 {
 	delete SerializeGameInterface;
 }
 
-bool ConnectorSaveGame::SaveGame()
+bool SerializerGame::SaveGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{
@@ -26,7 +26,7 @@ bool ConnectorSaveGame::SaveGame()
 	return SerializeGameInterface->SaveGame( CreateSaveGameFileName() );
 }
 
-bool ConnectorSaveGame::LoadGame()
+bool SerializerGame::LoadGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{
@@ -36,7 +36,7 @@ bool ConnectorSaveGame::LoadGame()
 	return SerializeGameInterface->LoadGame( GameConfig::CurrentSaveGameName );
 }
 
-QString ConnectorSaveGame::CreateSaveGameFileName() const
+QString SerializerGame::CreateSaveGameFileName() const
 {
 	QString saveGamePath(ModelProgramFactory::ModelProgramSettingsInstance->SaveGamePath);
 	QString saveGameFile(saveGamePath);

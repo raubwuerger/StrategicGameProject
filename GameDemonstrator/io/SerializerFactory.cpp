@@ -2,11 +2,11 @@
 #include "SerializerFactory.h"
 #include "SerializeBinary.h"
 #include "SerializeXML.h"
-#include "ConnectorSaveGame.h"
+#include "SerializerGame.h"
 #include "QObject.h"
 
 
-ConnectorSaveGame* SerializerFactory::SerializerInterfaceInstanze = nullptr;
+SerializerGame* SerializerFactory::SerializerInterfaceInstanze = nullptr;
 
 SerializerFactory::SerializerFactory()
 {
@@ -22,7 +22,7 @@ void SerializerFactory::Release()
 	SerializerInterfaceInstanze = nullptr;
 }
 
-ConnectorSaveGame* SerializerFactory::CreateInterface()
+SerializerGame* SerializerFactory::CreateInterface()
 {
 	//TODO: Will be set by config
 	//SerializeGameInterface = new CSaveToXML();
@@ -31,7 +31,7 @@ ConnectorSaveGame* SerializerFactory::CreateInterface()
 		return SerializerInterfaceInstanze;
 	}
 
-	SerializerInterfaceInstanze = new ConnectorSaveGame;
+	SerializerInterfaceInstanze = new SerializerGame;
 	SerializerInterfaceInstanze->SerializeGameInterface = new SerializeXML;
 	return SerializerInterfaceInstanze;
 }
