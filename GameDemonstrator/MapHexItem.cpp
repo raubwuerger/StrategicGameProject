@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "MapViewHexItem.h"
+#include "MapHexItem.h"
 #include "HexagonData.h"
 #include "HexItemEventManager.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft )
+MapHexItem::MapHexItem( const HexagonData& data, const QPointF& topLeft )
 	: HexData(data),
 	TopLeftPoint(topLeft),
 	Col(-1),
@@ -24,12 +24,12 @@ MapViewHexItem::MapViewHexItem( const HexagonData& data, const QPointF& topLeft 
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 }
 
-MapViewHexItem::~MapViewHexItem()
+MapHexItem::~MapHexItem()
 {
 
 }
 
-void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
+void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
 	if( TerrainImage != nullptr )
 	{
@@ -54,18 +54,18 @@ void MapViewHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *o
 	QGraphicsPolygonItem::paint(painter,option,widget);
 }
 
-QRectF MapViewHexItem::boundingRect() const
+QRectF MapHexItem::boundingRect() const
 {
 	return HexData.BoundingRect;
 }
 
-void MapViewHexItem::CreateHexPolygon( const HexagonData &data )
+void MapHexItem::CreateHexPolygon( const HexagonData &data )
 {
 	setPolygon(data.HexPoints);
 	setFlags(QGraphicsItem::ItemIsFocusable);
 }
 
-void MapViewHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
+void MapHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
 	setZValue( 255 );
 	ShowSelected();
@@ -77,7 +77,7 @@ void MapViewHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 	event->ignore();
 }
 
-void MapViewHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event) 
+void MapHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event) 
 {
 	setZValue( 0 );
 	ShowOriginal();
@@ -85,19 +85,19 @@ void MapViewHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 	event->ignore();
 }
 
-void MapViewHexItem::ShowSelected()
+void MapHexItem::ShowSelected()
 {
 	setPen( QPen( QBrush(Qt::black), 4 ) );
 	update(boundingRect());
 }
 
-void MapViewHexItem::ShowOriginal()
+void MapHexItem::ShowOriginal()
 {
 	setPen( QPen() );
 	update(boundingRect());
 }
 
-void MapViewHexItem::SetRowAndCol( int row, int col )
+void MapHexItem::SetRowAndCol( int row, int col )
 {
 	this->Row = row; 
 	this->Col = col;
@@ -105,17 +105,17 @@ void MapViewHexItem::SetRowAndCol( int row, int col )
 	StringRowCol = QString::number(row) +"|" +QString::number(col);
 }
 
-void MapViewHexItem::SetTerrainImage( const QImage * val )
+void MapHexItem::SetTerrainImage( const QImage * val )
 {
 	TerrainImage = val;
 }
 
-void MapViewHexItem::SetModelMapItemId(int modelMapItemId)
+void MapHexItem::SetModelMapItemId(int modelMapItemId)
 {
 	ModelMapItemId = modelMapItemId;
 }
 
-int MapViewHexItem::GetModelMapItemId() const
+int MapHexItem::GetModelMapItemId() const
 {
 	return ModelMapItemId;
 }

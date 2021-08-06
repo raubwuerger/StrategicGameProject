@@ -2,7 +2,7 @@
 #define MAPEVENTMANAGER_H
 
 #include <QObject>
-class MapViewHexItem;
+class MapHexItem;
 class HexItemInfoDialog;
 class MapUnitItem;
 
@@ -17,18 +17,18 @@ public:
 	/** */
 	void InitMapItemsRegistry( int rows, int cols );
 	/** */
-	void RegisterMapItem( MapViewHexItem* mapItem );
+	void RegisterMapItem( MapHexItem* mapItem );
 	/** */
-	const MapViewHexItem* FindItemByIndex( int row, int col ) const;
+	const MapHexItem* FindItemByIndex( int row, int col ) const;
 	/** */
-	MapViewHexItem* FindItemByIndexNonConst( int row, int col );
+	MapHexItem* FindItemByIndexNonConst( int row, int col );
 	/** */
 	void RegisterUnitItem(MapUnitItem* unitItem);
 public slots:
 	/** */
 	void UpdateMapItemInfo( int row, int col );
 private:
-	QVector< QVector<MapViewHexItem*> >	MapItems;
+	QVector< QVector<MapHexItem*> >	MapItems;
 	QVector< MapUnitItem* >			UnitItems;
 
 	friend class GameDemonstrator;

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MapView.h"
-#include "MapViewGraphicsScene.h"
-#include "MapViewHexItem.h"
+#include "MapGraphicsScene.h"
+#include "MapHexItem.h"
 #include "MapEventManager.h"
 #include "HexItemEventManager.h"
 #include "model/ModelTerrainTypeRepository.h"
@@ -17,7 +17,7 @@ MapView::MapView(QWidget *parent)
 	SelectedItemChanged(false)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	Scene = new MapViewGraphicsScene(this);
+	Scene = new MapGraphicsScene(this);
 }
 
 MapView::~MapView()
@@ -71,7 +71,7 @@ bool MapView::CreateMapFromModel()
 			ModelMapItem* modelMapItem = row.at(currentCol);
 			QPointF topLeftPosition;
 			CreateTopLeftPosition(currentRow,currentCol,topLeftPosition);
-			MapViewHexItem *mapItem = new MapViewHexItem( hexagonTemplate, topLeftPosition );
+			MapHexItem *mapItem = new MapHexItem( hexagonTemplate, topLeftPosition );
 			mapItem->SetRowAndCol(currentRow,currentCol);
 			mapItem->SetHexItemEventManager( HexItemEventManager );
 			mapItem->SetModelMapItemId( modelMapItem->GetId() );

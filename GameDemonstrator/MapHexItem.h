@@ -6,13 +6,13 @@ class HexItemEventManager;
 
 //================================================================================
 /** Repräsentiert Kartenteil auf Bildschirm */
-class MapViewHexItem : public QGraphicsPolygonItem
+class MapHexItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapViewHexItem( const HexagonData& data, const QPointF& topLeft );
+	MapHexItem( const HexagonData& data, const QPointF& topLeft );
 	/** */
-	~MapViewHexItem();
+	~MapHexItem();
 	/** */
 	QRectF boundingRect() const;
 	/** */

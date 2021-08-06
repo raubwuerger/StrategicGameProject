@@ -15,14 +15,14 @@ MapEventManager::~MapEventManager()
 
 }
 
-#include "MapViewHexItem.h"
+#include "MapHexItem.h"
 void MapEventManager::InitMapItemsRegistry( int rows, int cols )
 {
-	QVector<MapViewHexItem*> row(cols);
+	QVector<MapHexItem*> row(cols);
 	MapItems.fill(row,rows);
 }
 
-void MapEventManager::RegisterMapItem( MapViewHexItem* mapItem )
+void MapEventManager::RegisterMapItem( MapHexItem* mapItem )
 {
 	MapItems[mapItem->GetRow()][mapItem->GetCol()] = mapItem;
 }
@@ -38,12 +38,12 @@ void MapEventManager::RegisterUnitItem( MapUnitItem* unitItem )
 	UnitItems.push_back(unitItem);
 }
 
-const MapViewHexItem* MapEventManager::FindItemByIndex( int row, int col ) const
+const MapHexItem* MapEventManager::FindItemByIndex( int row, int col ) const
 {
 	return MapItems[row][col];
 }
 
-MapViewHexItem* MapEventManager::FindItemByIndexNonConst( int row, int col )
+MapHexItem* MapEventManager::FindItemByIndexNonConst( int row, int col )
 {
 	return MapItems[row][col];
 }

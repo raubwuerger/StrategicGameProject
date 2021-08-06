@@ -5,14 +5,14 @@
 class HexItemEventManager;
 
 /** Benutzerschnittstelle zu Karte */
-class MapViewGraphicsScene : public QGraphicsScene
+class MapGraphicsScene : public QGraphicsScene
 {
 	Q_OBJECT
 public:
 	/** */
-	MapViewGraphicsScene(QObject *parent);
+	MapGraphicsScene(QObject *parent);
 	/** */
-	~MapViewGraphicsScene();
+	~MapGraphicsScene();
 protected:
 	/** */
 	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);

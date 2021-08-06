@@ -4,7 +4,7 @@
 #include "model/ModelTerrainTypeRepository.h"
 #include "MapEventManager.h"
 #include "model/ModelTerrainType.h"
-#include "MapViewHexItem.h"
+#include "MapHexItem.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),
@@ -33,7 +33,7 @@ void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 
-	MapViewHexItem *item = MapEventManager->FindItemByIndexNonConst( row, col );
+	MapHexItem *item = MapEventManager->FindItemByIndexNonConst( row, col );
 	if( item == nullptr )
 	{
 		return;

@@ -119,12 +119,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MapView.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_MapViewGraphicsScene.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MapViewGraphicsScene.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_HexItemInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -234,12 +228,6 @@
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="CreateNewMapDialog.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="MapViewGraphicsScene.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="MapViewHexItem.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="MapView.cpp">
@@ -430,6 +418,18 @@
     </ClCompile>
     <ClCompile Include="map\MapUnitItemFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapHexItem.cpp">
+      <Filter>Source Dateien\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGraphicsScene.cpp">
+      <Filter>Source Dateien\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MapGraphicsScene.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MapGraphicsScene.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -642,13 +642,7 @@
     <CustomBuild Include="CreateNewMapDialog.h">
       <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
-    <CustomBuild Include="MapViewGraphicsScene.h">
-      <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
     <CustomBuild Include="MapView.h">
-      <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
-    <CustomBuild Include="MapViewHexItem.h">
       <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
     <CustomBuild Include="EditorToolbox.h">
@@ -677,6 +671,12 @@
     </CustomBuild>
     <CustomBuild Include="connectors\ConnectorLoadCreateGame.h">
       <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MapHexItem.h">
+      <Filter>Header Dateien\UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MapGraphicsScene.h">
+      <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

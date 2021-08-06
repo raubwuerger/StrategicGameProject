@@ -2,7 +2,7 @@
 #define CMAPVIEW_H
 
 #include <QGraphicsView>
-class MapViewGraphicsScene;
+class MapGraphicsScene;
 class HexagonData;
 class HexItemEventManager;
 class MapEventManager;
@@ -46,7 +46,7 @@ private:
 	/** */
 	void EmitHexItemPressed();
 public:
-	MapViewGraphicsScene	*Scene;					//TODO: Setter
+	MapGraphicsScene	*Scene;					//TODO: Setter
 	HexItemEventManager		*HexItemEventManager;	//TODO: Setter
 	MapEventManager			*MapEventManager;		//TODO: Setter
 private:
