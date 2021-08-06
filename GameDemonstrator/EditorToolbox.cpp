@@ -23,8 +23,8 @@ EditorToolbox::~EditorToolbox()
 void EditorToolbox::Create()
 {
 	CreateGroupTerrainTypes();
-	CreateGroupBuildingTypes();
 	CreateGroupUnitTypes();
+	CreateGroupBuildingTypes();
 }
 
 void EditorToolbox::CreateGroupTerrainTypes()
@@ -93,27 +93,52 @@ void EditorToolbox::CreateGroupBuildingTypes()
 
 void EditorToolbox::CreateGroupUnitTypes()
 {
-	GroupUnits = new QButtonGroup(this);
+	GroupUnitsTypes = new QButtonGroup(this);
 
-//	connect(GroupUnits, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
+	connect(GroupUnitsTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutUnitTypes = new QGridLayout;
-	QMap<int, ModelTerrainType*>::const_iterator currentUnitTypeIterator = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
-/*
+	QMap<int, const ModelUnitType*>::const_iterator currentIterator = ModelUnitTypeRepository::GetInstance()->GetFirstIterator();
+
 	int rowIndex = 0;
-	while (currentUnitTypeIterator != ModelUnitTypeRepository::GetInstance()->GetLastIterator())
+	while (currentIterator != ModelUnitTypeRepository::GetInstance()->GetLastIterator())
 	{
-		layoutUnitTypes->addWidget(CreateTerrainTypeWidget(currentUnitTypeIterator.value(), GroupTerrainTypes, new ConnectorButtonTerrainTypeId(currentUnitTypeIterator.value()->GetId())), rowIndex++, 0);
-		currentUnitTypeIterator++;
+		layoutUnitTypes->addWidget(CreateUnitTypeWidget(currentIterator.value(), GroupUnitsTypes, new ConnectorButtonUnitTypeId(currentIterator.value()->GetId())), rowIndex++, 0);
+		currentIterator++;
 	}
 
 	layoutUnitTypes->setRowStretch(10, 10); //Damit werden die vorhandenen Elemente kleiner dargestellt
 
-	QWidget *itemTerrainType = new QWidget;
-	itemTerrainType->setLayout(layoutUnitTypes);
-	int width = itemTerrainType->sizeHint().width();
+	QWidget *itemUnitType = new QWidget;
+	itemUnitType->setLayout(layoutUnitTypes);
+	int width = itemUnitType->sizeHint().width();
 
-	addItem(itemTerrainType, tr("Terrain Types"));*/
+	addItem(itemUnitType, tr("Unit Types"));
+}
+
+#include "editors\UnitTypeEditor.h"
+QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, ConnectorButtonUnitTypeId *connector)
+{
+	QIcon icon(modelUnitType->GetPictureName());
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+	buttonGroup->addButton(button);
+
+	connect(button, SIGNAL(pressed()), connector, SLOT(Trigger()));
+	connect(connector, SIGNAL(UnitTypeActive(int)), UnitTypeEditor, SLOT(UnitAdded(int)));
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(modelUnitType->GetName()), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+
 }
 
 void EditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
@@ -146,6 +171,11 @@ void EditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 	// 	view->update();
 }
 
+void EditorToolbox::ButtonGroupUnitTypes(QAbstractButton *button)
+{
+	int amIhere = 0;
+}
+
 /************************************************************************/
 /* CConnectorButtonTerrainTypeId                                        */
 /************************************************************************/
@@ -158,4 +188,18 @@ ConnectorButtonTerrainTypeId::ConnectorButtonTerrainTypeId( int terrainTypeId )
 void ConnectorButtonTerrainTypeId::Trigger()
 {
 	emit TerrainTypeActive(TerrainTypeId);
+}
+
+/************************************************************************/
+/* ConnectorButtonUnitTypeId                                            */
+/************************************************************************/
+ConnectorButtonUnitTypeId::ConnectorButtonUnitTypeId(int unitTypeId)
+	: UnitTypeId(unitTypeId)
+{
+
+}
+
+void ConnectorButtonUnitTypeId::Trigger()
+{
+	emit UnitTypeActive(UnitTypeId);
 }

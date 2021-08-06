@@ -65,9 +65,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapViewInstance->MapEventManager = new MapEventManager(nullptr);
 	MapViewInstance->MapEventManager->HexItemInfoDialog = HexItemInfoDialogInstance;
 
-	TerrainTypeEditor *terrainTypeEditor = CreateTerrainTypeEditor( MapViewInstance->MapEventManager );
-	CreateEditorToolbox( terrainTypeEditor );
-
+	TerrainTypeEditor* terrainTypeEditor = CreateTerrainTypeEditor(MapViewInstance->MapEventManager);
+	CreateEditorToolbox(terrainTypeEditor, CreateUnitTypeEditor(MapViewInstance->MapEventManager));
+	//TODO: connect überarbeiten...
 	connect( MapViewInstance->HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
 
 	layoutMain->addWidget(MapViewInstance);
@@ -251,13 +251,14 @@ bool GameDemonstrator::LoadUnitTypes()
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "EditorToolbox.h"
-void GameDemonstrator::CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor )
+void GameDemonstrator::CreateEditorToolbox(TerrainTypeEditor *terrainTypeEditor, UnitTypeEditor *unitTypeEditor)
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	EditorToolboxInstance = new EditorToolbox(dockCountry);
 	EditorToolboxInstance->TerrainTypeEditor = terrainTypeEditor;
+	EditorToolboxInstance->UnitTypeEditor = unitTypeEditor;
 	EditorToolboxInstance->Create();
 
 	dockCountry->setWidget( EditorToolboxInstance );

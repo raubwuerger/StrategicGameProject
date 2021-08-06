@@ -49,8 +49,8 @@ private:
 	bool LoadOwnerTypes();
 	bool LoadUnitTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-	void CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor );
-	TerrainTypeEditor* CreateTerrainTypeEditor( MapEventManager* mapEventManager );
+	void CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor, UnitTypeEditor *unitTypeEditor );
+	TerrainTypeEditor* CreateTerrainTypeEditor(MapEventManager* mapEventManager);
 	UnitTypeEditor* CreateUnitTypeEditor(MapEventManager* mapEventManager);
 private:
 	QMenu	*FileMenu;
