@@ -87,6 +87,12 @@
     <Filter Include="Source Dateien\Map">
       <UniqueIdentifier>{9f0648e3-7e57-47b0-be63-aecb0d7bcdb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Dialogs">
+      <UniqueIdentifier>{0e92682c-2076-49f6-ad60-ebd776b3e61c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Dialogs">
+      <UniqueIdentifier>{c4661f96-8049-4a3f-9c0e-1712a246503e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -106,18 +112,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_gamedemonstrator.cpp">
       <Filter>Generierte Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameTurnDialog.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameTurnDialog.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_HexItemInfoDialog.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_HexItemInfoDialog.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_LoggerTableWidget.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
@@ -184,21 +178,6 @@
     </ClCompile>
     <ClCompile Include="..\StandardLibQt\LoggingTableWidget.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMapDialog.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMapDialog.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="HexItemInfoDialog.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTurnDialog.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="CreateNewMapDialog.cpp">
-      <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="ModelFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
@@ -452,6 +431,33 @@
     <ClCompile Include="editors\TerrainTypeEditor.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMapDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMapDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameTurnDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameTurnDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HexItemInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HexItemInfoDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\CreateNewMapDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\GameTurnDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\HexItemInfoDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -633,11 +639,11 @@
     <CustomBuild Include="gamedemonstrator.qrc">
       <Filter>Resource Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="GameTurnDialog.ui">
-      <Filter>Form Dateien</Filter>
+    <CustomBuild Include="dialogs\GameTurnDialog.ui">
+      <Filter>Form Dateien\dialogs</Filter>
     </CustomBuild>
-    <CustomBuild Include="HexItemInfoDialog.ui">
-      <Filter>Form Dateien</Filter>
+    <CustomBuild Include="dialogs\HexItemInfoDialog.ui">
+      <Filter>Form Dateien\dialogs</Filter>
     </CustomBuild>
     <CustomBuild Include="..\StandardLibQt\LoggerTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
@@ -654,17 +660,8 @@
     <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
-    <CustomBuild Include="CreateNewMapDialog.ui">
-      <Filter>Form Dateien</Filter>
-    </CustomBuild>
-    <CustomBuild Include="HexItemInfoDialog.h">
-      <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GameTurnDialog.h">
-      <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
-    <CustomBuild Include="CreateNewMapDialog.h">
-      <Filter>Header Dateien\UI</Filter>
+    <CustomBuild Include="dialogs\CreateNewMapDialog.ui">
+      <Filter>Form Dateien\dialogs</Filter>
     </CustomBuild>
     <CustomBuild Include="SerializerInterface.h">
       <Filter>Header Dateien\IO</Filter>
@@ -710,6 +707,15 @@
     </CustomBuild>
     <CustomBuild Include="editors\TerrainTypeEditor.h">
       <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\CreateNewMapDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameTurnDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\HexItemInfoDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
