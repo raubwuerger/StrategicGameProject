@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ModelMapCreatorSaveGame.h"
 #include <QtXml>
-#include "SerializeXMLItems.h"
+#include "io\SerializeXMLItems.h"
 #include "LogInterface.h"
 #include "DomNodeFinder.h"
 #include "DomValueExtractor.h"
