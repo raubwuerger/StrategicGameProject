@@ -375,7 +375,7 @@
     <ClCompile Include="model\ModelMapCreatorSaveGame.cpp" />
     <ClCompile Include="model\ModelMapFactory.cpp" />
     <ClCompile Include="model\ModelProgramSettings.cpp" />
-    <ClCompile Include="model\ModelProgramXMLItems.cpp" />
+    <ClCompile Include="model\ModelProgramSettingsXMLItems.cpp" />
     <ClCompile Include="model\ModelMapRepository.cpp" />
     <ClCompile Include="model\ModelOwnerType.cpp" />
     <ClCompile Include="model\ModelOwnerTypeXMLItems.cpp" />
@@ -571,7 +571,8 @@
     <ClInclude Include="model\ModelMapCreatorSimple.h" />
     <ClInclude Include="model\ModelMapCreatorSaveGame.h" />
     <ClInclude Include="model\ModelMapFactory.h" />
-    <ClInclude Include="model\ModelProgramXMLItems.h" />
+    <ClInclude Include="model\ModelProgramSettings.h" />
+    <ClInclude Include="model\ModelProgramSettingsXMLItems.h" />
     <ClInclude Include="model\ModelMapRepository.h" />
     <ClInclude Include="model\ModelOwnerType.h" />
     <CustomBuild Include="model\ModelOwnerTypeFactory.h">

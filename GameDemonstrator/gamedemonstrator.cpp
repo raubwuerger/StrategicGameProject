@@ -225,8 +225,9 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 
 	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
-	ModelProgramFactory::GetInstance()->Create();
-	jha::GetLog()->SetGlobalLoglevel(ModelProgramFactory::GetInstance()->GetConfig()->GlobalLogLevel);
+	ModelProgramFactory modelProgramFactory;
+	modelProgramFactory.Create();
+	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
 }
 
 #include "model/ModelTerrainTypeFactory.h"

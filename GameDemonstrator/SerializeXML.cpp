@@ -8,6 +8,8 @@
 #include "model/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelMapCreatorSaveGame.h"
+#include "model\ModelProgramFactory.h"
+#include "model\ModelProgramSettings.h"
 #include "DomNodeFinder.h"
 
 //==============================================================================
@@ -189,7 +191,7 @@ bool SerializeXML::LoadGame( const QString& saveGameName )
 //==============================================================================
 bool SerializeXML::LoadXMLHeader( const QString& saveGameName )
 {
-	QString saveGamePath(".\\savegames\\");
+	QString saveGamePath(ModelProgramFactory::ModelProgramSettingsInstance->SaveGamePath);
 	QString saveGameFile( saveGamePath +saveGameName );
 
 	QFile file(saveGameFile);

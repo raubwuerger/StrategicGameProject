@@ -4,17 +4,11 @@
 		<!--ValidLogleves: None, Fatal, Error, Warning, Message, Info, Trace, Debug -->
 		<GlobalLogLevel>Debug</GlobalLogLevel>
 	</Logging>
-	<SaveGamePath>.//savegames//</SaveGamePath>
+	<SaveGame>
+		<SaveGamePath>./savegames/</SaveGamePath>
+	</SaveGame>
 	<DebugMapSettings>
-		<DebugRows>18</DebugRows>
-		<DebugCols>46</DebugCols>
+		<Rows>18</Rows>
+		<Cols>46</Cols>
 	</DebugMapSettings>
-	<MapTypes>
-		<MapType>
-			<Id>1</Id>
-			<Name>Tiny</Name>
-			<Rows>60</Rows>
-			<Cols>120</Cols>
-		</MapType>
-	</MapTypes>
 </GameDemonstrator>

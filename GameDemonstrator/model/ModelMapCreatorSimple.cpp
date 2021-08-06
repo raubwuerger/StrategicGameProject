@@ -15,8 +15,8 @@ ModelMapCreatorSimple::ModelMapCreatorSimple()
 bool ModelMapCreatorSimple::CreateMap()
 {
 	MapItemId = 0;
-	unsigned int cols = ModelProgramFactory::GetInstance()->GetConfig()->DebugCols;
-	unsigned int rows = ModelProgramFactory::GetInstance()->GetConfig()->DebugRows;
+	unsigned int cols = ModelProgramFactory::ModelProgramSettingsInstance->DebugCols;
+	unsigned int rows = ModelProgramFactory::ModelProgramSettingsInstance->DebugRows;
 
 	QVector< QVector<ModelMapItem*> >* simpleMap = new QVector< QVector<ModelMapItem*> >();
 	simpleMap->reserve(rows);

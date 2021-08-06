@@ -37,6 +37,7 @@ bool ModelOwnerTypeFactory::Create()
 
 	return true;
 }
+
 ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 {
 	ModelOwnerTypeXMLItems config;

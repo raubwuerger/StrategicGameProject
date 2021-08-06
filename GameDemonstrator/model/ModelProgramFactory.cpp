@@ -1,89 +1,84 @@
 #include "stdafx.h"
 #include "ModelProgramFactory.h"
-#include "ModelProgramXMLItems.h"
+#include "ModelProgramSettingsXMLItems.h"
 #include "ModelProgramSettings.h"
 #include "LogInterface.h"
 #include <QDomNode>
 #include "DomValueExtractor.h"
+#include "io/ConfigFileLoader.h"
 
-ModelProgramFactory* ModelProgramFactory::Instance = nullptr;
+ModelProgramSettings* ModelProgramFactory::ModelProgramSettingsInstance = nullptr;
 
-ModelProgramFactory* ModelProgramFactory::GetInstance()
+ModelProgramFactory::ModelProgramFactory()
 {
-	if( nullptr != Instance ) 
+	if (nullptr == ModelProgramSettingsInstance)
 	{
-		return Instance;
+		ModelProgramSettingsInstance = new ModelProgramSettings();
 	}
+}
 
-	Instance = new ModelProgramFactory;
-	return Instance;
+ModelProgramFactory::~ModelProgramFactory()
+{
 }
 
 bool ModelProgramFactory::Create()
 {
-	ModelProgramSettingsInstance = new ModelProgramSettings();
-
-	jha::GetLog()->Log_MESSAGE("Loading GameDemonstratorConfig from file: " +ModelProgramSettings::FileName);
-	QFile file(ModelProgramSettings::FileName);
-	if( false == OpenFile(&file) )
+	ConfigFileLoader configFileLoader;
+	if (false == configFileLoader.LoadConfig(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME, ModelProgramSettingsXMLItems::ROOT_NAME))
 	{
 		return false;
 	}
 
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-	QDomDocument DomDocument;
-
-	if( DomDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
+	QDomNodeList programSettingsNodes = configFileLoader.GetQDomNodeList();
+	for (int i = 0; i < programSettingsNodes.count(); i++)
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr) );
-		return false;
-	}
-
-	QDomElement root = DomDocument.documentElement();
-	if( root.tagName() != ModelProgramXMLItems::ROOT_NAME ) 
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("File %1 is not an %2 file.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::ROOT_NAME) );
-		return false;
-	}
-
-	QDomNodeList ownerTypeNodes = root.childNodes();
-	for( int i=0; i <ownerTypeNodes.count(); i++ )
-	{
-		QString currentNodeName = ownerTypeNodes.at(i).nodeName();
-		if( currentNodeName == ModelProgramXMLItems::NODE_LOGGING )
+		QString currentNodeName = programSettingsNodes.at(i).nodeName();
+		if (currentNodeName == ModelProgramSettingsXMLItems::NODE_LOGGING)
 		{
-			DomValueExtractor extractor(ownerTypeNodes.at(i));
-			if( false == extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL,ModelProgramSettings::GlobalLogLevel) )
+			DomValueExtractor extractor(programSettingsNodes.at(i));
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_GLOBALLOGLEVEL, ModelProgramSettings::GlobalLogLevel))
 			{
-				jha::GetLog()->Log_WARNING( QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::SUBELEMENT_GLOBAL_LOG_LEVEL) );
+				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_GLOBALLOGLEVEL));
 				return false;
 			}
+			continue;
 		}
 
-		if( currentNodeName == ModelProgramXMLItems::NODE_DEBUG_MAP_SETTINGS )
+		if (currentNodeName == ModelProgramSettingsXMLItems::NODE_DEBUGMAPSETTINGS)
 		{
+			DomValueExtractor extractorRows(programSettingsNodes.at(i));
+			if (false == extractorRows.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_ROWS, ModelProgramSettings::DebugRows))
 			{
-				DomValueExtractor extractor(ownerTypeNodes.at(i));
-				if( false == extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_DEBUG_ROWS,ModelProgramSettings::DebugRows) )
-				{
-					jha::GetLog()->Log_WARNING( QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::SUBELEMENT_DEBUG_ROWS) );
-					return false;
-				}
+				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_ROWS));
+				return false;
 			}
-
+			DomValueExtractor extractorCols(programSettingsNodes.at(i));
+			if (false == extractorCols.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_COLS, ModelProgramSettings::DebugCols))
 			{
-				DomValueExtractor extractor(ownerTypeNodes.at(i));
-				if( false == extractor.ExtractValue(ModelProgramXMLItems::SUBELEMENT_DEBUG_COLS,ModelProgramSettings::DebugCols) )
-				{
-					jha::GetLog()->Log_WARNING( QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettings::FileName).arg(ModelProgramXMLItems::SUBELEMENT_DEBUG_COLS) );
-					return false;
-				}
+				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_COLS));
+				return false;
 			}
+			continue;
 		}
 
+		if (currentNodeName == ModelProgramSettingsXMLItems::NODE_SAVEGAME)
+		{
+			DomValueExtractor extractor(programSettingsNodes.at(i));
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SAVEGAMEPATH, ModelProgramSettings::SaveGamePath))
+			{
+				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_SAVEGAMEPATH));
+				return false;
+			}
+			continue;
+		}
+		
+		jha::GetLog()->Log_DEBUG(QObject::tr("Unknown node found! %1").arg(currentNodeName));
 	}
+
+	QString globalLogLevel = ModelProgramSettings::GlobalLogLevel;
+	QString savegamePath = ModelProgramSettings::SaveGamePath;
+	int debugRows = ModelProgramSettings::DebugRows;
+	int debugCols = ModelProgramSettings::DebugCols;
 
 	return true;
 }
@@ -92,31 +87,3 @@ ModelProgramSettings* ModelProgramFactory::GetConfig()
 {
 	return ModelProgramSettingsInstance;
 }
-
-ModelProgramFactory::ModelProgramFactory()
-	: ModelProgramSettingsInstance(nullptr)
-{
-}
-
-ModelProgramFactory::~ModelProgramFactory()
-{
-	delete ModelProgramSettingsInstance;
-	ModelProgramSettingsInstance = nullptr;
-}
-
-bool ModelProgramFactory::OpenFile( QFile* file )
-{
-	if( file->open(QFile::ReadOnly | QFile::Text) == false )
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Cannot read file %1:\n%2.").arg(file->fileName()).arg(file->errorString()) );
-		return false;
-	}
-	return true;
-}
-
-void ModelProgramFactory::Release()
-{
-	delete Instance;
-	Instance = nullptr;
-}
-

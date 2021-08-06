@@ -3,6 +3,8 @@
 #include "SerializeXML.h"
 #include "game\GameMainCounter.h"
 #include "GameConfig.h"
+#include "model\ModelProgramFactory.h"
+#include "model\ModelProgramSettings.h"
 
 SerializerInterface::SerializerInterface()
 	: SerializeGameInterface(nullptr)
@@ -36,13 +38,13 @@ bool SerializerInterface::LoadGame()
 
 QString SerializerInterface::CreateSaveGameFileName() const
 {
-	QString saveGamePath(".\\savegames\\");
+	QString saveGamePath(ModelProgramFactory::ModelProgramSettingsInstance->SaveGamePath);
 	QString saveGameFile(saveGamePath);
 	saveGameFile += "PlayerName_";
 	saveGameFile += GameMainCounter::GetInstance()->GetCurrentDate().toString( "yyyy_MM" );
 	saveGameFile += ".xml";
 
-	QDir().mkpath(".\\savegames\\");
+	QDir().mkpath(saveGamePath);
 	return saveGameFile;
 }
 
