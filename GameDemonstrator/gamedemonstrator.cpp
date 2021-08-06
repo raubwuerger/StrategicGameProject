@@ -7,7 +7,6 @@
 #include "map/MapView.h"
 #include "map/MapEventManager.h"
 #include "HexItemEventManager.h"
-#include "TerrainTypeEditor.h"
 #include "HexItemInfoDialog.h"
 #include "SerializerInterface.h"
 #include "SerializeBinary.h"
@@ -22,6 +21,7 @@
 #include "model/ModelMapRepository.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
+#include "editors/TerrainTypeEditor.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -250,7 +250,7 @@ bool GameDemonstrator::LoadUnitTypes()
 
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "EditorToolbox.h"
+#include "editors/EditorToolbox.h"
 void GameDemonstrator::CreateEditorToolbox(TerrainTypeEditor *terrainTypeEditor, UnitTypeEditor *unitTypeEditor)
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
@@ -267,7 +267,7 @@ void GameDemonstrator::CreateEditorToolbox(TerrainTypeEditor *terrainTypeEditor,
 
 }
 
-#include "TerrainTypeEditor.h"
+#include "editors/TerrainTypeEditor.h"
 TerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( MapEventManager*mapEventManager )
 {
 	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();

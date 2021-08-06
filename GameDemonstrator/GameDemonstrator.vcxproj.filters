@@ -191,21 +191,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMapDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_EditorToolbox.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_EditorToolbox.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_TerrainTypeEditor.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_TerrainTypeEditor.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainTypeEditor.cpp">
-      <Filter>Source Dateien\Editor</Filter>
-    </ClCompile>
     <ClCompile Include="HexItemInfoDialog.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
@@ -217,9 +202,6 @@
     </ClCompile>
     <ClCompile Include="ModelFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="EditorToolbox.cpp">
-      <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
     <ClCompile Include="SerializerInterface.cpp">
       <Filter>Source Dateien\IO</Filter>
@@ -452,6 +434,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorUnitTypeGameMap.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EditorToolbox.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EditorToolbox.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TerrainTypeEditor.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TerrainTypeEditor.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\EditorToolbox.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\TerrainTypeEditor.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -657,9 +657,6 @@
     <CustomBuild Include="CreateNewMapDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="TerrainTypeEditor.h">
-      <Filter>Header Dateien\Editor</Filter>
-    </CustomBuild>
     <CustomBuild Include="HexItemInfoDialog.h">
       <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
@@ -668,9 +665,6 @@
     </CustomBuild>
     <CustomBuild Include="CreateNewMapDialog.h">
       <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EditorToolbox.h">
-      <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
     <CustomBuild Include="SerializerInterface.h">
       <Filter>Header Dateien\IO</Filter>
@@ -710,6 +704,12 @@
     </CustomBuild>
     <CustomBuild Include="connectors\ConnectorUnitTypeGameMap.h">
       <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\EditorToolbox.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\TerrainTypeEditor.h">
+      <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
