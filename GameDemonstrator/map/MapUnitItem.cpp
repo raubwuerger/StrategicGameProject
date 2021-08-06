@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "MapViewUnitItem.h"
+#include "MapUnitItem.h"
 
-MapViewUnitItem::MapViewUnitItem() 
+MapUnitItem::MapUnitItem() 
 	: UnitItemImage(nullptr)
 {
 }
 
-QRectF MapViewUnitItem::boundingRect() const
+QRectF MapUnitItem::boundingRect() const
 {
 	return QRectF(QPointF(0,0), QSizeF(64, 43));
 }
 
 /** */
-void MapViewUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
 	if( nullptr != UnitItemImage )
 	{
@@ -23,7 +23,7 @@ void MapViewUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* o
 }
 
 /** Set m_TerrainImage */
-void MapViewUnitItem::SetUnitItemImage(const QImage* val) 
+void MapUnitItem::SetUnitItemImage(const QImage* val) 
 {
 	UnitItemImage = val;
 }

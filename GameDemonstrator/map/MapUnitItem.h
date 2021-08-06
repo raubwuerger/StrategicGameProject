@@ -1,11 +1,11 @@
 #ifndef MAPVIEWUNITITEM_H
 #define MAPVIEWUNITITEM_H
 
-class MapViewUnitItem : public QGraphicsRectItem
+class MapUnitItem : public QGraphicsRectItem
 {
 public:
 	/** */
-	MapViewUnitItem();
+	MapUnitItem();
 	/** */
 	QRectF boundingRect() const;
 	/** */

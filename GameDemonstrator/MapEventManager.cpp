@@ -27,7 +27,7 @@ void MapEventManager::RegisterMapItem( MapViewHexItem* mapItem )
 	MapItems[mapItem->GetRow()][mapItem->GetCol()] = mapItem;
 }
 
-void MapEventManager::RegisterUnitItem( MapViewUnitItem* unitItem )
+void MapEventManager::RegisterUnitItem( MapUnitItem* unitItem )
 {
 	//TODO: Sollte eine Map (ID) sein. Es wird sicherlich mehr als ein Item von jedem Type geben!!!
 	if (true == UnitItems.contains(unitItem))
