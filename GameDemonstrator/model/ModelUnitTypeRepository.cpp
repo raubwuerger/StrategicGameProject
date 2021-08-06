@@ -37,6 +37,16 @@ int ModelUnitTypeRepository::GetCount() const
 	return Repository.size();
 }
 
+QMap<int, const ModelUnitType*>::const_iterator ModelUnitTypeRepository::GetFirstIterator() const
+{
+	return Repository.cbegin();
+}
+
+QMap<int, const ModelUnitType*>::const_iterator ModelUnitTypeRepository::GetLastIterator() const
+{
+	return Repository.cend();
+}
+
 ModelUnitTypeRepository::ModelUnitTypeRepository()
 {
 }
