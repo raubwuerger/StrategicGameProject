@@ -335,9 +335,6 @@
     <ClCompile Include="game\GameModeEditor.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameModeStandard.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="game\GameMapFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
@@ -431,6 +428,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorLoadCreateGame.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameModeSinglePlayer.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -523,9 +523,6 @@
     <ClInclude Include="game\GameModeEditor.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameModeStandard.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameMapFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -591,6 +588,9 @@
     </ClInclude>
     <ClInclude Include="model\ModelUnitTypeRepository.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameModeSinglePlayer.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

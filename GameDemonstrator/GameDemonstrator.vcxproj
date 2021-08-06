@@ -179,7 +179,7 @@
     <ClCompile Include="game\GameMapFactory.cpp" />
     <ClCompile Include="game\GameMode.cpp" />
     <ClCompile Include="game\GameModeEditor.cpp" />
-    <ClCompile Include="game\GameModeStandard.cpp" />
+    <ClCompile Include="game\GameModeSinglePlayer.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ActionRepository.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -487,7 +487,7 @@
     <ClInclude Include="game\GameMapFactory.h" />
     <ClInclude Include="game\GameMode.h" />
     <ClInclude Include="game\GameModeEditor.h" />
-    <ClInclude Include="game\GameModeStandard.h" />
+    <ClInclude Include="game\GameModeSinglePlayer.h" />
     <ClInclude Include="HexagonData.h" />
     <CustomBuild Include="HexItemEventManager.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

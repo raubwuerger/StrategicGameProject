@@ -7,7 +7,7 @@
 #include "GameMode.h"
 
 /** @stereotype Strategie*/
-class GameModeStandard : public GameMode
+class GameModeSinglePlayer : public GameMode
 {
 public:
 	/** */

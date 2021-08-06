@@ -2,13 +2,13 @@
 //--------------------------------
 
 #include "stdafx.h"
-#include "GameModeStandard.h"
+#include "GameModeSinglePlayer.h"
 
 //=================================================================================================
-void GameModeStandard::Activate() 
+void GameModeSinglePlayer::Activate() 
 {
 }
 
-void GameModeStandard::Deavtivate()
+void GameModeSinglePlayer::Deavtivate()
 {
 }
