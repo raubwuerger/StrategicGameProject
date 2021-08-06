@@ -113,12 +113,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameTurnDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_MapView.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MapView.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_HexItemInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -228,9 +222,6 @@
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="CreateNewMapDialog.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="MapView.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="ModelFactory.cpp">
@@ -419,16 +410,25 @@
     <ClCompile Include="map\MapUnitItemFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
-    <ClCompile Include="MapHexItem.cpp">
-      <Filter>Source Dateien\UI</Filter>
+    <ClCompile Include="map\MapGraphicsScene.cpp">
+      <Filter>Source Dateien\Map</Filter>
     </ClCompile>
-    <ClCompile Include="MapGraphicsScene.cpp">
-      <Filter>Source Dateien\UI</Filter>
+    <ClCompile Include="map\MapHexItem.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\MapView.cpp">
+      <Filter>Source Dateien\Map</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MapGraphicsScene.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_MapGraphicsScene.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MapView.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MapView.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -592,6 +592,9 @@
     <ClInclude Include="map\MapUnitItemFactory.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
+    <ClInclude Include="map\MapHexItem.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -642,9 +645,6 @@
     <CustomBuild Include="CreateNewMapDialog.h">
       <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
-    <CustomBuild Include="MapView.h">
-      <Filter>Header Dateien\UI</Filter>
-    </CustomBuild>
     <CustomBuild Include="EditorToolbox.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
@@ -672,11 +672,11 @@
     <CustomBuild Include="connectors\ConnectorLoadCreateGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
-    <CustomBuild Include="MapHexItem.h">
-      <Filter>Header Dateien\UI</Filter>
+    <CustomBuild Include="map\MapGraphicsScene.h">
+      <Filter>Header Dateien\Map</Filter>
     </CustomBuild>
-    <CustomBuild Include="MapGraphicsScene.h">
-      <Filter>Header Dateien\UI</Filter>
+    <CustomBuild Include="map\MapView.h">
+      <Filter>Header Dateien\Map</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
