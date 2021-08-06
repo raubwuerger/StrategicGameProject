@@ -8,6 +8,7 @@
 #include "ModelOwnerTypeXMLItems.h"
 #include "ModelOwnerTypeRepository.h"
 #include "ModelConfigurationHeaderXMLItems.h"
+#include "io\ConfigFileLoader.h"
 
 ModelOwnerTypeFactory::ModelOwnerTypeFactory()
 {
@@ -20,66 +21,22 @@ ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 bool ModelOwnerTypeFactory::Create()
 {
 	ModelOwnerTypeXMLItems config;
-	jha::GetLog()->Log_MESSAGE("Loading OwnerTypes from file: " +config.CONFIG_FILE_NAME);
-	QFile file(config.CONFIG_FILE_NAME);
-	if( false == OpenFile(&file) )
+
+	ConfigFileLoader configFileLoader;
+	if (false == configFileLoader.LoadConfig(config.CONFIG_FILE_NAME, config.ROOT_NAME))
 	{
 		return false;
 	}
 
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-	QDomDocument domDocument;
-
-
-	if( domDocument.setContent(&file, true, &errorStr, &errorLine,&errorColumn) == false ) 
+	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
+	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr) );
-		return false;
+		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType(CreateFromXML(terrainTypeNodes.at(i)));
 	}
+	jha::GetLog()->Log("TerrainTypes registered: " + QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 
-	QDomElement root = domDocument.documentElement();
-	if( root.tagName() != config.ROOT_NAME ) 
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 file.").arg(config.ROOT_NAME) );
-		return false;
-	}
-
-	if (root.hasAttribute( ModelConfigurationHeaderXMLItems::VERSION ) && root.attribute( ModelConfigurationHeaderXMLItems::VERSION ) != ModelConfigurationHeaderXMLItems::VERSION_NUMBER ) 
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("The file is not an %1 version %2 file.").arg(config.ROOT_NAME).arg(ModelConfigurationHeaderXMLItems::VERSION_NUMBER) );
-		return false;
-	}
-
-	QDomNodeList ownerTypeNodes = root.childNodes();
-	for( int i=0; i <ownerTypeNodes.count(); i++ )
-	{
-		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType( CreateFromXML( ownerTypeNodes.at(i) ) );
-	}
-
-	int modelTypesRegistered = ModelOwnerTypeRepository::GetInstance()->GetCount();
-	if( modelTypesRegistered <= 0 )
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("No OwnerTypes have been registered!"));
-	}
-	else
-	{
-		jha::GetLog()->Log_MESSAGE( QObject::tr("OwnerTypes registered: %1").arg( QString::number(modelTypesRegistered) ));
-	}
 	return true;
 }
-
-bool ModelOwnerTypeFactory::OpenFile( QFile* file  )
-{
-	if( file->open(QFile::ReadOnly | QFile::Text) == false )
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Cannot read file %1:\n%2.").arg(file->fileName()).arg(file->errorString()) );
-		return false;
-	}
-	return true;
-}
-
 ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 {
 	ModelOwnerTypeXMLItems config;

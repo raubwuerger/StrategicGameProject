@@ -9,14 +9,12 @@ class ModelOwnerTypeFactory
 {
 public:
 	/** */
-	bool Create();
-	/** */
 	ModelOwnerTypeFactory();
 	/** */
 	~ModelOwnerTypeFactory();
-private:
 	/** */
-	bool OpenFile( QFile* file );
+	bool Create();
+private:
 	/** */
 	ModelOwnerType* CreateFromXML( const QDomNode& node );
 };
