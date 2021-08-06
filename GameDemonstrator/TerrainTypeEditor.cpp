@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "TerrainTypeEditor.h"
-#include "MapEventManager.h"
-#include "model/ModelTerrainTypeRepository.h"
-#include "MapEventManager.h"
+#include "map/MapEventManager.h"
+#include "map/MapEventManager.h"
+#include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
-#include "map\MapHexItem.h"
+#include "model/ModelTerrainTypeRepository.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),

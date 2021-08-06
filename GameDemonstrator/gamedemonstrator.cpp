@@ -5,7 +5,7 @@
 #include "game/GameMainLoop.h"
 #include "GameTurnDialog.h"
 #include "map/MapView.h"
-#include "MapEventManager.h"
+#include "map/MapEventManager.h"
 #include "HexItemEventManager.h"
 #include "TerrainTypeEditor.h"
 #include "HexItemInfoDialog.h"
