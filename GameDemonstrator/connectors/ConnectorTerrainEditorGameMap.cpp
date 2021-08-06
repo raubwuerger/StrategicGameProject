@@ -1,21 +1,21 @@
 #include "stdafx.h"
-#include "ConnectorEditorModelRepository.h"
+#include "ConnectorTerrainEditorGameMap.h"
 #include "..\model\ModelMapRepository.h"
 #include "..\model\ModelTerrainTypeRepository.h"
 #include "..\model\ModelTerrainType.h"
 #include "LogInterface.h"
 
 
-ConnectorEditorModelRepository::ConnectorEditorModelRepository()
+ConnectorTerrainEditorGameMap::ConnectorTerrainEditorGameMap()
 {
 }
 
 
-ConnectorEditorModelRepository::~ConnectorEditorModelRepository()
+ConnectorTerrainEditorGameMap::~ConnectorTerrainEditorGameMap()
 {
 }
 
-void ConnectorEditorModelRepository::TerrainTypeChanged(int modelMapId, int terrainTypeId)
+void ConnectorTerrainEditorGameMap::TerrainTypeChanged(int modelMapId, int terrainTypeId)
 {
 	ModelMapItem *modelMapToUpdate = ModelMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
 	if( nullptr == modelMapToUpdate )

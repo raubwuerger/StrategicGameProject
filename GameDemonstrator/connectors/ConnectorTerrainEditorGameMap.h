@@ -1,14 +1,14 @@
 #ifndef ConnectorEditorModelRepository_H
 #define ConnectorEditorModelRepository_H
 
-class ConnectorEditorModelRepository : public QObject
+class ConnectorTerrainEditorGameMap : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	ConnectorEditorModelRepository();
+	ConnectorTerrainEditorGameMap();
 	/** */
-	~ConnectorEditorModelRepository();
+	~ConnectorTerrainEditorGameMap();
 public slots:
 	/** */
 	void TerrainTypeChanged( int modelMapId, int terrainTypeId );

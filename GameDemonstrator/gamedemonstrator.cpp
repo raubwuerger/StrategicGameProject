@@ -20,7 +20,7 @@
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
 #include "model/ModelMapRepository.h"
-#include "connectors/ConnectorEditorModelRepository.h"
+#include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
@@ -36,7 +36,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	ConnectorEditorModelRepositoryInstance = new ConnectorEditorModelRepository();
+	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
@@ -274,6 +274,6 @@ TerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( MapEventManager*ma
 	TerrainTypeEditor *terrainTypeEditor = new TerrainTypeEditor(nullptr);
 	terrainTypeEditor->MapEventManager = mapEventManager;
 	QObject::connect(terrainTypeEditor, &TerrainTypeEditor::TerrainTypeChanged,
-		ConnectorEditorModelRepositoryInstance, &ConnectorEditorModelRepository::TerrainTypeChanged);
+		ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::TerrainTypeChanged);
 	return terrainTypeEditor;
 }

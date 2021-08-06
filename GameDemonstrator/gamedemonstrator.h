@@ -15,7 +15,7 @@ class MapEventManager;
 class TerrainTypeEditor;
 class SerializerInterface;
 class CreateNewMap;
-class ConnectorEditorModelRepository;
+class ConnectorTerrainEditorGameMap;
 class ConnectorLoadCreateGame;
 
 namespace jha
@@ -62,7 +62,7 @@ private:
 	MapView*					MapViewInstance;
 	SerializerInterface*		SerializerInterface;
 	EditorToolbox*				EditorToolboxInstance;
-	ConnectorEditorModelRepository*	ConnectorEditorModelRepositoryInstance;
+	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorLoadCreateGame*				GameConnectorInstance;
 };
 

@@ -323,15 +323,6 @@
     <ClCompile Include="DomNodeFinder.cpp">
       <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="connectors\ConnectorEditorModelRepository.cpp">
-      <Filter>Source Dateien\Connectors</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorEditorModelRepository.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorEditorModelRepository.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelTerrainXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -433,6 +424,24 @@
     </ClCompile>
     <ClCompile Include="model\ModelProgramSettingsXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\UnitTypeEditor.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeEditor.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UnitTypeEditor.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="connectors\ConnectorTerrainEditorGameMap.cpp">
+      <Filter>Source Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorTerrainEditorGameMap.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorTerrainEditorGameMap.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -669,9 +678,6 @@
     <CustomBuild Include="game\GameMainThread.h">
       <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
-    <CustomBuild Include="connectors\ConnectorEditorModelRepository.h">
-      <Filter>Header Dateien\Connectors</Filter>
-    </CustomBuild>
     <CustomBuild Include="ActionRepository.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
@@ -686,6 +692,12 @@
     </CustomBuild>
     <CustomBuild Include="map\MapEventManager.h">
       <Filter>Header Dateien\Map</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\UnitTypeEditor.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="connectors\ConnectorTerrainEditorGameMap.h">
+      <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

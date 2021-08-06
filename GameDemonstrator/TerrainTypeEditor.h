@@ -23,7 +23,7 @@ public slots:
 	void ChangeTerrainTypeHexItem( int row, int col );
 private:
 	friend class GameDemonstrator;
-	ModelTerrainType			*ActiveTerrainType;
+	ModelTerrainType	*ActiveTerrainType;
 	MapEventManager		*MapEventManager;
 };
 
