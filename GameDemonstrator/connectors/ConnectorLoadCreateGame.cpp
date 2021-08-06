@@ -4,7 +4,7 @@
 #include ".\map\MapView.h"
 #include "ModelFactory.h"
 #include "io\SerializerFactory.h"
-#include "io\SerializerInterface.h"
+#include "io\ConnectorSaveGame.h"
 #include ".\model\ModelMapFactory.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()

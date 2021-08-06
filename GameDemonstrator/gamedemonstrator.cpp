@@ -8,7 +8,7 @@
 #include "map/MapView.h"
 #include "map/MapEventManager.h"
 #include "HexItemEventManager.h"
-#include "io\SerializerInterface.h"
+#include "io\ConnectorSaveGame.h"
 #include "io\SerializeBinary.h"
 #include "io\SerializerFactory.h"
 #include "Action.h"
@@ -48,7 +48,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InitLoggingFramwork();
 
 	ActionRepository::GetInstanceFirstTimeInit(parent);
-	SerializerInterface = SerializerFactory().CreateInterface();
+	ConnectorSaveGameInstance = SerializerFactory().CreateInterface();
 	LoadTerrainTypes();
 	LoadOwnerTypes();
 	LoadUnitTypes();
@@ -128,7 +128,7 @@ void GameDemonstrator::CreateMenuFile()
 	Action* saveGameAction = new Action(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
 	ActionRepository::GetInstance()->AddAction(saveGameAction);
-	connect(saveGameAction, SIGNAL(triggered()),SerializerInterface,SLOT(SaveGame()), Qt::QueuedConnection );
+	connect(saveGameAction, SIGNAL(triggered()),ConnectorSaveGameInstance,SLOT(SaveGame()), Qt::QueuedConnection );
 
 	QIcon next(":GameDemonstrator/Resources/media_end.ico");
 	QAction* nextTurnAction = new QAction(next,tr("&Next turn"), this);

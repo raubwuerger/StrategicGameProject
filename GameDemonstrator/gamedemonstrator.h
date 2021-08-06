@@ -10,15 +10,15 @@ class HexItemInfoDialog;
 class GameMainThread;
 class GameMainLoop;
 class MapView;
-class EditorToolbox;
 class MapEventManager;
+class EditorToolbox;
 class TerrainTypeEditor;
-class SerializerInterface;
+class UnitTypeEditor;
 class CreateNewMap;
 class ConnectorTerrainEditorGameMap;
 class ConnectorUnitTypeGameMap;
 class ConnectorLoadCreateGame;
-class UnitTypeEditor;
+class ConnectorSaveGame;
 
 namespace jha
 {
@@ -63,7 +63,7 @@ private:
 	GameMainLoop*				MainGameLoop;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
-	SerializerInterface*		SerializerInterface;
+	ConnectorSaveGame*			ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;

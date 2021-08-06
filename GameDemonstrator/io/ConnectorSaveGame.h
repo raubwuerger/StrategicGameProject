@@ -4,15 +4,15 @@
 /** Serializes game data ... */
 class ISerializeGameInterface;
 
-class SerializerInterface : public QObject
+class ConnectorSaveGame : public QObject
 {
 public:
 	Q_OBJECT;
 public:
 	/** */
-	SerializerInterface();
+	ConnectorSaveGame();
 	/** */
-	virtual ~SerializerInterface();
+	virtual ~ConnectorSaveGame();
 public slots:
 	/** */
 	bool SaveGame();

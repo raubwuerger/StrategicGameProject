@@ -437,19 +437,10 @@
     <ClCompile Include="dialogs\HexItemInfoDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SerializerInterface.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SerializerInterface.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="io\SerializeBinary.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
     <ClCompile Include="io\SerializerFactory.cpp">
-      <Filter>Source Dateien\IO</Filter>
-    </ClCompile>
-    <ClCompile Include="io\SerializerInterface.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
     <ClCompile Include="io\SerializeXML.cpp">
@@ -457,6 +448,15 @@
     </ClCompile>
     <ClCompile Include="io\SerializeXMLItems.cpp">
       <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="io\ConnectorSaveGame.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorSaveGame.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorSaveGame.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -714,7 +714,7 @@
     <CustomBuild Include="dialogs\CreateNewMapDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="io\SerializerInterface.h">
+    <CustomBuild Include="io\ConnectorSaveGame.h">
       <Filter>Header Dateien\IO</Filter>
     </CustomBuild>
   </ItemGroup>
