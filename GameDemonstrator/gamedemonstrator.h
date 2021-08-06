@@ -16,7 +16,9 @@ class TerrainTypeEditor;
 class SerializerInterface;
 class CreateNewMap;
 class ConnectorTerrainEditorGameMap;
+class ConnectorUnitTypeGameMap;
 class ConnectorLoadCreateGame;
+class UnitTypeEditor;
 
 namespace jha
 {
@@ -49,6 +51,7 @@ private:
 	bool ReadTerrainTypes(QIODevice *device);
 	void CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor );
 	TerrainTypeEditor* CreateTerrainTypeEditor( MapEventManager* mapEventManager );
+	UnitTypeEditor* CreateUnitTypeEditor(MapEventManager* mapEventManager);
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
@@ -63,7 +66,8 @@ private:
 	SerializerInterface*		SerializerInterface;
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
-	ConnectorLoadCreateGame*				GameConnectorInstance;
+	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
+	ConnectorLoadCreateGame*		ConnectorLoadCreateGameInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

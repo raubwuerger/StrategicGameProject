@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ModelUnitTypeRepository.h"
 #include "ModelUnitType.h"
+#include "LogInterface.h"
 
 ModelUnitTypeRepository* ModelUnitTypeRepository::Instance = nullptr;
 
@@ -45,6 +46,17 @@ QMap<int, const ModelUnitType*>::const_iterator ModelUnitTypeRepository::GetFirs
 QMap<int, const ModelUnitType*>::const_iterator ModelUnitTypeRepository::GetLastIterator() const
 {
 	return Repository.cend();
+}
+
+const ModelUnitType* ModelUnitTypeRepository::FindModelUnitTypeById(int modelUnitTypeId) const
+{
+	QMap<int, const ModelUnitType*>::const_iterator itemFound = Repository.constFind(modelUnitTypeId);
+	if (Repository.cend() == itemFound)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("UnitType with id %1 not registered!").arg(modelUnitTypeId));
+		return nullptr;
+	}
+	return itemFound.value();
 }
 
 ModelUnitTypeRepository::ModelUnitTypeRepository()

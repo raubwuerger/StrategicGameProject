@@ -32,11 +32,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
-	GameConnectorInstance(nullptr)
+	ConnectorLoadCreateGameInstance(nullptr)
 {
 	ui.setupUi(this);
-
-	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
@@ -45,7 +43,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapViewInstance = new MapView(this);
 	MapViewInstance->setViewport( new QOpenGLWidget(this) );
 
-	GameConnectorInstance = new ConnectorLoadCreateGame;
+	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
 
 	InitLoggingFramwork();
 
@@ -79,7 +77,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
 
-	GameConnectorInstance->SetMapView(MapViewInstance);
+	ConnectorLoadCreateGameInstance->SetMapView(MapViewInstance);
 
 	MapViewInstance->show();
 }
@@ -118,13 +116,13 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
 	ActionRepository::GetInstance()->AddAction(createAction);
-	connect(createAction, SIGNAL(triggered()), GameConnectorInstance, SLOT(CreateNewGame()), Qt::QueuedConnection);
+	connect(createAction, SIGNAL(triggered()), ConnectorLoadCreateGameInstance, SLOT(CreateNewGame()), Qt::QueuedConnection);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	ActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, SIGNAL(triggered()), GameConnectorInstance, SLOT(LoadSaveGame()), Qt::QueuedConnection);
+	connect(loadGameAction, SIGNAL(triggered()), ConnectorLoadCreateGameInstance, SLOT(LoadSaveGame()), Qt::QueuedConnection);
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);
@@ -271,9 +269,23 @@ void GameDemonstrator::CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor
 #include "TerrainTypeEditor.h"
 TerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( MapEventManager*mapEventManager )
 {
+	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
 	TerrainTypeEditor *terrainTypeEditor = new TerrainTypeEditor(nullptr);
 	terrainTypeEditor->MapEventManager = mapEventManager;
 	QObject::connect(terrainTypeEditor, &TerrainTypeEditor::TerrainTypeChanged,
 		ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::TerrainTypeChanged);
 	return terrainTypeEditor;
+}
+
+#include "editors\UnitTypeEditor.h"
+#include "connectors\ConnectorUnitTypeGameMap.h"
+UnitTypeEditor* GameDemonstrator::CreateUnitTypeEditor(MapEventManager* mapEventManager)
+{
+	ConnectorUnitTypeEditorGameMapInstance = new ConnectorUnitTypeGameMap();
+
+	UnitTypeEditor* unitTypeEditor = new UnitTypeEditor(nullptr);
+	unitTypeEditor->MapEventManager = mapEventManager;
+	QObject::connect(unitTypeEditor, &UnitTypeEditor::UnitAdded,
+		ConnectorUnitTypeEditorGameMapInstance, &ConnectorUnitTypeGameMap::UnitTypeAdded);
+	return unitTypeEditor;
 }
