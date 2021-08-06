@@ -17,8 +17,6 @@ public:
 	bool Create();
 private:
 	/** */
-	bool OpenFile( QFile* file );
-	/** */
 	ModelTerrainType* CreateFromXML( const QDomNode& node );
 	/** */
 	const QImage* LoadTerrainTypeImage( const QString& path );

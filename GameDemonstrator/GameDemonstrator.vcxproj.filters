@@ -431,6 +431,9 @@
     <ClCompile Include="map\MapEventManager.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="io\ConfigFileLoader.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -594,6 +597,9 @@
     </ClInclude>
     <ClInclude Include="map\MapHexItem.h">
       <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="io\ConfigFileLoader.h">
+      <Filter>Header Dateien\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
