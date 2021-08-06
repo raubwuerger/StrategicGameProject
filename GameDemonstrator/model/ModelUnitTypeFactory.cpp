@@ -5,6 +5,7 @@
 #include "ModelUnitTypeXMLItems.h"
 #include "ModelConfigurationHeaderXMLItems.h"
 #include "DomValueExtractor.h"
+#include "io/ConfigFileLoader.h"
 #include <QtXml>
 #include "LogInterface.h"
 
@@ -21,54 +22,20 @@ ModelUnitTypeFactory::~ModelUnitTypeFactory()
 bool ModelUnitTypeFactory::Create()
 {
 	ModelUnitTypeXMLItems config;
-	jha::GetLog()->Log_MESSAGE(QObject::tr("Loading %1 from file: %2").arg(config.ROOT_NAME).arg(config.CONFIG_FILE_NAME));
-	QFile file(config.CONFIG_FILE_NAME);
-	if (false == OpenFile(&file))
+
+	ConfigFileLoader configFileLoader;
+	if (false == configFileLoader.LoadConfig(config.CONFIG_FILE_NAME, config.ROOT_NAME))
 	{
 		return false;
 	}
 
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-	QDomDocument domDocument;
-
-	if (domDocument.setContent(&file, true, &errorStr, &errorLine, &errorColumn) == false)
-	{
-		jha::GetLog()->Log_WARNING(QObject::tr("Parse error at line %1, column %2:\n%3").arg(errorLine).arg(errorColumn).arg(errorStr));
-		return false;
-	}
-
-	QDomElement root = domDocument.documentElement();
-	if (root.tagName() != config.ROOT_NAME)
-	{
-		jha::GetLog()->Log(QObject::tr("The file is not an %1 file.").arg(config.ROOT_NAME), jha::LOGLEVEL::LL_WARNING);
-		return false;
-	}
-
-	if (root.hasAttribute(ModelConfigurationHeaderXMLItems::VERSION) && root.attribute(ModelConfigurationHeaderXMLItems::VERSION) != ModelConfigurationHeaderXMLItems::VERSION_NUMBER)
-	{
-		jha::GetLog()->Log_WARNING(QObject::tr("The file is not an %1 file.").arg(config.ROOT_NAME));
-		return false;
-	}
-
-	QDomNodeList terrainTypeNodes = root.childNodes();
+	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{
-		ModelUnitTypeRepository::GetInstance()->RegisterModelUnit( CreateFromXML(terrainTypeNodes.at(i)));
+		ModelUnitTypeRepository::GetInstance()->RegisterModelUnitType(CreateFromXML(terrainTypeNodes.at(i)));
 	}
 	jha::GetLog()->Log("TerrainTypes registered: " + QString::number(ModelUnitTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 
-	return true;
-}
-
-bool ModelUnitTypeFactory::OpenFile(QFile* file)
-{
-	if (file->open(QFile::ReadOnly | QFile::Text) == false)
-	{
-		jha::GetLog()->Log(QObject::tr("Cannot read file %1:\n%2.").arg(file->fileName()).arg(file->errorString()), jha::LOGLEVEL::LL_WARNING);
-		return false;
-	}
 	return true;
 }
 

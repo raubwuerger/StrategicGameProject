@@ -592,14 +592,14 @@
     <ClInclude Include="map\MapUnitItem.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
-    <ClInclude Include="map\MapUnitItemFactory.h">
-      <Filter>Header Dateien\Map</Filter>
-    </ClInclude>
     <ClInclude Include="map\MapHexItem.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
     <ClInclude Include="io\ConfigFileLoader.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapUnitItemFactory.h">
+      <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

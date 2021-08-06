@@ -21,7 +21,7 @@ void ModelUnitTypeRepository::Release()
 	Instance = nullptr;
 }
 
-bool ModelUnitTypeRepository::RegisterModelUnit(const ModelUnitType* modelUnit)
+bool ModelUnitTypeRepository::RegisterModelUnitType(const ModelUnitType* modelUnit)
 {
 	if (true == Repository.contains(modelUnit->GetId()))
 	{

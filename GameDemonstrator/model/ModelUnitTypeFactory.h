@@ -15,8 +15,6 @@ public:
 	bool Create();
 private:
 	/** */
-	bool OpenFile(QFile* file);
-	/** */
 	ModelUnitType* CreateFromXML(const QDomNode& node);
 	/** */
 	const QImage* LoadImage(const QString& path);

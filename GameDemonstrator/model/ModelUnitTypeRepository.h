@@ -11,7 +11,7 @@ public:
 	/** */
 	void Release();
 	/** */
-	bool RegisterModelUnit(const ModelUnitType* modelUnit);
+	bool RegisterModelUnitType(const ModelUnitType* modelUnit);
 	/** */
 	int GetCount() const;
 private:
