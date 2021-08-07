@@ -5,6 +5,7 @@
 #include "game/GameMainLoop.h"
 #include "dialogs/GameTurnDialog.h"
 #include "dialogs/HexItemInfoDialog.h"
+#include "dialogs/UnitTypeInfoDialog.h"
 #include "map/MapView.h"
 #include "map/MapEventManager.h"
 #include "io\SerializerGame.h"
@@ -28,6 +29,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameTurnDialogInstance(nullptr),
 	MainGameLoop(nullptr),
 	HexItemInfoDialogInstance(nullptr),
+	UnitTypeInfoDialogInstance(nullptr),
 	EditorToolboxInstance(nullptr),
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
@@ -55,6 +57,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
 	CreateHexItemInfoDialog();
+	CreateUnitTypeInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
 
@@ -189,6 +192,16 @@ void GameDemonstrator::CreateHexItemInfoDialog()
  	dockHexItem->setWidget( HexItemInfoDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
 	ViewMenu->addAction(dockHexItem->toggleViewAction());
+}
+
+void GameDemonstrator::CreateUnitTypeInfoDialog()
+{
+	QDockWidget *dockUnitType = new QDockWidget(tr("Unit type"), this);
+	dockUnitType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog(dockUnitType);
+	dockUnitType->setWidget(UnitTypeInfoDialogInstance);
+	addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
+	ViewMenu->addAction(dockUnitType->toggleViewAction());
 }
 
 #include "LogInterface.h"

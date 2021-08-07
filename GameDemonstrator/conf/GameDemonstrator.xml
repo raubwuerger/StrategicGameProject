@@ -8,7 +8,7 @@
 		<SaveGamePath>./savegames/</SaveGamePath>
 	</SaveGame>
 	<DebugMapSettings>
-		<Rows>18</Rows>
-		<Cols>46</Cols>
+		<Rows>2</Rows>
+		<Cols>2</Cols>
 	</DebugMapSettings>
 </GameDemonstrator>

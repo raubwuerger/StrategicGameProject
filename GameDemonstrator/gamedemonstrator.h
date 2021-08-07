@@ -7,6 +7,7 @@
 class ActionRepository;
 class GameTurnDialog;
 class HexItemInfoDialog;
+class UnitTypeInfoDialog;
 class GameMainThread;
 class GameMainLoop;
 class MapView;
@@ -43,6 +44,7 @@ private:
 	void CreateGameTurnInfoDialog();
 	void CreateMainGameThreadAndLoop();
 	void CreateHexItemInfoDialog();
+	void CreateUnitTypeInfoDialog();
 	void InitMainGameThread();
 	void InitLoggingFramwork();
 	bool LoadTerrainTypes();
@@ -59,11 +61,12 @@ private:
 	ActionRepository*			ActionRepository;
 	GameTurnDialog*				GameTurnDialogInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
+	UnitTypeInfoDialog*			UnitTypeInfoDialogInstance;
 	GameMainThread*				MainThread;
 	GameMainLoop*				MainGameLoop;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
-	SerializerGame*			ConnectorSaveGameInstance;
+	SerializerGame*				ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;

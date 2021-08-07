@@ -416,6 +416,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_HexItemInfoDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UnitTypeInfoDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
     <ClCompile Include="dialogs\CreateNewMapDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
@@ -457,6 +463,12 @@
     </ClCompile>
     <ClCompile Include="..\StandardLibQt\DomValueExtractor.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\UnitTypeInfoDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -711,11 +723,17 @@
     <CustomBuild Include="dialogs\HexItemInfoDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
+    <CustomBuild Include="dialogs\UnitTypeInfoDialog.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
     <CustomBuild Include="dialogs\CreateNewMapDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="io\SerializerGame.h">
       <Filter>Header Dateien\IO</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\UnitTypeInfoDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
