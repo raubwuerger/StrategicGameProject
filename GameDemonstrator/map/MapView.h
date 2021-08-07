@@ -53,8 +53,6 @@ private:
 	const int	ROW_COL_NOT_INITIALIZED;
 	int			ActiveRow;
 	int			ActiveCol;
-	bool		SelectedItemChanged;
-
 };
 
 #endif // CMAPVIEW_H

@@ -41,7 +41,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
 	MapViewInstance = new MapView(this);
-	MapViewInstance->setViewport( new QOpenGLWidget(this) );
 
 	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
 

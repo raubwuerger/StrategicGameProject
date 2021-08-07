@@ -13,8 +13,7 @@ MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent),
 	ROW_COL_NOT_INITIALIZED(-1),
 	ActiveRow(ROW_COL_NOT_INITIALIZED),
-	ActiveCol(ROW_COL_NOT_INITIALIZED),
-	SelectedItemChanged(false)
+	ActiveCol(ROW_COL_NOT_INITIALIZED)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	Scene = new MapGraphicsScene(this);
@@ -121,6 +120,7 @@ double MapView::CalcMapHeightInPixel() const
 	return (hexagondata.Height * ModelMapRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
 }
 
+
 void MapView::mouseReleaseEvent(QMouseEvent * event)
 {
 	QGraphicsView::mouseReleaseEvent(event);
@@ -135,7 +135,7 @@ void MapView::mousePressEvent(QMouseEvent *event)
 void MapView::mouseMoveEvent(QMouseEvent *event)
 {
 	QGraphicsView::mouseMoveEvent(event);
-	if( event->buttons() == Qt::LeftButton )
+	if (event->buttons() == Qt::LeftButton)
 	{
 		EmitHexItemPressed();
 	}
@@ -143,14 +143,8 @@ void MapView::mouseMoveEvent(QMouseEvent *event)
 
 void MapView::HexActive(int row, int col)
 {
-	if( row != ActiveRow || col != ActiveCol )
-	{
-		SelectedItemChanged = true;
-		ActiveRow = row;
-		ActiveCol = col;
-		return;
-	}
-	SelectedItemChanged = false;
+	ActiveRow = row;
+	ActiveCol = col;
 }
 
 void MapView::EmitHexItemPressed()
@@ -170,10 +164,7 @@ void MapView::EmitHexItemPressed()
 		return;
 	}
 
-	if( true == SelectedItemChanged )
-	{
-		emit HexItemEventManager->HexItemPressed( ActiveRow, ActiveCol );
-	}
+	emit HexItemEventManager->HexItemPressed( ActiveRow, ActiveCol );
 }
 
 void MapView::wheelEvent(QWheelEvent *event)

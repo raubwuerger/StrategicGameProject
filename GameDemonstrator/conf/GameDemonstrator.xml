@@ -2,7 +2,7 @@
 <GameDemonstrator>
 	<Logging>
 		<!--ValidLogleves: None, Fatal, Error, Warning, Message, Info, Trace, Debug -->
-		<GlobalLogLevel>Debug</GlobalLogLevel>
+		<GlobalLogLevel>Info</GlobalLogLevel>
 	</Logging>
 	<SaveGame>
 		<SaveGamePath>./savegames/</SaveGamePath>
