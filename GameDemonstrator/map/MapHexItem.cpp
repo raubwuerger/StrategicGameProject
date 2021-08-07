@@ -22,6 +22,7 @@ MapHexItem::MapHexItem( const HexagonData& data, const QPointF& topLeft )
 	CreateHexPolygon(this->HexData);
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
+	setCacheMode(QGraphicsItem::ItemCoordinateCache);
 }
 
 MapHexItem::~MapHexItem()
@@ -31,6 +32,7 @@ MapHexItem::~MapHexItem()
 
 void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget )
 {
+	//TODO: Die Werte sind für alle Punkte immer gleich. Ausprobieren ob einmal berechnen reicht!
 	if( TerrainImage != nullptr )
 	{
 		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
