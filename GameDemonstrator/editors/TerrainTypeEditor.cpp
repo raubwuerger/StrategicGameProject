@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "TerrainTypeEditor.h"
 #include "map/MapEventManager.h"
-#include "map/MapEventManager.h"
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"

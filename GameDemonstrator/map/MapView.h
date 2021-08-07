@@ -20,6 +20,8 @@ public:
 	~MapView();
 	/** */
 	void Create();
+	/** */
+	HexItemEventManager* GetHexItemEventManager() const { return HexItemEventManagerInstance; }
 public slots:
 	/** */
 	void HexActive( int row, int col );
@@ -46,8 +48,8 @@ private:
 	/** */
 	void EmitHexItemPressed();
 public:
-	MapGraphicsScene	*Scene;					//TODO: Setter
-	HexItemEventManager		*HexItemEventManager;	//TODO: Setter
+	MapGraphicsScene		*Scene;					//TODO: Setter
+	HexItemEventManager		*HexItemEventManagerInstance;	//TODO: Setter
 	MapEventManager			*MapEventManager;		//TODO: Setter
 private:
 	const int	ROW_COL_NOT_INITIALIZED;

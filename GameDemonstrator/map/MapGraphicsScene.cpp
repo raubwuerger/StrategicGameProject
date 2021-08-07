@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "MapGraphicsScene.h"
-#include "HexItemEventManager.h"
 
 MapGraphicsScene::MapGraphicsScene(QObject *parent)
-	: QGraphicsScene(parent),
-	HexItemEventManager(nullptr)
+	: QGraphicsScene(parent)
 {
 
 }

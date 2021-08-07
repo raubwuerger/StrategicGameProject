@@ -7,7 +7,6 @@
 #include "dialogs/HexItemInfoDialog.h"
 #include "map/MapView.h"
 #include "map/MapEventManager.h"
-#include "HexItemEventManager.h"
 #include "io\SerializerGame.h"
 #include "io\SerializeBinary.h"
 #include "io\SerializerFactory.h"
@@ -19,6 +18,7 @@
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
 #include "model/ModelMapRepository.h"
+#include "HexItemEventManager.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 #include "editors/TerrainTypeEditor.h"
@@ -60,14 +60,13 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
-	MapViewInstance->HexItemEventManager = new HexItemEventManager;
 	MapViewInstance->MapEventManager = new MapEventManager(nullptr);
 	MapViewInstance->MapEventManager->HexItemInfoDialog = HexItemInfoDialogInstance;
 
 	TerrainTypeEditor* terrainTypeEditor = CreateTerrainTypeEditor(MapViewInstance->MapEventManager);
 	CreateEditorToolbox(terrainTypeEditor, CreateUnitTypeEditor(MapViewInstance->MapEventManager));
 	//TODO: connect überarbeiten...
-	connect( MapViewInstance->HexItemEventManager, SIGNAL(HexItemPressed(int,int)), terrainTypeEditor, SLOT(ChangeTerrainTypeHexItem(int,int)) );
+	connect(MapViewInstance->GetHexItemEventManager(), &HexItemEventManager::HexItemPressed, terrainTypeEditor, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
 
 	layoutMain->addWidget(MapViewInstance);
 

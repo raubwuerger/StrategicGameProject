@@ -16,12 +16,13 @@ MapView::MapView(QWidget *parent)
 	ActiveCol(ROW_COL_NOT_INITIALIZED)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+	HexItemEventManagerInstance = new HexItemEventManager();
 	Scene = new MapGraphicsScene(this);
 }
 
 MapView::~MapView()
 {
-	delete HexItemEventManager;
+	delete HexItemEventManagerInstance;
 	delete MapEventManager;
 }
 
@@ -44,9 +45,8 @@ void MapView::Create()
 void MapView::InitMapEventManager()
 {
 	MapEventManager->InitMapItemsRegistry( ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols() );
-	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
-	connect(HexItemEventManager,SIGNAL(HexItemEntered(int,int)),this,SLOT(HexActive(int,int)));
-	Scene->HexItemEventManager = HexItemEventManager;
+	connect(HexItemEventManagerInstance,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
+	connect(HexItemEventManagerInstance,SIGNAL(HexItemEntered(int,int)),this,SLOT(HexActive(int,int)));
 }
 
 bool MapView::CreateMapFromModel()
@@ -72,7 +72,7 @@ bool MapView::CreateMapFromModel()
 			CreateTopLeftPosition(currentRow,currentCol,topLeftPosition);
 			MapHexItem *mapItem = new MapHexItem( hexagonTemplate, topLeftPosition );
 			mapItem->SetRowAndCol(currentRow,currentCol);
-			mapItem->SetHexItemEventManager( HexItemEventManager );
+			mapItem->SetHexItemEventManager( HexItemEventManagerInstance );
 			mapItem->SetModelMapItemId( modelMapItem->GetId() );
 			const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
 			mapItem->SetTerrainImage( modelTerrainType->GetImage() );
@@ -149,7 +149,7 @@ void MapView::HexActive(int row, int col)
 
 void MapView::EmitHexItemPressed()
 {
-	if( nullptr == HexItemEventManager )
+	if( nullptr == HexItemEventManagerInstance )
 	{
 		return;
 	}
@@ -164,7 +164,7 @@ void MapView::EmitHexItemPressed()
 		return;
 	}
 
-	emit HexItemEventManager->HexItemPressed( ActiveRow, ActiveCol );
+	emit HexItemEventManagerInstance->HexItemPressed( ActiveRow, ActiveCol );
 }
 
 void MapView::wheelEvent(QWheelEvent *event)
