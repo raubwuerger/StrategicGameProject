@@ -151,6 +151,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\StandardLibQt\Command.cpp" />
+    <ClCompile Include="..\StandardLibQt\DomElementFinder.cpp" />
+    <ClCompile Include="..\StandardLibQt\DomNodeFinder.cpp" />
+    <ClCompile Include="..\StandardLibQt\DomNodeListValueExtractor.cpp" />
+    <ClCompile Include="..\StandardLibQt\DomValueExtractor.cpp" />
     <ClCompile Include="..\StandardLibQt\LogFactory.cpp" />
     <ClCompile Include="..\StandardLibQt\Logger.cpp" />
     <ClCompile Include="..\StandardLibQt\LoggerCout.cpp" />
@@ -169,9 +173,6 @@
     <ClCompile Include="dialogs\CreateNewMapDialog.cpp" />
     <ClCompile Include="dialogs\GameTurnDialog.cpp" />
     <ClCompile Include="dialogs\HexItemInfoDialog.cpp" />
-    <ClCompile Include="DomNodeFinder.cpp" />
-    <ClCompile Include="DomNodeListValueExtractor.cpp" />
-    <ClCompile Include="DomValueExtractor.cpp" />
     <ClCompile Include="editors\EditorToolbox.cpp" />
     <ClCompile Include="editors\TerrainTypeEditor.cpp" />
     <ClCompile Include="editors\UnitTypeEditor.cpp" />
@@ -422,9 +423,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="DomElementFinder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\StandardLibQt\DomElementFinder.h" />
+    <ClInclude Include="..\StandardLibQt\DomNodeFinder.h" />
+    <ClInclude Include="..\StandardLibQt\DomNodeListValueExtractor.h" />
+    <ClInclude Include="..\StandardLibQt\DomValueExtractor.h" />
     <ClInclude Include="Action.h" />
     <CustomBuild Include="connectors\ConnectorTerrainEditorGameMap.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -534,9 +538,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../dialogs/HexItemInfoDialog.h"  -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_NETWORK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I$(INHERIT)\." "-I.\..\StandardLibQt"</Command>
     </CustomBuild>
-    <ClInclude Include="DomNodeFinder.h" />
-    <ClInclude Include="DomNodeListValueExtractor.h" />
-    <ClInclude Include="DomValueExtractor.h" />
     <CustomBuild Include="editors\UnitTypeEditor.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing UnitTypeEditor.h...</Message>
@@ -779,7 +780,6 @@
     <ClInclude Include="model\ModelUnitTypeFactory.h" />
     <ClInclude Include="model\ModelUnitTypeRepository.h" />
     <ClInclude Include="model\ModelUnitTypeXMLItems.h" />
-    <ClInclude Include="DomElementFinder.h" />
     <ClInclude Include="GeneratedFiles\ui_CreateNewMapDialog.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="model\ModelMapItem.h" />

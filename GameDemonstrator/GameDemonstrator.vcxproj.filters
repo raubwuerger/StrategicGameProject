@@ -218,12 +218,6 @@
     <ClCompile Include="model\ModelOwnerType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="DomElementFinder.cpp">
-      <Filter>Source Dateien\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="DomValueExtractor.cpp">
-      <Filter>Source Dateien\Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelMapRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -256,12 +250,6 @@
     </ClCompile>
     <ClCompile Include="game\GameMapFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="DomNodeListValueExtractor.cpp">
-      <Filter>Source Dateien\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="DomNodeFinder.cpp">
-      <Filter>Source Dateien\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelTerrainXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
@@ -458,6 +446,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SerializerGame.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\StandardLibQt\DomElementFinder.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\DomNodeFinder.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\DomNodeListValueExtractor.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\DomValueExtractor.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -526,12 +526,6 @@
     <ClInclude Include="model\ModelTerrainType.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="DomElementFinder.h">
-      <Filter>Header Dateien\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="DomValueExtractor.h">
-      <Filter>Header Dateien\Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="model\ModelMapRepository.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -546,12 +540,6 @@
     </ClInclude>
     <ClInclude Include="game\GameMapFactory.h">
       <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="DomNodeListValueExtractor.h">
-      <Filter>Header Dateien\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="DomNodeFinder.h">
-      <Filter>Header Dateien\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelTerrainXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
@@ -627,6 +615,18 @@
     </ClInclude>
     <ClInclude Include="io\SerializeXMLItems.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\DomElementFinder.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\DomNodeFinder.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\DomNodeListValueExtractor.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\DomValueExtractor.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
