@@ -20,17 +20,17 @@ public:
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 	/** Set eventItem */
-	void SetHexItemEventManager( MapHexItemEvents * val) { EventItem = val; }
+	void SetHexItemEventManager( MapHexItemEvents * val);
 	/** */
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	/** Get row */
-	int GetRow() const { return Row; }
+	int GetRow() const;
 	/** Set row */
 	void SetRowAndCol( int row, int col );
 	/** Get col */
-	int GetCol() const { return Col; }
+	int GetCol() const;
 	/** Set m_TerrainImage */
-	void SetTerrainImage( const QImage * val);
+	bool SetTerrainImage( const QImage * val);
 	/** */
 	void SetModelMapItemId( int modelMapItemId );
 	/** */

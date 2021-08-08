@@ -8,6 +8,7 @@
 #include "model/ModelTerrainType.h"
 #include "model/ModelMapRepository.h"
 #include "LogInterface.h"
+#include "MapUnitItem.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent),
@@ -42,6 +43,17 @@ void MapView::Create()
 	setDragMode(ScrollHandDrag);
 }
 
+MapHexItemEvents* MapView::GetHexItemEventManager() const
+{
+	return HexItemEventManagerInstance;
+}
+
+bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
+{
+	Scene->addItem(mapUnitItem);
+	return false;
+}
+
 void MapView::InitMapEventManager()
 {
 	MapEventManager->InitMapItemsRegistry( ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols() );
@@ -74,8 +86,7 @@ bool MapView::CreateMapFromModel()
 			mapItem->SetRowAndCol(currentRow,currentCol);
 			mapItem->SetHexItemEventManager( HexItemEventManagerInstance );
 			mapItem->SetModelMapItemId( modelMapItem->GetId() );
-			const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
-			mapItem->SetTerrainImage( modelTerrainType->GetImage() );
+			mapItem->SetTerrainImage( GetImageFromTerrainType(modelMapItem) );
 			Scene->addItem( mapItem );
 			MapEventManager->RegisterMapItem( mapItem );
 
@@ -106,6 +117,17 @@ bool MapView::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 	topLeftPosition.setX(cordX);
 	topLeftPosition.setY(cordY);
 	return true;
+}
+
+const QImage* MapView::GetImageFromTerrainType(const ModelMapItem* modelMapItem)
+{
+	const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
+	if (nullptr == modelTerrainType)
+	{
+		Q_ASSERT(nullptr);
+		return nullptr;
+	}
+	return modelTerrainType->GetImage();
 }
 
 double MapView::CalcMapWidthInPixel() const

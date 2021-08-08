@@ -56,6 +56,11 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 	QGraphicsPolygonItem::paint(painter,option,widget);
 }
 
+int MapHexItem::GetRow() const
+{
+	return Row;
+}
+
 QRectF MapHexItem::boundingRect() const
 {
 	return HexData.BoundingRect;
@@ -87,6 +92,11 @@ void MapHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 	event->ignore();
 }
 
+void MapHexItem::SetHexItemEventManager(MapHexItemEvents * val)
+{
+	EventItem = val;
+}
+
 void MapHexItem::ShowSelected()
 {
 	setPen( QPen( QBrush(Qt::black), 4 ) );
@@ -107,9 +117,19 @@ void MapHexItem::SetRowAndCol( int row, int col )
 	StringRowCol = QString::number(row) +"|" +QString::number(col);
 }
 
-void MapHexItem::SetTerrainImage( const QImage * val )
+int MapHexItem::GetCol() const
 {
+	return Col;
+}
+
+bool MapHexItem::SetTerrainImage( const QImage * val )
+{
+	if (nullptr == val)
+	{
+		return false;
+	}
 	TerrainImage = val;
+	return true;
 }
 
 void MapHexItem::SetModelMapItemId(int modelMapItemId)

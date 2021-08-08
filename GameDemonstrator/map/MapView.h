@@ -8,6 +8,8 @@ class MapHexItemEvents;
 class MapEventManager;
 class ModelTerrainType;
 class HexagonData;
+class MapUnitItem;
+class ModelMapItem;
 
 class MapView : public QGraphicsView
 {
@@ -21,7 +23,9 @@ public:
 	/** */
 	void Create();
 	/** */
-	MapHexItemEvents* GetHexItemEventManager() const { return HexItemEventManagerInstance; }
+	MapHexItemEvents* GetHexItemEventManager() const;
+	/** */
+	bool AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem);
 public slots:
 	/** */
 	void HexActive( int row, int col );
@@ -45,6 +49,8 @@ private:
 	double CalcMapHeightInPixel() const;
 	/** */
 	bool CreateTopLeftPosition( int col, int row, QPointF &topLeftPosition );
+	/** */
+	const QImage* GetImageFromTerrainType(const ModelMapItem* modelMapItem);
 	/** */
 	void EmitHexItemPressed();
 public:
