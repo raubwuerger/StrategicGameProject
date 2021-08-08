@@ -5,7 +5,8 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	: TopLeft(topLeft),
 	UnitItemImage(nullptr)
 {
-//	this->moveBy()
+	this->boundingRect().moveRight(121);
+	this->boundingRect().moveBottom(64);
 }
 
 QRectF MapUnitItem::boundingRect() const

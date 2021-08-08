@@ -10,7 +10,7 @@ public:
 	QRectF boundingRect() const;
 	/** */
 	void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
-	/** Set m_TerrainImage */
+	/** Set UnitItemImage */
 	void SetUnitItemImage(const QImage* val);
 private:
 	const QImage* UnitItemImage;

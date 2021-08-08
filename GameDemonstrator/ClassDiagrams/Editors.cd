@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MapEventManager">
+    <Position X="6.25" Y="3" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAIAAACCAAAAAAAAAAAAIAAACAAAAAFAg=</HashCode>
+      <FileName>map\MapEventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HexagonData">
+    <Position X="6.25" Y="5.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgQBAEBgAABAAAASGAQAAAQAAAAAMAAAEAAAQA=</HashCode>
+      <FileName>HexagonData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameTurnDialog" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>dialogs\GameTurnDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapView">
+    <Position X="8.5" Y="1.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIIAAAAAAABAAAAIgAAAAABQAIAQQlAEEAAAJAAEAAI=</HashCode>
+      <FileName>map\MapView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HexItemInfoDialog">
+    <Position X="6.75" Y="8.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAEAAAAAAAAAAAAAAAAEAAAAAAAEAAGAA=</HashCode>
+      <FileName>dialogs\HexItemInfoDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EditorToolbox">
+    <Position X="2.75" Y="6.5" Width="2.25" />
+    <Members>
+      <Field Name="GroupBuildings" Hidden="true" />
+      <Field Name="GroupTerrainTypes" Hidden="true" />
+      <Field Name="GroupUnitsTypes" Hidden="true" />
+      <Field Name="MinimumEditWidth" Hidden="true" />
+      <Field Name="TerrainTypeEditor" Hidden="true" />
+      <Field Name="UnitTypeEditor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABCARCAACAAAAARAAIEAAIAABAAAQEAA=</HashCode>
+      <FileName>editors\EditorToolbox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConnectorButtonTerrainTypeId">
+    <Position X="2.75" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>editors\EditorToolbox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TerrainTypeEditor">
+    <Position X="1.25" Y="1.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAQAA=</HashCode>
+      <FileName>editors\TerrainTypeEditor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapRepository">
+    <Position X="11" Y="1.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEAASAAgIABAAIAEAAABAAAABAAAAAAAQAAEBBAAACA=</HashCode>
+      <FileName>model\ModelMapRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapFactory">
+    <Position X="11" Y="5.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAIAEAQBAAAAA=</HashCode>
+      <FileName>model\ModelMapFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainType" Collapsed="true">
+    <Position X="13.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFACgAgAgAAAgAAAQQAABAcQAAAAABABEAAAAAIABIA=</HashCode>
+      <FileName>model\ModelTerrainType.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainTypeFactory">
+    <Position X="13" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgEAAAAAAAAAAAAAAEAAAAAEAACCAAAAAAAAA=</HashCode>
+      <FileName>model\ModelTerrainTypeFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelTerrainTypeRepository">
+    <Position X="18.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAQGAAAAgAAAAAAAAgABACAAAgAQAAAIBAAgAA=</HashCode>
+      <FileName>model\ModelTerrainTypeRepository.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelFactory" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>ModelFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelMapItem">
+    <Position X="11" Y="7.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACCAAAACAAAAAAECAAAACAAEAEAAgAABEAhAAIAAAA=</HashCode>
+      <FileName>model\ModelMapItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMapFactory" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\GameMapFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConnectorTerrainEditorGameMap">
+    <Position X="16.75" Y="7.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>connectors\ConnectorTerrainEditorGameMap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapGraphicsScene">
+    <Position X="17" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAFAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>map\MapGraphicsScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapHexItem">
+    <Position X="4.5" Y="10.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABgAABAAAAQAAAACAACBACBAEAEAgggQBCQAAAASChA=</HashCode>
+      <FileName>map\MapHexItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapHexItemEvents">
+    <Position X="10" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MapHexItemEvents.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapUnitItem" Collapsed="true">
+    <Position X="14.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJgAAAAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAABAAAA=</HashCode>
+      <FileName>map\MapUnitItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapUnitItemFactory" Collapsed="true">
+    <Position X="14.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAiAAAAAQAAAA=</HashCode>
+      <FileName>map\MapUnitItemFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

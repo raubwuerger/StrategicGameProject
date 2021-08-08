@@ -1077,6 +1077,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagrams\Editors.cd" />
     <None Include="CompleteOverview.cd" />
   </ItemGroup>
   <ItemGroup>

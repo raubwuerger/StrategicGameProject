@@ -10,7 +10,7 @@
   <Class Name="GameDemonstrator" Collapsed="true">
     <Position X="13" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAVBAAAFAAAEBAACEAAAAA4AgAAxAAAAAAAjBIAgAA=</HashCode>
+      <HashCode>gAAXJAAAFAABGBAAGEAAAAA4AlAA5AAAAAAADBIAgAA=</HashCode>
       <FileName>gamedemonstrator.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,8 +24,8 @@
   <Class Name="MapEventManager" Collapsed="true">
     <Position X="21.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAIAAAACAAAAAAAAAAAAIAAACAAAAABAg=</HashCode>
-      <FileName>MapEventManager.h</FileName>
+      <HashCode>AAAACAAAAAAAIAAACCAAAAAAAAAAAAIAAACAAAAAFAg=</HashCode>
+      <FileName>map\MapEventManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HexagonData" Collapsed="true">
@@ -46,21 +46,21 @@
     <Position X="18.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAABCAAAAAAAAAAAAA=</HashCode>
-      <FileName>CreateNewMapDialog.h</FileName>
+      <FileName>dialogs\CreateNewMapDialog.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameTurnDialog" Collapsed="true">
     <Position X="13" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameTurnDialog.h</FileName>
+      <FileName>dialogs\GameTurnDialog.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MapView" Collapsed="true">
     <Position X="23.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAAAIgAAAAAAAAAAAAkAAAAAABACEEAA=</HashCode>
-      <FileName>MapView.h</FileName>
+      <HashCode>AIIAAAAAAABAAAAIgAAAAABQAIAQQlAEEAAAJAAEAAI=</HashCode>
+      <FileName>map\MapView.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MapViewGraphicsScene" Collapsed="true">
@@ -80,29 +80,29 @@
   <Class Name="HexItemInfoDialog" Collapsed="true">
     <Position X="18.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
-      <FileName>HexItemInfoDialog.h</FileName>
+      <HashCode>AAAAAAEAAAAAEAAAAAAAAAAAAAAAAEAAAAAAAEAAGAA=</HashCode>
+      <FileName>dialogs\HexItemInfoDialog.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EditorToolbox" Collapsed="true">
     <Position X="25.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAQAAACAAAAAQAAIEAAIAAAAAAAAAA=</HashCode>
-      <FileName>EditorToolbox.h</FileName>
+      <HashCode>AAAAAAAAAAAABCARCAACAAAAARAAIEAAIAABAAAQEAA=</HashCode>
+      <FileName>editors\EditorToolbox.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConnectorButtonTerrainTypeId" Collapsed="true">
     <Position X="16.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EditorToolbox.h</FileName>
+      <FileName>editors\EditorToolbox.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TerrainTypeEditor" Collapsed="true">
     <Position X="20" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAABAAAQAA=</HashCode>
-      <FileName>TerrainTypeEditor.h</FileName>
+      <FileName>editors\TerrainTypeEditor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IMapCreator" Collapsed="true">
@@ -136,7 +136,7 @@
   <Class Name="ModelMapRepository" Collapsed="true">
     <Position X="23.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAACAAgIABAAIAAAAABAAAABAAAAAAASAAAABAAACA=</HashCode>
+      <HashCode>AEAASAAgIABAAIAEAAABAAAABAAAAAAAQAAEBBAAACA=</HashCode>
       <FileName>model\ModelMapRepository.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -150,14 +150,14 @@
   <Class Name="ModelMapFactory" Collapsed="true">
     <Position X="20" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAABAAAAAAAAABAAAAAAAYAEAQBAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAIAEAQBAAAAA=</HashCode>
       <FileName>model\ModelMapFactory.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ModelOwnerType" Collapsed="true">
     <Position X="25.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAIIBAAAAAAAAAABAQAAAAAAAAAAAAAgAIABAA=</HashCode>
+      <HashCode>AAACAAgIABAAAAAAAAAABAQAAAAAAAAAAAAAgAZABAA=</HashCode>
       <FileName>model\ModelOwnerType.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -192,7 +192,7 @@
   <Class Name="ModelTerrainType" Collapsed="true">
     <Position X="21.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AFACgAAAoAAAiAAAQQAABAcQAAAAABABEAAAAAIABAA=</HashCode>
+      <HashCode>AFACgAgAgAAAgAAAQQAABAcQAAAAABABEAAAAAIABIA=</HashCode>
       <FileName>model\ModelTerrainType.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -206,7 +206,7 @@
   <Class Name="ModelTerrainTypeFactory" Collapsed="true">
     <Position X="25.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgEAAAAAAAAAAAAAAEBAAAAEAASCAAABAAAAA=</HashCode>
+      <HashCode>AAAAAAAgEAAAAAAAAAAAAAAEAAAAAEAACCAAAAAAAAA=</HashCode>
       <FileName>model\ModelTerrainTypeFactory.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -227,14 +227,14 @@
   <Class Name="ModelMapItem" Collapsed="true">
     <Position X="21.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACCAAAACAAAAAAECAAAAAAAAAEAAgAABEABAAIAAAA=</HashCode>
+      <HashCode>AACCAAAACAAAAAAECAAAACAAEAEAAgAABEAhAAIAAAA=</HashCode>
       <FileName>model\ModelMapItem.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ModelOwnerTypeFactory" Collapsed="true">
     <Position X="14.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAgAAAAAAAAAAAAAAABAAEAEAAQCAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAEAEAAACAAAAAAAAA=</HashCode>
       <FileName>model\ModelOwnerTypeFactory.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -242,7 +242,7 @@
     <Position X="1.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
-      <FileName>ISerializeGameInterface.h</FileName>
+      <FileName>io\ISerializeGameInterface.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SaveToXML" Collapsed="true">
@@ -256,7 +256,7 @@
     <Position X="16.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAIAACAAAgAAAAABAAAAAAAABAAAAA=</HashCode>
-      <FileName>SerializerFactory.h</FileName>
+      <FileName>io\SerializerFactory.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SaveBinary" Collapsed="true">
@@ -277,14 +277,14 @@
     <Position X="23.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAACAAAAAAAAAAAAAAAAAgAIAAAAAA=</HashCode>
-      <FileName>DomValueExtractor.h</FileName>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\DomValueExtractor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DomElementFinder" Collapsed="true">
     <Position X="21.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAABEAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DomElementFinder.h</FileName>
+      <HashCode>AAAIAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>E:\Projects\StrategicGameProject\StandardLibQt\DomElementFinder.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameDemonstratorConfig" Collapsed="true">

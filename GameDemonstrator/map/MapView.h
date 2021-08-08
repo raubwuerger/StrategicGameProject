@@ -50,7 +50,7 @@ private:
 	/** */
 	bool CreateTopLeftPosition( int col, int row, QPointF &topLeftPosition );
 	/** */
-	const QImage* GetImageFromTerrainType(const ModelMapItem* modelMapItem);
+	const QImage* GetImage(const ModelMapItem* modelMapItem);
 	/** */
 	void EmitHexItemPressed();
 public:

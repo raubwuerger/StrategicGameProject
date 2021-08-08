@@ -86,12 +86,13 @@ bool MapView::CreateMapFromModel()
 			mapItem->SetRowAndCol(currentRow,currentCol);
 			mapItem->SetHexItemEventManager( HexItemEventManagerInstance );
 			mapItem->SetModelMapItemId( modelMapItem->GetId() );
-			mapItem->SetTerrainImage( GetImageFromTerrainType(modelMapItem) );
+			mapItem->SetTerrainImage( GetImage(modelMapItem) );
 			Scene->addItem( mapItem );
 			MapEventManager->RegisterMapItem( mapItem );
 
 		}
 	}
+
 	return true;
 }
 
@@ -119,7 +120,7 @@ bool MapView::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 	return true;
 }
 
-const QImage* MapView::GetImageFromTerrainType(const ModelMapItem* modelMapItem)
+const QImage* MapView::GetImage(const ModelMapItem* modelMapItem)
 {
 	const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
 	if (nullptr == modelTerrainType)
