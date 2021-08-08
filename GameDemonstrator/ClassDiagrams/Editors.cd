@@ -48,7 +48,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EditorToolbox">
-    <Position X="2.75" Y="6.5" Width="2.25" />
+    <Position X="15.25" Y="5.25" Width="2.25" />
     <Members>
       <Field Name="GroupBuildings" Hidden="true" />
       <Field Name="GroupTerrainTypes" Hidden="true" />
@@ -63,14 +63,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConnectorButtonTerrainTypeId">
-    <Position X="2.75" Y="4.75" Width="2.5" />
+    <Position X="13.5" Y="3.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>editors\EditorToolbox.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TerrainTypeEditor">
-    <Position X="1.25" Y="1.25" Width="2.25" />
+    <Position X="0.75" Y="1.25" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -145,7 +145,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConnectorTerrainEditorGameMap">
-    <Position X="16.75" Y="7.5" Width="2.75" />
+    <Position X="0.75" Y="3.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>connectors\ConnectorTerrainEditorGameMap.h</FileName>
@@ -172,7 +172,7 @@
     <Position X="10" Y="10.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MapHexItemEvents.h</FileName>
+      <FileName>MapHexItemConnector.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MapUnitItem" Collapsed="true">
