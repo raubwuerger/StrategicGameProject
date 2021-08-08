@@ -39,11 +39,11 @@ private slots:
 	void ButtonGroupUnitTypes(QAbstractButton *button);
 private:
 	friend class GameDemonstrator;
-	QButtonGroup		*GroupTerrainTypes;
-	QButtonGroup		*GroupBuildings;
-	QButtonGroup		*GroupUnitsTypes;
-	TerrainTypeEditor	*TerrainTypeEditor;
-	UnitTypeEditor		*UnitTypeEditor;
+	QButtonGroup*		GroupTerrainTypes;
+	QButtonGroup*		GroupBuildings;
+	QButtonGroup*		GroupUnitsTypes;
+	TerrainTypeEditor*	TerrainTypeEditorInstance;
+	UnitTypeEditor*		UnitTypeEditorInstance;
 	int					MinimumEditWidth;	//Was: itemTerrainType->sizeHint().width()
 };
 

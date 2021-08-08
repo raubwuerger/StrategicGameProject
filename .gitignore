@@ -386,3 +386,11 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+/GameDemonstrator/ClassDiagrams/Default.vfPackage
+/GameDemonstrator/*.vfPackage
+*.wmf
+*.vfPackage
+ui_UnitTypeInfoDialog.h
+GeneratedFiles
+Makefile.Debug
+Makefile.Release

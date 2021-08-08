@@ -10,7 +10,7 @@ EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
 	GroupTerrainTypes(nullptr),
 	GroupBuildings(nullptr),
-	TerrainTypeEditor(nullptr),
+	TerrainTypeEditorInstance(nullptr),
 	MinimumEditWidth(130)
 {
 }
@@ -63,7 +63,7 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	buttonGroup->addButton(button);
 
 	connect(button, SIGNAL(pressed()), connector, SLOT(Trigger()));
-	connect(connector, SIGNAL(TerrainTypeActive(int)), TerrainTypeEditor, SLOT(ActivateTerrainType(int)));
+	connect(connector, SIGNAL(TerrainTypeActive(int)), TerrainTypeEditorInstance, SLOT(ActivateTerrainType(int)));
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
@@ -128,7 +128,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 	buttonGroup->addButton(button);
 
 	connect(button, SIGNAL(pressed()), connector, SLOT(Trigger()));
-	connect(connector, SIGNAL(UnitTypeActive(int)), UnitTypeEditor, SLOT(UnitAdded(int)));
+	connect(connector, SIGNAL(UnitTypeActive(int)), UnitTypeEditorInstance, SLOT(UnitAdded(int)));
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);

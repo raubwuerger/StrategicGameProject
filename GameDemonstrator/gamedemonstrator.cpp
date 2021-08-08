@@ -268,8 +268,8 @@ void GameDemonstrator::CreateEditorToolbox(TerrainTypeEditor *terrainTypeEditor,
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	EditorToolboxInstance = new EditorToolbox(dockCountry);
-	EditorToolboxInstance->TerrainTypeEditor = terrainTypeEditor;
-	EditorToolboxInstance->UnitTypeEditor = unitTypeEditor;
+	EditorToolboxInstance->TerrainTypeEditorInstance = terrainTypeEditor;
+	EditorToolboxInstance->UnitTypeEditorInstance = unitTypeEditor;
 	EditorToolboxInstance->Create();
 
 	dockCountry->setWidget( EditorToolboxInstance );
