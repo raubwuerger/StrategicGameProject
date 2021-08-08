@@ -39,12 +39,6 @@
     <Filter Include="Source Dateien\StdLibQt">
       <UniqueIdentifier>{7b79b4b7-248c-4f17-b987-c90359527f8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Dateien\UI">
-      <UniqueIdentifier>{4f95b992-ddaf-4fb9-94f1-458eb62e6d90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Dateien\UI">
-      <UniqueIdentifier>{de93a2ae-b661-4c95-ba37-08e35f849c8a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Dateien\Editor">
       <UniqueIdentifier>{7a101526-3fad-425b-a4af-4b59007a8f95}</UniqueIdentifier>
     </Filter>
@@ -184,9 +178,6 @@
     </ClCompile>
     <ClCompile Include="Action.cpp">
       <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="HexagonData.cpp">
-      <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelMapItem.cpp">
       <Filter>Source Dateien\Model</Filter>
@@ -461,14 +452,17 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="MapHexItemEvents.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MapHexItemEvents.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_MapHexItemEvents.cpp">
       <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MapHexItemEvents.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="HexagonData.cpp">
+      <Filter>Source Dateien\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -516,9 +510,6 @@
     </ClInclude>
     <ClInclude Include="Action.h">
       <Filter>Header Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="HexagonData.h">
-      <Filter>Header Dateien\UI</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapItem.h">
       <Filter>Header Dateien\Model</Filter>
@@ -643,6 +634,9 @@
     <ClInclude Include="GeneratedFiles\ui_UnitTypeInfoDialog.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="HexagonData.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -736,7 +730,7 @@
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
     <CustomBuild Include="MapHexItemEvents.h">
-      <Filter>Header Dateien\UI</Filter>
+      <Filter>Header Dateien\Map</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

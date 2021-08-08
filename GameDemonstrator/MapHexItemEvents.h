@@ -7,8 +7,6 @@ class MapHexItemEvents : public QObject
 {
 	Q_OBJECT
 public:
-	/** */
-	MapHexItemEvents();
 signals:
 	/** */
 	void HexItemEntered( int row, int col );
