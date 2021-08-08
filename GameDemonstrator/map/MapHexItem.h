@@ -2,7 +2,7 @@
 #define MAPVIEWHEXITEM_H
 
 #include "HexagonData.h"
-class MapHexItemEvents;
+class ConnectorMapHexItem;
 
 //================================================================================
 /** Repräsentiert Kartenteil auf Bildschirm */
@@ -20,7 +20,7 @@ public:
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 	/** Set eventItem */
-	void SetHexItemEventManager( MapHexItemEvents * val);
+	void SetHexItemEventManager( ConnectorMapHexItem * val);
 	/** */
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	/** Get row */
@@ -48,7 +48,7 @@ private:
 	HexagonData		HexData;
 	QPointF			CenterPoint;
 	QPointF			TopLeftPoint;
-	MapHexItemEvents	*EventItem;
+	ConnectorMapHexItem	*EventItem;
 	QString			StringRowCol;
 	const QImage	*TerrainImage;
 	int				ModelMapItemId;

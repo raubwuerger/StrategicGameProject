@@ -3,7 +3,7 @@
 
 //================================================================================
 /** Stellt SIGNALE zur Verfügung die von Benutzeraktionen ausgelöst werden. Mausbewegung auf Karte ... */
-class MapHexItemEvents : public QObject
+class ConnectorMapHexItem : public QObject
 {
 	Q_OBJECT
 public:

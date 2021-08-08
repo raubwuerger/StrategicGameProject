@@ -452,17 +452,17 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_MapHexItemEvents.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MapHexItemEvents.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="MapHexItemEvents.cpp">
-      <Filter>Source Dateien\Map</Filter>
-    </ClCompile>
     <ClCompile Include="HexagonData.cpp">
       <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectorMapHexItem.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorMapHexItem.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorMapHexItem.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -729,7 +729,7 @@
     <CustomBuild Include="dialogs\UnitTypeInfoDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
-    <CustomBuild Include="MapHexItemEvents.h">
+    <CustomBuild Include="ConnectorMapHexItem.h">
       <Filter>Header Dateien\Map</Filter>
     </CustomBuild>
   </ItemGroup>

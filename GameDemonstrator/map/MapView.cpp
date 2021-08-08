@@ -3,7 +3,7 @@
 #include "MapGraphicsScene.h"
 #include "MapHexItem.h"
 #include "MapEventManager.h"
-#include "MapHexItemEvents.h"
+#include "ConnectorMapHexItem.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelMapRepository.h"
@@ -17,7 +17,7 @@ MapView::MapView(QWidget *parent)
 	ActiveCol(ROW_COL_NOT_INITIALIZED)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	HexItemEventManagerInstance = new MapHexItemEvents();
+	HexItemEventManagerInstance = new ConnectorMapHexItem();
 	Scene = new MapGraphicsScene(this);
 }
 
@@ -43,7 +43,7 @@ void MapView::Create()
 	setDragMode(ScrollHandDrag);
 }
 
-MapHexItemEvents* MapView::GetHexItemEventManager() const
+ConnectorMapHexItem* MapView::GetHexItemEventManager() const
 {
 	return HexItemEventManagerInstance;
 }

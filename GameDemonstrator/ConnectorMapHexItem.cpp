@@ -1,4 +1,4 @@
 #include "stdafx.h"
-#include "MapHexItemEvents.h"
+#include "ConnectorMapHexItem.h"
 
 //==============================================================================

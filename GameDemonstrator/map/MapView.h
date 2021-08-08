@@ -4,7 +4,7 @@
 #include <QGraphicsView>
 class MapGraphicsScene;
 class HexagonData;
-class MapHexItemEvents;
+class ConnectorMapHexItem;
 class MapEventManager;
 class ModelTerrainType;
 class HexagonData;
@@ -23,7 +23,7 @@ public:
 	/** */
 	void Create();
 	/** */
-	MapHexItemEvents* GetHexItemEventManager() const;
+	ConnectorMapHexItem* GetHexItemEventManager() const;
 	/** */
 	bool AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem);
 public slots:
@@ -55,7 +55,7 @@ private:
 	void EmitHexItemPressed();
 public:
 	MapGraphicsScene		*Scene;					//TODO: Setter
-	MapHexItemEvents		*HexItemEventManagerInstance;	//TODO: Setter
+	ConnectorMapHexItem		*HexItemEventManagerInstance;	//TODO: Setter
 	MapEventManager			*MapEventManager;		//TODO: Setter
 private:
 	const int	ROW_COL_NOT_INITIALIZED;

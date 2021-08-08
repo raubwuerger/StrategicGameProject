@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MapHexItem.h"
 #include "HexagonData.h"
-#include "MapHexItemEvents.h"
+#include "ConnectorMapHexItem.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */
@@ -92,7 +92,7 @@ void MapHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 	event->ignore();
 }
 
-void MapHexItem::SetHexItemEventManager(MapHexItemEvents * val)
+void MapHexItem::SetHexItemEventManager(ConnectorMapHexItem * val)
 {
 	EventItem = val;
 }

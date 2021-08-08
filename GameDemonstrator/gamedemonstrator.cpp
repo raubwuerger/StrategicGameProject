@@ -19,7 +19,7 @@
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
 #include "model/ModelMapRepository.h"
-#include "MapHexItemEvents.h"
+#include "ConnectorMapHexItem.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 #include "editors/TerrainTypeEditor.h"
@@ -69,7 +69,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	TerrainTypeEditor* terrainTypeEditor = CreateTerrainTypeEditor(MapViewInstance->MapEventManager);
 	CreateEditorToolbox(terrainTypeEditor, CreateUnitTypeEditor(MapViewInstance->MapEventManager));
 	//TODO: connect überarbeiten...
-	connect(MapViewInstance->GetHexItemEventManager(), &MapHexItemEvents::HexItemPressed, terrainTypeEditor, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
+	connect(MapViewInstance->GetHexItemEventManager(), &ConnectorMapHexItem::HexItemPressed, terrainTypeEditor, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
 
 	layoutMain->addWidget(MapViewInstance);
 
