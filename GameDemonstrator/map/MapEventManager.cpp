@@ -62,8 +62,8 @@ void MapEventManager::UpdateMapItemInfo( int row, int col )
 	}
 
 	const ModelMapItem* modelMapItem = ModelMapRepository::GetInstance()->GetModelMapItem(row,col);
-	HexItemInfoDialog->ui.lineEditID->setText( QString::number(modelMapItem->GetId()) );
-	HexItemInfoDialog->ui.lineEditCol->setText( QString::number(col) );
-	HexItemInfoDialog->ui.lineEditRow->setText( QString::number(row) );
-	HexItemInfoDialog->ui.lineEditType->setText( modelMapItem->GetTerrainType()->GetName() );
+	HexItemInfoDialog->SetMapHexItemId( QString::number(modelMapItem->GetId()) );
+	HexItemInfoDialog->SetMapHexItemRow(QString::number(row));
+	HexItemInfoDialog->SetMapHexItemCol(QString::number(col));
+	HexItemInfoDialog->SetMapHexItemTerrainId( modelMapItem->GetTerrainType()->GetName() );
 }

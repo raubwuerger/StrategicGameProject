@@ -14,8 +14,14 @@ public:
 	/** */
 	~HexItemInfoDialog();
 	/** */
+	void SetMapHexItemId(const QString& id);
+	/** */
+	void SetMapHexItemRow(const QString& row);
+	/** */
+	void SetMapHexItemCol(const QString& col);
+	/** */
+	void SetMapHexItemTerrainId(const QString& terrainTypeId);
 private:
-	friend class MapEventManager;
 	Ui::HexItemInfoDialog ui;
 };
 
