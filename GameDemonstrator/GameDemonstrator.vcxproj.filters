@@ -455,14 +455,14 @@
     <ClCompile Include="HexagonData.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectorMapHexItem.cpp">
-      <Filter>Source Dateien\Map</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorMapHexItem.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorMapHexItem.cpp">
       <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="connectors\ConnectorMapHexItem.cpp">
+      <Filter>Source Dateien\Connectors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -631,9 +631,6 @@
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_UnitTypeInfoDialog.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="HexagonData.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
@@ -729,8 +726,8 @@
     <CustomBuild Include="dialogs\UnitTypeInfoDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
-    <CustomBuild Include="ConnectorMapHexItem.h">
-      <Filter>Header Dateien\Map</Filter>
+    <CustomBuild Include="connectors\ConnectorMapHexItem.h">
+      <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

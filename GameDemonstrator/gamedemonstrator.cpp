@@ -19,7 +19,7 @@
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
 #include "model/ModelMapRepository.h"
-#include "ConnectorMapHexItem.h"
+#include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 #include "editors/TerrainTypeEditor.h"

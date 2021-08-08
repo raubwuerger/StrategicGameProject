@@ -3,7 +3,7 @@
 #include "MapGraphicsScene.h"
 #include "MapHexItem.h"
 #include "MapEventManager.h"
-#include "ConnectorMapHexItem.h"
+#include "connectors/ConnectorMapHexItem.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelMapRepository.h"
