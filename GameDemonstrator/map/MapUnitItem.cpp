@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "MapUnitItem.h"
 
-MapUnitItem::MapUnitItem() 
-	: UnitItemImage(nullptr)
+MapUnitItem::MapUnitItem( const QPointF& topLeft )
+	: TopLeft(topLeft),
+	UnitItemImage(nullptr)
 {
+//	this->moveBy()
 }
 
 QRectF MapUnitItem::boundingRect() const

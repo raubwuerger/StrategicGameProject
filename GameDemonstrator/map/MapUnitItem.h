@@ -5,7 +5,7 @@ class MapUnitItem : public QGraphicsRectItem
 {
 public:
 	/** */
-	MapUnitItem();
+	MapUnitItem( const QPointF& topLeft );
 	/** */
 	QRectF boundingRect() const;
 	/** */
@@ -14,6 +14,7 @@ public:
 	void SetUnitItemImage(const QImage* val);
 private:
 	const QImage* UnitItemImage;
+	const QPointF& TopLeft;
 };
 
 #endif

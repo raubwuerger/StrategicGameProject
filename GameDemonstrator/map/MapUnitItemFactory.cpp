@@ -12,6 +12,6 @@ MapUnitItemFactory::~MapUnitItemFactory()
 
 MapUnitItem* MapUnitItemFactory::CreateDummyUnitItem()
 {
-	MapUnitItem* dummyUnitItem = new MapUnitItem();
+	MapUnitItem* dummyUnitItem = new MapUnitItem( QPointF(64,121) );
 	return dummyUnitItem;
 }
