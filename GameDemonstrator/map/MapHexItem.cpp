@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MapHexItem.h"
 #include "HexagonData.h"
-#include "HexItemEventManager.h"
+#include "MapHexItemEvents.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */

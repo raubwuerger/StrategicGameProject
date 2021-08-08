@@ -185,16 +185,7 @@
     <ClCompile Include="Action.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_HexItemEventManager.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_HexItemEventManager.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="HexagonData.cpp">
-      <Filter>Source Dateien\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="HexItemEventManager.cpp">
       <Filter>Source Dateien\UI</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelMapItem.cpp">
@@ -470,6 +461,15 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="MapHexItemEvents.cpp">
+      <Filter>Source Dateien\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MapHexItemEvents.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MapHexItemEvents.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -640,6 +640,9 @@
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_UnitTypeInfoDialog.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -665,9 +668,6 @@
     </CustomBuild>
     <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
-    </CustomBuild>
-    <CustomBuild Include="HexItemEventManager.h">
-      <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
     <CustomBuild Include="model\ModelOwnerTypeFactory.h">
       <Filter>Header Dateien\Model</Filter>
@@ -734,6 +734,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\UnitTypeInfoDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MapHexItemEvents.h">
+      <Filter>Header Dateien\UI</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

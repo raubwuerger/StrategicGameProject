@@ -3,7 +3,7 @@
 #include "MapGraphicsScene.h"
 #include "MapHexItem.h"
 #include "MapEventManager.h"
-#include "HexItemEventManager.h"
+#include "MapHexItemEvents.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelMapRepository.h"
@@ -16,7 +16,7 @@ MapView::MapView(QWidget *parent)
 	ActiveCol(ROW_COL_NOT_INITIALIZED)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	HexItemEventManagerInstance = new HexItemEventManager();
+	HexItemEventManagerInstance = new MapHexItemEvents();
 	Scene = new MapGraphicsScene(this);
 }
 

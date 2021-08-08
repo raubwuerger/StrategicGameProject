@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "HexItemEventManager.h"
+#include "MapHexItemEvents.h"
 
 /************************************************************************/
 /* HexItemEventManager                                                  */
 /************************************************************************/
-HexItemEventManager::HexItemEventManager()
+MapHexItemEvents::MapHexItemEvents()
 {
 
 }

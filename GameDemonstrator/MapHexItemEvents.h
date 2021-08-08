@@ -3,12 +3,12 @@
 
 //================================================================================
 /** Stellt SIGNALE zur Verfügung die von Benutzeraktionen ausgelöst werden. Mausbewegung auf Karte ... */
-class HexItemEventManager : public QObject
+class MapHexItemEvents : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	HexItemEventManager();
+	MapHexItemEvents();
 signals:
 	/** */
 	void HexItemEntered( int row, int col );
