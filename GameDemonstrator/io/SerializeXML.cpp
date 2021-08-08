@@ -8,8 +8,8 @@
 #include "model/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelMapCreatorSaveGame.h"
-#include "model\ModelProgramFactory.h"
-#include "model\ModelProgramSettings.h"
+#include "model/ModelProgramFactory.h"
+#include "model/ModelProgramSettings.h"
 #include "DomNodeFinder.h"
 
 //==============================================================================

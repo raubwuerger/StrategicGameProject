@@ -13,7 +13,6 @@ public:
 	SerializeXML();
 /** */
 	~SerializeXML();
-public:
 	/** */
 	bool SaveGame( const QString& saveGameName );
 private:
