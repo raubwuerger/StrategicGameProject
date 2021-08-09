@@ -3,15 +3,15 @@
 #include "GameMainLoop.h"
 
 GameMainThread::GameMainThread()
-	: m_TurnFinished(true)
+	: HasTurnFinished(true)
 {
-	m_TriggerGameMainLoop = new QTimer(this);
+	TriggerGameMainLoop = new QTimer(this);
 }
 
 GameMainThread::~GameMainThread()
 {
-	m_TriggerGameMainLoop->stop();
-	delete m_TriggerGameMainLoop;
+	TriggerGameMainLoop->stop();
+	delete TriggerGameMainLoop;
 }
 
 void GameMainThread::run()
@@ -21,23 +21,23 @@ void GameMainThread::run()
 
 void GameMainThread::Init( GameMainLoop *gameMainLoop )
 {
-	connect(m_TriggerGameMainLoop, SIGNAL(timeout()), this, SLOT(CheckTriggerGameMainLoop()));
-	connect(gameMainLoop, SIGNAL(TurnFinished(QDate)), this, SLOT(TurnFinished()));
-	connect(this, SIGNAL(TriggerGameMainLoop()), gameMainLoop, SLOT(Run()));
-	m_TriggerGameMainLoop->start(100);
+	connect(TriggerGameMainLoop, &QTimer::timeout, this, &GameMainThread::SlotCheckTriggerGameMainLoop);
+	connect(gameMainLoop, &GameMainLoop::TurnFinished, this, &GameMainThread::SlotTurnFinished);
+	connect(this, &GameMainThread::SignalTriggerGameMainLoop, gameMainLoop, &GameMainLoop::Run);
+	TriggerGameMainLoop->start(100);
 }
 
-void GameMainThread::CheckTriggerGameMainLoop()
+void GameMainThread::SlotCheckTriggerGameMainLoop()
 {
-	if( m_TurnFinished == false )
+	if (HasTurnFinished == false)
 	{
 		return;
 	}
-	m_TurnFinished = false;
-	emit TriggerGameMainLoop();
+	HasTurnFinished = false;
+	emit SignalTriggerGameMainLoop();
 }
 
-void GameMainThread::TurnFinished()
+void GameMainThread::SlotTurnFinished()
 {
-	m_TurnFinished = true;
+	HasTurnFinished = true;
 }

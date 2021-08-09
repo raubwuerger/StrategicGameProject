@@ -17,13 +17,16 @@ public:
 	/** */
 	void run();
 public slots:
-	void CheckTriggerGameMainLoop();
-	void TurnFinished();
+/** */
+	void SlotCheckTriggerGameMainLoop();
+/** */
+	void SlotTurnFinished();
 signals:
-	void TriggerGameMainLoop();
+	/** */
+	void SignalTriggerGameMainLoop();
 private:
-	QTimer	*m_TriggerGameMainLoop;
-	bool	m_TurnFinished;
+	QTimer	*TriggerGameMainLoop;
+	bool	HasTurnFinished;
 };
 
 #endif // GAMEMAINTHREAD_H
