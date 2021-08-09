@@ -11,7 +11,7 @@ public:
 	~ConnectorTerrainEditorGameMap();
 public slots:
 	/** */
-	void TerrainTypeChanged( int modelMapId, int terrainTypeId );
+	void SlotTerrainTypeChanged( int modelMapId, int terrainTypeId );
 };
 
 #endif

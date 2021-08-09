@@ -9,10 +9,10 @@ public:
 	UnitTypeIdSelector(int unitTypeId);
 public slots:
 	/** */
-void Trigger();
+	void Trigger();
 signals:
 	/** */
-	void UnitTypeActive(int unitTypeId);
+	void SignalActiveUnitType(int unitTypeId);
 private:
 	int UnitTypeId;
 };

@@ -17,7 +17,10 @@ public:
 	void SetMapEventManager(MapEventManager* mapEventManager);
 signals:
 	/** */
-	void UnitAdded(int mapItemId, int unitTypeId);
+	void SignalUnitAdded(int mapId, int unitTypeId);
+public slots:
+	/** */
+	void SlotActiveUnitTypeId(int unitTypeId);
 private:
 	ModelUnitType		*ActiveUnitType;
 	MapEventManager		*MapEventManagerInstance;

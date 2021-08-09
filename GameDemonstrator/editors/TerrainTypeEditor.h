@@ -17,10 +17,10 @@ public:
 	void SetMapEventManager(MapEventManager* mapeventManager);
 signals:
 	/** */
-	void TerrainTypeChanged( int mapItemId, int terrainTypeId );
+	void SignalTerrainTypeChanged( int mapItemId, int terrainTypeId );
 public slots:
 	/** */
-	void ActivateTerrainType( int terrainTypeId );
+	void SlotActivateTerrainType( int terrainTypeId );
 	/** */
 	void ChangeTerrainTypeHexItem( int row, int col );
 private:

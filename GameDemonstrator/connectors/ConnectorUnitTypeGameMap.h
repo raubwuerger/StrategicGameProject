@@ -11,7 +11,7 @@ public:
 	~ConnectorUnitTypeGameMap();
 public slots:
 	/** */
-	void UnitTypeAdded(int modelMapId, int unitTypeId);
+	void SlotUnitTypeAdded(int modelMapId, int unitTypeId);
 };
 
 #endif // CONNECTORUNITTYPEGAMEMAP_H

@@ -14,7 +14,7 @@ public slots:
 	void Trigger();
 signals:
 	/** */
-	void TerrainTypeActive( int terrainTypeId );
+	void SignalTerrainTypeActive( int terrainTypeId );
 private:
 	int TerrainTypeId;
 };

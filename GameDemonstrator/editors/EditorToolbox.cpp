@@ -70,8 +70,8 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	button->setCheckable(true);
 	buttonGroup->addButton(button);
 
-	connect(button, SIGNAL(pressed()), connector, SLOT(Trigger()));
-	connect(connector, SIGNAL(TerrainTypeActive(int)), TerrainTypeEditorInstance, SLOT(ActivateTerrainType(int)));
+	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::Trigger);
+	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
@@ -88,8 +88,7 @@ void EditorToolbox::CreateTerrainTypeEditor(MapEventManager* mapEventManager)
 	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
 	TerrainTypeEditorInstance = new TerrainTypeEditor(nullptr);
 	TerrainTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
-	QObject::connect(TerrainTypeEditorInstance, &TerrainTypeEditor::TerrainTypeChanged,
-		ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::TerrainTypeChanged);
+	connect(TerrainTypeEditorInstance, &TerrainTypeEditor::SignalTerrainTypeChanged, ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::SlotTerrainTypeChanged);
 }
 
 void EditorToolbox::CreateGroupUnitTypes()
@@ -126,8 +125,8 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 	button->setCheckable(true);
 	buttonGroup->addButton(button);
 
-	connect(button, SIGNAL(pressed()), connector, SLOT(Trigger()));
-	connect(connector, SIGNAL(UnitTypeActive(int)), UnitTypeEditorInstance, SLOT(UnitAdded(int)));
+	connect(button, &QToolButton::pressed, connector, &UnitTypeIdSelector::Trigger);
+	connect(connector, &UnitTypeIdSelector::SignalActiveUnitType, UnitTypeEditorInstance, &UnitTypeEditor::SlotActiveUnitTypeId);
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
@@ -146,8 +145,7 @@ void EditorToolbox::CreateUnitTypeEditor(MapEventManager* mapEventManager)
 
 	UnitTypeEditorInstance = new UnitTypeEditor(nullptr);
 	UnitTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
-	QObject::connect(UnitTypeEditorInstance, &UnitTypeEditor::UnitAdded,
-		ConnectorUnitTypeEditorGameMapInstance, &ConnectorUnitTypeGameMap::UnitTypeAdded);
+	connect(UnitTypeEditorInstance, &UnitTypeEditor::SignalUnitAdded, ConnectorUnitTypeEditorGameMapInstance, &ConnectorUnitTypeGameMap::SlotUnitTypeAdded);
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

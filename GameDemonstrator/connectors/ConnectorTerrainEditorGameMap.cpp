@@ -15,7 +15,7 @@ ConnectorTerrainEditorGameMap::~ConnectorTerrainEditorGameMap()
 {
 }
 
-void ConnectorTerrainEditorGameMap::TerrainTypeChanged(int modelMapId, int terrainTypeId)
+void ConnectorTerrainEditorGameMap::SlotTerrainTypeChanged(int modelMapId, int terrainTypeId)
 {
 	ModelMapItem *modelMapToUpdate = ModelMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
 	if( nullptr == modelMapToUpdate )

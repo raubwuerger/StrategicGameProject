@@ -23,14 +23,13 @@ void TerrainTypeEditor::SetMapEventManager(MapEventManager* mapeventManager)
 	MapEventManagerInstance = mapeventManager;
 }
 
-void TerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
+void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 {
 	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
 void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 {
-	Q_ASSERT(ModelTerrainTypeRepository::GetInstance());
 	Q_ASSERT(MapEventManagerInstance);
 	if( ActiveTerrainType == nullptr )
 	{
@@ -43,5 +42,5 @@ void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 	item->SetTerrainImage( ActiveTerrainType->GetImage() );
-	emit TerrainTypeChanged( item->GetModelMapItemId(), ActiveTerrainType->GetId() );
+	emit SignalTerrainTypeChanged( item->GetModelMapItemId(), ActiveTerrainType->GetId() );
 }

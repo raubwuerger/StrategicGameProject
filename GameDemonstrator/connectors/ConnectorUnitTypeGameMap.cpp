@@ -16,7 +16,7 @@ ConnectorUnitTypeGameMap::~ConnectorUnitTypeGameMap()
 
 }
 
-void ConnectorUnitTypeGameMap::UnitTypeAdded(int modelMapId, int unitTypeId)
+void ConnectorUnitTypeGameMap::SlotUnitTypeAdded(int modelMapId, int unitTypeId)
 {
 	ModelMapItem *mapItemAddingUnit = ModelMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
 	if (nullptr == mapItemAddingUnit)

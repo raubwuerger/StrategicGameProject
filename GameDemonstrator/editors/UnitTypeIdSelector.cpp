@@ -9,7 +9,7 @@ UnitTypeIdSelector::UnitTypeIdSelector(int unitTypeId)
 
 void UnitTypeIdSelector::Trigger()
 {
-	emit UnitTypeActive(UnitTypeId);
+	emit SignalActiveUnitType(UnitTypeId);
 }
 
 
