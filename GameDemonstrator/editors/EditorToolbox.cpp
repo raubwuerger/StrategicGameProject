@@ -39,7 +39,7 @@ void EditorToolbox::CreateGroupTerrainTypes()
 	int rowIndex = 0;
 	while (currentTerrainTypeIterator != ModelTerrainTypeRepository::GetInstance()->GetLastIterator())
 	{
-		layoutTerrainTypes->addWidget(CreateTerrainTypeWidget(currentTerrainTypeIterator.value(), GroupTerrainTypes, new ConnectorButtonTerrainTypeId(currentTerrainTypeIterator.value()->GetId())), rowIndex++, 0);
+		layoutTerrainTypes->addWidget(CreateTerrainTypeWidget(currentTerrainTypeIterator.value(), GroupTerrainTypes, new TerrainTypeIdSelector(currentTerrainTypeIterator.value()->GetId())), rowIndex++, 0);
 		currentTerrainTypeIterator++;
 	}
 
@@ -52,7 +52,7 @@ void EditorToolbox::CreateGroupTerrainTypes()
 	addItem(itemTerrainType, tr("Terrain Types"));
 }
 
-QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector)
+QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector)
 {
 	QIcon icon(modelTerrainType->GetPictureName());
 
@@ -103,7 +103,7 @@ void EditorToolbox::CreateGroupUnitTypes()
 	int rowIndex = 0;
 	while (currentIterator != ModelUnitTypeRepository::GetInstance()->GetLastIterator())
 	{
-		layoutUnitTypes->addWidget(CreateUnitTypeWidget(currentIterator.value(), GroupUnitsTypes, new ConnectorButtonUnitTypeId(currentIterator.value()->GetId())), rowIndex++, 0);
+		layoutUnitTypes->addWidget(CreateUnitTypeWidget(currentIterator.value(), GroupUnitsTypes, new UnitTypeIdSelector(currentIterator.value()->GetId())), rowIndex++, 0);
 		currentIterator++;
 	}
 
@@ -117,7 +117,7 @@ void EditorToolbox::CreateGroupUnitTypes()
 }
 
 #include "editors\UnitTypeEditor.h"
-QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, ConnectorButtonUnitTypeId *connector)
+QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector)
 {
 	QIcon icon(modelUnitType->GetPictureName());
 
@@ -179,13 +179,13 @@ void EditorToolbox::ButtonGroupUnitTypes(QAbstractButton *button)
 /************************************************************************/
 /* CConnectorButtonTerrainTypeId                                        */
 /************************************************************************/
-ConnectorButtonTerrainTypeId::ConnectorButtonTerrainTypeId( int terrainTypeId ) 
+TerrainTypeIdSelector::TerrainTypeIdSelector( int terrainTypeId ) 
 	: TerrainTypeId(terrainTypeId)
 {
 
 }
 
-void ConnectorButtonTerrainTypeId::Trigger()
+void TerrainTypeIdSelector::Trigger()
 {
 	emit TerrainTypeActive(TerrainTypeId);
 }
@@ -193,13 +193,13 @@ void ConnectorButtonTerrainTypeId::Trigger()
 /************************************************************************/
 /* ConnectorButtonUnitTypeId                                            */
 /************************************************************************/
-ConnectorButtonUnitTypeId::ConnectorButtonUnitTypeId(int unitTypeId)
+UnitTypeIdSelector::UnitTypeIdSelector(int unitTypeId)
 	: UnitTypeId(unitTypeId)
 {
 
 }
 
-void ConnectorButtonUnitTypeId::Trigger()
+void UnitTypeIdSelector::Trigger()
 {
 	emit UnitTypeActive(UnitTypeId);
 }

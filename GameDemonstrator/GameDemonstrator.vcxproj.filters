@@ -362,20 +362,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorUnitTypeGameMap.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_EditorToolbox.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_EditorToolbox.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_TerrainTypeEditor.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_TerrainTypeEditor.cpp">
       <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="editors\EditorToolbox.cpp">
-      <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
     <ClCompile Include="editors\TerrainTypeEditor.cpp">
       <Filter>Source Dateien\Editor</Filter>
@@ -463,6 +454,15 @@
     </ClCompile>
     <ClCompile Include="connectors\ConnectorMapHexItem.cpp">
       <Filter>Source Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EditorToolbox.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EditorToolbox.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\EditorToolbox.cpp">
+      <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +634,9 @@
     <ClInclude Include="HexagonData.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
+    <ClInclude Include="connectors\IConnectors.h">
+      <Filter>Header Dateien\Connectors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -693,9 +696,6 @@
     <CustomBuild Include="connectors\ConnectorUnitTypeGameMap.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
-    <CustomBuild Include="editors\EditorToolbox.h">
-      <Filter>Header Dateien\Editor</Filter>
-    </CustomBuild>
     <CustomBuild Include="editors\TerrainTypeEditor.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
@@ -728,6 +728,9 @@
     </CustomBuild>
     <CustomBuild Include="connectors\ConnectorMapHexItem.h">
       <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\EditorToolbox.h">
+      <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

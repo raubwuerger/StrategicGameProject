@@ -4,8 +4,8 @@
 //================================================================================
 #include <QToolBox>
 class ModelTerrainTypeRepository;
-class ConnectorButtonTerrainTypeId;
-class ConnectorButtonUnitTypeId;
+class TerrainTypeIdSelector;
+class UnitTypeIdSelector;
 class ModelTerrainType;
 class TerrainTypeEditor;
 class UnitTypeEditor;
@@ -25,13 +25,13 @@ private:
 	/** */
 	void CreateGroupTerrainTypes();
 	/** */
-	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, ConnectorButtonTerrainTypeId *connector);
+	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector);
 	/** */
 	void CreateGroupBuildingTypes();
 	/** */
 	void CreateGroupUnitTypes();
 	/** */
-	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, ConnectorButtonUnitTypeId *connector);
+	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
 private slots:
 	/** */
 	void ButtonGroupTerrainTypes(QAbstractButton *button);
@@ -48,12 +48,12 @@ private:
 };
 
 //================================================================================
-class ConnectorButtonTerrainTypeId : public QObject
+class TerrainTypeIdSelector : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	ConnectorButtonTerrainTypeId( int terrainTypeId );
+	TerrainTypeIdSelector( int terrainTypeId );
 public slots:
 	/** */
 	void Trigger();
@@ -65,12 +65,12 @@ private:
 };
 
 //================================================================================
-class ConnectorButtonUnitTypeId : public QObject
+class UnitTypeIdSelector : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	ConnectorButtonUnitTypeId(int unitTypeId);
+	UnitTypeIdSelector(int unitTypeId);
 public slots:
 	/** */
 void Trigger();
