@@ -2,8 +2,8 @@
 #include "EditorToolbox.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "model/ModelUnitTypeRepository.h"
 #include "model/ModelUnitType.h"
+#include "model/ModelUnitTypeRepository.h"
 #include "UnitTypeEditor.h"
 #include "UnitTypeIdSelector.h"
 #include "TerrainTypeEditor.h"
@@ -76,22 +76,6 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
-void EditorToolbox::CreateGroupBuildingTypes()
-{
-	GroupBuildings = new QButtonGroup(this);
-	QGridLayout *layoutBuildings = new QGridLayout;
-	layoutBuildings->setRowStretch(2, 10);
-	layoutBuildings->setColumnStretch(2, 10);
-
-	QWidget *itemBuildings = new QWidget;
-	itemBuildings->setLayout(layoutBuildings);
-
-	setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
-
-	setMinimumWidth(MinimumEditWidth);
-	addItem(itemBuildings, tr("Buildings"));
-}
-
 void EditorToolbox::CreateGroupUnitTypes()
 {
 	GroupUnitsTypes = new QButtonGroup(this);
@@ -138,3 +122,20 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 	return widget;
 
 }
+
+void EditorToolbox::CreateGroupBuildingTypes()
+{
+	GroupBuildings = new QButtonGroup(this);
+	QGridLayout *layoutBuildings = new QGridLayout;
+	layoutBuildings->setRowStretch(2, 10);
+	layoutBuildings->setColumnStretch(2, 10);
+
+	QWidget *itemBuildings = new QWidget;
+	itemBuildings->setLayout(layoutBuildings);
+
+	setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
+
+	setMinimumWidth(MinimumEditWidth);
+	addItem(itemBuildings, tr("Buildings"));
+}
+

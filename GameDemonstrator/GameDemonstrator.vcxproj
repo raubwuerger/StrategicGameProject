@@ -1134,7 +1134,6 @@
   <ItemGroup>
     <None Include="ClassDiagrams\Editors.cd" />
     <None Include="CompleteOverview.cd" />
-    <None Include="editors\TerrainTypeIdSelector" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
