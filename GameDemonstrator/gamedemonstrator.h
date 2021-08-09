@@ -13,8 +13,6 @@ class GameMainLoop;
 class MapView;
 class MapEventManager;
 class EditorToolbox;
-class TerrainTypeEditor;
-class UnitTypeEditor;
 class CreateNewMap;
 class ConnectorTerrainEditorGameMap;
 class ConnectorUnitTypeGameMap;
@@ -51,9 +49,7 @@ private:
 	bool LoadOwnerTypes();
 	bool LoadUnitTypes();
 	bool ReadTerrainTypes(QIODevice *device);
-	void CreateEditorToolbox( TerrainTypeEditor *terrainTypeEditor, UnitTypeEditor *unitTypeEditor );
-	TerrainTypeEditor* CreateTerrainTypeEditor(MapEventManager* mapEventManager);
-	UnitTypeEditor* CreateUnitTypeEditor(MapEventManager* mapEventManager);
+	void CreateEditorToolbox();
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
@@ -68,8 +64,6 @@ private:
 	MapView*					MapViewInstance;
 	SerializerGame*				ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
-	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
-	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
 	ConnectorLoadCreateGame*		ConnectorLoadCreateGameInstance;
 };
 

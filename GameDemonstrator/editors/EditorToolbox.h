@@ -10,6 +10,10 @@ class TerrainTypeEditor;
 class ModelTerrainType;
 class ModelUnitType;
 class ModelTerrainTypeRepository;
+class ConnectorMapHexItem;
+class ConnectorTerrainEditorGameMap;
+class ConnectorUnitTypeGameMap;
+class MapEventManager;
 
 class EditorToolbox : public QToolBox
 {
@@ -27,19 +31,27 @@ private:
 	/** */
 	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector);
 	/** */
+	void CreateTerrainTypeEditor(MapEventManager* mapEventManager);
+	/** */
 	void CreateGroupBuildingTypes();
 	/** */
 	void CreateGroupUnitTypes();
 	/** */
 	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
+	/** */
+	void CreateUnitTypeEditor(MapEventManager* mapEventManager);
 private:
 	friend class GameDemonstrator;
-	QButtonGroup*		GroupTerrainTypes;
-	QButtonGroup*		GroupBuildings;
-	QButtonGroup*		GroupUnitsTypes;
-	TerrainTypeEditor*	TerrainTypeEditorInstance;
-	UnitTypeEditor*		UnitTypeEditorInstance;
-	int					MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
+	int								MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
+	QButtonGroup*					GroupTerrainTypes;
+	QButtonGroup*					GroupBuildings;
+	QButtonGroup*					GroupUnitsTypes;
+	TerrainTypeEditor*				TerrainTypeEditorInstance;
+	UnitTypeEditor*					UnitTypeEditorInstance;
+	ConnectorMapHexItem*			ConnectorMapHexItemInstance;
+	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
+	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
+	MapEventManager*				MapEventManagerInstance;
 };
 
 #endif // CEDITORTOOLBOX_H

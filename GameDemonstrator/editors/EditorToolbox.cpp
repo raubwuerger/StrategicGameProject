@@ -8,6 +8,9 @@
 #include "UnitTypeIdSelector.h"
 #include "TerrainTypeEditor.h"
 #include "TerrainTypeIdSelector.h"
+#include "connectors/ConnectorMapHexItem.h"
+#include "connectors/ConnectorTerrainEditorGameMap.h"
+#include "connectors/ConnectorUnitTypeGameMap.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
@@ -28,10 +31,14 @@ void EditorToolbox::Create()
 	CreateGroupTerrainTypes();
 	CreateGroupUnitTypes();
 	CreateGroupBuildingTypes();
+	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::HexItemPressed, TerrainTypeEditorInstance, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
+
 }
 
 void EditorToolbox::CreateGroupTerrainTypes()
 {
+	CreateTerrainTypeEditor(MapEventManagerInstance);
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
@@ -76,8 +83,18 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
+void EditorToolbox::CreateTerrainTypeEditor(MapEventManager* mapEventManager)
+{
+	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
+	TerrainTypeEditorInstance = new TerrainTypeEditor(nullptr);
+	TerrainTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
+	QObject::connect(TerrainTypeEditorInstance, &TerrainTypeEditor::TerrainTypeChanged,
+		ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::TerrainTypeChanged);
+}
+
 void EditorToolbox::CreateGroupUnitTypes()
 {
+	CreateUnitTypeEditor(MapEventManagerInstance);
 	GroupUnitsTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutUnitTypes = new QGridLayout;
@@ -121,6 +138,16 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 
 	return widget;
 
+}
+
+void EditorToolbox::CreateUnitTypeEditor(MapEventManager* mapEventManager)
+{
+	ConnectorUnitTypeEditorGameMapInstance = new ConnectorUnitTypeGameMap();
+
+	UnitTypeEditorInstance = new UnitTypeEditor(nullptr);
+	UnitTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
+	QObject::connect(UnitTypeEditorInstance, &UnitTypeEditor::UnitAdded,
+		ConnectorUnitTypeEditorGameMapInstance, &ConnectorUnitTypeGameMap::UnitTypeAdded);
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

@@ -8,7 +8,7 @@
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),
 	ActiveTerrainType(nullptr),
-	MapEventManager(nullptr)
+	MapEventManagerInstance(nullptr)
 {
 
 }
@@ -16,6 +16,11 @@ TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 TerrainTypeEditor::~TerrainTypeEditor()
 {
 
+}
+
+void TerrainTypeEditor::SetMapEventManager(MapEventManager* mapeventManager)
+{
+	MapEventManagerInstance = mapeventManager;
 }
 
 void TerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
@@ -26,13 +31,13 @@ void TerrainTypeEditor::ActivateTerrainType( int terrainTypeId )
 void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
 {
 	Q_ASSERT(ModelTerrainTypeRepository::GetInstance());
-	Q_ASSERT(MapEventManager);
+	Q_ASSERT(MapEventManagerInstance);
 	if( ActiveTerrainType == nullptr )
 	{
 		return;
 	}
 
-	MapHexItem *item = MapEventManager->FindItemByIndexNonConst( row, col );
+	MapHexItem *item = MapEventManagerInstance->FindItemByIndexNonConst(row, col);
 	if( item == nullptr )
 	{
 		return;

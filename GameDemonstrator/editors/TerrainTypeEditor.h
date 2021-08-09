@@ -13,6 +13,8 @@ public:
 	TerrainTypeEditor(QObject *parent);
 	/** */
 	~TerrainTypeEditor();
+	/** */
+	void SetMapEventManager(MapEventManager* mapeventManager);
 signals:
 	/** */
 	void TerrainTypeChanged( int mapItemId, int terrainTypeId );
@@ -22,9 +24,8 @@ public slots:
 	/** */
 	void ChangeTerrainTypeHexItem( int row, int col );
 private:
-	friend class GameDemonstrator;
 	ModelTerrainType	*ActiveTerrainType;
-	MapEventManager		*MapEventManager;
+	MapEventManager		*MapEventManagerInstance;
 };
 
 #endif // TERRAINTYPEEDITOR_H

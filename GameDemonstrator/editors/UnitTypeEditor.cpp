@@ -11,3 +11,8 @@ UnitTypeEditor::~UnitTypeEditor()
 
 }
 
+void UnitTypeEditor::SetMapEventManager(MapEventManager* mapEventManager)
+{
+	MapEventManagerInstance = mapEventManager;
+}
+

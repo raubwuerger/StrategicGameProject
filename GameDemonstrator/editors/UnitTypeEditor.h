@@ -13,13 +13,14 @@ public:
 	UnitTypeEditor(QObject *parent);
 	/** */
 	~UnitTypeEditor();
+	/** */
+	void SetMapEventManager(MapEventManager* mapEventManager);
 signals:
 	/** */
 	void UnitAdded(int mapItemId, int unitTypeId);
 private:
-	friend class GameDemonstrator;
 	ModelUnitType		*ActiveUnitType;
-	MapEventManager		*MapEventManager;
+	MapEventManager		*MapEventManagerInstance;
 };
 
 #endif // UNITTYPEEDITR_H

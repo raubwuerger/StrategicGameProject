@@ -15,6 +15,7 @@
 #include "LogFactory.h"
 #include "model/ModelOwnerTypeRepository.h"
 #include "model/ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainTypeFactory.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
@@ -22,7 +23,9 @@
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
+#include "model/ModelOwnerTypeFactory.h"
 #include "editors/TerrainTypeEditor.h"
+#include "editors/EditorToolbox.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -66,11 +69,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapViewInstance->MapEventManager = new MapEventManager(nullptr);
 	MapViewInstance->MapEventManager->HexItemInfoDialog = HexItemInfoDialogInstance;
 
-	TerrainTypeEditor* terrainTypeEditor = CreateTerrainTypeEditor(MapViewInstance->MapEventManager);
-	CreateEditorToolbox(terrainTypeEditor, CreateUnitTypeEditor(MapViewInstance->MapEventManager));
-	//TODO: connect überarbeiten...
-	connect(MapViewInstance->GetConnectorMapHexItem(), &ConnectorMapHexItem::HexItemPressed, terrainTypeEditor, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
-
+	CreateEditorToolbox();
 	layoutMain->addWidget(MapViewInstance);
 
 	QWidget *widgetMain = new QWidget;
@@ -110,7 +109,6 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialogInstance, SLOT(UpdateGameTurnInfo(QDate)) );
 }
 
-#include "model/ModelTerrainTypeRepository.h"
 void GameDemonstrator::CreateMenuFile()
 {
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
@@ -239,14 +237,12 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
 }
 
-#include "model/ModelTerrainTypeFactory.h"
 bool GameDemonstrator::LoadTerrainTypes()
 {
 	ModelTerrainTypeFactory factory;
 	return factory.Create();
 }
 
-#include "model/ModelOwnerTypeFactory.h"
 bool GameDemonstrator::LoadOwnerTypes()
 {
 	ModelOwnerTypeFactory factory;
@@ -259,45 +255,18 @@ bool GameDemonstrator::LoadUnitTypes()
 	return factory.Create();
 }
 
-#include "model/ModelTerrainType.h"
-#include "model/ModelTerrainTypeRepository.h"
-#include "editors/EditorToolbox.h"
-void GameDemonstrator::CreateEditorToolbox(TerrainTypeEditor *terrainTypeEditor, UnitTypeEditor *unitTypeEditor)
+void GameDemonstrator::CreateEditorToolbox()
 {
 	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	EditorToolboxInstance = new EditorToolbox(dockCountry);
-	EditorToolboxInstance->TerrainTypeEditorInstance = terrainTypeEditor;
-	EditorToolboxInstance->UnitTypeEditorInstance = unitTypeEditor;
+	EditorToolboxInstance->ConnectorMapHexItemInstance = MapViewInstance->GetConnectorMapHexItem();
+	EditorToolboxInstance->MapEventManagerInstance = MapViewInstance->MapEventManager;
+
 	EditorToolboxInstance->Create();
 
 	dockCountry->setWidget( EditorToolboxInstance );
 	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
 	ViewMenu->addAction(dockCountry->toggleViewAction());
-
-}
-
-#include "editors/TerrainTypeEditor.h"
-TerrainTypeEditor* GameDemonstrator::CreateTerrainTypeEditor( MapEventManager*mapEventManager )
-{
-	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
-	TerrainTypeEditor *terrainTypeEditor = new TerrainTypeEditor(nullptr);
-	terrainTypeEditor->MapEventManager = mapEventManager;
-	QObject::connect(terrainTypeEditor, &TerrainTypeEditor::TerrainTypeChanged,
-		ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::TerrainTypeChanged);
-	return terrainTypeEditor;
-}
-
-#include "editors\UnitTypeEditor.h"
-#include "connectors\ConnectorUnitTypeGameMap.h"
-UnitTypeEditor* GameDemonstrator::CreateUnitTypeEditor(MapEventManager* mapEventManager)
-{
-	ConnectorUnitTypeEditorGameMapInstance = new ConnectorUnitTypeGameMap();
-
-	UnitTypeEditor* unitTypeEditor = new UnitTypeEditor(nullptr);
-	unitTypeEditor->MapEventManager = mapEventManager;
-	QObject::connect(unitTypeEditor, &UnitTypeEditor::UnitAdded,
-		ConnectorUnitTypeEditorGameMapInstance, &ConnectorUnitTypeGameMap::UnitTypeAdded);
-	return unitTypeEditor;
 }
