@@ -115,19 +115,19 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
 	ActionRepository::GetInstance()->AddAction(createAction);
-	connect(createAction, SIGNAL(triggered()), ConnectorLoadCreateGameInstance, SLOT(SlotCreateNewGame()), Qt::QueuedConnection);
+	connect(createAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	ActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, SIGNAL(triggered()), ConnectorLoadCreateGameInstance, SLOT(SlotLoadSaveGame()), Qt::QueuedConnection);
+	connect(loadGameAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotLoadSaveGame, Qt::QueuedConnection);
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
 	ActionRepository::GetInstance()->AddAction(saveGameAction);
-	connect(saveGameAction, SIGNAL(triggered()),ConnectorSaveGameInstance,SLOT(SaveGame()), Qt::QueuedConnection );
+	connect(saveGameAction, &QAction::triggered, ConnectorSaveGameInstance, &SerializerGame::SlotSaveGame, Qt::QueuedConnection);
 
 	QIcon next(":GameDemonstrator/Resources/media_end.ico");
 	QAction* nextTurnAction = new QAction(next,tr("&Next turn"), this);
@@ -151,7 +151,7 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* exitAction = new QAction(exit,tr("E&xit"), this);
 	exitAction->setShortcuts(QKeySequence::Quit);
 	exitAction->setStatusTip(tr("Quit application"));
-	connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+	connect(exitAction, &QAction::triggered, this, &GameDemonstrator::close);
 	ActionRepository::GetInstance()->AddAction(exitAction);
 
 	FileMenu->addAction( createAction );
