@@ -69,7 +69,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	TerrainTypeEditor* terrainTypeEditor = CreateTerrainTypeEditor(MapViewInstance->MapEventManager);
 	CreateEditorToolbox(terrainTypeEditor, CreateUnitTypeEditor(MapViewInstance->MapEventManager));
 	//TODO: connect überarbeiten...
-	connect(MapViewInstance->GetHexItemEventManager(), &ConnectorMapHexItem::HexItemPressed, terrainTypeEditor, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
+	connect(MapViewInstance->GetConnectorMapHexItem(), &ConnectorMapHexItem::HexItemPressed, terrainTypeEditor, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
 
 	layoutMain->addWidget(MapViewInstance);
 

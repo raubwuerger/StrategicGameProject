@@ -17,13 +17,13 @@ MapView::MapView(QWidget *parent)
 	ActiveCol(ROW_COL_NOT_INITIALIZED)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	HexItemEventManagerInstance = new ConnectorMapHexItem();
+	ConnectorMapHexItemInstance = new ConnectorMapHexItem();
 	Scene = new MapGraphicsScene(this);
 }
 
 MapView::~MapView()
 {
-	delete HexItemEventManagerInstance;
+	delete ConnectorMapHexItemInstance;
 	delete MapEventManager;
 }
 
@@ -43,9 +43,9 @@ void MapView::Create()
 	setDragMode(ScrollHandDrag);
 }
 
-ConnectorMapHexItem* MapView::GetHexItemEventManager() const
+ConnectorMapHexItem* MapView::GetConnectorMapHexItem() const
 {
-	return HexItemEventManagerInstance;
+	return ConnectorMapHexItemInstance;
 }
 
 bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
@@ -57,8 +57,8 @@ bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
 void MapView::InitMapEventManager()
 {
 	MapEventManager->InitMapItemsRegistry( ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols() );
-	connect(HexItemEventManagerInstance,SIGNAL(HexItemEntered(int,int)),MapEventManager,SLOT(UpdateMapItemInfo(int,int)));
-	connect(HexItemEventManagerInstance,SIGNAL(HexItemEntered(int,int)),this,SLOT(HexActive(int,int)));
+	connect(ConnectorMapHexItemInstance, SIGNAL(HexItemEntered(int, int)), this, SLOT(HexActive(int, int)));
+	connect(ConnectorMapHexItemInstance, SIGNAL(HexItemEntered(int, int)), MapEventManager, SLOT(UpdateMapItemInfo(int, int)));
 }
 
 bool MapView::CreateMapFromModel()
@@ -84,7 +84,7 @@ bool MapView::CreateMapFromModel()
 			CreateTopLeftPosition(currentRow,currentCol,topLeftPosition);
 			MapHexItem *mapItem = new MapHexItem( hexagonTemplate, topLeftPosition );
 			mapItem->SetRowAndCol(currentRow,currentCol);
-			mapItem->SetHexItemEventManager( HexItemEventManagerInstance );
+			mapItem->SetHexItemEventManager( ConnectorMapHexItemInstance );
 			mapItem->SetModelMapItemId( modelMapItem->GetId() );
 			mapItem->SetTerrainImage( GetImage(modelMapItem) );
 			Scene->addItem( mapItem );
@@ -172,7 +172,7 @@ void MapView::HexActive(int row, int col)
 
 void MapView::EmitHexItemPressed()
 {
-	if( nullptr == HexItemEventManagerInstance )
+	if( nullptr == ConnectorMapHexItemInstance )
 	{
 		return;
 	}
@@ -187,7 +187,7 @@ void MapView::EmitHexItemPressed()
 		return;
 	}
 
-	emit HexItemEventManagerInstance->HexItemPressed( ActiveRow, ActiveCol );
+	emit ConnectorMapHexItemInstance->HexItemPressed( ActiveRow, ActiveCol );
 }
 
 void MapView::wheelEvent(QWheelEvent *event)

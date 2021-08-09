@@ -23,7 +23,7 @@ public:
 	/** */
 	void Create();
 	/** */
-	ConnectorMapHexItem* GetHexItemEventManager() const;
+	ConnectorMapHexItem* GetConnectorMapHexItem() const;
 	/** */
 	bool AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem);
 public slots:
@@ -54,9 +54,9 @@ private:
 	/** */
 	void EmitHexItemPressed();
 public:
-	MapGraphicsScene		*Scene;					//TODO: Setter
-	ConnectorMapHexItem		*HexItemEventManagerInstance;	//TODO: Setter
-	MapEventManager			*MapEventManager;		//TODO: Setter
+	MapGraphicsScene*		Scene;					//TODO: Setter
+	ConnectorMapHexItem*	ConnectorMapHexItemInstance;	//TODO: Setter
+	MapEventManager*		MapEventManager;		//TODO: Setter
 private:
 	const int	ROW_COL_NOT_INITIALIZED;
 	int			ActiveRow;
