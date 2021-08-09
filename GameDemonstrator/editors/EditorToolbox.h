@@ -32,11 +32,6 @@ private:
 	void CreateGroupUnitTypes();
 	/** */
 	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
-private slots:
-	/** */
-	void ButtonGroupTerrainTypes(QAbstractButton *button);
-	/** */
-	void ButtonGroupUnitTypes(QAbstractButton *button);
 private:
 	friend class GameDemonstrator;
 	QButtonGroup*		GroupTerrainTypes;

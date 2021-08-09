@@ -4,6 +4,7 @@
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelUnitTypeRepository.h"
 #include "model/ModelUnitType.h"
+#include "UnitTypeEditor.h"
 #include "UnitTypeIdSelector.h"
 #include "TerrainTypeEditor.h"
 #include "TerrainTypeIdSelector.h"
@@ -32,8 +33,6 @@ void EditorToolbox::Create()
 void EditorToolbox::CreateGroupTerrainTypes()
 {
 	GroupTerrainTypes = new QButtonGroup(this);
-
-	connect(GroupTerrainTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
 	QMap<int, ModelTerrainType*>::const_iterator currentTerrainTypeIterator = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
@@ -97,8 +96,6 @@ void EditorToolbox::CreateGroupUnitTypes()
 {
 	GroupUnitsTypes = new QButtonGroup(this);
 
-	connect(GroupUnitsTypes, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(ButtonGroupTerrainTypes(QAbstractButton*)));
-
 	QGridLayout *layoutUnitTypes = new QGridLayout;
 	QMap<int, const ModelUnitType*>::const_iterator currentIterator = ModelUnitTypeRepository::GetInstance()->GetFirstIterator();
 
@@ -118,7 +115,6 @@ void EditorToolbox::CreateGroupUnitTypes()
 	addItem(itemUnitType, tr("Unit Types"));
 }
 
-#include "editors\UnitTypeEditor.h"
 QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector)
 {
 	QIcon icon(modelUnitType->GetPictureName());
@@ -142,14 +138,3 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 	return widget;
 
 }
-
-void EditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
-{
-	int amIhere = 0;
-}
-
-void EditorToolbox::ButtonGroupUnitTypes(QAbstractButton *button)
-{
-	int amIhere = 0;
-}
-
