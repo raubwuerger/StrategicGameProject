@@ -30,7 +30,7 @@
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
 	GameTurnDialogInstance(nullptr),
-	MainGameLoop(nullptr),
+	MainGameLoopInstance(nullptr),
 	HexItemInfoDialogInstance(nullptr),
 	UnitTypeInfoDialogInstance(nullptr),
 	EditorToolboxInstance(nullptr),
@@ -103,10 +103,10 @@ void GameDemonstrator::CreateGameTurnInfoDialog()
 
 void GameDemonstrator::CreateMainGameThreadAndLoop()
 {
-	MainGameLoop = new GameMainLoop(nullptr);
+	MainGameLoopInstance = new GameMainLoop(nullptr);
 	MainThread = new GameMainThread();
-	MainThread->Init( MainGameLoop );
-	connect(MainGameLoop, SIGNAL(SignalTurnFinished(QDate)), GameTurnDialogInstance, SLOT(SlotUpdateGameTurnInfo(QDate)));
+	MainThread->Init(MainGameLoopInstance);
+	connect(MainGameLoopInstance, SIGNAL(SignalTurnFinished(QDate)), GameTurnDialogInstance, SLOT(SlotUpdateGameTurnInfo(QDate)));
 }
 
 void GameDemonstrator::CreateMenuFile()
@@ -132,19 +132,19 @@ void GameDemonstrator::CreateMenuFile()
 	QIcon next(":GameDemonstrator/Resources/media_end.ico");
 	QAction* nextTurnAction = new QAction(next,tr("&Next turn"), this);
 	nextTurnAction->setStatusTip(tr("Next turn"));
-	connect(nextTurnAction, SIGNAL(triggered()), MainGameLoop, SLOT(Step()), Qt::QueuedConnection );
+	connect(nextTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStep, Qt::QueuedConnection);
 	ActionRepository::GetInstance()->AddAction(nextTurnAction);
 
 	QIcon start(":GameDemonstrator/Resources/media_play_green.ico");
 	QAction* startTurnAction = new QAction(start,tr("&Start"), this);
 	startTurnAction->setStatusTip(tr("Start turn"));
-	connect(startTurnAction, SIGNAL(triggered()), MainGameLoop, SLOT(Start()), Qt::QueuedConnection );
+	connect(startTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStart, Qt::QueuedConnection);
 	ActionRepository::GetInstance()->AddAction(startTurnAction);
 
 	QIcon stop(":GameDemonstrator/Resources/media_stop_red.ico");
 	QAction* stopTurnAction = new QAction(stop,tr("S&top"), this);
 	stopTurnAction->setStatusTip(tr("Stop turn"));
-	connect(stopTurnAction, &QAction::triggered, MainGameLoop, &GameMainLoop::Pause, Qt::QueuedConnection);
+	connect(stopTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotPause, Qt::QueuedConnection);
 	ActionRepository::GetInstance()->AddAction(stopTurnAction);
 
 	QIcon exit(":GameDemonstrator/Resources/exit.ico");
@@ -167,7 +167,7 @@ void GameDemonstrator::CreateMenuFile()
 
 void GameDemonstrator::InitMainGameThread()
 {
-	MainGameLoop->moveToThread(MainThread);
+	MainGameLoopInstance->moveToThread(MainThread);
 	MainThread->start();
 }
 

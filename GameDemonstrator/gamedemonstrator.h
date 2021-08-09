@@ -59,12 +59,12 @@ private:
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
 	UnitTypeInfoDialog*			UnitTypeInfoDialogInstance;
 	GameMainThread*				MainThread;
-	GameMainLoop*				MainGameLoop;
+	GameMainLoop*				MainGameLoopInstance;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
 	SerializerGame*				ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
-	ConnectorLoadCreateGame*		ConnectorLoadCreateGameInstance;
+	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
 };
 
 #endif // GAMEDEMONSTRATOR_H

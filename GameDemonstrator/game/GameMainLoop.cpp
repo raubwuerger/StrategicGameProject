@@ -13,24 +13,24 @@ GameMainLoop::~GameMainLoop()
 {
 }
 
-void GameMainLoop::Start()
+void GameMainLoop::SlotStart()
 {
 	RunLoop = true;
-	Run();
+	SlotRun();
 }
 
-void GameMainLoop::Pause()
+void GameMainLoop::SlotPause()
 {
 	RunLoop = false;
 }
 
-void GameMainLoop::Stop()
+void GameMainLoop::SlotStop()
 {
 	RunLoop = false;
 //	moveToThread(QApplication::instance()->thread()); //Muss sich selber zurückschieben (push, not pull!)
 }
 
-void GameMainLoop::Run()
+void GameMainLoop::SlotRun()
 {
 	if( RunLoop == false )
 	{
@@ -40,7 +40,7 @@ void GameMainLoop::Run()
 	emit SignalTurnFinished( GameMainCounter::GetInstance()->GetCurrentDate() );
 }
 
-void GameMainLoop::Step()
+void GameMainLoop::SlotStep()
 {
 	GameMainCounter::GetInstance()->Increment();
 	emit SignalTurnFinished(GameMainCounter::GetInstance()->GetCurrentDate());
