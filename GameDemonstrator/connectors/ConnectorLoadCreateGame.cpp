@@ -37,7 +37,7 @@ void ConnectorLoadCreateGame::SlotLoadSaveGame()
 		return;
 	}
 
-	SerializerFactory().CreateInterface()->LoadGame();
+	SerializerFactory().CreateInterface()->SlotLoadGame();
 
 	MapViewInstance->Create();
 }

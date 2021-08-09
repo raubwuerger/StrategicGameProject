@@ -26,7 +26,7 @@ public:
 	void RegisterUnitItem(MapUnitItem* unitItem);
 public slots:
 	/** */
-	void UpdateMapItemInfo( int row, int col );
+	void SlotUpdateMapItemInfo( int row, int col );
 private:
 	QVector< QVector<MapHexItem*> >	MapItems;
 	QVector< MapUnitItem* >			UnitItems;

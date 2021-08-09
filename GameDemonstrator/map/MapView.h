@@ -28,7 +28,7 @@ public:
 	bool AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem);
 public slots:
 	/** */
-	void HexActive( int row, int col );
+	void SlotHexActive( int row, int col );
 protected:
 	/** */
 	virtual void mouseReleaseEvent(QMouseEvent * event);

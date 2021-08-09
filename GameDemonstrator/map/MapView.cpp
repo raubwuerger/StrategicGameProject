@@ -57,8 +57,8 @@ bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
 void MapView::InitMapEventManager()
 {
 	MapEventManagerInstance->InitMapItemsRegistry(ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols());
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::HexActive);
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::UpdateMapItemInfo);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexActive);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapItemInfo);
 }
 
 bool MapView::CreateMapFromModel()
@@ -164,7 +164,7 @@ void MapView::mouseMoveEvent(QMouseEvent *event)
 	}
 }
 
-void MapView::HexActive(int row, int col)
+void MapView::SlotHexActive(int row, int col)
 {
 	ActiveRow = row;
 	ActiveCol = col;

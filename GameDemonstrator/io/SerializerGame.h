@@ -15,9 +15,9 @@ public:
 	virtual ~SerializerGame();
 public slots:
 	/** */
-	bool SaveGame();
+	bool SlotSaveGame();
 	/** */
-	bool LoadGame();
+	bool SlotLoadGame();
 private:
 	QString CreateSaveGameFileName() const;
 private:

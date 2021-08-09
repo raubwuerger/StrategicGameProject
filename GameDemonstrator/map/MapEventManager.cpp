@@ -49,7 +49,7 @@ MapHexItem* MapEventManager::FindItemByIndexNonConst( int row, int col )
 }
 
 #include "dialogs/HexItemInfoDialog.h"
-void MapEventManager::UpdateMapItemInfo( int row, int col )
+void MapEventManager::SlotUpdateMapItemInfo( int row, int col )
 {
 	if( row < 0 || col < 0 )
 	{

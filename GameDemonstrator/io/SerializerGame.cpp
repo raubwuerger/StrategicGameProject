@@ -16,7 +16,7 @@ SerializerGame::~SerializerGame()
 	delete SerializeGameInterface;
 }
 
-bool SerializerGame::SaveGame()
+bool SerializerGame::SlotSaveGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{
@@ -26,7 +26,7 @@ bool SerializerGame::SaveGame()
 	return SerializeGameInterface->SaveGame( CreateSaveGameFileName() );
 }
 
-bool SerializerGame::LoadGame()
+bool SerializerGame::SlotLoadGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{

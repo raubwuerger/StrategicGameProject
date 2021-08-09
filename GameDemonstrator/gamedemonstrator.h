@@ -32,10 +32,6 @@ public:
 	GameDemonstrator(QWidget *parent = 0);
 	/** */
 	~GameDemonstrator();
-signals:
-	void StartMainGameLoop();
-private:
-	Ui::GameDemonstratorClass ui;
 private:
 	void CreateMenuFile();
 	void CreateMenuAbout();
@@ -65,6 +61,7 @@ private:
 	SerializerGame*				ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
+	Ui::GameDemonstratorClass ui;
 };
 
 #endif // GAMEDEMONSTRATOR_H
