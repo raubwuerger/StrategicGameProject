@@ -56,7 +56,7 @@ private:
 public:
 	MapGraphicsScene*		Scene;					//TODO: Setter
 	ConnectorMapHexItem*	ConnectorMapHexItemInstance;	//TODO: Setter
-	MapEventManager*		MapEventManager;		//TODO: Setter
+	MapEventManager*		MapEventManagerInstance;		//TODO: Setter
 private:
 	const int	ROW_COL_NOT_INITIALIZED;
 	int			ActiveRow;

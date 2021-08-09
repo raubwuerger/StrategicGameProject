@@ -24,7 +24,7 @@ MapView::MapView(QWidget *parent)
 MapView::~MapView()
 {
 	delete ConnectorMapHexItemInstance;
-	delete MapEventManager;
+	delete MapEventManagerInstance;
 }
 
 void MapView::Create()
@@ -56,9 +56,9 @@ bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
 
 void MapView::InitMapEventManager()
 {
-	MapEventManager->InitMapItemsRegistry( ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols() );
-	connect(ConnectorMapHexItemInstance, SIGNAL(HexItemEntered(int, int)), this, SLOT(HexActive(int, int)));
-	connect(ConnectorMapHexItemInstance, SIGNAL(HexItemEntered(int, int)), MapEventManager, SLOT(UpdateMapItemInfo(int, int)));
+	MapEventManagerInstance->InitMapItemsRegistry(ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols());
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::HexItemEntered, this, &MapView::HexActive);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::HexItemEntered, MapEventManagerInstance, &MapEventManager::UpdateMapItemInfo);
 }
 
 bool MapView::CreateMapFromModel()
@@ -88,7 +88,7 @@ bool MapView::CreateMapFromModel()
 			mapItem->SetModelMapItemId( modelMapItem->GetId() );
 			mapItem->SetTerrainImage( GetImage(modelMapItem) );
 			Scene->addItem( mapItem );
-			MapEventManager->RegisterMapItem( mapItem );
+			MapEventManagerInstance->RegisterMapItem( mapItem );
 
 		}
 	}

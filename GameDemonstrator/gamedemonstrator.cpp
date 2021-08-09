@@ -66,8 +66,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
-	MapViewInstance->MapEventManager = new MapEventManager(nullptr);
-	MapViewInstance->MapEventManager->HexItemInfoDialog = HexItemInfoDialogInstance;
+	MapViewInstance->MapEventManagerInstance = new MapEventManager(nullptr);
+	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance;
 
 	CreateEditorToolbox();
 	layoutMain->addWidget(MapViewInstance);
@@ -262,7 +262,7 @@ void GameDemonstrator::CreateEditorToolbox()
 
 	EditorToolboxInstance = new EditorToolbox(dockCountry);
 	EditorToolboxInstance->ConnectorMapHexItemInstance = MapViewInstance->GetConnectorMapHexItem();
-	EditorToolboxInstance->MapEventManagerInstance = MapViewInstance->MapEventManager;
+	EditorToolboxInstance->MapEventManagerInstance = MapViewInstance->MapEventManagerInstance;
 
 	EditorToolboxInstance->Create();
 
