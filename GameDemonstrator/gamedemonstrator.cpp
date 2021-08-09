@@ -106,7 +106,7 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	MainGameLoop = new GameMainLoop(nullptr);
 	MainThread = new GameMainThread();
 	MainThread->Init( MainGameLoop );
-	connect( MainGameLoop, SIGNAL(TurnFinished(QDate)),GameTurnDialogInstance, SLOT(UpdateGameTurnInfo(QDate)) );
+	connect(MainGameLoop, SIGNAL(SignalTurnFinished(QDate)), GameTurnDialogInstance, SLOT(SlotUpdateGameTurnInfo(QDate)));
 }
 
 void GameDemonstrator::CreateMenuFile()

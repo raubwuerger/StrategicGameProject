@@ -22,7 +22,7 @@ void GameMainThread::run()
 void GameMainThread::Init( GameMainLoop *gameMainLoop )
 {
 	connect(TriggerGameMainLoop, &QTimer::timeout, this, &GameMainThread::SlotCheckTriggerGameMainLoop);
-	connect(gameMainLoop, &GameMainLoop::TurnFinished, this, &GameMainThread::SlotTurnFinished);
+	connect(gameMainLoop, &GameMainLoop::SignalTurnFinished, this, &GameMainThread::SlotTurnFinished);
 	connect(this, &GameMainThread::SignalTriggerGameMainLoop, gameMainLoop, &GameMainLoop::Run);
 	TriggerGameMainLoop->start(100);
 }

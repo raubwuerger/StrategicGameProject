@@ -37,12 +37,12 @@ void GameMainLoop::Run()
 		return;
 	}
 	GameMainCounter::GetInstance()->Increment();
-	emit TurnFinished( GameMainCounter::GetInstance()->GetCurrentDate() );
+	emit SignalTurnFinished( GameMainCounter::GetInstance()->GetCurrentDate() );
 }
 
 void GameMainLoop::Step()
 {
 	GameMainCounter::GetInstance()->Increment();
-	emit TurnFinished( GameMainCounter::GetInstance()->GetCurrentDate() );
+	emit SignalTurnFinished(GameMainCounter::GetInstance()->GetCurrentDate());
 }
 

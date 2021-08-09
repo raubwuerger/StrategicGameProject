@@ -12,7 +12,7 @@ GameTurnDialog::~GameTurnDialog()
 
 }
 
-void GameTurnDialog::UpdateGameTurnInfo( QDate date )
+void GameTurnDialog::SlotUpdateGameTurnInfo(QDate date)
 {
 	ui.turnInfoEdit->setPlainText( date.toString("MMMM, yyyy") );
 }

@@ -23,7 +23,7 @@ public slots:
 	/** */
 	void Step();
 signals:
-	void TurnFinished( QDate date );
+	void SignalTurnFinished( QDate date );
 private:
 	bool	RunLoop;
 };
