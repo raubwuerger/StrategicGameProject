@@ -652,12 +652,6 @@
     <ClInclude Include="HexagonData.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
-    <ClInclude Include="connectors\IConnectors.h">
-      <Filter>Header Dateien\Connectors</Filter>
-    </ClInclude>
-    <ClInclude Include="editors\ISelector.h">
-      <Filter>Header Dateien\Editor</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">

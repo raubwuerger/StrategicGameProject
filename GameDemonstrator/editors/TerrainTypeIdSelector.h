@@ -1,9 +1,7 @@
 #ifndef TERRAINTYPEIDSELECTOR_H
 #define TERRAINTYPEIDSELECTOR_H
 
-#include "ISelector.h"
-
-class TerrainTypeIdSelector : public QObject, ISelector
+class TerrainTypeIdSelector : public QObject
 {
 	Q_OBJECT
 public:
