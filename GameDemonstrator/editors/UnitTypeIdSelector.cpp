@@ -7,7 +7,7 @@ UnitTypeIdSelector::UnitTypeIdSelector(int unitTypeId)
 
 }
 
-void UnitTypeIdSelector::Trigger()
+void UnitTypeIdSelector::SlotTrigger()
 {
 	emit SignalActiveUnitType(UnitTypeId);
 }

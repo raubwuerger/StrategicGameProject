@@ -78,7 +78,7 @@ void MapHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 	ShowSelected();
 	if( EventItem != nullptr )
 	{
-		emit EventItem->HexItemEntered( Row, Col );
+		emit EventItem->SignalHexItemEntered(Row, Col);
 	}
 	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();

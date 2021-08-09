@@ -9,7 +9,7 @@ public:
 	TerrainTypeIdSelector( int terrainTypeId );
 public slots:
 	/** */
-	void Trigger();
+	void SlotTrigger();
 signals:
 	/** */
 	void SignalTerrainTypeActive( int terrainTypeId );

@@ -15,7 +15,7 @@ ConnectorLoadCreateGame::~ConnectorLoadCreateGame()
 {
 }
 
-void ConnectorLoadCreateGame::CreateNewGame()
+void ConnectorLoadCreateGame::SlotCreateNewGame()
 {
 	if( nullptr == MapViewInstance )
 	{
@@ -29,7 +29,7 @@ void ConnectorLoadCreateGame::CreateNewGame()
 	MapViewInstance->Create();
 }
 
-void ConnectorLoadCreateGame::LoadSaveGame()
+void ConnectorLoadCreateGame::SlotLoadSaveGame()
 {
 	if( nullptr == MapViewInstance )
 	{

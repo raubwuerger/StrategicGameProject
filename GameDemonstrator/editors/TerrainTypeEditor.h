@@ -22,7 +22,7 @@ public slots:
 	/** */
 	void SlotActivateTerrainType( int terrainTypeId );
 	/** */
-	void ChangeTerrainTypeHexItem( int row, int col );
+	void SlotChangeTerrainTypeHexItem( int row, int col );
 private:
 	ModelTerrainType	*ActiveTerrainType;
 	MapEventManager		*MapEventManagerInstance;

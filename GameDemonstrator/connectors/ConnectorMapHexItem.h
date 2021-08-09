@@ -9,9 +9,9 @@ class ConnectorMapHexItem : public QObject
 public:
 signals:
 	/** */
-	void HexItemEntered( int row, int col );
+	void SignalHexItemEntered( int row, int col );
 	/** */
-	void HexItemPressed( int row, int col );
+	void SignalHexItemPressed(int row, int col);
 private:
 };
 

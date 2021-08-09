@@ -9,7 +9,7 @@ public:
 	UnitTypeIdSelector(int unitTypeId);
 public slots:
 	/** */
-	void Trigger();
+	void SlotTrigger();
 signals:
 	/** */
 	void SignalActiveUnitType(int unitTypeId);

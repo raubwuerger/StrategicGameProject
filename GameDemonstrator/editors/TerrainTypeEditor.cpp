@@ -28,7 +28,7 @@ void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
-void TerrainTypeEditor::ChangeTerrainTypeHexItem( int row, int col )
+void TerrainTypeEditor::SlotChangeTerrainTypeHexItem( int row, int col )
 {
 	Q_ASSERT(MapEventManagerInstance);
 	if( ActiveTerrainType == nullptr )

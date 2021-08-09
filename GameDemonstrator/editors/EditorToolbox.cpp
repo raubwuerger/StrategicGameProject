@@ -32,7 +32,7 @@ void EditorToolbox::Create()
 	CreateGroupUnitTypes();
 	CreateGroupBuildingTypes();
 	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::HexItemPressed, TerrainTypeEditorInstance, &TerrainTypeEditor::ChangeTerrainTypeHexItem);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressed, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
 
 }
 
@@ -70,7 +70,7 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	button->setCheckable(true);
 	buttonGroup->addButton(button);
 
-	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::Trigger);
+	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::SlotTrigger);
 	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
 
 	QGridLayout *layout = new QGridLayout;
@@ -125,7 +125,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 	button->setCheckable(true);
 	buttonGroup->addButton(button);
 
-	connect(button, &QToolButton::pressed, connector, &UnitTypeIdSelector::Trigger);
+	connect(button, &QToolButton::pressed, connector, &UnitTypeIdSelector::SlotTrigger);
 	connect(connector, &UnitTypeIdSelector::SignalActiveUnitType, UnitTypeEditorInstance, &UnitTypeEditor::SlotActiveUnitTypeId);
 
 	QGridLayout *layout = new QGridLayout;

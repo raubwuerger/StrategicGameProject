@@ -20,9 +20,9 @@ public:
 	void SetMapView( MapView* mapView );
 public slots:
 	/** */
-	void CreateNewGame();
+	void SlotCreateNewGame();
 	/** */
-	void LoadSaveGame();
+	void SlotLoadSaveGame();
 private:
 	MapView				*MapViewInstance;
 };

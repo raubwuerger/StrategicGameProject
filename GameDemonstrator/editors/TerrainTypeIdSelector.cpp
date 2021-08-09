@@ -7,7 +7,7 @@ TerrainTypeIdSelector::TerrainTypeIdSelector( int terrainTypeId )
 
 }
 
-void TerrainTypeIdSelector::Trigger()
+void TerrainTypeIdSelector::SlotTrigger()
 {
 	emit SignalTerrainTypeActive(TerrainTypeId);
 }
