@@ -3,13 +3,13 @@
 
 //================================================================================
 #include <QToolBox>
-class ModelTerrainTypeRepository;
-class TerrainTypeIdSelector;
 class UnitTypeIdSelector;
-class ModelTerrainType;
-class TerrainTypeEditor;
 class UnitTypeEditor;
+class TerrainTypeIdSelector;
+class TerrainTypeEditor;
+class ModelTerrainType;
 class ModelUnitType;
+class ModelTerrainTypeRepository;
 
 class EditorToolbox : public QToolBox
 {
@@ -44,41 +44,7 @@ private:
 	QButtonGroup*		GroupUnitsTypes;
 	TerrainTypeEditor*	TerrainTypeEditorInstance;
 	UnitTypeEditor*		UnitTypeEditorInstance;
-	int					MinimumEditWidth;	//Was: itemTerrainType->sizeHint().width()
-};
-
-//================================================================================
-class TerrainTypeIdSelector : public QObject
-{
-	Q_OBJECT
-public:
-	/** */
-	TerrainTypeIdSelector( int terrainTypeId );
-public slots:
-	/** */
-	void Trigger();
-signals:
-	/** */
-	void TerrainTypeActive( int terrainTypeId );
-private:
-	int TerrainTypeId;
-};
-
-//================================================================================
-class UnitTypeIdSelector : public QObject
-{
-	Q_OBJECT
-public:
-	/** */
-	UnitTypeIdSelector(int unitTypeId);
-public slots:
-	/** */
-void Trigger();
-signals:
-	/** */
-	void UnitTypeActive(int unitTypeId);
-private:
-	int UnitTypeId;
+	int					MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
 };
 
 #endif // CEDITORTOOLBOX_H

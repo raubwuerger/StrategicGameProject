@@ -464,6 +464,24 @@
     <ClCompile Include="editors\EditorToolbox.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
+    <ClCompile Include="editors\TerrainTypeIdSelector.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TerrainTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TerrainTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\UnitTypeIdSelector.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UnitTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -637,6 +655,9 @@
     <ClInclude Include="connectors\IConnectors.h">
       <Filter>Header Dateien\Connectors</Filter>
     </ClInclude>
+    <ClInclude Include="editors\ISelector.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -732,6 +753,12 @@
     <CustomBuild Include="editors\EditorToolbox.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
+    <CustomBuild Include="editors\TerrainTypeIdSelector.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\UnitTypeIdSelector.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameDemonstrator.rc">
@@ -746,6 +773,7 @@
   <ItemGroup>
     <None Include="CompleteOverview.cd" />
     <None Include="ClassDiagrams\Editors.cd" />
+    <None Include="editors\TerrainTypeIdSelector" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

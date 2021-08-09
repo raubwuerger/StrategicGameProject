@@ -4,7 +4,9 @@
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelUnitTypeRepository.h"
 #include "model/ModelUnitType.h"
+#include "UnitTypeIdSelector.h"
 #include "TerrainTypeEditor.h"
+#include "TerrainTypeIdSelector.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
@@ -144,31 +146,6 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 void EditorToolbox::ButtonGroupTerrainTypes( QAbstractButton *button )
 {
 	int amIhere = 0;
-	// 	QList<QAbstractButton *> buttons = m_ButtonGroupTerrainTypes->buttons();
-	// 	foreach (QAbstractButton *myButton, buttons) 
-	// 	{
-	// 		if (myButton != button)
-	// 		{
-	// 			button->setChecked(false);
-	// 		}
-	// 		else
-	// 		{
-	// 			button->setChecked(true);
-	// 		}
-	// 	}
-	//TODO: Do something ...
-	// 	QString text = button->text();
-	// 	if (text == tr("Blue Grid"))
-	// 		scene->setBackgroundBrush(QPixmap(":/images/background1.png"));
-	// 	else if (text == tr("White Grid"))
-	// 		scene->setBackgroundBrush(QPixmap(":/images/background2.png"));
-	// 	else if (text == tr("Gray Grid"))
-	// 		scene->setBackgroundBrush(QPixmap(":/images/background3.png"));
-	// 	else
-	// 		scene->setBackgroundBrush(QPixmap(":/images/background4.png"));
-	// 
-	// 	scene->update();
-	// 	view->update();
 }
 
 void EditorToolbox::ButtonGroupUnitTypes(QAbstractButton *button)
@@ -176,30 +153,3 @@ void EditorToolbox::ButtonGroupUnitTypes(QAbstractButton *button)
 	int amIhere = 0;
 }
 
-/************************************************************************/
-/* CConnectorButtonTerrainTypeId                                        */
-/************************************************************************/
-TerrainTypeIdSelector::TerrainTypeIdSelector( int terrainTypeId ) 
-	: TerrainTypeId(terrainTypeId)
-{
-
-}
-
-void TerrainTypeIdSelector::Trigger()
-{
-	emit TerrainTypeActive(TerrainTypeId);
-}
-
-/************************************************************************/
-/* ConnectorButtonUnitTypeId                                            */
-/************************************************************************/
-UnitTypeIdSelector::UnitTypeIdSelector(int unitTypeId)
-	: UnitTypeId(unitTypeId)
-{
-
-}
-
-void UnitTypeIdSelector::Trigger()
-{
-	emit UnitTypeActive(UnitTypeId);
-}
