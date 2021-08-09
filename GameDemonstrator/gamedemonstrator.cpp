@@ -129,8 +129,8 @@ void GameDemonstrator::CreateMenuFile()
 	ActionRepository::GetInstance()->AddAction(saveGameAction);
 	connect(saveGameAction, &QAction::triggered, ConnectorSaveGameInstance, &SerializerGame::SlotSaveGame, Qt::QueuedConnection);
 
-	QIcon next(":GameDemonstrator/Resources/media_end.ico");
-	QAction* nextTurnAction = new QAction(next,tr("&Next turn"), this);
+	QIcon next(QPixmap(".//Resources//media_end.ico"));
+	QAction* nextTurnAction = new QAction(next, tr("&Next turn"), this);
 	nextTurnAction->setStatusTip(tr("Next turn"));
 	connect(nextTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStep, Qt::QueuedConnection);
 	ActionRepository::GetInstance()->AddAction(nextTurnAction);
