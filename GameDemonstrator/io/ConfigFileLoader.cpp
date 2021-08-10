@@ -15,7 +15,7 @@ bool ConfigFileLoader::LoadConfig(const QString& filename, const QString& rootNa
 		return false;
 	}
 
-	jha::GetLog()->Log_MESSAGE(QObject::tr("Loading config file: ").arg(filename));
+	jha::GetLog()->Log_MESSAGE(QObject::tr("Loading config file: %1").arg(filename));
 	QFile file(filename);
 	if (false == OpenFile(&file))
 	{
@@ -67,5 +67,6 @@ bool ConfigFileLoader::LoadXMLDocument(QFile& file, const QString& rootName)
 	}
 
 	DomNodeList = root.childNodes();
+	file.close();
 	return true;
 }

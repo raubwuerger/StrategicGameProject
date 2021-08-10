@@ -33,7 +33,7 @@ bool ModelOwnerTypeFactory::Create()
 	{
 		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType(CreateFromXML(terrainTypeNodes.at(i)));
 	}
-	jha::GetLog()->Log("TerrainTypes registered: " + QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("ModelOwnerTypes registered: " + QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 
 	return true;
 }

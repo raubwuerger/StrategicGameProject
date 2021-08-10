@@ -11,6 +11,8 @@ public:
 	static GameUnitItemRepository* GetInstance();
 	/** */
 	void Release();
+	/** */
+	bool RegisterGameUnitItem(GameUnitItem* gameUnitItem);
 private:
 	/** */
 	GameUnitItemRepository();

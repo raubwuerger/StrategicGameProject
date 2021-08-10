@@ -34,7 +34,7 @@ bool ModelUnitTypeFactory::Create()
 	{
 		ModelUnitTypeRepository::GetInstance()->RegisterModelUnitType(CreateFromXML(terrainTypeNodes.at(i)));
 	}
-	jha::GetLog()->Log("TerrainTypes registered: " + QString::number(ModelUnitTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("ModelUnitTypes registered: " + QString::number(ModelUnitTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 
 	return true;
 }

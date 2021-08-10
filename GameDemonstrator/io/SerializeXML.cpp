@@ -8,9 +8,11 @@
 #include "game/GameMapItem.h"
 #include "model/ModelTerrainType.h"
 #include "game/GameMapCreatorSaveGame.h"
+#include "game/GameUnitItemFactory.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "DomNodeFinder.h"
+#include "io/ConfigFileLoader.h"
 
 //==============================================================================
 SerializeXML::SerializeXML()
@@ -181,61 +183,38 @@ bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const GameMapItem* m
 //==============================================================================
 bool SerializeXML::LoadGame( const QString& saveGameName )
 {
-	if( false == LoadXMLHeader(saveGameName) )
+	ConfigFileLoader configFileLoader;
+	if (false == configFileLoader.LoadConfig(saveGameName, SerializeXMLItems::SAVEGAME))
 	{
 		return false;
 	}
-	return true;
-}
 
-//==============================================================================
-bool SerializeXML::LoadXMLHeader( const QString& saveGameName )
-{
-	QString saveGamePath(ModelProgramFactory::ModelProgramSettingsInstance->SaveGamePath);
-	QString saveGameFile( saveGamePath +saveGameName );
-
-	QFile file(saveGameFile);
-
-	if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	if (false == LoadGame(configFileLoader.GetQDomNodeList()))
 	{
-		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create savegame file: %1 ").arg(saveGameFile) );
 		return false;
 	}
-
-	QDomDocument saveGameDocument;
-	saveGameDocument.setContent(&file);
-
-	QDomNodeList rootNodeList = saveGameDocument.elementsByTagName(SerializeXMLItems::SAVEGAME);
-	if( 0 == rootNodeList.count() )
-	{
-		jha::GetLog()->Log_WARNING( QObject::tr("No root node named: %1").arg(SerializeXMLItems::SAVEGAME) );
-		return false;
-	}
-
-	if( false == LoadGame( rootNodeList.at(0) ) )
-	{
-		file.close();
-		return false;
-	}
-
-	file.close();
-	jha::GetLog()->Log_INFO( QObject::tr("Succesfull loaded savegame: %1").arg(saveGameFile) );
 
 	return true;
 }
 
+#include "DomNodeListFinder.h"
 //==============================================================================
-bool SerializeXML::LoadGame( const QDomNode& domNode )
+bool SerializeXML::LoadGame(const QDomNodeList& saveGameNodeList)
 {
-	if( false == LoadGameData(domNode) )
+	DomNodeListFinder domNodeListFinder(saveGameNodeList);
+	if (false == LoadGameData(domNodeListFinder.FindDomNodeByName(SerializeXMLItems::GAME)))
 	{
 		return false;
 	}
-	if( false == LoadPlayerData(domNode) )
+	if (false == LoadPlayerData(domNodeListFinder.FindDomNodeByName(SerializeXMLItems::PLAYERS)))
 	{
 		return false;
 	}
-	if( false == LoadMapData(domNode) )
+	if (false == LoadMapData(domNodeListFinder.FindDomNodeByName(SerializeXMLItems::MAP)))
+	{
+		return false;
+	}
+	if (false == LoadUnitData(domNodeListFinder.FindDomNodeByName(SerializeXMLItems::UNITS)))
 	{
 		return false;
 	}
@@ -245,6 +224,10 @@ bool SerializeXML::LoadGame( const QDomNode& domNode )
 //==============================================================================
 bool SerializeXML::LoadGameData( const QDomNode& domNode )
 {
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
 	QString domNodeName = domNode.nodeName();
 	return true;
 }
@@ -252,6 +235,10 @@ bool SerializeXML::LoadGameData( const QDomNode& domNode )
 //==============================================================================
 bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 {
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
 	QString domNodeName = domNode.nodeName();
 	return true;
 }
@@ -259,10 +246,21 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 //==============================================================================
 bool SerializeXML::LoadMapData( const QDomNode& domNode )
 {
-	QString domNodeName = domNode.nodeName();
-
-	DomNodeFinder domNodeFinder(domNode);
-	const QDomNode mapNode = domNodeFinder.FindDomeNodeByNameClone(SerializeXMLItems::MAP);
-	GameMapCreatorSaveGame mapCreatorSaveGame( mapNode.cloneNode(true) );
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+	GameMapCreatorSaveGame mapCreatorSaveGame(domNode.cloneNode(true));
 	return mapCreatorSaveGame.CreateMap();
+}
+
+//==============================================================================
+bool SerializeXML::LoadUnitData(const QDomNode& domNode)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+	GameUnitItemFactory gameUnitItemFactory;
+	return gameUnitItemFactory.CreateGameUnitItemsFromSaveGame(domNode);
 }

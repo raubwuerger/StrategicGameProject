@@ -153,6 +153,7 @@
     <ClCompile Include="..\StandardLibQt\Command.cpp" />
     <ClCompile Include="..\StandardLibQt\DomElementFinder.cpp" />
     <ClCompile Include="..\StandardLibQt\DomNodeFinder.cpp" />
+    <ClCompile Include="..\StandardLibQt\DomNodeListFinder.cpp" />
     <ClCompile Include="..\StandardLibQt\DomNodeListValueExtractor.cpp" />
     <ClCompile Include="..\StandardLibQt\DomValueExtractor.cpp" />
     <ClCompile Include="..\StandardLibQt\LogFactory.cpp" />
@@ -457,6 +458,7 @@
   <ItemGroup>
     <ClInclude Include="..\StandardLibQt\DomElementFinder.h" />
     <ClInclude Include="..\StandardLibQt\DomNodeFinder.h" />
+    <ClInclude Include="..\StandardLibQt\DomNodeListFinder.h" />
     <ClInclude Include="..\StandardLibQt\DomNodeListValueExtractor.h" />
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h" />
     <ClInclude Include="Action.h" />

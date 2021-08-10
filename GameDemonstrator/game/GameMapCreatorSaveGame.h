@@ -5,7 +5,6 @@
 
 class GameMapRepository;
 class GameMapItem;
-class GameUnitItem;
 class QDomNode;
 
 class GameMapCreatorSaveGame : public IGameMapCreator
@@ -26,10 +25,6 @@ private:
 	bool CreateMapItems( const QDomNode& mapItems );
 /** */
 	GameMapItem* CreateFromXML( const QDomNode& mapNode );
-/** */
-	bool CreateUnitItems(const QDomNode& units);
-/** */
-	GameUnitItem* CreateUnitItemFromXML(const QDomNode& unit);
 private:
 	const QDomNode* MapElements;
 	int				Rows;

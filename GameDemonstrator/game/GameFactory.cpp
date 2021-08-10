@@ -18,6 +18,5 @@ bool GameFactory::Create(const GameConfig* gameConfig)
 
 bool GameFactory::CreateFromSavegame()
 {
-	SerializerFactory().CreateInterface()->LoadGame();
-	return true;
+	return SerializerFactory().CreateInterface()->LoadGame();
 }

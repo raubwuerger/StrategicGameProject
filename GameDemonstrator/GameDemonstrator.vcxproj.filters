@@ -488,6 +488,9 @@
     <ClCompile Include="game\GameConfig.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\StandardLibQt\DomNodeListFinder.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -666,6 +669,9 @@
     </ClInclude>
     <ClInclude Include="game\GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\DomNodeListFinder.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 #include <QXmlStreamWriter>
 class GameMapItem;
 class QDomNode;
+class QDomNodeList;
 
 class SerializeXML : public ISerializeGameInterface
 {
@@ -37,15 +38,15 @@ public:
 	bool LoadGame( const QString& saveGameName );
 private:
 	/** */
-	bool LoadXMLHeader( const QString& saveGameName );
-	/** */
-	bool LoadGame( const QDomNode& domNode );
+	bool LoadGame(const QDomNodeList& saveGameNodeList);
 	/** */
 	bool LoadGameData( const QDomNode& domNode );
 	/** */
 	bool LoadPlayerData( const QDomNode& domNode );
 	/** */
 	bool LoadMapData( const QDomNode& domNode );
+	/** */
+	bool LoadUnitData(const QDomNode& domNode);
 };
 
 #endif

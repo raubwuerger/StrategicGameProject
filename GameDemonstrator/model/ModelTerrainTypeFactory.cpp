@@ -31,7 +31,7 @@ bool ModelTerrainTypeFactory::Create()
 	{
 		ModelTerrainTypeRepository::GetInstance()->RegisterTerrainType( CreateFromXML( terrainTypeNodes.at(i) ) );
 	}
-	jha::GetLog()->Log("TerrainTypes registered: " +QString::number(ModelTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("ModelTerrainTypes registered: " +QString::number(ModelTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 
 	return true;
 }
