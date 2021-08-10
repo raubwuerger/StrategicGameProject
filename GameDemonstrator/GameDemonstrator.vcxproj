@@ -185,7 +185,7 @@
     <ClCompile Include="game\GameMainCounter.cpp" />
     <ClCompile Include="game\GameMainLoop.cpp" />
     <ClCompile Include="game\GameMainThread.cpp" />
-    <ClCompile Include="game\GameMapFactory.cpp" />
+    <ClCompile Include="game\GameTerrainItemFactory.cpp" />
     <ClCompile Include="game\GameMode.cpp" />
     <ClCompile Include="game\GameModeEditor.cpp" />
     <ClCompile Include="game\GameModeSinglePlayer.cpp" />
@@ -729,7 +729,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_NETWORK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D%(PreprocessorDefinitions)  "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I$(INHERIT)" "-I.\..\StandardLibQt" "-fstdafx.h" "-f../../game/%(Filename)%(Extension)"</Command>
     </CustomBuild>
-    <ClInclude Include="game\GameMapFactory.h" />
+    <ClInclude Include="game\GameTerrainItemFactory.h" />
     <ClInclude Include="game\GameMode.h" />
     <ClInclude Include="game\GameModeEditor.h" />
     <ClInclude Include="game\GameModeSinglePlayer.h" />
