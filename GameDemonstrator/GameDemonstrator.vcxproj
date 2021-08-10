@@ -193,6 +193,8 @@
     <ClCompile Include="game\GameMapFactory.cpp" />
     <ClCompile Include="game\GameMapItem.cpp" />
     <ClCompile Include="game\GameMapRepository.cpp" />
+    <ClCompile Include="game\GameUnitItem.cpp" />
+    <ClCompile Include="game\GameUnitItemFactory.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ActionRepository.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -731,6 +733,8 @@
     <ClInclude Include="game\GameMode.h" />
     <ClInclude Include="game\GameModeEditor.h" />
     <ClInclude Include="game\GameModeSinglePlayer.h" />
+    <ClInclude Include="game\GameUnitItem.h" />
+    <ClInclude Include="game\GameUnitItemFactory.h" />
     <ClInclude Include="game\IGameMapCreator.h" />
     <ClInclude Include="game\GameMapCreatorSaveGame.h" />
     <ClInclude Include="game\GameMapCreatorSimple.h" />

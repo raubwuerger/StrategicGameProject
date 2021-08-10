@@ -476,6 +476,12 @@
     <ClCompile Include="game\GameMapRepository.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameUnitItem.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitItemFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -641,6 +647,12 @@
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameMapRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitItem.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitItemFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
