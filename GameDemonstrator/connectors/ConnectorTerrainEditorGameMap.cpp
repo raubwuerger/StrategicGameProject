@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ConnectorTerrainEditorGameMap.h"
-#include "..\model\ModelMapRepository.h"
+#include "..\game\ModelMapRepository.h"
 #include "..\model\ModelTerrainTypeRepository.h"
 #include "..\model\ModelTerrainType.h"
 #include "LogInterface.h"

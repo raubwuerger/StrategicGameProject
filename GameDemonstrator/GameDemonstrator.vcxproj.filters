@@ -176,9 +176,6 @@
     <ClCompile Include="Action.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelMapItem.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelOwnerTypeFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -195,9 +192,6 @@
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelOwnerType.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\ModelMapRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameMainLoop.cpp">
@@ -240,15 +234,6 @@
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelProgramSettings.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\ModelMapFactory.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\ModelMapCreatorSimple.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\ModelMapCreatorSaveGame.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="ActionRepository.cpp">
@@ -476,7 +461,19 @@
     <ClCompile Include="editors\UnitTypeIdSelector.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameTerrainItemFactory.cpp">
+    <ClCompile Include="game\ModelMapCreatorSaveGame.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\ModelMapCreatorSimple.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\ModelMapFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\ModelMapItem.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\ModelMapRepository.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -526,9 +523,6 @@
     <ClInclude Include="Action.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="model\ModelMapItem.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
     <ClInclude Include="model\ModelOwnerType.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -542,9 +536,6 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelTerrainType.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\ModelMapRepository.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="game\GameMainCounter.h">
@@ -567,18 +558,6 @@
     </ClInclude>
     <ClInclude Include="GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="model\ModelMapFactory.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\IModelMapCreator.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\ModelMapCreatorSimple.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\ModelMapCreatorSaveGame.h">
-      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelConfigurationHeaderXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
@@ -646,7 +625,22 @@
     <ClInclude Include="HexagonData.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameTerrainItemFactory.h">
+    <ClInclude Include="game\IModelMapCreator.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\ModelMapCreatorSaveGame.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\ModelMapCreatorSimple.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\ModelMapFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\ModelMapItem.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\ModelMapRepository.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>

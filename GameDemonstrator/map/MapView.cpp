@@ -6,7 +6,7 @@
 #include "connectors/ConnectorMapHexItem.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
-#include "model/ModelMapRepository.h"
+#include "game/ModelMapRepository.h"
 #include "LogInterface.h"
 #include "MapUnitItem.h"
 

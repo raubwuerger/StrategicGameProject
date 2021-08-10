@@ -5,7 +5,7 @@
 #include "LogInterface.h"
 #include "DomNodeFinder.h"
 #include "DomValueExtractor.h"
-#include "ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainTypeRepository.h"
 #include "ModelMapItem.h"
 #include "ModelMapRepository.h"
 

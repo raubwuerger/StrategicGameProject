@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "ModelMapCreatorSimple.h"
 #include "ModelMapRepository.h"
-#include "ModelTerrainTypeRepository.h"
+#include "model/ModelTerrainTypeRepository.h"
 #include "ModelMapItem.h"
-#include "ModelProgramFactory.h"
-#include "ModelProgramSettings.h"
+#include "model/ModelProgramFactory.h"
+#include "model/ModelProgramSettings.h"
 
 ModelMapCreatorSimple::ModelMapCreatorSimple()
 	: MapItemId(0)

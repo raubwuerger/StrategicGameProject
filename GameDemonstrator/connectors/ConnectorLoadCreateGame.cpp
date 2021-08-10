@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "ConnectorLoadCreateGame.h"
-#include "model\ModelMapRepository.h"
+#include "game\ModelMapRepository.h"
 #include ".\map\MapView.h"
 #include "ModelFactory.h"
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
-#include ".\model\ModelMapFactory.h"
+#include ".\game\ModelMapFactory.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MapEventManager.h"
-#include "model\ModelMapRepository.h"
+#include "game\ModelMapRepository.h"
 #include "model\ModelTerrainType.h"
 
 MapEventManager::MapEventManager(QObject *parent)

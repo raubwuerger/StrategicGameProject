@@ -4,10 +4,10 @@
 #include <QtXML>
 #include "SerializeXMLItems.h"
 #include "game/GameMainCounter.h"
-#include "model/ModelMapRepository.h"
-#include "model/ModelMapItem.h"
+#include "game/ModelMapRepository.h"
+#include "game/ModelMapItem.h"
 #include "model/ModelTerrainType.h"
-#include "model/ModelMapCreatorSaveGame.h"
+#include "game/ModelMapCreatorSaveGame.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "DomNodeFinder.h"
