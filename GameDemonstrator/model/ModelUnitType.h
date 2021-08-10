@@ -22,6 +22,10 @@ private:
 	QString			Name;
 	QString			PictureName;
 	const QImage	*Image;
+	int				Strength;
+	int				Attack;
+	int				Defense;
+	int				Range;
 };
 
 #endif

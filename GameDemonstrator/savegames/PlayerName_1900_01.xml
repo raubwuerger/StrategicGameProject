@@ -4988,4 +4988,21 @@
             </MapItem>
         </MapItems>
     </Map>
+	<Units>
+		<Unit>
+			<ID>1</ID>
+			<UnitTypeID>1</UnitTypeID>
+			<MapItemID>3</MapItemID>
+		</Unit>
+		<Unit>
+			<ID>2</ID>
+			<UnitTypeID>2</UnitTypeID>
+			<MapItemID>4</MapItemID>
+		</Unit>
+		<Unit>
+			<ID>3</ID>
+			<UnitTypeID>3</UnitTypeID>
+			<MapItemID>12</MapItemID>
+		</Unit>
+	</Units>
 </Savegame>

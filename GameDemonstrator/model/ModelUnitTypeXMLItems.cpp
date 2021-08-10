@@ -7,3 +7,8 @@ const QString ModelUnitTypeXMLItems::ELEMENT_NAME = "UnitType";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_ID = "Id";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_NAME = "Name";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_PICTURENAME = "PictureName";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH = "Strength";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_ATTACK = "Attack";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_DEFENCE = "Defense";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_RANGE = "Range";
+

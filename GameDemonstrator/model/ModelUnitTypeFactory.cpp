@@ -65,6 +65,26 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 		allElementsExtracted &= AttacheImage(newUnitType);
 	}
 
+	{
+		DomValueExtractor extractor(node);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_STRENGTH, newUnitType->Strength);
+	}
+
+	{
+		DomValueExtractor extractor(node);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_ATTACK, newUnitType->Attack);
+	}
+
+	{
+		DomValueExtractor extractor(node);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENCE, newUnitType->Defense);
+	}
+
+	{
+		DomValueExtractor extractor(node);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_RANGE, newUnitType->Range);
+	}
+
 	if (false == allElementsExtracted)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(unitTypeId)));
