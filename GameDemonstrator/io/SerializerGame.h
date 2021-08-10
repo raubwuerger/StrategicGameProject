@@ -13,11 +13,11 @@ public:
 	SerializerGame();
 	/** */
 	virtual ~SerializerGame();
+	/** */
+	bool LoadGame();
 public slots:
 	/** */
 	bool SlotSaveGame();
-	/** */
-	bool SlotLoadGame();
 private:
 	QString CreateSaveGameFileName() const;
 private:

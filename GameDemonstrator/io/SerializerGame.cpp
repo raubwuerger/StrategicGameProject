@@ -2,7 +2,7 @@
 #include "SerializerGame.h"
 #include "SerializeXML.h"
 #include "game\GameMainCounter.h"
-#include "GameConfig.h"
+#include "game\GameConfig.h"
 #include "model\ModelProgramFactory.h"
 #include "model\ModelProgramSettings.h"
 
@@ -26,7 +26,7 @@ bool SerializerGame::SlotSaveGame()
 	return SerializeGameInterface->SaveGame( CreateSaveGameFileName() );
 }
 
-bool SerializerGame::SlotLoadGame()
+bool SerializerGame::LoadGame()
 {
 	if( nullptr == SerializeGameInterface )
 	{

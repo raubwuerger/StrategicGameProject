@@ -1,9 +1,7 @@
 #ifndef GameFactory_H
 #define GameFactory_H
 
-class ModelTerrainType;
 class MapView;
-class GameMapRepository;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
 class ConnectorLoadCreateGame : public QObject

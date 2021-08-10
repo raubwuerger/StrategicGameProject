@@ -6,6 +6,8 @@
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
 #include ".\game\GameMapFactory.h"
+#include "game\GameFactory.h"
+#include "game\GameConfig.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {
@@ -23,8 +25,8 @@ void ConnectorLoadCreateGame::SlotCreateNewGame()
 		return;
 	}
 
-	GameMapFactory factory;
-	factory.CreateModelMap();
+	GameFactory gameFactory;
+	gameFactory.Create(new GameConfig());
 
 	MapViewInstance->Create();
 }
@@ -37,7 +39,8 @@ void ConnectorLoadCreateGame::SlotLoadSaveGame()
 		return;
 	}
 
-	SerializerFactory().CreateInterface()->SlotLoadGame();
+	GameFactory gameFactory;
+	gameFactory.CreateFromSavegame();
 
 	MapViewInstance->Create();
 }
