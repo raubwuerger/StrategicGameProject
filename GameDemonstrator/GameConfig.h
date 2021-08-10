@@ -8,6 +8,7 @@ public:
 	static QString		CurrentTurn;
 	static QString		DifficultyLevel;
 	static QString		PlayerCount;
+	static QString		MapType;
 };
 
 #endif
