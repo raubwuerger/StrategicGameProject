@@ -4,10 +4,10 @@
 #include <QtXML>
 #include "SerializeXMLItems.h"
 #include "game/GameMainCounter.h"
-#include "game/ModelMapRepository.h"
-#include "game/ModelMapItem.h"
+#include "game/GameMapRepository.h"
+#include "game/GameMapItem.h"
 #include "model/ModelTerrainType.h"
-#include "game/ModelMapCreatorSaveGame.h"
+#include "game/GameMapCreatorSaveGame.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "DomNodeFinder.h"
@@ -129,8 +129,8 @@ bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SaveMapSettings(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::SETTINGS );
-		xmlWriter.writeTextElement( SerializeXMLItems::ROWS, QString::number(ModelMapRepository::GetInstance()->GetRows()) );
-		xmlWriter.writeTextElement( SerializeXMLItems::COLS, QString::number(ModelMapRepository::GetInstance()->GetCols()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::ROWS, QString::number(GameMapRepository::GetInstance()->GetRows()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::COLS, QString::number(GameMapRepository::GetInstance()->GetCols()) );
 	xmlWriter.writeEndElement();
 	return true;
 }
@@ -140,7 +140,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEMS );
 
-	const QVector< QVector<ModelMapItem*> >* modelMap = ModelMapRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapItem*> >* modelMap = GameMapRepository::GetInstance()->GetMapItems();
 	if( nullptr == modelMap )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("Unable to save game map!") );
@@ -151,7 +151,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 	int rows = modelMap->size();
 	for( int currentRow = 0; currentRow < rows; currentRow++ )
 	{
-		QVector<ModelMapItem*> row = modelMap->at(currentRow);
+		QVector<GameMapItem*> row = modelMap->at(currentRow);
 		int cols = row.size();
 		for( int currentCol = 0; currentCol < cols; currentCol++ )
 		{
@@ -167,7 +167,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 }
 
 //==============================================================================
-bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem)
+bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const GameMapItem* modelMapItem)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEM );
 		xmlWriter.writeTextElement( SerializeXMLItems::ID, QString::number(modelMapItem->GetId()) );
@@ -263,6 +263,6 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 
 	DomNodeFinder domNodeFinder(domNode);
 	const QDomNode mapNode = domNodeFinder.FindDomeNodeByNameClone(SerializeXMLItems::MAP);
-	ModelMapCreatorSaveGame mapCreatorSaveGame( mapNode.cloneNode(true) );
+	GameMapCreatorSaveGame mapCreatorSaveGame( mapNode.cloneNode(true) );
 	return mapCreatorSaveGame.CreateMap();
 }

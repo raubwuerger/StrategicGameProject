@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MapEventManager.h"
-#include "game\ModelMapRepository.h"
+#include "game\GameMapRepository.h"
 #include "model\ModelTerrainType.h"
 
 MapEventManager::MapEventManager(QObject *parent)
@@ -61,7 +61,7 @@ void MapEventManager::SlotUpdateMapItemInfo( int row, int col )
 		return;
 	}
 
-	const ModelMapItem* modelMapItem = ModelMapRepository::GetInstance()->GetModelMapItem(row,col);
+	const GameMapItem* modelMapItem = GameMapRepository::GetInstance()->GetModelMapItem(row,col);
 	HexItemInfoDialog->SetMapHexItemId( QString::number(modelMapItem->GetId()) );
 	HexItemInfoDialog->SetMapHexItemRow(QString::number(row));
 	HexItemInfoDialog->SetMapHexItemCol(QString::number(col));

@@ -188,11 +188,11 @@
     <ClCompile Include="game\GameMode.cpp" />
     <ClCompile Include="game\GameModeEditor.cpp" />
     <ClCompile Include="game\GameModeSinglePlayer.cpp" />
-    <ClCompile Include="game\ModelMapCreatorSaveGame.cpp" />
-    <ClCompile Include="game\ModelMapCreatorSimple.cpp" />
-    <ClCompile Include="game\ModelMapFactory.cpp" />
-    <ClCompile Include="game\ModelMapItem.cpp" />
-    <ClCompile Include="game\ModelMapRepository.cpp" />
+    <ClCompile Include="game\GameMapCreatorSaveGame.cpp" />
+    <ClCompile Include="game\GameMapCreatorSimple.cpp" />
+    <ClCompile Include="game\GameMapFactory.cpp" />
+    <ClCompile Include="game\GameMapItem.cpp" />
+    <ClCompile Include="game\GameMapRepository.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ActionRepository.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -731,12 +731,12 @@
     <ClInclude Include="game\GameMode.h" />
     <ClInclude Include="game\GameModeEditor.h" />
     <ClInclude Include="game\GameModeSinglePlayer.h" />
-    <ClInclude Include="game\IModelMapCreator.h" />
-    <ClInclude Include="game\ModelMapCreatorSaveGame.h" />
-    <ClInclude Include="game\ModelMapCreatorSimple.h" />
-    <ClInclude Include="game\ModelMapFactory.h" />
-    <ClInclude Include="game\ModelMapItem.h" />
-    <ClInclude Include="game\ModelMapRepository.h" />
+    <ClInclude Include="game\IGameMapCreator.h" />
+    <ClInclude Include="game\GameMapCreatorSaveGame.h" />
+    <ClInclude Include="game\GameMapCreatorSimple.h" />
+    <ClInclude Include="game\GameMapFactory.h" />
+    <ClInclude Include="game\GameMapItem.h" />
+    <ClInclude Include="game\GameMapRepository.h" />
     <ClInclude Include="HexagonData.h" />
     <CustomBuild Include="map\MapGraphicsScene.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

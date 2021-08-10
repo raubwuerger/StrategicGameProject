@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ConnectorTerrainEditorGameMap.h"
-#include "..\game\ModelMapRepository.h"
+#include "..\game\GameMapRepository.h"
 #include "..\model\ModelTerrainTypeRepository.h"
 #include "..\model\ModelTerrainType.h"
 #include "LogInterface.h"
@@ -17,7 +17,7 @@ ConnectorTerrainEditorGameMap::~ConnectorTerrainEditorGameMap()
 
 void ConnectorTerrainEditorGameMap::SlotTerrainTypeChanged(int modelMapId, int terrainTypeId)
 {
-	ModelMapItem *modelMapToUpdate = ModelMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
+	GameMapItem *modelMapToUpdate = GameMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
 	if( nullptr == modelMapToUpdate )
 	{
 		jha::GetLog()->Log_DEBUG( tr("ModelMapItem with Id=%1 not found!").arg(QString::number(modelMapId)) );

@@ -3,7 +3,7 @@
 
 #include "ISerializeGameInterface.h"
 #include <QXmlStreamWriter>
-class ModelMapItem;
+class GameMapItem;
 class QDomNode;
 
 class SerializeXML : public ISerializeGameInterface
@@ -31,7 +31,7 @@ private:
 	/** */
 	bool SaveMapItems( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const ModelMapItem* modelMapItem );
+	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const GameMapItem* modelMapItem );
 public:
 	/** */
 	bool LoadGame( const QString& saveGameName );

@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "ConnectorLoadCreateGame.h"
-#include "game\ModelMapRepository.h"
+#include "game\GameMapRepository.h"
 #include ".\map\MapView.h"
 #include "ModelFactory.h"
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
-#include ".\game\ModelMapFactory.h"
+#include ".\game\GameMapFactory.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {
@@ -23,7 +23,7 @@ void ConnectorLoadCreateGame::SlotCreateNewGame()
 		return;
 	}
 
-	ModelMapFactory factory;
+	GameMapFactory factory;
 	factory.CreateModelMap();
 
 	MapViewInstance->Create();

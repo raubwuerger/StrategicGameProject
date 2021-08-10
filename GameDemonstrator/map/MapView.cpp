@@ -6,7 +6,7 @@
 #include "connectors/ConnectorMapHexItem.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
-#include "game/ModelMapRepository.h"
+#include "game/GameMapRepository.h"
 #include "LogInterface.h"
 #include "MapUnitItem.h"
 
@@ -56,7 +56,7 @@ bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
 
 void MapView::InitMapEventManager()
 {
-	MapEventManagerInstance->InitMapItemsRegistry(ModelMapRepository::GetInstance()->GetRows(), ModelMapRepository::GetInstance()->GetCols());
+	MapEventManagerInstance->InitMapItemsRegistry(GameMapRepository::GetInstance()->GetRows(), GameMapRepository::GetInstance()->GetCols());
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexActive);
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapItemInfo);
 }
@@ -65,7 +65,7 @@ bool MapView::CreateMapFromModel()
 {
 	HexagonData hexagonTemplate( HexagonData::DEFAULT_HEXE_SIZE );
 
-	const QVector< QVector<ModelMapItem*> >* modelMap = ModelMapRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapItem*> >* modelMap = GameMapRepository::GetInstance()->GetMapItems();
 	if( nullptr == modelMap )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("ModelMapRepository contains no items!") );
@@ -75,11 +75,11 @@ bool MapView::CreateMapFromModel()
 	int rows = modelMap->size();
 	for( int currentRow = 0; currentRow < rows; currentRow++ )
 	{
-		QVector<ModelMapItem*> row = modelMap->at(currentRow);
+		QVector<GameMapItem*> row = modelMap->at(currentRow);
 		int cols = row.size();
 		for( int currentCol = 0; currentCol < cols; currentCol++ )
 		{
-			ModelMapItem* modelMapItem = row.at(currentCol);
+			GameMapItem* modelMapItem = row.at(currentCol);
 			QPointF topLeftPosition;
 			CreateTopLeftPosition(currentRow,currentCol,topLeftPosition);
 			MapHexItem *mapItem = new MapHexItem( hexagonTemplate, topLeftPosition );
@@ -120,7 +120,7 @@ bool MapView::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 	return true;
 }
 
-const QImage* MapView::GetImage(const ModelMapItem* modelMapItem)
+const QImage* MapView::GetImage(const GameMapItem* modelMapItem)
 {
 	const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
 	if (nullptr == modelTerrainType)
@@ -134,13 +134,13 @@ const QImage* MapView::GetImage(const ModelMapItem* modelMapItem)
 double MapView::CalcMapWidthInPixel() const
 {
 	HexagonData hexagondata(HexagonData::DEFAULT_HEXE_SIZE);
-	return hexagondata.Width + ( (ModelMapRepository::GetInstance()->GetCols() - 1 ) * hexagondata.Side );
+	return hexagondata.Width + ( (GameMapRepository::GetInstance()->GetCols() - 1 ) * hexagondata.Side );
 }
 
 double MapView::CalcMapHeightInPixel() const
 {
 	HexagonData hexagondata(HexagonData::DEFAULT_HEXE_SIZE);
-	return (hexagondata.Height * ModelMapRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
+	return (hexagondata.Height * GameMapRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
 }
 
 

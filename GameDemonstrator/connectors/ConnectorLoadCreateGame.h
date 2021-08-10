@@ -3,7 +3,7 @@
 
 class ModelTerrainType;
 class MapView;
-class ModelMapRepository;
+class GameMapRepository;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
 class ConnectorLoadCreateGame : public QObject

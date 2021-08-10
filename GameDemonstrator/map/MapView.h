@@ -9,7 +9,7 @@ class MapEventManager;
 class ModelTerrainType;
 class HexagonData;
 class MapUnitItem;
-class ModelMapItem;
+class GameMapItem;
 
 class MapView : public QGraphicsView
 {
@@ -50,7 +50,7 @@ private:
 	/** */
 	bool CreateTopLeftPosition( int col, int row, QPointF &topLeftPosition );
 	/** */
-	const QImage* GetImage(const ModelMapItem* modelMapItem);
+	const QImage* GetImage(const GameMapItem* modelMapItem);
 	/** */
 	void EmitHexItemPressed();
 public:

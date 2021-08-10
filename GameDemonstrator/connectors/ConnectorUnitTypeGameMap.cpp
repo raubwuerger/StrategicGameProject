@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ConnectorUnitTypeGameMap.h"
-#include "game\ModelMapItem.h"
-#include "game\ModelMapRepository.h"
+#include "game\GameMapItem.h"
+#include "game\GameMapRepository.h"
 #include "model\ModelUnitType.h"
 #include "model\ModelUnitTypeRepository.h"
 #include "LogInterface.h"
@@ -18,7 +18,7 @@ ConnectorUnitTypeGameMap::~ConnectorUnitTypeGameMap()
 
 void ConnectorUnitTypeGameMap::SlotUnitTypeAdded(int modelMapId, int unitTypeId)
 {
-	ModelMapItem *mapItemAddingUnit = ModelMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
+	GameMapItem *mapItemAddingUnit = GameMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
 	if (nullptr == mapItemAddingUnit)
 	{
 		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(modelMapId)));

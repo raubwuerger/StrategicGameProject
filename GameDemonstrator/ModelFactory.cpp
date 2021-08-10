@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ModelFactory.h"
-#include "game/ModelMapRepository.h"
+#include "game/GameMapRepository.h"
 
 ModelFactory::ModelFactory()
 {
