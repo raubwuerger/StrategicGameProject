@@ -29,6 +29,11 @@ public:
 	static const QString COL;
 	static const QString TERRAINTYPE;
 
+	static const QString UNITS;
+	static const QString UNITS_UNIT;
+	static const QString UNITS_ID;
+	static const QString UNITS_UNITTYPEID;
+	static const QString UNITS_MAPITEMID;
 };
 
 #endif

@@ -26,6 +26,16 @@ const int GameUnitItem::GetId() const
 	return Id;
 }
 
+int GameUnitItem::GetGameMapItemId() const
+{
+	return GameMapItemId;
+}
+
+void GameUnitItem::SetGameMapItemId(int val)
+{
+	GameMapItemId = val;
+}
+
 bool GameUnitItem::operator<(const GameUnitItem& rhs) const
 {
 	return Id < rhs.Id;
