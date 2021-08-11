@@ -1,5 +1,5 @@
-#ifndef ModelOwnerType_H
-#define ModelOwnerType_H
+#ifndef MODELOWNERTYPE_H
+#define MODELOWNERTYPE_H
 
 class ModelOwnerType
 {
@@ -25,4 +25,4 @@ private:
 	QString		PictureName;
 };
 
-#endif
+#endif // MODELOWNERTYPE_H
