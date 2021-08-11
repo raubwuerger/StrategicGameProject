@@ -11,9 +11,8 @@ GameMapFactory::~GameMapFactory()
 {
 }
 
-GameMapRepository* GameMapFactory::CreateModelMap()
+bool GameMapFactory::Create()
 {
 	MapCreator = new GameMapCreatorSimple;
-	MapCreator->CreateMap();
-	return TheGameMap;
+	return MapCreator->CreateMap();
 }

@@ -29,6 +29,7 @@ MapView::~MapView()
 
 void MapView::Create()
 {
+	Scene->clear();
 	InitMapEventManager();
 	this->setRenderHint(QPainter::Antialiasing);
 	this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

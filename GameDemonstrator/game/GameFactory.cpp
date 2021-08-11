@@ -12,7 +12,7 @@ GameFactory::GameFactory()
 bool GameFactory::Create(const GameConfig* gameConfig)
 {
 	GameMapFactory factory;
-	factory.CreateModelMap();
+	factory.Create();
 	return true;
 }
 

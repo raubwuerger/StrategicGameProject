@@ -15,7 +15,7 @@ public:
 	/** */
 	void Release();
 	/** Creates Map */
-	GameMapRepository* CreateModelMap();
+	bool Create();
 private:
 	GameMapRepository*		TheGameMap;
 	IGameMapCreator*		MapCreator;
