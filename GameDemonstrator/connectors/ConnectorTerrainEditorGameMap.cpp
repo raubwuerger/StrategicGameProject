@@ -17,7 +17,7 @@ ConnectorTerrainEditorGameMap::~ConnectorTerrainEditorGameMap()
 
 void ConnectorTerrainEditorGameMap::SlotTerrainTypeChanged(int modelMapId, int terrainTypeId)
 {
-	GameMapItem *modelMapToUpdate = GameMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
+	GameMapItem *modelMapToUpdate = GameMapRepository::GetInstance()->GetGameMapItemById(modelMapId);
 	if( nullptr == modelMapToUpdate )
 	{
 		jha::GetLog()->Log_DEBUG( tr("ModelMapItem with Id=%1 not found!").arg(QString::number(modelMapId)) );

@@ -37,6 +37,21 @@ bool GameUnitItemRepository::RegisterGameUnitItem(GameUnitItem* gameUnitItem)
 	return true;
 }
 
+int GameUnitItemRepository::GetCount() const
+{
+	return GameUnitItems.size();
+}
+
+QMap<int, GameUnitItem*>::const_iterator GameUnitItemRepository::GetFirstIterator() const
+{
+	return GameUnitItems.cbegin();
+}
+
+QMap<int, GameUnitItem*>::const_iterator GameUnitItemRepository::GetLastIterator() const
+{
+	return GameUnitItems.cend();
+}
+
 GameUnitItemRepository::GameUnitItemRepository()
 {
 }

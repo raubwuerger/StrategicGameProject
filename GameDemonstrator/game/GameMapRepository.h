@@ -14,19 +14,19 @@ public:
 	/** Get MapItems */	
 	const QVector< QVector<GameMapItem*> >* GetMapItems() const;
 	/** */
-	void SetModelMapItems( const QVector< QVector<GameMapItem*>>* mapItems );
+	void SetGameMapItems( const QVector< QVector<GameMapItem*>>* mapItems );
 	/** */
 	int GetCols() const;
 	/** */
 	int GetRows() const;
 	/** */
-	GameMapItem* GetModelMapItem( unsigned int row, unsigned int col );
+	GameMapItem* GetGameMapItem( unsigned int row, unsigned int col );
 	/** */
-	int GetModelMapItemId( unsigned int row, unsigned int col );
+	int GetGameMapItemId( unsigned int row, unsigned int col );
 	/** */
-	bool UpdateItem( const GameMapItem* ItemToUpdate );
+	bool UpdateGameMapItem( const GameMapItem* ItemToUpdate );
 	/** */
-	GameMapItem* GetModelMapItemById( unsigned int id );
+	GameMapItem* GetGameMapItemById( unsigned int id );
 private:
 	/** */
 	GameMapRepository();

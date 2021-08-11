@@ -30,3 +30,8 @@ void MapUnitItem::SetUnitItemImage(const QImage* val)
 {
 	UnitItemImage = val;
 }
+
+void MapUnitItem::SetGameUnitId(int gameUnitId)
+{
+	GameUnitId = gameUnitId;
+}

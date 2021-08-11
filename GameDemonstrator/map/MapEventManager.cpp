@@ -61,7 +61,7 @@ void MapEventManager::SlotUpdateMapItemInfo( int row, int col )
 		return;
 	}
 
-	const GameMapItem* modelMapItem = GameMapRepository::GetInstance()->GetModelMapItem(row,col);
+	const GameMapItem* modelMapItem = GameMapRepository::GetInstance()->GetGameMapItem(row,col);
 	HexItemInfoDialog->SetMapHexItemId( QString::number(modelMapItem->GetId()) );
 	HexItemInfoDialog->SetMapHexItemRow(QString::number(row));
 	HexItemInfoDialog->SetMapHexItemCol(QString::number(col));

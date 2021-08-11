@@ -18,7 +18,7 @@ ConnectorUnitTypeGameMap::~ConnectorUnitTypeGameMap()
 
 void ConnectorUnitTypeGameMap::SlotUnitTypeAdded(int modelMapId, int unitTypeId)
 {
-	GameMapItem *mapItemAddingUnit = GameMapRepository::GetInstance()->GetModelMapItemById(modelMapId);
+	GameMapItem *mapItemAddingUnit = GameMapRepository::GetInstance()->GetGameMapItemById(modelMapId);
 	if (nullptr == mapItemAddingUnit)
 	{
 		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(modelMapId)));

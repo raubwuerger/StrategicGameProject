@@ -30,7 +30,7 @@ MapView::~MapView()
 void MapView::Create()
 {
 	InitMapEventManager();
-	if( false == CreateMapFromModel() )
+	if (false == CreateGameFromModel())
 	{
 		return;
 	}
@@ -59,6 +59,19 @@ void MapView::InitMapEventManager()
 	MapEventManagerInstance->InitMapItemsRegistry(GameMapRepository::GetInstance()->GetRows(), GameMapRepository::GetInstance()->GetCols());
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexActive);
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapItemInfo);
+}
+
+bool MapView::CreateGameFromModel()
+{
+	if (false == CreateMapFromModel())
+	{
+		return false;
+	}
+	if (false == CreateUnitsFromModel())
+	{
+		return false;
+	}
+	return true;
 }
 
 bool MapView::CreateMapFromModel()
@@ -91,6 +104,29 @@ bool MapView::CreateMapFromModel()
 			MapEventManagerInstance->RegisterMapItem( mapItem );
 
 		}
+	}
+
+	return true;
+}
+
+#include "game/GameUnitItemRepository.h"
+bool MapView::CreateUnitsFromModel()
+{
+
+	QMap<int, GameUnitItem*>::const_iterator gameUnitIterator = GameUnitItemRepository::GetInstance()->GetFirstIterator();
+	while (gameUnitIterator != GameUnitItemRepository::GetInstance()->GetLastIterator())
+	{
+		GameUnitItem* currentGameUnit = gameUnitIterator.value();
+		int gameMapItemId = currentGameUnit->GetGameMapItemId();
+		GameMapItem* gameMapItem = GameMapRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+		if (nullptr == gameMapItem)
+		{
+			gameUnitIterator++;
+			continue;
+
+		}
+		MapUnitItem* newMapUnitItem = new MapUnitItem(gameMapItem->Get);
+		gameUnitIterator++;
 	}
 
 	return true;

@@ -39,8 +39,11 @@ protected:
 	/** */
 	virtual void wheelEvent( QWheelEvent *event );
 private:
+	bool CreateGameFromModel();
 	/** */
 	bool CreateMapFromModel();
+	/** */
+	bool CreateUnitsFromModel();
 	/** */
 	void InitMapEventManager();
 	/** */

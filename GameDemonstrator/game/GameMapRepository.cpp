@@ -26,7 +26,7 @@ const QVector< QVector<GameMapItem*> >* GameMapRepository::GetMapItems() const
 	return MapItems;
 }
 
-void GameMapRepository::SetModelMapItems( const QVector< QVector<GameMapItem*>>* mapItems)
+void GameMapRepository::SetGameMapItems( const QVector< QVector<GameMapItem*>>* mapItems)
 {
 	delete MapItems;
 	MapItems = nullptr;
@@ -87,7 +87,7 @@ int GameMapRepository::GetRows() const
 	return MapItems->size();
 }
 
-GameMapItem* GameMapRepository::GetModelMapItem( unsigned int row, unsigned int col)
+GameMapItem* GameMapRepository::GetGameMapItem( unsigned int row, unsigned int col)
 {
 	int rowCount = GetRows();
 	if( row > rowCount )
@@ -107,9 +107,9 @@ GameMapItem* GameMapRepository::GetModelMapItem( unsigned int row, unsigned int 
 	return concreteRow.at(col);
 }
 
-int GameMapRepository::GetModelMapItemId( unsigned int row, unsigned int col)
+int GameMapRepository::GetGameMapItemId( unsigned int row, unsigned int col)
 {
-	const GameMapItem* found = GetModelMapItem(row,col);
+	const GameMapItem* found = GetGameMapItem(row,col);
 	if( nullptr == found )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("Requested map item not found: column|row: %1|%2" ).arg(col).arg(row) );
@@ -118,13 +118,13 @@ int GameMapRepository::GetModelMapItemId( unsigned int row, unsigned int col)
 	return found->GetId();
 }
 
-bool GameMapRepository::UpdateItem( const GameMapItem* ItemToUpdate )
+bool GameMapRepository::UpdateGameMapItem( const GameMapItem* ItemToUpdate )
 {
 	jha::GetLog()->Log_DEBUG( QObject::tr("Not yet implemented!") );
 	return false;
 }
 
-GameMapItem* GameMapRepository::GetModelMapItemById(unsigned int id)
+GameMapItem* GameMapRepository::GetGameMapItemById(unsigned int id)
 {
 	if( id < 0 )
 	{

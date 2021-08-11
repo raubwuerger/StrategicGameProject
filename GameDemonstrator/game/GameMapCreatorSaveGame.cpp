@@ -111,7 +111,7 @@ bool GameMapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 		gameMap->append(row);
 	}
 
-	GameMapRepository::GetInstance()->SetModelMapItems(gameMap);
+	GameMapRepository::GetInstance()->SetGameMapItems(gameMap);
 	return true;
 }
 

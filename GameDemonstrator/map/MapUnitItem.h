@@ -12,9 +12,12 @@ public:
 	void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 	/** Set UnitItemImage */
 	void SetUnitItemImage(const QImage* val);
+	/** */
+	void SetGameUnitId(int gameUnitId);
 private:
-	const QImage* UnitItemImage;
-	const QPointF& TopLeft;
+	const QImage*	UnitItemImage;
+	int				GameUnitId;
+	const QPointF&	TopLeft;
 };
 
 #endif

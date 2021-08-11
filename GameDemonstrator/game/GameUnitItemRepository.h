@@ -13,6 +13,12 @@ public:
 	void Release();
 	/** */
 	bool RegisterGameUnitItem(GameUnitItem* gameUnitItem);
+	/** */
+	int GetCount() const;
+	/** */
+	QMap<int, GameUnitItem*>::const_iterator GetFirstIterator() const;
+	/** */
+	QMap<int, GameUnitItem*>::const_iterator GetLastIterator() const;
 private:
 	/** */
 	GameUnitItemRepository();
