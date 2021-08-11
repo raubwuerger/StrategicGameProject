@@ -25,7 +25,6 @@ public:
 	/** */
 	bool operator < (const GameMapItem& rhs) const;
 private:
-	QPoint			CenterPoint;
 	const int		Row;
 	const int		Col;
 	const int		Id;

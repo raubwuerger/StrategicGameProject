@@ -14,9 +14,14 @@ public:
 	void SetUnitItemImage(const QImage* val);
 	/** */
 	void SetGameUnitId(int gameUnitId);
+	/** */
+	void SetMapHexItemId(int mapHexItemId) { MapHexItemId = mapHexItemId;  }
+	/** */
+	int GetMapHexItemId() const { return MapHexItemId; }
 private:
 	const QImage*	UnitItemImage;
 	int				GameUnitId;
+	int				MapHexItemId;
 	const QPointF&	TopLeft;
 };
 

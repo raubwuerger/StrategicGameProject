@@ -2,8 +2,7 @@
 #include "GameMapItem.h"
 
 GameMapItem::GameMapItem( int row, int col, int id )
-	: CenterPoint(0,0),
-		Row(row),
+	: 	Row(row),
 		Col(col),
 		Id(id),
 		TerrainType(nullptr),

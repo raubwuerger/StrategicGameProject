@@ -42,5 +42,5 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 	item->SetTerrainImage( ActiveTerrainType->GetImage() );
-	emit SignalTerrainTypeChanged( item->GetModelMapItemId(), ActiveTerrainType->GetId() );
+	emit SignalTerrainTypeChanged( item->GetGameMapItemId(), ActiveTerrainType->GetId() );
 }

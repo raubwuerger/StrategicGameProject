@@ -10,6 +10,7 @@ class ModelTerrainType;
 class HexagonData;
 class MapUnitItem;
 class GameMapItem;
+class MapHexItem;
 
 class MapView : public QGraphicsView
 {
@@ -25,6 +26,8 @@ public:
 	/** */
 	ConnectorMapHexItem* GetConnectorMapHexItem() const;
 	/** */
+	bool AddMapHexItem(MapHexItem* mapHexItem);
+	/** */
 	bool AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem);
 public slots:
 	/** */
@@ -39,21 +42,14 @@ protected:
 	/** */
 	virtual void wheelEvent( QWheelEvent *event );
 private:
-	bool CreateGameFromModel();
-	/** */
-	bool CreateMapFromModel();
-	/** */
-	bool CreateUnitsFromModel();
 	/** */
 	void InitMapEventManager();
+	/** */
+	bool CreateUnits();
 	/** */
 	double CalcMapWidthInPixel() const;
 	/** */
 	double CalcMapHeightInPixel() const;
-	/** */
-	bool CreateTopLeftPosition( int col, int row, QPointF &topLeftPosition );
-	/** */
-	const QImage* GetImage(const GameMapItem* modelMapItem);
 	/** */
 	void EmitHexItemPressed();
 public:

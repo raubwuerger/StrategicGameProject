@@ -35,12 +35,6 @@ bool GameMapCreatorSaveGame::CreateMap()
 		return false;
 	}
 
-// TODO: Gehört nicht in den GameMapCreator
-// 	if (false == CreateUnitItems(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::UNITS)))
-// 	{
-// 		return false;
-// 	}
-
 	return true;
 }
 

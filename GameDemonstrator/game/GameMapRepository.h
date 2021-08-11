@@ -1,5 +1,5 @@
-#ifndef ModelMapRepository_H
-#define ModelMapRepository_H
+#ifndef MODELMAPREPOSITORY_H
+#define MODELMAPREPOSITORY_H
 
 #include "GameMapItem.h"
 
@@ -37,8 +37,8 @@ private:
 private:
 	friend class GameMapFactory;
 	mutable const QVector< QVector<GameMapItem*> >*	MapItems;
-	static GameMapRepository*							Instance;
+	static GameMapRepository*						Instance;
 	QMap<int, GameMapItem*>							IdToModelMapItem;
 };
 
-#endif
+#endif // MODELMAPREPOSITORY_H

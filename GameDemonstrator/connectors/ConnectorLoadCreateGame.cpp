@@ -8,6 +8,7 @@
 #include ".\game\GameMapFactory.h"
 #include "game\GameFactory.h"
 #include "game\GameConfig.h"
+#include "map\MapHexItemFactory.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {
@@ -28,7 +29,8 @@ void ConnectorLoadCreateGame::SlotCreateNewGame()
 	GameFactory gameFactory;
 	gameFactory.Create(new GameConfig());
 
-	MapViewInstance->Create();
+	MapHexItemFactory mapHexItemFactory;
+	mapHexItemFactory.Create(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SlotLoadSaveGame()
@@ -42,7 +44,8 @@ void ConnectorLoadCreateGame::SlotLoadSaveGame()
 	GameFactory gameFactory;
 	gameFactory.CreateFromSavegame();
 
-	MapViewInstance->Create();
+	MapHexItemFactory mapHexItemFactory;
+	mapHexItemFactory.Create(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SetMapView( MapView* mapView )

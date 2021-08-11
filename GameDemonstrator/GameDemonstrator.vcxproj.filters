@@ -491,6 +491,12 @@
     <ClCompile Include="..\StandardLibQt\DomNodeListFinder.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
+    <ClCompile Include="map\MapHexItemRepository.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\MapHexItemFactory.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -672,6 +678,12 @@
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\DomNodeListFinder.h">
       <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapHexItemRepository.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapHexItemFactory.h">
+      <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

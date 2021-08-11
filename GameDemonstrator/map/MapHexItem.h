@@ -32,9 +32,9 @@ public:
 	/** Set m_TerrainImage */
 	bool SetTerrainImage( const QImage * val);
 	/** */
-	void SetModelMapItemId( int modelMapItemId );
+	void SetGameMapItemId( int gameMapItemId );
 	/** */
-	int GetModelMapItemId() const;
+	int GetGameMapItemId() const;
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );
@@ -51,7 +51,7 @@ private:
 	ConnectorMapHexItem	*EventItem;
 	QString			StringRowCol;
 	const QImage	*TerrainImage;
-	int				ModelMapItemId;
+	int				GameMapItemId;
 };
 
 #endif // MAPVIEWHEXITEM_H

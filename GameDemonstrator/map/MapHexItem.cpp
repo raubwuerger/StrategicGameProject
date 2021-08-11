@@ -13,7 +13,7 @@ MapHexItem::MapHexItem( const HexagonData& data, const QPointF& topLeft )
 	Row(-1),
 	EventItem(nullptr),
 	TerrainImage(nullptr),
-	ModelMapItemId(-1)
+	GameMapItemId(-1)
 {
 	this->HexData.MovePosition(topLeft);
 	this->CenterPoint.rx() = topLeft.x() + (data.Width / 2.0);
@@ -132,12 +132,12 @@ bool MapHexItem::SetTerrainImage( const QImage * val )
 	return true;
 }
 
-void MapHexItem::SetModelMapItemId(int modelMapItemId)
+void MapHexItem::SetGameMapItemId(int modelMapItemId)
 {
-	ModelMapItemId = modelMapItemId;
+	GameMapItemId = modelMapItemId;
 }
 
-int MapHexItem::GetModelMapItemId() const
+int MapHexItem::GetGameMapItemId() const
 {
-	return ModelMapItemId;
+	return GameMapItemId;
 }
