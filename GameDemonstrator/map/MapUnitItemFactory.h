@@ -1,19 +1,24 @@
-#ifndef MapViewUnitItemFactory_H
-#define MapViewUnitItemFactory_H
+#ifndef MAPVIEWUNITITEMFACTORY_H
+#define MAPVIEWUNITITEMFACTORY_H
 
-class MapUnitItem;
+class GameUnitItem;
+class MapView;
 
 /** Creates game map representation */
 class MapUnitItemFactory
 {
+public:
 	/** */
 	MapUnitItemFactory();
 	/** */
 	~MapUnitItemFactory();
 	/** */
-	bool Create() {}
+	bool Create(MapView* mapView);
+private:
 	/** */
-	MapUnitItem* CreateDummyUnitItem();
+	const QPointF AdjustTopLeftPosition(const QPointF& topLeftPosition);
+	/** */
+	const QImage* GetImage(const GameUnitItem* gameUnitItem);
 };
 
-#endif
+#endif // MAPVIEWUNITITEMFACTORY_H

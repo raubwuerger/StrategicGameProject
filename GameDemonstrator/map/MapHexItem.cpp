@@ -141,3 +141,13 @@ int MapHexItem::GetGameMapItemId() const
 {
 	return GameMapItemId;
 }
+
+const QPointF& MapHexItem::GetTopLeftPoint() const
+{
+	return TopLeftPoint;
+}
+
+const QPointF& MapHexItem::GetCenterPoint() const
+{
+	return CenterPoint;
+}

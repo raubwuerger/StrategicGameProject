@@ -497,6 +497,9 @@
     <ClCompile Include="map\MapHexItemFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="map\MapUnitItemRepository.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -683,6 +686,9 @@
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
     <ClInclude Include="map\MapHexItemFactory.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapUnitItemRepository.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,8 +5,11 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	: TopLeft(topLeft),
 	UnitItemImage(nullptr)
 {
-	this->boundingRect().moveRight(121);
-	this->boundingRect().moveBottom(64);
+	this->setPos(topLeft);
+	this->setAcceptHoverEvents(true);
+	this->setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
+	this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
+//	this->setZValue(1000); //Be sure to be visible
 }
 
 QRectF MapUnitItem::boundingRect() const
@@ -29,6 +32,11 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 void MapUnitItem::SetUnitItemImage(const QImage* val) 
 {
 	UnitItemImage = val;
+}
+
+const QImage* MapUnitItem::GetUnitItemImage() const
+{
+	return UnitItemImage;
 }
 
 void MapUnitItem::SetGameUnitId(int gameUnitId)

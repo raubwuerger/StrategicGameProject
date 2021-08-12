@@ -13,7 +13,11 @@ public:
 	/** Set UnitItemImage */
 	void SetUnitItemImage(const QImage* val);
 	/** */
+	const QImage* GetUnitItemImage() const;
+	/** */
 	void SetGameUnitId(int gameUnitId);
+	/** */
+	int GetGameUnitId() { return GameUnitId;  }
 	/** */
 	void SetMapHexItemId(int mapHexItemId) { MapHexItemId = mapHexItemId;  }
 	/** */

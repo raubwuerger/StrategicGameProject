@@ -35,6 +35,10 @@ public:
 	void SetGameMapItemId( int gameMapItemId );
 	/** */
 	int GetGameMapItemId() const;
+	/** */
+	const QPointF& GetTopLeftPoint() const;
+	/** */
+	const QPointF& GetCenterPoint() const;
 private:
 	/** */
 	void CreateHexPolygon( const HexagonData &data );

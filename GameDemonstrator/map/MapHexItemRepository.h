@@ -9,7 +9,7 @@ public:
 	/** */
 	static MapHexItemRepository* GetInstance();
 	/** */
-	bool RegisterMapHexItem(MapHexItem* mapHexItem);
+	void Init();
 	/** */
 	QVector< QVector<MapHexItem*>>::const_iterator GetFirstIterator() const;
 	/** */
@@ -23,9 +23,12 @@ private:
 	MapHexItemRepository();
 	/** */
 	~MapHexItemRepository();
+	/** */
+	void CreateMapHexItemsById();
 private:
 	QVector< QVector<MapHexItem*> >	MapHexItems;
-	static MapHexItemRepository* Instance;
+	QMap<int, MapHexItem*>			MapHexItemsById;
+	static MapHexItemRepository*	Instance;
 };
 
 #endif // MAPHEXITEMREPOSITORY_H

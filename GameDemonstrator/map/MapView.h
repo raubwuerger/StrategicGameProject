@@ -28,7 +28,7 @@ public:
 	/** */
 	bool AddMapHexItem(MapHexItem* mapHexItem);
 	/** */
-	bool AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem);
+	bool AddedMapUnit(MapUnitItem *mapUnitItem);
 public slots:
 	/** */
 	void SlotHexActive( int row, int col );

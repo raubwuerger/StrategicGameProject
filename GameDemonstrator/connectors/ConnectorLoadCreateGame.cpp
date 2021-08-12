@@ -9,6 +9,7 @@
 #include "game\GameFactory.h"
 #include "game\GameConfig.h"
 #include "map\MapHexItemFactory.h"
+#include "map\MapUnitItemFactory.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {
@@ -31,6 +32,9 @@ void ConnectorLoadCreateGame::SlotCreateNewGame()
 
 	MapHexItemFactory mapHexItemFactory;
 	mapHexItemFactory.Create(MapViewInstance);
+
+	MapUnitItemFactory mapUnitItemFactory;
+	mapUnitItemFactory.Create(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SlotLoadSaveGame()
@@ -46,6 +50,9 @@ void ConnectorLoadCreateGame::SlotLoadSaveGame()
 
 	MapHexItemFactory mapHexItemFactory;
 	mapHexItemFactory.Create(MapViewInstance);
+
+	MapUnitItemFactory mapUnitItemFactory;
+	mapUnitItemFactory.Create(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SetMapView( MapView* mapView )

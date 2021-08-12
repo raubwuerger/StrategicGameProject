@@ -57,7 +57,7 @@ bool MapView::AddMapHexItem(MapHexItem* mapHexItem)
 	return true;
 }
 
-bool MapView::AddedMapUnit(int row, int col, MapUnitItem *mapUnitItem)
+bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 {
 	Scene->addItem(mapUnitItem);
 	return false;
