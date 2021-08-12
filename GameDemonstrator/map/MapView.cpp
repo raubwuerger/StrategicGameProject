@@ -161,8 +161,15 @@ void MapView::wheelEvent(QWheelEvent *event)
 	{
 		return;
 	}
-	const qreal factor = 1.1;
-	if( event->angleDelta().y() > 0 )
+
+	if (false == QApplication::keyboardModifiers().testFlag(Qt::ControlModifier))
+	{
+		return;
+	}
+
+	const qreal factor = 2.0;
+	int y = event->angleDelta().y();
+	if( event->angleDelta().y() > 0 ) //Vergrößern
 	{
 		scale(factor,factor);
 	}
