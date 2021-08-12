@@ -14,6 +14,7 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	this->setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
 	this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
 	BoundingRect = QRectF(QPointF(0.0, 0.0), ImageRect);
+	CreatRect();
 	setZValue(255);
 }
 
@@ -24,26 +25,24 @@ QRectF MapUnitItem::boundingRect() const
 
 void MapUnitItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 {
-	setZValue(255);
 	ShowSelected();
 	if (EventConnector != nullptr)
 	{
 		emit EventConnector->SignalUnitItemEntered(GameUnitId);
 	}
-	QGraphicsRectItem::hoverEnterEvent(event);
+	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();
 
 }
 
 void MapUnitItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 {
-	setZValue(0);
 	ShowOriginal();
 	if (EventConnector != nullptr)
 	{
 		emit EventConnector->SignalUnitItemLeft(GameUnitId);
 	}
-	QGraphicsRectItem::hoverLeaveEvent(event);
+	QGraphicsPolygonItem::hoverLeaveEvent(event);
 	event->ignore();
 }
 
@@ -55,7 +54,7 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 		painter->drawImage(BoundingRect.topLeft(), *UnitItemImage);
 	}
 
-	QGraphicsRectItem::paint(painter, option, widget);
+	QGraphicsPolygonItem::paint(painter, option, widget);
 }
 
 /** Set m_TerrainImage */
@@ -104,4 +103,16 @@ void MapUnitItem::ShowOriginal()
 {
 	setPen(QPen());
 	update(boundingRect());
+}
+
+void MapUnitItem::CreatRect()
+{
+	QPolygonF rectPoints;
+	rectPoints << QPointF(0, 0)
+		<< QPointF(ImageRect.width(), 0)
+		<< QPointF(ImageRect.width(), ImageRect.height())
+		<< QPointF(0, ImageRect.height());
+
+	setPolygon(rectPoints);
+	setFlags(QGraphicsItem::ItemIsFocusable);
 }

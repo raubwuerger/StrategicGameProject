@@ -3,7 +3,7 @@
 
 class ConnectorMapUnitItem;
 
-class MapUnitItem : public QGraphicsRectItem
+class MapUnitItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
@@ -35,7 +35,8 @@ private:
 	void ShowSelected();
 	/** */
 	void ShowOriginal();
-
+	/** */
+	void CreatRect();
 private:
 	const QImage*	UnitItemImage;
 	int				GameUnitId;

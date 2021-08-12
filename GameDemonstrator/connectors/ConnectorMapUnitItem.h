@@ -4,6 +4,7 @@
 class ConnectorMapUnitItem : public QObject
 {
 Q_OBJECT
+public:
 signals :
 	/** */
 	void SignalUnitItemEntered( int mapUnitId );

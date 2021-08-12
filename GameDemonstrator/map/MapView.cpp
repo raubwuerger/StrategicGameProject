@@ -85,6 +85,7 @@ void MapView::InitMapEventManager()
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapItemInfo);
 
 	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &MapView::SlotUnitItemActive);
+	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapUnitItemInfo);
 }
 
 double MapView::CalcMapWidthInPixel() const
