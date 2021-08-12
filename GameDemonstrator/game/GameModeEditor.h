@@ -1,8 +1,8 @@
 // ID: $Id: config.properties,v 1.6 2006/10/05 08:51:42 jha Exp $
 //--------------------------------
 
-#ifndef GameModeEditor_H
-#define GameModeEditor_H
+#ifndef GAMEMODEEDITOR_H
+#define GAMEMODEEDITOR_H
 #include "GameMode.h"
 
 /** @stereotype Strategie*/
@@ -15,6 +15,6 @@ public:
 	virtual void Deavtivate();
 };
 
-#endif
+#endif // GAMEMODEEDITOR_H
 
 

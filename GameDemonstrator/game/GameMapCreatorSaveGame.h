@@ -1,5 +1,5 @@
-#ifndef MapCreatorSaveGame_H
-#define MapCreatorSaveGame_H
+#ifndef GAMEMAPCREATORSAVEGAME_H
+#define GAMEMAPCREATORSAVEGAME_H
 
 #include "IGameMapCreator.h"
 
@@ -31,4 +31,4 @@ private:
 	int				Cols;
 };
 
-#endif
+#endif // GAMEMAPCREATORSAVEGAME_H

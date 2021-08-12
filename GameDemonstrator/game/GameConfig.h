@@ -1,5 +1,5 @@
-#ifndef GameConfig_H
-#define GameConfig_H
+#ifndef GAMECONFIG_H
+#define GAMECONFIG_H
 
 class GameConfig
 {
@@ -11,4 +11,4 @@ public:
 	static QString		MapType;
 };
 
-#endif
+#endif // GAMECONFIG_H

@@ -1,5 +1,5 @@
-#ifndef GameMode_H
-#define GameMode_H
+#ifndef GAMEMODE_H
+#define GAMEMODE_H
 
 /** @stereotype Strategie*/
 class GameMode
@@ -15,7 +15,7 @@ public:
 	virtual void Deavtivate() = 0;
 };
 
-#endif
+#endif // GAMEMODE_H
 
 
 

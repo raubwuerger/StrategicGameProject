@@ -1,5 +1,5 @@
-#ifndef MAPCREATORSIMPLE_H
-#define MAPCREATORSIMPLE_H
+#ifndef GAMEMAPCREATORSIMPLE_H
+#define GAMEMAPCREATORSIMPLE_H
 
 #include "IGameMapCreator.h"
 class GameMapItem;
@@ -19,4 +19,4 @@ private:
 	int MapItemId;
 };
 
-#endif // MAPCREATORSIMPLE_H
+#endif // GAMEMAPCREATORSIMPLE_H

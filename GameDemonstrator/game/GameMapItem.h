@@ -1,5 +1,5 @@
-#ifndef ModelMapItem_H
-#define ModelMapItem_H
+#ifndef GAMEMAPITEM_H
+#define GAMEMAPITEM_H
 
 class ModelTerrainType;
 class ModelOwnerType;
@@ -32,4 +32,4 @@ private:
 	const ModelOwnerType	*OwnerType;
 };
 
-#endif
+#endif // GAMEMAPITEM_H

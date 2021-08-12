@@ -1,5 +1,5 @@
-#ifndef MODELMAPREPOSITORY_H
-#define MODELMAPREPOSITORY_H
+#ifndef GAMEMAPREPOSITORY_H
+#define GAMEMAPREPOSITORY_H
 
 #include "GameMapItem.h"
 
@@ -41,4 +41,4 @@ private:
 	QMap<int, GameMapItem*>							IdToModelMapItem;
 };
 
-#endif // MODELMAPREPOSITORY_H
+#endif // GAMEMAPREPOSITORY_H

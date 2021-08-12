@@ -1,5 +1,5 @@
-#ifndef ModelMapFactory_H
-#define ModelMapFactory_H
+#ifndef GAMEMAPFACTORY_H
+#define GAMEMAPFACTORY_H
 
 class GameMapRepository;
 class IGameMapCreator;
@@ -21,4 +21,4 @@ private:
 	IGameMapCreator*		MapCreator;
 };
 
-#endif
+#endif // GAMEMAPFACTORY_H

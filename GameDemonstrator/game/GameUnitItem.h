@@ -1,5 +1,5 @@
-#ifndef MODELUNITTYPE_H
-#define MODELUNITTYPE_H
+#ifndef GAMEUNITTYPE_H
+#define GAMEUNITTYPE_H
 
 class ModelUnitType;
 class GameMapItem;
@@ -30,4 +30,4 @@ private:
 	const ModelUnitType	*UnitType;
 };
 
-#endif // MODELUNITTYPE_H
+#endif // GAMEUNITTYPE_H

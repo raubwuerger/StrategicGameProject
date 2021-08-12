@@ -1,5 +1,5 @@
-#ifndef IMAPCREATOR_H
-#define IMAPCREATOR_H
+#ifndef IGAMEMAPCREATOR
+#define IGAMEMAPCREATOR
 
 class GameMapRepository;
 
@@ -11,4 +11,4 @@ public:
 	virtual GameMapRepository* GetMap() = 0;
 };
 
-#endif // IMAPCREATOR_H
+#endif // IGAMEMAPCREATOR

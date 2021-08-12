@@ -1,5 +1,5 @@
-#ifndef GAMECOUNTER_H
-#define GAMECOUNTER_H
+#ifndef GAMEMAINCOUNTER_H
+#define GAMEMAINCOUNTER_H
 
 class GameMainCounter
 {
@@ -23,4 +23,4 @@ private:
 	static GameMainCounter* Instance;
 };
 
-#endif // GAMECOUNTER_H
+#endif // GAMEMAINCOUNTER_H
