@@ -49,6 +49,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 		mapHexItems.push_back(mapHexItemRow);
 	}
 
+	MapHexItemRepository::GetInstance()->Init();
 	MapHexItemRepository::GetInstance()->SetMapHexItems(mapHexItems);
 	return true;
 }

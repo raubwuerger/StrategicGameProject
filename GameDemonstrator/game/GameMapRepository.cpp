@@ -16,6 +16,15 @@ GameMapRepository* GameMapRepository::GetInstance()
 	return Instance;
 }
 
+void GameMapRepository::Init()
+{
+	if ( nullptr != MapItems )
+	{ 
+		MapItems->clear();
+	}
+	IdToModelMapItem.clear();
+}
+
 void GameMapRepository::Release()
 {
 	delete Instance;
@@ -26,7 +35,7 @@ const QVector< QVector<GameMapItem*> >* GameMapRepository::GetMapItems() const
 	return MapItems;
 }
 
-void GameMapRepository::SetGameMapItems( const QVector< QVector<GameMapItem*>>* mapItems)
+void GameMapRepository::SetGameMapItems( QVector< QVector<GameMapItem*>>* mapItems)
 {
 	delete MapItems;
 	MapItems = nullptr;

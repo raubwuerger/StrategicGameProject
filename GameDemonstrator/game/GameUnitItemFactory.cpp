@@ -36,6 +36,8 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 		return false;
 	}
 
+	GameUnitItemRepository::GetInstance()->Init();
+
 	for (int nodeIndex = 0; nodeIndex < unitItemNodeList.count(); nodeIndex++)
 	{
 		GameUnitItem* created = CreateUnitItemFromXML(unitItemNodeList.at(nodeIndex));

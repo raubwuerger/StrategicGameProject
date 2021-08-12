@@ -16,11 +16,15 @@ ModelOwnerTypeRepository* ModelOwnerTypeRepository::GetInstance()
 	return Instance;
 }
 
+void ModelOwnerTypeRepository::Init()
+{
+	OwnerTypes.clear();
+}
+
 ModelOwnerTypeRepository::ModelOwnerTypeRepository()
 	: DefaultOwnerType(nullptr)
 {
 }
-
 
 ModelOwnerTypeRepository::~ModelOwnerTypeRepository()
 {

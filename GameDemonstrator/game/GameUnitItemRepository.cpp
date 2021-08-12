@@ -16,6 +16,11 @@ GameUnitItemRepository* GameUnitItemRepository::GetInstance()
 	return Instance;
 }
 
+void GameUnitItemRepository::Init()
+{
+	GameUnitItems.clear();
+}
+
 void GameUnitItemRepository::Release()
 {
 	delete Instance;

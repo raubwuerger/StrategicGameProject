@@ -16,6 +16,11 @@ ModelUnitTypeRepository* ModelUnitTypeRepository::GetInstance()
 	return Instance;
 }
 
+void ModelUnitTypeRepository::Init()
+{
+	Repository.clear();
+}
+
 void ModelUnitTypeRepository::Release()
 {
 	delete Instance;

@@ -10,11 +10,13 @@ public:
 	/** */
 	static GameMapRepository* GetInstance();
 	/** */
+	void Init();
+	/** */
 	void Release();
 	/** Get MapItems */	
 	const QVector< QVector<GameMapItem*> >* GetMapItems() const;
 	/** */
-	void SetGameMapItems( const QVector< QVector<GameMapItem*>>* mapItems );
+	void SetGameMapItems( QVector< QVector<GameMapItem*>>* mapItems );
 	/** */
 	int GetCols() const;
 	/** */
@@ -36,9 +38,9 @@ private:
 	void UpdateIdToModelMapItem();
 private:
 	friend class GameMapFactory;
-	mutable const QVector< QVector<GameMapItem*> >*	MapItems;
-	static GameMapRepository*						Instance;
-	QMap<int, GameMapItem*>							IdToModelMapItem;
+	QVector< QVector<GameMapItem*> >*	MapItems;
+	static GameMapRepository*			Instance;
+	QMap<int, GameMapItem*>				IdToModelMapItem;
 };
 
 #endif // GAMEMAPREPOSITORY_H

@@ -29,6 +29,8 @@ bool ModelUnitTypeFactory::Create()
 		return false;
 	}
 
+	ModelUnitTypeRepository::GetInstance()->Init();
+
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{

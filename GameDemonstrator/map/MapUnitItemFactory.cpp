@@ -38,7 +38,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 		{
 			return false;
 		}
-		const QPointF& topLeftPoint = mapHexItem->GetTopLeftPoint();
+		const QPointF topLeftPoint = mapHexItem->GetTopLeftPoint();
 		MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
 		newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 		newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
@@ -56,7 +56,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 const QPointF MapUnitItemFactory::AdjustTopLeftPosition(const QPointF& topLeftPosition)
 {
 	QPointF adjustedPosition(topLeftPosition);
-	return adjustedPosition -= QPointF(-16.0, -20.0); //TODO: http://wanderfalke/redmine/issues/4
+	return adjustedPosition -= QPointF(-8.0, -10.0); //TODO: http://wanderfalke/redmine/issues/4
 }
 
 const QImage* MapUnitItemFactory::GetImage(const GameUnitItem* gameUnitItem)

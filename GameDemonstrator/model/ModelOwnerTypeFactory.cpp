@@ -28,6 +28,8 @@ bool ModelOwnerTypeFactory::Create()
 		return false;
 	}
 
+	ModelOwnerTypeRepository::GetInstance()->Init();
+
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{

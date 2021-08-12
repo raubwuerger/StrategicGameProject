@@ -9,6 +9,8 @@ public:
 	/** */
 	static ModelUnitTypeRepository* GetInstance();
 	/** */
+	void Init();
+	/** */
 	void Release();
 	/** */
 	bool RegisterModelUnitType(const ModelUnitType* modelUnit);

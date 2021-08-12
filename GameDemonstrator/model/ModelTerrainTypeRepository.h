@@ -7,7 +7,10 @@ class ModelTerrainType;
 class ModelTerrainTypeRepository
 {
 public:
+	/** */
 	static ModelTerrainTypeRepository* GetInstance();
+	/** */
+	void Init();
 	/** If no TerrainTypes are registered, the first will be set as DefaultTerrainType */
 	bool RegisterTerrainType( ModelTerrainType *terrainType  );
 	/** */

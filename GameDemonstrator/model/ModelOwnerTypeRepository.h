@@ -7,7 +7,10 @@ class ModelOwnerType;
 class ModelOwnerTypeRepository
 {
 public:
+	/** */
 	static ModelOwnerTypeRepository* GetInstance();
+	/** */
+	void Init();
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
 	bool RegisterOwnerType( ModelOwnerType *ownerType  );
 	/** */

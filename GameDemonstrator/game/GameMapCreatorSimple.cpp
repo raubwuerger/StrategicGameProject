@@ -31,6 +31,7 @@ bool GameMapCreatorSimple::CreateMap()
 		simpleMap->append(tempRow);
 	}
 
+	GameMapRepository::GetInstance()->Init();
 	GameMapRepository::GetInstance()->SetGameMapItems( simpleMap );
 	return true;
 }
