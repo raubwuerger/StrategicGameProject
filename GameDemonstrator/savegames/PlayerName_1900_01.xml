@@ -5004,5 +5004,15 @@
 			<UnitTypeID>3</UnitTypeID>
 			<MapItemID>96</MapItemID>
 		</Unit>
+		<Unit>
+			<ID>4</ID>
+			<UnitTypeID>1</UnitTypeID>
+			<MapItemID>280</MapItemID>
+		</Unit>
+		<Unit>
+			<ID>5</ID>
+			<UnitTypeID>1</UnitTypeID>
+			<MapItemID>327</MapItemID>
+		</Unit>
 	</Units>
 </Savegame>
