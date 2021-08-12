@@ -14,13 +14,13 @@ public:
 	/** */
 	~HexItemInfoDialog();
 	/** */
-	void SetMapHexItemId(const QString& id);
+	void SetId(const QString& id);
 	/** */
-	void SetMapHexItemRow(const QString& row);
+	void SetRow(const QString& row);
 	/** */
-	void SetMapHexItemCol(const QString& col);
+	void SetCol(const QString& col);
 	/** */
-	void SetMapHexItemTerrainId(const QString& terrainTypeId);
+	void SetTerrainName(const QString& terrainTypeName);
 private:
 	Ui::HexItemInfoDialog ui;
 };

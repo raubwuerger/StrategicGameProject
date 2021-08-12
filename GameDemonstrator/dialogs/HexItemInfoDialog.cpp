@@ -12,22 +12,22 @@ HexItemInfoDialog::~HexItemInfoDialog()
 
 }
 
-void HexItemInfoDialog::SetMapHexItemId(const QString& id)
+void HexItemInfoDialog::SetId(const QString& id)
 {
 	ui.lineEditID->setText(id);
 }
 
-void HexItemInfoDialog::SetMapHexItemRow(const QString& row)
+void HexItemInfoDialog::SetRow(const QString& row)
 {
 	ui.lineEditRow->setText(row);
 }
 
-void HexItemInfoDialog::SetMapHexItemCol(const QString& col)
+void HexItemInfoDialog::SetCol(const QString& col)
 {
 	ui.lineEditCol->setText(col);
 }
 
-void HexItemInfoDialog::SetMapHexItemTerrainId(const QString& terrainTypeId)
+void HexItemInfoDialog::SetTerrainName(const QString& terrainTypeName)
 {
-	ui.lineEditType->setText(terrainTypeId);
+	ui.lineEditType->setText(terrainTypeName);
 }
