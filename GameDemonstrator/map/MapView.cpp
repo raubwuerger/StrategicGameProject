@@ -69,9 +69,13 @@ bool MapView::AddMapHexItem(MapHexItem* mapHexItem)
 
 bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 {
+	if (nullptr == mapUnitItem)
+	{
+		return false;
+	}
 	mapUnitItem->SetEventConnector(ConnectorMapUnitItemInstance);
 	Scene->addItem(mapUnitItem);
-	return false;
+	return true;
 }
 
 void MapView::InitMapEventManager()
