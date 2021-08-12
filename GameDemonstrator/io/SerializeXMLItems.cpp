@@ -26,3 +26,4 @@ const QString SerializeXMLItems::UNITS_UNIT = "Unit";
 const QString SerializeXMLItems::UNITS_ID = "ID";
 const QString SerializeXMLItems::UNITS_UNITTYPEID = "UnitTypeID";
 const QString SerializeXMLItems::UNITS_MAPITEMID = "MapItemID";
+const QString SerializeXMLItems::UNITS_NAME = "Name";

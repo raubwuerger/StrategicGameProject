@@ -97,7 +97,7 @@ void MapEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItemId);
 	if (nullptr != gameUnitItem)
 	{
-		mapUnitItemName = gameUnitItem->GetModelUnitType()->GetName();
+		mapUnitItemName = gameUnitItem->GetName();
 		mapUnitItemType = gameUnitItem->GetModelUnitType()->GetName();
 	}
 

@@ -36,6 +36,17 @@ void GameUnitItem::SetGameMapItemId(int val)
 	GameMapItemId = val;
 }
 
+
+const QString& GameUnitItem::GetName() const
+{
+	return Name;
+}
+
+void GameUnitItem::SetName(const QString& name)
+{
+	Name = name;
+}
+
 bool GameUnitItem::operator<(const GameUnitItem& rhs) const
 {
 	return Id < rhs.Id;

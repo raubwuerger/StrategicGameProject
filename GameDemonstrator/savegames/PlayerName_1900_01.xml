@@ -4993,26 +4993,31 @@
 			<ID>1</ID>
 			<UnitTypeID>1</UnitTypeID>
 			<MapItemID>95</MapItemID>
+			<Name>1. Infanterie-Rgt.</Name>
 		</Unit>
 		<Unit>
 			<ID>2</ID>
 			<UnitTypeID>2</UnitTypeID>
 			<MapItemID>50</MapItemID>
+			<Name>1. Panzer-Rgt.</Name>
 		</Unit>
 		<Unit>
 			<ID>3</ID>
 			<UnitTypeID>3</UnitTypeID>
 			<MapItemID>96</MapItemID>
+			<Name>1. Artillerie-Rgt.</Name>
 		</Unit>
 		<Unit>
 			<ID>4</ID>
 			<UnitTypeID>1</UnitTypeID>
 			<MapItemID>280</MapItemID>
+			<Name>2. Infanterie-Rgt.</Name>
 		</Unit>
 		<Unit>
 			<ID>5</ID>
 			<UnitTypeID>1</UnitTypeID>
 			<MapItemID>327</MapItemID>
+			<Name>3. Infanterie-Rgt.</Name>
 		</Unit>
 	</Units>
 </Savegame>

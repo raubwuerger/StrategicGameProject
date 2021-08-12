@@ -98,8 +98,18 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		}
 	}
 
+	QString unitName;
+	{
+		DomValueExtractor domNodeListValueExtractor(unitNode);
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_NAME, unitName))
+		{
+			return nullptr;
+		}
+	}
+
 	GameUnitItem *newUnitItem = new GameUnitItem(id);
 	newUnitItem->SetModelUnitType(modelUnitType);
 	newUnitItem->SetGameMapItemId(mapItemId);
+	newUnitItem->SetName(unitName);
 	return newUnitItem;
 }

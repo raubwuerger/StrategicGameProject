@@ -24,10 +24,15 @@ public:
 	int GetGameMapItemId() const;
 	/** */
 	void SetGameMapItemId(int val);
+	/** */
+	const QString& GetName() const;
+	/** */
+	void SetName( const QString& name);
 private:
 	const int		Id;
 	int				GameMapItemId;
 	const ModelUnitType	*UnitType;
+	QString			Name;
 };
 
 #endif // GAMEUNITTYPE_H
