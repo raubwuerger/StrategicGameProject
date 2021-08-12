@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>UnitTypeInfoDialog</string>
   </property>
-  <widget class="QLabel" name="labelRow">
+  <widget class="QLabel" name="labelId">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -26,7 +26,7 @@
     <string>ID:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditRow">
+  <widget class="QLineEdit" name="lineEditId">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -36,7 +36,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="labelCol">
+  <widget class="QLabel" name="labelName">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -49,7 +49,7 @@
     <string>Name:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditID">
+  <widget class="QLineEdit" name="lineEditName">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -59,7 +59,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="labelType">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -72,7 +72,7 @@
     <string>Type:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditCol">
+  <widget class="QLineEdit" name="lineEditType">
    <property name="geometry">
     <rect>
      <x>70</x>

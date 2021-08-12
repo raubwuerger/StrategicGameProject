@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameUnitItemRepository.h"
-#include "GameMapItem.h"
+#include "GameUnitItem.h"
 #include "LogInterface.h"
 
 GameUnitItemRepository*	GameUnitItemRepository::Instance = nullptr;
@@ -50,6 +50,24 @@ QMap<int, GameUnitItem*>::const_iterator GameUnitItemRepository::GetFirstIterato
 QMap<int, GameUnitItem*>::const_iterator GameUnitItemRepository::GetLastIterator() const
 {
 	return GameUnitItems.cend();
+}
+
+GameUnitItem* GameUnitItemRepository::GetGameUnitItemById(int gameUnitItemId)
+{
+	if (gameUnitItemId < 0)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Requested GameUnitItemId invalid (below zero)!"));
+		return nullptr;
+	}
+
+	if (false == GameUnitItems.contains(gameUnitItemId))
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Requested GameUnitItemId %1 is not registered!").arg(QString::number(gameUnitItemId)));
+		return nullptr;
+	}
+
+	return GameUnitItems[gameUnitItemId];
+
 }
 
 GameUnitItemRepository::GameUnitItemRepository()

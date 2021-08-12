@@ -500,6 +500,15 @@
     <ClCompile Include="map\MapUnitItemRepository.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="connectors\ConnectorMapUnitItem.cpp">
+      <Filter>Source Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorMapUnitItem.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorMapUnitItem.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -791,6 +800,9 @@
     </CustomBuild>
     <CustomBuild Include="editors\UnitTypeIdSelector.h">
       <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="connectors\ConnectorMapUnitItem.h">
+      <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

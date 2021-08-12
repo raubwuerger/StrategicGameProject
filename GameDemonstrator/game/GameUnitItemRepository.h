@@ -1,7 +1,8 @@
 #ifndef GAMEUNITITEMREPOSITORY_H
 #define GAMEUNITITEMREPOSITORY_H
 
-#include "GameUnitItem.h"
+//#include "GameUnitItem.h"
+class GameUnitItem;
 
 /** Repräsentiert die Karte im Speicher */
 class GameUnitItemRepository
@@ -19,6 +20,8 @@ public:
 	QMap<int, GameUnitItem*>::const_iterator GetFirstIterator() const;
 	/** */
 	QMap<int, GameUnitItem*>::const_iterator GetLastIterator() const;
+	/** */
+	GameUnitItem* GetGameUnitItemById(int gameUnitItemId);
 private:
 	/** */
 	GameUnitItemRepository();

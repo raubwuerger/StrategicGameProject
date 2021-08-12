@@ -4,6 +4,7 @@
 #include "MapHexItem.h"
 #include "MapEventManager.h"
 #include "connectors/ConnectorMapHexItem.h"
+#include "connectors/ConnectorMapUnitItem.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
 #include "game/GameMapRepository.h"
@@ -13,17 +14,21 @@
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent),
 	ROW_COL_NOT_INITIALIZED(-1),
+	NO_ACTIVE_UNIT_ID(-1),
 	ActiveRow(ROW_COL_NOT_INITIALIZED),
-	ActiveCol(ROW_COL_NOT_INITIALIZED)
+	ActiveCol(ROW_COL_NOT_INITIALIZED),
+	ActiveUnitItemId(NO_ACTIVE_UNIT_ID)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	ConnectorMapHexItemInstance = new ConnectorMapHexItem();
+	ConnectorMapHexItemInstance = new ConnectorMapHexItem;
+	ConnectorMapUnitItemInstance = new ConnectorMapUnitItem;
 	Scene = new MapGraphicsScene(this);
 }
 
 MapView::~MapView()
 {
 	delete ConnectorMapHexItemInstance;
+	delete ConnectorMapUnitItemInstance;
 	delete MapEventManagerInstance;
 }
 
@@ -45,54 +50,37 @@ ConnectorMapHexItem* MapView::GetConnectorMapHexItem() const
 	return ConnectorMapHexItemInstance;
 }
 
+ConnectorMapUnitItem* MapView::GetConnectorMapUnitItem() const
+{
+	return ConnectorMapUnitItemInstance;
+}
+
 bool MapView::AddMapHexItem(MapHexItem* mapHexItem)
 {
 	if (nullptr == mapHexItem )
 	{
 		return false;
 	}
-	mapHexItem->SetHexItemEventManager(ConnectorMapHexItemInstance);
+	mapHexItem->SetEventConnector(ConnectorMapHexItemInstance);
 	Scene->addItem(mapHexItem);
-	MapEventManagerInstance->RegisterMapItem(mapHexItem);
+	MapEventManagerInstance->RegisterMapHexItem(mapHexItem);
 	return true;
 }
 
 bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 {
+	mapUnitItem->SetEventConnector(ConnectorMapUnitItemInstance);
 	Scene->addItem(mapUnitItem);
 	return false;
 }
 
 void MapView::InitMapEventManager()
 {
-	MapEventManagerInstance->InitMapItemsRegistry(GameMapRepository::GetInstance()->GetRows(), GameMapRepository::GetInstance()->GetCols());
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexActive);
+	MapEventManagerInstance->InitGameMapRegistry();
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexMapItemActive);
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapItemInfo);
-}
 
-#include "game/GameUnitItemRepository.h"
-bool MapView::CreateUnits()
-{
-
-	QMap<int, GameUnitItem*>::const_iterator gameUnitIterator = GameUnitItemRepository::GetInstance()->GetFirstIterator();
-	while (gameUnitIterator != GameUnitItemRepository::GetInstance()->GetLastIterator())
-	{
-		GameUnitItem* currentGameUnit = gameUnitIterator.value();
-		int gameMapItemId = currentGameUnit->GetGameMapItemId();
-		GameMapItem* gameMapItem = GameMapRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
-		if (nullptr == gameMapItem)
-		{
-			gameUnitIterator++;
-			continue;
-
-		}
-
-
-//		MapUnitItem* newMapUnitItem = new MapUnitItem(gameMapItem->Get);
-		gameUnitIterator++;
-	}
-
-	return true;
+	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &MapView::SlotUnitItemActive);
 }
 
 double MapView::CalcMapWidthInPixel() const
@@ -128,10 +116,20 @@ void MapView::mouseMoveEvent(QMouseEvent *event)
 	}
 }
 
-void MapView::SlotHexActive(int row, int col)
+void MapView::SlotHexMapItemActive(int row, int col)
 {
 	ActiveRow = row;
 	ActiveCol = col;
+}
+
+void MapView::SlotUnitItemActive(int unitItemId)
+{
+	ActiveUnitItemId = unitItemId;
+}
+
+void MapView::SlotUnitItemDeacivated()
+{
+	ActiveUnitItemId = NO_ACTIVE_UNIT_ID;
 }
 
 void MapView::EmitHexItemPressed()

@@ -4992,17 +4992,17 @@
 		<Unit>
 			<ID>1</ID>
 			<UnitTypeID>1</UnitTypeID>
-			<MapItemID>3</MapItemID>
+			<MapItemID>95</MapItemID>
 		</Unit>
 		<Unit>
 			<ID>2</ID>
 			<UnitTypeID>2</UnitTypeID>
-			<MapItemID>4</MapItemID>
+			<MapItemID>50</MapItemID>
 		</Unit>
 		<Unit>
 			<ID>3</ID>
 			<UnitTypeID>3</UnitTypeID>
-			<MapItemID>12</MapItemID>
+			<MapItemID>96</MapItemID>
 		</Unit>
 	</Units>
 </Savegame>

@@ -23,6 +23,7 @@ MapHexItem::MapHexItem( const HexagonData& data, const QPointF& topLeft )
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 	setCacheMode(QGraphicsItem::ItemCoordinateCache);
+	setZValue(1);
 }
 
 MapHexItem::~MapHexItem()
@@ -74,7 +75,6 @@ void MapHexItem::CreateHexPolygon( const HexagonData &data )
 
 void MapHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
-	setZValue( 255 );
 	ShowSelected();
 	if( EventItem != nullptr )
 	{
@@ -86,15 +86,14 @@ void MapHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 
 void MapHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event) 
 {
-	setZValue( 0 );
 	ShowOriginal();
 	QGraphicsPolygonItem::hoverLeaveEvent(event);
 	event->ignore();
 }
 
-void MapHexItem::SetHexItemEventManager(ConnectorMapHexItem * val)
+void MapHexItem::SetEventConnector(ConnectorMapHexItem * eventConnector)
 {
-	EventItem = val;
+	EventItem = eventConnector;
 }
 
 void MapHexItem::ShowSelected()

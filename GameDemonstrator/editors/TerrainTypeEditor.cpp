@@ -36,7 +36,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 
-	MapHexItem *item = MapEventManagerInstance->FindItemByIndexNonConst(row, col);
+	MapHexItem *item = MapEventManagerInstance->FindIMapHextemByIndexNonConst(row, col);
 	if( item == nullptr )
 	{
 		return;

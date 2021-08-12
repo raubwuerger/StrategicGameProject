@@ -5,6 +5,7 @@
 class MapGraphicsScene;
 class HexagonData;
 class ConnectorMapHexItem;
+class ConnectorMapUnitItem;
 class MapEventManager;
 class ModelTerrainType;
 class HexagonData;
@@ -26,12 +27,18 @@ public:
 	/** */
 	ConnectorMapHexItem* GetConnectorMapHexItem() const;
 	/** */
+	ConnectorMapUnitItem* GetConnectorMapUnitItem() const;
+	/** */
 	bool AddMapHexItem(MapHexItem* mapHexItem);
 	/** */
 	bool AddedMapUnit(MapUnitItem *mapUnitItem);
 public slots:
 	/** */
-	void SlotHexActive( int row, int col );
+	void SlotHexMapItemActive( int row, int col );
+	/** */
+	void SlotUnitItemActive(int unitItemId);
+	/** */
+	void SlotUnitItemDeacivated();
 protected:
 	/** */
 	virtual void mouseReleaseEvent(QMouseEvent * event);
@@ -45,8 +52,6 @@ private:
 	/** */
 	void InitMapEventManager();
 	/** */
-	bool CreateUnits();
-	/** */
 	double CalcMapWidthInPixel() const;
 	/** */
 	double CalcMapHeightInPixel() const;
@@ -57,11 +62,14 @@ private:
 public:
 	MapGraphicsScene*		Scene;					//TODO: Setter
 	ConnectorMapHexItem*	ConnectorMapHexItemInstance;	//TODO: Setter
+	ConnectorMapUnitItem*	ConnectorMapUnitItemInstance;
 	MapEventManager*		MapEventManagerInstance;		//TODO: Setter
 private:
+	const int	NO_ACTIVE_UNIT_ID;
 	const int	ROW_COL_NOT_INITIALIZED;
 	int			ActiveRow;
 	int			ActiveCol;
+	int			ActiveUnitItemId;
 };
 
 #endif // CMAPVIEW_H

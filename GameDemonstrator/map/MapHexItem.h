@@ -20,7 +20,7 @@ public:
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
 	/** Set eventItem */
-	void SetHexItemEventManager( ConnectorMapHexItem * val);
+	void SetEventConnector( ConnectorMapHexItem * eventConnector );
 	/** */
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	/** Get row */

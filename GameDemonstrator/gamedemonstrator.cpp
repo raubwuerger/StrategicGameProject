@@ -46,6 +46,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
 	MapViewInstance = new MapView(this);
+	MapViewInstance->MapEventManagerInstance = new MapEventManager(nullptr);
 
 	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
 
@@ -66,8 +67,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 
-	MapViewInstance->MapEventManagerInstance = new MapEventManager(nullptr);
-	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance;
 
 	CreateEditorToolbox();
 	layoutMain->addWidget(MapViewInstance);
@@ -190,6 +189,7 @@ void GameDemonstrator::CreateHexItemInfoDialog()
  	dockHexItem->setWidget( HexItemInfoDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
 	ViewMenu->addAction(dockHexItem->toggleViewAction());
+	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance;
 }
 
 void GameDemonstrator::CreateUnitTypeInfoDialog()
@@ -200,6 +200,7 @@ void GameDemonstrator::CreateUnitTypeInfoDialog()
 	dockUnitType->setWidget(UnitTypeInfoDialogInstance);
 	addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
 	ViewMenu->addAction(dockUnitType->toggleViewAction());
+	MapViewInstance->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance;
 }
 
 #include "LogInterface.h"
