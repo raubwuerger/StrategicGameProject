@@ -156,26 +156,42 @@ void MapView::EmitHexItemPressed()
 
 void MapView::wheelEvent(QWheelEvent *event)
 {
+	if (false == QApplication::keyboardModifiers().testFlag(Qt::ControlModifier))
+	{
+		return;
+	}
 	QGraphicsView::wheelEvent(event);
 	if( true == event->isAccepted() )
 	{
 		return;
 	}
 
-	if (false == QApplication::keyboardModifiers().testFlag(Qt::ControlModifier))
-	{
-		return;
-	}
+	DoZoom(event);
+	event->accept();
+}
 
-	const qreal factor = 2.0;
+void MapView::DoZoom(QWheelEvent *event)
+{
+	const qreal ZOOM_MAX = 3.0;
+	const qreal ZOOM_MIN = 0.2;
+	const qreal ZOOM_FACTOR = 1.6;
+	QTransform currentTransformValue = this->transform();
 	int y = event->angleDelta().y();
-	if( event->angleDelta().y() > 0 ) //Vergrößern
+	if (event->angleDelta().y() > 0) //Vergrößern
 	{
-		scale(factor,factor);
+		if (currentTransformValue.m11() >= ZOOM_MAX)
+		{
+			return;
+		}
+		scale(ZOOM_FACTOR, ZOOM_FACTOR);
 	}
 	else
 	{
-		scale(1 / factor, 1 / factor );
+		if (currentTransformValue.m11() <= ZOOM_MIN)
+		{
+			return;
+		}
+		scale(1.0 / ZOOM_FACTOR, 1.0 / ZOOM_FACTOR);
 	}
-	event->accept();
 }
+

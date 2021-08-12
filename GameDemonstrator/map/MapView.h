@@ -52,6 +52,8 @@ private:
 	double CalcMapHeightInPixel() const;
 	/** */
 	void EmitHexItemPressed();
+	/** */
+	void DoZoom(QWheelEvent *event);
 public:
 	MapGraphicsScene*		Scene;					//TODO: Setter
 	ConnectorMapHexItem*	ConnectorMapHexItemInstance;	//TODO: Setter
