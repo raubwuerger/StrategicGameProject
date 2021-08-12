@@ -7,11 +7,13 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	UnitItemImage(nullptr),
 	EventConnector(nullptr)
 {
+	ImageRect.setWidth(64);
+	ImageRect.setHeight(43);
 	this->setPos(topLeft);
 	this->setAcceptHoverEvents(true);
 	this->setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
 	this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
-	BoundingRect = QRectF(QPointF(0.0, 0.0), QSizeF(64, 43));
+	BoundingRect = QRectF(QPointF(0.0, 0.0), ImageRect);
 	setZValue(255);
 }
 
@@ -50,7 +52,7 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 {
 	if( nullptr != UnitItemImage )
 	{
-		painter->drawImage(QPointF(0, 0), *UnitItemImage);
+		painter->drawImage(BoundingRect.topLeft(), *UnitItemImage);
 	}
 
 	QGraphicsRectItem::paint(painter, option, widget);

@@ -41,6 +41,7 @@ private:
 	int				GameUnitId;
 	int				MapHexItemId;
 	const QPointF&	TopLeft;
+	QSize			ImageRect;
 	QRectF			BoundingRect;
 	ConnectorMapUnitItem*	EventConnector;
 };

@@ -111,15 +111,6 @@ void MapView::mousePressEvent(QMouseEvent *event)
 	EmitHexItemPressed();
 }
 
-void MapView::mouseMoveEvent(QMouseEvent *event)
-{
-	QGraphicsView::mouseMoveEvent(event);
-	if (event->buttons() == Qt::LeftButton)
-	{
-		EmitHexItemPressed();
-	}
-}
-
 void MapView::SlotHexMapItemActive(int row, int col)
 {
 	ActiveRow = row;
