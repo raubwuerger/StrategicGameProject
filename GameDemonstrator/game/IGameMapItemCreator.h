@@ -1,14 +1,13 @@
 #ifndef IGAMEMAPCREATOR
 #define IGAMEMAPCREATOR
 
-class GameMapRepository;
+class GameMapItemRepository;
 
-class IGameMapCreator
+class IGameMapItemCreator
 {
 public:
 	/** */
 	virtual bool CreateMap() = 0;
-	virtual GameMapRepository* GetMap() = 0;
 };
 
 #endif // IGAMEMAPCREATOR

@@ -1,22 +1,22 @@
 #include "stdafx.h"
-#include "GameMapRepository.h"
+#include "GameMapItemRepository.h"
 #include "GameMapItem.h"
 #include "LogInterface.h"
 
-GameMapRepository*	GameMapRepository::Instance = nullptr;
+GameMapItemRepository*	GameMapItemRepository::Instance = nullptr;
 
-GameMapRepository* GameMapRepository::GetInstance()
+GameMapItemRepository* GameMapItemRepository::GetInstance()
 {
 	if( Instance != nullptr )
 	{
 		return Instance;
 	}
 
-	Instance = new GameMapRepository;
+	Instance = new GameMapItemRepository;
 	return Instance;
 }
 
-void GameMapRepository::Init()
+void GameMapItemRepository::Init()
 {
 	if ( nullptr != MapItems )
 	{ 
@@ -25,17 +25,17 @@ void GameMapRepository::Init()
 	IdToModelMapItem.clear();
 }
 
-void GameMapRepository::Release()
+void GameMapItemRepository::Release()
 {
 	delete Instance;
 }
 
-const QVector< QVector<GameMapItem*> >* GameMapRepository::GetMapItems() const
+const QVector< QVector<GameMapItem*> >* GameMapItemRepository::GetMapItems() const
 {
 	return MapItems;
 }
 
-void GameMapRepository::SetGameMapItems( QVector< QVector<GameMapItem*>>* mapItems)
+void GameMapItemRepository::SetGameMapItems( QVector< QVector<GameMapItem*>>* mapItems)
 {
 	delete MapItems;
 	MapItems = nullptr;
@@ -43,7 +43,7 @@ void GameMapRepository::SetGameMapItems( QVector< QVector<GameMapItem*>>* mapIte
 	UpdateIdToModelMapItem();
 }
 
-void GameMapRepository::UpdateIdToModelMapItem()
+void GameMapItemRepository::UpdateIdToModelMapItem()
 {
 	IdToModelMapItem.clear();
 	int rows = GetRows();
@@ -58,17 +58,17 @@ void GameMapRepository::UpdateIdToModelMapItem()
 	}
 }
 
-GameMapRepository::GameMapRepository()
+GameMapItemRepository::GameMapItemRepository()
 	: MapItems(nullptr)
 {
 }
 
-GameMapRepository::~GameMapRepository()
+GameMapItemRepository::~GameMapItemRepository()
 {
 	delete MapItems;
 }
 
-int GameMapRepository::GetCols() const
+int GameMapItemRepository::GetCols() const
 {
 	if( nullptr == MapItems )
 	{
@@ -86,7 +86,7 @@ int GameMapRepository::GetCols() const
 	return firstRow.size();
 }
 
-int GameMapRepository::GetRows() const
+int GameMapItemRepository::GetRows() const
 {
 	if( nullptr == MapItems )
 	{
@@ -96,7 +96,7 @@ int GameMapRepository::GetRows() const
 	return MapItems->size();
 }
 
-GameMapItem* GameMapRepository::GetGameMapItem( unsigned int row, unsigned int col)
+GameMapItem* GameMapItemRepository::GetGameMapItem( unsigned int row, unsigned int col)
 {
 	int rowCount = GetRows();
 	if( row > rowCount )
@@ -116,7 +116,7 @@ GameMapItem* GameMapRepository::GetGameMapItem( unsigned int row, unsigned int c
 	return concreteRow.at(col);
 }
 
-int GameMapRepository::GetGameMapItemId( unsigned int row, unsigned int col)
+int GameMapItemRepository::GetGameMapItemId( unsigned int row, unsigned int col)
 {
 	const GameMapItem* found = GetGameMapItem(row,col);
 	if( nullptr == found )
@@ -127,13 +127,13 @@ int GameMapRepository::GetGameMapItemId( unsigned int row, unsigned int col)
 	return found->GetId();
 }
 
-bool GameMapRepository::UpdateGameMapItem( const GameMapItem* ItemToUpdate )
+bool GameMapItemRepository::UpdateGameMapItem( const GameMapItem* ItemToUpdate )
 {
 	jha::GetLog()->Log_DEBUG( QObject::tr("Not yet implemented!") );
 	return false;
 }
 
-GameMapItem* GameMapRepository::GetGameMapItemById(unsigned int id)
+GameMapItem* GameMapItemRepository::GetGameMapItemById(unsigned int id)
 {
 	if( id < 0 )
 	{

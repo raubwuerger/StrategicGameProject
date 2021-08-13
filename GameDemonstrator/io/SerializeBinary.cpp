@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SerializeBinary.h"
-#include "game\GameMapRepository.h"
+#include "game\GameMapItemRepository.h"
 
 
 SerializeBinary::SerializeBinary()

@@ -1,24 +1,24 @@
 #ifndef GAMEMAPFACTORY_H
 #define GAMEMAPFACTORY_H
 
-class GameMapRepository;
-class IGameMapCreator;
+class GameMapItemRepository;
+class IGameMapItemCreator;
 
 /** Creates game map representation */
-class GameMapFactory
+class GameMapItemFactory
 {
 public:
 	/** */
-	GameMapFactory();
+	GameMapItemFactory();
 	/** */
-	~GameMapFactory();
+	~GameMapItemFactory();
 	/** */
 	void Release();
 	/** Creates Map */
 	bool Create();
 private:
-	GameMapRepository*		TheGameMap;
-	IGameMapCreator*		MapCreator;
+	GameMapItemRepository*		TheGameMap;
+	IGameMapItemCreator*		MapCreator;
 };
 
 #endif // GAMEMAPFACTORY_H

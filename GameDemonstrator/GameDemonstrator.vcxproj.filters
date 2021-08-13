@@ -455,19 +455,7 @@
     <ClCompile Include="editors\UnitTypeIdSelector.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameMapCreatorSaveGame.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMapCreatorSimple.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMapFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="game\GameMapItem.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMapRepository.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="game\GameUnitItem.cpp">
@@ -508,6 +496,18 @@
     </ClCompile>
     <ClCompile Include="MapHexItemHexagonData.cpp">
       <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapItemRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapItemFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapItemCreatorSimple.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapItemCreatorSaveGame.cpp">
+      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -652,22 +652,7 @@
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
-    <ClInclude Include="game\IGameMapCreator.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapCreatorSaveGame.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapCreatorSimple.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameMapItem.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapRepository.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameUnitItem.h">
@@ -699,6 +684,21 @@
     </ClInclude>
     <ClInclude Include="MapHexItemHexagonData.h">
       <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapItemRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapItemFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapItemCreatorSimple.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapItemCreatorSaveGame.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\IGameMapItemCreator.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "model/ModelUnitTypeFactory.h"
-#include "game/GameMapRepository.h"
+#include "game/GameMapItemRepository.h"
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
@@ -87,7 +87,7 @@ GameDemonstrator::~GameDemonstrator()
 	ModelOwnerTypeRepository::GetInstance()->Release();
 	ModelOwnerTypeRepository::GetInstance()->Release();
 	ActionRepository::GetInstance()->Release();
-	GameMapRepository::GetInstance()->Release();
+	GameMapItemRepository::GetInstance()->Release();
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()

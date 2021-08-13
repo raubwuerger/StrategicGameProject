@@ -1,23 +1,21 @@
 #ifndef GAMEMAPCREATORSAVEGAME_H
 #define GAMEMAPCREATORSAVEGAME_H
 
-#include "IGameMapCreator.h"
+#include "IGameMapItemCreator.h"
 
-class GameMapRepository;
+class GameMapItemRepository;
 class GameMapItem;
 class QDomNode;
 
-class GameMapCreatorSaveGame : public IGameMapCreator
+class GameMapItemCreatorSaveGame : public IGameMapItemCreator
 {
 public:
 /** */
-	GameMapCreatorSaveGame( const QDomNode mapElements );
+	GameMapItemCreatorSaveGame( const QDomNode mapElements );
 /** */
-	~GameMapCreatorSaveGame();
+	~GameMapItemCreatorSaveGame();
 /** */
 	virtual bool CreateMap();
-/** */
-	virtual GameMapRepository* GetMap();
 private:
 /** */
 	bool InitializeMap( const QDomNode& settings );

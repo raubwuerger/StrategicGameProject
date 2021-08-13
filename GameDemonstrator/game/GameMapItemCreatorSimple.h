@@ -1,18 +1,16 @@
 #ifndef GAMEMAPCREATORSIMPLE_H
 #define GAMEMAPCREATORSIMPLE_H
 
-#include "IGameMapCreator.h"
+#include "IGameMapItemCreator.h"
 class GameMapItem;
 
-class GameMapCreatorSimple : public IGameMapCreator
+class GameMapItemCreatorSimple : public IGameMapItemCreator
 {
 public:
 	/** */
-	GameMapCreatorSimple();
+	GameMapItemCreatorSimple();
 	/** */
 	virtual bool CreateMap();
-	/** */
-	GameMapRepository* GetMap();
 private:
 	GameMapItem* CreateModelMapItem( unsigned int row, unsigned int col );
 private:

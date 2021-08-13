@@ -4,11 +4,11 @@
 #include "GameMapItem.h"
 
 /** Repräsentiert die Karte im Speicher */
-class GameMapRepository
+class GameMapItemRepository
 {
 public:
 	/** */
-	static GameMapRepository* GetInstance();
+	static GameMapItemRepository* GetInstance();
 	/** */
 	void Init();
 	/** */
@@ -31,15 +31,15 @@ public:
 	GameMapItem* GetGameMapItemById( unsigned int id );
 private:
 	/** */
-	GameMapRepository();
+	GameMapItemRepository();
 	/** */
-	~GameMapRepository();
+	~GameMapItemRepository();
 	/** */
 	void UpdateIdToModelMapItem();
 private:
-	friend class GameMapFactory;
+	friend class GameMapItemFactory;
 	QVector< QVector<GameMapItem*> >*	MapItems;
-	static GameMapRepository*			Instance;
+	static GameMapItemRepository*			Instance;
 	QMap<int, GameMapItem*>				IdToModelMapItem;
 };
 

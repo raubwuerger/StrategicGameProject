@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GameMapCreatorSaveGame.h"
+#include "GameMapItemCreatorSaveGame.h"
 #include <QtXml>
 #include "io/SerializeXMLItems.h"
 #include "LogInterface.h"
@@ -7,21 +7,21 @@
 #include "DomValueExtractor.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "GameMapItem.h"
-#include "GameMapRepository.h"
+#include "GameMapItemRepository.h"
 #include "model/ModelUnitTypeRepository.h"
 
-GameMapCreatorSaveGame::GameMapCreatorSaveGame( const QDomNode mapElements )
+GameMapItemCreatorSaveGame::GameMapItemCreatorSaveGame( const QDomNode mapElements )
 	: Rows(-1), Cols(-1)
 {
 	MapElements = new QDomNode(mapElements);
 }
 
-GameMapCreatorSaveGame::~GameMapCreatorSaveGame()
+GameMapItemCreatorSaveGame::~GameMapItemCreatorSaveGame()
 {
 
 }
 
-bool GameMapCreatorSaveGame::CreateMap()
+bool GameMapItemCreatorSaveGame::CreateMap()
 {
 	DomNodeFinder domNodeFinder(*MapElements);
 
@@ -38,12 +38,7 @@ bool GameMapCreatorSaveGame::CreateMap()
 	return true;
 }
 
-GameMapRepository* GameMapCreatorSaveGame::GetMap()
-{
-	throw std::logic_error("The method or operation is not implemented.");
-}
-
-bool GameMapCreatorSaveGame::InitializeMap(const QDomNode& settings)
+bool GameMapItemCreatorSaveGame::InitializeMap(const QDomNode& settings)
 {
 	QDomNodeList settingsNodeList = settings.childNodes();
 	if( true == settingsNodeList.isEmpty() )
@@ -71,7 +66,7 @@ bool GameMapCreatorSaveGame::InitializeMap(const QDomNode& settings)
 	return true;
 }
 
-bool GameMapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
+bool GameMapItemCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 {
 	QDomNodeList mapItemNodeList = mapItems.childNodes();
 	if( true == mapItemNodeList.isEmpty() )
@@ -105,12 +100,12 @@ bool GameMapCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 		gameMap->append(row);
 	}
 
-	GameMapRepository::GetInstance()->Init();
-	GameMapRepository::GetInstance()->SetGameMapItems(gameMap);
+	GameMapItemRepository::GetInstance()->Init();
+	GameMapItemRepository::GetInstance()->SetGameMapItems(gameMap);
 	return true;
 }
 
-GameMapItem* GameMapCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
+GameMapItem* GameMapItemCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
 {
 	QDomNodeList mapNodes = mapNode.childNodes();
 	if( true == mapNodes.isEmpty() )

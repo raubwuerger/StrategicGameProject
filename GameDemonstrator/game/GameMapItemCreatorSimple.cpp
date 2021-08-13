@@ -1,18 +1,18 @@
 #include "stdafx.h"
-#include "GameMapCreatorSimple.h"
-#include "GameMapRepository.h"
+#include "GameMapItemCreatorSimple.h"
+#include "GameMapItemRepository.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "GameMapItem.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 
-GameMapCreatorSimple::GameMapCreatorSimple()
+GameMapItemCreatorSimple::GameMapItemCreatorSimple()
 	: MapItemId(0)
 {
 
 }
 
-bool GameMapCreatorSimple::CreateMap()
+bool GameMapItemCreatorSimple::CreateMap()
 {
 	MapItemId = 0;
 	unsigned int cols = ModelProgramFactory::ModelProgramSettingsInstance->DebugCols;
@@ -31,17 +31,12 @@ bool GameMapCreatorSimple::CreateMap()
 		simpleMap->append(tempRow);
 	}
 
-	GameMapRepository::GetInstance()->Init();
-	GameMapRepository::GetInstance()->SetGameMapItems( simpleMap );
+	GameMapItemRepository::GetInstance()->Init();
+	GameMapItemRepository::GetInstance()->SetGameMapItems( simpleMap );
 	return true;
 }
 
-GameMapRepository* GameMapCreatorSimple::GetMap()
-{
-	return GameMapRepository::GetInstance();
-}
-
-GameMapItem* GameMapCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
+GameMapItem* GameMapItemCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
 {
 	GameMapItem* modelMapItem = new GameMapItem(row,col,++MapItemId);
 	modelMapItem->SetModelTerrainType( ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType() );

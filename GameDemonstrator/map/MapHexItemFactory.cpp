@@ -3,7 +3,7 @@
 #include "MapHexItemHexagonData.h"
 #include "model/ModelTerrainType.h"
 #include "game/GameMapItem.h"
-#include "game/GameMapRepository.h"
+#include "game/GameMapItemRepository.h"
 #include "LogInterface.h"
 #include "MapHexItem.h"
 #include "MapHexItemRepository.h"
@@ -20,7 +20,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	mapView->Create();
 	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
-	const QVector< QVector<GameMapItem*> >* gameMap = GameMapRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapItem*> >* gameMap = GameMapItemRepository::GetInstance()->GetMapItems();
 	if (nullptr == gameMap)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("GameMapRepository contains no items!"));

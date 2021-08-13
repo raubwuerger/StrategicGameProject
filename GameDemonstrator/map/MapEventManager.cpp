@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MapEventManager.h"
-#include "game\GameMapRepository.h"
+#include "game\GameMapItemRepository.h"
 #include "map\MapHexItem.h"
 #include "model\ModelTerrainType.h"
 #include "game\GameUnitItemRepository.h"
@@ -21,8 +21,8 @@ MapEventManager::~MapEventManager()
 
 void MapEventManager::InitGameMapRegistry()
 {
-	QVector<MapHexItem*> row(GameMapRepository::GetInstance()->GetCols());
-	MapItems.fill(row, GameMapRepository::GetInstance()->GetRows());
+	QVector<MapHexItem*> row(GameMapItemRepository::GetInstance()->GetCols());
+	MapItems.fill(row, GameMapItemRepository::GetInstance()->GetRows());
 }
 
 void MapEventManager::RegisterMapHexItem( MapHexItem* mapItem )
@@ -69,7 +69,7 @@ void MapEventManager::SlotUpdateMapItemInfo( int row, int col )
 	QString mapHexItemId(DEFAULT_ENTRY);
 	QString mapHexItemTerrainName(DEFAULT_ENTRY);
 
-	const GameMapItem* modelMapItem = GameMapRepository::GetInstance()->GetGameMapItem(row,col);
+	const GameMapItem* modelMapItem = GameMapItemRepository::GetInstance()->GetGameMapItem(row,col);
 	if (nullptr != modelMapItem)
 	{
 		mapHexItemId = QString::number(modelMapItem->GetId());

@@ -7,7 +7,7 @@
 #include "connectors/ConnectorMapUnitItem.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelTerrainType.h"
-#include "game/GameMapRepository.h"
+#include "game/GameMapItemRepository.h"
 #include "LogInterface.h"
 #include "MapUnitItem.h"
 
@@ -91,13 +91,13 @@ void MapView::InitMapEventManager()
 double MapView::CalcMapWidthInPixel() const
 {
 	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
-	return hexagondata.Width + ( (GameMapRepository::GetInstance()->GetCols() - 1 ) * hexagondata.Side );
+	return hexagondata.Width + ( (GameMapItemRepository::GetInstance()->GetCols() - 1 ) * hexagondata.Side );
 }
 
 double MapView::CalcMapHeightInPixel() const
 {
 	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
-	return (hexagondata.Height * GameMapRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
+	return (hexagondata.Height * GameMapItemRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
 }
 
 

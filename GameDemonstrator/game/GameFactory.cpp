@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameFactory.h"
-#include "GameMapFactory.h"
+#include "GameMapItemFactory.h"
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
 
@@ -11,7 +11,7 @@ GameFactory::GameFactory()
 
 bool GameFactory::Create(const GameConfig* gameConfig)
 {
-	GameMapFactory factory;
+	GameMapItemFactory factory;
 	factory.Create();
 	return true;
 }
