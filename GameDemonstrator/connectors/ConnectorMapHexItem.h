@@ -12,7 +12,9 @@ signals:
 	/** */
 	void SignalHexItemLeft(int gameMapId);
 	/** */
-	void SignalHexItemPressed(int gameMapId);
+	void SignalHexItemPressedLeftButton(int gameMapId);
+	/** */
+	void SignalHexItemPressedRightButton(int gameMapId);
 	/** */
 	void SignalHexItemReleased(int gameMapId);
 };

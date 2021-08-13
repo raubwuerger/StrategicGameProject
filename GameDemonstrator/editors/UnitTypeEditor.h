@@ -15,16 +15,16 @@ public:
 	~UnitTypeEditor();
 	/** */
 	void SetMapEventManager(MapHexItemEventManager* mapEventManager);
-signals:
-	/** */
-	void SignalUnitAdded(int mapId, int unitTypeId);
 public slots:
 	/** */
 	void SlotActiveUnitTypeId(int unitTypeId);
 	/** */
 	void SlotSelectedMapHexItem(int mapHexItemId);
+private:
 	/** */
-	void SlotCreateNewUnit();
+	void CreateNewUnit();
+	/** */
+	void DeleteUnit();
 private:
 	int					SelectedGameMapItem;
 	ModelUnitType		*ActiveUnitType;

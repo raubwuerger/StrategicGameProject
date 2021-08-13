@@ -90,7 +90,16 @@ void MapHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 
 void MapHexItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
-	emit EventItem->SignalHexItemPressed(GameMapItemId);
+	if (event->button() == Qt::LeftButton )
+	{
+		emit EventItem->SignalHexItemPressedLeftButton(GameMapItemId);
+		return;
+	}
+	if (event->button() == Qt::RightButton)
+	{
+		emit EventItem->SignalHexItemPressedRightButton(GameMapItemId);
+		return;
+	}
 }
 
 void MapHexItem::SetEventConnector(ConnectorMapHexItem * eventConnector)

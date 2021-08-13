@@ -30,10 +30,10 @@ void EditorToolbox::Create()
 	CreateGroupTerrainTypes();
 	CreateGroupUnitTypes();
 	CreateGroupBuildingTypes();
-	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressed, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressed, UnitTypeEditorInstance, &UnitTypeEditor::SlotSelectedMapHexItem);
 
+	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotSelectedMapHexItem);
 }
 
 void EditorToolbox::CreateGroupTerrainTypes()

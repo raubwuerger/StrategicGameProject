@@ -37,7 +37,7 @@ void UnitTypeEditor::SlotSelectedMapHexItem(int mapHexItemId)
 	SelectedGameMapItem = mapHexItemId;
 }
 
-void UnitTypeEditor::SlotCreateNewUnit()
+void UnitTypeEditor::CreateNewUnit()
 {
 	/*
 	GameMapItem *mapItemAddingUnit = GameMapItemRepository::GetInstance()->GetGameMapItemById(modelMapId);
@@ -54,5 +54,10 @@ void UnitTypeEditor::SlotCreateNewUnit()
 		return;
 	}
 	*/
+}
+
+void UnitTypeEditor::DeleteUnit()
+{
+
 }
 
