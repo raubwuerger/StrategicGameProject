@@ -32,7 +32,6 @@ void MapUnitItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 	}
 	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();
-
 }
 
 void MapUnitItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)

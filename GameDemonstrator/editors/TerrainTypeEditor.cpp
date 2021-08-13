@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TerrainTypeEditor.h"
-#include "map/MapEventManager.h"
+#include "map/MapHexItemEventManager.h"
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
@@ -18,7 +18,7 @@ TerrainTypeEditor::~TerrainTypeEditor()
 
 }
 
-void TerrainTypeEditor::SetMapEventManager(MapEventManager* mapeventManager)
+void TerrainTypeEditor::SetMapEventManager(MapHexItemEventManager* mapeventManager)
 {
 	MapEventManagerInstance = mapeventManager;
 }
@@ -36,7 +36,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 
-	MapHexItem *item = MapEventManagerInstance->FindIMapHextemByIndexNonConst(row, col);
+	MapHexItem *item = MapEventManagerInstance->FindMapHexItemByIndexNonConst(row, col);
 	if( item == nullptr )
 	{
 		return;

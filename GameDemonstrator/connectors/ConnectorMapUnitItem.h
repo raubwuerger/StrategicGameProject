@@ -7,7 +7,7 @@ Q_OBJECT
 public:
 signals :
 	/** */
-	void SignalUnitItemEntered( int mapUnitId );
+	void SignalUnitItemEntered(int mapUnitId);
 	/** */
 	void SignalUnitItemLeft(int mapUnitId);
 	/** */

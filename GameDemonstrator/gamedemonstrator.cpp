@@ -7,7 +7,7 @@
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
 #include "map/MapView.h"
-#include "map/MapEventManager.h"
+#include "map/MapHexItemEventManager.h"
 #include "io\SerializerGame.h"
 #include "io\SerializeBinary.h"
 #include "io\SerializerFactory.h"
@@ -46,7 +46,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
 	MapViewInstance = new MapView(this);
-	MapViewInstance->MapEventManagerInstance = new MapEventManager(nullptr);
+	MapViewInstance->MapEventManagerInstance = new MapHexItemEventManager(nullptr);
 
 	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
 

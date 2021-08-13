@@ -1,12 +1,13 @@
 #include "stdafx.h"
-#include "MapEventManager.h"
+#include "MapHexItemEventManager.h"
 #include "game\GameMapItemRepository.h"
 #include "map\MapHexItem.h"
 #include "model\ModelTerrainType.h"
 #include "game\GameUnitItemRepository.h"
 #include "game\GameUnitItem.h"
+#include "MapHexItemRepository.h"
 
-MapEventManager::MapEventManager(QObject *parent)
+MapHexItemEventManager::MapHexItemEventManager(QObject *parent)
 	: QObject(parent),
 	HexItemInfoDialog(nullptr),
 	DEFAULT_ENTRY("---")
@@ -14,45 +15,18 @@ MapEventManager::MapEventManager(QObject *parent)
 
 }
 
-MapEventManager::~MapEventManager()
+MapHexItemEventManager::~MapHexItemEventManager()
 {
 
 }
 
-void MapEventManager::InitGameMapRegistry()
+MapHexItem* MapHexItemEventManager::FindMapHexItemByIndexNonConst( int row, int col )
 {
-	QVector<MapHexItem*> row(GameMapItemRepository::GetInstance()->GetCols());
-	MapItems.fill(row, GameMapItemRepository::GetInstance()->GetRows());
-}
-
-void MapEventManager::RegisterMapHexItem( MapHexItem* mapItem )
-{
-	MapItems[mapItem->GetRow()][mapItem->GetCol()] = mapItem;
-}
-
-void MapEventManager::RegisterMapUnitItem( MapUnitItem* unitItem )
-{
-	//TODO: Sollte eine Map (ID) sein. Es wird sicherlich mehr als ein Item von jedem Type geben!!!
-	if (true == UnitItems.contains(unitItem))
-	{
-		//TODO: Fehlermeldung ausgeben
-		return;
-	}
-	UnitItems.push_back(unitItem);
-}
-
-const MapHexItem* MapEventManager::FindMapHexItemByIndex( int row, int col ) const
-{
-	return MapItems[row][col];
-}
-
-MapHexItem* MapEventManager::FindIMapHextemByIndexNonConst( int row, int col )
-{
-	return MapItems[row][col];
+	return MapHexItemRepository::GetInstance()->GetMapHexItemByRowCol(row, col);
 }
 
 #include "dialogs/HexItemInfoDialog.h"
-void MapEventManager::SlotUpdateMapItemInfo( int row, int col )
+void MapHexItemEventManager::SlotUpdateMapItemInfo( int row, int col )
 {
 	if( row < 0 || col < 0 )
 	{
@@ -83,7 +57,7 @@ void MapEventManager::SlotUpdateMapItemInfo( int row, int col )
 
 #include "dialogs/UnitTypeInfoDialog.h"
 #include "model/ModelUnitType.h"
-void MapEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
+void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 {
 	if (nullptr == UnitTypeInfoDialog)
 	{

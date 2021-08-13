@@ -11,6 +11,7 @@
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorUnitTypeGameMap.h"
+#include "connectors/ConnectorMapUnitItem.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
@@ -33,6 +34,7 @@ void EditorToolbox::Create()
 	CreateGroupBuildingTypes();
 	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressed, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressed, UnitTypeEditorInstance, &UnitTypeEditor::SlotSelectedMapHexItem);
 
 }
 
@@ -83,7 +85,7 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
-void EditorToolbox::CreateTerrainTypeEditor(MapEventManager* mapEventManager)
+void EditorToolbox::CreateTerrainTypeEditor(MapHexItemEventManager* mapEventManager)
 {
 	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
 	TerrainTypeEditorInstance = new TerrainTypeEditor(nullptr);
@@ -139,7 +141,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 
 }
 
-void EditorToolbox::CreateUnitTypeEditor(MapEventManager* mapEventManager)
+void EditorToolbox::CreateUnitTypeEditor(MapHexItemEventManager* mapEventManager)
 {
 	ConnectorUnitTypeEditorGameMapInstance = new ConnectorUnitTypeGameMap();
 

@@ -18,6 +18,8 @@ public:
 	void SetMapHexItems(QVector< QVector<MapHexItem*> > mapHexItems);
 	/** */
 	MapHexItem* GetMapHexItemById(int mapHexItemId);
+	/** */
+	MapHexItem* GetMapHexItemByRowCol(int row, int col);
 private:
 	/** */
 	MapHexItemRepository();

@@ -6,7 +6,7 @@ class MapGraphicsScene;
 class MapHexItemHexagonData;
 class ConnectorMapHexItem;
 class ConnectorMapUnitItem;
-class MapEventManager;
+class MapHexItemEventManager;
 class ModelTerrainType;
 class MapHexItemHexagonData;
 class MapUnitItem;
@@ -58,10 +58,10 @@ private:
 	/** */
 	void DoZoom(QWheelEvent *event);
 public:
-	MapGraphicsScene*		Scene;					//TODO: Setter
-	ConnectorMapHexItem*	ConnectorMapHexItemInstance;	//TODO: Setter
+	MapGraphicsScene*		Scene;					
+	ConnectorMapHexItem*	ConnectorMapHexItemInstance;
 	ConnectorMapUnitItem*	ConnectorMapUnitItemInstance;
-	MapEventManager*		MapEventManagerInstance;		//TODO: Setter
+	MapHexItemEventManager*		MapEventManagerInstance;	
 private:
 	const int	NO_ACTIVE_UNIT_ID;
 	const int	ROW_COL_NOT_INITIALIZED;

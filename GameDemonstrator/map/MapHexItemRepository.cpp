@@ -48,6 +48,26 @@ MapHexItem* MapHexItemRepository::GetMapHexItemById(int mapHexItemId)
 	return MapHexItemsById[mapHexItemId];
 }
 
+MapHexItem* MapHexItemRepository::GetMapHexItemByRowCol(int row, int col)
+{
+	int rowCount = MapHexItems.count();
+	if (row > rowCount)
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapHexItem with col=%1 and row=%2 not found! Max rows: %3").arg(QString::number(row)).arg(QString::number(col)).arg(QString::number(rowCount)));
+		return nullptr;
+	}
+
+	QVector<MapHexItem*> concreteRow = MapHexItems.at(row);
+	int colCount = concreteRow.count();
+	if (col > colCount)
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapHexItem with col=%1 and row=%2 not found! Max cols: %3").arg(QString::number(row)).arg(QString::number(col)).arg(QString::number(colCount)));
+		return nullptr;
+	}
+
+	return concreteRow.at(col);
+}
+
 MapHexItemRepository::MapHexItemRepository()
 {
 

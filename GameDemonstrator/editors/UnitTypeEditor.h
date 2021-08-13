@@ -3,7 +3,7 @@
 
 #include <QObject>
 class ModelUnitType;
-class MapEventManager;
+class MapHexItemEventManager;
 
 class UnitTypeEditor : public QObject
 {
@@ -14,16 +14,19 @@ public:
 	/** */
 	~UnitTypeEditor();
 	/** */
-	void SetMapEventManager(MapEventManager* mapEventManager);
+	void SetMapEventManager(MapHexItemEventManager* mapEventManager);
 signals:
 	/** */
 	void SignalUnitAdded(int mapId, int unitTypeId);
 public slots:
 	/** */
 	void SlotActiveUnitTypeId(int unitTypeId);
+	/** */
+	void SlotSelectedMapHexItem(int col, int row);
 private:
+	int					SelectedGameMapItem;
 	ModelUnitType		*ActiveUnitType;
-	MapEventManager		*MapEventManagerInstance;
+	MapHexItemEventManager		*MapEventManagerInstance;
 };
 
 #endif // UNITTYPEEDITR_H

@@ -7,31 +7,22 @@ class HexItemInfoDialog;
 class UnitTypeInfoDialog;
 class MapUnitItem;
 
-class MapEventManager : public QObject
+class MapHexItemEventManager : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	MapEventManager(QObject *parent);
+	MapHexItemEventManager(QObject *parent);
 	/** */
-	~MapEventManager();
+	~MapHexItemEventManager();
 	/** */
-	void InitGameMapRegistry();
-	/** */
-	void RegisterMapHexItem( MapHexItem* mapItem );
-	/** */
-	const MapHexItem* FindMapHexItemByIndex( int row, int col ) const;
-	/** */
-	MapHexItem* FindIMapHextemByIndexNonConst( int row, int col );
-	/** */
-	void RegisterMapUnitItem(MapUnitItem* unitItem);
+	MapHexItem* FindMapHexItemByIndexNonConst( int row, int col );
 public slots:
 	/** */
 	void SlotUpdateMapItemInfo( int row, int col );
 	/** */
 	void SlotUpdateMapUnitItemInfo(int mapUnitItemId);
 private:
-	QVector< QVector<MapHexItem*> >	MapItems;
 	QVector< MapUnitItem* >			UnitItems;
 	const QString DEFAULT_ENTRY;
 

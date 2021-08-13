@@ -11,7 +11,7 @@ class UnitTypeInfoDialog;
 class GameMainThread;
 class GameMainLoop;
 class MapView;
-class MapEventManager;
+class MapHexItemEventManager;
 class EditorToolbox;
 class CreateNewMap;
 class ConnectorTerrainEditorGameMap;

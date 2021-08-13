@@ -2,7 +2,7 @@
 #include "MapView.h"
 #include "MapGraphicsScene.h"
 #include "MapHexItem.h"
-#include "MapEventManager.h"
+#include "MapHexItemEventManager.h"
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorMapUnitItem.h"
 #include "model/ModelTerrainTypeRepository.h"
@@ -63,7 +63,6 @@ bool MapView::AddMapHexItem(MapHexItem* mapHexItem)
 	}
 	mapHexItem->SetEventConnector(ConnectorMapHexItemInstance);
 	Scene->addItem(mapHexItem);
-	MapEventManagerInstance->RegisterMapHexItem(mapHexItem);
 	return true;
 }
 
@@ -80,12 +79,11 @@ bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 
 void MapView::InitMapEventManager()
 {
-	MapEventManagerInstance->InitGameMapRegistry();
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexMapItemActive);
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapItemInfo);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);
 
 	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &MapView::SlotUnitItemActive);
-	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, MapEventManagerInstance, &MapEventManager::SlotUpdateMapUnitItemInfo);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);
 }
 
 double MapView::CalcMapWidthInPixel() const

@@ -3,7 +3,7 @@
 
 #include <QObject>
 class ModelTerrainType;
-class MapEventManager;
+class MapHexItemEventManager;
 
 class TerrainTypeEditor : public QObject
 {
@@ -14,7 +14,7 @@ public:
 	/** */
 	~TerrainTypeEditor();
 	/** */
-	void SetMapEventManager(MapEventManager* mapeventManager);
+	void SetMapEventManager(MapHexItemEventManager* mapeventManager);
 signals:
 	/** */
 	void SignalTerrainTypeChanged( int mapItemId, int terrainTypeId );
@@ -25,7 +25,7 @@ public slots:
 	void SlotChangeTerrainTypeHexItem( int row, int col );
 private:
 	ModelTerrainType	*ActiveTerrainType;
-	MapEventManager		*MapEventManagerInstance;
+	MapHexItemEventManager		*MapEventManagerInstance;
 };
 
 #endif // TERRAINTYPEEDITOR_H

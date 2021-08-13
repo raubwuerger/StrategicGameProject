@@ -13,7 +13,8 @@ class ModelTerrainTypeRepository;
 class ConnectorMapHexItem;
 class ConnectorTerrainEditorGameMap;
 class ConnectorUnitTypeGameMap;
-class MapEventManager;
+class MapHexItemEventManager;
+class ConnectorMapUnitItem;
 
 class EditorToolbox : public QToolBox
 {
@@ -31,7 +32,7 @@ private:
 	/** */
 	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector);
 	/** */
-	void CreateTerrainTypeEditor(MapEventManager* mapEventManager);
+	void CreateTerrainTypeEditor(MapHexItemEventManager* mapEventManager);
 	/** */
 	void CreateGroupBuildingTypes();
 	/** */
@@ -39,7 +40,7 @@ private:
 	/** */
 	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
 	/** */
-	void CreateUnitTypeEditor(MapEventManager* mapEventManager);
+	void CreateUnitTypeEditor(MapHexItemEventManager* mapEventManager);
 private:
 	friend class GameDemonstrator;
 	int								MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
@@ -51,7 +52,8 @@ private:
 	ConnectorMapHexItem*			ConnectorMapHexItemInstance;
 	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
-	MapEventManager*				MapEventManagerInstance;
+	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
+	MapHexItemEventManager*				MapEventManagerInstance;
 };
 
 #endif // CEDITORTOOLBOX_H

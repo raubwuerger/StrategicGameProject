@@ -8,7 +8,7 @@ class ConnectorMapHexItem : public QObject
 	Q_OBJECT
 signals:
 	/** */
-	void SignalHexItemEntered( int row, int col );
+	void SignalHexItemEntered(int row, int col);
 	/** */
 	void SignalHexItemPressed(int row, int col);
 };

@@ -4,7 +4,8 @@
 #include "model/ModelUnitType.h"
 
 UnitTypeEditor::UnitTypeEditor(QObject *parent)
-	: ActiveUnitType(nullptr)
+	: ActiveUnitType(nullptr),
+	SelectedGameMapItem(-1)
 {
 
 }
@@ -14,7 +15,7 @@ UnitTypeEditor::~UnitTypeEditor()
 
 }
 
-void UnitTypeEditor::SetMapEventManager(MapEventManager* mapEventManager)
+void UnitTypeEditor::SetMapEventManager(MapHexItemEventManager* mapEventManager)
 {
 	MapEventManagerInstance = mapEventManager;
 }
@@ -29,5 +30,11 @@ void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 	}
 	//TODO: Die aktuellen MapCoordinaten ermitteln
 	//TODO: emit AddUnit(mapId, unitId)
+}
+
+void UnitTypeEditor::SlotSelectedMapHexItem(int col, int row)
+{
+
+//	SelectedGameMapItem = gameMapItemId;
 }
 
