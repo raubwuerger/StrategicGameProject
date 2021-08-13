@@ -19,16 +19,20 @@ public slots:
 	/** */
 	void SlotActiveUnitTypeId(int unitTypeId);
 	/** */
-	void SlotSelectedMapHexItem(int mapHexItemId);
+	void SlotAddUnit(int mapHexItemId);
+	/** */
+	void SlotDeleteUnit(int mapHexItemId);
 private:
 	/** */
-	void CreateNewUnit();
+	void CreateUnit();
 	/** */
 	void DeleteUnit();
+	/** */
+	bool HasMapHexItemUnits();
 private:
-	int					SelectedGameMapItem;
-	ModelUnitType		*ActiveUnitType;
-	MapHexItemEventManager		*MapEventManagerInstance;
+	int						SelectedGameMapItem;
+	const ModelUnitType		*ActiveUnitType;
+	MapHexItemEventManager	*MapEventManagerInstance;
 };
 
 #endif // UNITTYPEEDITR_H

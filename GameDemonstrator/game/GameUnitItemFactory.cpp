@@ -17,9 +17,8 @@ GameUnitItemFactory::~GameUnitItemFactory()
 {
 }
 
-GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(int modelUnitTypeId, int gameMapTypeId)
+GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnitType* modelUnitType, int gameMapTypeId)
 {
-	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(modelUnitTypeId);
 	if (nullptr == modelUnitType)
 	{
 		return nullptr;

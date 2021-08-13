@@ -33,7 +33,8 @@ void EditorToolbox::Create()
 
 	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotSelectedMapHexItem);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
+	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnit);
 }
 
 void EditorToolbox::CreateGroupTerrainTypes()

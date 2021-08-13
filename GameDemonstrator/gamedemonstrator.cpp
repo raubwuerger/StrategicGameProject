@@ -188,7 +188,7 @@ void GameDemonstrator::CreateHexItemInfoDialog()
  	dockHexItem->setWidget( HexItemInfoDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
 	ViewMenu->addAction(dockHexItem->toggleViewAction());
-	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance;
+	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance; //TODO: Sollte das hier passieren
 }
 
 void GameDemonstrator::CreateUnitTypeInfoDialog()
@@ -199,7 +199,7 @@ void GameDemonstrator::CreateUnitTypeInfoDialog()
 	dockUnitType->setWidget(UnitTypeInfoDialogInstance);
 	addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
 	ViewMenu->addAction(dockUnitType->toggleViewAction());
-	MapViewInstance->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance;
+	MapViewInstance->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance; //TODO: Sollte das hier passieren
 }
 
 #include "LogInterface.h"

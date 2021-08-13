@@ -19,6 +19,7 @@ GameUnitItemRepository* GameUnitItemRepository::GetInstance()
 void GameUnitItemRepository::Init()
 {
 	GameUnitItems.clear();
+	GameUnitItemsGameMapItems.clear();
 }
 
 void GameUnitItemRepository::Release()
@@ -39,6 +40,7 @@ bool GameUnitItemRepository::RegisterGameUnitItem(GameUnitItem* gameUnitItem)
 		return false;
 	}
 	GameUnitItems.insert(gameUnitItem->GetId(), gameUnitItem);
+	UpdateGameUnitItemsGameMapItems(gameUnitItem);
 	return true;
 }
 
@@ -88,10 +90,24 @@ int GameUnitItemRepository::GetLastIndex() const
 	return ++idOfLastGameUnit;
 }
 
+int GameUnitItemRepository::GetGameMapItemGameUnitItems(int gameMapItemId) const
+{
+	if ( false == GameUnitItemsGameMapItems.contains(gameMapItemId))
+	{
+		return 0;
+	}
+	return 1;
+}
+
 GameUnitItemRepository::GameUnitItemRepository()
 {
 }
 
 GameUnitItemRepository::~GameUnitItemRepository()
 {
+}
+
+void GameUnitItemRepository::UpdateGameUnitItemsGameMapItems(GameUnitItem* gameUnitItem)
+{
+	GameUnitItemsGameMapItems.insert(gameUnitItem->GetGameMapItemId(), gameUnitItem->GetId());
 }

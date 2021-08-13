@@ -26,15 +26,20 @@ public:
 	GameUnitItem* GetGameUnitItemById(int gameUnitItemId);
 	/** */
 	int GetLastIndex() const;
+	/** */
+	int GetGameMapItemGameUnitItems(int gameMapItemId) const;
 private:
 	/** */
 	GameUnitItemRepository();
 	/** */
 	~GameUnitItemRepository();
+	/** */
+	void UpdateGameUnitItemsGameMapItems(GameUnitItem* gameUnitItem);
 private:
 	friend class GameUnitItemFactory;
-	static GameUnitItemRepository*		Instance;
-	QMap<int, GameUnitItem*>			GameUnitItems;
+	static GameUnitItemRepository*	Instance;
+	QMap<int, GameUnitItem*>		GameUnitItems;
+	QMap<int, int>					GameUnitItemsGameMapItems;
 };
 
 #endif // GAMEUNITITEMREPOSITORY_H
