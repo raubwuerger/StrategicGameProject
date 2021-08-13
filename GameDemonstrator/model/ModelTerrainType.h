@@ -1,5 +1,5 @@
-#ifndef ModelTerrainType_H
-#define ModelTerrainType_H
+#ifndef MODELTERRAINTYPE_H
+#define MODELTERRAINTYPE_H
 
 class ModelTerrainType
 {
@@ -37,5 +37,5 @@ private:
 	const QImage		*Image;
 };
 
-#endif
+#endif // MODELTERRAINTYPE_H
 

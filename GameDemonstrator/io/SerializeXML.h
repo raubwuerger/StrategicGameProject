@@ -1,5 +1,5 @@
-#ifndef SerializeXML_H
-#define SerializeXML_H
+#ifndef SERIALIZEXML_H
+#define SERIALIZEXML_H
 
 #include "ISerializeGameInterface.h"
 #include <QXmlStreamWriter>
@@ -49,5 +49,5 @@ private:
 	bool LoadUnitData(const QDomNode& domNode);
 };
 
-#endif
+#endif // SERIALIZEXML_H
 

@@ -1,5 +1,5 @@
-#ifndef GameFactory_H
-#define GameFactory_H
+#ifndef CONNECTORLOADCREATEGAME_H
+#define CONNECTORLOADCREATEGAME_H
 
 class MapView;
 
@@ -25,7 +25,7 @@ private:
 	MapView				*MapViewInstance;
 };
 
-#endif
+#endif // CONNECTORLOADCREATEGAME_H
 
 
 

@@ -1,5 +1,5 @@
-#ifndef ModelProgramFactory_H
-#define ModelProgramFactory_H
+#ifndef MODELPROGRAMFACTORY_H
+#define MODELPROGRAMFACTORY_H
 
 class ModelProgramSettings;
 
@@ -18,4 +18,4 @@ public:
 	static ModelProgramSettings*	ModelProgramSettingsInstance;
 };
 
-#endif
+#endif // MODELPROGRAMFACTORY_H

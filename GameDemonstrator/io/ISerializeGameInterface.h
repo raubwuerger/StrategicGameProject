@@ -1,5 +1,5 @@
-#ifndef ISerializeGameInterface_H
-#define ISerializeGameInterface_H
+#ifndef ISERIALIZEGAMEINTERFACE_H
+#define ISERIALIZEGAMEINTERFACE_H
 
 class ISerializeGameInterface
 {
@@ -10,4 +10,4 @@ public:
 	virtual bool LoadGame( const QString& saveGameName ) = 0;
 };
 
-#endif
+#endif // ISERIALIZEGAMEINTERFACE_H

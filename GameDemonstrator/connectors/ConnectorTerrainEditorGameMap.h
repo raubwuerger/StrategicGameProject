@@ -1,5 +1,5 @@
-#ifndef ConnectorEditorModelRepository_H
-#define ConnectorEditorModelRepository_H
+#ifndef CONNECTOREDITORMODELREPOSITORY_H
+#define CONNECTOREDITORMODELREPOSITORY_H
 
 class ConnectorTerrainEditorGameMap : public QObject
 {
@@ -14,4 +14,4 @@ public slots:
 	void SlotTerrainTypeChanged( int modelMapId, int terrainTypeId );
 };
 
-#endif
+#endif // CONNECTOREDITORMODELREPOSITORY_H

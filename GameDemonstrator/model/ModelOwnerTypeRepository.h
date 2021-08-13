@@ -1,5 +1,5 @@
-#ifndef ModelOwnerTypeRepository_H
-#define ModelOwnerTypeRepository_H
+#ifndef MODELOWNERTYPEREPOSITORY_H
+#define MODELOWNERTYPEREPOSITORY_H
 
 #include <QMap>
 class ModelOwnerType;
@@ -38,5 +38,5 @@ private:
 	static ModelOwnerTypeRepository*	Instance;
 };
 
-#endif
+#endif // MODELOWNERTYPEREPOSITORY_H
 

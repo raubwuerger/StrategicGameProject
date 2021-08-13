@@ -1,5 +1,5 @@
-#ifndef SerializeXMLItems_H
-#define SerializeXMLItems_H
+#ifndef SERIALIZEXMLITEMS_H
+#define SERIALIZEXMLITEMS_H
 
 class SerializeXMLItems
 {
@@ -37,4 +37,4 @@ public:
 	static const QString UNITS_NAME;
 };
 
-#endif
+#endif // SERIALIZEXMLITEMS_H

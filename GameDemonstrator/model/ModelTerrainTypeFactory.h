@@ -1,5 +1,5 @@
-#ifndef ModelTerrainTypeFactory_H
-#define ModelTerrainTypeFactory_H
+#ifndef MODELTERRAINTYPEFACTORY_H
+#define MODELTERRAINTYPEFACTORY_H
 
 class ModelTerrainType;
 class QDomNode;
@@ -24,4 +24,4 @@ private:
 	bool AttacheImage( ModelTerrainType* modelTerrainType );
 };
 
-#endif
+#endif // MODELTERRAINTYPEFACTORY_H

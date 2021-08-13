@@ -1,5 +1,5 @@
-#ifndef SerializerInterface_H
-#define SerializerInterface_H
+#ifndef SERIALIZERINTERFACE_H
+#define SERIALIZERINTERFACE_H
 
 /** Serializes game data ... */
 class ISerializeGameInterface;
@@ -25,5 +25,5 @@ private:
 	ISerializeGameInterface* SerializeGameInterface;
 };
 
-#endif
+#endif // SERIALIZERINTERFACE_H
 

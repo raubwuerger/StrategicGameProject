@@ -1,5 +1,5 @@
-#ifndef ModelTerrainTypeRepository_H
-#define ModelTerrainTypeRepository_H
+#ifndef MODELTERRAINTYPEREPOSITORY_H
+#define MODELTERRAINTYPEREPOSITORY_H
 
 #include <QMap>
 class ModelTerrainType;
@@ -38,5 +38,5 @@ private:
 	static ModelTerrainTypeRepository* Instance;
 };
 
-#endif
+#endif // MODELTERRAINTYPEREPOSITORY_H
 

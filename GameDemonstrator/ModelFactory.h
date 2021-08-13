@@ -1,5 +1,5 @@
-#ifndef ModelMapRepository_H
-#define ModelMapRepository_H
+#ifndef MODELMAPREPOSITORY_H
+#define MODELMAPREPOSITORY_H
 
 class GameMapItemRepository;
 
@@ -15,4 +15,4 @@ public:
 	~ModelFactory();
 };
 
-#endif
+#endif // MODELMAPREPOSITORY_H

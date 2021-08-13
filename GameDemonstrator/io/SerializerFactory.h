@@ -1,5 +1,5 @@
-#ifndef SerializerFactory_H
-#define SerializerFactory_H
+#ifndef SERIALIZERFACTORY_H
+#define SERIALIZERFACTORY_H
 
 class SerializerGame;
 #include <QVector>
@@ -19,4 +19,4 @@ private:
 	static SerializerGame* SerializerInterfaceInstanze;
 };
 
-#endif
+#endif // SERIALIZERFACTORY_H

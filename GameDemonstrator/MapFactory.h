@@ -1,5 +1,5 @@
-#ifndef MapFactory_H
-#define MapFactory_H
+#ifndef MAPFACTORY_H
+#define MAPFACTORY_H
 
 class CreateNewMap;
 class MapView;
@@ -30,5 +30,5 @@ private:
 	QObject		*Parent;
 };
 
-#endif
+#endif // MAPFACTORY_H
 

@@ -1,5 +1,5 @@
-#ifndef ModelTerrainXMLItems_H
-#define ModelTerrainXMLItems_H
+#ifndef MODELTERRAINXMLITEMS_H
+#define MODELTERRAINXMLITEMS_H
 
 class ModelTerrainXMLItems
 {
@@ -24,4 +24,4 @@ private:
 	const static QString SUBELEMENT_ATTACK_MODIFIER;
 };
 
-#endif
+#endif // MODELTERRAINXMLITEMS_H

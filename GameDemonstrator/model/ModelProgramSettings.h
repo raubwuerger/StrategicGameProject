@@ -1,5 +1,5 @@
-#ifndef ModelProgramSettings_H
-#define ModelProgramSettings_H
+#ifndef MODELPROGRAMSETTINGS_H
+#define MODELPROGRAMSETTINGS_H
 
 class ModelProgramSettings
 {
@@ -10,4 +10,4 @@ public:
 	static int		DebugCols;
 };
 
-#endif
+#endif // MODELPROGRAMSETTINGS_H

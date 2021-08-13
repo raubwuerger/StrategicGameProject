@@ -1,5 +1,5 @@
-#ifndef ModelOwnerTypeFactory_H
-#define ModelOwnerTypeFactory_H
+#ifndef MODELOWNERTYPEFACTORY_H
+#define MODELOWNERTYPEFACTORY_H
 
 class ModelOwnerType;
 class ModelOwnerTypeRepository;
@@ -19,5 +19,5 @@ private:
 	ModelOwnerType* CreateFromXML( const QDomNode& node );
 };
 
-#endif
+#endif // MODELOWNERTYPEFACTORY_H
 

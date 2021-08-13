@@ -1,5 +1,5 @@
-#ifndef QActionRepository_H
-#define QActionRepository_H
+#ifndef QACTIONREPOSITORY_H
+#define QACTIONREPOSITORY_H
 
 #include <QObject>
 
@@ -26,5 +26,5 @@ private:
 	static ActionRepository* Instance;
 };
 
-#endif
+#endif // QACTIONREPOSITORY_H
 
