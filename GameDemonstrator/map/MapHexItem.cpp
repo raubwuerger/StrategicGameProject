@@ -76,10 +76,7 @@ void MapHexItem::CreateHexPolygon( const MapHexItemHexagonData &data )
 void MapHexItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
 	ShowSelected();
-	if( EventItem != nullptr )
-	{
-		emit EventItem->SignalHexItemEntered(Row, Col);
-	}
+	emit EventItem->SignalHexItemEntered(GameMapItemId);
 	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();
 }
@@ -89,6 +86,11 @@ void MapHexItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 	ShowOriginal();
 	QGraphicsPolygonItem::hoverLeaveEvent(event);
 	event->ignore();
+}
+
+void MapHexItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+{
+	emit EventItem->SignalHexItemPressed(GameMapItemId);
 }
 
 void MapHexItem::SetEventConnector(ConnectorMapHexItem * eventConnector)

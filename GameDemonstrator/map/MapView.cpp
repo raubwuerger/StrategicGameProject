@@ -13,11 +13,9 @@
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent),
-	ROW_COL_NOT_INITIALIZED(-1),
-	NO_ACTIVE_UNIT_ID(-1),
-	ActiveRow(ROW_COL_NOT_INITIALIZED),
-	ActiveCol(ROW_COL_NOT_INITIALIZED),
-	ActiveUnitItemId(NO_ACTIVE_UNIT_ID)
+	NO_ACTIVE_ID(-1),
+	ActiveMapHexItemId(NO_ACTIVE_ID),
+	ActiveUnitItemId(NO_ACTIVE_ID)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	ConnectorMapHexItemInstance = new ConnectorMapHexItem;
@@ -108,13 +106,12 @@ void MapView::mouseReleaseEvent(QMouseEvent * event)
 void MapView::mousePressEvent(QMouseEvent *event)
 {
 	QGraphicsView::mousePressEvent(event);
-	EmitHexItemPressed();
+//	EmitHexItemPressed();
 }
 
-void MapView::SlotHexMapItemActive(int row, int col)
+void MapView::SlotHexMapItemActive(int gameMapItemId)
 {
-	ActiveRow = row;
-	ActiveCol = col;
+	ActiveMapHexItemId = gameMapItemId;
 }
 
 void MapView::SlotUnitItemActive(int unitItemId)
@@ -124,27 +121,7 @@ void MapView::SlotUnitItemActive(int unitItemId)
 
 void MapView::SlotUnitItemDeacivated()
 {
-	ActiveUnitItemId = NO_ACTIVE_UNIT_ID;
-}
-
-void MapView::EmitHexItemPressed()
-{
-	if( nullptr == ConnectorMapHexItemInstance )
-	{
-		return;
-	}
-	
-	if( ROW_COL_NOT_INITIALIZED == ActiveRow )
-	{
-		return;
-	}
-
-	if( ROW_COL_NOT_INITIALIZED == ActiveCol )
-	{
-		return;
-	}
-
-	emit ConnectorMapHexItemInstance->SignalHexItemPressed(ActiveRow, ActiveCol);
+	ActiveUnitItemId = NO_ACTIVE_ID;
 }
 
 void MapView::wheelEvent(QWheelEvent *event)

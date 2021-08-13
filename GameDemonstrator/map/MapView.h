@@ -34,7 +34,7 @@ public:
 	bool AddedMapUnit(MapUnitItem *mapUnitItem);
 public slots:
 	/** */
-	void SlotHexMapItemActive( int row, int col );
+	void SlotHexMapItemActive(int gameMapItemId);
 	/** */
 	void SlotUnitItemActive(int unitItemId);
 	/** */
@@ -63,10 +63,8 @@ public:
 	ConnectorMapUnitItem*	ConnectorMapUnitItemInstance;
 	MapHexItemEventManager*		MapEventManagerInstance;	
 private:
-	const int	NO_ACTIVE_UNIT_ID;
-	const int	ROW_COL_NOT_INITIALIZED;
-	int			ActiveRow;
-	int			ActiveCol;
+	const int	NO_ACTIVE_ID;
+	int			ActiveMapHexItemId;
 	int			ActiveUnitItemId;
 };
 

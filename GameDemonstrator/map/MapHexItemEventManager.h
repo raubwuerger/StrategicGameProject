@@ -16,10 +16,10 @@ public:
 	/** */
 	~MapHexItemEventManager();
 	/** */
-	MapHexItem* FindMapHexItemByIndexNonConst( int row, int col );
+	MapHexItem* FindMapHexItem(int gameMapItemId);
 public slots:
 	/** */
-	void SlotUpdateMapItemInfo( int row, int col );
+	void SlotUpdateMapItemInfo(int gameMapItemId);
 	/** */
 	void SlotUpdateMapUnitItemInfo(int mapUnitItemId);
 private:

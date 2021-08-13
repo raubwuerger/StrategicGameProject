@@ -8,9 +8,13 @@ class ConnectorMapHexItem : public QObject
 	Q_OBJECT
 signals:
 	/** */
-	void SignalHexItemEntered(int row, int col);
+	void SignalHexItemEntered(int gameMapId );
 	/** */
-	void SignalHexItemPressed(int row, int col);
+	void SignalHexItemLeft(int gameMapId);
+	/** */
+	void SignalHexItemPressed(int gameMapId);
+	/** */
+	void SignalHexItemReleased(int gameMapId);
 };
 
 #endif // HEXITEMEVENTMANAGER_H

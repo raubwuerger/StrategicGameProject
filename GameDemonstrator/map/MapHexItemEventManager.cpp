@@ -20,35 +20,33 @@ MapHexItemEventManager::~MapHexItemEventManager()
 
 }
 
-MapHexItem* MapHexItemEventManager::FindMapHexItemByIndexNonConst( int row, int col )
+MapHexItem* MapHexItemEventManager::FindMapHexItem(int gameMapItemId)
 {
-	return MapHexItemRepository::GetInstance()->GetMapHexItemByRowCol(row, col);
+	return MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapItemId);
 }
 
 #include "dialogs/HexItemInfoDialog.h"
-void MapHexItemEventManager::SlotUpdateMapItemInfo( int row, int col )
+void MapHexItemEventManager::SlotUpdateMapItemInfo(int gameMapItemId)
 {
-	if( row < 0 || col < 0 )
-	{
-		return;
-	}
-	
-	if( HexItemInfoDialog == nullptr )
+	if (HexItemInfoDialog == nullptr)
 	{
 		return;
 	}
 
-	QString mapHexItemRow(QString::number(row));
-	QString mapHexItemCol(QString::number(col));
+	QString mapHexItemRow(DEFAULT_ENTRY);
+	QString mapHexItemCol(DEFAULT_ENTRY);
 	QString mapHexItemId(DEFAULT_ENTRY);
 	QString mapHexItemTerrainName(DEFAULT_ENTRY);
 
-	const GameMapItem* modelMapItem = GameMapItemRepository::GetInstance()->GetGameMapItem(row,col);
+	const GameMapItem* modelMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
 	if (nullptr != modelMapItem)
 	{
 		mapHexItemId = QString::number(modelMapItem->GetId());
+		mapHexItemRow = QString::number(modelMapItem->GetRow());
+		mapHexItemCol = QString::number(modelMapItem->GetCol());
 		mapHexItemTerrainName = modelMapItem->GetTerrainType()->GetName();
 	}
+
 	HexItemInfoDialog->SetId(mapHexItemId);
 	HexItemInfoDialog->SetRow(mapHexItemRow);
 	HexItemInfoDialog->SetCol(mapHexItemCol);

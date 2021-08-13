@@ -22,7 +22,7 @@ public slots:
 	/** */
 	void SlotActiveUnitTypeId(int unitTypeId);
 	/** */
-	void SlotSelectedMapHexItem(int col, int row);
+	void SlotSelectedMapHexItem(int mapHexItemId);
 private:
 	int					SelectedGameMapItem;
 	ModelUnitType		*ActiveUnitType;

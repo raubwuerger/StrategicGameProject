@@ -28,7 +28,7 @@ void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
-void TerrainTypeEditor::SlotChangeTerrainTypeHexItem( int row, int col )
+void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 {
 	Q_ASSERT(MapEventManagerInstance);
 	if( ActiveTerrainType == nullptr )
@@ -36,7 +36,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem( int row, int col )
 		return;
 	}
 
-	MapHexItem *item = MapEventManagerInstance->FindMapHexItemByIndexNonConst(row, col);
+	MapHexItem *item = MapEventManagerInstance->FindMapHexItem(gameMapItemId);
 	if( item == nullptr )
 	{
 		return;

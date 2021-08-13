@@ -610,9 +610,6 @@
     <ClInclude Include="map\MapUnitItem.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
-    <ClInclude Include="map\MapHexItem.h">
-      <Filter>Header Dateien\Map</Filter>
-    </ClInclude>
     <ClInclude Include="io\ConfigFileLoader.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
@@ -802,6 +799,9 @@
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
     <CustomBuild Include="map\MapHexItemEventManager.h">
+      <Filter>Header Dateien\Map</Filter>
+    </CustomBuild>
+    <CustomBuild Include="map\MapHexItem.h">
       <Filter>Header Dateien\Map</Filter>
     </CustomBuild>
   </ItemGroup>

@@ -32,7 +32,7 @@ void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 	//TODO: emit AddUnit(mapId, unitId)
 }
 
-void UnitTypeEditor::SlotSelectedMapHexItem(int col, int row)
+void UnitTypeEditor::SlotSelectedMapHexItem(int mapHexItemId)
 {
 
 //	SelectedGameMapItem = gameMapItemId;
