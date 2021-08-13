@@ -83,6 +83,7 @@ void MapView::InitMapEventManager()
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);
 
 	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &MapView::SlotUnitItemActive);
+	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapUnitItemInfo);
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);
 }
 
