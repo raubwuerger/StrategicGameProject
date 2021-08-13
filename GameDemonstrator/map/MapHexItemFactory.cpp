@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MapHexItemFactory.h"
-#include "HexagonData.h"
+#include "MapHexItemHexagonData.h"
 #include "model/ModelTerrainType.h"
 #include "game/GameMapItem.h"
 #include "game/GameMapRepository.h"
@@ -18,7 +18,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	}
 
 	mapView->Create();
-	HexagonData hexagonTemplate(HexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
 	const QVector< QVector<GameMapItem*> >* gameMap = GameMapRepository::GetInstance()->GetMapItems();
 	if (nullptr == gameMap)
@@ -56,7 +56,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 
 bool MapHexItemFactory::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 {
-	HexagonData hexagonTemplate(HexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
 	double startX = 0.0;
 	double offsetX = hexagonTemplate.Side;

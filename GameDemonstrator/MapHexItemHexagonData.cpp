@@ -1,15 +1,15 @@
 #include "stdafx.h"
-#include "HexagonData.h"
+#include "MapHexItemHexagonData.h"
 
-const float HexagonData::ROUND_VALUE = 0.5F;
-const double HexagonData::DEFAULT_HEXE_SIZE = 48.0;
-const double HexagonData::WIDTH_SIDE_MULTIPLICATOR = 2.0;
-const double HexagonData::ZERO = 0.0;
+const float MapHexItemHexagonData::ROUND_VALUE = 0.5F;
+const double MapHexItemHexagonData::DEFAULT_HEXE_SIZE = 48.0;
+const double MapHexItemHexagonData::WIDTH_SIDE_MULTIPLICATOR = 2.0;
+const double MapHexItemHexagonData::ZERO = 0.0;
 
 /************************************************************************/
 /* HexagonData                                                          */
 /************************************************************************/
-HexagonData::HexagonData( double sideLength )
+MapHexItemHexagonData::MapHexItemHexagonData( double sideLength )
 	: SideLength(sideLength),
 	Width(0.0),
 	Height(0.0),
@@ -22,27 +22,27 @@ HexagonData::HexagonData( double sideLength )
 	calcHexPointsOrigin();
 }
 
-void HexagonData::calcWidth()
+void MapHexItemHexagonData::calcWidth()
 {
 	Width = WIDTH_SIDE_MULTIPLICATOR * SideLength;
 }
 
-void HexagonData::calcHeight()
+void MapHexItemHexagonData::calcHeight()
 {
 	Height = sqrt(3) * SideLength;
 }
 
-void HexagonData::calcSide()
+void MapHexItemHexagonData::calcSide()
 {
 	Side = 3.0 / WIDTH_SIDE_MULTIPLICATOR * SideLength;
 }
 
-void HexagonData::calcBoundingRect()
+void MapHexItemHexagonData::calcBoundingRect()
 {
 	BoundingRect = QRectF(QPointF(-Width,-Height),QSizeF(Width, Height));
 }
 
-void HexagonData::calcHexPointsOrigin()
+void MapHexItemHexagonData::calcHexPointsOrigin()
 {
 	HexPoints << QPointF( ZERO, Height * ROUND_VALUE) 
 		<< QPointF( Width - Side, ZERO ) 
@@ -52,7 +52,7 @@ void HexagonData::calcHexPointsOrigin()
 		<< QPointF( Width - Side,Height );
 }
 
-void HexagonData::MovePosition( const QPointF& topLeft )
+void MapHexItemHexagonData::MovePosition( const QPointF& topLeft )
 {
 	BoundingRect.moveTopLeft( topLeft );
 	HexPoints.translate( topLeft );

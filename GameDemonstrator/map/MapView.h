@@ -3,12 +3,12 @@
 
 #include <QGraphicsView>
 class MapGraphicsScene;
-class HexagonData;
+class MapHexItemHexagonData;
 class ConnectorMapHexItem;
 class ConnectorMapUnitItem;
 class MapEventManager;
 class ModelTerrainType;
-class HexagonData;
+class MapHexItemHexagonData;
 class MapUnitItem;
 class GameMapItem;
 class MapHexItem;

@@ -1,7 +1,7 @@
 #ifndef MAPVIEWHEXITEM_H
 #define MAPVIEWHEXITEM_H
 
-#include "HexagonData.h"
+#include "MapHexItemHexagonData.h"
 class ConnectorMapHexItem;
 
 //================================================================================
@@ -10,7 +10,7 @@ class MapHexItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapHexItem( const HexagonData& data, const QPointF& topLeft );
+	MapHexItem( const MapHexItemHexagonData& data, const QPointF& topLeft );
 	/** */
 	~MapHexItem();
 	/** */
@@ -41,7 +41,7 @@ public:
 	const QPointF& GetCenterPoint() const;
 private:
 	/** */
-	void CreateHexPolygon( const HexagonData &data );
+	void CreateHexPolygon( const MapHexItemHexagonData &data );
 	/** */
 	void ShowSelected();
 	/** */
@@ -49,7 +49,7 @@ private:
 private:
 	int Row;
 	int Col;
-	HexagonData		HexData;
+	MapHexItemHexagonData		HexData;
 	QPointF			CenterPoint;
 	QPointF			TopLeftPoint;
 	ConnectorMapHexItem	*EventItem;

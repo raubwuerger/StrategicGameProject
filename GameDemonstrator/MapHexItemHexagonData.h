@@ -4,11 +4,11 @@
 //================================================================================
 #include <QGraphicsPolygonItem>
 /** Enthält die Koordinatenpunkte des Hexagons */
-class HexagonData
+class MapHexItemHexagonData
 {
 public:
 	/** */
-	HexagonData( double sideLength );
+	MapHexItemHexagonData( double sideLength );
 	/** */
 	void MovePosition( const QPointF& topLeft );
 public:
@@ -18,7 +18,7 @@ public:
 	static const float	ROUND_VALUE;
 private:
 	/** */
-	HexagonData();
+	MapHexItemHexagonData();
 	/** */
 	void calcBoundingRect();
 	/** */

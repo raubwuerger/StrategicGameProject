@@ -425,7 +425,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="HexagonData.cpp" />
+    <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
     <ClCompile Include="io\SerializeBinary.cpp" />
     <ClCompile Include="io\SerializerFactory.cpp" />
@@ -777,7 +777,7 @@
     <ClInclude Include="game\GameMapFactory.h" />
     <ClInclude Include="game\GameMapItem.h" />
     <ClInclude Include="game\GameMapRepository.h" />
-    <ClInclude Include="HexagonData.h" />
+    <ClInclude Include="MapHexItemHexagonData.h" />
     <CustomBuild Include="map\MapGraphicsScene.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MapGraphicsScene.h...</Message>

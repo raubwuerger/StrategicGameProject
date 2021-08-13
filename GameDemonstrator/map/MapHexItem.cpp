@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "MapHexItem.h"
-#include "HexagonData.h"
+#include "MapHexItemHexagonData.h"
 #include "connectors/ConnectorMapHexItem.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapHexItem::MapHexItem( const HexagonData& data, const QPointF& topLeft )
+MapHexItem::MapHexItem( const MapHexItemHexagonData& data, const QPointF& topLeft )
 	: HexData(data),
 	TopLeftPoint(topLeft),
 	Col(-1),
@@ -67,7 +67,7 @@ QRectF MapHexItem::boundingRect() const
 	return HexData.BoundingRect;
 }
 
-void MapHexItem::CreateHexPolygon( const HexagonData &data )
+void MapHexItem::CreateHexPolygon( const MapHexItemHexagonData &data )
 {
 	setPolygon(data.HexPoints);
 	setFlags(QGraphicsItem::ItemIsFocusable);

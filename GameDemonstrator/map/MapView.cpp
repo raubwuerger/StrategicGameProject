@@ -90,13 +90,13 @@ void MapView::InitMapEventManager()
 
 double MapView::CalcMapWidthInPixel() const
 {
-	HexagonData hexagondata(HexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 	return hexagondata.Width + ( (GameMapRepository::GetInstance()->GetCols() - 1 ) * hexagondata.Side );
 }
 
 double MapView::CalcMapHeightInPixel() const
 {
-	HexagonData hexagondata(HexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 	return (hexagondata.Height * GameMapRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
 }
 

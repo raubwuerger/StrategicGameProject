@@ -419,9 +419,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_UnitTypeInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="HexagonData.cpp">
-      <Filter>Source Dateien\Map</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorMapHexItem.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -508,6 +505,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorMapUnitItem.cpp">
       <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MapHexItemHexagonData.cpp">
+      <Filter>Source Dateien\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -652,9 +652,6 @@
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
-    <ClInclude Include="HexagonData.h">
-      <Filter>Header Dateien\Map</Filter>
-    </ClInclude>
     <ClInclude Include="game\IGameMapCreator.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -698,6 +695,9 @@
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
     <ClInclude Include="map\MapUnitItemRepository.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MapHexItemHexagonData.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
