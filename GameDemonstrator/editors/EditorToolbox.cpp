@@ -10,6 +10,7 @@
 #include "TerrainTypeIdSelector.h"
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorMapUnitItem.h"
+#include "map/MapView.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
@@ -32,9 +33,9 @@ void EditorToolbox::Create()
 	CreateGroupBuildingTypes();
 
 	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnit);
+	connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
+	connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
+	connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnit);
 }
 
 void EditorToolbox::CreateGroupTerrainTypes()
@@ -87,7 +88,7 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 void EditorToolbox::CreateTerrainTypeEditor()
 {
 	TerrainTypeEditorInstance = new TerrainTypeEditor(nullptr);
-	TerrainTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
+	TerrainTypeEditorInstance->SetMapEventManager(MapViewInstance->MapEventManagerInstance);
 }
 
 void EditorToolbox::CreateGroupUnitTypes()
@@ -141,7 +142,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 void EditorToolbox::CreateUnitTypeEditor()
 {
 	UnitTypeEditorInstance = new UnitTypeEditor(nullptr);
-	UnitTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
+	UnitTypeEditorInstance->SetMapEventManager(MapViewInstance->MapEventManagerInstance);
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

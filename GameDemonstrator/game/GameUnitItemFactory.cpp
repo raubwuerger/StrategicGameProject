@@ -17,7 +17,7 @@ GameUnitItemFactory::~GameUnitItemFactory()
 {
 }
 
-GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnitType* modelUnitType, int gameMapTypeId)
+GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnitType* modelUnitType, int gameMapItemId)
 {
 	if (nullptr == modelUnitType)
 	{
@@ -26,7 +26,7 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnit
 
 	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
 	newUnitItem->SetModelUnitType(modelUnitType);
-	newUnitItem->SetGameMapItemId(gameMapTypeId);
+	newUnitItem->SetGameMapItemId(gameMapItemId);
 	newUnitItem->SetName(CreateName(modelUnitType));
 	return newUnitItem;
 }

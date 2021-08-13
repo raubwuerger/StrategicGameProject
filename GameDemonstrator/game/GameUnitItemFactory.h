@@ -14,7 +14,7 @@ public:
 	/** */
 	~GameUnitItemFactory();
 	/** */
-	GameUnitItem* CreateGameUnitItemFromScratch(const ModelUnitType* modelUnitType, int gameMapTypeId);
+	GameUnitItem* CreateGameUnitItemFromScratch(const ModelUnitType* modelUnitType, int gameMapItemId);
 	/** */
 	bool CreateGameUnitItemsFromSaveGame( const QDomNode unitItemElements );
 private:

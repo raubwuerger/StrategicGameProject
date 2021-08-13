@@ -11,10 +11,10 @@ class ModelTerrainType;
 class ModelUnitType;
 class ModelTerrainTypeRepository;
 class ConnectorMapHexItem;
-class ConnectorTerrainEditorGameMap;
 class ConnectorUnitTypeGameMap;
 class MapHexItemEventManager;
 class ConnectorMapUnitItem;
+class MapView;
 
 class EditorToolbox : public QToolBox
 {
@@ -49,11 +49,10 @@ private:
 	QButtonGroup*					GroupUnitsTypes;
 	TerrainTypeEditor*				TerrainTypeEditorInstance;
 	UnitTypeEditor*					UnitTypeEditorInstance;
-	ConnectorMapHexItem*			ConnectorMapHexItemInstance;
-	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
 	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
-	MapHexItemEventManager*			MapEventManagerInstance;
+	MapView*						MapViewInstance;
+
 };
 
 #endif // CEDITORTOOLBOX_H

@@ -53,13 +53,20 @@ bool MapUnitItemFactory::CreateUnit( MapView* mapView )
 	return true;
 }
 
-bool MapUnitItemFactory::CreateUnit(MapView* mapView, int unitItemId, int gameMapItemId)
+bool MapUnitItemFactory::CreateUnit(MapView* mapView, const GameUnitItem* gameUnitType)
 {
 	if (nullptr == mapView)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
 		return false;
 	}
+
+	if (nullptr == gameUnitType)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <gameUnitType> must not be null!"));
+		return false;
+	}
+
 
 /*	MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
 	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());

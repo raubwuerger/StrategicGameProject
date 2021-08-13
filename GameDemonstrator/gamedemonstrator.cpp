@@ -261,8 +261,7 @@ void GameDemonstrator::CreateEditorToolbox()
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
 	EditorToolboxInstance = new EditorToolbox(dockCountry);
-	EditorToolboxInstance->ConnectorMapHexItemInstance = MapViewInstance->GetConnectorMapHexItem();
-	EditorToolboxInstance->MapEventManagerInstance = MapViewInstance->MapEventManagerInstance;
+	EditorToolboxInstance->MapViewInstance = MapViewInstance;
 
 	EditorToolboxInstance->Create();
 
