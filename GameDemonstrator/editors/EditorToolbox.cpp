@@ -142,7 +142,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 void EditorToolbox::CreateUnitTypeEditor()
 {
 	UnitTypeEditorInstance = new UnitTypeEditor(nullptr);
-	UnitTypeEditorInstance->SetMapEventManager(MapViewInstance->MapEventManagerInstance);
+	UnitTypeEditorInstance->SetMapView(MapViewInstance);
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

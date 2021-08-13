@@ -3,7 +3,6 @@
 
 #include <QObject>
 class ModelUnitType;
-class MapHexItemEventManager;
 class MapView;
 
 class UnitTypeEditor : public QObject
@@ -14,8 +13,6 @@ public:
 	UnitTypeEditor(QObject *parent);
 	/** */
 	~UnitTypeEditor();
-	/** */
-	void SetMapEventManager(MapHexItemEventManager* mapEventManager);
 	/** */
 	void SetMapView(MapView* mapView);
 public slots:
@@ -35,7 +32,6 @@ private:
 private:
 	int						SelectedGameMapItem;
 	const ModelUnitType*	ActiveUnitType;
-	MapHexItemEventManager*	MapEventManagerInstance;
 	MapView*				MapViewInstance;
 };
 

@@ -53,7 +53,7 @@ bool MapUnitItemFactory::CreateUnit( MapView* mapView )
 	return true;
 }
 
-bool MapUnitItemFactory::CreateUnit(MapView* mapView, const GameUnitItem* gameUnitType)
+bool MapUnitItemFactory::CreateUnit(MapView* mapView, const GameUnitItem* gameItemUnit)
 {
 	if (nullptr == mapView)
 	{
@@ -61,14 +61,20 @@ bool MapUnitItemFactory::CreateUnit(MapView* mapView, const GameUnitItem* gameUn
 		return false;
 	}
 
-	if (nullptr == gameUnitType)
+	if (nullptr == gameItemUnit)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <gameUnitType> must not be null!"));
 		return false;
 	}
 
-
-/*	MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
+	int mapItemId = gameItemUnit->GetGameMapItemId();
+	MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
+	if (nullptr == mapHexItem)
+	{
+		return false;
+	}
+	const QPointF topLeftPoint = mapHexItem->GetTopLeftPoint();
+	MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
 	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 	newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 	newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
@@ -76,9 +82,7 @@ bool MapUnitItemFactory::CreateUnit(MapView* mapView, const GameUnitItem* gameUn
 	{
 		return false;
 	}
-	mapView->AddedMapUnit(newMapUnitItem);
-	*/
-	return true;
+	return mapView->AddedMapUnit(newMapUnitItem);
 }
 
 bool MapUnitItemFactory::DeleteUnit(MapView* mapView, int unitItemId)

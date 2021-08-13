@@ -28,6 +28,12 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnit
 	newUnitItem->SetModelUnitType(modelUnitType);
 	newUnitItem->SetGameMapItemId(gameMapItemId);
 	newUnitItem->SetName(CreateName(modelUnitType));
+
+	if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(newUnitItem))
+	{
+		return nullptr;
+	}
+
 	return newUnitItem;
 }
 

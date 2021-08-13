@@ -19,11 +19,6 @@ UnitTypeEditor::~UnitTypeEditor()
 
 }
 
-void UnitTypeEditor::SetMapEventManager(MapHexItemEventManager* mapEventManager)
-{
-	MapEventManagerInstance = mapEventManager;
-}
-
 void UnitTypeEditor::SetMapView(MapView* mapView)
 {
 	MapViewInstance = mapView;
