@@ -3,6 +3,7 @@
 
 class QDomNode;
 class GameUnitItem;
+class ModelUnitType;
 
 /** Creates game map representation */
 class GameUnitItemFactory
@@ -13,7 +14,7 @@ public:
 	/** */
 	~GameUnitItemFactory();
 	/** */
-	bool CreateGameUnitItemFromScratch();
+	GameUnitItem* CreateGameUnitItemFromScratch(int modelUnitTypeId, int gameMapTypeId);
 	/** */
 	bool CreateGameUnitItemsFromSaveGame( const QDomNode unitItemElements );
 private:
@@ -21,7 +22,10 @@ private:
 	bool CreateUnitItems(const QDomNode& units);
 	/** */
 	GameUnitItem* CreateUnitItemFromXML(const QDomNode& unit);
-
+	/** */
+	int CreateId();
+	/** */
+	QString CreateName(const ModelUnitType* modelUnitType) const;
 };
 
 #endif  //GAMEUNITITEMFACTORY_H

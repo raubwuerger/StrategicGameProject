@@ -34,7 +34,7 @@ void ConnectorLoadCreateGame::SlotCreateNewGame()
 	mapHexItemFactory.Create(MapViewInstance);
 
 	MapUnitItemFactory mapUnitItemFactory;
-	mapUnitItemFactory.Create(MapViewInstance);
+	mapUnitItemFactory.CreateUnit(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SlotLoadSaveGame()
@@ -52,7 +52,7 @@ void ConnectorLoadCreateGame::SlotLoadSaveGame()
 	mapHexItemFactory.Create(MapViewInstance);
 
 	MapUnitItemFactory mapUnitItemFactory;
-	mapUnitItemFactory.Create(MapViewInstance);
+	mapUnitItemFactory.CreateUnit(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SetMapView( MapView* mapView )

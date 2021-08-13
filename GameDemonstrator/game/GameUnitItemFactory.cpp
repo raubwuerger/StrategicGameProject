@@ -17,9 +17,29 @@ GameUnitItemFactory::~GameUnitItemFactory()
 {
 }
 
-bool GameUnitItemFactory::CreateGameUnitItemFromScratch()
+GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(int modelUnitTypeId, int gameMapTypeId)
 {
-	return false;
+	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(modelUnitTypeId);
+	if (nullptr == modelUnitType)
+	{
+		return nullptr;
+	}
+
+	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
+	newUnitItem->SetModelUnitType(modelUnitType);
+	newUnitItem->SetGameMapItemId(gameMapTypeId);
+	newUnitItem->SetName(CreateName(modelUnitType));
+	return newUnitItem;
+}
+
+int GameUnitItemFactory::CreateId()
+{
+	return GameUnitItemRepository::GetInstance()->GetLastIndex();
+}
+
+QString GameUnitItemFactory::CreateName(const ModelUnitType* modelUnitType) const
+{
+	return modelUnitType->GetName();
 }
 
 bool GameUnitItemFactory::CreateGameUnitItemsFromSaveGame(const QDomNode unitItemElements)
@@ -113,3 +133,4 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 	newUnitItem->SetName(unitName);
 	return newUnitItem;
 }
+

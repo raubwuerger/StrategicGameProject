@@ -18,7 +18,7 @@ MapUnitItemFactory::~MapUnitItemFactory()
 {
 }
 
-bool MapUnitItemFactory::Create( MapView* mapView )
+bool MapUnitItemFactory::CreateUnit( MapView* mapView )
 {
 	if (nullptr == mapView)
 	{
@@ -51,6 +51,32 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 		gameUnit++;
 	}
 	return true;
+}
+
+bool MapUnitItemFactory::CreateUnit(MapView* mapView, int unitItemId, int gameMapItemId)
+{
+	if (nullptr == mapView)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
+		return false;
+	}
+
+/*	MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
+	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
+	newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
+	newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
+	if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))
+	{
+		return false;
+	}
+	mapView->AddedMapUnit(newMapUnitItem);
+	*/
+	return true;
+}
+
+bool MapUnitItemFactory::DeleteUnit(MapView* mapView, int unitItemId)
+{
+	return false;
 }
 
 const QPointF MapUnitItemFactory::AdjustTopLeftPosition(const QPointF& topLeftPosition)

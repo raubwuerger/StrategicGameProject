@@ -24,6 +24,8 @@ public:
 	QMap<int, GameUnitItem*>::const_iterator GetLastIterator() const;
 	/** */
 	GameUnitItem* GetGameUnitItemById(int gameUnitItemId);
+	/** */
+	int GetLastIndex() const;
 private:
 	/** */
 	GameUnitItemRepository();

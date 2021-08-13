@@ -75,6 +75,19 @@ GameUnitItem* GameUnitItemRepository::GetGameUnitItemById(int gameUnitItemId)
 
 }
 
+int GameUnitItemRepository::GetLastIndex() const
+{
+	if (true == GameUnitItems.isEmpty())
+	{
+		return 1;
+	}
+
+	QMap<int, GameUnitItem*>::const_iterator lastGameUnit = GameUnitItems.cend();
+	--lastGameUnit;
+	int idOfLastGameUnit = lastGameUnit.key();
+	return ++idOfLastGameUnit;
+}
+
 GameUnitItemRepository::GameUnitItemRepository()
 {
 }

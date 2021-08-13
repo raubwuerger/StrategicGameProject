@@ -9,7 +9,6 @@
 #include "TerrainTypeEditor.h"
 #include "TerrainTypeIdSelector.h"
 #include "connectors/ConnectorMapHexItem.h"
-#include "connectors/ConnectorUnitTypeGameMap.h"
 #include "connectors/ConnectorMapUnitItem.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
@@ -140,11 +139,8 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 
 void EditorToolbox::CreateUnitTypeEditor()
 {
-	ConnectorUnitTypeEditorGameMapInstance = new ConnectorUnitTypeGameMap();
-
 	UnitTypeEditorInstance = new UnitTypeEditor(nullptr);
 	UnitTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
-	connect(UnitTypeEditorInstance, &UnitTypeEditor::SignalUnitAdded, ConnectorUnitTypeEditorGameMapInstance, &ConnectorUnitTypeGameMap::SlotUnitTypeAdded);
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

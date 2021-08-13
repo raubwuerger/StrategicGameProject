@@ -34,7 +34,25 @@ void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 
 void UnitTypeEditor::SlotSelectedMapHexItem(int mapHexItemId)
 {
+	SelectedGameMapItem = mapHexItemId;
+}
 
-//	SelectedGameMapItem = gameMapItemId;
+void UnitTypeEditor::SlotCreateNewUnit()
+{
+	/*
+	GameMapItem *mapItemAddingUnit = GameMapItemRepository::GetInstance()->GetGameMapItemById(modelMapId);
+	if (nullptr == mapItemAddingUnit)
+	{
+		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(modelMapId)));
+		return;
+	}
+
+	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(unitTypeId);
+	if (nullptr == modelUnitType)
+	{
+		jha::GetLog()->Log_DEBUG(tr("ModelUnitType with Id=%1 not found!").arg(QString::number(unitTypeId)));
+		return;
+	}
+	*/
 }
 

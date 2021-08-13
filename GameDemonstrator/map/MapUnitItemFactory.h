@@ -13,7 +13,11 @@ public:
 	/** */
 	~MapUnitItemFactory();
 	/** */
-	bool Create(MapView* mapView);
+	bool CreateUnit(MapView* mapView);
+	/** */
+	bool CreateUnit(MapView* mapView, int unitItemId, int gameMapItemId);
+	/** */
+	bool DeleteUnit(MapView* mapView, int unitItemId);
 private:
 	/** */
 	const QPointF AdjustTopLeftPosition(const QPointF& topLeftPosition);
