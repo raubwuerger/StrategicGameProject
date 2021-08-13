@@ -117,7 +117,7 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 	int mapItemId = -1;
 	{
 		DomValueExtractor domNodeListValueExtractor(unitNode);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_MAPITEMID, mapItemId))
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_GAMEMAPITEMID, mapItemId))
 		{
 			return nullptr;
 		}

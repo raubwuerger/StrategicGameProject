@@ -13,6 +13,8 @@
 #include "model/ModelProgramSettings.h"
 #include "DomNodeFinder.h"
 #include "io/ConfigFileLoader.h"
+#include "game/GameUnitItemRepository.h"
+#include "game/GameUnitItem.h"
 
 //==============================================================================
 SerializeXML::SerializeXML()
@@ -78,6 +80,10 @@ bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 		return false;
 	}
 	if( false == SaveMapData(xmlWriter) )
+	{
+		return false;
+	}
+	if (false == SaveUnitData(xmlWriter))
 	{
 		return false;
 	}
@@ -176,6 +182,38 @@ bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const GameMapItem* m
 		xmlWriter.writeTextElement( SerializeXMLItems::ROW, QString::number(modelMapItem->GetRow()) );
 		xmlWriter.writeTextElement( SerializeXMLItems::COL, QString::number(modelMapItem->GetCol()) );
 		xmlWriter.writeTextElement( SerializeXMLItems::TERRAINTYPE, QString::number(modelMapItem->GetTerrainType()->GetId()) );
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::SaveUnitData(QXmlStreamWriter& xmlWriter)
+{
+	xmlWriter.writeStartElement(SerializeXMLItems::UNITS);
+	
+	QMap<int, GameUnitItem*>::const_iterator gameUnitItems = GameUnitItemRepository::GetInstance()->GetFirstIterator();
+	while (gameUnitItems != GameUnitItemRepository::GetInstance()->GetLastIterator())
+	{
+		if (false == SaveUnitItem(xmlWriter,gameUnitItems.value()))
+		{
+			return false;
+		}
+		gameUnitItems++;
+	}
+
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+#include "model/ModelUnitType.h"
+//==============================================================================
+bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitItem)
+{
+	xmlWriter.writeStartElement(SerializeXMLItems::UNITS_UNIT);
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_ID, QString::number(gameUnitItem->GetId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_UNITTYPEID, QString::number(gameUnitItem->GetModelUnitType()->GetId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_GAMEMAPITEMID, QString::number(gameUnitItem->GetGameMapItemId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_NAME, gameUnitItem->GetName());
 	xmlWriter.writeEndElement();
 	return true;
 }

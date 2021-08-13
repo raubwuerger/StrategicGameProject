@@ -4988,36 +4988,78 @@
             </MapItem>
         </MapItems>
     </Map>
-	<Units>
-		<Unit>
-			<ID>1</ID>
-			<UnitTypeID>1</UnitTypeID>
-			<MapItemID>95</MapItemID>
-			<Name>1. Infanterie-Rgt.</Name>
-		</Unit>
-		<Unit>
-			<ID>2</ID>
-			<UnitTypeID>2</UnitTypeID>
-			<MapItemID>50</MapItemID>
-			<Name>1. Panzer-Rgt.</Name>
-		</Unit>
-		<Unit>
-			<ID>3</ID>
-			<UnitTypeID>3</UnitTypeID>
-			<MapItemID>96</MapItemID>
-			<Name>1. Artillerie-Rgt.</Name>
-		</Unit>
-		<Unit>
-			<ID>4</ID>
-			<UnitTypeID>1</UnitTypeID>
-			<MapItemID>280</MapItemID>
-			<Name>2. Infanterie-Rgt.</Name>
-		</Unit>
-		<Unit>
-			<ID>5</ID>
-			<UnitTypeID>1</UnitTypeID>
-			<MapItemID>327</MapItemID>
-			<Name>3. Infanterie-Rgt.</Name>
-		</Unit>
-	</Units>
+    <Units>
+        <Unit>
+            <ID>1</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>95</GameMapItemID>
+            <Name>1. Infanterie-Rgt.</Name>
+        </Unit>
+        <Unit>
+            <ID>2</ID>
+            <UnitTypeID>2</UnitTypeID>
+            <GameMapItemID>50</GameMapItemID>
+            <Name>1. Panzer-Rgt.</Name>
+        </Unit>
+        <Unit>
+            <ID>3</ID>
+            <UnitTypeID>3</UnitTypeID>
+            <GameMapItemID>96</GameMapItemID>
+            <Name>1. Artillerie-Rgt.</Name>
+        </Unit>
+        <Unit>
+            <ID>4</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>280</GameMapItemID>
+            <Name>2. Infanterie-Rgt.</Name>
+        </Unit>
+        <Unit>
+            <ID>5</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>327</GameMapItemID>
+            <Name>3. Infanterie-Rgt.</Name>
+        </Unit>
+        <Unit>
+            <ID>6</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>281</GameMapItemID>
+            <Name>Infantery</Name>
+        </Unit>
+        <Unit>
+            <ID>7</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>282</GameMapItemID>
+            <Name>Infantery</Name>
+        </Unit>
+        <Unit>
+            <ID>8</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>236</GameMapItemID>
+            <Name>Infantery</Name>
+        </Unit>
+        <Unit>
+            <ID>9</ID>
+            <UnitTypeID>2</UnitTypeID>
+            <GameMapItemID>97</GameMapItemID>
+            <Name>Tank</Name>
+        </Unit>
+        <Unit>
+            <ID>10</ID>
+            <UnitTypeID>2</UnitTypeID>
+            <GameMapItemID>51</GameMapItemID>
+            <Name>Tank</Name>
+        </Unit>
+        <Unit>
+            <ID>11</ID>
+            <UnitTypeID>2</UnitTypeID>
+            <GameMapItemID>141</GameMapItemID>
+            <Name>Tank</Name>
+        </Unit>
+        <Unit>
+            <ID>12</ID>
+            <UnitTypeID>3</UnitTypeID>
+            <GameMapItemID>142</GameMapItemID>
+            <Name>Artillery</Name>
+        </Unit>
+    </Units>
 </Savegame>

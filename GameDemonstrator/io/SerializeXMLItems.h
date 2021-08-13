@@ -33,7 +33,7 @@ public:
 	static const QString UNITS_UNIT;
 	static const QString UNITS_ID;
 	static const QString UNITS_UNITTYPEID;
-	static const QString UNITS_MAPITEMID;
+	static const QString UNITS_GAMEMAPITEMID;
 	static const QString UNITS_NAME;
 };
 
