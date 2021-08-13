@@ -21,7 +21,6 @@
 #include "model/ModelUnitTypeFactory.h"
 #include "game/GameMapItemRepository.h"
 #include "connectors/ConnectorMapHexItem.h"
-#include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 #include "model/ModelOwnerTypeFactory.h"
 #include "editors/TerrainTypeEditor.h"

@@ -9,7 +9,6 @@
 #include "TerrainTypeEditor.h"
 #include "TerrainTypeIdSelector.h"
 #include "connectors/ConnectorMapHexItem.h"
-#include "connectors/ConnectorTerrainEditorGameMap.h"
 #include "connectors/ConnectorUnitTypeGameMap.h"
 #include "connectors/ConnectorMapUnitItem.h"
 
@@ -40,7 +39,7 @@ void EditorToolbox::Create()
 
 void EditorToolbox::CreateGroupTerrainTypes()
 {
-	CreateTerrainTypeEditor(MapEventManagerInstance);
+	CreateTerrainTypeEditor();
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
@@ -85,17 +84,15 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
-void EditorToolbox::CreateTerrainTypeEditor(MapHexItemEventManager* mapEventManager)
+void EditorToolbox::CreateTerrainTypeEditor()
 {
-	ConnectorEditorModelRepositoryInstance = new ConnectorTerrainEditorGameMap();
 	TerrainTypeEditorInstance = new TerrainTypeEditor(nullptr);
 	TerrainTypeEditorInstance->SetMapEventManager(MapEventManagerInstance);
-	connect(TerrainTypeEditorInstance, &TerrainTypeEditor::SignalTerrainTypeChanged, ConnectorEditorModelRepositoryInstance, &ConnectorTerrainEditorGameMap::SlotTerrainTypeChanged);
 }
 
 void EditorToolbox::CreateGroupUnitTypes()
 {
-	CreateUnitTypeEditor(MapEventManagerInstance);
+	CreateUnitTypeEditor();
 	GroupUnitsTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutUnitTypes = new QGridLayout;
@@ -141,7 +138,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 
 }
 
-void EditorToolbox::CreateUnitTypeEditor(MapHexItemEventManager* mapEventManager)
+void EditorToolbox::CreateUnitTypeEditor()
 {
 	ConnectorUnitTypeEditorGameMapInstance = new ConnectorUnitTypeGameMap();
 

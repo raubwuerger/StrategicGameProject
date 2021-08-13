@@ -4,6 +4,8 @@
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
+#include "game/GameMapItemRepository.h"
+#include "LogInterface.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),
@@ -42,5 +44,13 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 		return;
 	}
 	item->SetTerrainImage( ActiveTerrainType->GetImage() );
-	emit SignalTerrainTypeChanged( item->GetGameMapItemId(), ActiveTerrainType->GetId() );
+
+	GameMapItem *modelMapToUpdate = GameMapItemRepository::GetInstance()->GetGameMapItemById(item->GetGameMapItemId());
+	if (nullptr == modelMapToUpdate)
+	{
+		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(item->GetGameMapItemId())));
+		return;
+	}
+
+	modelMapToUpdate->SetModelTerrainType(ActiveTerrainType);
 }

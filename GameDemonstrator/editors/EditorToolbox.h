@@ -32,7 +32,7 @@ private:
 	/** */
 	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector);
 	/** */
-	void CreateTerrainTypeEditor(MapHexItemEventManager* mapEventManager);
+	void CreateTerrainTypeEditor();
 	/** */
 	void CreateGroupBuildingTypes();
 	/** */
@@ -40,7 +40,7 @@ private:
 	/** */
 	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
 	/** */
-	void CreateUnitTypeEditor(MapHexItemEventManager* mapEventManager);
+	void CreateUnitTypeEditor();
 private:
 	friend class GameDemonstrator;
 	int								MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
@@ -53,7 +53,7 @@ private:
 	ConnectorTerrainEditorGameMap*	ConnectorEditorModelRepositoryInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
 	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
-	MapHexItemEventManager*				MapEventManagerInstance;
+	MapHexItemEventManager*			MapEventManagerInstance;
 };
 
 #endif // CEDITORTOOLBOX_H
