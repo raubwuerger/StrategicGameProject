@@ -500,6 +500,9 @@
     <ClCompile Include="controller\KeyEventController.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="controller\MapItemMapUnitMovementController.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -689,6 +692,9 @@
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="controller\KeyEventController.h">
+      <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\MapItemMapUnitMovementController.h">
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>

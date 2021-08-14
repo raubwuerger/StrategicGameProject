@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "KeyEventController.h"
+#include "MapItemMapUnitMovementController.h"
 #include "map\MapUnitItem.h"
 #include "map\MapHexItemRepository.h"
 #include "map\MapHexItem.h"
@@ -72,17 +73,25 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 	{
 		return false;
 	}
+
+	MapHexItem* destMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(destinationMapHexItem->GetGameMapItemId());
+	if (nullptr == destMapHexItem)
+	{
+		return false;
+	}
+
+	MapItemMapUnitMovementController mapItemMapUnitMovementController;
+	if (false == mapItemMapUnitMovementController.CanUnitMove(destMapHexItem, gameUnitItem))
+	{
+		return false;
+	}
+
 	gameUnitItem->SetGameMapItemId(destinationMapHexItem->GetGameMapItemId());
 	mapUnitItem->SetMapHexItemId(destinationMapHexItem->GetGameMapItemId());
 	jha::GetLog()->Log_MESSAGE(QObject::tr("Source: %1|%2 - offset: %3|%4 - dest: %5|%6").arg(QString::number(source.width())).arg(QString::number(source.height()))
 		.arg(QString::number(offset.width())).arg(QString::number(offset.height()))
 		.arg(QString::number(destination.width())).arg(QString::number(destination.height())));
 
-	MapHexItem* destMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
-	if (nullptr == destMapHexItem)
-	{
-		return false;
-	}
 
 	const QPointF& sourceCenterPoint = sourceMapHexItem->GetCenterPoint();
 	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
