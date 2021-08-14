@@ -10,6 +10,7 @@
 #include "game/GameMapItemRepository.h"
 #include "LogInterface.h"
 #include "MapUnitItem.h"
+#include "controller/KeyEventController.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent),
@@ -21,6 +22,7 @@ MapView::MapView(QWidget *parent)
 	ConnectorMapHexItemInstance = new ConnectorMapHexItem;
 	ConnectorMapUnitItemInstance = new ConnectorMapUnitItem;
 	Scene = new MapGraphicsScene(this);
+	KeyEventControllerInstance = new KeyEventController;
 }
 
 MapView::~MapView()
@@ -71,6 +73,7 @@ bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 		return false;
 	}
 	mapUnitItem->SetEventConnector(ConnectorMapUnitItemInstance);
+	mapUnitItem->SetKeyEventController(KeyEventControllerInstance);
 	Scene->addItem(mapUnitItem);
 	return true;
 }

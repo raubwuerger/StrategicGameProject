@@ -12,6 +12,7 @@ class MapHexItemHexagonData;
 class MapUnitItem;
 class GameMapItem;
 class MapHexItem;
+class KeyEventController;
 
 class MapView : public QGraphicsView
 {
@@ -68,6 +69,7 @@ private:
 	const int	NO_ACTIVE_ID;
 	int			ActiveMapHexItemId;
 	int			ActiveUnitItemId;
+	KeyEventController*	KeyEventControllerInstance;
 };
 
 #endif // CMAPVIEW_H

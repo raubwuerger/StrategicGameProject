@@ -2,6 +2,7 @@
 #define MAPVIEWUNITITEM_H
 
 class ConnectorMapUnitItem;
+class KeyEventController;
 
 class MapUnitItem : public QGraphicsPolygonItem
 {
@@ -14,6 +15,14 @@ public:
 	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
 	/** */
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
+	/** */
+	virtual void keyPressEvent(QKeyEvent * event);
+	/** */
+	virtual void keyReleaseEvent(QKeyEvent * event);
+	/** */
+	virtual void mousePressEvent(QGraphicsSceneMouseEvent * event);
+	/** */
+	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
 	/** */
 	void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 	/** Set UnitItemImage */
@@ -30,6 +39,8 @@ public:
 	int GetMapHexItemId() const;
 	/** */
 	void SetEventConnector(ConnectorMapUnitItem* eventConnector);
+	/** */
+	void SetKeyEventController(KeyEventController* eventController);
 private:
 	/** */
 	void ShowSelected();
@@ -45,6 +56,7 @@ private:
 	QSize			ImageRect;
 	QRectF			BoundingRect;
 	ConnectorMapUnitItem*	EventConnector;
+	KeyEventController*		EventController;
 };
 
 #endif

@@ -84,6 +84,12 @@
     <Filter Include="Source Dateien\Dialogs">
       <UniqueIdentifier>{c4661f96-8049-4a3f-9c0e-1712a246503e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Controller">
+      <UniqueIdentifier>{b51f1e75-f8a9-4c93-890a-a4835ebc6941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Controller">
+      <UniqueIdentifier>{1b269244-e199-4693-af20-66776c4aa7d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -491,6 +497,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MapHexItemEventManager.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="controller\KeyEventController.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -678,6 +687,9 @@
     </ClInclude>
     <ClInclude Include="game\IGameMapItemCreator.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\KeyEventController.h">
+      <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

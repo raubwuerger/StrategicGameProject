@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MapUnitItem.h"
 #include "connectors\ConnectorMapUnitItem.h"
+#include "controller\KeyEventController.h"
 
 MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	: TopLeft(topLeft),
@@ -13,6 +14,8 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	this->setAcceptHoverEvents(true);
 	this->setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
 	this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
+	this->setFlags(QGraphicsItem::ItemIsSelectable);
+	this->setFlags(QGraphicsItem::ItemIsFocusable);
 	BoundingRect = QRectF(QPointF(0.0, 0.0), ImageRect);
 	CreatRect();
 	setZValue(255);
@@ -25,7 +28,6 @@ QRectF MapUnitItem::boundingRect() const
 
 void MapUnitItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 {
-	ShowSelected();
 	if (EventConnector != nullptr)
 	{
 		emit EventConnector->SignalUnitItemEntered(GameUnitId);
@@ -36,13 +38,40 @@ void MapUnitItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 
 void MapUnitItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 {
-	ShowOriginal();
 	if (EventConnector != nullptr)
 	{
 		emit EventConnector->SignalUnitItemLeft(GameUnitId);
 	}
 	QGraphicsPolygonItem::hoverLeaveEvent(event);
 	event->ignore();
+}
+
+void MapUnitItem::keyPressEvent(QKeyEvent * event)
+{
+	if (nullptr == EventController)
+	{
+		return;
+	}
+	EventController->HandleKeyPressEvent(this, event);
+}
+
+void MapUnitItem::keyReleaseEvent(QKeyEvent * event)
+{
+	if (nullptr == EventController)
+	{
+		return;
+	}
+	EventController->HandleKeyReleaseEvent(this, event);
+}
+
+void MapUnitItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+{
+	ShowSelected();
+}
+
+void MapUnitItem::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
+{
+	ShowOriginal();
 }
 
 /** */
@@ -90,6 +119,11 @@ int MapUnitItem::GetMapHexItemId() const
 void MapUnitItem::SetEventConnector(ConnectorMapUnitItem* eventConnector)
 {
 	EventConnector = eventConnector;
+}
+
+void MapUnitItem::SetKeyEventController(KeyEventController* eventController)
+{
+	EventController = eventController;
 }
 
 void MapUnitItem::ShowSelected()
