@@ -54,6 +54,11 @@ void UnitTypeEditor::CreateUnit()
 		return;
 	}
 
+	if (false == CanUnitBePlacedOnThisMapItem())
+	{
+		return;
+	}
+
 	GameUnitItemFactory gameUnitItemFactory;
 	GameUnitItem* created = gameUnitItemFactory.CreateGameUnitItemFromScratch(ActiveUnitType,SelectedGameMapItem);
 
@@ -169,5 +174,25 @@ bool UnitTypeEditor::IsUnitTypeEditorInitialzedForDeletingUnit() const
 	}
 
 	return true;
+}
+
+#include "game/GameMapItemRepository.h"
+#include "game/GameMapItem.h"
+#include "model/ModelTerrainType.h"
+bool UnitTypeEditor::CanUnitBePlacedOnThisMapItem() const
+{
+	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(SelectedGameMapItem);
+	if (nullptr == gameMapItem)
+	{
+		return false;
+	}
+
+	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
+	if (nullptr == modelTerrainType)
+	{
+		return false;
+	}
+
+	return ActiveUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 

@@ -16,6 +16,8 @@ public:
 	const QString& GetPictureName() const;
 	/** */
 	void SetImage(const QImage* image);
+	/** */
+	bool IsTerrainTypeValid(int terrainTypeId) const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
