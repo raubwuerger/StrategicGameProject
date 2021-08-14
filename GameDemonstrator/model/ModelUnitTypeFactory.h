@@ -20,6 +20,8 @@ private:
 	const QImage* LoadImage(const QString& path);
 	/** */
 	bool AttacheImage(ModelUnitType* modelUnit);
+	/** */
+	bool ExtractTerrainTypes(QDomNode domNode, QVector<int>& terrainTypes);
 };
 
 #endif

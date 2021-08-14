@@ -4,7 +4,7 @@
 		<Id>1</Id>
 		<Name>Plains</Name>
 		<PictureName>.\Resources\Terrain\Plains.png</PictureName>
-		<Infrastructure>10</Infrastructure>
+		<Infrastructure>50</Infrastructure>
 		<Oil>20</Oil>
 		<Timber>30</Timber>
 		<Stone>0</Stone>
@@ -16,7 +16,7 @@
 		<Id>2</Id>
 		<Name>Woods</Name>
 		<PictureName>.\Resources\Terrain\Woods.png</PictureName>
-		<Infrastructure>5</Infrastructure>
+		<Infrastructure>30</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>100</Timber>
 		<Stone>10</Stone>
@@ -40,7 +40,7 @@
 		<Id>4</Id>
 		<Name>Hills</Name>
 		<PictureName>.\Resources\Terrain\Hills.png</PictureName>
-		<Infrastructure>50</Infrastructure>
+		<Infrastructure>15</Infrastructure>
 		<Oil>5</Oil>
 		<Timber>20</Timber>
 		<Stone>20</Stone>
@@ -52,7 +52,7 @@
 		<Id>5</Id>
 		<Name>Mountains</Name>
 		<PictureName>.\Resources\Terrain\Mountains.png</PictureName>
-		<Infrastructure>20</Infrastructure>
+		<Infrastructure>5</Infrastructure>
 		<Oil>0</Oil>
 		<Timber>10</Timber>
 		<Stone>50</Stone>

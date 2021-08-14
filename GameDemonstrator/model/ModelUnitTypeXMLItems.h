@@ -15,6 +15,8 @@ public:
 	const static QString SUBELEMENT_ATTACK;
 	const static QString SUBELEMENT_DEFENCE;
 	const static QString SUBELEMENT_RANGE;
+	const static QString NODE_TERRAINTYPES;
+	const static QString SUBELEMENT_TERRAINTYPEID;
 };
 
 

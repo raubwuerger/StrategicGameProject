@@ -5,6 +5,7 @@
 #include "ModelUnitTypeXMLItems.h"
 #include "ModelConfigurationHeaderXMLItems.h"
 #include "DomValueExtractor.h"
+#include "DomNodeFinder.h"
 #include "io/ConfigFileLoader.h"
 #include <QtXml>
 #include "LogInterface.h"
@@ -87,6 +88,11 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_RANGE, newUnitType->Range);
 	}
 
+	{
+		DomNodeFinder find(node);
+		allElementsExtracted &= ExtractTerrainTypes(find.FindDomeNodeByName(config.NODE_TERRAINTYPES), newUnitType->ValidTerrainTypes);
+	}
+
 	if (false == allElementsExtracted)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(unitTypeId)));
@@ -130,4 +136,42 @@ const QImage* ModelUnitTypeFactory::LoadImage(const QString& path)
 	}
 	return newImage;
 }
+
+#include "ModelUnitTypeXMLItems.h"
+#include "DomElementFinder.h"
+bool ModelUnitTypeFactory::ExtractTerrainTypes(QDomNode domNode, QVector<int>& terrainTypes)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() != ModelUnitTypeXMLItems::SUBELEMENT_TERRAINTYPEID)
+		{
+			continue;
+		}
+		
+		if (false == node.isElement())
+		{
+			continue;
+		}
+
+		QDomElement element = node.toElement();
+		int terrainTypeId = element.text().toInt();
+		terrainTypes.push_back(terrainTypeId);
+	}
+	return !terrainTypes.isEmpty();
+}
+
 

@@ -26,6 +26,7 @@ private:
 	int				Attack;
 	int				Defense;
 	int				Range;
+	QVector<int>	ValidTerrainTypes;
 };
 
 #endif

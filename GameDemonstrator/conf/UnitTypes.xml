@@ -8,6 +8,12 @@
 		<Attack>5</Attack>
 		<Defense>5</Defense>
 		<Range>1</Range>
+		<TerrainTypes>
+			<TerrainTypeId>1</TerrainTypeId>
+			<TerrainTypeId>2</TerrainTypeId>
+			<TerrainTypeId>4</TerrainTypeId>
+			<TerrainTypeId>5</TerrainTypeId>
+		</TerrainTypes>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -17,6 +23,11 @@
 		<Attack>10</Attack>
 		<Defense>10</Defense>
 		<Range>1</Range>
+		<TerrainTypes>
+			<TerrainTypeId>1</TerrainTypeId>
+			<TerrainTypeId>2</TerrainTypeId>
+			<TerrainTypeId>4</TerrainTypeId>
+		</TerrainTypes>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -26,5 +37,9 @@
 		<Attack>5</Attack>
 		<Defense>1</Defense>
 		<Range>2</Range>
+		<TerrainTypes>
+			<TerrainTypeId>1</TerrainTypeId>
+			<TerrainTypeId>2</TerrainTypeId>
+		</TerrainTypes>
 	</UnitType>
 </UnitTypes>
