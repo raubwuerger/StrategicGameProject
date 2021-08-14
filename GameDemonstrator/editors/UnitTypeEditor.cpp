@@ -47,6 +47,7 @@ void UnitTypeEditor::SlotAddUnit(int mapHexItemId)
 }
 
 #include "game/GameUnitItem.h"
+#include "controller/MapItemMapUnitMovementController.h"
 void UnitTypeEditor::CreateUnit()
 {
 	if (false == IsUnitTypeEditorInitialzedForCreatingUnit())
@@ -54,7 +55,8 @@ void UnitTypeEditor::CreateUnit()
 		return;
 	}
 
-	if (false == CanUnitBePlacedOnThisMapItem())
+	MapItemMapUnitMovementController mapItemMapUnitMovementController;
+	if (false == mapItemMapUnitMovementController.CanUnitMove(ActiveUnitType, SelectedGameMapItem))
 	{
 		return;
 	}
@@ -174,25 +176,5 @@ bool UnitTypeEditor::IsUnitTypeEditorInitialzedForDeletingUnit() const
 	}
 
 	return true;
-}
-
-#include "game/GameMapItemRepository.h"
-#include "game/GameMapItem.h"
-#include "model/ModelTerrainType.h"
-bool UnitTypeEditor::CanUnitBePlacedOnThisMapItem() const
-{
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(SelectedGameMapItem);
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
-
-	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
-
-	return ActiveUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 

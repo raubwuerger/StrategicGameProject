@@ -77,3 +77,25 @@ bool MapItemMapUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem,
 	
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
+
+bool MapItemMapUnitMovementController::CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId)
+{
+	if (nullptr == modelUnitType)
+	{
+		return false;
+	}
+
+	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	if (nullptr == gameMapItem)
+	{
+		return false;
+	}
+
+	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
+	if (nullptr == modelTerrainType)
+	{
+		return false;
+	}
+
+	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
+}

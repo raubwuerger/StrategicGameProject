@@ -37,8 +37,6 @@ private:
 	bool IsUnitTypeEditorInitialzedForCreatingUnit() const;
 	/** */
 	bool IsUnitTypeEditorInitialzedForDeletingUnit() const;
-	/** */
-	bool CanUnitBePlacedOnThisMapItem() const;
 private:
 	const int				NO_UNITS;
 	const int				MAX_UNITS;
