@@ -18,63 +18,32 @@ void KeyEventController::HandleKeyPressEvent(MapUnitItem* mapUnitItem, QKeyEvent
 {
 	if (Qt::Key_1 == keyEvent->key())
 	{
-		if (false == IsMovementDirectionValid(1, mapUnitItem))
-		{
-			return;
-		}
-
-		mapUnitItem->moveBy(-72, 42);
+		IsMovementDirectionValid(1, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_2 == keyEvent->key())
 	{
-		if (false == IsMovementDirectionValid(2, mapUnitItem))
-		{
-			return;
-		}
-		mapUnitItem->moveBy(0, 83);
+		IsMovementDirectionValid(2, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_3 == keyEvent->key())
 	{
-		if (false == IsMovementDirectionValid(3, mapUnitItem))
-		{
-			return;
-		}
-		mapUnitItem->moveBy(72, 42);
+		IsMovementDirectionValid(3, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_7 == keyEvent->key())
 	{
-		if (false == IsMovementDirectionValid(7, mapUnitItem))
-		{
-			return;
-		}
-		mapUnitItem->moveBy(-72, -42);
+		IsMovementDirectionValid(7, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_8 == keyEvent->key())
 	{
-		if (false == IsMovementDirectionValid(8, mapUnitItem))
-		{
-			return;
-		}
-		mapUnitItem->moveBy(0, -83);
+		IsMovementDirectionValid(8, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_9 == keyEvent->key())
 	{
-		if (false == IsMovementDirectionValid(9, mapUnitItem))
-		{
-			return;
-		}
-		mapUnitItem->moveBy(72, -42);
-		return;
-	}
-
-	if (Qt::Key_Escape == keyEvent->key())
-	{
-		mapUnitItem->setSelected(false);
+		IsMovementDirectionValid(9, mapUnitItem);
 		return;
 	}
 }
@@ -83,68 +52,54 @@ void KeyEventController::HandleKeyPressEvent(MapUnitItem* mapUnitItem, QKeyEvent
 #include "game/GameUnitItem.h"
 bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnitItem* mapUnitItem) const
 {
-	int mapHexItemId = mapUnitItem->GetMapHexItemId();
-
-	MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapHexItemId);
-	if(nullptr == mapHexItem)
+	MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
+	if(nullptr == sourceMapHexItem)
 	{
 		return false;
 	}
-	const QPointF& mapHexItemCenterPoint = mapHexItem->GetCenterPoint();
+	QSize offset = GetCorrectOffset(movementDirection,sourceMapHexItem);
 
+	GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
+	if (nullptr == gameUnitItem)
+	{
+		return false;
+	}
+
+	const QSize source(sourceMapHexItem->GetRow(), sourceMapHexItem->GetCol());
+	QSize destination = source + offset;
+	MapHexItem* destinationMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemByRowCol(destination.width(), destination.height());
+	if (nullptr == destinationMapHexItem)
+	{
+		return false;
+	}
+	gameUnitItem->SetGameMapItemId(destinationMapHexItem->GetGameMapItemId());
+	mapUnitItem->SetMapHexItemId(destinationMapHexItem->GetGameMapItemId());
+	jha::GetLog()->Log_MESSAGE(QObject::tr("Source: %1|%2 - offset: %3|%4 - dest: %5|%6").arg(QString::number(source.width())).arg(QString::number(source.height()))
+		.arg(QString::number(offset.width())).arg(QString::number(offset.height()))
+		.arg(QString::number(destination.width())).arg(QString::number(destination.height())));
+
+	MapHexItem* destMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
+	if (nullptr == destMapHexItem)
+	{
+		return false;
+	}
+
+	const QPointF& sourceCenterPoint = sourceMapHexItem->GetCenterPoint();
+	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
+	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);
+	mapUnitItem->moveBy(offsetCenterPoint.x(), offsetCenterPoint.y());
+	return true;
+}
+
+QSize KeyEventController::GetCorrectOffset(int movementDirection, const MapHexItem* mapHexItem) const
+{
 	int isEvenInt = mapHexItem->GetCol() % 2;
-	const QSize source(mapHexItem->GetRow(), mapHexItem->GetCol());
 	if (0 == isEvenInt)
 	{
-		if (false == MovementTypeColumEven.contains(movementDirection))
-		{
-			return false;
-		}
-		QSize offset = MovementTypeColumEven[movementDirection];
-		QSize destination = source + offset;
-		MapHexItem* destinationMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemByRowCol(destination.width(), destination.height());
-		if (nullptr == destinationMapHexItem)
-		{
-			return false;
-		}
-		GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
-		if (nullptr == gameUnitItem)
-		{
-			return false;
-		}
-		gameUnitItem->SetGameMapItemId(destinationMapHexItem->GetGameMapItemId());
-		mapUnitItem->SetMapHexItemId(destinationMapHexItem->GetGameMapItemId());
-		jha::GetLog()->Log_MESSAGE(QObject::tr("Source: %1|%2 - offset: %3|%4 - dest: %5|%6").arg(QString::number(source.width())).arg(QString::number(source.height()))
-			.arg(QString::number(offset.width())).arg(QString::number(offset.height()))
-			.arg(QString::number(destination.width())).arg(QString::number(destination.height())));
-		return true;
-	}
-	if (1 == isEvenInt)
-	{
-		if (false == MovementTypeColumOdd.contains(movementDirection))
-		{
-			return false;
-		}
-		QSize offset = MovementTypeColumOdd[movementDirection];
-		QSize destination = source + offset;
-		MapHexItem* destinationMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemByRowCol(destination.width(), destination.height());
-		if (nullptr == destinationMapHexItem)
-		{
-			return false;
-		}
-		GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
-		if (nullptr == gameUnitItem)
-		{
-			return false;
-		}
-		jha::GetLog()->Log_MESSAGE(QObject::tr("Source: %1|%2 - offset: %3|%4 - dest: %5|%6").arg(QString::number(source.width())).arg(QString::number(source.height()))
-			.arg(QString::number(offset.width())).arg(QString::number(offset.height()))
-			.arg(QString::number(destination.width())).arg(QString::number(destination.height())));
-		gameUnitItem->SetGameMapItemId(destinationMapHexItem->GetGameMapItemId());
-		mapUnitItem->SetMapHexItemId(destinationMapHexItem->GetGameMapItemId());
-		return true;
+		return MovementTypeColumEven[movementDirection];
 	}
 
+	return MovementTypeColumOdd[movementDirection];
 }
 
 void KeyEventController::HandleKeyReleaseEvent(MapUnitItem* mapUnitItem, QKeyEvent* keyEvent)

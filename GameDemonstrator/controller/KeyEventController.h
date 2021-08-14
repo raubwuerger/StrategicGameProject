@@ -20,6 +20,8 @@ private:
 	static void CreateMovementTypes();
 	/** */
 	bool IsMovementDirectionValid(int movementDirection, MapUnitItem* mapUnitItem) const;
+	/** */
+	QSize GetCorrectOffset( int movementDirection, const MapHexItem* mapHexItem ) const;
 private:
 	static QMap<int, QSize> MovementTypeColumEven;
 	static QMap<int, QSize> MovementTypeColumOdd;
