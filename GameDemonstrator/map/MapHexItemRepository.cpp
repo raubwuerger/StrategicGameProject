@@ -57,7 +57,7 @@ MapHexItem* MapHexItemRepository::GetMapHexItemByRowCol(int row, int col)
 	}
 
 	int rowCount = MapHexItems.count();
-	if (row > rowCount)
+	if (row >= rowCount)
 	{
 		jha::GetLog()->Log_MESSAGE(QObject::tr("MapHexItem with row=%1 and col=%2 not found! Max rows: %3").arg(QString::number(row)).arg(QString::number(col)).arg(QString::number(rowCount)));
 		return nullptr;
@@ -65,7 +65,7 @@ MapHexItem* MapHexItemRepository::GetMapHexItemByRowCol(int row, int col)
 
 	QVector<MapHexItem*> concreteRow = MapHexItems.at(row);
 	int colCount = concreteRow.count();
-	if (col > colCount)
+	if (col >= colCount)
 	{
 		jha::GetLog()->Log_MESSAGE(QObject::tr("MapHexItem with row=%1 and col=%2 not found! Max cols: %3").arg(QString::number(row)).arg(QString::number(col)).arg(QString::number(colCount)));
 		return nullptr;

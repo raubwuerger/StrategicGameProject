@@ -32,7 +32,7 @@ public:
 	/** */
 	void SetGameUnitId(int gameUnitId);
 	/** */
-	int GetGameUnitId();
+	int GetGameUnitId() const;
 	/** */
 	void SetMapHexItemId(int mapHexItemId);
 	/** */

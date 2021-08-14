@@ -26,3 +26,8 @@ void UnitTypeInfoDialog::SetType(const QString& type)
 {
 	ui.lineEditType->setText(type);
 }
+
+void UnitTypeInfoDialog::SetMapItemId(const QString& mapItemId)
+{
+	ui.lineEditMapId->setText(mapItemId);
+}

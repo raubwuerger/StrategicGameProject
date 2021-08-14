@@ -19,6 +19,8 @@ public:
 	void SetName(const QString& name);
 	/** */
 	void SetType(const QString& type);
+	/** */
+	void SetMapItemId(const QString& mapItemId);
 private:
 	Ui::UnitTypeInfoDialog ui;
 };

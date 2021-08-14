@@ -13,9 +13,9 @@ public:
 	/** */
 	~MapUnitItemFactory();
 	/** */
-	bool CreateUnit(MapView* mapView);
+	bool Create(MapView* mapView);
 	/** */
-	bool CreateUnit(MapView* mapView, const GameUnitItem* gameItemUnit);
+	bool Create(MapView* mapView, const GameUnitItem* gameItemUnit);
 	/** */
 	bool DeleteUnit(MapView* mapView, int unitItemId);
 private:

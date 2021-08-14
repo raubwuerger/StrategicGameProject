@@ -64,7 +64,7 @@ void UnitTypeEditor::CreateUnit()
 	}
 
 	MapUnitItemFactory mapUnitItemFactory;
-	if (false == mapUnitItemFactory.CreateUnit(MapViewInstance, created))
+	if (false == mapUnitItemFactory.Create(MapViewInstance, created))
 	{
 		return;
 	}

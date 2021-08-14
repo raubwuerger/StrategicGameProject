@@ -65,15 +65,18 @@ void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 	QString mapUnitItem(QString::number(mapUnitItemId));
 	QString mapUnitItemName(DEFAULT_ENTRY);
 	QString mapUnitItemType(DEFAULT_ENTRY);
+	QString mapHexItemId(DEFAULT_ENTRY);
 
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItemId);
 	if (nullptr != gameUnitItem)
 	{
 		mapUnitItemName = gameUnitItem->GetName();
 		mapUnitItemType = gameUnitItem->GetModelUnitType()->GetName();
+		mapHexItemId = QString::number(gameUnitItem->GetGameMapItemId());
 	}
 
 	UnitTypeInfoDialog->SetId(mapUnitItem);
 	UnitTypeInfoDialog->SetName(mapUnitItemName);
 	UnitTypeInfoDialog->SetType(mapUnitItemType);
+	UnitTypeInfoDialog->SetMapItemId(mapHexItemId);
 }

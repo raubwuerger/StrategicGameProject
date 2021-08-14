@@ -19,7 +19,7 @@ private:
 	/** */
 	static void CreateMovementTypes();
 	/** */
-	bool IsMovementDirectionValid(int movementDirection, const MapHexItem* mapHexItem) const;
+	bool IsMovementDirectionValid(int movementDirection, MapUnitItem* mapUnitItem) const;
 private:
 	static QMap<int, QSize> MovementTypeColumEven;
 	static QMap<int, QSize> MovementTypeColumOdd;

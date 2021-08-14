@@ -101,7 +101,7 @@ void MapUnitItem::SetGameUnitId(int gameUnitId)
 	GameUnitId = gameUnitId;
 }
 
-int MapUnitItem::GetGameUnitId()
+int MapUnitItem::GetGameUnitId() const
 {
 	return GameUnitId;
 }

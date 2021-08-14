@@ -18,7 +18,7 @@ MapUnitItemFactory::~MapUnitItemFactory()
 {
 }
 
-bool MapUnitItemFactory::CreateUnit( MapView* mapView )
+bool MapUnitItemFactory::Create( MapView* mapView )
 {
 	if (nullptr == mapView)
 	{
@@ -53,7 +53,7 @@ bool MapUnitItemFactory::CreateUnit( MapView* mapView )
 	return true;
 }
 
-bool MapUnitItemFactory::CreateUnit(MapView* mapView, const GameUnitItem* gameItemUnit)
+bool MapUnitItemFactory::Create(MapView* mapView, const GameUnitItem* gameItemUnit)
 {
 	if (nullptr == mapView)
 	{

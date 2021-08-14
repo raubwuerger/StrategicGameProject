@@ -41,7 +41,6 @@ bool MapUnitItemRepository::Register(MapUnitItem* mapUnitItem)
 	return true;
 }
 
-
 MapUnitItem* MapUnitItemRepository::Remove(int gameUnitItemId)
 {
 	if (false == MapUnitItems.contains(gameUnitItemId))

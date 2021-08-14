@@ -43,7 +43,7 @@ bool GameMapItemCreatorSaveGame::InitializeMap(const QDomNode& settings)
 	QDomNodeList settingsNodeList = settings.childNodes();
 	if( true == settingsNodeList.isEmpty() )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child elements") );
+		jha::GetLog()->Log_WARNING( QObject::tr("%1: QDomNodeList has no child elements").arg(settings.nodeName()) );
 		return false;
 	}
 
@@ -71,7 +71,7 @@ bool GameMapItemCreatorSaveGame::CreateMapItems(const QDomNode &mapItems)
 	QDomNodeList mapItemNodeList = mapItems.childNodes();
 	if( true == mapItemNodeList.isEmpty() )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("QDomNodeList has no child elements") );
+		jha::GetLog()->Log_WARNING( QObject::tr("%1: QDomNodeList has no child elements").arg(mapItems.nodeName()) );
 		return false;
 	}
 
