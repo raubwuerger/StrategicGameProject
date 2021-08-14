@@ -12,6 +12,8 @@ public:
 	bool Init();
 	/** */
 	bool Register(MapUnitItem* mapUnitItem);
+	/** */
+	MapUnitItem* Remove(int gameUnitItemId);
 private:
 	/** */
 	MapUnitItemRepository();

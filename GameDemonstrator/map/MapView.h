@@ -32,6 +32,8 @@ public:
 	bool AddMapHexItem(MapHexItem* mapHexItem);
 	/** */
 	bool AddedMapUnit(MapUnitItem *mapUnitItem);
+	/** */
+	bool RemoveMapUnit(MapUnitItem *mapUnitItem);
 public slots:
 	/** */
 	void SlotHexMapItemActive(int gameMapItemId);

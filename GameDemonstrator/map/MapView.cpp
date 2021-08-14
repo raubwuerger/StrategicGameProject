@@ -75,6 +75,17 @@ bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 	return true;
 }
 
+
+bool MapView::RemoveMapUnit(MapUnitItem *mapUnitItem)
+{
+	if (nullptr == mapUnitItem)
+	{
+		return false;
+	}
+	Scene->removeItem(mapUnitItem);
+	return true;
+}
+
 void MapView::InitMapEventManager()
 {
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexMapItemActive); //TODO: Muss der MapView wissen welches Item aktiv ist?

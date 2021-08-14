@@ -90,13 +90,32 @@ int GameUnitItemRepository::GetLastIndex() const
 	return ++idOfLastGameUnit;
 }
 
-int GameUnitItemRepository::GetGameMapItemGameUnitItems(int gameMapItemId) const
+int GameUnitItemRepository::GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const
 {
 	if ( false == GameUnitItemsGameMapItems.contains(gameMapItemId))
 	{
 		return 0;
 	}
 	return 1;
+}
+
+
+GameUnitItem* GameUnitItemRepository::RemoveGameUnitItemByGameMapItemId(int gameMapItemId)
+{
+	if (false == GameUnitItemsGameMapItems.contains(gameMapItemId))
+	{
+		return nullptr;
+	}
+
+	int gemeUnitItemToDelete = GameUnitItemsGameMapItems.take(gameMapItemId);
+	GameUnitItem* toDelete = GameUnitItems.take(gemeUnitItemToDelete);
+	if (nullptr == toDelete)
+	{
+		jha::GetLog()->Log_FATAL(QObject::tr("Requested GameUnitItemId %1 is not registered!").arg(QString::number(gemeUnitItemToDelete)));
+		return nullptr;
+	}
+
+	return toDelete;
 }
 
 GameUnitItemRepository::GameUnitItemRepository()

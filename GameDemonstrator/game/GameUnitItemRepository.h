@@ -27,7 +27,9 @@ public:
 	/** */
 	int GetLastIndex() const;
 	/** */
-	int GetGameMapItemGameUnitItems(int gameMapItemId) const;
+	int GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const;
+	/** */
+	GameUnitItem* RemoveGameUnitItemByGameMapItemId(int gameMapItemId);
 private:
 	/** */
 	GameUnitItemRepository();

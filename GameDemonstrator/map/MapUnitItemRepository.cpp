@@ -26,7 +26,7 @@ bool MapUnitItemRepository::Register(MapUnitItem* mapUnitItem)
 {
 	if (nullptr == mapUnitItem)
 	{
-		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem musst not be null!"));
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem must not be null!"));
 		return false;
 	}
 
@@ -39,6 +39,17 @@ bool MapUnitItemRepository::Register(MapUnitItem* mapUnitItem)
 	}
 	MapUnitItems.insert(gameUnitId, mapUnitItem);
 	return true;
+}
+
+
+MapUnitItem* MapUnitItemRepository::Remove(int gameUnitItemId)
+{
+	if (false == MapUnitItems.contains(gameUnitItemId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 is not exists!").arg(QString::number(gameUnitItemId)));
+		return nullptr;
+	}
+	return MapUnitItems.take(gameUnitItemId);
 }
 
 MapUnitItemRepository::MapUnitItemRepository()

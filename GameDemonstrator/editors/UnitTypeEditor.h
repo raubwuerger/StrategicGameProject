@@ -28,8 +28,19 @@ private:
 	/** */
 	void DeleteUnit();
 	/** */
-	bool HasMapHexItemUnits();
+	bool HasMapHexItemUnits() const;
+	/** */
+	bool IsSelectedGameMapItemInitialized() const;
+	/** */
+	bool IsUnitTypeEditorInitialzed() const;
+	/** */
+	bool IsUnitTypeEditorInitialzedForCreatingUnit() const;
+	/** */
+	bool IsUnitTypeEditorInitialzedForDeletingUnit() const;
 private:
+	const int				NO_UNITS;
+	const int				MAX_UNITS;
+	const int				SELECTEDGAMEMAPITEM_NOT_INITIALIZED;
 	int						SelectedGameMapItem;
 	const ModelUnitType*	ActiveUnitType;
 	MapView*				MapViewInstance;
