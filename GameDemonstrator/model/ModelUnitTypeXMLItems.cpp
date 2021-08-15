@@ -11,6 +11,7 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH = "Strength";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_ATTACK = "Attack";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_DEFENCE = "Defense";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_RANGE = "Range";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS = "MovementPoints";
 const QString ModelUnitTypeXMLItems::NODE_TERRAINTYPES = "TerrainTypes";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINTYPEID = "TerrainTypeId";
 

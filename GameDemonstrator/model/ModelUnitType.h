@@ -28,6 +28,7 @@ private:
 	int				Attack;
 	int				Defense;
 	int				Range;
+	int				MovementPoints;
 	QVector<int>	ValidTerrainTypes;
 };
 

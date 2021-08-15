@@ -80,6 +80,11 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 
 	{
 		DomValueExtractor extractor(node);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_MOVEMENTPOINTS, newUnitType->MovementPoints);
+	}
+
+	{
+		DomValueExtractor extractor(node);
 		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENCE, newUnitType->Defense);
 	}
 

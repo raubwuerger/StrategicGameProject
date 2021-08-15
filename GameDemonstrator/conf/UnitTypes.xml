@@ -8,6 +8,7 @@
 		<Attack>5</Attack>
 		<Defense>5</Defense>
 		<Range>1</Range>
+		<MovementPoints>1</MovementPoints>
 		<TerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -23,6 +24,7 @@
 		<Attack>10</Attack>
 		<Defense>10</Defense>
 		<Range>1</Range>
+		<MovementPoints>2</MovementPoints>
 		<TerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -37,9 +39,40 @@
 		<Attack>5</Attack>
 		<Defense>1</Defense>
 		<Range>2</Range>
+		<MovementPoints>1</MovementPoints>
 		<TerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>4</Id>
+		<Name>Fighter</Name>
+		<PictureName>.\Resources\Units\Fighter_64.png</PictureName>
+		<Strength>5</Strength>
+		<Attack>5</Attack>
+		<Defense>1</Defense>
+		<Range>1</Range>
+		<MovementPoints>5</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>1</TerrainTypeId>
+			<TerrainTypeId>2</TerrainTypeId>
+			<TerrainTypeId>3</TerrainTypeId>
+			<TerrainTypeId>4</TerrainTypeId>
+			<TerrainTypeId>5</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>6</Id>
+		<Name>Destroyer</Name>
+		<PictureName>.\Resources\Units\Destroyer_64.png</PictureName>
+		<Strength>5</Strength>
+		<Attack>5</Attack>
+		<Defense>1</Defense>
+		<Range>1</Range>
+		<MovementPoints>3</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>3</TerrainTypeId>
 		</TerrainTypes>
 	</UnitType>
 </UnitTypes>
