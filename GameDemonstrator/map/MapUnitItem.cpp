@@ -66,6 +66,11 @@ void MapUnitItem::keyReleaseEvent(QKeyEvent * event)
 
 void MapUnitItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
+	if (event->button() == Qt::RightButton)
+	{
+		emit EventConnector->SignalUnitItemPressedRightButton(GameUnitId);
+		return;
+	}
 	ShowSelected();
 }
 

@@ -1,12 +1,12 @@
 #ifndef UNITTYPEEDITR_H
 #define UNITTYPEEDITR_H
 
-#include <QObject>
+#include "BaseEditor.h"
 class ModelUnitType;
 class MapView;
 class EditorController;
 
-class UnitTypeEditor : public QObject
+class UnitTypeEditor : public BaseEditor
 {
 	Q_OBJECT
 public:
@@ -24,14 +24,16 @@ public slots:
 	/** */
 	void SlotAddUnit(int mapHexItemId);
 	/** */
-	void SlotDeleteUnit(int mapHexItemId);
+	void SlotDeleteUnitFromMapHexItemId(int mapHexItemId);
 	/** */
-	void SlotActivated();
+	void SlotDeleteUnitFromGameUnitId(int gameUnitId);
+	/** */
+	virtual void SlotActivated();
 private:
 	/** */
 	void CreateUnit();
 	/** */
-	void DeleteUnit();
+	void DeleteUnit( int gameMapItemId );
 	/** */
 	bool HasMapHexItemUnits() const;
 	/** */

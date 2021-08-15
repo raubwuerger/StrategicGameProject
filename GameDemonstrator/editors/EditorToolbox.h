@@ -16,6 +16,7 @@ class MapHexItemEventManager;
 class ConnectorMapUnitItem;
 class MapView;
 class EditorController;
+class BaseEditor;
 
 class EditorToolbox : public QToolBox
 {
@@ -29,14 +30,14 @@ public:
 	void Create();
 public slots:
 	/** */
-	void SlotButtonGroupChanged(int buttonGroupIndex);
+void SlotEditorTypeChanged(int editorIndex);
 private:
 	/** */
 	void CreateGroupTerrainTypes();
 	/** */
 	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector);
 	/** */
-	void CreateTerrainTypeEditor();
+	BaseEditor* CreateTerrainTypeEditor();
 	/** */
 	void CreateGroupBuildingTypes();
 	/** */
@@ -44,7 +45,7 @@ private:
 	/** */
 	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
 	/** */
-	void CreateUnitTypeEditor();
+	BaseEditor* CreateUnitTypeEditor();
 private:
 	friend class GameDemonstrator;
 	int								MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
@@ -57,6 +58,7 @@ private:
 	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
 	MapView*						MapViewInstance;
 	EditorController*				EditorControllerInstance;
+	QMap<int, BaseEditor*>			EditorMap;
 
 };
 

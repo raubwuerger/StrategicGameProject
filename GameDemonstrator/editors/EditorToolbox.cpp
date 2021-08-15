@@ -18,9 +18,9 @@ EditorToolbox::EditorToolbox(QWidget *parent)
 	GroupTerrainTypes(nullptr),
 	GroupBuildings(nullptr),
 	TerrainTypeEditorInstance(nullptr),
-	MinimumEditWidth(130)
+	MinimumEditWidth(130),
+	EditorControllerInstance(nullptr)
 {
-	EditorControllerInstance = new EditorController(MapViewInstance);
 }
 
 EditorToolbox::~EditorToolbox()
@@ -30,29 +30,27 @@ EditorToolbox::~EditorToolbox()
 
 void EditorToolbox::Create()
 {
+	EditorControllerInstance = new EditorController(MapViewInstance);
 	CreateGroupTerrainTypes();
 	CreateGroupUnitTypes();
 	CreateGroupBuildingTypes();
 
-	connect(this, &QToolBox::currentChanged, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivated);
-	connect(this, &QToolBox::currentChanged, UnitTypeEditorInstance, &UnitTypeEditor::SlotActivated);
-
-	//TODO: connect überarbeiten... Wenn UnitEditor ausgewählt ist sollte dieser Verbunden werden!
-	connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
-
-	connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
-	connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnit);
+	connect(this, &QToolBox::currentChanged, this, &EditorToolbox::SlotEditorTypeChanged);
+	SlotEditorTypeChanged(0);
 }
 
-void EditorToolbox::SlotButtonGroupChanged(int buttonGroupIndex)
+void EditorToolbox::SlotEditorTypeChanged(int editorIndex)
 {
-//	EditorControllerInstance->Activate(widget(buttonGroupIndex));
+	if (false == EditorMap.contains(editorIndex))
+	{
+		return;
+	}
+	EditorMap[editorIndex]->SlotActivated();
 }
 
-#include "TerrainTypeEditorWidget.h"
 void EditorToolbox::CreateGroupTerrainTypes()
 {
-	CreateTerrainTypeEditor();
+	BaseEditor* editor = CreateTerrainTypeEditor();
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
@@ -67,17 +65,20 @@ void EditorToolbox::CreateGroupTerrainTypes()
 
 	layoutTerrainTypes->setRowStretch(10, 10); //Damit werden die vorhandenen Elemente kleiner dargestellt
 
-	TerrainTypeEditorWidget *itemTerrainType = new TerrainTypeEditorWidget(EditorControllerInstance);
+	QWidget *itemTerrainType = new QWidget();
 	itemTerrainType->setLayout(layoutTerrainTypes);
 
 	int id = addItem(itemTerrainType, tr("Terrain Types"));
+	EditorMap.insert(id, editor);
 }
 
-void EditorToolbox::CreateTerrainTypeEditor()
+BaseEditor* EditorToolbox::CreateTerrainTypeEditor()
 {
 	TerrainTypeEditorInstance = new TerrainTypeEditor(nullptr);
 	TerrainTypeEditorInstance->SetEditorController(EditorControllerInstance);
 	TerrainTypeEditorInstance->SetMapEventManager(MapViewInstance->MapEventManagerInstance);
+	EditorControllerInstance->TerrainTypeEditorInstance = TerrainTypeEditorInstance;
+	return TerrainTypeEditorInstance;
 }
 
 QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector)
@@ -103,10 +104,9 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
-#include "UnitTypeEditorWidget.h"
 void EditorToolbox::CreateGroupUnitTypes()
 {
-	CreateUnitTypeEditor();
+	BaseEditor* editor = CreateUnitTypeEditor();
 	GroupUnitsTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutUnitTypes = new QGridLayout;
@@ -121,17 +121,20 @@ void EditorToolbox::CreateGroupUnitTypes()
 
 	layoutUnitTypes->setRowStretch(10, 10); //Damit werden die vorhandenen Elemente kleiner dargestellt
 
-	UnitTypeEditorWidget *unitTypeWidget = new UnitTypeEditorWidget(EditorControllerInstance);
+	QWidget *unitTypeWidget = new QWidget();
 	unitTypeWidget->setLayout(layoutUnitTypes);
 
 	int id = addItem(unitTypeWidget, tr("Unit Types"));
+	EditorMap.insert(id, editor);
 }
 
-void EditorToolbox::CreateUnitTypeEditor()
+BaseEditor* EditorToolbox::CreateUnitTypeEditor()
 {
 	UnitTypeEditorInstance = new UnitTypeEditor(nullptr);
 	UnitTypeEditorInstance->SetEditorController(EditorControllerInstance);
 	UnitTypeEditorInstance->SetMapView(MapViewInstance);
+	EditorControllerInstance->UnitTypeEditorInstance = UnitTypeEditorInstance;
+	return UnitTypeEditorInstance;
 }
 
 QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector)

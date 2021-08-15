@@ -9,7 +9,7 @@
 #include "LogInterface.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
-	: QObject(parent),
+	: BaseEditor(parent),
 	ActiveTerrainType(nullptr),
 	MapEventManagerInstance(nullptr),
 	EditorControllerInstance(nullptr)

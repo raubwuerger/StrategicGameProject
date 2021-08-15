@@ -16,12 +16,14 @@ public:
 	void Activate(TerrainTypeEditor* terrainTypeEditor);
 	/** */
 	void Activate(UnitTypeEditor* unitTypeEditor);
-	/** */
-	void Activate(TerrainTypeEditorWidget* terrainTypeEditorWidget);
-	/** */
-	void Activate(UnitTypeEditorWidget* unitTypeEditorWidget);
 private:
-	MapView*	MapViewInstance;
+	/** */
+	void DisconnectAll();
+private:
+	friend class EditorToolbox;
+	MapView*			MapViewInstance;
+	TerrainTypeEditor*	TerrainTypeEditorInstance;
+	UnitTypeEditor*		UnitTypeEditorInstance;
 };
 
 #endif // EDITORCONTROLLER_H

@@ -1,12 +1,12 @@
 #ifndef TERRAINTYPEEDITOR_H
 #define TERRAINTYPEEDITOR_H
 
-#include <QObject>
+#include "BaseEditor.h"
 class ModelTerrainType;
 class MapHexItemEventManager;
 class EditorController;
 
-class TerrainTypeEditor : public QObject
+class TerrainTypeEditor : public BaseEditor
 {
 	Q_OBJECT
 public:
@@ -27,7 +27,7 @@ public slots:
 	/** */
 	void SlotChangeTerrainTypeHexItem( int gameMapItemId );
 	/** */
-	void SlotActivated();
+	virtual void SlotActivated();
 private:
 	ModelTerrainType*		ActiveTerrainType;
 	MapHexItemEventManager*	MapEventManagerInstance;

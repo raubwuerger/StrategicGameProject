@@ -11,7 +11,8 @@
 #include "controller/EditorController.h"
 
 UnitTypeEditor::UnitTypeEditor(QObject *parent)
-	: ActiveUnitType(nullptr),
+	: BaseEditor(parent),
+	ActiveUnitType(nullptr),
 	EditorControllerInstance(nullptr),
 	MapViewInstance(nullptr),
 	SELECTEDGAMEMAPITEM_NOT_INITIALIZED(-1),
@@ -40,12 +41,6 @@ void UnitTypeEditor::SetEditorController(EditorController* editorController)
 void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 {
 	ActiveUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(unitTypeId);
-}
-
-void UnitTypeEditor::SlotDeleteUnit(int mapHexItemId)
-{
-	SelectedGameMapItem = mapHexItemId;
-	DeleteUnit();
 }
 
 void UnitTypeEditor::SlotActivated()
@@ -95,18 +90,35 @@ void UnitTypeEditor::CreateUnit()
 	jha::GetLog()->Log_DEBUG(tr("MapUnitItem (Id=%1) successfully created on HexItem (Id=%2)!").arg(QString::number(created->GetId())).arg(QString::number(SelectedGameMapItem)));
 }
 
+void UnitTypeEditor::SlotDeleteUnitFromMapHexItemId(int mapHexItemId)
+{
+	SelectedGameMapItem = mapHexItemId;
+	DeleteUnit(mapHexItemId);
+}
+
+void UnitTypeEditor::SlotDeleteUnitFromGameUnitId(int gameUnitId)
+{
+	GameUnitItem* gameUnitItemToDelete = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	if (nullptr == gameUnitItemToDelete)
+	{
+		return;
+	}
+	SelectedGameMapItem = gameUnitItemToDelete->GetGameMapItemId();
+	DeleteUnit(gameUnitItemToDelete->GetGameMapItemId());
+}
+
 #include "map/MapUnitItemRepository.h"
-void UnitTypeEditor::DeleteUnit()
+void UnitTypeEditor::DeleteUnit( int gameMapItemId )
 {
 	if (false == IsUnitTypeEditorInitialzedForDeletingUnit())
 	{
 		return;
 	}
 
-	GameUnitItem* gameUnitItemToDelete = GameUnitItemRepository::GetInstance()->RemoveGameUnitItemByGameMapItemId(SelectedGameMapItem);
+	GameUnitItem* gameUnitItemToDelete = GameUnitItemRepository::GetInstance()->RemoveGameUnitItemByGameMapItemId(gameMapItemId);
 	if (nullptr == gameUnitItemToDelete)
 	{
-		jha::GetLog()->Log_FATAL(tr("No GameUnitItem registered for GameMapItemId %1!").arg(QString::number(SelectedGameMapItem)));
+		jha::GetLog()->Log_FATAL(tr("No GameUnitItem registered for GameMapItemId %1!").arg(QString::number(gameMapItemId)));
 		return;
 	}
 
@@ -114,7 +126,7 @@ void UnitTypeEditor::DeleteUnit()
 	if (nullptr == mapUnitItemToDelete)
 	{
 		delete gameUnitItemToDelete;
-		jha::GetLog()->Log_FATAL(tr("No MapUnitItem registered for GameMapItemId %1!").arg(QString::number(SelectedGameMapItem)));
+		jha::GetLog()->Log_FATAL(tr("No MapUnitItem registered for GameMapItemId %1!").arg(QString::number(gameMapItemId)));
 		return;
 	}
 
@@ -128,7 +140,7 @@ void UnitTypeEditor::DeleteUnit()
 
 	delete gameUnitItemToDelete;
 	delete mapUnitItemToDelete;
-	jha::GetLog()->Log_DEBUG(tr("MapUnitItem (Id=%1) successfully removed on HexItem (Id=%2)!").arg(QString::number(mapUnitItemToDelete->GetGameUnitId())).arg(QString::number(SelectedGameMapItem)));
+	jha::GetLog()->Log_DEBUG(tr("MapUnitItem (Id=%1) successfully removed on HexItem (Id=%2)!").arg(QString::number(mapUnitItemToDelete->GetGameUnitId())).arg(QString::number(gameMapItemId)));
 }
 
 bool UnitTypeEditor::HasMapHexItemUnits() const

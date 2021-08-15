@@ -7,13 +7,15 @@ Q_OBJECT
 public:
 signals :
 	/** */
-	void SignalUnitItemEntered(int mapUnitId);
+	void SignalUnitItemEntered(int gameUnitId);
 	/** */
-	void SignalUnitItemLeft(int mapUnitId);
+	void SignalUnitItemLeft(int gameUnitId);
 	/** */
-	void SignalUnitItemPressed( int mapUnitId );
+	void SignalUnitItemPressedLeftButton(int gameUnitId);
 	/** */
-	void SignalUnitItemReleased( int mapUnitId );
+	void SignalUnitItemPressedRightButton(int gameUnitId);
+	/** */
+	void SignalUnitItemReleased(int gameUnitId);
 };
 
 #endif // CONNECTORMAPUNITITEM_H
