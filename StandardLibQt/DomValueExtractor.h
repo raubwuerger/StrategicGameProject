@@ -4,6 +4,11 @@
 class QDomNode;
 class QDomElement;
 
+/**
+	Sucht alle Kindknoten nach dem übergebnen Namen durch und liefert den entsprechenden Text
+	<Name>Text</Name>
+*/
+
 //================================================================================
 class DomValueExtractor
 {
