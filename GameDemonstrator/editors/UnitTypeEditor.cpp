@@ -8,9 +8,12 @@
 #include "map/MapView.h"
 #include "map/MapUnitItem.h"
 #include "LogInterface.h"
+#include "controller/EditorController.h"
 
 UnitTypeEditor::UnitTypeEditor(QObject *parent)
 	: ActiveUnitType(nullptr),
+	EditorControllerInstance(nullptr),
+	MapViewInstance(nullptr),
 	SELECTEDGAMEMAPITEM_NOT_INITIALIZED(-1),
 	SelectedGameMapItem(SELECTEDGAMEMAPITEM_NOT_INITIALIZED),
 	NO_UNITS(0),
@@ -29,6 +32,11 @@ void UnitTypeEditor::SetMapView(MapView* mapView)
 	MapViewInstance = mapView;
 }
 
+void UnitTypeEditor::SetEditorController(EditorController* editorController)
+{
+	EditorControllerInstance = editorController;
+}
+
 void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 {
 	ActiveUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(unitTypeId);
@@ -38,6 +46,15 @@ void UnitTypeEditor::SlotDeleteUnit(int mapHexItemId)
 {
 	SelectedGameMapItem = mapHexItemId;
 	DeleteUnit();
+}
+
+void UnitTypeEditor::SlotActivated()
+{
+	if (nullptr == EditorControllerInstance)
+	{
+		return;
+	}
+	EditorControllerInstance->Activate(this);
 }
 
 void UnitTypeEditor::SlotAddUnit(int mapHexItemId)

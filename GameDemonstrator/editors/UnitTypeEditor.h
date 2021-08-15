@@ -4,6 +4,7 @@
 #include <QObject>
 class ModelUnitType;
 class MapView;
+class EditorController;
 
 class UnitTypeEditor : public QObject
 {
@@ -15,6 +16,8 @@ public:
 	~UnitTypeEditor();
 	/** */
 	void SetMapView(MapView* mapView);
+	/** */
+	void SetEditorController(EditorController* editorController);
 public slots:
 	/** */
 	void SlotActiveUnitTypeId(int unitTypeId);
@@ -22,6 +25,8 @@ public slots:
 	void SlotAddUnit(int mapHexItemId);
 	/** */
 	void SlotDeleteUnit(int mapHexItemId);
+	/** */
+	void SlotActivated();
 private:
 	/** */
 	void CreateUnit();
@@ -44,6 +49,7 @@ private:
 	int						SelectedGameMapItem;
 	const ModelUnitType*	ActiveUnitType;
 	MapView*				MapViewInstance;
+	EditorController*		EditorControllerInstance;
 };
 
 #endif // UNITTYPEEDITR_H

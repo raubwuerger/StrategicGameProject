@@ -15,6 +15,7 @@ class ConnectorUnitTypeGameMap;
 class MapHexItemEventManager;
 class ConnectorMapUnitItem;
 class MapView;
+class EditorController;
 
 class EditorToolbox : public QToolBox
 {
@@ -26,6 +27,9 @@ public:
 	~EditorToolbox();
 	/** Erzeugt die Toolboxeinträge */
 	void Create();
+public slots:
+	/** */
+	void SlotButtonGroupChanged(int buttonGroupIndex);
 private:
 	/** */
 	void CreateGroupTerrainTypes();
@@ -52,6 +56,7 @@ private:
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
 	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
 	MapView*						MapViewInstance;
+	EditorController*				EditorControllerInstance;
 
 };
 

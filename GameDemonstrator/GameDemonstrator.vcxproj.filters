@@ -503,6 +503,15 @@
     <ClCompile Include="controller\MapItemMapUnitMovementController.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="controller\EditorController.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\TerrainTypeEditorWidget.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\UnitTypeEditorWidget.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -696,6 +705,15 @@
     </ClInclude>
     <ClInclude Include="controller\MapItemMapUnitMovementController.h">
       <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\EditorController.h">
+      <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="editors\TerrainTypeEditorWidget.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="editors\UnitTypeEditorWidget.h">
+      <Filter>Header Dateien\Editor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,12 +5,14 @@
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "game/GameMapItemRepository.h"
+#include "controller/EditorController.h"
 #include "LogInterface.h"
 
 TerrainTypeEditor::TerrainTypeEditor(QObject *parent)
 	: QObject(parent),
 	ActiveTerrainType(nullptr),
-	MapEventManagerInstance(nullptr)
+	MapEventManagerInstance(nullptr),
+	EditorControllerInstance(nullptr)
 {
 
 }
@@ -23,6 +25,11 @@ TerrainTypeEditor::~TerrainTypeEditor()
 void TerrainTypeEditor::SetMapEventManager(MapHexItemEventManager* mapeventManager)
 {
 	MapEventManagerInstance = mapeventManager;
+}
+
+void TerrainTypeEditor::SetEditorController(EditorController* editorController)
+{
+	EditorControllerInstance = editorController;
 }
 
 void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
@@ -53,4 +60,13 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 	}
 
 	modelMapToUpdate->SetModelTerrainType(ActiveTerrainType);
+}
+
+void TerrainTypeEditor::SlotActivated()
+{
+	if (nullptr == EditorControllerInstance)
+	{
+		return;
+	}
+	EditorControllerInstance->Activate(this);
 }

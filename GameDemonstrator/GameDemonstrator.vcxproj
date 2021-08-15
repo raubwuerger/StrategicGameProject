@@ -171,6 +171,7 @@
     <ClCompile Include="connectors\ConnectorMapHexItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapUnitItem.cpp" />
     <ClCompile Include="connectors\ConnectorLoadCreateGame.cpp" />
+    <ClCompile Include="controller\EditorController.cpp" />
     <ClCompile Include="controller\KeyEventController.cpp" />
     <ClCompile Include="controller\MapItemMapUnitMovementController.cpp" />
     <ClCompile Include="dialogs\CreateNewMapDialog.cpp" />
@@ -179,8 +180,10 @@
     <ClCompile Include="dialogs\UnitTypeInfoDialog.cpp" />
     <ClCompile Include="editors\EditorToolbox.cpp" />
     <ClCompile Include="editors\TerrainTypeEditor.cpp" />
+    <ClCompile Include="editors\TerrainTypeEditorWidget.cpp" />
     <ClCompile Include="editors\TerrainTypeIdSelector.cpp" />
     <ClCompile Include="editors\UnitTypeEditor.cpp" />
+    <ClCompile Include="editors\UnitTypeEditorWidget.cpp" />
     <ClCompile Include="editors\UnitTypeIdSelector.cpp" />
     <ClCompile Include="gamedemonstrator.cpp" />
     <ClCompile Include="game\GameConfig.cpp" />
@@ -674,8 +677,11 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../connectors/ConnectorMapUnitItem.h"  -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_NETWORK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -DQT_DLL "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-I$(INHERIT)\." "-I.\..\StandardLibQt"</Command>
     </CustomBuild>
+    <ClInclude Include="controller\EditorController.h" />
     <ClInclude Include="controller\KeyEventController.h" />
     <ClInclude Include="controller\MapItemMapUnitMovementController.h" />
+    <ClInclude Include="editors\TerrainTypeEditorWidget.h" />
+    <ClInclude Include="editors\UnitTypeEditorWidget.h" />
     <ClInclude Include="game\GameConfig.h" />
     <ClInclude Include="game\GameFactory.h" />
     <ClInclude Include="game\GameMainCounter.h" />
