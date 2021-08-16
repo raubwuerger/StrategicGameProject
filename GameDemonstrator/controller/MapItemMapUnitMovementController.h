@@ -12,9 +12,16 @@ public:
 	/** */
 	bool CanUnitMove(const MapUnitItem* mapUnitItem);
 	/** */
-	bool CanUnitMove(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem );
+	bool CanUnitMove(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem);
 	/** */
 	bool CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId);
+private:
+	/** */
+	bool IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem);
+	/** */
+	bool IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem);
+	/** */
+	bool IsTerrainTypeAccessible(const ModelUnitType* modelUnitType, const int gameMapItemId);	
 };
 
 #endif // MAPITEMMAPUNITMOVEMENTCONTROLLER_H

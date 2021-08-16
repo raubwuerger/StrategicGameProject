@@ -12,6 +12,21 @@
 
 bool MapItemMapUnitMovementController::CanUnitMove(const MapUnitItem* mapUnitItem)
 {
+	return IsTerrainTypeAccessible(mapUnitItem);
+}
+
+bool MapItemMapUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem)
+{
+	return IsTerrainTypeAccessible(mapHexItem, gameUnitItem);
+}
+
+bool MapItemMapUnitMovementController::CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId)
+{
+	return IsTerrainTypeAccessible(modelUnitType, gameMapItemId);
+}
+
+bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem)
+{
 	MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
 	if (nullptr == sourceMapHexItem)
 	{
@@ -45,7 +60,7 @@ bool MapItemMapUnitMovementController::CanUnitMove(const MapUnitItem* mapUnitIte
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 
-bool MapItemMapUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem)
+bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem)
 {
 	if (nullptr == mapHexItem)
 	{
@@ -78,7 +93,7 @@ bool MapItemMapUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem,
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 
-bool MapItemMapUnitMovementController::CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId)
+bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const ModelUnitType* modelUnitType, const int gameMapItemId)
 {
 	if (nullptr == modelUnitType)
 	{
