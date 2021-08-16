@@ -515,6 +515,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_BaseEditor.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="controller\GameMapMoveInfo.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -710,6 +713,9 @@
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
     <ClInclude Include="controller\EditorController.h">
+      <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\GameMapMoveInfo.h">
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>

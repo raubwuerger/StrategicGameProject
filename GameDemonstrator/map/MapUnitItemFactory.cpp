@@ -33,7 +33,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 	{
 		GameUnitItem *gameItemUnit = gameUnit.value();
 		int mapItemId = gameItemUnit->GetGameMapItemId();
-		MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
+		const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
 		if (nullptr == mapHexItem)
 		{
 			return false;
@@ -68,7 +68,7 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnitItem* gameItemUn
 	}
 
 	int mapItemId = gameItemUnit->GetGameMapItemId();
-	MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
+	const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
 	if (nullptr == mapHexItem)
 	{
 		return false;

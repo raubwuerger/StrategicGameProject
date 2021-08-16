@@ -20,9 +20,9 @@ MapHexItemEventManager::~MapHexItemEventManager()
 
 }
 
-MapHexItem* MapHexItemEventManager::FindMapHexItem(int gameMapItemId)
+MapHexItem* MapHexItemEventManager::FindMapHexItem(int gameMapItemId) const
 {
-	return MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapItemId);
+	return MapHexItemRepository::GetInstance()->GetMapHexItemByIdNonConst(gameMapItemId);
 }
 
 #include "dialogs/HexItemInfoDialog.h"

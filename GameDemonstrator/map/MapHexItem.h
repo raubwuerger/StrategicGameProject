@@ -56,7 +56,7 @@ private:
 	QPointF			TopLeftPoint;
 	ConnectorMapHexItem	*EventItem;
 	QString			StringRowCol;
-	const QImage	*TerrainImage;
+	mutable const QImage	*TerrainImage;
 	int				GameMapItemId;
 };
 

@@ -39,7 +39,7 @@ private:
 private:
 	friend class GameMapItemFactory;
 	QVector< QVector<GameMapItem*> >*	MapItems;
-	static GameMapItemRepository*			Instance;
+	static GameMapItemRepository*		Instance;
 	QMap<int, GameMapItem*>				IdToModelMapItem;
 };
 

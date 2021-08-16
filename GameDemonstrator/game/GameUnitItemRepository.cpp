@@ -19,7 +19,7 @@ GameUnitItemRepository* GameUnitItemRepository::GetInstance()
 void GameUnitItemRepository::Init()
 {
 	GameUnitItems.clear();
-	GameUnitItemsGameMapItems.clear();
+	GameUnitItemsOnGameMapItem.clear();
 }
 
 void GameUnitItemRepository::Release()
@@ -40,7 +40,8 @@ bool GameUnitItemRepository::RegisterGameUnitItem(GameUnitItem* gameUnitItem)
 		return false;
 	}
 	GameUnitItems.insert(gameUnitItem->GetId(), gameUnitItem);
-	UpdateGameUnitItemsGameMapItems(gameUnitItem);
+	UpdateGameUnitItemsOnGameMapItem(gameUnitItem);
+
 	return true;
 }
 
@@ -77,6 +78,15 @@ GameUnitItem* GameUnitItemRepository::GetGameUnitItemById(int gameUnitItemId)
 
 }
 
+const GameUnitItem* GameUnitItemRepository::GetGameUnitItemByGameMapItemId(int gameMapItemId)
+{
+	if (false == GameUnitItemsOnGameMapItem.contains(gameMapItemId))
+	{
+		return nullptr;
+	}
+	return GetGameUnitItemById(GameUnitItemsOnGameMapItem[gameMapItemId]);
+}
+
 int GameUnitItemRepository::GetLastIndex() const
 {
 	if (true == GameUnitItems.isEmpty())
@@ -92,22 +102,21 @@ int GameUnitItemRepository::GetLastIndex() const
 
 int GameUnitItemRepository::GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const
 {
-	if ( false == GameUnitItemsGameMapItems.contains(gameMapItemId))
+	if ( false == GameUnitItemsOnGameMapItem.contains(gameMapItemId))
 	{
 		return 0;
 	}
 	return 1;
 }
 
-
 GameUnitItem* GameUnitItemRepository::RemoveGameUnitItemByGameMapItemId(int gameMapItemId)
 {
-	if (false == GameUnitItemsGameMapItems.contains(gameMapItemId))
+	if (false == GameUnitItemsOnGameMapItem.contains(gameMapItemId))
 	{
 		return nullptr;
 	}
 
-	int gemeUnitItemToDelete = GameUnitItemsGameMapItems.take(gameMapItemId);
+	int gemeUnitItemToDelete = GameUnitItemsOnGameMapItem.take(gameMapItemId);
 	GameUnitItem* toDelete = GameUnitItems.take(gemeUnitItemToDelete);
 	if (nullptr == toDelete)
 	{
@@ -126,7 +135,7 @@ GameUnitItemRepository::~GameUnitItemRepository()
 {
 }
 
-void GameUnitItemRepository::UpdateGameUnitItemsGameMapItems(GameUnitItem* gameUnitItem)
+void GameUnitItemRepository::UpdateGameUnitItemsOnGameMapItem(GameUnitItem* gameUnitItem)
 {
-	GameUnitItemsGameMapItems.insert(gameUnitItem->GetGameMapItemId(), gameUnitItem->GetId());
+	GameUnitItemsOnGameMapItem.insert(gameUnitItem->GetGameMapItemId(), gameUnitItem->GetId());
 }

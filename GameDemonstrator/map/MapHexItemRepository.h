@@ -17,7 +17,9 @@ public:
 	/** */
 	void SetMapHexItems(QVector< QVector<MapHexItem*> > mapHexItems);
 	/** */
-	MapHexItem* GetMapHexItemById(int mapHexItemId);
+	const MapHexItem* GetMapHexItemById(int mapHexItemId) const;
+	/** */
+	MapHexItem* GetMapHexItemByIdNonConst(int mapHexItemId) const;
 	/** */
 	MapHexItem* GetMapHexItemByRowCol(int row, int col);
 private:

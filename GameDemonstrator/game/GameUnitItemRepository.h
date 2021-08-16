@@ -25,6 +25,8 @@ public:
 	/** */
 	GameUnitItem* GetGameUnitItemById(int gameUnitItemId);
 	/** */
+	const GameUnitItem* GetGameUnitItemByGameMapItemId(int gameMapItemId);
+	/** */
 	int GetLastIndex() const;
 	/** */
 	int GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const;
@@ -36,12 +38,14 @@ private:
 	/** */
 	~GameUnitItemRepository();
 	/** */
-	void UpdateGameUnitItemsGameMapItems(GameUnitItem* gameUnitItem);
+	void UpdateGameUnitItemsOnGameMapItem(GameUnitItem* gameUnitItem);
+	/** */
+	void UpdateGameMapItemContainingGameUnitItems(GameUnitItem* gameUnitItem);
 private:
 	friend class GameUnitItemFactory;
 	static GameUnitItemRepository*	Instance;
 	QMap<int, GameUnitItem*>		GameUnitItems;
-	QMap<int, int>					GameUnitItemsGameMapItems;
+	QMap<int, int>					GameUnitItemsOnGameMapItem;
 };
 
 #endif // GAMEUNITITEMREPOSITORY_H

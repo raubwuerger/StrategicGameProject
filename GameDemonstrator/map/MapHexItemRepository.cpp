@@ -38,7 +38,17 @@ void MapHexItemRepository::SetMapHexItems(QVector< QVector<MapHexItem*> > mapHex
 	CreateMapHexItemsById();
 }
 
-MapHexItem* MapHexItemRepository::GetMapHexItemById(int mapHexItemId)
+const MapHexItem* MapHexItemRepository::GetMapHexItemById(int mapHexItemId) const
+{
+	if (false == MapHexItemsById.contains(mapHexItemId))
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapHexItem with id=%1 not found!").arg(mapHexItemId));
+		return nullptr;
+	}
+	return MapHexItemsById[mapHexItemId];
+}
+
+MapHexItem* MapHexItemRepository::GetMapHexItemByIdNonConst(int mapHexItemId) const
 {
 	if (false == MapHexItemsById.contains(mapHexItemId))
 	{

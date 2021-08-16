@@ -68,7 +68,7 @@ void UnitTypeEditor::CreateUnit()
 	}
 
 	MapItemMapUnitMovementController mapItemMapUnitMovementController;
-	if (false == mapItemMapUnitMovementController.CanUnitMove(ActiveUnitType, SelectedGameMapItem))
+	if (false == mapItemMapUnitMovementController.IsTerrainTypeAccessible(ActiveUnitType, SelectedGameMapItem))
 	{
 		return;
 	}

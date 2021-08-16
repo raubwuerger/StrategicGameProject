@@ -16,7 +16,7 @@ public:
 	/** */
 	~MapHexItemEventManager();
 	/** */
-	MapHexItem* FindMapHexItem(int gameMapItemId);
+	MapHexItem* FindMapHexItem(int gameMapItemId) const;
 public slots:
 	/** */
 	void SlotUpdateMapItemInfo(int gameMapItemId);
