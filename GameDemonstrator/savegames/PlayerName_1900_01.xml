@@ -5169,5 +5169,59 @@
             <GameMapItemID>331</GameMapItemID>
             <Name>Destroyer</Name>
         </Unit>
+        <Unit>
+            <ID>31</ID>
+            <UnitTypeID>7</UnitTypeID>
+            <GameMapItemID>149</GameMapItemID>
+            <Name>Cruiser</Name>
+        </Unit>
+        <Unit>
+            <ID>32</ID>
+            <UnitTypeID>5</UnitTypeID>
+            <GameMapItemID>56</GameMapItemID>
+            <Name>Bomber</Name>
+        </Unit>
+        <Unit>
+            <ID>33</ID>
+            <UnitTypeID>5</UnitTypeID>
+            <GameMapItemID>55</GameMapItemID>
+            <Name>Bomber</Name>
+        </Unit>
+        <Unit>
+            <ID>34</ID>
+            <UnitTypeID>8</UnitTypeID>
+            <GameMapItemID>196</GameMapItemID>
+            <Name>Battleship</Name>
+        </Unit>
+        <Unit>
+            <ID>35</ID>
+            <UnitTypeID>8</UnitTypeID>
+            <GameMapItemID>150</GameMapItemID>
+            <Name>Battleship</Name>
+        </Unit>
+        <Unit>
+            <ID>36</ID>
+            <UnitTypeID>9</UnitTypeID>
+            <GameMapItemID>151</GameMapItemID>
+            <Name>AircraftCarrier</Name>
+        </Unit>
+        <Unit>
+            <ID>37</ID>
+            <UnitTypeID>10</UnitTypeID>
+            <GameMapItemID>105</GameMapItemID>
+            <Name>Submarine</Name>
+        </Unit>
+        <Unit>
+            <ID>38</ID>
+            <UnitTypeID>11</UnitTypeID>
+            <GameMapItemID>240</GameMapItemID>
+            <Name>TroopTransporter</Name>
+        </Unit>
+        <Unit>
+            <ID>39</ID>
+            <UnitTypeID>11</UnitTypeID>
+            <GameMapItemID>194</GameMapItemID>
+            <Name>TroopTransporter</Name>
+        </Unit>
     </Units>
 </Savegame>

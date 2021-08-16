@@ -114,7 +114,7 @@ bool ModelUnitTypeFactory::AttacheImage(ModelUnitType* modelUnit)
 
 	if (image == nullptr)
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("Unable to load terrain image: %1").arg(imageName));
+		jha::GetLog()->Log_WARNING(QObject::tr("Unable to load terrain image: %1").arg(imageName));
 		return false;
 	}
 

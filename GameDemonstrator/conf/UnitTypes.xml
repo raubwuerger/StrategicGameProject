@@ -63,6 +63,23 @@
 		</TerrainTypes>
 	</UnitType>
 	<UnitType>
+		<Id>5</Id>
+		<Name>Bomber</Name>
+		<PictureName>.\Resources\Units\Bomber_64.png</PictureName>
+		<Strength>10</Strength>
+		<Attack>10</Attack>
+		<Defense>1</Defense>
+		<Range>1</Range>
+		<MovementPoints>4</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>1</TerrainTypeId>
+			<TerrainTypeId>2</TerrainTypeId>
+			<TerrainTypeId>3</TerrainTypeId>
+			<TerrainTypeId>4</TerrainTypeId>
+			<TerrainTypeId>5</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
 		<Id>6</Id>
 		<Name>Destroyer</Name>
 		<PictureName>.\Resources\Units\Destroyer_64.png</PictureName>
@@ -70,7 +87,77 @@
 		<Attack>5</Attack>
 		<Defense>1</Defense>
 		<Range>1</Range>
+		<MovementPoints>4</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>3</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>7</Id>
+		<Name>Cruiser</Name>
+		<PictureName>.\Resources\Units\Cruiser_64.png</PictureName>
+		<Strength>8</Strength>
+		<Attack>8</Attack>
+		<Defense>2</Defense>
+		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>3</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>8</Id>
+		<Name>Battleship</Name>
+		<PictureName>.\Resources\Units\Battleship_64.png</PictureName>
+		<Strength>12</Strength>
+		<Attack>12</Attack>
+		<Defense>4</Defense>
+		<Range>2</Range>
+		<MovementPoints>3</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>3</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>9</Id>
+		<Name>AircraftCarrier</Name>
+		<PictureName>.\Resources\Units\AircraftCarrier_64.png</PictureName>
+		<Strength>8</Strength>
+		<Attack>2</Attack>
+		<Defense>2</Defense>
+		<Range>1</Range>
+		<MovementPoints>3</MovementPoints>
+		<TerrainTypes>
+			<TerrainTypeId>3</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>10</Id>
+		<Name>Submarine</Name>
+		<PictureName>.\Resources\Units\Submarine_64.png</PictureName>
+		<Strength>4</Strength>
+		<Attack>4</Attack>
+		<Defense>2</Defense>
+		<Range>1</Range>
+		<MovementPoints>3</MovementPoints>
+		<SpottedBy>
+			<SpottedByTypeId></SpottedByTypeId>
+			<SpottedByTypeId></SpottedByTypeId>
+		</SpottedBy>
+		<TerrainTypes>
+			<TerrainTypeId>3</TerrainTypeId>
+		</TerrainTypes>
+	</UnitType>
+	<UnitType>
+		<Id>11</Id>
+		<Name>TroopTransporter</Name>
+		<PictureName>.\Resources\Units\TroopTransporter_64.png</PictureName>
+		<Strength>1</Strength>
+		<Attack>1</Attack>
+		<Defense>1</Defense>
+		<Range>1</Range>
+		<MovementPoints>3</MovementPoints>
+		<TransportSpace>2</TransportSpace>
 		<TerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
 		</TerrainTypes>
