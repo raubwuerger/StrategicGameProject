@@ -58,7 +58,7 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 		return false;
 	}
 
-	MapItemMapUnitMovementController mapItemMapUnitMovementController;
+	MapItemMapUnitMovementController mapItemMapUnitMovementController(destMapHexItem);
 	if (false == mapItemMapUnitMovementController.CanUnitMove(destMapHexItem, mapUnitItem->GetGameUnitId()))
 	{
 		return false;
@@ -70,10 +70,10 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 		return false;
 	}
 
+	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
 	gameUnitItem->SetGameMapItemId(destMapHexItem->GetGameMapItemId());
 	mapUnitItem->SetMapHexItemId(destMapHexItem->GetGameMapItemId());
 
-	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
 		
 /*	jha::GetLog()->Log_MESSAGE(QObject::tr("Source: %1|%2 - offset: %3|%4 - dest: %5|%6").arg(QString::number(source.width())).arg(QString::number(source.height()))
 		.arg(QString::number(offset.width())).arg(QString::number(offset.height()))
@@ -84,6 +84,7 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
 	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);
 	mapUnitItem->moveBy(offsetCenterPoint.x(), offsetCenterPoint.y());
+	GameUnitItemRepository::GetInstance()->UpdateGameUnitItemsOnGameMapItem(gameUnitItem, sourceMapHexItem->GetGameMapItemId());
 	return true;
 }
 
@@ -115,8 +116,3 @@ void KeyEventController::HandleKeyReleaseEvent(MapUnitItem* mapUnitItem, QKeyEve
 	}
 }
 
-void KeyEventController::CreateValidMovementPositions(MapHexItem* mapHexItem)
-{
-	int col = mapHexItem->GetCol();
-	int row = mapHexItem->GetRow();
-}

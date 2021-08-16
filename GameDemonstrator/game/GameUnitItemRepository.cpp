@@ -135,7 +135,23 @@ GameUnitItemRepository::~GameUnitItemRepository()
 {
 }
 
-void GameUnitItemRepository::UpdateGameUnitItemsOnGameMapItem(GameUnitItem* gameUnitItem)
+bool GameUnitItemRepository::UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* gameUnitItem)
 {
+	if (true == GameUnitItemsOnGameMapItem.contains(gameUnitItem->GetGameMapItemId()))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitItemId %1 already registered at MapItemId %2!").arg(QString::number(gameUnitItem->GetId())).arg(QString::number(gameUnitItem->GetGameMapItemId())));
+		return false;
+	}
 	GameUnitItemsOnGameMapItem.insert(gameUnitItem->GetGameMapItemId(), gameUnitItem->GetId());
+	return true;
+}
+
+bool GameUnitItemRepository::UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* movedUnitItem, int oldMapId)
+{
+	if (false == GameUnitItemsOnGameMapItem.contains(oldMapId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitItemId %1 not registered at MapItemId %2!").arg(QString::number(movedUnitItem->GetId())).arg(QString::number(oldMapId)));
+	}
+	GameUnitItemsOnGameMapItem.take(oldMapId);
+	return UpdateGameUnitItemsOnGameMapItem(movedUnitItem);
 }

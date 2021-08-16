@@ -32,15 +32,15 @@ public:
 	int GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const;
 	/** */
 	GameUnitItem* RemoveGameUnitItemByGameMapItemId(int gameMapItemId);
+	/** */
+	bool UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* movedUnitItem, int oldMapId);
 private:
 	/** */
 	GameUnitItemRepository();
 	/** */
 	~GameUnitItemRepository();
 	/** */
-	void UpdateGameUnitItemsOnGameMapItem(GameUnitItem* gameUnitItem);
-	/** */
-	void UpdateGameMapItemContainingGameUnitItems(GameUnitItem* gameUnitItem);
+	bool UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* gameUnitItem);
 private:
 	friend class GameUnitItemFactory;
 	static GameUnitItemRepository*	Instance;

@@ -15,8 +15,6 @@ public:
 	void HandleKeyReleaseEvent(MapUnitItem* mapUnitItem, QKeyEvent* keyEvent);
 private:
 	/** */
-	void CreateValidMovementPositions(MapHexItem* mapHexItem);
-	/** */
 	bool IsMovementDirectionValid(int movementDirection, MapUnitItem* mapUnitItem) const;
 };
 

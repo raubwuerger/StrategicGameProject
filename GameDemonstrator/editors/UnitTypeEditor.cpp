@@ -60,6 +60,7 @@ void UnitTypeEditor::SlotAddUnit(int mapHexItemId)
 
 #include "game/GameUnitItem.h"
 #include "controller/MapItemMapUnitMovementController.h"
+#include "map/MapHexItemRepository.h"
 void UnitTypeEditor::CreateUnit()
 {
 	if (false == IsUnitTypeEditorInitialzedForCreatingUnit())
@@ -67,7 +68,7 @@ void UnitTypeEditor::CreateUnit()
 		return;
 	}
 
-	MapItemMapUnitMovementController mapItemMapUnitMovementController;
+	MapItemMapUnitMovementController mapItemMapUnitMovementController(MapHexItemRepository::GetInstance()->GetMapHexItemById(SelectedGameMapItem));
 	if (false == mapItemMapUnitMovementController.IsTerrainTypeAccessible(ActiveUnitType, SelectedGameMapItem))
 	{
 		return;
