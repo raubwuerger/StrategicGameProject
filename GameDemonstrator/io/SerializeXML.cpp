@@ -206,6 +206,7 @@ bool SerializeXML::SaveUnitData(QXmlStreamWriter& xmlWriter)
 }
 
 #include "model/ModelUnitType.h"
+#include "model/ModelOwnerType.h"
 //==============================================================================
 bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitItem)
 {
@@ -214,7 +215,8 @@ bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem*
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_UNITTYPEID, QString::number(gameUnitItem->GetModelUnitType()->GetId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_GAMEMAPITEMID, QString::number(gameUnitItem->GetGameMapItemId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_NAME, gameUnitItem->GetName());
-	xmlWriter.writeEndElement();
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_OWNERTYPEID, QString::number(gameUnitItem->GetModelOwnerType()->GetId()));
+		xmlWriter.writeEndElement();
 	return true;
 }
 
