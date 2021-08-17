@@ -14,13 +14,13 @@ public:
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
 	bool RegisterOwnerType( ModelOwnerType *ownerType  );
 	/** */
-	ModelOwnerType* FindOwnerTypeById( int id );
+	const ModelOwnerType* GetOwnerTypeById( int id ) const;
 	/** */
 	int GetCount() const;
 	/** */
-	QMap<int,ModelOwnerType*>::const_iterator GetFirstIterator() const;
+	QMap<int,const ModelOwnerType*>::const_iterator GetFirstIterator() const;
 	/** */
-	QMap<int,ModelOwnerType*>::const_iterator GetLastIterator() const;
+	QMap<int,const ModelOwnerType*>::const_iterator GetLastIterator() const;
 	/** Get m_DefaultTerrainType */
 	const ModelOwnerType* GetDefaultOwnerType() const;
 	/** Set m_DefaultTerrainType */
@@ -33,7 +33,7 @@ private:
 	/** */
 	~ModelOwnerTypeRepository();
 private:
-	QMap<int,ModelOwnerType*>	OwnerTypes;
+	QMap<int, const ModelOwnerType*>	OwnerTypes;
 	const ModelOwnerType*		DefaultOwnerType;
 	static ModelOwnerTypeRepository*	Instance;
 };

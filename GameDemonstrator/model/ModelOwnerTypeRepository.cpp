@@ -38,7 +38,7 @@ bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 		jha::GetLog()->Log_MESSAGE( QObject::tr( "ModelOwnerType must not be null!"));
 		return false;
 	}
-	QMap<int,ModelOwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
+	QMap<int,const ModelOwnerType*>::const_iterator allreadyExists = OwnerTypes.find(ownerType->GetId() );
 	if( allreadyExists != OwnerTypes.end() )
 	{
 		return false;
@@ -55,9 +55,9 @@ bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 	return true;
 }
 
-ModelOwnerType* ModelOwnerTypeRepository::FindOwnerTypeById( int id )
+const ModelOwnerType* ModelOwnerTypeRepository::GetOwnerTypeById( int id ) const
 {
-	QMap<int,ModelOwnerType*>::iterator exists = OwnerTypes.find( id );
+	QMap<int,const ModelOwnerType*>::const_iterator exists = OwnerTypes.find( id );
 	if( exists == OwnerTypes.end() )
 	{
 		return nullptr;
@@ -70,12 +70,12 @@ int ModelOwnerTypeRepository::GetCount() const
 	return OwnerTypes.size();
 }
 
-QMap<int,ModelOwnerType*>::const_iterator ModelOwnerTypeRepository::GetFirstIterator() const
+QMap<int,const ModelOwnerType*>::const_iterator ModelOwnerTypeRepository::GetFirstIterator() const
 {
 	return OwnerTypes.cbegin();
 }
 
-QMap<int,ModelOwnerType*>::const_iterator ModelOwnerTypeRepository::GetLastIterator() const
+QMap<int, const ModelOwnerType*>::const_iterator ModelOwnerTypeRepository::GetLastIterator() const
 {
 	return OwnerTypes.cend();
 }
