@@ -4994,12 +4994,14 @@
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>95</GameMapItemID>
             <Name>1. Infanterie-Rgt.</Name>
+			<OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>2</ID>
             <UnitTypeID>2</UnitTypeID>
             <GameMapItemID>50</GameMapItemID>
             <Name>1. Panzer-Rgt.</Name>
+			<OwnerTypeId>1</OwnerTypeId>			
         </Unit>
         <Unit>
             <ID>3</ID>
