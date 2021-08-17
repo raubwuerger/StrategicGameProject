@@ -22,6 +22,8 @@ public slots:
 	/** */
 	void SlotActiveUnitTypeId(int unitTypeId);
 	/** */
+	void SlotActiveOwnerTypeId(int ownerTypeId);
+	/** */
 	void SlotAddUnit(int mapHexItemId);
 	/** */
 	void SlotDeleteUnitFromMapHexItemId(int mapHexItemId);
@@ -47,8 +49,9 @@ private:
 private:
 	const int				NO_UNITS;
 	const int				MAX_UNITS;
-	const int				SELECTEDGAMEMAPITEM_NOT_INITIALIZED;
-	int						SelectedGameMapItem;
+	const int				VALUE_NOT_INITIALIZED;
+	int						ActiveGameMapItemId;
+	int						ActiveGameOwnerItemId;
 	const ModelUnitType*	ActiveUnitType;
 	MapView*				MapViewInstance;
 	EditorController*		EditorControllerInstance;

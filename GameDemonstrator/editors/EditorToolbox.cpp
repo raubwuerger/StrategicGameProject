@@ -40,7 +40,7 @@ void EditorToolbox::Create()
 	CreateGroupBuildingTypes();
 
 	connect(this, &QToolBox::currentChanged, this, &EditorToolbox::SlotEditorTypeChanged);
-	SlotEditorTypeChanged(0);
+	SlotEditorTypeChanged(0); //TerrainTypeEditor
 }
 
 void EditorToolbox::SlotEditorTypeChanged(int editorIndex)
@@ -206,6 +206,7 @@ QWidget * EditorToolbox::CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerT
 
 	connect(button, &QToolButton::pressed, selector, &OwnerTypeIdSelector::SlotTrigger);
 	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, OwnerTypeEditorInstance, &OwnerTypeEditor::SlotActiveOwnerTypeId);
+	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, UnitTypeEditorInstance, &UnitTypeEditor::SlotActiveOwnerTypeId);
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);

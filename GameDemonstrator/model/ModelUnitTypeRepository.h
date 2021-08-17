@@ -21,7 +21,7 @@ public:
 	/** */
 	QMap<int, const ModelUnitType*>::const_iterator GetLastIterator() const;
 	/** */
-	const ModelUnitType* FindModelUnitTypeById( int modelUnitTypeId ) const;
+	const ModelUnitType* GetModelUnitTypeById( int modelUnitTypeId ) const;
 private:
 	/** */
 	ModelUnitTypeRepository();

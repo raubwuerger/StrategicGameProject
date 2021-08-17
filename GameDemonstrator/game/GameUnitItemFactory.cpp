@@ -7,8 +7,11 @@
 #include "model\ModelUnitType.h"
 #include "model\ModelUnitTypeRepository.h"
 #include "model\ModelOwnerTypeRepository.h"
+#include "model\ModelOwnerType.h"
+#include "GameMapItemRepository.h"
 #include "GameUnitItemRepository.h"
 #include "GameUnitItem.h"
+#include "GameMapItem.h"
 
 GameUnitItemFactory::GameUnitItemFactory()
 {
@@ -18,17 +21,43 @@ GameUnitItemFactory::~GameUnitItemFactory()
 {
 }
 
-GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnitType* modelUnitType, int gameMapItemId)
+GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const GameUnitParameterObject obj)
 {
-	if (nullptr == modelUnitType)
+	if (false == Validate(obj))
 	{
 		return nullptr;
 	}
 
 	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
-	newUnitItem->UnitType = modelUnitType;
-	newUnitItem->SetGameMapItemId(gameMapItemId);
-	newUnitItem->SetName(CreateName(modelUnitType));
+	
+	const ModelUnitType* unitType = GetModelUnitType(obj);
+	if (nullptr == unitType)
+	{
+		return nullptr;
+	}
+
+	const GameMapItem* mapItem = GetGameMapItem(obj);
+	if (nullptr == mapItem)
+	{
+		return nullptr;
+	}
+
+	const ModelOwnerType* ownerType = GetModelOwnerType(obj);
+	if (nullptr == ownerType)
+	{
+		return nullptr;
+	}
+
+	newUnitItem->UnitType = unitType;
+	newUnitItem->UnitTypeId = unitType->GetId();
+
+	newUnitItem->OwnerType = ownerType;
+	newUnitItem->OwnerTypeId = ownerType->GetId();
+
+	newUnitItem->MapItem = mapItem;
+	newUnitItem->MapItemId = mapItem->GetId();
+
+	newUnitItem->SetName(CreateName(unitType));
 
 	if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(newUnitItem))
 	{
@@ -36,6 +65,49 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnit
 	}
 
 	return newUnitItem;
+}
+
+GameUnitItem* GameUnitItemFactory::UpdateGameUnitItem(const GameUnitParameterObject obj)
+{
+	if (nullptr == obj.GameUnitItemObject)
+	{
+		return nullptr;
+	}
+	
+	GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(obj.GameUnitItemObject->GetId());
+	if (nullptr == gameUnitItem)
+	{
+		return nullptr;
+	}
+
+	const ModelUnitType* unitType = GetModelUnitType(obj);
+	if (nullptr == unitType)
+	{
+		return nullptr;
+	}
+
+	const GameMapItem* mapItem = GetGameMapItem(obj);
+	if (nullptr == mapItem)
+	{
+		return nullptr;
+	}
+
+	const ModelOwnerType* ownerType = GetModelOwnerType(obj);
+	if (nullptr == ownerType)
+	{
+		return nullptr;
+	}
+
+	gameUnitItem->UnitType = unitType;
+	gameUnitItem->UnitTypeId = unitType->GetId();
+
+	gameUnitItem->OwnerType = ownerType;
+	gameUnitItem->OwnerTypeId = ownerType->GetId();
+
+	gameUnitItem->MapItem = mapItem;
+	gameUnitItem->MapItemId = mapItem->GetId();
+
+	return gameUnitItem;
 }
 
 int GameUnitItemFactory::CreateId()
@@ -51,6 +123,52 @@ QString GameUnitItemFactory::CreateName(const ModelUnitType* modelUnitType) cons
 bool GameUnitItemFactory::CreateGameUnitItemsFromSaveGame(const QDomNode unitItemElements)
 {
 	return CreateUnitItems(unitItemElements);
+}
+
+bool GameUnitItemFactory::Validate(const GameUnitParameterObject& obj) const
+{
+	if (-1 == obj.ModelUnitTypeId && nullptr == obj.ModelUnitTypeObject)
+	{
+		return false;
+	}
+	
+	if (-1 == obj.ModelOwnerTypeId && nullptr == obj.ModelOwnerTypeObject)
+	{
+		return false;
+	}
+
+	if (-1 == obj.GameMapItemId && nullptr == obj.GameMapItemObject)
+	{
+		return false;
+	}
+	return true;
+}
+
+const ModelUnitType* GameUnitItemFactory::GetModelUnitType(const GameUnitParameterObject& obj) const
+{
+	if (nullptr != obj.ModelUnitTypeObject)
+	{
+		return obj.ModelUnitTypeObject;
+	}
+	return ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(obj.ModelUnitTypeId);
+}
+
+const GameMapItem* GameUnitItemFactory::GetGameMapItem(const GameUnitParameterObject& obj) const
+{
+	if (nullptr != obj.GameMapItemObject)
+	{
+		return obj.GameMapItemObject;
+	}
+	return GameMapItemRepository::GetInstance()->GetGameMapItemById(obj.GameMapItemId);
+}
+
+const ModelOwnerType* GameUnitItemFactory::GetModelOwnerType(const GameUnitParameterObject& obj) const
+{
+	if (nullptr != obj.ModelOwnerTypeObject)
+	{
+		return obj.ModelOwnerTypeObject;
+	}
+	return ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(obj.ModelOwnerTypeId);
 }
 
 bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
@@ -82,6 +200,7 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 	return true;
 }
 
+#include "Model/ModelOwnerType.h"
 GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNode)
 {
 	QDomNodeList mapNodes = unitNode.childNodes();
@@ -111,7 +230,7 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		}
 	}
 
-	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(unitTypeId);
+	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
 	if (nullptr == modelUnitType)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: ModelUnitType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(unitTypeId)));
@@ -126,6 +245,12 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_GAMEMAPITEMID));
 			return nullptr;
 		}
+	}
+	const GameMapItem* mapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapItemId);
+	if (nullptr == mapItem)
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: GameMapItem with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(mapItemId)));
+		return nullptr;
 	}
 
 	int ownerTypeId = -1;
@@ -156,9 +281,15 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 
 	GameUnitItem *newUnitItem = new GameUnitItem(id);
 	newUnitItem->UnitType = modelUnitType;
-	newUnitItem->GameMapItemId = mapItemId;
-	newUnitItem->Name = unitName;
+	newUnitItem->UnitTypeId = modelUnitType->GetId();
+
 	newUnitItem->OwnerType = ownerType;
+	newUnitItem->OwnerTypeId = ownerType->GetId();
+
+	newUnitItem->MapItem = mapItem;
+	newUnitItem->MapItemId = mapItem->GetId();
+
+	newUnitItem->Name = unitName;
 	return newUnitItem;
 }
 

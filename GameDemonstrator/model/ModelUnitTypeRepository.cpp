@@ -58,7 +58,7 @@ QMap<int, const ModelUnitType*>::const_iterator ModelUnitTypeRepository::GetLast
 	return Repository.cend();
 }
 
-const ModelUnitType* ModelUnitTypeRepository::FindModelUnitTypeById(int modelUnitTypeId) const
+const ModelUnitType* ModelUnitTypeRepository::GetModelUnitTypeById(int modelUnitTypeId) const
 {
 	QMap<int, const ModelUnitType*>::const_iterator itemFound = Repository.constFind(modelUnitTypeId);
 	if (Repository.cend() == itemFound)

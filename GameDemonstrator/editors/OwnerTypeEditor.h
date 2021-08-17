@@ -12,7 +12,7 @@ public:
 	OwnerTypeEditor(QObject *parent);
 	/** */
 	void SetEditorController(EditorController* editorController);
-	public slots:
+public slots:
 	/** */
 	void SlotActivated() override;
 	/** */
