@@ -26,4 +26,5 @@ const QString SerializeXMLItems::UNITS_UNIT = "Unit";
 const QString SerializeXMLItems::UNITS_ID = "ID";
 const QString SerializeXMLItems::UNITS_UNITTYPEID = "UnitTypeID";
 const QString SerializeXMLItems::UNITS_GAMEMAPITEMID = "GameMapItemID";
+const QString SerializeXMLItems::UNITS_OWNERTYPEID = "OwnerTypeId";
 const QString SerializeXMLItems::UNITS_NAME = "Name";

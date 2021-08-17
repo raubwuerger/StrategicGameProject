@@ -3,7 +3,8 @@
 
 GameUnitItem::GameUnitItem(int gameUnitId)
 	: Id(gameUnitId),
-		UnitType(nullptr)
+		UnitType(nullptr),
+		OwnerType(nullptr)
 {
 }
 
@@ -11,14 +12,14 @@ GameUnitItem::~GameUnitItem()
 {
 }
 
-void GameUnitItem::SetModelUnitType( const ModelUnitType *type )
-{
-	UnitType = type;
-}
-
 const ModelUnitType* GameUnitItem::GetModelUnitType() const
 {
 	return UnitType;
+}
+
+const ModelOwnerType* GameUnitItem::GetModelOwnerType() const
+{
+	return OwnerType;
 }
 
 const int GameUnitItem::GetId() const
@@ -26,16 +27,15 @@ const int GameUnitItem::GetId() const
 	return Id;
 }
 
+void GameUnitItem::SetGameMapItemId(int gameMapUnitId)
+{
+	GameMapItemId = gameMapUnitId;
+}
+
 int GameUnitItem::GetGameMapItemId() const
 {
 	return GameMapItemId;
 }
-
-void GameUnitItem::SetGameMapItemId(int val)
-{
-	GameMapItemId = val;
-}
-
 
 const QString& GameUnitItem::GetName() const
 {

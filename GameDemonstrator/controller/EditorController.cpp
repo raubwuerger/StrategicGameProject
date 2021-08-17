@@ -24,7 +24,6 @@ void EditorController::Activate(UnitTypeEditor* unitTypeEditor)
 	QObject::connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, unitTypeEditor, &UnitTypeEditor::SlotAddUnit);
 	QObject::connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, unitTypeEditor, &UnitTypeEditor::SlotDeleteUnitFromMapHexItemId);
 	QObject::connect(MapViewInstance->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, unitTypeEditor, &UnitTypeEditor::SlotDeleteUnitFromGameUnitId);
-
 }
 
 void EditorController::Activate(OwnerTypeEditor* ownerTypeEditor)

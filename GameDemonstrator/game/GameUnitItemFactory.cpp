@@ -6,6 +6,7 @@
 #include "io\SerializeXMLItems.h"
 #include "model\ModelUnitType.h"
 #include "model\ModelUnitTypeRepository.h"
+#include "model\ModelOwnerTypeRepository.h"
 #include "GameUnitItemRepository.h"
 #include "GameUnitItem.h"
 
@@ -25,7 +26,7 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const ModelUnit
 	}
 
 	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
-	newUnitItem->SetModelUnitType(modelUnitType);
+	newUnitItem->UnitType = modelUnitType;
 	newUnitItem->SetGameMapItemId(gameMapItemId);
 	newUnitItem->SetName(CreateName(modelUnitType));
 
@@ -68,12 +69,12 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 		GameUnitItem* created = CreateUnitItemFromXML(unitItemNodeList.at(nodeIndex));
 		if (nullptr == created)
 		{
-			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create ModelMapItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
-			return false;
+			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
+			continue;
 		}
 		if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(created))
 		{
-			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create ModelMapItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
+			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
 			return false;
 		}
 	}
@@ -95,6 +96,7 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		DomValueExtractor domNodeListValueExtractor(unitNode);
 		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_ID, id))
 		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem: %1 not found!").arg(SerializeXMLItems::UNITS_ID));
 			return nullptr;
 		}
 	}
@@ -104,6 +106,7 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		DomValueExtractor domNodeListValueExtractor(unitNode);
 		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_UNITTYPEID, unitTypeId))
 		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_UNITTYPEID));
 			return nullptr;
 		}
 	}
@@ -111,6 +114,7 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->FindModelUnitTypeById(unitTypeId);
 	if (nullptr == modelUnitType)
 	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: ModelUnitType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(unitTypeId)));
 		return nullptr;
 	}
 
@@ -119,8 +123,25 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		DomValueExtractor domNodeListValueExtractor(unitNode);
 		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_GAMEMAPITEMID, mapItemId))
 		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_GAMEMAPITEMID));
 			return nullptr;
 		}
+	}
+
+	int ownerTypeId = -1;
+	{
+		DomValueExtractor domNodeListValueExtractor(unitNode);
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_OWNERTYPEID, ownerTypeId))
+		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_OWNERTYPEID));
+			return nullptr;
+		}
+	}
+	const ModelOwnerType* ownerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
+	if (nullptr == ownerType)
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: ModelOwnerType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(ownerTypeId)));
+		return nullptr;
 	}
 
 	QString unitName;
@@ -128,14 +149,16 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		DomValueExtractor domNodeListValueExtractor(unitNode);
 		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_NAME, unitName))
 		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_NAME));
 			return nullptr;
 		}
 	}
 
 	GameUnitItem *newUnitItem = new GameUnitItem(id);
-	newUnitItem->SetModelUnitType(modelUnitType);
-	newUnitItem->SetGameMapItemId(mapItemId);
-	newUnitItem->SetName(unitName);
+	newUnitItem->UnitType = modelUnitType;
+	newUnitItem->GameMapItemId = mapItemId;
+	newUnitItem->Name = unitName;
+	newUnitItem->OwnerType = ownerType;
 	return newUnitItem;
 }
 

@@ -34,6 +34,7 @@ public:
 	static const QString UNITS_ID;
 	static const QString UNITS_UNITTYPEID;
 	static const QString UNITS_GAMEMAPITEMID;
+	static const QString UNITS_OWNERTYPEID;
 	static const QString UNITS_NAME;
 };
 
