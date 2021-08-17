@@ -7,10 +7,10 @@ class GameUnitItem;
 class ModelUnitType;
 class ModelTerrainType;
 
-class MapItemMapUnitMovementController
+class GameUnitMovementController
 {
 public:
-	MapItemMapUnitMovementController(const MapHexItem *mapHexItem);
+	GameUnitMovementController(const MapHexItem *mapHexItem);
 	/** */
 	bool IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem, const GameUnitItem* gameUnitItem) const;
 	/** */

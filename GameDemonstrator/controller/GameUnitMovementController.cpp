@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "MapItemMapUnitMovementController.h"
+#include "GameUnitMovementController.h"
 #include "map/MapHexItemRepository.h"
 #include "map/MapUnitItem.h"
 #include "map/MapHexItem.h"
@@ -12,13 +12,13 @@
 #include "game/GameUnitItemRepository.h"
 #include "LogInterface.h"
 
-MapItemMapUnitMovementController::MapItemMapUnitMovementController(const MapHexItem *mapHexItem)
+GameUnitMovementController::GameUnitMovementController(const MapHexItem *mapHexItem)
 	: Destination(mapHexItem)
 {
 	Q_ASSERT(nullptr != Destination);
 }
 
-bool MapItemMapUnitMovementController::CanUnitMove(const MapUnitItem* mapUnitItem) const
+bool GameUnitMovementController::CanUnitMove(const MapUnitItem* mapUnitItem) const
 {
 	const GameUnitItem* gameUnitItem = GetGameUnitItem(mapUnitItem);
 	if (false == IsTerrainTypeAccessible(mapUnitItem, gameUnitItem))
@@ -28,7 +28,7 @@ bool MapItemMapUnitMovementController::CanUnitMove(const MapUnitItem* mapUnitIte
 	return IsStackLimitSufficient(Destination->GetGameMapItemId());
 }
 
-bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem, const GameUnitItem* gameUnitItem) const
+bool GameUnitMovementController::IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem, const GameUnitItem* gameUnitItem) const
 {
 	const ModelTerrainType* modelTerrainType = GetModelTerrainType(mapUnitItem);
 	if (nullptr == modelTerrainType)
@@ -50,7 +50,7 @@ bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const MapUnitItem
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 
-bool MapItemMapUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem, int gameUnitItemId) const
+bool GameUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem, int gameUnitItemId) const
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitItemId);
 	if (false == IsTerrainTypeAccessible(mapHexItem, gameUnitItem))
@@ -60,7 +60,7 @@ bool MapItemMapUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem,
 	return IsStackLimitSufficient(Destination->GetGameMapItemId());
 }
 
-bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem) const
+bool GameUnitMovementController::IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem) const
 {
 	if (nullptr == mapHexItem)
 	{
@@ -93,7 +93,7 @@ bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const MapHexItem*
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 
-bool MapItemMapUnitMovementController::CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId) const
+bool GameUnitMovementController::CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId) const
 {
 	if (false == IsTerrainTypeAccessible(modelUnitType, gameMapItemId))
 	{
@@ -103,7 +103,7 @@ bool MapItemMapUnitMovementController::CanUnitMove(const ModelUnitType* modelUni
 	return IsStackLimitSufficient(gameMapItemId);
 }
 
-const ModelTerrainType* MapItemMapUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
+const ModelTerrainType* GameUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
 {
 	const MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
 	if (nullptr == sourceMapHexItem)
@@ -120,7 +120,7 @@ const ModelTerrainType* MapItemMapUnitMovementController::GetModelTerrainType(co
 	return gameMapItem->GetTerrainType();
 }
 
-const GameUnitItem* MapItemMapUnitMovementController::GetGameUnitItem(const MapUnitItem* mapUnitItem) const
+const GameUnitItem* GameUnitMovementController::GetGameUnitItem(const MapUnitItem* mapUnitItem) const
 {
 	const MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
 	if (nullptr == sourceMapHexItem)
@@ -143,7 +143,7 @@ const GameUnitItem* MapItemMapUnitMovementController::GetGameUnitItem(const MapU
 	return GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 }
 
-bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const ModelUnitType* modelUnitType, const int gameMapItemId) const
+bool GameUnitMovementController::IsTerrainTypeAccessible(const ModelUnitType* modelUnitType, const int gameMapItemId) const
 {
 	if (nullptr == modelUnitType)
 	{
@@ -165,7 +165,7 @@ bool MapItemMapUnitMovementController::IsTerrainTypeAccessible(const ModelUnitTy
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 
-bool MapItemMapUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
+bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
 {
 	int countGameUnitItems = GameUnitItemRepository::GetInstance()->GetGameUnitItemsCountByGameMapItemId(gameMapItemId);
 	const int MAX_STACK_SIZE = 1;

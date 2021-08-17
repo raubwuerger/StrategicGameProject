@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "KeyEventController.h"
-#include "MapItemMapUnitMovementController.h"
+#include "GameUnitMovementController.h"
 #include "map\MapUnitItem.h"
 #include "map\MapHexItemRepository.h"
 #include "map\MapHexItem.h"
@@ -58,7 +58,7 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 		return false;
 	}
 
-	MapItemMapUnitMovementController mapItemMapUnitMovementController(destMapHexItem);
+	GameUnitMovementController mapItemMapUnitMovementController(destMapHexItem);
 	if (false == mapItemMapUnitMovementController.CanUnitMove(destMapHexItem, mapUnitItem->GetGameUnitId()))
 	{
 		return false;
