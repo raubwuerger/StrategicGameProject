@@ -48,16 +48,18 @@ private:
 	void ShowSelected();
 	/** */
 	void ShowOriginal();
+	/** */
+	void CreateMapHexItemInfoString();
 private:
 	int Row;
 	int Col;
-	MapHexItemHexagonData		HexData;
-	QPointF			CenterPoint;
-	QPointF			TopLeftPoint;
-	ConnectorMapHexItem	*EventItem;
-	QString			StringRowCol;
-	mutable const QImage	*TerrainImage;
-	int				GameMapItemId;
+	MapHexItemHexagonData	HexData;
+	QPointF					CenterPoint;
+	QPointF					TopLeftPoint;
+	ConnectorMapHexItem*	EventItem;
+	QString					MapHexItemInfoString;
+	mutable const QImage*	TerrainImage;
+	int						GameMapItemId;
 };
 
 #endif // MAPVIEWHEXITEM_H

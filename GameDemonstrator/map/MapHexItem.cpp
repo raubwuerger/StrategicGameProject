@@ -42,7 +42,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
 	QRectF textBoundingRect = HexData.BoundingRect;
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
-	textBoundingRect.setHeight( textBoundingRect.height() * 0.2 );
+	textBoundingRect.setHeight( textBoundingRect.height() * 0.4 );
 	
 	QPointF centerPosText( CenterPoint );
 	centerPosText.setX( HexData.BoundingRect.x() + ((HexData.BoundingRect.width() - textBoundingRect.width()) / 2.0) );
@@ -52,7 +52,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 	
 	QTextOption textOption;
 	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
-	painter->drawText( textBoundingRect, StringRowCol, textOption );
+	painter->drawText(textBoundingRect, MapHexItemInfoString, textOption);
 
 	QGraphicsPolygonItem::paint(painter,option,widget);
 }
@@ -119,12 +119,19 @@ void MapHexItem::ShowOriginal()
 	update(boundingRect());
 }
 
+void MapHexItem::CreateMapHexItemInfoString()
+{
+	MapHexItemInfoString = QString::number(GetRow()) + "|" + QString::number(GetCol());
+	MapHexItemInfoString += "\r\n";
+	MapHexItemInfoString += "(";
+	MapHexItemInfoString += QString::number(GameMapItemId);
+	MapHexItemInfoString += ")";
+}
+
 void MapHexItem::SetRowAndCol( int row, int col )
 {
 	this->Row = row; 
 	this->Col = col;
-
-	StringRowCol = QString::number(row) +"|" +QString::number(col);
 }
 
 int MapHexItem::GetCol() const
@@ -145,6 +152,7 @@ bool MapHexItem::SetTerrainImage( const QImage * val )
 void MapHexItem::SetGameMapItemId(int modelMapItemId)
 {
 	GameMapItemId = modelMapItemId;
+	CreateMapHexItemInfoString();
 }
 
 int MapHexItem::GetGameMapItemId() const
