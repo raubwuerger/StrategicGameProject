@@ -27,6 +27,12 @@ void EditorController::Activate(UnitTypeEditor* unitTypeEditor)
 
 }
 
+void EditorController::Activate(OwnerTypeEditor* ownerTypeEditor)
+{
+	int whatToDo = 1;
+	//TODO: What to do?
+}
+
 void EditorController::DisconnectAll()
 {
 	QObject::disconnect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);

@@ -17,6 +17,9 @@ class ConnectorMapUnitItem;
 class MapView;
 class EditorController;
 class BaseEditor;
+class ModelOwnerType;
+class OwnerTypeIdSelector;
+class OwnerTypeEditor;
 
 class EditorToolbox : public QToolBox
 {
@@ -30,7 +33,7 @@ public:
 	void Create();
 public slots:
 	/** */
-void SlotEditorTypeChanged(int editorIndex);
+	void SlotEditorTypeChanged(int editorIndex);
 private:
 	/** */
 	void CreateGroupTerrainTypes();
@@ -39,21 +42,29 @@ private:
 	/** */
 	BaseEditor* CreateTerrainTypeEditor();
 	/** */
-	void CreateGroupBuildingTypes();
-	/** */
 	void CreateGroupUnitTypes();
 	/** */
 	QWidget *CreateUnitTypeWidget(const ModelUnitType* modelUnitType, QButtonGroup* buttonGroup, UnitTypeIdSelector *connector);
 	/** */
 	BaseEditor* CreateUnitTypeEditor();
+	/** */
+	void CreateGroupOwnerType();
+	/** */
+	QWidget *CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerType, QButtonGroup* buttonGroup, OwnerTypeIdSelector *selector);
+	/** */
+	BaseEditor* CreateOwnerTypeEditor();
+	/** */
+	void CreateGroupBuildingTypes();
 private:
 	friend class GameDemonstrator;
 	int								MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
 	QButtonGroup*					GroupTerrainTypes;
 	QButtonGroup*					GroupBuildings;
 	QButtonGroup*					GroupUnitsTypes;
+	QButtonGroup*					GroupOwnerTypes;
 	TerrainTypeEditor*				TerrainTypeEditorInstance;
 	UnitTypeEditor*					UnitTypeEditorInstance;
+	OwnerTypeEditor*				OwnerTypeEditorInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
 	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
 	MapView*						MapViewInstance;

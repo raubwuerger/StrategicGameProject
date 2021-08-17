@@ -9,13 +9,13 @@ public:
 	/** */
 	int GetId() const;
 	/** */
-	const QImage* GetImage() const;
-	/** */
 	const QString& GetName() const;
 	/** */
-	const QString& GetPictureName() const;
-	/** */
 	void SetImage(const QImage* image);
+	/** */
+	const QImage* GetImage() const;
+	/** */
+	const QString& GetPictureName() const;
 	/** */
 	bool IsTerrainTypeValid(int terrainTypeId) const;
 private:

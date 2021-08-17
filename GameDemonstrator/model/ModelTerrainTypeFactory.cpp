@@ -111,7 +111,7 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 bool ModelTerrainTypeFactory::AttacheImage( ModelTerrainType* modelTerrainType )
 {
 	QString terrainPictureName(modelTerrainType->GetPictureName());
-	const QImage *terrainTypeImage = LoadTerrainTypeImage( terrainPictureName );
+	const QImage *terrainTypeImage = LoadImage( terrainPictureName );
 
 	if( terrainTypeImage == nullptr )
 	{
@@ -123,7 +123,7 @@ bool ModelTerrainTypeFactory::AttacheImage( ModelTerrainType* modelTerrainType )
 	return true;
 }
 
-const QImage* ModelTerrainTypeFactory::LoadTerrainTypeImage( const QString& path )
+const QImage* ModelTerrainTypeFactory::LoadImage( const QString& path )
 {
 	QImage* newImage = new QImage;
 	try

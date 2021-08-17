@@ -61,6 +61,12 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 
 	{
 		DomValueExtractor extractor(node);
+		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME, newOwnerType->PictureName);
+		allElementsExtracted &= AttacheImage(newOwnerType);
+	}
+
+	{
+		DomValueExtractor extractor(node);
 		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newOwnerType->PictureName);
 	}
 
@@ -77,4 +83,40 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 	}
 
 	return newOwnerType;
+}
+
+const QImage* ModelOwnerTypeFactory::LoadImage(const QString& path)
+{
+	QImage* newImage = new QImage;
+	try
+	{
+		if (newImage->load(path) == false)
+		{
+			delete newImage;
+			return nullptr;
+		}
+		return newImage;
+	}
+	catch (...)
+	{
+		delete newImage;
+		return nullptr;
+	}
+	return newImage;
+}
+
+bool ModelOwnerTypeFactory::AttacheImage(ModelOwnerType* modelOwnerType)
+{
+	QString pictureName(modelOwnerType->GetPictureName());
+	const QImage *terrainTypeImage = LoadImage(pictureName);
+
+	if (terrainTypeImage == nullptr)
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("Unable to load owner image: %1").arg(pictureName));
+		return false;
+	}
+
+	modelOwnerType->SetImage(terrainTypeImage);
+	return true;
+
 }

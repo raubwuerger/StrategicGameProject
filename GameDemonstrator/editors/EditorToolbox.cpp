@@ -17,7 +17,10 @@ EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
 	GroupTerrainTypes(nullptr),
 	GroupBuildings(nullptr),
+	GroupOwnerTypes(nullptr),
 	TerrainTypeEditorInstance(nullptr),
+	UnitTypeEditorInstance(nullptr),
+	OwnerTypeEditorInstance(nullptr),
 	MinimumEditWidth(130),
 	EditorControllerInstance(nullptr)
 {
@@ -33,6 +36,7 @@ void EditorToolbox::Create()
 	EditorControllerInstance = new EditorController(MapViewInstance);
 	CreateGroupTerrainTypes();
 	CreateGroupUnitTypes();
+	CreateGroupOwnerType();
 	CreateGroupBuildingTypes();
 
 	connect(this, &QToolBox::currentChanged, this, &EditorToolbox::SlotEditorTypeChanged);
@@ -158,7 +162,70 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 	widget->setLayout(layout);
 
 	return widget;
+}
 
+#include "model/ModelOwnerTypeRepository.h"
+#include "model/ModelOwnerType.h"
+#include "OwnerTypeIdSelector.h"
+void EditorToolbox::CreateGroupOwnerType()
+{
+	BaseEditor* editor = CreateOwnerTypeEditor();
+	GroupOwnerTypes = new QButtonGroup(this);
+
+	QGridLayout *layout = new QGridLayout;
+	QMap<int, const ModelOwnerType*>::const_iterator currentIterator = ModelOwnerTypeRepository::GetInstance()->GetFirstIterator();
+
+	int rowIndex = 0;
+	while (currentIterator != ModelOwnerTypeRepository::GetInstance()->GetLastIterator())
+	{
+		layout->addWidget(CreateOwnerTypeWidget(currentIterator.value(), GroupOwnerTypes, new OwnerTypeIdSelector(currentIterator.value()->GetId())), rowIndex++, 0);
+		currentIterator++;
+	}
+
+	layout->setRowStretch(10, 10); //Damit werden die vorhandenen Elemente kleiner dargestellt
+
+	QWidget *widget = new QWidget();
+	widget->setLayout(layout);
+
+	int id = addItem(widget, tr("Owner types"));
+	EditorMap.insert(id, editor);
+}
+
+#include "OwnerTypeIdSelector.h"
+#include "model/ModelOwnerType.h"
+#include "OwnerTypeEditor.h"
+QWidget * EditorToolbox::CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerType, QButtonGroup* buttonGroup, OwnerTypeIdSelector *selector)
+{
+	QIcon icon(modelOwnerType->GetPictureName());
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+	buttonGroup->addButton(button);
+
+	connect(button, &QToolButton::pressed, selector, &OwnerTypeIdSelector::SlotTrigger);
+	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, OwnerTypeEditorInstance, &OwnerTypeEditor::SlotActiveOwnerTypeId);
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(modelOwnerType->GetName()), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+
+}
+
+#include "OwnerTypeEditor.h"
+BaseEditor* EditorToolbox::CreateOwnerTypeEditor()
+{
+	OwnerTypeEditorInstance = new OwnerTypeEditor(nullptr);
+	OwnerTypeEditorInstance->SetEditorController(EditorControllerInstance);
+//	UnitTypeEditorInstance->SetMapView(MapViewInstance);
+	EditorControllerInstance->OwnerTypeEditorInstance = OwnerTypeEditorInstance;
+	return OwnerTypeEditorInstance;
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

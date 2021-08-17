@@ -521,6 +521,15 @@
     <ClCompile Include="controller\GameUnitMovementController.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="editors\OwnerTypeIdSelector.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OwnerTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OwnerTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -826,6 +835,9 @@
       <Filter>Header Dateien\Map</Filter>
     </CustomBuild>
     <CustomBuild Include="editors\BaseEditor.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\OwnerTypeIdSelector.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
   </ItemGroup>
