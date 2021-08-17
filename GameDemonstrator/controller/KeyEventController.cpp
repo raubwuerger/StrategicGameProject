@@ -79,7 +79,6 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 	
 	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
 
-//	gameUnitItem->SetGameMapItemId(destMapHexItem->GetGameMapItemId());
 	mapUnitItem->SetMapHexItemId(destMapHexItem->GetGameMapItemId());
 
 	GameUnitItemFactory gameUnitItemFactory;
