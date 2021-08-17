@@ -3,25 +3,25 @@
 	<OwnerType>
 		<Id>1</Id>
 		<Name>Nation 1</Name>
-		<PictureName>.\resources\owners\Owner_01.png</PictureName>
-		<Color>red</Color>
+		<PictureName>.\resources\owners\Owner_Yellow.png</PictureName>
+		<Color>yellow</Color>
 	</OwnerType>
 	<OwnerType>
 		<Id>2</Id>
 		<Name>Nation 2</Name>
-		<PictureName>.\resources\owners\Owner_02.png</PictureName>
-		<Color>blue</Color>
+		<PictureName>.\resources\owners\Owner_Green.png</PictureName>
+		<Color>green</Color>
 	</OwnerType>
 	<OwnerType>
 		<Id>3</Id>
 		<Name>Nation 3</Name>
-		<PictureName>.\resources\owners\Owner_03.png</PictureName>
-		<Color>blue</Color>
+		<PictureName>.\resources\owners\Owner_Red.png</PictureName>
+		<Color>red</Color>
 	</OwnerType>
 	<OwnerType>
 		<Id>4</Id>
 		<Name>Nation 4</Name>
-		<PictureName>.\resources\owners\Owner_04.png</PictureName>
+		<PictureName>.\resources\owners\Owner_Blue.png</PictureName>
 		<Color>blue</Color>
 	</OwnerType>
 </OwnerTypes>

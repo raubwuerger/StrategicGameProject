@@ -49,6 +49,7 @@ private:
 	/** */
 	void CreatRect();
 private:
+	friend class MapUnitItemFactory;
 	const QImage*	UnitItemImage;
 	int				GameUnitId;
 	int				MapHexItemId;
@@ -57,6 +58,7 @@ private:
 	QRectF			BoundingRect;
 	ConnectorMapUnitItem*	EventConnector;
 	KeyEventController*		EventController;
+	QColor			Color;
 };
 
 #endif

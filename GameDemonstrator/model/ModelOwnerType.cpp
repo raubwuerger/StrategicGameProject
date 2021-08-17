@@ -4,7 +4,7 @@
 ModelOwnerType::ModelOwnerType( int id )
 	: Id(id),
 	Human(true),
-	Color(Qt::green)
+	Color(Qt::lightGray)
 {
 }
 
@@ -25,6 +25,11 @@ int ModelOwnerType::GetId() const
 QString ModelOwnerType::toString() const
 {
 	return QObject::tr("ModelOwnerType - Id: %1, Name: %2, PictureName: %3").arg(QString::number(Id)).arg(Name).arg(PictureName);
+}
+
+const QColor& ModelOwnerType::GetColor() const
+{
+	return Color;
 }
 
 bool ModelOwnerType::GetHuman() const

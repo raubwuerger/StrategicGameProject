@@ -6,7 +6,8 @@
 MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	: TopLeft(topLeft),
 	UnitItemImage(nullptr),
-	EventConnector(nullptr)
+	EventConnector(nullptr),
+	Color(Qt::black)
 {
 	ImageRect.setWidth(64);
 	ImageRect.setHeight(43);
@@ -87,7 +88,12 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 		painter->drawImage(BoundingRect.topLeft(), *UnitItemImage);
 	}
 
-	QGraphicsPolygonItem::paint(painter, option, widget);
+	painter->setRenderHint(QPainter::Antialiasing);
+	QPainterPath path;
+	path.addRect(BoundingRect);
+	QPen pen(Color, 4);
+	painter->setPen(pen);
+	painter->drawPath(path);
 }
 
 /** Set m_TerrainImage */

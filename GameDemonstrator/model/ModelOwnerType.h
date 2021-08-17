@@ -22,6 +22,8 @@ public:
 	bool GetHuman() const;
 	/** */
 	QString toString() const;
+	/** */
+	const QColor& GetColor() const;
 private:
 	friend class ModelOwnerTypeFactory;
 	const int		Id;
