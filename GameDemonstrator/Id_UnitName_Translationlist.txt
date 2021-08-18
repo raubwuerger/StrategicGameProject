@@ -1,0 +1,11 @@
+01	==	Infanterie
+02	== 	Tank
+03	==	Artillery
+04	==	Fighter
+05	==	Bomber
+06	==	Destroyer
+07	==	Cruiser
+08	==	Battleship
+09	==	AircraftCarrier
+10	==	Submarine
+11	==	TroopTransporter
