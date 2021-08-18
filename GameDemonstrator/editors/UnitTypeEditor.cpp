@@ -12,7 +12,7 @@
 
 UnitTypeEditor::UnitTypeEditor(QObject *parent)
 	: BaseEditor(parent),
-	ActiveUnitType(nullptr),
+	ActiveModelUnitType(nullptr),
 	EditorControllerInstance(nullptr),
 	MapViewInstance(nullptr),
 	VALUE_NOT_INITIALIZED(-1),
@@ -41,7 +41,7 @@ void UnitTypeEditor::SetEditorController(EditorController* editorController)
 
 void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 {
-	ActiveUnitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
+	ActiveModelUnitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
 }
 
 void UnitTypeEditor::SlotActiveOwnerTypeId(int ownerTypeId)
@@ -75,14 +75,14 @@ void UnitTypeEditor::CreateUnit()
 	}
 
 	GameUnitMovementController mapItemMapUnitMovementController(MapHexItemRepository::GetInstance()->GetMapHexItemById(ActiveGameMapItemId));
-	if (false == mapItemMapUnitMovementController.IsTerrainTypeAccessible(ActiveUnitType, ActiveGameMapItemId))
+	if (false == mapItemMapUnitMovementController.IsTerrainTypeAccessible(ActiveGameMapItemId, ActiveModelUnitType ))
 	{
 		return;
 	}
 
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.GameMapItemId = ActiveGameMapItemId;
-	gameUnitParameterObject.ModelUnitTypeObject = ActiveUnitType;
+	gameUnitParameterObject.ModelUnitTypeObject = ActiveModelUnitType;
 	gameUnitParameterObject.ModelOwnerTypeId = ActiveGameOwnerItemId;
 
 	GameUnitItemFactory gameUnitItemFactory;
@@ -90,7 +90,7 @@ void UnitTypeEditor::CreateUnit()
 
 	if (nullptr == created)
 	{
-		jha::GetLog()->Log_MESSAGE(tr("Unable to create GameUnitItem from type %1!").arg(QString::number(ActiveUnitType->GetId())));
+		jha::GetLog()->Log_MESSAGE(tr("Unable to create GameUnitItem from type %1!").arg(QString::number(ActiveModelUnitType->GetId())));
 		return;
 	}
 
@@ -188,7 +188,7 @@ bool UnitTypeEditor::IsUnitTypeEditorInitialzedForCreatingUnit() const
 		return false;
 	}
 
-	if (nullptr == ActiveUnitType)
+	if (nullptr == ActiveModelUnitType)
 	{
 		jha::GetLog()->Log_MESSAGE(tr("Class member <ActiveUnitType> is null! -> SlotActiveUnitTypeId()"));
 		return false;

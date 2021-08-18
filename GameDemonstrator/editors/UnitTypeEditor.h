@@ -52,7 +52,7 @@ private:
 	const int				VALUE_NOT_INITIALIZED;
 	int						ActiveGameMapItemId;
 	int						ActiveGameOwnerItemId;
-	const ModelUnitType*	ActiveUnitType;
+	const ModelUnitType*	ActiveModelUnitType;
 	MapView*				MapViewInstance;
 	EditorController*		EditorControllerInstance;
 };

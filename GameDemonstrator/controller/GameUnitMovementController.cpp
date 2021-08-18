@@ -18,39 +18,7 @@ GameUnitMovementController::GameUnitMovementController(const MapHexItem *mapHexI
 	Q_ASSERT(nullptr != Destination);
 }
 
-bool GameUnitMovementController::CanUnitMove(const MapUnitItem* mapUnitItem) const
-{
-	const GameUnitItem* gameUnitItem = GetGameUnitItem(mapUnitItem);
-	if (false == IsTerrainTypeAccessible(mapUnitItem, gameUnitItem))
-	{
-		return false;
-	}
-	return IsStackLimitSufficient(Destination->GetGameMapItemId());
-}
-
-bool GameUnitMovementController::IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem, const GameUnitItem* gameUnitItem) const
-{
-	const ModelTerrainType* modelTerrainType = GetModelTerrainType(mapUnitItem);
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
-
-	if (nullptr == gameUnitItem)
-	{
-		return false;
-	}
-
-	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
-	if (nullptr == modelUnitType)
-	{
-		return false;
-	}
-
-	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
-}
-
-bool GameUnitMovementController::CanUnitMove(const MapHexItem* mapHexItem, int gameUnitItemId) const
+bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexItem* mapHexItem) const
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitItemId);
 	if (false == IsTerrainTypeAccessible(mapHexItem, gameUnitItem))
@@ -93,16 +61,6 @@ bool GameUnitMovementController::IsTerrainTypeAccessible(const MapHexItem* mapHe
 	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
 }
 
-bool GameUnitMovementController::CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId) const
-{
-	if (false == IsTerrainTypeAccessible(modelUnitType, gameMapItemId))
-	{
-		return false;
-	}
-
-	return IsStackLimitSufficient(gameMapItemId);
-}
-
 const ModelTerrainType* GameUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
 {
 	const MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
@@ -143,7 +101,7 @@ const GameUnitItem* GameUnitMovementController::GetGameUnitItem(const MapUnitIte
 	return GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 }
 
-bool GameUnitMovementController::IsTerrainTypeAccessible(const ModelUnitType* modelUnitType, const int gameMapItemId) const
+bool GameUnitMovementController::IsTerrainTypeAccessible(const int gameMapItemId, const ModelUnitType* modelUnitType) const
 {
 	if (nullptr == modelUnitType)
 	{

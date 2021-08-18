@@ -12,18 +12,12 @@ class GameUnitMovementController
 public:
 	GameUnitMovementController(const MapHexItem *mapHexItem);
 	/** */
-	bool IsTerrainTypeAccessible(const MapUnitItem* mapUnitItem, const GameUnitItem* gameUnitItem) const;
+	bool IsTerrainTypeAccessible(const int gameMapItemId, const ModelUnitType* modelUnitType ) const;
+	/** */
+	bool CanUnitMove(int gameUnitItemId, const MapHexItem* mapHexItem ) const;
+private:
 	/** */
 	bool IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem) const;
-	/** */
-	bool IsTerrainTypeAccessible(const ModelUnitType* modelUnitType, const int gameMapItemId) const;
-	/** */
-	bool CanUnitMove(const MapUnitItem* mapUnitItem) const;
-	/** */
-	bool CanUnitMove(const MapHexItem* mapHexItem, int gameUnitItemId) const;
-	/** */
-	bool CanUnitMove(const ModelUnitType* modelUnitType, const int gameMapItemId) const;
-private:
 	/** */
 	const ModelTerrainType* GetModelTerrainType(const MapUnitItem* mapUnitItem) const;
 	/** */

@@ -60,7 +60,7 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 	}
 
 	GameUnitMovementController mapItemMapUnitMovementController(destMapHexItem);
-	if (false == mapItemMapUnitMovementController.CanUnitMove(destMapHexItem, mapUnitItem->GetGameUnitId()))
+	if (false == mapItemMapUnitMovementController.CanUnitMove(mapUnitItem->GetGameUnitId(), destMapHexItem))
 	{
 		return false;
 	}
