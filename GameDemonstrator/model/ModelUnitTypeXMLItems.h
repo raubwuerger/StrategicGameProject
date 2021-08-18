@@ -12,8 +12,11 @@ public:
 	const static QString SUBELEMENT_NAME;
 	const static QString SUBELEMENT_PICTURENAME;
 	const static QString SUBELEMENT_STRENGTH;
-	const static QString SUBELEMENT_ATTACK;
-	const static QString SUBELEMENT_DEFENCE;
+	const static QString SUBELEMENT_ATTACKVALUES;
+	const static QString SUBELEMENT_DEFENCEVALUES;
+	const static QString SUBELEMENT_COMBAT_LAND;
+	const static QString SUBELEMENT_COMBAT_AIR;
+	const static QString SUBELEMENT_COMBAT_SEA;
 	const static QString SUBELEMENT_RANGE;
 	const static QString SUBELEMENT_MOVEMENTPOINTS;
 	const static QString NODE_TERRAINTYPES;

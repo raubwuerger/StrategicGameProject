@@ -21,7 +21,11 @@ private:
 	/** */
 	bool AttacheImage(ModelUnitType* modelUnit);
 	/** */
-	bool ExtractTerrainTypes(QDomNode domNode, QVector<int>& terrainTypes);
+	bool ExtractTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes);
+	/** */
+	bool ExtractAttackValues(const QDomNode& domNode, QVector<int>& attackValues);
+	/** */
+	bool ExtractDefenseValues(const QDomNode& domNode, QVector<int>& defenseValues);
 };
 
 #endif

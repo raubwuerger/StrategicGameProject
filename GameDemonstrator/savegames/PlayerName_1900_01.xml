@@ -4994,266 +4994,315 @@
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>95</GameMapItemID>
             <Name>1. Infanterie-Rgt.</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>2</ID>
             <UnitTypeID>2</UnitTypeID>
             <GameMapItemID>50</GameMapItemID>
             <Name>1. Panzer-Rgt.</Name>
-			<OwnerTypeId>1</OwnerTypeId>			
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>3</ID>
             <UnitTypeID>3</UnitTypeID>
             <GameMapItemID>96</GameMapItemID>
             <Name>1. Artillerie-Rgt.</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>4</ID>
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>280</GameMapItemID>
             <Name>2. Infanterie-Rgt.</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>5</ID>
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>327</GameMapItemID>
             <Name>3. Infanterie-Rgt.</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>6</ID>
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>281</GameMapItemID>
             <Name>Infantery</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>7</ID>
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>282</GameMapItemID>
             <Name>Infantery</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>8</ID>
             <UnitTypeID>1</UnitTypeID>
             <GameMapItemID>236</GameMapItemID>
             <Name>Infantery</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>9</ID>
             <UnitTypeID>2</UnitTypeID>
             <GameMapItemID>97</GameMapItemID>
             <Name>Tank</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>10</ID>
             <UnitTypeID>2</UnitTypeID>
             <GameMapItemID>51</GameMapItemID>
             <Name>Tank</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>11</ID>
             <UnitTypeID>2</UnitTypeID>
             <GameMapItemID>141</GameMapItemID>
             <Name>Tank</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>12</ID>
             <UnitTypeID>3</UnitTypeID>
             <GameMapItemID>142</GameMapItemID>
             <Name>Artillery</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>13</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>191</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>14</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>144</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>15</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>145</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>16</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>99</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>17</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>100</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>18</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>54</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>19</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>101</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>20</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>102</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>21</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>103</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>22</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>239</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>23</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>241</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>24</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>198</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>25</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>247</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>26</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>290</GameMapItemID>
             <Name>Fighter</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>27</ID>
             <UnitTypeID>6</UnitTypeID>
             <GameMapItemID>242</GameMapItemID>
             <Name>Destroyer</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>28</ID>
             <UnitTypeID>6</UnitTypeID>
             <GameMapItemID>286</GameMapItemID>
             <Name>Destroyer</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>29</ID>
             <UnitTypeID>6</UnitTypeID>
             <GameMapItemID>332</GameMapItemID>
             <Name>Destroyer</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>30</ID>
             <UnitTypeID>6</UnitTypeID>
             <GameMapItemID>331</GameMapItemID>
             <Name>Destroyer</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>31</ID>
             <UnitTypeID>7</UnitTypeID>
             <GameMapItemID>149</GameMapItemID>
             <Name>Cruiser</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>32</ID>
             <UnitTypeID>5</UnitTypeID>
             <GameMapItemID>56</GameMapItemID>
             <Name>Bomber</Name>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>33</ID>
-            <UnitTypeID>5</UnitTypeID>
-            <GameMapItemID>55</GameMapItemID>
-            <Name>Bomber</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>155</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>2</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>34</ID>
-            <UnitTypeID>8</UnitTypeID>
-            <GameMapItemID>196</GameMapItemID>
-            <Name>Battleship</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>156</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>2</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>35</ID>
-            <UnitTypeID>8</UnitTypeID>
-            <GameMapItemID>150</GameMapItemID>
-            <Name>Battleship</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>154</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>2</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>36</ID>
-            <UnitTypeID>9</UnitTypeID>
-            <GameMapItemID>151</GameMapItemID>
-            <Name>AircraftCarrier</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>108</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>2</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>37</ID>
-            <UnitTypeID>10</UnitTypeID>
-            <GameMapItemID>105</GameMapItemID>
-            <Name>Submarine</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>109</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>2</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>38</ID>
-            <UnitTypeID>11</UnitTypeID>
-            <GameMapItemID>240</GameMapItemID>
-            <Name>TroopTransporter</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>157</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>2</OwnerTypeId>
         </Unit>
         <Unit>
             <ID>39</ID>
-            <UnitTypeID>11</UnitTypeID>
-            <GameMapItemID>194</GameMapItemID>
-            <Name>TroopTransporter</Name>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>343</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>3</OwnerTypeId>
+        </Unit>
+        <Unit>
+            <ID>40</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>200</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>3</OwnerTypeId>
+        </Unit>
+        <Unit>
+            <ID>41</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>201</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>3</OwnerTypeId>
+        </Unit>
+        <Unit>
+            <ID>42</ID>
+            <UnitTypeID>1</UnitTypeID>
+            <GameMapItemID>246</GameMapItemID>
+            <Name>Infantery</Name>
+            <OwnerTypeId>3</OwnerTypeId>
+        </Unit>
+        <Unit>
+            <ID>43</ID>
+            <UnitTypeID>8</UnitTypeID>
+            <GameMapItemID>59</GameMapItemID>
+            <Name>Battleship</Name>
+            <OwnerTypeId>4</OwnerTypeId>
+        </Unit>
+        <Unit>
+            <ID>44</ID>
+            <UnitTypeID>8</UnitTypeID>
+            <GameMapItemID>60</GameMapItemID>
+            <Name>Battleship</Name>
+            <OwnerTypeId>4</OwnerTypeId>
+        </Unit>
+        <Unit>
+            <ID>45</ID>
+            <UnitTypeID>8</UnitTypeID>
+            <GameMapItemID>105</GameMapItemID>
+            <Name>Battleship</Name>
+            <OwnerTypeId>4</OwnerTypeId>
         </Unit>
     </Units>
 </Savegame>

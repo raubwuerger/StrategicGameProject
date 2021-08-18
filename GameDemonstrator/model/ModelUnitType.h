@@ -25,8 +25,8 @@ private:
 	QString			PictureName;
 	const QImage	*Image;
 	int				Strength;
-	int				Attack;
-	int				Defense;
+	QVector<int>	AttackValues;
+	QVector<int>	DefenseValues;
 	int				Range;
 	int				MovementPoints;
 	QVector<int>	ValidTerrainTypes;

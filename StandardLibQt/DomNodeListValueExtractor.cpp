@@ -13,7 +13,11 @@ DomNodeListValueExtractor::DomNodeListValueExtractor( const QDomNodeList& domNod
 
 bool DomNodeListValueExtractor::ExtractValue( const QString& valueName, QString& value )
 {
-	for( int currentDomNodeIndex = 0; currentDomNodeIndex < DomNodeList.size(); currentDomNodeIndex++ )
+	if (true == DomNodeList.isEmpty())
+	{
+		return false;
+	}
+	for (int currentDomNodeIndex = 0; currentDomNodeIndex < DomNodeList.size(); currentDomNodeIndex++)
 	{
 		DomValueExtractor domValueExtractor(DomNodeList.at(currentDomNodeIndex));
 		if( false == domValueExtractor.ExtractValue(valueName,value) )

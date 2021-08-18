@@ -3,10 +3,18 @@
 	<UnitType>
 		<Id>1</Id>
 		<Name>Infantery</Name>
-		<PictureName>.\Resources\Units\Infantry_64.png</PictureName>
+		<PictureName>.\resources\Units\Infantry_64.png</PictureName>
 		<Strength>10</Strength>
-		<Attack>5</Attack>
-		<Defense>5</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>1</MovementPoints>
 		<TerrainTypes>
@@ -21,8 +29,16 @@
 		<Name>Tank</Name>
 		<PictureName>.\Resources\Units\Tank_64.png</PictureName>
 		<Strength>20</Strength>
-		<Attack>10</Attack>
-		<Defense>10</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>2</MovementPoints>
 		<TerrainTypes>
@@ -36,8 +52,16 @@
 		<Name>Artillery</Name>
 		<PictureName>.\Resources\Units\Artillery_64.png</PictureName>
 		<Strength>5</Strength>
-		<Attack>5</Attack>
-		<Defense>1</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>2</Range>
 		<MovementPoints>1</MovementPoints>
 		<TerrainTypes>
@@ -50,8 +74,16 @@
 		<Name>Fighter</Name>
 		<PictureName>.\Resources\Units\Fighter_64.png</PictureName>
 		<Strength>5</Strength>
-		<Attack>5</Attack>
-		<Defense>1</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>5</MovementPoints>
 		<TerrainTypes>
@@ -67,8 +99,16 @@
 		<Name>Bomber</Name>
 		<PictureName>.\Resources\Units\Bomber_64.png</PictureName>
 		<Strength>10</Strength>
-		<Attack>10</Attack>
-		<Defense>1</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>4</MovementPoints>
 		<TerrainTypes>
@@ -84,8 +124,16 @@
 		<Name>Destroyer</Name>
 		<PictureName>.\Resources\Units\Destroyer_64.png</PictureName>
 		<Strength>5</Strength>
-		<Attack>5</Attack>
-		<Defense>1</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>4</MovementPoints>
 		<TerrainTypes>
@@ -97,8 +145,16 @@
 		<Name>Cruiser</Name>
 		<PictureName>.\Resources\Units\Cruiser_64.png</PictureName>
 		<Strength>8</Strength>
-		<Attack>8</Attack>
-		<Defense>2</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
 		<TerrainTypes>
@@ -110,8 +166,16 @@
 		<Name>Battleship</Name>
 		<PictureName>.\Resources\Units\Battleship_64.png</PictureName>
 		<Strength>12</Strength>
-		<Attack>12</Attack>
-		<Defense>4</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>2</Range>
 		<MovementPoints>3</MovementPoints>
 		<TerrainTypes>
@@ -123,8 +187,16 @@
 		<Name>AircraftCarrier</Name>
 		<PictureName>.\Resources\Units\AircraftCarrier_64.png</PictureName>
 		<Strength>8</Strength>
-		<Attack>2</Attack>
-		<Defense>2</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
 		<TerrainTypes>
@@ -136,8 +208,16 @@
 		<Name>Submarine</Name>
 		<PictureName>.\Resources\Units\Submarine_64.png</PictureName>
 		<Strength>4</Strength>
-		<Attack>4</Attack>
-		<Defense>2</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
 		<SpottedBy>
@@ -153,8 +233,16 @@
 		<Name>TroopTransporter</Name>
 		<PictureName>.\Resources\Units\TroopTransporter_64.png</PictureName>
 		<Strength>1</Strength>
-		<Attack>1</Attack>
-		<Defense>1</Defense>
+		<AttackValues>
+			<Land>10</Land>
+			<Air>2</Air>
+			<Sea>2</Sea>
+		</AttackValues>
+		<DefenseValues>
+			<Land>10</Land>
+			<Air>5</Air>
+			<Sea>5</Sea>
+		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
 		<TransportSpace>2</TransportSpace>

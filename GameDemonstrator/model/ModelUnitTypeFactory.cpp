@@ -74,18 +74,22 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	}
 
 	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_ATTACK, newUnitType->Attack);
+		DomNodeFinder find(node);
+		allElementsExtracted &= ExtractAttackValues(find.FindDomeNodeByName(config.SUBELEMENT_ATTACKVALUES), newUnitType->AttackValues);
+// 		DomValueExtractor extractor(node);
+// 		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_ATTACKVALUES, newUnitType->Attack);
+	}
+
+	{
+		DomNodeFinder find(node);
+		allElementsExtracted &= ExtractDefenseValues(find.FindDomeNodeByName(config.SUBELEMENT_DEFENCEVALUES), newUnitType->DefenseValues);
+		//		DomValueExtractor extractor(node);
+		//		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENCEVALUES, newUnitType->Defense);
 	}
 
 	{
 		DomValueExtractor extractor(node);
 		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_MOVEMENTPOINTS, newUnitType->MovementPoints);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENCE, newUnitType->Defense);
 	}
 
 	{
@@ -144,7 +148,7 @@ const QImage* ModelUnitTypeFactory::LoadImage(const QString& path)
 
 #include "ModelUnitTypeXMLItems.h"
 #include "DomElementFinder.h"
-bool ModelUnitTypeFactory::ExtractTerrainTypes(QDomNode domNode, QVector<int>& terrainTypes)
+bool ModelUnitTypeFactory::ExtractTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes)
 {
 	if (true == domNode.isNull())
 	{
@@ -179,4 +183,120 @@ bool ModelUnitTypeFactory::ExtractTerrainTypes(QDomNode domNode, QVector<int>& t
 	return !terrainTypes.isEmpty();
 }
 
+#include "DomNodeListValueExtractor.h"
+bool ModelUnitTypeFactory::ExtractAttackValues(const QDomNode& domNode, QVector<int>& attackValues)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_LAND)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int land = element.text().toInt();
+			attackValues.push_back(land);
+			continue;
+		}
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_AIR)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int air = element.text().toInt();
+			attackValues.push_back(air);
+			continue;
+		}
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_SEA)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int sea = element.text().toInt();
+			attackValues.push_back(sea);
+			continue;
+		}
+	}
+	return !attackValues.isEmpty();
+}
+
+bool ModelUnitTypeFactory::ExtractDefenseValues(const QDomNode& domNode, QVector<int>& defenseValues)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_LAND)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int land = element.text().toInt();
+			defenseValues.push_back(land);
+			continue;
+		}
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_AIR)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int air = element.text().toInt();
+			defenseValues.push_back(air);
+			continue;
+		}
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_SEA)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int sea = element.text().toInt();
+			defenseValues.push_back(sea);
+			continue;
+		}
+	}
+	return !defenseValues.isEmpty();
+}
 
