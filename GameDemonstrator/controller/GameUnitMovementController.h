@@ -6,26 +6,28 @@ class MapHexItem;
 class GameUnitItem;
 class ModelUnitType;
 class ModelTerrainType;
+class ModelOwnerType;
 
 class GameUnitMovementController
 {
 public:
-	GameUnitMovementController(const MapHexItem *mapHexItem);
-	/** */
-	bool IsTerrainTypeAccessible(const int gameMapItemId, const ModelUnitType* modelUnitType ) const;
+	GameUnitMovementController(const GameUnitItem *activeGameUnitItem);
 	/** */
 	bool CanUnitMove(int gameUnitItemId, const MapHexItem* mapHexItem ) const;
 private:
-	/** */
-	bool IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem) const;
 	/** */
 	const ModelTerrainType* GetModelTerrainType(const MapUnitItem* mapUnitItem) const;
 	/** */
 	const GameUnitItem* GetGameUnitItem(const MapUnitItem* mapUnitItem) const;
 	/** */
+	bool IsEnemyOnDestinationMapTile(int gameMapItemId);
+	/** */
 	bool IsStackLimitSufficient(int gameMapItemId) const;
+	/** */
+	const ModelOwnerType* GetCurrentMapTileOwner();
 private:
-	const MapHexItem*	Destination;
+	const GameUnitItem*		ActiveGameUnitItem;
+	const ModelOwnerType*	CurrentMapTileOwner;
 };
 
 #endif // MAPITEMMAPUNITMOVEMENTCONTROLLER_H

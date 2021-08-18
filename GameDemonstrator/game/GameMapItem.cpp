@@ -24,6 +24,11 @@ const ModelTerrainType* GameMapItem::GetTerrainType() const
 	return TerrainType;
 }
 
+const ModelOwnerType* GameMapItem::GetOwnerType() const
+{
+	return OwnerType;
+}
+
 const int GameMapItem::GetId() const
 {
 	return Id;

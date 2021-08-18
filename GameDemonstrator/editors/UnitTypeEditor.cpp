@@ -9,6 +9,7 @@
 #include "map/MapUnitItem.h"
 #include "LogInterface.h"
 #include "controller/EditorController.h"
+#include "controller/TerrainAccessTester.h"
 
 UnitTypeEditor::UnitTypeEditor(QObject *parent)
 	: BaseEditor(parent),
@@ -74,12 +75,6 @@ void UnitTypeEditor::CreateUnit()
 		return;
 	}
 
-	GameUnitMovementController mapItemMapUnitMovementController(MapHexItemRepository::GetInstance()->GetMapHexItemById(ActiveGameMapItemId));
-	if (false == mapItemMapUnitMovementController.IsTerrainTypeAccessible(ActiveGameMapItemId, ActiveModelUnitType ))
-	{
-		return;
-	}
-
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.GameMapItemId = ActiveGameMapItemId;
 	gameUnitParameterObject.ModelUnitTypeObject = ActiveModelUnitType;
@@ -91,6 +86,11 @@ void UnitTypeEditor::CreateUnit()
 	if (nullptr == created)
 	{
 		jha::GetLog()->Log_MESSAGE(tr("Unable to create GameUnitItem from type %1!").arg(QString::number(ActiveModelUnitType->GetId())));
+		return;
+	}
+
+	if (false == TerrainAccessTester::Accessable(ActiveModelUnitType, ActiveGameMapItemId))
+	{
 		return;
 	}
 

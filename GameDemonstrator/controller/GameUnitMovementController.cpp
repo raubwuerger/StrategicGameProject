@@ -10,55 +10,25 @@
 #include "model/ModelTerrainType.h"
 #include "model/ModelUnitType.h"
 #include "game/GameUnitItemRepository.h"
+#include "controller/TerrainAccessTester.h"
 #include "LogInterface.h"
 
-GameUnitMovementController::GameUnitMovementController(const MapHexItem *mapHexItem)
-	: Destination(mapHexItem)
+GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activeGameUnitItem)
+	: ActiveGameUnitItem(activeGameUnitItem),
+	CurrentMapTileOwner(nullptr)
 {
-	Q_ASSERT(nullptr != Destination);
+	Q_ASSERT(nullptr != ActiveGameUnitItem);
+	CurrentMapTileOwner = GetCurrentMapTileOwner();
 }
 
 bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexItem* mapHexItem) const
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitItemId);
-	if (false == IsTerrainTypeAccessible(mapHexItem, gameUnitItem))
+	if (false == TerrainAccessTester::Accessable(gameUnitItem, mapHexItem))
 	{
 		return false;
 	}
-	return IsStackLimitSufficient(Destination->GetGameMapItemId());
-}
-
-bool GameUnitMovementController::IsTerrainTypeAccessible(const MapHexItem* mapHexItem, const GameUnitItem* gameUnitItem) const
-{
-	if (nullptr == mapHexItem)
-	{
-		return false;
-	}
-
-	if (nullptr == gameUnitItem)
-	{
-		return false;
-	}
-
-	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
-	if (nullptr == modelUnitType)
-	{
-		return false;
-	}
-
-	const GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapHexItem->GetGameMapItemId());
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
-
-	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
-
-	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
+	return IsStackLimitSufficient(mapHexItem->GetGameMapItemId());
 }
 
 const ModelTerrainType* GameUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
@@ -101,26 +71,14 @@ const GameUnitItem* GameUnitMovementController::GetGameUnitItem(const MapUnitIte
 	return GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 }
 
-bool GameUnitMovementController::IsTerrainTypeAccessible(const int gameMapItemId, const ModelUnitType* modelUnitType) const
+bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId)
 {
-	if (nullptr == modelUnitType)
+	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
+	if (nullptr == gameUnitItem)
 	{
 		return false;
 	}
-
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
-
-	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
-
-	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
+	return gameUnitItem->GetModelOwnerType() != CurrentMapTileOwner;
 }
 
 bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
@@ -133,5 +91,16 @@ bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
 		jha::GetLog()->Log_DEBUG(QObject::tr("Stack limit exceeded on game map item id %1").arg(QString::number(gameMapItemId)));
 	}
 	return isStackLimitSufficient;
+}
+
+const ModelOwnerType* GameUnitMovementController::GetCurrentMapTileOwner()
+{
+	if (nullptr == ActiveGameUnitItem)
+	{
+		Q_ASSERT(nullptr); // Something went wrong
+		return nullptr;
+	}
+
+	return ActiveGameUnitItem->GetModelOwnerType();
 }
 

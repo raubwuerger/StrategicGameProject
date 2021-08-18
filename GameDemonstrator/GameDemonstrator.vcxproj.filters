@@ -530,6 +530,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_OwnerTypeIdSelector.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="controller\TerrainAccessTester.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -731,6 +734,9 @@
       <Filter>Header Dateien\Editor</Filter>
     </ClInclude>
     <ClInclude Include="controller\GameUnitMovementController.h">
+      <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\TerrainAccessTester.h">
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>

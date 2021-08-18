@@ -59,17 +59,18 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 		return false;
 	}
 
-	GameUnitMovementController mapItemMapUnitMovementController(destMapHexItem);
-	if (false == mapItemMapUnitMovementController.CanUnitMove(mapUnitItem->GetGameUnitId(), destMapHexItem))
-	{
-		return false;
-	}
-
 	GameUnitItem* sourceUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 	if (nullptr == sourceUnitItem)
 	{
 		return false;
 	}
+
+	GameUnitMovementController mapItemMapUnitMovementController(sourceUnitItem);
+	if (false == mapItemMapUnitMovementController.CanUnitMove(mapUnitItem->GetGameUnitId(), destMapHexItem))
+	{
+		return false;
+	}
+
 	
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.GameUnitItemObject = sourceUnitItem;

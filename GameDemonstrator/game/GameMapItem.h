@@ -17,6 +17,8 @@ public:
 	/** */
 	const ModelTerrainType* GetTerrainType() const;
 	/** */
+	const ModelOwnerType* GetOwnerType() const;
+	/** */
 	const int GetId() const;
 	/** */
 	const int GetRow() const;
@@ -28,8 +30,8 @@ private:
 	const int		Row;
 	const int		Col;
 	const int		Id;
-	const ModelTerrainType	*TerrainType;
-	const ModelOwnerType	*OwnerType;
+	const ModelTerrainType*	TerrainType;
+	const ModelOwnerType*	OwnerType;
 };
 
 #endif // GAMEMAPITEM_H
