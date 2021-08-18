@@ -19,7 +19,7 @@ public:
 	const static QString SUBELEMENT_COMBAT_SEA;
 	const static QString SUBELEMENT_RANGE;
 	const static QString SUBELEMENT_MOVEMENTPOINTS;
-	const static QString NODE_TERRAINTYPES;
+	const static QString NODE_ACCESSIBLETERRAINTYPES;
 	const static QString SUBELEMENT_TERRAINTYPEID;
 };
 

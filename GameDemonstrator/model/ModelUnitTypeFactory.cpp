@@ -99,7 +99,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ExtractTerrainTypes(find.FindDomeNodeByName(config.NODE_TERRAINTYPES), newUnitType->AccessibleTerrainTypes);
+		allElementsExtracted &= ExtractTerrainTypes(find.FindDomeNodeByName(config.NODE_ACCESSIBLETERRAINTYPES), newUnitType->AccessibleTerrainTypes);
 	}
 
 	if (false == allElementsExtracted)

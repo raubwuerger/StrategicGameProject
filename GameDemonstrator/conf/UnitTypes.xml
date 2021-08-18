@@ -17,12 +17,25 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>1</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
 			<TerrainTypeId>4</TerrainTypeId>
 			<TerrainTypeId>5</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -41,11 +54,24 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>2</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
 			<TerrainTypeId>4</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -64,10 +90,23 @@
 		</DefenseValues>
 		<Range>2</Range>
 		<MovementPoints>1</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -86,13 +125,26 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>5</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
 			<TerrainTypeId>3</TerrainTypeId>
 			<TerrainTypeId>4</TerrainTypeId>
 			<TerrainTypeId>5</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -111,13 +163,26 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>4</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
 			<TerrainTypeId>3</TerrainTypeId>
 			<TerrainTypeId>4</TerrainTypeId>
 			<TerrainTypeId>5</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -136,9 +201,22 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>4</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -157,9 +235,22 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -178,9 +269,22 @@
 		</DefenseValues>
 		<Range>2</Range>
 		<MovementPoints>3</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -199,9 +303,22 @@
 		</DefenseValues>
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -224,9 +341,22 @@
 			<SpottedByTypeId></SpottedByTypeId>
 			<SpottedByTypeId></SpottedByTypeId>
 		</SpottedBy>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -246,8 +376,21 @@
 		<Range>1</Range>
 		<MovementPoints>3</MovementPoints>
 		<TransportSpace>2</TransportSpace>
-		<TerrainTypes>
+		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
-		</TerrainTypes>
+		</AccessibleTerrainTypes>
+		<AttackableUnitTypes>
+			<AttackableUnitType>1</AttackableUnitType>
+			<AttackableUnitType>2</AttackableUnitType>
+			<AttackableUnitType>3</AttackableUnitType>
+			<AttackableUnitType>4</AttackableUnitType>
+			<AttackableUnitType>5</AttackableUnitType>
+			<AttackableUnitType>6</AttackableUnitType>
+			<AttackableUnitType>7</AttackableUnitType>
+			<AttackableUnitType>8</AttackableUnitType>
+			<AttackableUnitType>9</AttackableUnitType>
+			<AttackableUnitType>10</AttackableUnitType>
+			<AttackableUnitType>11</AttackableUnitType>
+		</AttackableUnitTypes>
 	</UnitType>
 </UnitTypes>

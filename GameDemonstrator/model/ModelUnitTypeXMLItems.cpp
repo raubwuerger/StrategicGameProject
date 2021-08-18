@@ -15,7 +15,7 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_AIR = "Air";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_SEA = "Sea";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_RANGE = "Range";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS = "MovementPoints";
-const QString ModelUnitTypeXMLItems::NODE_TERRAINTYPES = "TerrainTypes";
+const QString ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES = "AccessibleTerrainTypes";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINTYPEID = "TerrainTypeId";
 
 
