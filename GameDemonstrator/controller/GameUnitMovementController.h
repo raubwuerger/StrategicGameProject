@@ -20,7 +20,7 @@ private:
 	/** */
 	const GameUnitItem* GetGameUnitItem(const MapUnitItem* mapUnitItem) const;
 	/** */
-	bool IsEnemyOnDestinationMapTile(int gameMapItemId);
+	bool IsEnemyOnDestinationMapTile(int gameMapItemId) const;
 	/** */
 	bool IsStackLimitSufficient(int gameMapItemId) const;
 	/** */

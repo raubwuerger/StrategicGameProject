@@ -533,6 +533,9 @@
     <ClCompile Include="controller\TerrainAccessTester.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="controller\GameUnitAttackController.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -737,6 +740,9 @@
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
     <ClInclude Include="controller\TerrainAccessTester.h">
+      <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\GameUnitAttackController.h">
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>

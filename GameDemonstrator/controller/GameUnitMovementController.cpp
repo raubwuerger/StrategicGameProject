@@ -28,6 +28,13 @@ bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexIte
 	{
 		return false;
 	}
+
+	if (true == IsEnemyOnDestinationMapTile(mapHexItem->GetGameMapItemId()))
+	{
+		Q_ASSERT(true); //TODO: Implement
+		return false;
+	}
+
 	return IsStackLimitSufficient(mapHexItem->GetGameMapItemId());
 }
 
@@ -71,7 +78,7 @@ const GameUnitItem* GameUnitMovementController::GetGameUnitItem(const MapUnitIte
 	return GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 }
 
-bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId)
+bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId) const
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
 	if (nullptr == gameUnitItem)

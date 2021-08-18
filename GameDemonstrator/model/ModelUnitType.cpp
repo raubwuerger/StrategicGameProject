@@ -31,7 +31,7 @@ void ModelUnitType::SetImage(const QImage* image)
 	Image = image;
 }
 
-bool ModelUnitType::IsTerrainTypeValid(int terrainTypeId) const
+bool ModelUnitType::IsTerrainTypeAccessible(int terrainTypeId) const
 {
-	return ValidTerrainTypes.contains(terrainTypeId);
+	return AccessibleTerrainTypes.contains(terrainTypeId);
 }

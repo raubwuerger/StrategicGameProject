@@ -173,6 +173,7 @@
     <ClCompile Include="connectors\ConnectorLoadCreateGame.cpp" />
     <ClCompile Include="controller\EditorController.cpp" />
     <ClCompile Include="controller\GameMapMoveInfo.cpp" />
+    <ClCompile Include="controller\GameUnitAttackController.cpp" />
     <ClCompile Include="controller\KeyEventController.cpp" />
     <ClCompile Include="controller\GameUnitMovementController.cpp" />
     <ClCompile Include="controller\TerrainAccessTester.cpp" />
@@ -698,6 +699,7 @@
     </CustomBuild>
     <ClInclude Include="controller\EditorController.h" />
     <ClInclude Include="controller\GameMapMoveInfo.h" />
+    <ClInclude Include="controller\GameUnitAttackController.h" />
     <ClInclude Include="controller\KeyEventController.h" />
     <ClInclude Include="controller\GameUnitMovementController.h" />
     <CustomBuild Include="editors\BaseEditor.h">

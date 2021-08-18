@@ -25,7 +25,7 @@ bool TerrainAccessTester::Accessable(const ModelUnitType* modelUnitType, const i
 		return false;
 	}
 
-	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
+	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
 bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const MapHexItem* mapHexItem)
@@ -58,5 +58,5 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Map
 		return false;
 	}
 
-	return modelUnitType->IsTerrainTypeValid(modelTerrainType->GetId());
+	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }

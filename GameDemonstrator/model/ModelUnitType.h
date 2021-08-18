@@ -17,7 +17,7 @@ public:
 	/** */
 	const QString& GetPictureName() const;
 	/** */
-	bool IsTerrainTypeValid(int terrainTypeId) const;
+	bool IsTerrainTypeAccessible(int terrainTypeId) const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
@@ -29,7 +29,7 @@ private:
 	QVector<int>	DefenseValues;
 	int				Range;
 	int				MovementPoints;
-	QVector<int>	ValidTerrainTypes;
+	QVector<int>	AccessibleTerrainTypes;
 };
 
 #endif
