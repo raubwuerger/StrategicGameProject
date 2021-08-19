@@ -75,12 +75,12 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ExtractAttackValues(find.FindDomeNodeByName(config.SUBELEMENT_ATTACKVALUES), newUnitType->AttackValues);
+		allElementsExtracted &= ParseAttackValues(find.FindDomeNodeByName(config.SUBELEMENT_ATTACKVALUES), newUnitType->AttackValues);
 	}
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ExtractDefenseValues(find.FindDomeNodeByName(config.SUBELEMENT_DEFENCEVALUES), newUnitType->DefenseValues);
+		allElementsExtracted &= ParseDefenseValues(find.FindDomeNodeByName(config.SUBELEMENT_DEFENCEVALUES), newUnitType->DefenseValues);
 	}
 
 	{
@@ -95,7 +95,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ExtractTerrainTypes(find.FindDomeNodeByName(config.NODE_ACCESSIBLETERRAINTYPES), newUnitType->AccessibleTerrainTypes);
+		allElementsExtracted &= ParseTerrainTypes(find.FindDomeNodeByName(config.NODE_ACCESSIBLETERRAINTYPES), newUnitType->AccessibleTerrainTypes);
 	}
 
 	{
@@ -154,7 +154,7 @@ const QImage* ModelUnitTypeFactory::LoadImage(const QString& path)
 
 #include "ModelUnitTypeXMLItems.h"
 #include "DomElementFinder.h"
-bool ModelUnitTypeFactory::ExtractTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes)
+bool ModelUnitTypeFactory::ParseTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes)
 {
 	if (true == domNode.isNull())
 	{
@@ -190,7 +190,7 @@ bool ModelUnitTypeFactory::ExtractTerrainTypes(const QDomNode& domNode, QVector<
 }
 
 #include "DomNodeListValueExtractor.h"
-bool ModelUnitTypeFactory::ExtractAttackValues(const QDomNode& domNode, QVector<int>& attackValues)
+bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& domNode, QVector<int>& attackValues)
 {
 	if (true == domNode.isNull())
 	{
@@ -248,7 +248,7 @@ bool ModelUnitTypeFactory::ExtractAttackValues(const QDomNode& domNode, QVector<
 	return !attackValues.isEmpty();
 }
 
-bool ModelUnitTypeFactory::ExtractDefenseValues(const QDomNode& domNode, QVector<int>& defenseValues)
+bool ModelUnitTypeFactory::ParseDefenseValues(const QDomNode& domNode, QVector<int>& defenseValues)
 {
 	if (true == domNode.isNull())
 	{
