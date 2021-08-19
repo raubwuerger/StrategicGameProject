@@ -18,6 +18,10 @@ public:
 	const QString& GetPictureName() const;
 	/** */
 	bool IsTerrainTypeAccessible(int terrainTypeId) const;
+	/** */
+	bool IsUnitTypeRecognisable(int modelUnitTypeId) const;
+	/** */
+	bool IsUnitTypeAttackable(int modelUnitTypeId) const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
@@ -30,6 +34,8 @@ private:
 	int				Range;
 	int				MovementPoints;
 	QVector<int>	AccessibleTerrainTypes;
+	QVector<int>	AttackableUnitTypes;
+	QVector<int>	RecognisableUnitTypes;
 };
 
 #endif

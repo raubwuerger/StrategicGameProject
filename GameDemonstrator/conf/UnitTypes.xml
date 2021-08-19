@@ -33,9 +33,20 @@
 			<AttackableUnitType>7</AttackableUnitType>
 			<AttackableUnitType>8</AttackableUnitType>
 			<AttackableUnitType>9</AttackableUnitType>
-			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -69,9 +80,20 @@
 			<AttackableUnitType>7</AttackableUnitType>
 			<AttackableUnitType>8</AttackableUnitType>
 			<AttackableUnitType>9</AttackableUnitType>
-			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -98,15 +120,24 @@
 			<AttackableUnitType>1</AttackableUnitType>
 			<AttackableUnitType>2</AttackableUnitType>
 			<AttackableUnitType>3</AttackableUnitType>
-			<AttackableUnitType>4</AttackableUnitType>
-			<AttackableUnitType>5</AttackableUnitType>
 			<AttackableUnitType>6</AttackableUnitType>
 			<AttackableUnitType>7</AttackableUnitType>
 			<AttackableUnitType>8</AttackableUnitType>
 			<AttackableUnitType>9</AttackableUnitType>
-			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -145,6 +176,18 @@
 			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -180,9 +223,20 @@
 			<AttackableUnitType>7</AttackableUnitType>
 			<AttackableUnitType>8</AttackableUnitType>
 			<AttackableUnitType>9</AttackableUnitType>
-			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -217,6 +271,19 @@
 			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>10</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -251,6 +318,19 @@
 			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>10</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -285,6 +365,18 @@
 			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -319,6 +411,18 @@
 			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -345,11 +449,6 @@
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
 		<AttackableUnitTypes>
-			<AttackableUnitType>1</AttackableUnitType>
-			<AttackableUnitType>2</AttackableUnitType>
-			<AttackableUnitType>3</AttackableUnitType>
-			<AttackableUnitType>4</AttackableUnitType>
-			<AttackableUnitType>5</AttackableUnitType>
 			<AttackableUnitType>6</AttackableUnitType>
 			<AttackableUnitType>7</AttackableUnitType>
 			<AttackableUnitType>8</AttackableUnitType>
@@ -357,6 +456,17 @@
 			<AttackableUnitType>10</AttackableUnitType>
 			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>10</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -380,17 +490,19 @@
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
 		<AttackableUnitTypes>
-			<AttackableUnitType>1</AttackableUnitType>
-			<AttackableUnitType>2</AttackableUnitType>
-			<AttackableUnitType>3</AttackableUnitType>
-			<AttackableUnitType>4</AttackableUnitType>
-			<AttackableUnitType>5</AttackableUnitType>
-			<AttackableUnitType>6</AttackableUnitType>
-			<AttackableUnitType>7</AttackableUnitType>
-			<AttackableUnitType>8</AttackableUnitType>
-			<AttackableUnitType>9</AttackableUnitType>
 			<AttackableUnitType>10</AttackableUnitType>
-			<AttackableUnitType>11</AttackableUnitType>
 		</AttackableUnitTypes>
+		<RecognisableUnitTypes>
+			<RecognisableUnitType>1</RecognisableUnitType>
+			<RecognisableUnitType>2</RecognisableUnitType>
+			<RecognisableUnitType>3</RecognisableUnitType>
+			<RecognisableUnitType>4</RecognisableUnitType>
+			<RecognisableUnitType>5</RecognisableUnitType>
+			<RecognisableUnitType>6</RecognisableUnitType>
+			<RecognisableUnitType>7</RecognisableUnitType>
+			<RecognisableUnitType>8</RecognisableUnitType>
+			<RecognisableUnitType>9</RecognisableUnitType>
+			<RecognisableUnitType>11</RecognisableUnitType>
+		</RecognisableUnitTypes>
 	</UnitType>
 </UnitTypes>

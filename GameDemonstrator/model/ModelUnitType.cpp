@@ -35,3 +35,13 @@ bool ModelUnitType::IsTerrainTypeAccessible(int terrainTypeId) const
 {
 	return AccessibleTerrainTypes.contains(terrainTypeId);
 }
+
+bool ModelUnitType::IsUnitTypeRecognisable(int modelUnitTypeId) const
+{
+	return RecognisableUnitTypes.contains(modelUnitTypeId);
+}
+
+bool ModelUnitType::IsUnitTypeAttackable(int modelUnitTypeId) const
+{
+	return AttackableUnitTypes.contains(modelUnitTypeId);
+}

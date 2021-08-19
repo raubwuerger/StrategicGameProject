@@ -17,5 +17,10 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_RANGE = "Range";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS = "MovementPoints";
 const QString ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES = "AccessibleTerrainTypes";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINTYPEID = "TerrainTypeId";
+const QString ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES = "AttackableUnitTypes";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_ATTACKABLE_UNITTYPE = "AttackableUnitType";
+const QString ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES = "RecognisableUnitTypes";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_RECOGNISABLE_UNITTYPE = "RecognisableUnitType";
+
 
 

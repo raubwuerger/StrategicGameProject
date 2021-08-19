@@ -21,6 +21,10 @@ public:
 	const static QString SUBELEMENT_MOVEMENTPOINTS;
 	const static QString NODE_ACCESSIBLETERRAINTYPES;
 	const static QString SUBELEMENT_TERRAINTYPEID;
+	const static QString NODE_ATTACKABLE_UNITTYPES;
+	const static QString SUBELEMENT_ATTACKABLE_UNITTYPE;
+	const static QString NODE_RECOGNISABLE_UNITTYPES;
+	const static QString SUBELEMENT_RECOGNISABLE_UNITTYPE;
 };
 
 

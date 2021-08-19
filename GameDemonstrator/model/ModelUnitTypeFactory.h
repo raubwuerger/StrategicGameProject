@@ -26,6 +26,10 @@ private:
 	bool ExtractAttackValues(const QDomNode& domNode, QVector<int>& attackValues);
 	/** */
 	bool ExtractDefenseValues(const QDomNode& domNode, QVector<int>& defenseValues);
+	/** */
+	bool ParseAttackableUnitTypes(const QDomNode& domNode, QVector<int>& attackableUnitTypes);
+	/** */
+	bool ParseRecognisableUnitTypes(const QDomNode& domNode, QVector<int>& recognisableUnitTypes);
 };
 
 #endif

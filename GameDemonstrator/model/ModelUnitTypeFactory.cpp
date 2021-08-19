@@ -76,15 +76,11 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	{
 		DomNodeFinder find(node);
 		allElementsExtracted &= ExtractAttackValues(find.FindDomeNodeByName(config.SUBELEMENT_ATTACKVALUES), newUnitType->AttackValues);
-// 		DomValueExtractor extractor(node);
-// 		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_ATTACKVALUES, newUnitType->Attack);
 	}
 
 	{
 		DomNodeFinder find(node);
 		allElementsExtracted &= ExtractDefenseValues(find.FindDomeNodeByName(config.SUBELEMENT_DEFENCEVALUES), newUnitType->DefenseValues);
-		//		DomValueExtractor extractor(node);
-		//		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENCEVALUES, newUnitType->Defense);
 	}
 
 	{
@@ -100,6 +96,16 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	{
 		DomNodeFinder find(node);
 		allElementsExtracted &= ExtractTerrainTypes(find.FindDomeNodeByName(config.NODE_ACCESSIBLETERRAINTYPES), newUnitType->AccessibleTerrainTypes);
+	}
+
+	{
+		DomNodeFinder find(node);
+		allElementsExtracted &= ParseAttackableUnitTypes(find.FindDomeNodeByName(config.NODE_ATTACKABLE_UNITTYPES), newUnitType->AttackableUnitTypes);
+	}
+
+	{
+		DomNodeFinder find(node);
+		allElementsExtracted &= ParseRecognisableUnitTypes(find.FindDomeNodeByName(config.NODE_RECOGNISABLE_UNITTYPES), newUnitType->RecognisableUnitTypes);
 	}
 
 	if (false == allElementsExtracted)
@@ -298,5 +304,73 @@ bool ModelUnitTypeFactory::ExtractDefenseValues(const QDomNode& domNode, QVector
 		}
 	}
 	return !defenseValues.isEmpty();
+}
+
+bool ModelUnitTypeFactory::ParseAttackableUnitTypes(const QDomNode& domNode, QVector<int>& attackableUnitTypes)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() != ModelUnitTypeXMLItems::SUBELEMENT_ATTACKABLE_UNITTYPE)
+		{
+			continue;
+		}
+
+		if (false == node.isElement())
+		{
+			continue;
+		}
+
+		QDomElement element = node.toElement();
+		attackableUnitTypes.push_back(element.text().toInt());
+	}
+	return !attackableUnitTypes.isEmpty();
+}
+
+bool ModelUnitTypeFactory::ParseRecognisableUnitTypes(const QDomNode& domNode, QVector<int>& recognisableUnitTypes)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() != ModelUnitTypeXMLItems::SUBELEMENT_RECOGNISABLE_UNITTYPE)
+		{
+			continue;
+		}
+
+		if (false == node.isElement())
+		{
+			continue;
+		}
+
+		QDomElement element = node.toElement();
+		recognisableUnitTypes.push_back(element.text().toInt());
+	}
+	return !recognisableUnitTypes.isEmpty();
 }
 
