@@ -6,7 +6,10 @@ class GameUnitItem;
 class GameUnitAttackController
 {
 public:
-	static void Attack(const GameUnitItem* attacker, const GameUnitItem* defender);
+	/** */
+	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender);
+private:
+	/** */
 };
 
 #endif // GAMEUNITATTACKCONTROLLER_H

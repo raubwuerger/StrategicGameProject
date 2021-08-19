@@ -25,6 +25,7 @@
 #include "model/ModelOwnerTypeFactory.h"
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
+#include "map/MapUnitItemRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -74,6 +75,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	widgetMain->setLayout(layoutMain);
 	setCentralWidget(widgetMain);
 	setWindowState(windowState() | Qt::WindowMaximized);
+
+	MapUnitItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
 
 	ConnectorLoadCreateGameInstance->SetMapView(MapViewInstance);
 

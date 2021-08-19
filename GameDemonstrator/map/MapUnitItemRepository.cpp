@@ -2,8 +2,10 @@
 #include "MapUnitItemRepository.h"
 #include "MapUnitItem.h"
 #include "LogInterface.h"
+#include "MapView.h"
 
-MapUnitItemRepository* MapUnitItemRepository::Instance = nullptr;
+MapUnitItemRepository*	MapUnitItemRepository::Instance = nullptr;
+MapView*				MapUnitItemRepository::MapViewInstance = nullptr;
 
 MapUnitItemRepository* MapUnitItemRepository::GetInstance()
 {
@@ -48,7 +50,12 @@ MapUnitItem* MapUnitItemRepository::Remove(int gameUnitItemId)
 		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 is not exists!").arg(QString::number(gameUnitItemId)));
 		return nullptr;
 	}
-	return MapUnitItems.take(gameUnitItemId);
+
+	MapUnitItem* deleted = MapUnitItems.take(gameUnitItemId);
+
+	Q_ASSERT(MapViewInstance);
+	MapViewInstance->RemoveMapUnit(deleted);
+	return deleted;
 }
 
 MapUnitItemRepository::MapUnitItemRepository()

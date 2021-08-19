@@ -17,32 +17,32 @@ void KeyEventController::HandleKeyPressEvent(MapUnitItem* mapUnitItem, QKeyEvent
 {
 	if (Qt::Key_1 == keyEvent->key())
 	{
-		IsMovementDirectionValid(1, mapUnitItem);
+		MoveToDirection(1, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_2 == keyEvent->key())
 	{
-		IsMovementDirectionValid(2, mapUnitItem);
+		MoveToDirection(2, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_3 == keyEvent->key())
 	{
-		IsMovementDirectionValid(3, mapUnitItem);
+		MoveToDirection(3, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_7 == keyEvent->key())
 	{
-		IsMovementDirectionValid(7, mapUnitItem);
+		MoveToDirection(7, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_8 == keyEvent->key())
 	{
-		IsMovementDirectionValid(8, mapUnitItem);
+		MoveToDirection(8, mapUnitItem);
 		return;
 	}
 	if (Qt::Key_9 == keyEvent->key())
 	{
-		IsMovementDirectionValid(9, mapUnitItem);
+		MoveToDirection(9, mapUnitItem);
 		return;
 	}
 }
@@ -50,7 +50,7 @@ void KeyEventController::HandleKeyPressEvent(MapUnitItem* mapUnitItem, QKeyEvent
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItemFactory.h"
 #include "game/GameUnitItem.h"
-bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnitItem* mapUnitItem) const
+bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* mapUnitItem) const
 {
 	GameMapMoveInfo gameMapMoveInfo(mapUnitItem);
 	const MapHexItem* destMapHexItem = gameMapMoveInfo.GetDestinationInfo(movementDirection);
@@ -70,7 +70,6 @@ bool KeyEventController::IsMovementDirectionValid(int movementDirection, MapUnit
 	{
 		return false;
 	}
-
 	
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.GameUnitItemObject = sourceUnitItem;

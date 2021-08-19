@@ -12,6 +12,8 @@
 #include "game/GameUnitItemRepository.h"
 #include "controller/TerrainAccessTester.h"
 #include "LogInterface.h"
+#include "controller/GameUnitAttackController.h"
+#include "map/MapUnitItemRepository.h"
 
 GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activeGameUnitItem)
 	: ActiveGameUnitItem(activeGameUnitItem),
@@ -21,21 +23,28 @@ GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activ
 	CurrentMapTileOwner = GetCurrentMapTileOwner();
 }
 
-bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexItem* mapHexItem) const
+bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexItem* destination) const
 {
+	Q_ASSERT(destination);
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitItemId);
-	if (false == TerrainAccessTester::Accessable(gameUnitItem, mapHexItem))
+	Q_ASSERT(gameUnitItem);
+
+	if (true == IsEnemyOnDestinationMapTile(destination->GetGameMapItemId()))
+	{
+		if (true == GameUnitAttackController::IsAttackSuccessful(gameUnitItem, GetEnemyGameUnit(destination->GetGameMapItemId())))
+		{
+			GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->RemoveGameUnitItemByGameMapItemId(destination->GetGameMapItemId());
+			Q_ASSERT(gameUnitItem);
+			MapUnitItemRepository::GetInstance()->Remove(gameUnitItem->GetId());
+		}
+		return TerrainAccessTester::Accessable(gameUnitItem, destination);
+	}
+
+	if (false == TerrainAccessTester::Accessable(gameUnitItem, destination))
 	{
 		return false;
 	}
-
-	if (true == IsEnemyOnDestinationMapTile(mapHexItem->GetGameMapItemId()))
-	{
-		Q_ASSERT(true); //TODO: Implement
-		return false;
-	}
-
-	return IsStackLimitSufficient(mapHexItem->GetGameMapItemId());
+	return IsStackLimitSufficient(destination->GetGameMapItemId());
 }
 
 const ModelTerrainType* GameUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
@@ -86,6 +95,11 @@ bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId) 
 		return false;
 	}
 	return gameUnitItem->GetModelOwnerType() != CurrentMapTileOwner;
+}
+
+const GameUnitItem* GameUnitMovementController::GetEnemyGameUnit(int gameMapItemId) const
+{
+	return GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
 }
 
 bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const

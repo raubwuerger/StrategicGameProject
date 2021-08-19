@@ -3,33 +3,39 @@
 #include "game/GameUnitItem.h"
 #include "model/ModelUnitType.h"
 
-void GameUnitAttackController::Attack(const GameUnitItem* attacker, const GameUnitItem* defender)
+bool GameUnitAttackController::IsAttackSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender)
 {
 	if (nullptr == attacker)
 	{
 		Q_ASSERT(true);
-		return;
+		return false;
 	}
 
 	if (nullptr == defender)
 	{
 		Q_ASSERT(true);
-		return;
+		return false;
 	}
 
 	const ModelUnitType* modelAttacker = attacker->GetModelUnitType();
 	if (nullptr == modelAttacker)
 	{
 		Q_ASSERT(true);
-		return;
+		return false;
 	}
 
 	const ModelUnitType* modelDefender = defender->GetModelUnitType();
 	if (nullptr == modelDefender)
 	{
 		Q_ASSERT(true);
-		return;
+		return false;
 	}
 
+	if (false == modelAttacker->IsUnitTypeAttackable(modelDefender->GetId()))
+	{
+		return false;
+	}
 
+	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
+	return true;
 }

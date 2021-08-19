@@ -15,7 +15,7 @@ public:
 	void HandleKeyReleaseEvent(MapUnitItem* mapUnitItem, QKeyEvent* keyEvent);
 private:
 	/** */
-	bool IsMovementDirectionValid(int movementDirection, MapUnitItem* mapUnitItem) const;
+	bool MoveToDirection(int movementDirection, MapUnitItem* mapUnitItem) const;
 };
 
 #endif // KEYEVENTCONTROLLER_H

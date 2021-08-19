@@ -124,6 +124,7 @@ GameUnitItem* GameUnitItemRepository::RemoveGameUnitItemByGameMapItemId(int game
 		return nullptr;
 	}
 
+	jha::GetLog()->Log_MESSAGE(QObject::tr("Removed GameUnit (%1) from map!").arg(toDelete->GetName()));
 	return toDelete;
 }
 
