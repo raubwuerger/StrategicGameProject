@@ -272,8 +272,7 @@ QWidget * EditorToolbox::CreateCityTypeWidget(const ModelCityType* modelCityType
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-//	layout->addWidget(new QLabel(modelCityType->GetName()), 1, 0, Qt::AlignCenter);
-	layout->addWidget(new QLabel("ModelCityType"), 1, 0, Qt::AlignCenter);
+	layout->addWidget(new QLabel(modelCityType->GetName()), 1, 0, Qt::AlignCenter);
 
 	QWidget *widget = new QWidget;
 	widget->setLayout(layout);

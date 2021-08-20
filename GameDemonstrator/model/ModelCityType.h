@@ -16,6 +16,8 @@ public:
 	const QImage* GetImage() const { return Image; }
 	/** */
 	const QString& GetPictureName() const { return PictureName; }
+	/** */
+	const QString& GetName() const { return Name; }
 private:
 	friend class ModelCityTypeFactory;
 	int				Id;
