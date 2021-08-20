@@ -536,12 +536,6 @@
     <ClCompile Include="controller\GameUnitAttackController.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="model\ModelCityType.h">
-      <Filter>Header Dateien\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\ModelCityType.cpp">
-      <Filter>Source Dateien\Model</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelCityTypeXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -549,6 +543,21 @@
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="model\ModelCityTypeRepository.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\CityTypeEditor.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="editors\CityTypeIdSelector.cpp">
+      <Filter>Source Dateien\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CityTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CityTypeIdSelector.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelCityType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -769,6 +778,12 @@
     <ClInclude Include="model\ModelCityTypeRepository.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
+    <ClInclude Include="editors\CityTypeEditor.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelCityType.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -874,6 +889,9 @@
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
     <CustomBuild Include="editors\OwnerTypeIdSelector.h">
+      <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editors\CityTypeIdSelector.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
   </ItemGroup>

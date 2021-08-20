@@ -12,6 +12,7 @@
 #include "connectors/ConnectorMapUnitItem.h"
 #include "controller/EditorController.h"
 #include "map/MapView.h"
+#include "CityTypeEditor.h"
 
 EditorToolbox::EditorToolbox(QWidget *parent)
 	: QToolBox(parent),
@@ -37,6 +38,7 @@ void EditorToolbox::Create()
 	CreateGroupTerrainTypes();
 	CreateGroupUnitTypes();
 	CreateGroupOwnerType();
+	CreateGroupCityType();
 	CreateGroupBuildingTypes();
 
 	connect(this, &QToolBox::currentChanged, this, &EditorToolbox::SlotEditorTypeChanged);
@@ -216,7 +218,6 @@ QWidget * EditorToolbox::CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerT
 	widget->setLayout(layout);
 
 	return widget;
-
 }
 
 #include "OwnerTypeEditor.h"
@@ -224,9 +225,68 @@ BaseEditor* EditorToolbox::CreateOwnerTypeEditor()
 {
 	OwnerTypeEditorInstance = new OwnerTypeEditor(nullptr);
 	OwnerTypeEditorInstance->SetEditorController(EditorControllerInstance);
-//	UnitTypeEditorInstance->SetMapView(MapViewInstance);
 	EditorControllerInstance->OwnerTypeEditorInstance = OwnerTypeEditorInstance;
 	return OwnerTypeEditorInstance;
+}
+
+#include "Model/ModelCityTypeRepository.h"
+#include "Model/ModelCityType.h"
+#include "CityTypeIdSelector.h"
+void EditorToolbox::CreateGroupCityType()
+{
+	BaseEditor* editor = CreateCityTypeEditor();
+	GroupCityTypes = new QButtonGroup(this);
+
+	QGridLayout *layout = new QGridLayout;
+	QMap<int, const ModelCityType*>::const_iterator currentIterator = ModelCityTypeRepository::GetInstance()->GetFirstIterator();
+
+	int rowIndex = 0;
+	while (currentIterator != ModelCityTypeRepository::GetInstance()->GetLastIterator())
+	{
+		layout->addWidget(CreateCityTypeWidget(currentIterator.value(), GroupCityTypes, new CityTypeIdSelector(currentIterator.value()->GetId())), rowIndex++, 0);
+		currentIterator++;
+	}
+
+	layout->setRowStretch(10, 10); //Damit werden die vorhandenen Elemente kleiner dargestellt
+
+	QWidget *widget = new QWidget();
+	widget->setLayout(layout);
+
+	int id = addItem(widget, tr("City types"));
+	EditorMap.insert(id, editor);
+
+}
+
+QWidget * EditorToolbox::CreateCityTypeWidget(const ModelCityType* modelCityType, QButtonGroup* buttonGroup, CityTypeIdSelector *selector)
+{
+	QIcon icon(modelCityType->GetPictureName());
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+	buttonGroup->addButton(button);
+
+	connect(button, &QToolButton::pressed, selector, &CityTypeIdSelector::SlotTrigger);
+	connect(selector, &CityTypeIdSelector::SignalCityTypeActive, CityTypeEditorInstance, &CityTypeEditor::SlotActiveCityTypeId);
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+//	layout->addWidget(new QLabel(modelCityType->GetName()), 1, 0, Qt::AlignCenter);
+	layout->addWidget(new QLabel("ModelCityType"), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+
+BaseEditor* EditorToolbox::CreateCityTypeEditor()
+{
+	CityTypeEditorInstance = new CityTypeEditor(nullptr);
+	CityTypeEditorInstance->SetEditorController(EditorControllerInstance);
+	EditorControllerInstance->OwnerTypeEditorInstance = OwnerTypeEditorInstance;
+	return CityTypeEditorInstance;
 }
 
 void EditorToolbox::CreateGroupBuildingTypes()

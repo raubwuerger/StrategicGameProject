@@ -7,6 +7,7 @@ class MapView;
 class TerrainTypeEditorWidget;
 class UnitTypeEditorWidget;
 class OwnerTypeEditor;
+class CityTypeEditor;
 
 class EditorController
 {
@@ -19,6 +20,8 @@ public:
 	void Activate(UnitTypeEditor* unitTypeEditor);
 	/** */
 	void Activate(OwnerTypeEditor* ownerTypeEditor);
+	/** */
+	void Activate(CityTypeEditor* cityTypeEditor);
 private:
 	/** */
 	void DisconnectAll();
@@ -28,6 +31,7 @@ private:
 	TerrainTypeEditor*	TerrainTypeEditorInstance;
 	UnitTypeEditor*		UnitTypeEditorInstance;
 	OwnerTypeEditor*	OwnerTypeEditorInstance;
+	CityTypeEditor*		CityTypeEditorInstance;
 };
 
 #endif // EDITORCONTROLLER_H

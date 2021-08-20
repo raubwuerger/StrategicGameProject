@@ -57,6 +57,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	LoadTerrainTypes();
 	LoadOwnerTypes();
 	LoadUnitTypes();
+	LoadCityTypes();
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
@@ -255,6 +256,13 @@ bool GameDemonstrator::LoadOwnerTypes()
 bool GameDemonstrator::LoadUnitTypes()
 {
 	ModelUnitTypeFactory factory;
+	return factory.Create();
+}
+
+#include "model/ModelCityTypeFactory.h"
+bool GameDemonstrator::LoadCityTypes()
+{
+	ModelCityTypeFactory factory;
 	return factory.Create();
 }
 

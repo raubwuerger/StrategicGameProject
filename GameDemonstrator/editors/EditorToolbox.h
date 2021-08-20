@@ -20,6 +20,9 @@ class BaseEditor;
 class ModelOwnerType;
 class OwnerTypeIdSelector;
 class OwnerTypeEditor;
+class ModelCityType;
+class CityTypeIdSelector;
+class CityTypeEditor;
 
 class EditorToolbox : public QToolBox
 {
@@ -50,9 +53,15 @@ private:
 	/** */
 	void CreateGroupOwnerType();
 	/** */
-	QWidget *CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerType, QButtonGroup* buttonGroup, OwnerTypeIdSelector *selector);
+	QWidget *CreateOwnerTypeWidget(const ModelOwnerType* modelCityType, QButtonGroup* buttonGroup, OwnerTypeIdSelector *selector);
 	/** */
 	BaseEditor* CreateOwnerTypeEditor();
+	/** */
+	void CreateGroupCityType();
+	/** */
+	QWidget *CreateCityTypeWidget(const ModelCityType* modelCityType, QButtonGroup* buttonGroup, CityTypeIdSelector *selector);
+	/** */
+	BaseEditor* CreateCityTypeEditor();
 	/** */
 	void CreateGroupBuildingTypes();
 private:
@@ -62,9 +71,11 @@ private:
 	QButtonGroup*					GroupBuildings;
 	QButtonGroup*					GroupUnitsTypes;
 	QButtonGroup*					GroupOwnerTypes;
+	QButtonGroup*					GroupCityTypes;
 	TerrainTypeEditor*				TerrainTypeEditorInstance;
 	UnitTypeEditor*					UnitTypeEditorInstance;
 	OwnerTypeEditor*				OwnerTypeEditorInstance;
+	CityTypeEditor*					CityTypeEditorInstance;
 	ConnectorUnitTypeGameMap*		ConnectorUnitTypeEditorGameMapInstance;
 	ConnectorMapUnitItem*			ConnectorMapUnitItemInstance;
 	MapView*						MapViewInstance;

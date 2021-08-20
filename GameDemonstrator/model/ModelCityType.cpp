@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <stdafx.h>
 #include "ModelCityType.h"
 
 ModelCityType::ModelCityType(int id)

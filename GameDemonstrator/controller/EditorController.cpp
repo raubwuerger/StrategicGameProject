@@ -5,6 +5,7 @@
 #include "connectors\ConnectorMapUnitItem.h"
 #include "editors\TerrainTypeEditor.h"
 #include "editors/UnitTypeEditor.h"
+#include "editors/CityTypeEditor.h"
 
 EditorController::EditorController(MapView *mapView)
 	:MapViewInstance(mapView)
@@ -27,6 +28,12 @@ void EditorController::Activate(UnitTypeEditor* unitTypeEditor)
 }
 
 void EditorController::Activate(OwnerTypeEditor* ownerTypeEditor)
+{
+	int whatToDo = 1;
+	//TODO: What to do?
+}
+
+void EditorController::Activate(CityTypeEditor* cityTypeEditor)
 {
 	int whatToDo = 1;
 	//TODO: What to do?

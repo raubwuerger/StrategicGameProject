@@ -44,6 +44,7 @@ private:
 	bool LoadTerrainTypes();
 	bool LoadOwnerTypes();
 	bool LoadUnitTypes();
+	bool LoadCityTypes();
 	bool ReadTerrainTypes(QIODevice *device);
 	void CreateEditorToolbox();
 private:
