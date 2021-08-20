@@ -536,6 +536,21 @@
     <ClCompile Include="controller\GameUnitAttackController.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelCityType.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelCityType.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelCityTypeXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelCityTypeFactory.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelCityTypeRepository.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -744,6 +759,15 @@
     </ClInclude>
     <ClInclude Include="controller\GameUnitAttackController.h">
       <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelCityTypeXMLItems.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelCityTypeFactory.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelCityTypeRepository.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CityTypes>
+	<CityType>
+		<Id>1</Id>
+		<Name>Aalborg</Name>
+		<PictureName>.\Resources\Cities\City_01.png</PictureName>
+		<Efficiency>100</Efficiency>
+		<SpezializedUnitType>1<SpezializedUnitType>
+	</CityType>
+</CityTypes>

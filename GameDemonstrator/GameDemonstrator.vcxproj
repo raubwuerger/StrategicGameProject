@@ -450,6 +450,10 @@
     <ClCompile Include="map\MapUnitItemRepository.cpp" />
     <ClCompile Include="map\MapView.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
+    <ClCompile Include="model\ModelCityType.cpp" />
+    <ClCompile Include="model\ModelCityTypeFactory.cpp" />
+    <ClCompile Include="model\ModelCityTypeRepository.cpp" />
+    <ClCompile Include="model\ModelCityTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelConfigurationHeaderXMLItems.cpp" />
     <ClCompile Include="model\ModelProgramSettings.cpp" />
     <ClCompile Include="model\ModelProgramSettingsXMLItems.cpp" />
@@ -467,6 +471,7 @@
     <ClCompile Include="model\ModelUnitTypeFactory.cpp" />
     <ClCompile Include="model\ModelUnitTypeRepository.cpp" />
     <ClCompile Include="model\ModelUnitTypeXMLItems.cpp" />
+    <ClCompile Include="model\ModelCityType.h" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -901,6 +906,9 @@
     </CustomBuild>
     <ClInclude Include="map\MapUnitItemFactory.h" />
     <ClInclude Include="map\MapUnitItemRepository.h" />
+    <ClInclude Include="model\ModelCityTypeFactory.h" />
+    <ClInclude Include="model\ModelCityTypeRepository.h" />
+    <ClInclude Include="model\ModelCityTypeXMLItems.h" />
     <ClInclude Include="model\ModelConfigurationHeaderXMLItems.h" />
     <ClInclude Include="model\ModelProgramSettings.h" />
     <ClInclude Include="model\ModelProgramSettingsXMLItems.h" />
