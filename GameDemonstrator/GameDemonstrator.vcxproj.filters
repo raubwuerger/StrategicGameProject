@@ -569,6 +569,24 @@
     <ClCompile Include="game\GameCityItemFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="map\MapCityItem.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="connectors\ConnectorMapCityItem.cpp">
+      <Filter>Source Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorMapCityItem.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorMapCityItem.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="map\MapCityItemRepository.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\MapCityItemFactory.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -802,6 +820,15 @@
     <ClInclude Include="game\GameCityItemFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
+    <ClInclude Include="map\MapCityItem.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapCityItemRepository.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapCityItemFactory.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -911,6 +938,9 @@
     </CustomBuild>
     <CustomBuild Include="editors\CityTypeIdSelector.h">
       <Filter>Header Dateien\Editor</Filter>
+    </CustomBuild>
+    <CustomBuild Include="connectors\ConnectorMapCityItem.h">
+      <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
