@@ -12,6 +12,40 @@
             <Human>1</Human>
         </Player>
     </Players>
+	<Cities>
+		<City>
+            <ID>1</ID>
+            <Name>Aalborg</Name>
+            <GameMapItemID>187</GameMapItemID>
+            <OwnerTypeId>1</OwnerTypeId>
+			<Efficiency>100</Efficiency>
+			<SpezializedUnitTypeId>1</SpezializedUnitTypeId>
+		</City>
+		<City>
+            <ID>2</ID>
+            <Name>Bern</Name>
+            <GameMapItemID>109</GameMapItemID>
+            <OwnerTypeId>2</OwnerTypeId>
+			<Efficiency>100</Efficiency>
+			<SpezializedUnitTypeId>1</SpezializedUnitTypeId>
+		</City>
+		<City>
+            <ID>3</ID>
+            <Name>Chesterfield</Name>
+            <GameMapItemID>601</GameMapItemID>
+            <OwnerTypeId>3</OwnerTypeId>
+			<Efficiency>100</Efficiency>
+			<SpezializedUnitTypeId>1</SpezializedUnitTypeId>
+		</City>
+		<City>
+            <ID>4</ID>
+            <Name>Doisel</Name>
+            <GameMapItemID>611</GameMapItemID>
+            <OwnerTypeId>4</OwnerTypeId>
+			<Efficiency>100</Efficiency>
+			<SpezializedUnitTypeId>1</SpezializedUnitTypeId>
+		</City>
+	</Cities>
     <Map>
         <Settings>
             <Rows>18</Rows>
