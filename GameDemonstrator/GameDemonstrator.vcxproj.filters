@@ -560,6 +560,15 @@
     <ClCompile Include="model\ModelCityType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameCityItem.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCityItemRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCityItemFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -783,6 +792,15 @@
     </ClInclude>
     <ClInclude Include="model\ModelCityType.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityItem.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityItemRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityItemFactory.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

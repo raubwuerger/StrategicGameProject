@@ -258,6 +258,10 @@ bool SerializeXML::LoadGame(const QDomNodeList& saveGameNodeList)
 	{
 		return false;
 	}
+	if (false == LoadCityData(domNodeListFinder.FindDomNodeByName(SerializeXMLItems::CITIES)))
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -303,4 +307,16 @@ bool SerializeXML::LoadUnitData(const QDomNode& domNode)
 	}
 	GameUnitItemFactory gameUnitItemFactory;
 	return gameUnitItemFactory.CreateGameUnitItemsFromSaveGame(domNode);
+}
+
+#include "game/GameCityItemFactory.h"
+//==============================================================================
+bool SerializeXML::LoadCityData(const QDomNode& domNode)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+	GameCityItemFactory factory;
+	return factory.Create(domNode);
 }

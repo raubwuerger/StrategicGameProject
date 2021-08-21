@@ -5,6 +5,6 @@
 		<Name>Aalborg</Name>
 		<PictureName>.\Resources\Cities\City_01.png</PictureName>
 		<Efficiency>100</Efficiency>
-		<SpezializedUnitType>1</SpezializedUnitType>
+		<SpezializedUnitTypeId>1</SpezializedUnitTypeId>
 	</CityType>
 </CityTypes>

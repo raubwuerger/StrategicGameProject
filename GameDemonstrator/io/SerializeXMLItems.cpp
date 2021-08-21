@@ -28,3 +28,12 @@ const QString SerializeXMLItems::UNITS_UNITTYPEID = "UnitTypeID";
 const QString SerializeXMLItems::UNITS_GAMEMAPITEMID = "GameMapItemID";
 const QString SerializeXMLItems::UNITS_OWNERTYPEID = "OwnerTypeId";
 const QString SerializeXMLItems::UNITS_NAME = "Name";
+
+const QString SerializeXMLItems::CITIES = "Cities";
+const QString SerializeXMLItems::CITIES_CITY = "City";
+const QString SerializeXMLItems::CITIES_ID = "ID";
+const QString SerializeXMLItems::CITIES_NAME = "Name";
+const QString SerializeXMLItems::CITIES_GAMEMAPITEMID = "GameMapItemID";
+const QString SerializeXMLItems::CITIES_OWNERTYPEID = "OwnerTypeId";
+const QString SerializeXMLItems::CITIES_EFFICIENCY = "Efficiency";
+const QString SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID = "SpezializedUnitTypeId";

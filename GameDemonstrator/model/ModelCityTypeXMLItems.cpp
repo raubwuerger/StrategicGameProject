@@ -9,4 +9,4 @@ const QString ModelCityTypeXMLItems::SUBELEMENT_ID = "Id";
 const QString ModelCityTypeXMLItems::SUBELEMENT_NAME = "Name";
 const QString ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME = "PictureName";
 const QString ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY = "Efficiency";
-const QString ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED = "SpezializedUnitType";
+const QString ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED = "SpezializedUnitTypeId";

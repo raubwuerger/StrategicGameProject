@@ -52,6 +52,8 @@ private:
 	bool LoadMapData( const QDomNode& domNode );
 	/** */
 	bool LoadUnitData(const QDomNode& domNode);
+	/** */
+	bool LoadCityData(const QDomNode& domNode);
 };
 
 #endif // SERIALIZEXML_H
