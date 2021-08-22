@@ -15,6 +15,7 @@
 	<Cities>
 		<City>
             <ID>1</ID>
+			<CityItemId>1</CityItemId>
             <Name>Aalborg</Name>
             <GameMapItemID>187</GameMapItemID>
             <OwnerTypeId>1</OwnerTypeId>
@@ -23,6 +24,7 @@
 		</City>
 		<City>
             <ID>2</ID>
+			<CityItemId>1</CityItemId>
             <Name>Bern</Name>
             <GameMapItemID>109</GameMapItemID>
             <OwnerTypeId>2</OwnerTypeId>
@@ -31,6 +33,7 @@
 		</City>
 		<City>
             <ID>3</ID>
+			<CityItemId>1</CityItemId>
             <Name>Chesterfield</Name>
             <GameMapItemID>601</GameMapItemID>
             <OwnerTypeId>3</OwnerTypeId>
@@ -39,6 +42,7 @@
 		</City>
 		<City>
             <ID>4</ID>
+			<CityItemId>1</CityItemId>
             <Name>Doisel</Name>
             <GameMapItemID>611</GameMapItemID>
             <OwnerTypeId>4</OwnerTypeId>

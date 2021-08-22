@@ -3,6 +3,7 @@
 
 class GameMapItem;
 class ModelOwnerType;
+class ModelCityType;
 
 /** Game unit tile */
 class GameCityItem
@@ -28,11 +29,17 @@ public:
 	const GameMapItem* GetGameMapItem() const;
 	/** */
 	int GetGameMapItemId() const;
+	/** */
+	const ModelCityType* GetCityType() const;
+	/** */
+	int GetCityTypeId() const;
 private:
 	friend class GameCityItemFactory;
 	const int				Id;
+	int						CityTypeId;
 	int						OwnerTypeId;
 	int						MapItemId;
+	const ModelCityType*	CityType;
 	const ModelOwnerType*	OwnerType;
 	const GameMapItem*		MapItem;
 	QString					Name;

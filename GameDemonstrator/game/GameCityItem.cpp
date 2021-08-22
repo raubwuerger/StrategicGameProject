@@ -51,6 +51,16 @@ int GameCityItem::GetGameMapItemId() const
 	return MapItemId;
 }
 
+const ModelCityType* GameCityItem::GetCityType() const
+{
+	return CityType;
+}
+
+int GameCityItem::GetCityTypeId() const
+{
+	return CityTypeId;
+}
+
 bool GameCityItem::operator<(const GameCityItem& rhs) const
 {
 	return Id < rhs.Id;

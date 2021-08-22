@@ -10,6 +10,7 @@
 #include "game\GameConfig.h"
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
+#include "map\MapCityItemFactory.h"
 
 ConnectorLoadCreateGame::ConnectorLoadCreateGame()
 {
@@ -53,6 +54,9 @@ void ConnectorLoadCreateGame::SlotLoadSaveGame()
 
 	MapUnitItemFactory mapUnitItemFactory;
 	mapUnitItemFactory.Create(MapViewInstance);
+
+	MapCityItemFactory mapCityItemFactory;
+	mapCityItemFactory.Create(MapViewInstance);
 }
 
 void ConnectorLoadCreateGame::SetMapView( MapView* mapView )

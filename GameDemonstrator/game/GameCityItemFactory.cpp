@@ -58,6 +58,7 @@ bool GameCityItemFactory::CreateItems(const QDomNode& city)
 	return true;
 }
 
+#include "model/ModelCityTypeRepository.h"
 GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 {
 	QDomNodeList mapNodes = node.childNodes();
@@ -75,6 +76,22 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem: %1 not found!").arg(SerializeXMLItems::CITIES_ID));
 			return nullptr;
 		}
+	}
+
+	int cityTypeId = -1;
+	{
+		DomValueExtractor domNodeListValueExtractor(node);
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_CITYTYPEID, cityTypeId))
+		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem: %1 not found!").arg(SerializeXMLItems::CITIES_ID));
+			return nullptr;
+		}
+	}
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityTypeId);
+	if (nullptr == modelCityType)
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: ModelCityType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(cityTypeId)));
+		return nullptr;
 	}
 
 	int mapItemId = -1;
@@ -141,11 +158,14 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 
 	GameCityItem *newItem = new GameCityItem(id);
 
+	newItem->CityType = modelCityType;
+	newItem->CityTypeId = cityTypeId;
+	
 	newItem->OwnerType = ownerType;
-	newItem->OwnerTypeId = ownerType->GetId();
+	newItem->OwnerTypeId = ownerTypeId;
 
 	newItem->MapItem = mapItem;
-	newItem->MapItemId = mapItem->GetId();
+	newItem->MapItemId = mapItemId;
 
 	newItem->Name = name;
 

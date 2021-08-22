@@ -19,43 +19,41 @@ MapCityItemRepository* MapCityItemRepository::GetInstance()
 void MapCityItemRepository::Init()
 {
 	MapCityItems.clear();
-	MapCityItemsById.clear();
 }
 
-QVector< QVector<MapCityItem*>>::const_iterator MapCityItemRepository::GetFirstIterator() const
+QMap<int, MapCityItem*>::const_iterator MapCityItemRepository::GetFirstIterator() const
 {
 	return MapCityItems.cbegin();
 }
 
-QVector< QVector<MapCityItem*>>::const_iterator MapCityItemRepository::GetLastIterator() const
+QMap<int, MapCityItem*>::const_iterator MapCityItemRepository::GetLastIterator() const
 {
 	return MapCityItems.cend();
 }
 
-void MapCityItemRepository::SetMapCityItems(QVector< QVector<MapCityItem*> > MapCityItems)
+void MapCityItemRepository::SetMapCityItems(QMap<int, MapCityItem*> mapCityItems)
 {
-	MapCityItems = MapCityItems;
-	CreateMapCityItemsById();
+	MapCityItems = mapCityItems;
 }
 
 const MapCityItem* MapCityItemRepository::GetMapCityItemById(int MapCityItemId) const
 {
-	if (false == MapCityItemsById.contains(MapCityItemId))
+	if (false == MapCityItems.contains(MapCityItemId))
 	{
 		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(MapCityItemId));
 		return nullptr;
 	}
-	return MapCityItemsById[MapCityItemId];
+	return MapCityItems[MapCityItemId];
 }
 
 MapCityItem* MapCityItemRepository::GetMapCityItemByIdNonConst(int MapCityItemId) const
 {
-	if (false == MapCityItemsById.contains(MapCityItemId))
+	if (false == MapCityItems.contains(MapCityItemId))
 	{
 		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(MapCityItemId));
 		return nullptr;
 	}
-	return MapCityItemsById[MapCityItemId];
+	return MapCityItems[MapCityItemId];
 }
 
 MapCityItemRepository::MapCityItemRepository()
@@ -66,18 +64,4 @@ MapCityItemRepository::MapCityItemRepository()
 MapCityItemRepository::~MapCityItemRepository()
 {
 
-}
-
-void MapCityItemRepository::CreateMapCityItemsById()
-{
-	int rows = MapCityItems.size();
-	for (int rowIndex = 0; rowIndex < rows; rowIndex++)
-	{
-		QVector<MapCityItem*> currentRow = MapCityItems.at(rowIndex);
-		int cols = currentRow.size();
-		for (int colIndex = 0; colIndex < cols; colIndex++)
-		{
-			MapCityItemsById.insert(currentRow.at(colIndex)->GetGameMapItemId(), currentRow.at(colIndex));
-		}
-	}
 }

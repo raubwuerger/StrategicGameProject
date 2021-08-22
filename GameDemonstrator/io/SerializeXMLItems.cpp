@@ -31,6 +31,7 @@ const QString SerializeXMLItems::UNITS_NAME = "Name";
 
 const QString SerializeXMLItems::CITIES = "Cities";
 const QString SerializeXMLItems::CITIES_CITY = "City";
+const QString SerializeXMLItems::CITIES_CITYTYPEID = "CityItemId";
 const QString SerializeXMLItems::CITIES_ID = "ID";
 const QString SerializeXMLItems::CITIES_NAME = "Name";
 const QString SerializeXMLItems::CITIES_GAMEMAPITEMID = "GameMapItemID";

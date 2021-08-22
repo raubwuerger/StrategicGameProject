@@ -3,10 +3,15 @@
 #include "MapHexItemHexagonData.h"
 #include "game/GameMapItem.h"
 #include "game/GameMapItemRepository.h"
+#include "game/GameCityItemRepository.h"
+#include "game/GameCityItem.h"
 #include "LogInterface.h"
 #include "MapCityItem.h"
 #include "MapCityItemRepository.h"
+#include "MapHexItemRepository.h"
+#include "MapHexItem.h"
 #include "MapView.h"
+#include "model\ModelCityType.h"
 
 bool MapCityItemFactory::Create(MapView* mapView)
 {
@@ -16,7 +21,6 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		return false;
 	}
 
-	mapView->Create();
 	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
 	const QVector< QVector<GameMapItem*> >* gameMap = GameMapItemRepository::GetInstance()->GetMapItems();
@@ -26,42 +30,42 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		return false;
 	}
 
-	QVector< QVector<MapCityItem*> > MapCityItems;
-	int rows = gameMap->size();
-	for (int currentRow = 0; currentRow < rows; currentRow++)
+	MapCityItemRepository::GetInstance()->Init();
+	QMap<int, MapCityItem*> mapCityItems;
+	QMap<int, GameCityItem*>::const_iterator gameCityIterator = GameCityItemRepository::GetInstance()->GetFirstIterator();
+	while (gameCityIterator != GameCityItemRepository::GetInstance()->GetLastIterator())
 	{
-		QVector<MapCityItem*> MapCityItemRow;
-		QVector<GameMapItem*> row = gameMap->at(currentRow);
-		int cols = row.size();
-		for (int currentCol = 0; currentCol < cols; currentCol++)
+		const GameCityItem* gameCityItem = *gameCityIterator;
+		int gameMapId = gameCityItem->GetGameMapItemId();
+		const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapId);
+		if (nullptr == mapHexItem)
 		{
-			GameMapItem* gameMapItem = row.at(currentCol);
-			QPointF topLeftPosition;
-/*			CreateTopLeftPosition(currentRow, currentCol, topLeftPosition);
-			MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
-			mapItem->SetRowAndCol(currentRow, currentCol);
-			mapItem->SetGameMapItemId(gameMapItem->GetId());
-			mapItem->SetTerrainImage(GetImage(gameMapItem));
-			mapView->AddMapCityItem(mapItem);
-			MapCityItemRow.push_back(mapItem);*/
+			return false;
 		}
-		MapCityItems.push_back(MapCityItemRow);
+
+		QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
+		MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
+		mapItem->SetGameMapItemId(gameMapId);
+		mapItem->SetTerrainImage(GetImage(gameCityItem));
+
+		mapView->AddCity(mapItem);
+		mapCityItems.insert(gameMapId, mapItem);
+
+		gameCityIterator++;
 	}
 
-	MapCityItemRepository::GetInstance()->Init();
-	MapCityItemRepository::GetInstance()->SetMapCityItems(MapCityItems);
+	MapCityItemRepository::GetInstance()->SetMapCityItems(mapCityItems);
 	return true;
 }
 
 const QImage* MapCityItemFactory::GetImage(const GameCityItem* gameCityItem)
 {
-	return nullptr;
-/*	const GameCityItem* modelCityType = gameCityItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
+	const ModelCityType* modelCityType = gameCityItem->GetCityType();
+	if (nullptr == modelCityType)
 	{
 		Q_ASSERT(nullptr);
 		return nullptr;
 	}
-	return gameCityItem->GetImage();*/
+	return modelCityType->GetImage();
 }
 

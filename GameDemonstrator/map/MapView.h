@@ -6,6 +6,7 @@ class MapGraphicsScene;
 class MapHexItemHexagonData;
 class ConnectorMapHexItem;
 class ConnectorMapUnitItem;
+class ConnectorMapCityItem;
 class MapHexItemEventManager;
 class ModelTerrainType;
 class MapHexItemHexagonData;
@@ -13,6 +14,7 @@ class MapUnitItem;
 class GameMapItem;
 class MapHexItem;
 class KeyEventController;
+class MapCityItem;
 
 class MapView : public QGraphicsView
 {
@@ -35,6 +37,8 @@ public:
 	bool AddedMapUnit(MapUnitItem *mapUnitItem);
 	/** */
 	bool RemoveMapUnit(MapUnitItem *mapUnitItem);
+	/** */
+	bool AddCity(MapCityItem *mapCityItem);
 public slots:
 	/** */
 	void SlotHexMapItemActive(int gameMapItemId);
@@ -64,6 +68,7 @@ public:
 	MapGraphicsScene*		Scene;					
 	ConnectorMapHexItem*	ConnectorMapHexItemInstance;
 	ConnectorMapUnitItem*	ConnectorMapUnitItemInstance;
+	ConnectorMapCityItem*	ConnectorMapCityItemInstance;
 	MapHexItemEventManager*		MapEventManagerInstance;	
 private:
 	const int	NO_ACTIVE_ID;

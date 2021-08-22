@@ -11,6 +11,8 @@
 #include "LogInterface.h"
 #include "MapUnitItem.h"
 #include "controller/KeyEventController.h"
+#include "MapCityItem.h"
+#include "connectors/ConnectorMapCityItem.h"
 
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent),
@@ -21,6 +23,7 @@ MapView::MapView(QWidget *parent)
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	ConnectorMapHexItemInstance = new ConnectorMapHexItem;
 	ConnectorMapUnitItemInstance = new ConnectorMapUnitItem;
+	ConnectorMapCityItemInstance = new ConnectorMapCityItem;
 	Scene = new MapGraphicsScene(this);
 	KeyEventControllerInstance = new KeyEventController;
 }
@@ -86,6 +89,17 @@ bool MapView::RemoveMapUnit(MapUnitItem *mapUnitItem)
 		return false;
 	}
 	Scene->removeItem(mapUnitItem);
+	return true;
+}
+
+bool MapView::AddCity(MapCityItem *mapCityItem)
+{
+	if (nullptr == mapCityItem)
+	{
+		return false;
+	}
+	mapCityItem->SetEventConnector(ConnectorMapCityItemInstance);
+	Scene->addItem(mapCityItem);
 	return true;
 }
 

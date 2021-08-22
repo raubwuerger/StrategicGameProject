@@ -11,11 +11,11 @@ public:
 	/** */
 	void Init();
 	/** */
-	QVector< QVector<MapCityItem*>>::const_iterator GetFirstIterator() const;
+	QMap<int, MapCityItem*>::const_iterator GetFirstIterator() const;
 	/** */
-	QVector< QVector<MapCityItem*>>::const_iterator GetLastIterator() const;
+	QMap<int, MapCityItem*>::const_iterator GetLastIterator() const;
 	/** */
-	void SetMapCityItems(QVector< QVector<MapCityItem*> > MapCityItems);
+	void SetMapCityItems(QMap<int, MapCityItem*> mapCityItems);
 	/** */
 	const MapCityItem* GetMapCityItemById(int MapCityItemId) const;
 	/** */
@@ -25,12 +25,9 @@ private:
 	MapCityItemRepository();
 	/** */
 	~MapCityItemRepository();
-	/** */
-	void CreateMapCityItemsById();
 private:
-	QVector< QVector<MapCityItem*> >	MapCityItems;
-	QMap<int, MapCityItem*>				MapCityItemsById;
-	static MapCityItemRepository*		Instance;
+	QMap<int, MapCityItem*>			MapCityItems;
+	static MapCityItemRepository*	Instance;
 };
 
 #endif // MAPCITYITEMREPOSITORY_H
