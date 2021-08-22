@@ -8,6 +8,8 @@ public:
 signals :
 	/** */
 	void SignalCityItemEntered(int gameCityId);
+	/** */
+	void SignalHexItemEntered(int gameMapItemId);
 
 };
 

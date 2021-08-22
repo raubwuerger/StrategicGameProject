@@ -35,6 +35,8 @@ void EditorController::Activate(OwnerTypeEditor* ownerTypeEditor)
 
 void EditorController::Activate(CityTypeEditor* cityTypeEditor)
 {
+	DisconnectAll();
+//	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalHexItemEntered, terrainTypeEditor, &TerrainTypeEditor::SlotDeleteUnitFromGameUnitId);
 	int whatToDo = 1;
 	//TODO: What to do?
 }

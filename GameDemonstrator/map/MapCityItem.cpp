@@ -69,7 +69,8 @@ void MapCityItem::CreateHexPolygon(const MapHexItemHexagonData &data)
 void MapCityItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event) 
 {
 	ShowSelected();
-//	emit EventItem->SignalHexItemEntered(GameMapItemId);
+	emit EventItem->SignalCityItemEntered(MapCityItemId);
+	emit EventItem->SignalHexItemEntered(GameMapItemId);
 	QGraphicsPolygonItem::hoverEnterEvent(event);
 	event->ignore();
 }

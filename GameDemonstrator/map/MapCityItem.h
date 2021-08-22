@@ -45,12 +45,14 @@ private:
 	/** */
 	void CreateMapCityItemInfoString();
 private:
+	friend class MapCityItemFactory;
 	MapHexItemHexagonData	HexData;
 	QPointF					CenterPoint;
 	QPointF					TopLeftPoint;
 	ConnectorMapCityItem*	EventItem;
 	mutable const QImage*	TerrainImage;
 	int						GameMapItemId;
+	int						MapCityItemId;
 };
 
 #endif // MAPCITYITEM_H

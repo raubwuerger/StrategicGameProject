@@ -47,9 +47,10 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
 		mapItem->SetGameMapItemId(gameMapId);
 		mapItem->SetTerrainImage(GetImage(gameCityItem));
+		mapItem->MapCityItemId = gameCityItem->GetId();
 
 		mapView->AddCity(mapItem);
-		mapCityItems.insert(gameMapId, mapItem);
+		mapCityItems.insert(gameCityItem->GetId(), mapItem);
 
 		gameCityIterator++;
 	}
