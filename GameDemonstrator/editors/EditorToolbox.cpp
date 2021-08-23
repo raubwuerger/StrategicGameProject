@@ -321,7 +321,7 @@ BaseEditor* EditorToolbox::CreateCityTypeEditor()
 {
 	CityTypeEditorInstance = new CityTypeEditor(nullptr);
 	CityTypeEditorInstance->SetEditorController(EditorControllerInstance);
-	EditorControllerInstance->OwnerTypeEditorInstance = OwnerTypeEditorInstance;
+	EditorControllerInstance->CityTypeEditorInstance = CityTypeEditorInstance;
 	return CityTypeEditorInstance;
 }
 

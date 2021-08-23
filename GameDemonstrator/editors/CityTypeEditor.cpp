@@ -42,5 +42,12 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	{
 		return;
 	}
+}
 
+void CityTypeEditor::SlotDeleteCity(int cityTypeId)
+{
+	if (false == BaseEditor::GetActive())
+	{
+		return;
+	}
 }

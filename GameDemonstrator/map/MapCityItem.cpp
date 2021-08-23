@@ -86,12 +86,12 @@ void MapCityItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
 	if (event->button() == Qt::LeftButton )
 	{
-//		emit EventItem->SignalHexItemPressedLeftButton(GameMapItemId);
+		emit EventItem->SignalCityItemPressedLeftButton(GameMapItemId);
 		return;
 	}
 	if (event->button() == Qt::RightButton)
 	{
-//		emit EventItem->SignalHexItemPressedRightButton(GameMapItemId);
+		emit EventItem->SignalCityItemPressedRightButton(GameMapItemId);
 		return;
 	}
 }

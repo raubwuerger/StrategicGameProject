@@ -18,9 +18,11 @@ public slots:
 	/** */
 	void SlotDeactivated() override;
 	/** */
-	void SlotActiveCityTypeId(int CityTypeId);
+	void SlotActiveCityTypeId(int cityTypeId);
 	/** */
 	void SlotAddCity(int mapItemId);
+	/** */
+	void SlotDeleteCity(int cityTypeId);
 private:
 	const ModelCityType*	ActiveModelCityType;
 	EditorController*		EditorControllerInstance;

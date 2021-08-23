@@ -3,6 +3,8 @@
 #include "map\MapView.h"
 #include "connectors\ConnectorMapHexItem.h"
 #include "connectors\ConnectorMapUnitItem.h"
+#include "connectors\ConnectorMapCityItem.h"
+
 #include "editors\TerrainTypeEditor.h"
 #include "editors/UnitTypeEditor.h"
 #include "editors/CityTypeEditor.h"
@@ -35,6 +37,8 @@ void EditorController::Activate(OwnerTypeEditor* ownerTypeEditor)
 void EditorController::Activate(CityTypeEditor* cityTypeEditor)
 {
 	DisconnectAll();
+	QObject::connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, cityTypeEditor, &CityTypeEditor::SlotAddCity);
+	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedRightButton, cityTypeEditor, &CityTypeEditor::SlotDeleteCity);
 	int whatToDo = 1;
 	//TODO: What to do?
 }
@@ -45,4 +49,7 @@ void EditorController::DisconnectAll()
 
 	QObject::disconnect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
 	QObject::disconnect(MapViewInstance->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnitFromGameUnitId);
+
+	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedLeftButton, CityTypeEditorInstance, &CityTypeEditor::SlotAddCity);
+	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedRightButton, CityTypeEditorInstance, &CityTypeEditor::SlotDeleteCity);
 }
