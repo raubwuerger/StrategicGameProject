@@ -28,8 +28,6 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const GameUnitP
 		return nullptr;
 	}
 
-	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
-	
 	const ModelUnitType* unitType = GetModelUnitType(obj);
 	if (nullptr == unitType)
 	{
@@ -48,6 +46,8 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const GameUnitP
 		return nullptr;
 	}
 
+	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
+
 	newUnitItem->UnitType = unitType;
 	newUnitItem->UnitTypeId = unitType->GetId();
 
@@ -61,6 +61,7 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const GameUnitP
 
 	if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(newUnitItem))
 	{
+		delete unitType;
 		return nullptr;
 	}
 
