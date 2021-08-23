@@ -51,7 +51,16 @@ void EditorToolbox::SlotEditorTypeChanged(int editorIndex)
 	{
 		return;
 	}
+
+	QMapIterator<int, BaseEditor*> current(EditorMap);
+	while (current.hasNext())
+	{
+		current.next().value()->SlotDeactivated();
+		current.next().value()->SetActive(false);
+	}
+
 	EditorMap[editorIndex]->SlotActivated();
+	EditorMap[editorIndex]->SetActive(true);
 }
 
 void EditorToolbox::CreateGroupTerrainTypes()
@@ -198,6 +207,7 @@ QWidget* EditorToolbox::CreateUnitTypeWidget(const ModelUnitType* modelUnitType,
 #include "OwnerTypeIdSelector.h"
 void EditorToolbox::CreateGroupOwnerType()
 {
+	const int COLUMN_INDEX = 0;
 	BaseEditor* editor = CreateOwnerTypeEditor();
 	GroupOwnerTypes = new QButtonGroup(this);
 

@@ -17,6 +17,11 @@ void CityTypeEditor::SetEditorController(EditorController* editorController)
 	EditorControllerInstance = editorController;
 }
 
+void CityTypeEditor::SlotDeactivated()
+{
+	return; //TODO: Do nothing at the moment
+}
+
 void CityTypeEditor::SlotActivated()
 {
 	if (nullptr == EditorControllerInstance)
@@ -29,4 +34,13 @@ void CityTypeEditor::SlotActivated()
 void CityTypeEditor::SlotActiveCityTypeId(int CityTypeId)
 {
 	ActiveModelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(CityTypeId);
+}
+
+void CityTypeEditor::SlotAddCity(int mapItemId)
+{
+	if (false == BaseEditor::GetActive())
+	{
+		return;
+	}
+
 }

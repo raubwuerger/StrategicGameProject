@@ -23,7 +23,6 @@ void EditorController::Activate(UnitTypeEditor* unitTypeEditor)
 {
 	DisconnectAll();
 	QObject::connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, unitTypeEditor, &UnitTypeEditor::SlotAddUnit);
-	QObject::connect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, unitTypeEditor, &UnitTypeEditor::SlotDeleteUnitFromMapHexItemId);
 	QObject::connect(MapViewInstance->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, unitTypeEditor, &UnitTypeEditor::SlotDeleteUnitFromGameUnitId);
 }
 
@@ -36,7 +35,6 @@ void EditorController::Activate(OwnerTypeEditor* ownerTypeEditor)
 void EditorController::Activate(CityTypeEditor* cityTypeEditor)
 {
 	DisconnectAll();
-//	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalHexItemEntered, terrainTypeEditor, &TerrainTypeEditor::SlotDeleteUnitFromGameUnitId);
 	int whatToDo = 1;
 	//TODO: What to do?
 }
@@ -46,6 +44,5 @@ void EditorController::DisconnectAll()
 	QObject::disconnect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotChangeTerrainTypeHexItem);
 
 	QObject::disconnect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
-	QObject::disconnect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnitFromMapHexItemId);
 	QObject::disconnect(MapViewInstance->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnitFromGameUnitId);
 }

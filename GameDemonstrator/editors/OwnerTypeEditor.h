@@ -17,6 +17,8 @@ public slots:
 	void SlotActivated() override;
 	/** */
 	void SlotActiveOwnerTypeId(int ownerTypeId);
+	/** */
+	void SlotDeactivated() override;
 private:
 	const ModelOwnerType*	ActiveModelOwnerType;
 	EditorController*		EditorControllerInstance;

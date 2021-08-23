@@ -17,6 +17,11 @@ void OwnerTypeEditor::SetEditorController(EditorController* editorController)
 	EditorControllerInstance = editorController;
 }
 
+void OwnerTypeEditor::SlotDeactivated()
+{
+	return; //TODO: Do nothing at the moment
+}
+
 void OwnerTypeEditor::SlotActivated()
 {
 	if (nullptr == EditorControllerInstance)

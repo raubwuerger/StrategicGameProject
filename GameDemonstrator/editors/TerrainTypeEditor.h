@@ -27,7 +27,9 @@ public slots:
 	/** */
 	void SlotChangeTerrainTypeHexItem( int gameMapItemId );
 	/** */
-	virtual void SlotActivated();
+	void SlotActivated() override;
+	/** */
+	void SlotDeactivated() override;
 private:
 	ModelTerrainType*		ActiveTerrainType;
 	MapHexItemEventManager*	MapEventManagerInstance;

@@ -7,9 +7,17 @@ class BaseEditor : public QObject
 public:
 	/** */
 	BaseEditor(QObject *parent);
+	/** */
+	void SetActive(bool active);
+	/** */
+	bool GetActive() const;
 public slots:
 	/** */
 	virtual void SlotActivated() = 0;
+	/** */
+	virtual void SlotDeactivated() = 0;
+private:
+	bool Active;
 };
 
 #endif // BASEEDITOR_H

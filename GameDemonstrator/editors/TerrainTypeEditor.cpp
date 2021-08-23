@@ -33,6 +33,11 @@ void TerrainTypeEditor::SetEditorController(EditorController* editorController)
 	EditorControllerInstance = editorController;
 }
 
+void TerrainTypeEditor::SlotDeactivated()
+{
+	return; //TODO: Do nothing at the moment
+}
+
 void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 {
 	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
@@ -40,6 +45,11 @@ void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 
 void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 {
+	if (false == BaseEditor::GetActive())
+	{
+		return;
+	}
+
 	Q_ASSERT(MapEventManagerInstance);
 	if( ActiveTerrainType == nullptr )
 	{

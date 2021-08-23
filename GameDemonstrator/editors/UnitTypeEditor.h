@@ -26,11 +26,11 @@ public slots:
 	/** */
 	void SlotAddUnit(int mapHexItemId);
 	/** */
-	void SlotDeleteUnitFromMapHexItemId(int mapHexItemId);
-	/** */
 	void SlotDeleteUnitFromGameUnitId(int gameUnitId);
 	/** */
-	virtual void SlotActivated();
+	void SlotActivated() override;
+	/** */
+	void SlotDeactivated() override;
 private:
 	/** */
 	void CreateUnit();

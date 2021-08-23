@@ -40,6 +40,11 @@ void UnitTypeEditor::SetEditorController(EditorController* editorController)
 	EditorControllerInstance = editorController;
 }
 
+void UnitTypeEditor::SlotDeactivated()
+{
+	return; //TODO: Do nothing at the moment
+}
+
 void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 {
 	ActiveModelUnitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
@@ -61,6 +66,11 @@ void UnitTypeEditor::SlotActivated()
 
 void UnitTypeEditor::SlotAddUnit(int mapHexItemId)
 {
+	if (false == BaseEditor::GetActive())
+	{
+		return;
+	}
+
 	ActiveGameMapItemId = mapHexItemId;
 	CreateUnit();
 }
@@ -102,14 +112,13 @@ void UnitTypeEditor::CreateUnit()
 	jha::GetLog()->Log_DEBUG(tr("MapUnitItem (Id=%1) successfully created on HexItem (Id=%2)!").arg(QString::number(created->GetId())).arg(QString::number(ActiveGameMapItemId)));
 }
 
-void UnitTypeEditor::SlotDeleteUnitFromMapHexItemId(int mapHexItemId)
-{
-	ActiveGameMapItemId = mapHexItemId;
-	DeleteUnit(mapHexItemId);
-}
-
 void UnitTypeEditor::SlotDeleteUnitFromGameUnitId(int gameUnitId)
 {
+	if (false == BaseEditor::GetActive())
+	{
+		return;
+	}
+
 	GameUnitItem* gameUnitItemToDelete = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
 	if (nullptr == gameUnitItemToDelete)
 	{
