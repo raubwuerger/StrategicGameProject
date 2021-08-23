@@ -53,6 +53,7 @@ private:
 	const ModelOwnerType* GetModelOwnerType(const GameUnitParameterObject& obj) const;
 	/** */
 	bool CreateUnitItems(const QDomNode& units);
+	//TODO: Sollte ein GameUnitParameterObject erstellen!
 	/** */
 	GameUnitItem* CreateUnitItemFromXML(const QDomNode& unit);
 	/** */

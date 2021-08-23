@@ -46,6 +46,12 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItem(const GameUnitParameterObj
 		return nullptr;
 	}
 
+	const int NOT_ALLOWED_OWNER_TYPE = 1;
+	if (NOT_ALLOWED_OWNER_TYPE == ownerType->GetId())
+	{
+		return nullptr;
+	}
+
 	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
 
 	newUnitItem->UnitType = unitType;
@@ -95,6 +101,12 @@ GameUnitItem* GameUnitItemFactory::UpdateGameUnitItem(const GameUnitParameterObj
 
 	const ModelOwnerType* ownerType = GetModelOwnerType(obj);
 	if (nullptr == ownerType)
+	{
+		return nullptr;
+	}
+
+	const int NOT_ALLOWED_OWNER_TYPE = 1;
+	if (NOT_ALLOWED_OWNER_TYPE == ownerType->GetId())
 	{
 		return nullptr;
 	}
@@ -204,6 +216,7 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 	return true;
 }
 
+//TODO: Sollte ein GameUnitParameterObject erstellen!
 #include "Model/ModelOwnerType.h"
 GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNode)
 {
@@ -265,6 +278,11 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_OWNERTYPEID));
 			return nullptr;
 		}
+	}
+	const int NOT_ALLOWED_OWNER_TYPE = 1;
+	if (NOT_ALLOWED_OWNER_TYPE == ownerTypeId)
+	{
+		return nullptr;
 	}
 	const ModelOwnerType* ownerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
 	if (nullptr == ownerType)

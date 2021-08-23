@@ -91,7 +91,7 @@ void UnitTypeEditor::CreateUnit()
 	gameUnitParameterObject.ModelOwnerTypeId = ActiveGameOwnerItemId;
 
 	GameUnitItemFactory gameUnitItemFactory;
-	GameUnitItem* created = gameUnitItemFactory.CreateGameUnitItemFromScratch(gameUnitParameterObject);
+	GameUnitItem* created = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);
 
 	if (nullptr == created)
 	{
