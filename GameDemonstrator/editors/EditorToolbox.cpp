@@ -56,11 +56,11 @@ void EditorToolbox::SlotEditorTypeChanged(int editorIndex)
 
 void EditorToolbox::CreateGroupTerrainTypes()
 {
+	const int COLUMN_INDEX = 0;
 	BaseEditor* editor = CreateTerrainTypeEditor();
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
-	const int COLUMN_INDEX = 0;
 	int rowIndex = 0;
 	layoutTerrainTypes->addWidget(CreateReleaseTerrainTypeWidget(GroupTerrainTypes, new TerrainTypeIdSelector(rowIndex++)));
 
@@ -138,6 +138,7 @@ QWidget * EditorToolbox::CreateReleaseTerrainTypeWidget(QButtonGroup* buttonGrou
 
 void EditorToolbox::CreateGroupUnitTypes()
 {
+	const int COLUMN_INDEX = 0;
 	BaseEditor* editor = CreateUnitTypeEditor();
 	GroupUnitsTypes = new QButtonGroup(this);
 
