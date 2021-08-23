@@ -1,12 +1,14 @@
 #ifndef GAMEUNITTYPE_H
 #define GAMEUNITTYPE_H
 
+#include "GameObject.h"
+
 class ModelUnitType;
 class GameMapItem;
 class ModelOwnerType;
 
 /** Game unit tile */
-class GameUnitItem
+class GameUnitItem : public GameObject
 {
 public:
 	/** */
@@ -33,6 +35,8 @@ public:
 	int GetModelOwnerTypeId() const;
 	/** */
 	int GetGameMapItemId() const;
+	/** */
+	void UpdateTurn() override;
 private:
 	friend class GameUnitItemFactory;
 	const int				Id;

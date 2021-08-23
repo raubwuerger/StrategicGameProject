@@ -61,6 +61,12 @@ int GameCityItem::GetCityTypeId() const
 	return CityTypeId;
 }
 
+void GameCityItem::UpdateTurn()
+{
+	//TODO: Increase build unit step
+	//TODO: ...
+}
+
 bool GameCityItem::operator<(const GameCityItem& rhs) const
 {
 	return Id < rhs.Id;

@@ -1,12 +1,14 @@
 #ifndef GAMECITYTYPE_H
 #define GAMECITYTYPE_H
 
+#include "GameObject.h"
+
 class GameMapItem;
 class ModelOwnerType;
 class ModelCityType;
 
 /** Game unit tile */
-class GameCityItem
+class GameCityItem : public GameObject
 {
 public:
 	/** */
@@ -33,6 +35,8 @@ public:
 	const ModelCityType* GetCityType() const;
 	/** */
 	int GetCityTypeId() const;
+	/** */
+	void UpdateTurn() override;
 private:
 	friend class GameCityItemFactory;
 	const int				Id;

@@ -608,6 +608,9 @@
     <ClCompile Include="RepositoryCleaner.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameObject.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -864,6 +867,9 @@
     </ClInclude>
     <ClInclude Include="RepositoryCleaner.h">
       <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameObject.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

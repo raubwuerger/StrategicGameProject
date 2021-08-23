@@ -61,6 +61,13 @@ int GameUnitItem::GetGameMapItemId() const
 	return MapItemId;
 }
 
+void GameUnitItem::UpdateTurn()
+{
+	//TODO: Reset movement points
+	//TODO: Heal Unit
+	//TODO: ...
+}
+
 bool GameUnitItem::operator<(const GameUnitItem& rhs) const
 {
 	return Id < rhs.Id;

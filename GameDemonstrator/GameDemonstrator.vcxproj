@@ -231,6 +231,7 @@
     <ClCompile Include="game\GameMapItemFactory.cpp" />
     <ClCompile Include="game\GameMapItem.cpp" />
     <ClCompile Include="game\GameMapItemRepository.cpp" />
+    <ClCompile Include="game\GameObject.cpp" />
     <ClCompile Include="game\GameUnitItem.cpp" />
     <ClCompile Include="game\GameUnitItemFactory.cpp" />
     <ClCompile Include="game\GameUnitItemRepository.cpp" />
@@ -885,6 +886,7 @@
     <ClInclude Include="game\GameMode.h" />
     <ClInclude Include="game\GameModeEditor.h" />
     <ClInclude Include="game\GameModeSinglePlayer.h" />
+    <ClInclude Include="game\GameObject.h" />
     <ClInclude Include="game\GameUnitItem.h" />
     <ClInclude Include="game\GameUnitItemFactory.h" />
     <ClInclude Include="game\GameUnitItemRepository.h" />
