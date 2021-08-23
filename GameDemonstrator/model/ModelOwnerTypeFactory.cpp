@@ -51,21 +51,9 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 
 	ModelOwnerType *newType = new ModelOwnerType( ownerTypeId );
 	bool allElementsExtracted = true;
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_NAME, newType->Name);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
-		allElementsExtracted &= AttacheImage(newType);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_COLOR, newType->Color);
-	}
+	allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_NAME, newType->Name);
+	allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+	allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_COLOR, newType->Color);
 
 	if( false == allElementsExtracted )
 	{
@@ -74,6 +62,7 @@ ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 		return nullptr;
 	}
 
+	allElementsExtracted &= AttacheImage(newType);
 	return newType;
 }
 

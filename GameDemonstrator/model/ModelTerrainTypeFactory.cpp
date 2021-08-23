@@ -51,51 +51,15 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 	ModelTerrainType *newType = new ModelTerrainType( terrainTypeId );
 
 	bool allElementsExtracted = true;
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_NAME, newType->Name);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
-		allElementsExtracted &= AttacheImage( newType );
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_INFRASTRUCTURE, newType->Infrastructure);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_OIL, newType->Oil);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_TIMBER, newType->Timber);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_STONE, newType->Stone);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_MOVEMENT_MODIFIER, newType->MovementModifier);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_DEFENSE_MODIFIER, newType->DefenseModifier);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_ATTACK_MODIFIER, newType->AttackModifier);
-	}
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_NAME, newType->Name);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_INFRASTRUCTURE, newType->Infrastructure);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_OIL, newType->Oil);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_TIMBER, newType->Timber);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_STONE, newType->Stone);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_MOVEMENT_MODIFIER, newType->MovementModifier);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_DEFENSE_MODIFIER, newType->DefenseModifier);
+	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_ATTACK_MODIFIER, newType->AttackModifier);
 
 	if( false == allElementsExtracted )
 	{
@@ -103,6 +67,8 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 		delete newType;
 		return nullptr;
 	}
+
+	allElementsExtracted &= AttacheImage(newType);
 	return newType;
 }
 

@@ -55,56 +55,18 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	ModelUnitType *newType = new ModelUnitType(unitTypeId);
 
 	bool allElementsExtracted = true;
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_NAME, newType->Name);
-	}
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_NAME, newType->Name);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH, newType->Strength);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS, newType->MovementPoints);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_RANGE, newType->Range);
 
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
-		allElementsExtracted &= AttacheImage(newType);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH, newType->Strength);
-	}
-
-	{
-		DomNodeFinder find(node);
-		allElementsExtracted &= ParseAttackValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_ATTACKVALUES), newType->AttackValues);
-	}
-
-	{
-		DomNodeFinder find(node);
-		allElementsExtracted &= ParseDefenseValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_DEFENCEVALUES), newType->DefenseValues);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS, newType->MovementPoints);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_RANGE, newType->Range);
-	}
-
-	{
-		DomNodeFinder find(node);
-		allElementsExtracted &= ParseTerrainTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->AccessibleTerrainTypes);
-	}
-
-	{
-		DomNodeFinder find(node);
-		allElementsExtracted &= ParseAttackableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES), newType->AttackableUnitTypes);
-	}
-
-	{
-		DomNodeFinder find(node);
-		allElementsExtracted &= ParseRecognisableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES), newType->RecognisableUnitTypes);
-	}
+	DomNodeFinder find(node);
+	allElementsExtracted &= ParseAttackValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_ATTACKVALUES), newType->AttackValues);
+	allElementsExtracted &= ParseDefenseValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_DEFENCEVALUES), newType->DefenseValues);
+	allElementsExtracted &= ParseTerrainTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->AccessibleTerrainTypes);
+	allElementsExtracted &= ParseAttackableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES), newType->AttackableUnitTypes);
+	allElementsExtracted &= ParseRecognisableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES), newType->RecognisableUnitTypes);
 
 	if (false == allElementsExtracted)
 	{
@@ -112,6 +74,8 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 		delete newType;
 		return nullptr;
 	}
+
+	allElementsExtracted &= AttacheImage(newType);
 	return newType;
 }
 

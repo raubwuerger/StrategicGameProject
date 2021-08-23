@@ -52,26 +52,10 @@ ModelCityType* ModelCityTypeFactory::CreateFromXML( const QDomNode& node )
 
 	ModelCityType *newType = new ModelCityType( ownerTypeId );
 	bool allElementsExtracted = true;
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_NAME, newType->Name);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
-		allElementsExtracted &= AttacheImage(newType);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newType->Efficiency);
-	}
-
-	{
-		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newType->SpezializedUnitType);
-	}
+	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_NAME, newType->Name);
+	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newType->Efficiency);
+	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newType->SpezializedUnitType);
 
 	if (false == allElementsExtracted)
 	{
@@ -80,6 +64,7 @@ ModelCityType* ModelCityTypeFactory::CreateFromXML( const QDomNode& node )
 		return nullptr;
 	}
 
+	allElementsExtracted &= AttacheImage(newType);
 	return newType;
 }
 
