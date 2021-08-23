@@ -21,7 +21,7 @@ GameUnitItemFactory::~GameUnitItemFactory()
 {
 }
 
-GameUnitItem* GameUnitItemFactory::CreateGameUnitItemFromScratch(const GameUnitParameterObject obj)
+GameUnitItem* GameUnitItemFactory::CreateGameUnitItem(const GameUnitParameterObject obj)
 {
 	if (false == Validate(obj))
 	{

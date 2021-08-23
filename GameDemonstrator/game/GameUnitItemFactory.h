@@ -37,7 +37,7 @@ public:
 	/** */
 	~GameUnitItemFactory();
 	/** */
-	GameUnitItem* CreateGameUnitItemFromScratch(const GameUnitParameterObject obj);
+	GameUnitItem* CreateGameUnitItem(const GameUnitParameterObject obj);
 	/** */
 	GameUnitItem* UpdateGameUnitItem(const GameUnitParameterObject obj);
 	/** */
