@@ -590,6 +590,15 @@
     <ClCompile Include="..\StandardLibQt\ImageLoader.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CityTypeInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CityTypeInfoDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\CityTypeInfoDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -947,6 +956,9 @@
     </CustomBuild>
     <CustomBuild Include="connectors\ConnectorMapCityItem.h">
       <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\CityTypeInfoDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
