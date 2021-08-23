@@ -39,13 +39,6 @@ public:
 	bool RemoveMapUnit(MapUnitItem *mapUnitItem);
 	/** */
 	bool AddCity(MapCityItem *mapCityItem);
-public slots:
-	/** */
-	void SlotHexMapItemActive(int gameMapItemId);
-	/** */
-	void SlotUnitItemActive(int unitItemId);
-	/** */
-	void SlotUnitItemDeacivated();
 protected:
 	/** */
 	virtual void mouseReleaseEvent(QMouseEvent * event);
@@ -71,9 +64,6 @@ public:
 	ConnectorMapCityItem*	ConnectorMapCityItemInstance;
 	MapHexItemEventManager*		MapEventManagerInstance;	
 private:
-	const int	NO_ACTIVE_ID;
-	int			ActiveMapHexItemId;
-	int			ActiveUnitItemId;
 	KeyEventController*	KeyEventControllerInstance;
 };
 

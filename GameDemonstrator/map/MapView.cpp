@@ -15,10 +15,7 @@
 #include "connectors/ConnectorMapCityItem.h"
 
 MapView::MapView(QWidget *parent)
-	: QGraphicsView(parent),
-	NO_ACTIVE_ID(-1),
-	ActiveMapHexItemId(NO_ACTIVE_ID),
-	ActiveUnitItemId(NO_ACTIVE_ID)
+	: QGraphicsView(parent)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	ConnectorMapHexItemInstance = new ConnectorMapHexItem;
@@ -105,10 +102,8 @@ bool MapView::AddCity(MapCityItem *mapCityItem)
 
 void MapView::InitMapEventManager()
 {
-	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, this, &MapView::SlotHexMapItemActive); //TODO: Muss der MapView wissen welches Item aktiv ist?
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);
 
-	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &MapView::SlotUnitItemActive); //TODO: Muss der MapView wissen welches Item aktiv ist?
 	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapUnitItemInfo);
 
 	connect(ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapCityItemInfo); //TODO: Muss der MapView wissen welches Item aktiv ist?
@@ -137,21 +132,6 @@ void MapView::mousePressEvent(QMouseEvent *event)
 {
 	QGraphicsView::mousePressEvent(event);
 //	EmitHexItemPressed();
-}
-
-void MapView::SlotHexMapItemActive(int gameMapItemId)
-{
-	ActiveMapHexItemId = gameMapItemId;
-}
-
-void MapView::SlotUnitItemActive(int unitItemId)
-{
-	ActiveUnitItemId = unitItemId;
-}
-
-void MapView::SlotUnitItemDeacivated()
-{
-	ActiveUnitItemId = NO_ACTIVE_ID;
 }
 
 void MapView::wheelEvent(QWheelEvent *event)
