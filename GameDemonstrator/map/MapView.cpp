@@ -122,18 +122,6 @@ double MapView::CalcMapHeightInPixel() const
 	return (hexagondata.Height * GameMapItemRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
 }
 
-
-void MapView::mouseReleaseEvent(QMouseEvent * event)
-{
-	QGraphicsView::mouseReleaseEvent(event);
-}
-
-void MapView::mousePressEvent(QMouseEvent *event)
-{
-	QGraphicsView::mousePressEvent(event);
-//	EmitHexItemPressed();
-}
-
 void MapView::wheelEvent(QWheelEvent *event)
 {
 	if (false == QApplication::keyboardModifiers().testFlag(Qt::ControlModifier))

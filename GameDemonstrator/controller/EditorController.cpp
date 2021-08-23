@@ -50,6 +50,6 @@ void EditorController::DisconnectAll()
 	QObject::disconnect(MapViewInstance->ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemPressedLeftButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotAddUnit);
 	QObject::disconnect(MapViewInstance->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, UnitTypeEditorInstance, &UnitTypeEditor::SlotDeleteUnitFromGameUnitId);
 
-	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedLeftButton, CityTypeEditorInstance, &CityTypeEditor::SlotAddCity);
-	QObject::connect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedRightButton, CityTypeEditorInstance, &CityTypeEditor::SlotDeleteCity);
+	QObject::disconnect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedLeftButton, CityTypeEditorInstance, &CityTypeEditor::SlotAddCity);
+	QObject::disconnect(MapViewInstance->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemPressedRightButton, CityTypeEditorInstance, &CityTypeEditor::SlotDeleteCity);
 }

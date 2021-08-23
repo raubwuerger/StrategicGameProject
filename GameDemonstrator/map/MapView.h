@@ -41,10 +41,6 @@ public:
 	bool AddCity(MapCityItem *mapCityItem);
 protected:
 	/** */
-	virtual void mouseReleaseEvent(QMouseEvent * event);
-	/** */
-	virtual void mousePressEvent(QMouseEvent *event);
-	/** */
 	virtual void wheelEvent( QWheelEvent *event );
 private:
 	/** */
