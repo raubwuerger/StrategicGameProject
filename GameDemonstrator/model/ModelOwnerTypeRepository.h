@@ -1,10 +1,10 @@
 #ifndef MODELOWNERTYPEREPOSITORY_H
 #define MODELOWNERTYPEREPOSITORY_H
 
-#include <QMap>
+#include "BaseRepository.h"
 class ModelOwnerType;
 
-class ModelOwnerTypeRepository
+class ModelOwnerTypeRepository : public BaseRepository
 {
 public:
 	/** */
@@ -26,7 +26,7 @@ public:
 	/** Set m_DefaultTerrainType */
 	void SetDefaultOwnerType( const ModelOwnerType* val);
 	/** */
-	void Release();
+	virtual void Release();
 private:
 	/** */
 	ModelOwnerTypeRepository();

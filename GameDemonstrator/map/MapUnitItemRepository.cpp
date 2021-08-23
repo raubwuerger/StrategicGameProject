@@ -58,6 +58,11 @@ MapUnitItem* MapUnitItemRepository::Remove(int gameUnitItemId)
 	return deleted;
 }
 
+void MapUnitItemRepository::Release()
+{
+	MapUnitItems.clear();
+}
+
 MapUnitItemRepository::MapUnitItemRepository()
 {
 

@@ -1,9 +1,11 @@
 #ifndef MAPCITYITEMREPOSITORY_H
 #define MAPCITYITEMREPOSITORY_H
 
+#include "BaseRepository.h"
+
 class MapCityItem;
 
-class MapCityItemRepository
+class MapCityItemRepository : public BaseRepository
 {
 public:
 	/** */
@@ -20,6 +22,8 @@ public:
 	const MapCityItem* GetMapCityItemById(int MapCityItemId) const;
 	/** */
 	MapCityItem* GetMapCityItemByIdNonConst(int MapCityItemId) const;
+	/** */
+	void Release() override;
 private:
 	/** */
 	MapCityItemRepository();

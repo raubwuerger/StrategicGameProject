@@ -1,10 +1,12 @@
 #ifndef MAPUNITITEMREPOSITORY_H
 #define MAPUNITITEMREPOSITORY_H
 
+#include "BaseRepository.h"
+
 class MapUnitItem;
 class MapView;
 
-class MapUnitItemRepository
+class MapUnitItemRepository : BaseRepository
 {
 public:
 	/** */
@@ -15,6 +17,8 @@ public:
 	bool Register(MapUnitItem* mapUnitItem);
 	/** Removes mapUnitItem from registry and from MapView */
 	MapUnitItem* Remove(int gameUnitItemId);
+	/** */
+	void Release() override;
 private:
 	/** */
 	MapUnitItemRepository();
@@ -24,7 +28,7 @@ private:
 	friend class GameDemonstrator;
 	static MapUnitItemRepository*	Instance;
 	static MapView*					MapViewInstance;
-	QMap<int, MapUnitItem*> MapUnitItems;
+	QMap<int, MapUnitItem*>			MapUnitItems;
 };
 
 #endif // MAPUNITITEMREPOSITORY_H

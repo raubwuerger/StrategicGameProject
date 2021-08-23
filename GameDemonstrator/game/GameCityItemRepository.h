@@ -1,10 +1,12 @@
 #ifndef GAMECITYITEMREPOSITORY_H
 #define GAMECITYITEMREPOSITORY_H
 
+#include "BaseRepository.h"
+
 class GameCityItem;
 
 /** Repräsentiert die Karte im Speicher */
-class GameCityItemRepository
+class GameCityItemRepository : public BaseRepository
 {
 public:
 	/** */
@@ -12,7 +14,7 @@ public:
 	/** */
 	void Init();
 	/** */
-	void Release();
+	void Release() override;
 	/** */
 	bool RegisterItem(GameCityItem* gameUnitItem);
 	/** */

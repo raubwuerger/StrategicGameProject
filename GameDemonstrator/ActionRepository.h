@@ -2,8 +2,9 @@
 #define QACTIONREPOSITORY_H
 
 #include <QObject>
+#include "BaseRepository.h"
 
-class ActionRepository : public QObject
+class ActionRepository : public QObject, BaseRepository
 {
 	Q_OBJECT
 

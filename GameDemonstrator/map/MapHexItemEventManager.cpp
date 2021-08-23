@@ -26,6 +26,7 @@ MapHexItem* MapHexItemEventManager::FindMapHexItem(int gameMapItemId) const
 }
 
 #include "dialogs/HexItemInfoDialog.h"
+#include "game/GameMapItem.h"
 void MapHexItemEventManager::SlotUpdateMapItemInfo(int gameMapItemId)
 {
 	if (HexItemInfoDialog == nullptr)

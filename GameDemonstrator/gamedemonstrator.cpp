@@ -6,7 +6,6 @@
 #include "ConfigurationLoader.h"
 #include "game/GameMainThread.h"
 #include "game/GameMainLoop.h"
-#include "game/GameMapItemRepository.h"
 #include "dialogs/GameTurnDialog.h"
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
@@ -16,14 +15,13 @@
 #include "io\SerializerGame.h"
 #include "io\SerializeBinary.h"
 #include "io\SerializerFactory.h"
-#include "model/ModelOwnerTypeRepository.h"
-#include "model/ModelTerrainTypeRepository.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorLoadCreateGame.h"
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
+#include "RepositoryCleaner.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -91,11 +89,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 GameDemonstrator::~GameDemonstrator()
 {
-	ModelTerrainTypeRepository::GetInstance()->Release();
-	ModelOwnerTypeRepository::GetInstance()->Release();
-	ModelOwnerTypeRepository::GetInstance()->Release();
-	ActionRepository::GetInstance()->Release();
-	GameMapItemRepository::GetInstance()->Release();
+	RepositoryCleaner::GetInstance()->ReleaseAll();
 }
 
 void GameDemonstrator::CreateGameTurnInfoDialog()

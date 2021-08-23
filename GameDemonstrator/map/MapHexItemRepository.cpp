@@ -84,6 +84,12 @@ MapHexItem* MapHexItemRepository::GetMapHexItemByRowCol(int row, int col)
 	return concreteRow.at(col);
 }
 
+void MapHexItemRepository::Release()
+{
+	MapHexItems.clear();
+	MapHexItemsById.clear();
+}
+
 MapHexItemRepository::MapHexItemRepository()
 {
 

@@ -1,10 +1,10 @@
 #ifndef MODELCITYTYPEREPOSITORY_H
 #define MODELCITYTYPEREPOSITORY_H
 
-#include <QMap>
+#include "BaseRepository.h"
 class ModelCityType;
 
-class ModelCityTypeRepository
+class ModelCityTypeRepository : public BaseRepository
 {
 public:
 	/** */
@@ -26,7 +26,7 @@ public:
 	/** Set m_DefaultTerrainType */
 	void SetDefaultType( const ModelCityType* val);
 	/** */
-	void Release();
+	virtual void Release();
 private:
 	/** */
 	ModelCityTypeRepository();

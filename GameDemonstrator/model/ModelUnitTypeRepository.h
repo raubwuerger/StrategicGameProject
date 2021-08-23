@@ -1,9 +1,11 @@
 #ifndef MODELUNITREPOSITORY_H
 #define MODELUNITREPOSITORY_H
 
+#include "BaseRepository.h"
+
 class ModelUnitType;
 
-class ModelUnitTypeRepository
+class ModelUnitTypeRepository : public BaseRepository
 {
 public:
 	/** */
@@ -11,7 +13,7 @@ public:
 	/** */
 	void Init();
 	/** */
-	void Release();
+	void Release() override;
 	/** */
 	bool RegisterModelUnitType(const ModelUnitType* modelUnit);
 	/** */

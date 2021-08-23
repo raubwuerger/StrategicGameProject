@@ -56,6 +56,11 @@ MapCityItem* MapCityItemRepository::GetMapCityItemByIdNonConst(int MapCityItemId
 	return MapCityItems[MapCityItemId];
 }
 
+void MapCityItemRepository::Release()
+{
+	MapCityItems.clear();
+}
+
 MapCityItemRepository::MapCityItemRepository()
 {
 

@@ -602,6 +602,12 @@
     <ClCompile Include="ConfigurationLoader.cpp">
       <Filter>Source Dateien</Filter>
     </ClCompile>
+    <ClCompile Include="BaseRepository.cpp">
+      <Filter>Header Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="RepositoryCleaner.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -851,6 +857,12 @@
       <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="ConfigurationLoader.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRepository.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RepositoryCleaner.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>

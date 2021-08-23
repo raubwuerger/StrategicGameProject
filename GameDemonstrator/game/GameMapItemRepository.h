@@ -1,10 +1,12 @@
 #ifndef GAMEMAPREPOSITORY_H
 #define GAMEMAPREPOSITORY_H
 
-#include "GameMapItem.h"
+#include "BaseRepository.h"
+
+class GameMapItem;
 
 /** Repräsentiert die Karte im Speicher */
-class GameMapItemRepository
+class GameMapItemRepository : public BaseRepository
 {
 public:
 	/** */
@@ -12,7 +14,7 @@ public:
 	/** */
 	void Init();
 	/** */
-	void Release();
+	void Release() override;
 	/** Get MapItems */	
 	const QVector< QVector<GameMapItem*> >* GetMapItems() const;
 	/** */

@@ -1,9 +1,11 @@
 #ifndef MAPHEXITEMREPOSITORY_H
 #define MAPHEXITEMREPOSITORY_H
 
+#include "BaseRepository.h"
+
 class MapHexItem;
 
-class MapHexItemRepository
+class MapHexItemRepository : public BaseRepository
 {
 public:
 	/** */
@@ -22,6 +24,8 @@ public:
 	MapHexItem* GetMapHexItemByIdNonConst(int mapHexItemId) const;
 	/** */
 	MapHexItem* GetMapHexItemByRowCol(int row, int col);
+	/** */
+	void Release() override;
 private:
 	/** */
 	MapHexItemRepository();

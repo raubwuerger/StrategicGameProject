@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TerrainAccessTester.h"
 #include "game/GameUnitItem.h"
+#include "game/GameMapItem.h"
 #include "game/GameMapItemRepository.h"
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"

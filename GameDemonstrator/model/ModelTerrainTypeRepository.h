@@ -1,10 +1,10 @@
 #ifndef MODELTERRAINTYPEREPOSITORY_H
 #define MODELTERRAINTYPEREPOSITORY_H
 
-#include <QMap>
+#include "BaseRepository.h"
 class ModelTerrainType;
 
-class ModelTerrainTypeRepository
+class ModelTerrainTypeRepository : public BaseRepository
 {
 public:
 	/** */

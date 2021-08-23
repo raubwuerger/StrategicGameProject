@@ -5,6 +5,7 @@
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
 #include "game/GameMapItemRepository.h"
+#include "game/GameMapItem.h"
 #include "controller/EditorController.h"
 #include "LogInterface.h"
 
