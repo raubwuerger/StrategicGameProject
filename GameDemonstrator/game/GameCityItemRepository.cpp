@@ -78,7 +78,7 @@ GameCityItem* GameCityItemRepository::GetGameCityItemById(int GameCityItemId)
 
 }
 
-int GameCityItemRepository::GetLastIndex() const
+int GameCityItemRepository::CreateNewId() const
 {
 	if (true == GameCityItems.isEmpty())
 	{

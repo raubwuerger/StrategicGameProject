@@ -26,7 +26,7 @@ public:
 	/** */
 	GameCityItem* GetGameCityItemById(int itemId);
 	/** */
-	int GetLastIndex() const;
+	int CreateNewId() const;
 private:
 	/** */
 	GameCityItemRepository();
