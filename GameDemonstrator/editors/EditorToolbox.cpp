@@ -60,12 +60,14 @@ void EditorToolbox::CreateGroupTerrainTypes()
 	GroupTerrainTypes = new QButtonGroup(this);
 
 	QGridLayout *layoutTerrainTypes = new QGridLayout;
-	QMap<int, ModelTerrainType*>::const_iterator currentTerrainTypeIterator = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
-
+	const int COLUMN_INDEX = 0;
 	int rowIndex = 0;
+	layoutTerrainTypes->addWidget(CreateReleaseTerrainTypeWidget(GroupTerrainTypes, new TerrainTypeIdSelector(rowIndex++)));
+
+	QMap<int, ModelTerrainType*>::const_iterator currentTerrainTypeIterator = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
 	while (currentTerrainTypeIterator != ModelTerrainTypeRepository::GetInstance()->GetLastIterator())
 	{
-		layoutTerrainTypes->addWidget(CreateTerrainTypeWidget(currentTerrainTypeIterator.value(), GroupTerrainTypes, new TerrainTypeIdSelector(currentTerrainTypeIterator.value()->GetId())), rowIndex++, 0);
+		layoutTerrainTypes->addWidget(CreateTerrainTypeWidget(currentTerrainTypeIterator.value(), GroupTerrainTypes, new TerrainTypeIdSelector(currentTerrainTypeIterator.value()->GetId())), rowIndex++, COLUMN_INDEX);
 		currentTerrainTypeIterator++;
 	}
 
@@ -110,9 +112,32 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
-QWidget * EditorToolbox::CreateReleaseTerrainTypeWidget(QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector)
+QWidget * EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup)
 {
 	QIcon icon(modelTerrainType->GetPictureName());
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+	buttonGroup->addButton(button);
+
+//	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::SlotTrigger);
+//	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel(modelTerrainType->GetName()), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+
+QWidget * EditorToolbox::CreateReleaseTerrainTypeWidget(QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector)
+{
+	QIcon icon(".\\Resources\\sign_forbidden.ico");
 
 	QToolButton *button = new QToolButton;
 	button->setIcon(icon);
