@@ -113,7 +113,7 @@ GameUnitItem* GameUnitItemFactory::UpdateGameUnitItem(const GameUnitParameterObj
 
 int GameUnitItemFactory::CreateId()
 {
-	return GameUnitItemRepository::GetInstance()->GetLastIndex();
+	return GameUnitItemRepository::GetInstance()->CreateNewId();
 }
 
 QString GameUnitItemFactory::CreateName(const ModelUnitType* modelUnitType) const

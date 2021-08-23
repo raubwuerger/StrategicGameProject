@@ -87,7 +87,7 @@ const GameUnitItem* GameUnitItemRepository::GetGameUnitItemByGameMapItemId(int g
 	return GetGameUnitItemById(GameUnitItemsOnGameMapItem[gameMapItemId]);
 }
 
-int GameUnitItemRepository::GetLastIndex() const
+int GameUnitItemRepository::CreateNewId() const
 {
 	if (true == GameUnitItems.isEmpty())
 	{
