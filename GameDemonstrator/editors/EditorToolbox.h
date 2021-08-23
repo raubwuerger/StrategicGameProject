@@ -43,6 +43,8 @@ private:
 	/** */
 	QWidget *CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector);
 	/** */
+	QWidget *CreateReleaseTerrainTypeWidget(QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector) {}
+	/** */
 	BaseEditor* CreateTerrainTypeEditor();
 	/** */
 	void CreateGroupUnitTypes();

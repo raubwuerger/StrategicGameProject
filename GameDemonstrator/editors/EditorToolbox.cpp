@@ -110,6 +110,29 @@ QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTer
 	return widget;
 }
 
+QWidget * EditorToolbox::CreateReleaseTerrainTypeWidget(QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector)
+{
+	QIcon icon(modelTerrainType->GetPictureName());
+
+	QToolButton *button = new QToolButton;
+	button->setIcon(icon);
+	button->setIconSize(QSize(48, 48));
+	button->setCheckable(true);
+	buttonGroup->addButton(button);
+
+	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::SlotTrigger);
+	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
+
+	QGridLayout *layout = new QGridLayout;
+	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
+	layout->addWidget(new QLabel("No Type"), 1, 0, Qt::AlignCenter);
+
+	QWidget *widget = new QWidget;
+	widget->setLayout(layout);
+
+	return widget;
+}
+
 void EditorToolbox::CreateGroupUnitTypes()
 {
 	BaseEditor* editor = CreateUnitTypeEditor();
