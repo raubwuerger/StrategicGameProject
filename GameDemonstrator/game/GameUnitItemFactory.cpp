@@ -130,16 +130,19 @@ bool GameUnitItemFactory::Validate(const GameUnitParameterObject& obj) const
 {
 	if (-1 == obj.ModelUnitTypeId && nullptr == obj.ModelUnitTypeObject)
 	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelUnitTypeId or ModelUnitTypeObject are invalid!"));
 		return false;
 	}
 	
 	if (-1 == obj.ModelOwnerTypeId && nullptr == obj.ModelOwnerTypeObject)
 	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelOwnerTypeId or ModelOwnerTypeObject are invalid!"));
 		return false;
 	}
 
 	if (-1 == obj.GameMapItemId && nullptr == obj.GameMapItemObject)
 	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("GameMapItemId or GameMapItemObject are invalid!"));
 		return false;
 	}
 	return true;
