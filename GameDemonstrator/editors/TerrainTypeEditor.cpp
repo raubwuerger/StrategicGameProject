@@ -43,6 +43,9 @@ void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
+#include "game/GameUnitItemRepository.h"
+#include "game/GameUnitItem.h"
+#include "controller/TerrainAccessTester.h"
 void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 {
 	if (false == BaseEditor::GetActive())
@@ -52,6 +55,11 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 
 	Q_ASSERT(MapEventManagerInstance);
 	if( ActiveTerrainType == nullptr )
+	{
+		return;
+	}
+
+	if (false == IsTerrainTypeValid(gameMapItemId))
 	{
 		return;
 	}
@@ -71,6 +79,17 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 	}
 
 	modelMapToUpdate->SetModelTerrainType(ActiveTerrainType);
+}
+
+bool TerrainTypeEditor::IsTerrainTypeValid(int gameMapItemId) const
+{
+	const GameUnitItem* gameUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
+	if (nullptr == gameUnit)
+	{
+		return true; //No GameUnit is on MapItem
+	}
+
+	return TerrainAccessTester::Accessable(gameUnit, ActiveTerrainType);
 }
 
 void TerrainTypeEditor::SlotActivated()

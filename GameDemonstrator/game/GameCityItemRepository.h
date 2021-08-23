@@ -26,8 +26,6 @@ public:
 	/** */
 	GameCityItem* GetGameCityItemById(int itemId);
 	/** */
-	const GameCityItem* GetGameUnitItemByGameMapItemId(int gameMapItemId);
-	/** */
 	int GetLastIndex() const;
 private:
 	/** */

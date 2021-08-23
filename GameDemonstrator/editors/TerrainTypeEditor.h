@@ -31,6 +31,9 @@ public slots:
 	/** */
 	void SlotDeactivated() override;
 private:
+	/** */
+	bool IsTerrainTypeValid( int gameMapItemId ) const;
+private:
 	ModelTerrainType*		ActiveTerrainType;
 	MapHexItemEventManager*	MapEventManagerInstance;
 	EditorController*		EditorControllerInstance;

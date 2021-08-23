@@ -61,3 +61,24 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Map
 
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
+
+bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const ModelTerrainType* modelTerrainType)
+{
+	if (nullptr == gameUnitItem)
+	{
+		return false;
+	}
+
+	if (nullptr == modelTerrainType)
+	{
+		return false;
+	}
+
+	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
+	if (nullptr == modelUnitType)
+	{
+		return false;
+	}
+
+	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
+}
