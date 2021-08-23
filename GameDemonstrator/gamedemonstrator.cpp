@@ -1,31 +1,29 @@
 #include "stdafx.h"
 #include "gamedemonstrator.h"
 #include "ActionRepository.h"
+#include "Action.h"
+#include "LogFactory.h"
+#include "ConfigurationLoader.h"
 #include "game/GameMainThread.h"
 #include "game/GameMainLoop.h"
+#include "game/GameMapItemRepository.h"
 #include "dialogs/GameTurnDialog.h"
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
 #include "map/MapView.h"
 #include "map/MapHexItemEventManager.h"
+#include "map/MapUnitItemRepository.h"
 #include "io\SerializerGame.h"
 #include "io\SerializeBinary.h"
 #include "io\SerializerFactory.h"
-#include "Action.h"
-#include "LogFactory.h"
 #include "model/ModelOwnerTypeRepository.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "model/ModelTerrainTypeFactory.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
-#include "model/ModelUnitTypeFactory.h"
-#include "game/GameMapItemRepository.h"
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorLoadCreateGame.h"
-#include "model/ModelOwnerTypeFactory.h"
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
-#include "map/MapUnitItemRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -37,11 +35,14 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
+	EditorMenu(nullptr),
+	CurrentGameMode(nullptr),
 	ConnectorLoadCreateGameInstance(nullptr)
 {
 	ui.setupUi(this);
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
+	EditorMenu = menuBar()->addMenu(tr("&Editor"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
@@ -54,10 +55,13 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	ActionRepository::GetInstanceFirstTimeInit(parent);
 	ConnectorSaveGameInstance = SerializerFactory().CreateInterface();
-	LoadTerrainTypes();
-	LoadOwnerTypes();
-	LoadUnitTypes();
-	LoadCityTypes();
+
+	ConfigurationLoader configurationLoader;
+	if (false == configurationLoader.Load())
+	{
+
+	}
+
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
@@ -192,7 +196,7 @@ void GameDemonstrator::CreateHexItemInfoDialog()
  	HexItemInfoDialogInstance = new HexItemInfoDialog(dockHexItem);
  	dockHexItem->setWidget( HexItemInfoDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
-	ViewMenu->addAction(dockHexItem->toggleViewAction());
+	EditorMenu->addAction(dockHexItem->toggleViewAction());
 	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance; //TODO: Sollte das hier passieren
 }
 
@@ -203,7 +207,7 @@ void GameDemonstrator::CreateUnitTypeInfoDialog()
 	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog(dockUnitType);
 	dockUnitType->setWidget(UnitTypeInfoDialogInstance);
 	addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
-	ViewMenu->addAction(dockUnitType->toggleViewAction());
+	EditorMenu->addAction(dockUnitType->toggleViewAction());
 	MapViewInstance->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance; //TODO: Sollte das hier passieren
 }
 
@@ -215,7 +219,7 @@ void GameDemonstrator::CreateCityTypeInfoDialog()
 	CityTypeInfoDialogInstance = new CityTypeInfoDialog(dockCityType);
 	dockCityType->setWidget(CityTypeInfoDialogInstance);
 	addDockWidget(Qt::RightDockWidgetArea, dockCityType);
-	ViewMenu->addAction(dockCityType->toggleViewAction());
+	EditorMenu->addAction(dockCityType->toggleViewAction());
 	MapViewInstance->MapEventManagerInstance->CityTypeInfoDialog = CityTypeInfoDialogInstance; //TODO: Sollte das hier passieren
 }
 
@@ -254,42 +258,16 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
 }
 
-bool GameDemonstrator::LoadTerrainTypes()
-{
-	ModelTerrainTypeFactory factory;
-	return factory.Create();
-}
-
-bool GameDemonstrator::LoadOwnerTypes()
-{
-	ModelOwnerTypeFactory factory;
-	return factory.Create();
-}
-
-bool GameDemonstrator::LoadUnitTypes()
-{
-	ModelUnitTypeFactory factory;
-	return factory.Create();
-}
-
-#include "model/ModelCityTypeFactory.h"
-bool GameDemonstrator::LoadCityTypes()
-{
-	ModelCityTypeFactory factory;
-	return factory.Create();
-}
-
 void GameDemonstrator::CreateEditorToolbox()
 {
-	QDockWidget *dockCountry = new QDockWidget(tr("Editor Palette"), this);
-	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	QDockWidget *editorToolbox = new QDockWidget(tr("Editor Palette"), this);
+	editorToolbox->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-	EditorToolboxInstance = new EditorToolbox(dockCountry);
+	EditorToolboxInstance = new EditorToolbox(editorToolbox);
 	EditorToolboxInstance->MapViewInstance = MapViewInstance;
-
 	EditorToolboxInstance->Create();
 
-	dockCountry->setWidget( EditorToolboxInstance );
-	addDockWidget(Qt::LeftDockWidgetArea, dockCountry);
-	ViewMenu->addAction(dockCountry->toggleViewAction());
+	editorToolbox->setWidget( EditorToolboxInstance );
+	addDockWidget(Qt::LeftDockWidgetArea, editorToolbox);
+	ViewMenu->addAction(editorToolbox->toggleViewAction());
 }

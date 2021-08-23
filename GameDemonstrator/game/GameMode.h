@@ -10,6 +10,8 @@ public:
 	/** */
 	~GameMode();
 	/** */
+	bool Init();
+	/** */
 	virtual void Activate() = 0;
 	/** */
 	virtual void Deavtivate() = 0;

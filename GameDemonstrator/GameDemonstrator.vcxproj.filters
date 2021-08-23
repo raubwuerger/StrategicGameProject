@@ -599,6 +599,9 @@
     <ClCompile Include="dialogs\CityTypeInfoDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigurationLoader.cpp">
+      <Filter>Source Dateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -844,6 +847,12 @@
     <ClInclude Include="..\StandardLibQt\ImageLoader.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_CityTypeInfoDialog.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigurationLoader.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -959,6 +968,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\CityTypeInfoDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\CityTypeInfoDialog.ui">
+      <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

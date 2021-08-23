@@ -10,3 +10,8 @@ GameMode::GameMode()
 GameMode::~GameMode()
 {
 }
+
+bool GameMode::Init()
+{
+	return false;
+}

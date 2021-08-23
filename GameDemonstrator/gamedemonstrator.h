@@ -19,6 +19,7 @@ class ConnectorTerrainEditorGameMap;
 class ConnectorUnitTypeGameMap;
 class ConnectorLoadCreateGame;
 class SerializerGame;
+class GameMode;
 
 namespace jha
 {
@@ -43,16 +44,12 @@ private:
 	void CreateCityTypeInfoDialog();
 	void InitMainGameThread();
 	void InitLoggingFramwork();
-	bool LoadTerrainTypes();
-	bool LoadOwnerTypes();
-	bool LoadUnitTypes();
-	bool LoadCityTypes();
-	bool ReadTerrainTypes(QIODevice *device);
 	void CreateEditorToolbox();
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
 	QMenu	*InfoMenu;
+	QMenu	*EditorMenu;
 	ActionRepository*			ActionRepository;
 	GameTurnDialog*				GameTurnDialogInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
@@ -65,6 +62,7 @@ private:
 	SerializerGame*				ConnectorSaveGameInstance;
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
+	GameMode*					CurrentGameMode;
 	Ui::GameDemonstratorClass ui;
 };
 
