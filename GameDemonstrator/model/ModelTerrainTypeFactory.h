@@ -19,9 +19,7 @@ private:
 	/** */
 	ModelTerrainType* CreateFromXML( const QDomNode& node );
 	/** */
-	const QImage* LoadImage( const QString& path );
-	/** */
-	bool AttacheImage( ModelTerrainType* modelTerrainType );
+	bool AttacheImage( ModelTerrainType* type );
 };
 
 #endif // MODELTERRAINTYPEFACTORY_H

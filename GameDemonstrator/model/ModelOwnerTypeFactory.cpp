@@ -9,6 +9,7 @@
 #include "ModelOwnerTypeRepository.h"
 #include "ModelConfigurationHeaderXMLItems.h"
 #include "io\ConfigFileLoader.h"
+#include "ImageLoader.h"
 
 ModelOwnerTypeFactory::ModelOwnerTypeFactory()
 {
@@ -20,10 +21,8 @@ ModelOwnerTypeFactory::~ModelOwnerTypeFactory()
 
 bool ModelOwnerTypeFactory::Create()
 {
-	ModelOwnerTypeXMLItems config;
-
 	ConfigFileLoader configFileLoader;
-	if (false == configFileLoader.LoadConfig(config.CONFIG_FILE_NAME, config.ROOT_NAME))
+	if (false == configFileLoader.LoadConfig(ModelOwnerTypeXMLItems::CONFIG_FILE_NAME, ModelOwnerTypeXMLItems::ROOT_NAME))
 	{
 		return false;
 	}
@@ -42,76 +41,52 @@ bool ModelOwnerTypeFactory::Create()
 
 ModelOwnerType* ModelOwnerTypeFactory::CreateFromXML( const QDomNode& node )
 {
-	ModelOwnerTypeXMLItems config;
 	int ownerTypeId = 0;
-
 	DomValueExtractor extractor(node);
-	if( false == extractor.ExtractValue(config.SUBELEMENT_ID,ownerTypeId) )
+	if (false == extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_ID, ownerTypeId))
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("OwnerType has not element of name: %1").arg(config.SUBELEMENT_ID) );
+		jha::GetLog()->Log_WARNING(QObject::tr("OwnerType has not element of name: %1").arg(ModelOwnerTypeXMLItems::SUBELEMENT_ID));
 		return nullptr;
 	}
 
-	ModelOwnerType *newOwnerType = new ModelOwnerType( ownerTypeId );
+	ModelOwnerType *newType = new ModelOwnerType( ownerTypeId );
 	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_NAME,newOwnerType->Name);
+		allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_NAME, newType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME, newOwnerType->PictureName);
-		allElementsExtracted &= AttacheImage(newOwnerType);
+		allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+		allElementsExtracted &= AttacheImage(newType);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_COLOR,newOwnerType->Color);
+		allElementsExtracted &= extractor.ExtractValue(ModelOwnerTypeXMLItems::SUBELEMENT_COLOR, newType->Color);
 	}
 
 	if( false == allElementsExtracted )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(ownerTypeId)) );
-		delete newOwnerType;
+		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(ModelOwnerTypeXMLItems::SUBELEMENT_ID).arg(QString::number(ownerTypeId)));
+		delete newType;
 		return nullptr;
 	}
 
-	return newOwnerType;
+	return newType;
 }
 
-const QImage* ModelOwnerTypeFactory::LoadImage(const QString& path)
+bool ModelOwnerTypeFactory::AttacheImage(ModelOwnerType* type)
 {
-	QImage* newImage = new QImage;
-	try
-	{
-		if (newImage->load(path) == false)
-		{
-			delete newImage;
-			return nullptr;
-		}
-		return newImage;
-	}
-	catch (...)
-	{
-		delete newImage;
-		return nullptr;
-	}
-	return newImage;
-}
-
-bool ModelOwnerTypeFactory::AttacheImage(ModelOwnerType* modelOwnerType)
-{
-	QString pictureName(modelOwnerType->GetPictureName());
-	const QImage *terrainTypeImage = LoadImage(pictureName);
+	const QImage *terrainTypeImage = ImageLoader::LoadImage(type->GetPictureName());
 
 	if (terrainTypeImage == nullptr)
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("Unable to load owner image: %1").arg(pictureName));
 		return false;
 	}
 
-	modelOwnerType->SetImage(terrainTypeImage);
+	type->SetImage(terrainTypeImage);
 	return true;
 
 }

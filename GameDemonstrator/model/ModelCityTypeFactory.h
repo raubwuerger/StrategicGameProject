@@ -17,9 +17,7 @@ private:
 	/** */
 	ModelCityType* CreateFromXML( const QDomNode& node );
 	/** */
-	const QImage* LoadImage(const QString& path);
-	/** */
-	bool AttacheImage(ModelCityType* modelCityType);
+	bool AttacheImage(ModelCityType* type);
 };
 
 #endif // MODELOWNERTYPEFACTORY_H

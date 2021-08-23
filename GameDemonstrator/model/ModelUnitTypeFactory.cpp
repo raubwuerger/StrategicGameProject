@@ -9,6 +9,7 @@
 #include "io/ConfigFileLoader.h"
 #include <QtXml>
 #include "LogInterface.h"
+#include "ImageLoader.h"
 
 ModelUnitTypeFactory::ModelUnitTypeFactory()
 {
@@ -22,10 +23,8 @@ ModelUnitTypeFactory::~ModelUnitTypeFactory()
 
 bool ModelUnitTypeFactory::Create()
 {
-	ModelUnitTypeXMLItems config;
-
 	ConfigFileLoader configFileLoader;
-	if (false == configFileLoader.LoadConfig(config.CONFIG_FILE_NAME, config.ROOT_NAME))
+	if (false == configFileLoader.LoadConfig(ModelUnitTypeXMLItems::CONFIG_FILE_NAME, ModelUnitTypeXMLItems::ROOT_NAME))
 	{
 		return false;
 	}
@@ -44,83 +43,82 @@ bool ModelUnitTypeFactory::Create()
 
 ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 {
-	ModelUnitTypeXMLItems config;
 	int unitTypeId = 0;
 
 	DomValueExtractor extractor(node);
-	if (false == extractor.ExtractValue(config.SUBELEMENT_ID, unitTypeId))
+	if (false == extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_ID, unitTypeId))
 	{
-		jha::GetLog()->Log_WARNING(QObject::tr("ModelTerrainType has not element of name: %1").arg(config.SUBELEMENT_ID));
+		jha::GetLog()->Log_WARNING(QObject::tr("ModelTerrainType has not element of name: %1").arg(ModelUnitTypeXMLItems::SUBELEMENT_ID));
 		return nullptr;
 	}
 
-	ModelUnitType *newUnitType = new ModelUnitType(unitTypeId);
+	ModelUnitType *newType = new ModelUnitType(unitTypeId);
 
 	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_NAME, newUnitType->Name);
+		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_NAME, newType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME, newUnitType->PictureName);
-		allElementsExtracted &= AttacheImage(newUnitType);
+		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+		allElementsExtracted &= AttacheImage(newType);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_STRENGTH, newUnitType->Strength);
+		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH, newType->Strength);
 	}
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ParseAttackValues(find.FindDomeNodeByName(config.SUBELEMENT_ATTACKVALUES), newUnitType->AttackValues);
+		allElementsExtracted &= ParseAttackValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_ATTACKVALUES), newType->AttackValues);
 	}
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ParseDefenseValues(find.FindDomeNodeByName(config.SUBELEMENT_DEFENCEVALUES), newUnitType->DefenseValues);
+		allElementsExtracted &= ParseDefenseValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_DEFENCEVALUES), newType->DefenseValues);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_MOVEMENTPOINTS, newUnitType->MovementPoints);
+		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS, newType->MovementPoints);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_RANGE, newUnitType->Range);
+		allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_RANGE, newType->Range);
 	}
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ParseTerrainTypes(find.FindDomeNodeByName(config.NODE_ACCESSIBLETERRAINTYPES), newUnitType->AccessibleTerrainTypes);
+		allElementsExtracted &= ParseTerrainTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->AccessibleTerrainTypes);
 	}
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ParseAttackableUnitTypes(find.FindDomeNodeByName(config.NODE_ATTACKABLE_UNITTYPES), newUnitType->AttackableUnitTypes);
+		allElementsExtracted &= ParseAttackableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES), newType->AttackableUnitTypes);
 	}
 
 	{
 		DomNodeFinder find(node);
-		allElementsExtracted &= ParseRecognisableUnitTypes(find.FindDomeNodeByName(config.NODE_RECOGNISABLE_UNITTYPES), newUnitType->RecognisableUnitTypes);
+		allElementsExtracted &= ParseRecognisableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES), newType->RecognisableUnitTypes);
 	}
 
 	if (false == allElementsExtracted)
 	{
-		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(unitTypeId)));
-		delete newUnitType;
+		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(ModelUnitTypeXMLItems::SUBELEMENT_ID).arg(QString::number(unitTypeId)));
+		delete newType;
 		return nullptr;
 	}
-	return newUnitType;
+	return newType;
 }
 
-bool ModelUnitTypeFactory::AttacheImage(ModelUnitType* modelUnit)
+bool ModelUnitTypeFactory::AttacheImage(ModelUnitType* type)
 {
-	QString imageName(modelUnit->GetPictureName());
-	const QImage *image = LoadImage(imageName);
+	QString imageName(type->GetPictureName());
+	const QImage *image = ImageLoader::LoadImage(type->GetPictureName());
 
 	if (image == nullptr)
 	{
@@ -128,28 +126,8 @@ bool ModelUnitTypeFactory::AttacheImage(ModelUnitType* modelUnit)
 		return false;
 	}
 
-	modelUnit->SetImage(image);
+	type->SetImage(image);
 	return true;
-}
-
-const QImage* ModelUnitTypeFactory::LoadImage(const QString& path)
-{
-	QImage* newImage = new QImage;
-	try
-	{
-		if (newImage->load(path) == false)
-		{
-			delete newImage;
-			return nullptr;
-		}
-		return newImage;
-	}
-	catch (...)
-	{
-		delete newImage;
-		return nullptr;
-	}
-	return newImage;
 }
 
 #include "ModelUnitTypeXMLItems.h"

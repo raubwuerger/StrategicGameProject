@@ -7,6 +7,7 @@
 #include "ModelTerrainTypeRepository.h"
 #include "DomValueExtractor.h"
 #include "io/ConfigFileLoader.h"
+#include "ImageLoader.h"
 
 ModelTerrainTypeFactory::ModelTerrainTypeFactory()
 {
@@ -18,10 +19,8 @@ ModelTerrainTypeFactory::~ModelTerrainTypeFactory()
 
 bool ModelTerrainTypeFactory::Create()
 {
-	ModelTerrainXMLItems config;
-
 	ConfigFileLoader configFileLoader;
-	if (false == configFileLoader.LoadConfig(config.CONFIG_FILE_NAME, config.ROOT_NAME))
+	if (false == configFileLoader.LoadConfig(ModelTerrainXMLItems::CONFIG_FILE_NAME, ModelTerrainXMLItems::ROOT_NAME))
 	{
 		return false;
 	}
@@ -40,105 +39,82 @@ bool ModelTerrainTypeFactory::Create()
 
 ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 {
-	ModelTerrainXMLItems config;
 	int terrainTypeId = 0;
 
 	DomValueExtractor extractor(node);
-	if( false == extractor.ExtractValue(config.SUBELEMENT_ID,terrainTypeId) )
+	if (false == extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_ID, terrainTypeId))
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("ModelTerrainType has not element of name: %1").arg(config.SUBELEMENT_ID) );
+		jha::GetLog()->Log_WARNING(QObject::tr("ModelTerrainType has not element of name: %1").arg(ModelTerrainXMLItems::SUBELEMENT_ID));
 		return nullptr;
 	}
 
-	ModelTerrainType *newTerrainType = new ModelTerrainType( terrainTypeId );
+	ModelTerrainType *newType = new ModelTerrainType( terrainTypeId );
 
 	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_NAME,newTerrainType->Name);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_NAME, newType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_PICTURENAME,newTerrainType->PictureName);
-		allElementsExtracted &= AttacheImage( newTerrainType );
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+		allElementsExtracted &= AttacheImage( newType );
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_INFRASTRUCTURE,newTerrainType->Infrastructure);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_INFRASTRUCTURE, newType->Infrastructure);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_OIL,newTerrainType->Oil);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_OIL, newType->Oil);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_TIMBER,newTerrainType->Timber);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_TIMBER, newType->Timber);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_STONE,newTerrainType->Stone);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_STONE, newType->Stone);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_MOVEMENT_MODIFIER,newTerrainType->MovementModifier);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_MOVEMENT_MODIFIER, newType->MovementModifier);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_DEFENSE_MODIFIER,newTerrainType->DefenseModifier);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_DEFENSE_MODIFIER, newType->DefenseModifier);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(config.SUBELEMENT_ATTACK_MODIFIER,newTerrainType->AttackModifier);
+		allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_ATTACK_MODIFIER, newType->AttackModifier);
 	}
 
 	if( false == allElementsExtracted )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Unable to register %1 with id %2").arg(config.SUBELEMENT_ID).arg(QString::number(terrainTypeId)) );
-		delete newTerrainType;
+		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(ModelTerrainXMLItems::SUBELEMENT_ID).arg(QString::number(terrainTypeId)));
+		delete newType;
 		return nullptr;
 	}
-	return newTerrainType;
+	return newType;
 }
 
-bool ModelTerrainTypeFactory::AttacheImage( ModelTerrainType* modelTerrainType )
+bool ModelTerrainTypeFactory::AttacheImage( ModelTerrainType* type )
 {
-	QString terrainPictureName(modelTerrainType->GetPictureName());
-	const QImage *terrainTypeImage = LoadImage( terrainPictureName );
+	const QImage *terrainTypeImage = ImageLoader::LoadImage(type->GetPictureName());
 
 	if( terrainTypeImage == nullptr )
 	{
-		jha::GetLog()->Log_MESSAGE( QObject::tr("Unable to load terrain image: %1").arg(terrainPictureName));
 		return false;
 	}
 	
-	modelTerrainType->SetImage( terrainTypeImage );
+	type->SetImage(terrainTypeImage);
 	return true;
-}
-
-const QImage* ModelTerrainTypeFactory::LoadImage( const QString& path )
-{
-	QImage* newImage = new QImage;
-	try
-	{
-		if( newImage->load( path ) == false )
-		{
-			delete newImage;
-			return nullptr;
-		}
-		return newImage;
-	}
-	catch( ... )
-	{
-		delete newImage;
-		return nullptr;
-	}
-	return newImage;
 }

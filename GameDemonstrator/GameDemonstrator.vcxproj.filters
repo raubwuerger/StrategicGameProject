@@ -587,6 +587,9 @@
     <ClCompile Include="map\MapCityItemFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\StandardLibQt\ImageLoader.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -828,6 +831,9 @@
     </ClInclude>
     <ClInclude Include="map\MapCityItemFactory.h">
       <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\ImageLoader.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 #include "ModelCityTypeRepository.h"
 #include "ModelConfigurationHeaderXMLItems.h"
 #include "io\ConfigFileLoader.h"
+#include "ImageLoader.h"
 
 ModelCityTypeFactory::ModelCityTypeFactory()
 {
@@ -49,71 +50,49 @@ ModelCityType* ModelCityTypeFactory::CreateFromXML( const QDomNode& node )
 		return nullptr;
 	}
 
-	ModelCityType *newOwnerType = new ModelCityType( ownerTypeId );
+	ModelCityType *newType = new ModelCityType( ownerTypeId );
 	bool allElementsExtracted = true;
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_NAME, newOwnerType->Name);
+		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_NAME, newType->Name);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME, newOwnerType->PictureName);
-		allElementsExtracted &= AttacheImage(newOwnerType);
+		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
+		allElementsExtracted &= AttacheImage(newType);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newOwnerType->Efficiency);
+		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newType->Efficiency);
 	}
 
 	{
 		DomValueExtractor extractor(node);
-		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newOwnerType->SpezializedUnitType);
+		allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newType->SpezializedUnitType);
 	}
 
 	if (false == allElementsExtracted)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(ModelCityTypeXMLItems::SUBELEMENT_ID).arg(QString::number(ownerTypeId)));
-		delete newOwnerType;
+		delete newType;
 		return nullptr;
 	}
 
-	return newOwnerType;
+	return newType;
 }
 
-const QImage* ModelCityTypeFactory::LoadImage(const QString& path)
+bool ModelCityTypeFactory::AttacheImage(ModelCityType* type)
 {
-	QImage* newImage = new QImage;
-	try
-	{
-		if (newImage->load(path) == false)
-		{
-			delete newImage;
-			return nullptr;
-		}
-		return newImage;
-	}
-	catch (...)
-	{
-		delete newImage;
-		return nullptr;
-	}
-	return newImage;
-}
-
-bool ModelCityTypeFactory::AttacheImage(ModelCityType* ModelCityType)
-{
-	QString pictureName(ModelCityType->GetPictureName());
-	const QImage *terrainTypeImage = LoadImage(pictureName);
+	const QImage *terrainTypeImage = ImageLoader::LoadImage(type->GetPictureName());
 
 	if (terrainTypeImage == nullptr)
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("Unable to load owner image: %1").arg(pictureName));
 		return false;
 	}
 
-	ModelCityType->SetImage(terrainTypeImage);
+	type->SetImage(terrainTypeImage);
 	return true;
 
 }

@@ -18,9 +18,7 @@ private:
 	/** */
 	ModelOwnerType* CreateFromXML( const QDomNode& node );
 	/** */
-	const QImage* LoadImage(const QString& path);
-	/** */
-	bool AttacheImage(ModelOwnerType* modelOwnerType);
+	bool AttacheImage(ModelOwnerType* type);
 };
 
 #endif // MODELOWNERTYPEFACTORY_H

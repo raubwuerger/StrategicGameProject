@@ -470,7 +470,7 @@
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
-		<Name>TroopTransporter</Name>
+		<Name>Transporter</Name>
 		<PictureName>.\Resources\Units\TroopTransporter_64.png</PictureName>
 		<Strength>1</Strength>
 		<AttackValues>

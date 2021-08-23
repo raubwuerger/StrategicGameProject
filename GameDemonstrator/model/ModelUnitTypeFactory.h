@@ -17,9 +17,7 @@ private:
 	/** */
 	ModelUnitType* CreateFromXML(const QDomNode& node);
 	/** */
-	const QImage* LoadImage(const QString& path);
-	/** */
-	bool AttacheImage(ModelUnitType* modelUnit);
+	bool AttacheImage(ModelUnitType* type);
 	/** */
 	bool ParseTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes);
 	/** */
