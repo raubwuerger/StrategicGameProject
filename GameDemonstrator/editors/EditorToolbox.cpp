@@ -67,7 +67,7 @@ void EditorToolbox::CreateGroupTerrainTypes()
 	QMap<int, ModelTerrainType*>::const_iterator currentTerrainTypeIterator = ModelTerrainTypeRepository::GetInstance()->GetFirstIterator();
 	while (currentTerrainTypeIterator != ModelTerrainTypeRepository::GetInstance()->GetLastIterator())
 	{
-		layoutTerrainTypes->addWidget(CreateTerrainTypeWidget(currentTerrainTypeIterator.value(), GroupTerrainTypes, new TerrainTypeIdSelector(currentTerrainTypeIterator.value()->GetId())), rowIndex++, COLUMN_INDEX);
+		layoutTerrainTypes->addWidget(CreateTerrainTypeWidget(currentTerrainTypeIterator.value(), GroupTerrainTypes), rowIndex++, COLUMN_INDEX);
 		currentTerrainTypeIterator++;
 	}
 
@@ -89,29 +89,6 @@ BaseEditor* EditorToolbox::CreateTerrainTypeEditor()
 	return TerrainTypeEditorInstance;
 }
 
-QWidget *EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup, TerrainTypeIdSelector *connector)
-{
-	QIcon icon(modelTerrainType->GetPictureName());
-
-	QToolButton *button = new QToolButton;
-	button->setIcon(icon);
-	button->setIconSize(QSize(48, 48));
-	button->setCheckable(true);
-	buttonGroup->addButton(button);
-
-	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::SlotTrigger);
-	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
-
-	QGridLayout *layout = new QGridLayout;
-	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-	layout->addWidget(new QLabel(modelTerrainType->GetName()), 1, 0, Qt::AlignCenter);
-
-	QWidget *widget = new QWidget;
-	widget->setLayout(layout);
-
-	return widget;
-}
-
 QWidget * EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTerrainType, QButtonGroup* buttonGroup)
 {
 	QIcon icon(modelTerrainType->GetPictureName());
@@ -122,8 +99,9 @@ QWidget * EditorToolbox::CreateTerrainTypeWidget(const ModelTerrainType* modelTe
 	button->setCheckable(true);
 	buttonGroup->addButton(button);
 
-//	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::SlotTrigger);
-//	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
+	TerrainTypeIdSelector *connector = new TerrainTypeIdSelector(modelTerrainType->GetId());
+	connect(button, &QToolButton::pressed, connector, &TerrainTypeIdSelector::SlotTrigger);
+	connect(connector, &TerrainTypeIdSelector::SignalTerrainTypeActive, TerrainTypeEditorInstance, &TerrainTypeEditor::SlotActivateTerrainType);
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
