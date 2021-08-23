@@ -63,6 +63,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateMenuFile();
 	CreateHexItemInfoDialog();
 	CreateUnitTypeInfoDialog();
+	CreateCityTypeInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
 
@@ -204,6 +205,18 @@ void GameDemonstrator::CreateUnitTypeInfoDialog()
 	addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
 	ViewMenu->addAction(dockUnitType->toggleViewAction());
 	MapViewInstance->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance; //TODO: Sollte das hier passieren
+}
+
+#include "dialogs/CityTypeInfoDialog.h"
+void GameDemonstrator::CreateCityTypeInfoDialog()
+{
+	QDockWidget *dockCityType = new QDockWidget(tr("City type"), this);
+	dockCityType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	CityTypeInfoDialogInstance = new CityTypeInfoDialog(dockCityType);
+	dockCityType->setWidget(CityTypeInfoDialogInstance);
+	addDockWidget(Qt::RightDockWidgetArea, dockCityType);
+	ViewMenu->addAction(dockCityType->toggleViewAction());
+	MapViewInstance->MapEventManagerInstance->CityTypeInfoDialog = CityTypeInfoDialogInstance; //TODO: Sollte das hier passieren
 }
 
 #include "LogInterface.h"

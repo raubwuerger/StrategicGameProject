@@ -111,7 +111,7 @@ void MapView::InitMapEventManager()
 	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &MapView::SlotUnitItemActive); //TODO: Muss der MapView wissen welches Item aktiv ist?
 	connect(ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapUnitItemInfo);
 
-	connect(ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, this, &MapView::SlotUnitItemActive); //TODO: Muss der MapView wissen welches Item aktiv ist?
+	connect(ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapCityItemInfo); //TODO: Muss der MapView wissen welches Item aktiv ist?
 	connect(ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo); //TODO: Muss der MapView wissen welches Item aktiv ist?
 }
 
