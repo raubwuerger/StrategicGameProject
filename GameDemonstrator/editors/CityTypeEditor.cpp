@@ -3,6 +3,7 @@
 #include "model\ModelCityTypeRepository.h"
 #include "model\ModelCityType.h"
 #include "controller\EditorController.h"
+#include "game\GameCityItemFactory.h"
 
 CityTypeEditor::CityTypeEditor(QObject *parent)
 	: BaseEditor(parent),
@@ -43,7 +44,7 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
-
+//	TODO: GameCityItemFactory -> Create
 }
 
 void CityTypeEditor::SlotDeleteCity(int cityTypeId)

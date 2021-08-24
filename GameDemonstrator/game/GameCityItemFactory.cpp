@@ -199,8 +199,8 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 			return nullptr;
 		}
 	}
-	const GameMapItem* mapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapItemId);
-	if (nullptr == mapItem)
+	const GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapItemId);
+	if (nullptr == gameMapItem)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: GameMapItem with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(mapItemId)));
 		return nullptr;
@@ -215,8 +215,8 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 			return nullptr;
 		}
 	}
-	const ModelOwnerType* ownerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
-	if (nullptr == ownerType)
+	const ModelOwnerType* modelOwnerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
+	if (nullptr == modelOwnerType)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: ModelOwnerType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(ownerTypeId)));
 		return nullptr;
@@ -252,21 +252,10 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 		}
 	}
 
-	GameCityItem *newItem = new GameCityItem(id);
+	GameCityParameterObject obj;
+	obj.ModelCityTypeObject = modelCityType;
+	obj.ModelOwnerTypeObject = modelOwnerType;
+	obj.GameMapItemObject = gameMapItem;
 
-	newItem->CityType = modelCityType;
-	newItem->CityTypeId = cityTypeId;
-	
-	newItem->OwnerType = ownerType;
-	newItem->OwnerTypeId = ownerTypeId;
-
-	newItem->MapItem = mapItem;
-	newItem->MapItemId = mapItemId;
-
-	newItem->Name = name;
-
-	newItem->Efficiency = efficiency;
-	newItem->SpezializedUnitTypeId = spezializedUnitTypeId;
-
-	return newItem;
+	return Create(obj);
 }

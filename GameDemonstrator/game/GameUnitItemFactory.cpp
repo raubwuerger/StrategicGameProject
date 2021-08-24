@@ -206,17 +206,16 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
 			continue;
 		}
-		if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(created))
-		{
-			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
-			return false;
-		}
+// 		if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(created))
+// 		{
+// 			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
+// 			return false;
+// 		}
 	}
 
 	return true;
 }
 
-//TODO: Sollte ein GameUnitParameterObject erstellen!
 #include "Model/ModelOwnerType.h"
 GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNode)
 {
@@ -301,17 +300,11 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		}
 	}
 
-	GameUnitItem *newUnitItem = new GameUnitItem(id);
-	newUnitItem->UnitType = modelUnitType;
-	newUnitItem->UnitTypeId = modelUnitType->GetId();
+	GameUnitParameterObject obj;
+	obj.GameMapItemObject = mapItem;
+	obj.ModelOwnerTypeObject = ownerType;
+	obj.ModelUnitTypeObject = modelUnitType;
 
-	newUnitItem->OwnerType = ownerType;
-	newUnitItem->OwnerTypeId = ownerType->GetId();
-
-	newUnitItem->MapItem = mapItem;
-	newUnitItem->MapItemId = mapItem->GetId();
-
-	newUnitItem->Name = unitName;
-	return newUnitItem;
+	return CreateGameUnitItem(obj);
 }
 
