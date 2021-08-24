@@ -47,24 +47,35 @@ void MapCityItemRepository::SetMapCityItems(QMap<int, MapCityItem*> mapCityItems
 	MapCityItems = mapCityItems;
 }
 
-const MapCityItem* MapCityItemRepository::GetMapCityItemById(int MapCityItemId) const
+const MapCityItem* MapCityItemRepository::GetMapCityItemById(int mapCityItemId) const
 {
-	if (false == MapCityItems.contains(MapCityItemId))
+	if (false == MapCityItems.contains(mapCityItemId))
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(MapCityItemId)));
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(mapCityItemId)));
 		return nullptr;
 	}
-	return MapCityItems[MapCityItemId];
+	return MapCityItems[mapCityItemId];
 }
 
-MapCityItem* MapCityItemRepository::GetMapCityItemByIdNonConst(int MapCityItemId) const
+MapCityItem* MapCityItemRepository::GetMapCityItemByIdNonConst(int mapCityItemId) const
 {
-	if (false == MapCityItems.contains(MapCityItemId))
+	if (false == MapCityItems.contains(mapCityItemId))
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(MapCityItemId)));
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(mapCityItemId)));
 		return nullptr;
 	}
-	return MapCityItems[MapCityItemId];
+	return MapCityItems[mapCityItemId];
+}
+
+MapCityItem* MapCityItemRepository::RemoveById(int mapCityItemId)
+{
+	if (false == MapCityItems.contains(mapCityItemId))
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(mapCityItemId)));
+		return nullptr;
+	}
+
+	return MapCityItems.take(mapCityItemId);
 }
 
 void MapCityItemRepository::Release()

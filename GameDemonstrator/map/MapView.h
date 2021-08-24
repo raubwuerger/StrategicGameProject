@@ -28,10 +28,6 @@ public:
 	/** */
 	void Create();
 	/** */
-	ConnectorMapHexItem* GetConnectorMapHexItem() const;
-	/** */
-	ConnectorMapUnitItem* GetConnectorMapUnitItem() const;
-	/** */
 	bool AddMapHexItem(MapHexItem* mapHexItem);
 	/** */
 	bool AddedMapUnit(MapUnitItem *mapUnitItem);
@@ -39,6 +35,8 @@ public:
 	bool RemoveMapUnit(MapUnitItem *mapUnitItem);
 	/** */
 	bool AddCity(MapCityItem *mapCityItem);
+	/** */
+	bool RemoveCity(MapCityItem *mapCityItem);
 protected:
 	/** */
 	virtual void wheelEvent( QWheelEvent *event );

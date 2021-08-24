@@ -19,11 +19,11 @@ public slots:
 	/** */
 	void SlotActiveCityTypeId(int cityTypeId);
 	/** */
-	void SlotActiveOwnerTypeId(int ownerTypeId) { OwnerTypeId = ownerTypeId; }
+	void SlotActiveOwnerTypeId(int ownerTypeId);
 	/** */
 	void SlotAddCity(int mapItemId);
 	/** */
-	void SlotDeleteCity(int cityTypeId);
+	void SlotDeleteCity(int mapItemId);
 private:
 	friend class EditorToolbox;
 	const ModelCityType*	ActiveModelCityType;

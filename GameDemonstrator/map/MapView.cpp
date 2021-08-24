@@ -45,16 +45,6 @@ void MapView::Create()
 	setDragMode(ScrollHandDrag);
 }
 
-ConnectorMapHexItem* MapView::GetConnectorMapHexItem() const
-{
-	return ConnectorMapHexItemInstance;
-}
-
-ConnectorMapUnitItem* MapView::GetConnectorMapUnitItem() const
-{
-	return ConnectorMapUnitItemInstance;
-}
-
 bool MapView::AddMapHexItem(MapHexItem* mapHexItem)
 {
 	if (nullptr == mapHexItem )
@@ -97,6 +87,17 @@ bool MapView::AddCity(MapCityItem *mapCityItem)
 	}
 	mapCityItem->SetEventConnector(ConnectorMapCityItemInstance);
 	Scene->addItem(mapCityItem);
+	return true;
+}
+
+bool MapView::RemoveCity(MapCityItem *mapCityItem)
+{
+	if (nullptr == mapCityItem)
+	{
+		return false;
+	}
+
+	Scene->removeItem(mapCityItem);
 	return true;
 }
 

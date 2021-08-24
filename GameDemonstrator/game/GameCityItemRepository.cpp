@@ -78,6 +78,30 @@ GameCityItem* GameCityItemRepository::GetGameCityItemById(int GameCityItemId)
 
 }
 
+GameCityItem* GameCityItemRepository::RemoveCityItemById(int cityItemId)
+{
+	if (false == GameCityItems.contains(cityItemId))
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Requested GameCityItemId %1 is not registered!").arg(QString::number(cityItemId)));
+		return nullptr;
+	}
+	GameCityItem* toRemove = GameCityItems.take(cityItemId);
+	GameCityItemsOnGameMapItem.take(cityItemId);
+	return toRemove;
+}
+
+GameCityItem* GameCityItemRepository::RemoveCityItemByGameMapItemId(int mapItemId)
+{
+	if (false == GameCityItemsOnGameMapItem.contains(mapItemId))
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("No GameCityItem registered on gameMapItem id=!").arg(QString::number(mapItemId)));
+		return nullptr;
+	}
+
+	int cityItemId = GameCityItemsOnGameMapItem.take(mapItemId);
+	return GameCityItems.take(cityItemId);
+}
+
 int GameCityItemRepository::CreateNewId() const
 {
 	if (true == GameCityItems.isEmpty())

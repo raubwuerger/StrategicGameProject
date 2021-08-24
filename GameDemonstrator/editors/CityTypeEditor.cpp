@@ -34,6 +34,11 @@ void CityTypeEditor::SlotActiveCityTypeId(int CityTypeId)
 	ActiveModelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(CityTypeId);
 }
 
+void CityTypeEditor::SlotActiveOwnerTypeId(int ownerTypeId)
+{
+	OwnerTypeId = ownerTypeId;
+}
+
 void CityTypeEditor::SlotAddCity(int mapItemId)
 {
 	if (false == BaseEditor::GetActive())
@@ -56,10 +61,28 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	mapFactory.Create(MapViewInstance, created);
 }
 
-void CityTypeEditor::SlotDeleteCity(int cityTypeId)
+#include "game/GameCityItemRepository.h"
+#include "game/GameCityItem.h"
+#include "map/MapCityItemRepository.h"
+#include "map/MapView.h"
+void CityTypeEditor::SlotDeleteCity(int mapItemId)
 {
 	if (false == BaseEditor::GetActive())
 	{
 		return;
 	}
+
+	GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->RemoveCityItemByGameMapItemId(mapItemId);
+	if (nullptr == gameCityItem)
+	{
+		return;
+	}
+
+	MapCityItem*  mapCityItem = MapCityItemRepository::GetInstance()->RemoveById(gameCityItem->GetId());
+	if (nullptr == mapCityItem)
+	{
+		return;
+	}
+
+	MapViewInstance->RemoveCity(mapCityItem);
 }

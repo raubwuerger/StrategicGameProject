@@ -26,6 +26,10 @@ public:
 	/** */
 	GameCityItem* GetGameCityItemById(int itemId);
 	/** */
+	GameCityItem* RemoveCityItemById(int cityItemId);
+	/** */
+	GameCityItem* RemoveCityItemByGameMapItemId(int mapItemId);
+	/** */
 	int CreateNewId() const;
 private:
 	/** */
