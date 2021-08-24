@@ -12,6 +12,7 @@
 #include "MapHexItem.h"
 #include "MapView.h"
 #include "model\ModelCityType.h"
+#include "model\ModelOwnerType.h"
 
 bool MapCityItemFactory::Create(MapView* mapView)
 {
@@ -48,6 +49,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		mapItem->SetGameMapItemId(gameMapId);
 		mapItem->SetTerrainImage(GetImage(gameCityItem));
 		mapItem->MapCityItemId = gameCityItem->GetId();
+		mapItem->Color = gameCityItem->GetModelOwnerType()->GetColor();
 
 		mapView->AddCity(mapItem);
 		mapCityItems.insert(gameCityItem->GetId(), mapItem);
@@ -86,6 +88,7 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCityItem* gameCityIt
 	mapItem->SetGameMapItemId(gameMapId);
 	mapItem->SetTerrainImage(GetImage(gameCityItem));
 	mapItem->MapCityItemId = gameCityItem->GetId();
+	mapItem->Color = gameCityItem->GetModelOwnerType()->GetColor();
 
 	mapView->AddCity(mapItem);
 	return MapCityItemRepository::GetInstance()->Register(mapItem);

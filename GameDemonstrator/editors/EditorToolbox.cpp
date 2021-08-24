@@ -36,9 +36,9 @@ void EditorToolbox::Create()
 {
 	EditorControllerInstance = new EditorController(MapViewInstance);
 	CreateGroupTerrainTypes();
+	CreateGroupCityType();
 	CreateGroupUnitTypes();
 	CreateGroupOwnerType();
-	CreateGroupCityType();
 	CreateGroupBuildingTypes();
 
 	connect(this, &QToolBox::currentChanged, this, &EditorToolbox::SlotEditorTypeChanged);
@@ -246,6 +246,7 @@ QWidget * EditorToolbox::CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerT
 	connect(button, &QToolButton::pressed, selector, &OwnerTypeIdSelector::SlotTrigger);
 	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, OwnerTypeEditorInstance, &OwnerTypeEditor::SlotActiveOwnerTypeId);
 	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, UnitTypeEditorInstance, &UnitTypeEditor::SlotActiveOwnerTypeId);
+	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, CityTypeEditorInstance, &CityTypeEditor::SlotActiveOwnerTypeId);
 
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);

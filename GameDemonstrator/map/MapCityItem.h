@@ -55,6 +55,7 @@ private:
 	mutable const QImage*	TerrainImage;
 	int						GameMapItemId;
 	int						MapCityItemId;
+	QColor					Color;
 };
 
 #endif // MAPCITYITEM_H

@@ -52,7 +52,14 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
 	painter->drawText(textBoundingRect, "City", textOption);
 
-	QGraphicsPolygonItem::paint(painter,option,widget);
+	painter->setRenderHint(QPainter::Antialiasing);
+	QPainterPath path;
+	path.addRect(HexData.BoundingRect);
+	QPen pen(Color, 4);
+	painter->setPen(pen);
+	painter->drawPath(path);
+
+//	QGraphicsPolygonItem::paint(painter,option,widget);
 }
 
 QRectF MapCityItem::boundingRect() const
