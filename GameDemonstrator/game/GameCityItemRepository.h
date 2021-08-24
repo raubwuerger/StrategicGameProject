@@ -30,6 +30,8 @@ public:
 	/** */
 	GameCityItem* RemoveCityItemByGameMapItemId(int mapItemId);
 	/** */
+	bool IsCityOnGameMapItemId(int mapItemId) const;
+	/** */
 	int CreateNewId() const;
 private:
 	/** */

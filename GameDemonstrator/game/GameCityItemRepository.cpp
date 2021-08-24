@@ -102,6 +102,15 @@ GameCityItem* GameCityItemRepository::RemoveCityItemByGameMapItemId(int mapItemI
 	return GameCityItems.take(cityItemId);
 }
 
+bool GameCityItemRepository::IsCityOnGameMapItemId(int mapItemId) const
+{
+	if (false == GameCityItemsOnGameMapItem.contains(mapItemId))
+	{
+		return false;
+	}
+	return true;
+}
+
 int GameCityItemRepository::CreateNewId() const
 {
 	if (true == GameCityItems.isEmpty())

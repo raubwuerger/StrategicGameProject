@@ -5147,8 +5147,8 @@
     <Cities>
         <City>
             <ID>1</ID>
-            <CityItemId>1</CityItemId>
-            <OwnerTypeId>1</OwnerTypeId>
+            <CityItemId>2</CityItemId>
+            <OwnerTypeId>2</OwnerTypeId>
             <GameMapItemID>141</GameMapItemID>
             <Name></Name>
             <Efficiency>-1</Efficiency>
@@ -5156,8 +5156,8 @@
         </City>
         <City>
             <ID>2</ID>
-            <CityItemId>1</CityItemId>
-            <OwnerTypeId>1</OwnerTypeId>
+            <CityItemId>3</CityItemId>
+            <OwnerTypeId>3</OwnerTypeId>
             <GameMapItemID>660</GameMapItemID>
             <Name></Name>
             <Efficiency>-1</Efficiency>
@@ -5165,18 +5165,54 @@
         </City>
         <City>
             <ID>3</ID>
-            <CityItemId>1</CityItemId>
-            <OwnerTypeId>1</OwnerTypeId>
-            <GameMapItemID>76</GameMapItemID>
+            <CityItemId>4</CityItemId>
+            <OwnerTypeId>4</OwnerTypeId>
+            <GameMapItemID>723</GameMapItemID>
             <Name></Name>
             <Efficiency>-1</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
         </City>
         <City>
             <ID>4</ID>
+            <CityItemId>5</CityItemId>
+            <OwnerTypeId>5</OwnerTypeId>
+            <GameMapItemID>76</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>5</ID>
             <CityItemId>1</CityItemId>
             <OwnerTypeId>1</OwnerTypeId>
-            <GameMapItemID>678</GameMapItemID>
+            <GameMapItemID>192</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>6</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>521</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>7</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>215</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>8</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>681</GameMapItemID>
             <Name></Name>
             <Efficiency>-1</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>

@@ -49,6 +49,11 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
+	if ( true == GameCityItemRepository::GetInstance()->IsCityOnGameMapItemId(mapItemId))
+	{
+		return;
+	}
+
 	GameCityParameterObject obj;
 	obj.GameMapItemId = mapItemId;
 	obj.ModelCityTypeObject = ActiveModelCityType;
