@@ -31,6 +31,17 @@ QMap<int, MapCityItem*>::const_iterator MapCityItemRepository::GetLastIterator()
 	return MapCityItems.cend();
 }
 
+bool MapCityItemRepository::Register(MapCityItem* mapCityItem)
+{
+	if (true == MapCityItems.contains(mapCityItem->GetId()))
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 already exists!").arg(QString::number(mapCityItem->GetId())));
+		return false;
+	}
+	MapCityItems.insert(mapCityItem->GetId(), mapCityItem);
+	return true;
+}
+
 void MapCityItemRepository::SetMapCityItems(QMap<int, MapCityItem*> mapCityItems)
 {
 	MapCityItems = mapCityItems;
@@ -40,7 +51,7 @@ const MapCityItem* MapCityItemRepository::GetMapCityItemById(int MapCityItemId) 
 {
 	if (false == MapCityItems.contains(MapCityItemId))
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(MapCityItemId));
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(MapCityItemId)));
 		return nullptr;
 	}
 	return MapCityItems[MapCityItemId];
@@ -50,7 +61,7 @@ MapCityItem* MapCityItemRepository::GetMapCityItemByIdNonConst(int MapCityItemId
 {
 	if (false == MapCityItems.contains(MapCityItemId))
 	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(MapCityItemId));
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(MapCityItemId)));
 		return nullptr;
 	}
 	return MapCityItems[MapCityItemId];

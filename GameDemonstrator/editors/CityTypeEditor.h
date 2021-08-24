@@ -3,6 +3,7 @@
 
 class ModelCityType;
 class EditorController;
+class MapView;
 #include "BaseEditor.h"
 
 class CityTypeEditor : public BaseEditor
@@ -10,8 +11,6 @@ class CityTypeEditor : public BaseEditor
 public:
 	/** */
 	CityTypeEditor(QObject *parent);
-	/** */
-	void SetEditorController(EditorController* editorController);
 public slots:
 	/** */
 	void SlotActivated() override;
@@ -20,12 +19,17 @@ public slots:
 	/** */
 	void SlotActiveCityTypeId(int cityTypeId);
 	/** */
+	void SlotActiveOwnerTypeId(int ownerTypeId) { OwnerTypeId = ownerTypeId; }
+	/** */
 	void SlotAddCity(int mapItemId);
 	/** */
 	void SlotDeleteCity(int cityTypeId);
 private:
+	friend class EditorToolbox;
 	const ModelCityType*	ActiveModelCityType;
+	int						OwnerTypeId;
 	EditorController*		EditorControllerInstance;
+	MapView*				MapViewInstance;
 };
 
 #endif // CITYTYPEEDITOR_H

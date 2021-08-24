@@ -4,18 +4,15 @@
 #include "model\ModelCityType.h"
 #include "controller\EditorController.h"
 #include "game\GameCityItemFactory.h"
+#include "map\MapCityItemFactory.h"
 
 CityTypeEditor::CityTypeEditor(QObject *parent)
 	: BaseEditor(parent),
 	EditorControllerInstance(nullptr),
-	ActiveModelCityType(nullptr)
+	ActiveModelCityType(nullptr),
+	OwnerTypeId(1)
 {
 
-}
-
-void CityTypeEditor::SetEditorController(EditorController* editorController)
-{
-	EditorControllerInstance = editorController;
 }
 
 void CityTypeEditor::SlotDeactivated()
@@ -44,7 +41,19 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
-//	TODO: GameCityItemFactory -> Create
+	GameCityParameterObject obj;
+	obj.GameMapItemId = mapItemId;
+	obj.ModelCityTypeObject = ActiveModelCityType;
+	obj.ModelOwnerTypeId = OwnerTypeId;
+	GameCityItemFactory gameFactory;
+	GameCityItem* created = gameFactory.Create(obj);
+	if (nullptr == created)
+	{
+		return;
+	}
+
+	MapCityItemFactory mapFactory;
+	mapFactory.Create(MapViewInstance, created);
 }
 
 void CityTypeEditor::SlotDeleteCity(int cityTypeId)

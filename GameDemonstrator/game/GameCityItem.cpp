@@ -67,6 +67,16 @@ void GameCityItem::UpdateTurn()
 	//TODO: ...
 }
 
+int GameCityItem::GetEfficiency() const
+{
+	return Efficiency;
+}
+
+int GameCityItem::GetSpezializedUnitTypeId() const
+{
+	return SpezializedUnitTypeId;
+}
+
 bool GameCityItem::operator<(const GameCityItem& rhs) const
 {
 	return Id < rhs.Id;

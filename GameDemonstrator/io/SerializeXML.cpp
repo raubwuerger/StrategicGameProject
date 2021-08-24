@@ -87,6 +87,10 @@ bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 	{
 		return false;
 	}
+	if (false == SaveCityData(xmlWriter))
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -216,6 +220,40 @@ bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem*
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_GAMEMAPITEMID, QString::number(gameUnitItem->GetGameMapItemId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_NAME, gameUnitItem->GetName());
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_OWNERTYPEID, QString::number(gameUnitItem->GetModelOwnerType()->GetId()));
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+#include "game/GameCityItemRepository.h"
+#include "game/GameCityItem.h"
+bool SerializeXML::SaveCityData(QXmlStreamWriter& xmlWriter)
+{
+	xmlWriter.writeStartElement(SerializeXMLItems::CITIES);
+
+	QMap<int, GameCityItem*>::const_iterator gameCityItems = GameCityItemRepository::GetInstance()->GetFirstIterator();
+	while (gameCityItems != GameCityItemRepository::GetInstance()->GetLastIterator())
+	{
+		if (false == SaveCitytItem(xmlWriter, gameCityItems.value()))
+		{
+			return false;
+		}
+		gameCityItems++;
+	}
+
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem)
+{
+	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_CITY);
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_ID, QString::number(gameCityItem->GetId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_CITYTYPEID, QString::number(gameCityItem->GetModelOwnerTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_OWNERTYPEID, QString::number(gameCityItem->GetModelOwnerTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_GAMEMAPITEMID, QString::number(gameCityItem->GetGameMapItemId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_NAME, gameCityItem->GetName());
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_EFFICIENCY, QString::number(gameCityItem->GetEfficiency()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, QString::number(gameCityItem->GetSpezializedUnitTypeId()));
 		xmlWriter.writeEndElement();
 	return true;
 }

@@ -9,6 +9,8 @@ class MapCityItemFactory
 public:
 	/** */
 	bool Create( MapView* mapView );
+	/** */
+	bool Create(MapView* mapView, const GameCityItem* gameCityItem);
 private:
 	/** */
 	const QImage* GetImage(const GameCityItem* gameCityItem);

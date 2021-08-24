@@ -10,7 +10,8 @@ class GameMapItem;
 struct GameCityParameterObject
 {
 	GameCityParameterObject()
-		: ModelCityTypeId(-1),
+		: Id(-1),
+		ModelCityTypeId(-1),
 		GameMapItemId(-1),
 		ModelOwnerTypeId(-1),
 		ModelCityTypeObject(nullptr),
@@ -19,6 +20,7 @@ struct GameCityParameterObject
 		GameCityItemObject(nullptr)
 	{
 	}
+	int	Id;
 	int ModelCityTypeId;
 	int GameMapItemId;
 	int ModelOwnerTypeId;
@@ -48,7 +50,7 @@ private:
 	/** */
 	GameCityItem* CreateItemFromXML(const QDomNode& city);
 	/** */
-	int CreateId();
+	int CreateId(const GameCityParameterObject obj);
 	/** */
 	const ModelCityType* GetModelCityType(const GameCityParameterObject obj) const;
 	/** */

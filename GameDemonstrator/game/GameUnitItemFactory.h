@@ -10,7 +10,8 @@ class GameMapItem;
 struct GameUnitParameterObject
 {
 	GameUnitParameterObject()
-		: ModelUnitTypeId(-1),
+		: Id(-1),
+		ModelUnitTypeId(-1),
 		GameMapItemId(-1),
 		ModelOwnerTypeId(-1),
 		ModelUnitTypeObject(nullptr),
@@ -19,6 +20,7 @@ struct GameUnitParameterObject
 		GameUnitItemObject(nullptr)
 	{
 	}
+	int Id;
 	int ModelUnitTypeId;
 	int GameMapItemId;
 	int ModelOwnerTypeId;
@@ -57,7 +59,7 @@ private:
 	/** */
 	GameUnitItem* CreateUnitItemFromXML(const QDomNode& unit);
 	/** */
-	int CreateId();
+	int CreateId( const GameUnitParameterObject obj);
 	/** */
 	QString CreateName(const ModelUnitType* modelUnitType) const;
 };

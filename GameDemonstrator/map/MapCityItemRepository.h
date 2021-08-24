@@ -17,6 +17,8 @@ public:
 	/** */
 	QMap<int, MapCityItem*>::const_iterator GetLastIterator() const;
 	/** */
+	bool Register(MapCityItem* mapCityItem);
+	/** */
 	void SetMapCityItems(QMap<int, MapCityItem*> mapCityItems);
 	/** */
 	const MapCityItem* GetMapCityItemById(int MapCityItemId) const;

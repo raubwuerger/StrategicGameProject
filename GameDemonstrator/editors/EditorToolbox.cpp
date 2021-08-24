@@ -320,7 +320,8 @@ QWidget * EditorToolbox::CreateCityTypeWidget(const ModelCityType* modelCityType
 BaseEditor* EditorToolbox::CreateCityTypeEditor()
 {
 	CityTypeEditorInstance = new CityTypeEditor(nullptr);
-	CityTypeEditorInstance->SetEditorController(EditorControllerInstance);
+	CityTypeEditorInstance->MapViewInstance = MapViewInstance;
+	CityTypeEditorInstance->EditorControllerInstance = EditorControllerInstance;
 	EditorControllerInstance->CityTypeEditorInstance = CityTypeEditorInstance;
 	return CityTypeEditorInstance;
 }

@@ -35,6 +35,8 @@ public:
 	const QPointF& GetTopLeftPoint() const;
 	/** */
 	const QPointF& GetCenterPoint() const;
+	/** */
+	int GetId() const { return MapCityItemId;  }
 private:
 	/** */
 	void CreateHexPolygon(const MapHexItemHexagonData &data);

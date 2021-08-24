@@ -7,6 +7,7 @@ class GameMapItem;
 class QDomNode;
 class QDomNodeList;
 class GameUnitItem;
+class GameCityItem;
 
 class SerializeXML : public ISerializeGameInterface
 {
@@ -35,9 +36,13 @@ private:
 	/** */
 	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const GameMapItem* modelMapItem );
 	/** */
-	bool SaveUnitData(QXmlStreamWriter& xmlWriter);
+	bool SaveUnitData( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitDItem);
+	bool SaveUnitItem( QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitDItem );
+	/** */
+	bool SaveCityData( QXmlStreamWriter& xmlWriter );
+	/** */
+	bool SaveCitytItem( QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem );
 public:
 	/** */
 	bool LoadGame( const QString& saveGameName );

@@ -21,8 +21,12 @@ GameCityItemFactory::~GameCityItemFactory()
 {
 }
 
-int GameCityItemFactory::CreateId()
+int GameCityItemFactory::CreateId(const GameCityParameterObject obj)
 {
+	if (-1 != obj.Id)
+	{
+		return obj.Id; //Belongs to savegame
+	}
 	return GameCityItemRepository::GetInstance()->CreateNewId();
 }
 
@@ -83,7 +87,7 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 		return nullptr;
 	}
 
-	GameCityItem *newItem = new GameCityItem( CreateId() );
+	GameCityItem *newItem = new GameCityItem(CreateId(obj));
 
 	newItem->CityTypeId = cityItem->GetId();
 	newItem->CityType = cityItem;
@@ -143,11 +147,6 @@ bool GameCityItemFactory::CreateItems(const QDomNode& city)
 		{
 			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameCityItem from savegame line number: %1").arg(QString::number(itemNodeList.at(nodeIndex).columnNumber())));
 			continue;
-		}
-		if (false == GameCityItemRepository::GetInstance()->RegisterItem(created))
-		{
-			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameCityItem from savegame line number: %1").arg(QString::number(itemNodeList.at(nodeIndex).columnNumber())));
-			return false;
 		}
 	}
 
@@ -256,6 +255,7 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	obj.ModelCityTypeObject = modelCityType;
 	obj.ModelOwnerTypeObject = modelOwnerType;
 	obj.GameMapItemObject = gameMapItem;
+	obj.Id = id;
 
 	return Create(obj);
 }

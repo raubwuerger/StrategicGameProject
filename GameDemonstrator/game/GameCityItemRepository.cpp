@@ -27,20 +27,20 @@ void GameCityItemRepository::Release()
 	delete Instance;
 }
 
-bool GameCityItemRepository::RegisterItem(GameCityItem* GameCityItem)
+bool GameCityItemRepository::RegisterItem(GameCityItem* gameCityItem)
 {
-	if (nullptr == GameCityItem)
+	if (nullptr == gameCityItem)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Handover <GameCityItem> parameter is null!"));
 		return false;
 	}
-	if (true == GameCityItems.contains(GameCityItem->GetId()))
+	if (true == GameCityItems.contains(gameCityItem->GetId()))
 	{
-		jha::GetLog()->Log_WARNING(QObject::tr("GameCityItem with id=%1 already exists!").arg(GameCityItem->GetId()));
+		jha::GetLog()->Log_WARNING(QObject::tr("GameCityItem with id=%1 already exists!").arg(gameCityItem->GetId()));
 		return false;
 	}
-	GameCityItems.insert(GameCityItem->GetId(), GameCityItem);
-	UpdateGameCityItemsOnGameMapItem(GameCityItem);
+	GameCityItems.insert(gameCityItem->GetId(), gameCityItem);
+	UpdateGameCityItemsOnGameMapItem(gameCityItem);
 
 	return true;
 }

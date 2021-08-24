@@ -59,6 +59,38 @@ bool MapCityItemFactory::Create(MapView* mapView)
 	return true;
 }
 
+bool MapCityItemFactory::Create(MapView* mapView, const GameCityItem* gameCityItem)
+{
+	if (nullptr == mapView)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
+		return false;
+	}
+
+	if (nullptr == gameCityItem)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <gameCityItem> must not be null!"));
+		return false;
+	}
+
+	int gameMapId = gameCityItem->GetGameMapItemId();
+	const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapId);
+	if (nullptr == mapHexItem)
+	{
+		return false;
+	}
+
+	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
+	MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
+	mapItem->SetGameMapItemId(gameMapId);
+	mapItem->SetTerrainImage(GetImage(gameCityItem));
+	mapItem->MapCityItemId = gameCityItem->GetId();
+
+	mapView->AddCity(mapItem);
+	return MapCityItemRepository::GetInstance()->Register(mapItem);
+}
+
 const QImage* MapCityItemFactory::GetImage(const GameCityItem* gameCityItem)
 {
 	const ModelCityType* modelCityType = gameCityItem->GetCityType();

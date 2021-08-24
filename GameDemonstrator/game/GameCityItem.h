@@ -37,6 +37,10 @@ public:
 	int GetCityTypeId() const;
 	/** */
 	void UpdateTurn() override;
+	/** */
+	int GetEfficiency() const;
+	/** */
+	int GetSpezializedUnitTypeId() const;
 private:
 	friend class GameCityItemFactory;
 	const int				Id;

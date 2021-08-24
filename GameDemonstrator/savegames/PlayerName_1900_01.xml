@@ -5144,4 +5144,42 @@
             <OwnerTypeId>5</OwnerTypeId>
         </Unit>
     </Units>
+    <Cities>
+        <City>
+            <ID>1</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>141</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>2</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>660</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>3</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>76</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+        <City>
+            <ID>4</ID>
+            <CityItemId>1</CityItemId>
+            <OwnerTypeId>1</OwnerTypeId>
+            <GameMapItemID>678</GameMapItemID>
+            <Name></Name>
+            <Efficiency>-1</Efficiency>
+            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+        </City>
+    </Cities>
 </Savegame>

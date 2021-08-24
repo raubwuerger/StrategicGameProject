@@ -52,7 +52,7 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItem(const GameUnitParameterObj
 		return nullptr;
 	}
 
-	GameUnitItem *newUnitItem = new GameUnitItem(CreateId());
+	GameUnitItem *newUnitItem = new GameUnitItem(CreateId(obj));
 
 	newUnitItem->UnitType = unitType;
 	newUnitItem->UnitTypeId = unitType->GetId();
@@ -123,8 +123,12 @@ GameUnitItem* GameUnitItemFactory::UpdateGameUnitItem(const GameUnitParameterObj
 	return gameUnitItem;
 }
 
-int GameUnitItemFactory::CreateId()
+int GameUnitItemFactory::CreateId(const GameUnitParameterObject obj)
 {
+	if (-1 != obj.Id)
+	{
+		return obj.Id;  //Belongs to savegame
+	}
 	return GameUnitItemRepository::GetInstance()->CreateNewId();
 }
 
@@ -206,11 +210,6 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
 			continue;
 		}
-// 		if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(created))
-// 		{
-// 			jha::GetLog()->Log_WARNING(QObject::tr("Unable to create GameUnitItem from savegame line number: %1").arg(QString::number(unitItemNodeList.at(nodeIndex).columnNumber())));
-// 			return false;
-// 		}
 	}
 
 	return true;
@@ -304,6 +303,7 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 	obj.GameMapItemObject = mapItem;
 	obj.ModelOwnerTypeObject = ownerType;
 	obj.ModelUnitTypeObject = modelUnitType;
+	obj.Id = id;
 
 	return CreateGameUnitItem(obj);
 }
