@@ -54,12 +54,10 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 
 	painter->setRenderHint(QPainter::Antialiasing);
 	QPainterPath path;
-	path.addRect(HexData.BoundingRect);
+	path.addPolygon(HexData.HexPoints);
 	QPen pen(Color, 4);
 	painter->setPen(pen);
 	painter->drawPath(path);
-
-//	QGraphicsPolygonItem::paint(painter,option,widget);
 }
 
 QRectF MapCityItem::boundingRect() const
