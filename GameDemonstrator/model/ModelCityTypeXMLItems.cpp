@@ -10,3 +10,5 @@ const QString ModelCityTypeXMLItems::SUBELEMENT_NAME = "Name";
 const QString ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME = "PictureName";
 const QString ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY = "Efficiency";
 const QString ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED = "SpezializedUnitTypeId";
+const QString ModelCityTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES = "PlacableTerrainTypes";
+const QString ModelCityTypeXMLItems::SUBELEMENT_TERRAINTYPEID = "TerrainTypeId";

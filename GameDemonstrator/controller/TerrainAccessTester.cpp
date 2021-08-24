@@ -82,3 +82,27 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Mod
 
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
+
+#include "game/GameCityItem.h"
+#include "model/ModelCityType.h"
+bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const int gameMapItemId)
+{
+	if (nullptr == modelCityType)
+	{
+		return false;
+	}
+
+	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	if (nullptr == gameMapItem)
+	{
+		return false;
+	}
+
+	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
+	if (nullptr == modelTerrainType)
+	{
+		return false;
+	}
+
+	return modelCityType->IsPlaceableOnTerrainType(modelTerrainType->GetId());
+}

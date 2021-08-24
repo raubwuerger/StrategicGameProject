@@ -16,3 +16,8 @@ const QString ModelCityType::toString() const
 {
 	return QObject::tr("ModelCityType - Id: %1, Name: %2, PictureName: %3").arg(QString::number(Id)).arg(Name).arg(PictureName);
 }
+
+bool ModelCityType::IsPlaceableOnTerrainType(int terrainTypeId) const
+{
+	return PlacableTerrainTypes.contains(terrainTypeId);
+}

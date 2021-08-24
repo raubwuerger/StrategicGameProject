@@ -6,5 +6,11 @@
 		<PictureName>.\Resources\Cities\City_01.png</PictureName>
 		<Efficiency>100</Efficiency>
 		<SpezializedUnitTypeId>1</SpezializedUnitTypeId>
+		<PlacableTerrainTypes>
+			<TerrainTypeId>1</TerrainTypeId>
+			<TerrainTypeId>2</TerrainTypeId>
+			<TerrainTypeId>4</TerrainTypeId>
+			<TerrainTypeId>5</TerrainTypeId>
+		</PlacableTerrainTypes>
 	</CityType>
 </CityTypes>

@@ -51,7 +51,7 @@ int GameCityItem::GetGameMapItemId() const
 	return MapItemId;
 }
 
-const ModelCityType* GameCityItem::GetCityType() const
+const ModelCityType* GameCityItem::GetCityModelType() const
 {
 	return CityType;
 }

@@ -18,6 +18,8 @@ private:
 	ModelCityType* CreateFromXML( const QDomNode& node );
 	/** */
 	bool AttacheImage(ModelCityType* type);
+	/** */
+	bool ParsePlacableTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes);
 };
 
 #endif // MODELOWNERTYPEFACTORY_H

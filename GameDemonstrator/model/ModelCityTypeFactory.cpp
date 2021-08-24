@@ -10,6 +10,7 @@
 #include "ModelConfigurationHeaderXMLItems.h"
 #include "io\ConfigFileLoader.h"
 #include "ImageLoader.h"
+#include "DomNodeFinder.h"
 
 ModelCityTypeFactory::ModelCityTypeFactory()
 {
@@ -57,6 +58,9 @@ ModelCityType* ModelCityTypeFactory::CreateFromXML( const QDomNode& node )
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newType->Efficiency);
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newType->SpezializedUnitType);
 
+	DomNodeFinder finder(node);
+	allElementsExtracted &= ParsePlacableTerrainTypes(finder.FindDomeNodeByName(ModelCityTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->PlacableTerrainTypes);
+
 	if (false == allElementsExtracted)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Unable to register %1 with id %2").arg(ModelCityTypeXMLItems::SUBELEMENT_ID).arg(QString::number(ownerTypeId)));
@@ -79,5 +83,41 @@ bool ModelCityTypeFactory::AttacheImage(ModelCityType* type)
 
 	type->SetImage(terrainTypeImage);
 	return true;
+
+}
+
+bool ModelCityTypeFactory::ParsePlacableTerrainTypes(const QDomNode& domNode, QVector<int>& terrainTypes)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() != ModelCityTypeXMLItems::SUBELEMENT_TERRAINTYPEID)
+		{
+			continue;
+		}
+
+		if (false == node.isElement())
+		{
+			continue;
+		}
+
+		QDomElement element = node.toElement();
+		int terrainTypeId = element.text().toInt();
+		terrainTypes.push_back(terrainTypeId);
+	}
+	return !terrainTypes.isEmpty();
 
 }

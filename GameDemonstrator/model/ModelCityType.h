@@ -18,6 +18,8 @@ public:
 	const QString& GetPictureName() const { return PictureName; }
 	/** */
 	const QString& GetName() const { return Name; }
+	/** */
+	bool IsPlaceableOnTerrainType(int terrainTypeId) const;
 private:
 	friend class ModelCityTypeFactory;
 	int				Id;
@@ -26,6 +28,7 @@ private:
 	const QImage*	Image;
 	int				Efficiency;
 	int				SpezializedUnitType;
+	QVector<int>	PlacableTerrainTypes;
 };
 
 #endif // MODELCITYTYPE_H

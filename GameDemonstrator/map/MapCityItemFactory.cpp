@@ -93,7 +93,7 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCityItem* gameCityIt
 
 const QImage* MapCityItemFactory::GetImage(const GameCityItem* gameCityItem)
 {
-	const ModelCityType* modelCityType = gameCityItem->GetCityType();
+	const ModelCityType* modelCityType = gameCityItem->GetCityModelType();
 	if (nullptr == modelCityType)
 	{
 		Q_ASSERT(nullptr);

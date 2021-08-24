@@ -32,7 +32,7 @@ public:
 	/** */
 	int GetGameMapItemId() const;
 	/** */
-	const ModelCityType* GetCityType() const;
+	const ModelCityType* GetCityModelType() const;
 	/** */
 	int GetCityTypeId() const;
 	/** */

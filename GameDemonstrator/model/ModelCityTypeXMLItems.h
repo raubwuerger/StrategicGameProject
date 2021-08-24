@@ -13,6 +13,8 @@ public:
 	const static QString SUBELEMENT_PICTURENAME;
 	const static QString SUBELEMENT_EFFICIENCY;
 	const static QString SUBELEMENT_SPECIALIZED;
+	const static QString SUBELEMENT_TERRAINTYPEID;
+	const static QString NODE_ACCESSIBLETERRAINTYPES;
 };
 
 #endif // MODELCITYTYPEXMLITEMS_H
