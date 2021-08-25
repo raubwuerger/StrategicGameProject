@@ -21,6 +21,9 @@ const QString ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES = "AttackableUnit
 const QString ModelUnitTypeXMLItems::SUBELEMENT_ATTACKABLE_UNITTYPE = "AttackableUnitType";
 const QString ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES = "RecognisableUnitTypes";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_RECOGNISABLE_UNITTYPE = "RecognisableUnitType";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY = "CanOccupieCity";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK = "GetCounterattack";
+
 
 
 

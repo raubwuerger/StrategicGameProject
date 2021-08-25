@@ -25,6 +25,8 @@ public:
 	const static QString SUBELEMENT_ATTACKABLE_UNITTYPE;
 	const static QString NODE_RECOGNISABLE_UNITTYPES;
 	const static QString SUBELEMENT_RECOGNISABLE_UNITTYPE;
+	const static QString SUBELEMENT_CANOCCUPIECITY;
+	const static QString SUBELEMENT_GETCOUNTERATTACK;
 };
 
 

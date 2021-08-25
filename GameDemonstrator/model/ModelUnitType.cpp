@@ -2,13 +2,26 @@
 #include "ModelUnitType.h"
 
 ModelUnitType::ModelUnitType(int id)
-	:Id(id)
+	:Id(id),
+	Name(NOT_INITIALIZED_STRING),
+	PictureName(NOT_INITIALIZED_STRING),
+	Image(nullptr),
+	Strength(NOT_INITIALIZED_INT),
+	Range(NOT_INITIALIZED_INT),
+	MovementPoints(NOT_INITIALIZED_INT),
+	CanOccupieCity(NOT_INITIALIZED_BOOL),
+	GetCounterattack(NOT_INITIALIZED_BOOL)
 {
 }
 
 int ModelUnitType::GetId() const
 {
 	return Id;
+}
+
+void ModelUnitType::SetName(const QString& name)
+{
+	Name = name;
 }
 
 const QImage* ModelUnitType::GetImage() const
@@ -24,11 +37,6 @@ const QString& ModelUnitType::GetName() const
 const QString& ModelUnitType::GetPictureName() const
 {
 	return PictureName;
-}
-
-void ModelUnitType::SetImage(const QImage* image)
-{
-	Image = image;
 }
 
 bool ModelUnitType::IsTerrainTypeAccessible(int terrainTypeId) const

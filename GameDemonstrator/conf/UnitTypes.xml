@@ -47,6 +47,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>1</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -94,6 +96,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>1</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -110,7 +114,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>2</Range>
+		<Range>1</Range>
 		<MovementPoints>1</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
@@ -138,6 +142,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>1</CanOccupieCity>
+		<GetCounterattack>0</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -188,6 +194,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -237,6 +245,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -284,6 +294,8 @@
 			<RecognisableUnitType>10</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -331,6 +343,8 @@
 			<RecognisableUnitType>10</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -377,6 +391,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -423,6 +439,8 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -467,6 +485,8 @@
 			<RecognisableUnitType>10</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -504,5 +524,7 @@
 			<RecognisableUnitType>9</RecognisableUnitType>
 			<RecognisableUnitType>11</RecognisableUnitType>
 		</RecognisableUnitTypes>
+		<CanOccupieCity>0</CanOccupieCity>
+		<GetCounterattack>1</GetCounterattack>
 	</UnitType>
 </UnitTypes>

@@ -9,9 +9,9 @@ public:
 	/** */
 	int GetId() const;
 	/** */
-	const QString& GetName() const;
+	void SetName(const QString& name);
 	/** */
-	void SetImage(const QImage* image);
+	const QString& GetName() const;
 	/** */
 	const QImage* GetImage() const;
 	/** */
@@ -36,6 +36,8 @@ private:
 	QVector<int>	AccessibleTerrainTypes;
 	QVector<int>	AttackableUnitTypes;
 	QVector<int>	RecognisableUnitTypes;
+	bool			CanOccupieCity;
+	bool			GetCounterattack;
 };
 
 #endif
