@@ -18,6 +18,8 @@ public:
 	static bool Accessable(const GameUnitItem* gameUnitItem, const ModelTerrainType* modelTerrainType);
 	/** */
 	static bool Accessable(const ModelCityType* modelCityType, const int gameMapItemId);
+	/** */
+	static bool Accessable(const GameUnitItem* gameUnitItem, const ModelCityType* modelCityType);
 };
 
 #endif // TERRAINACCESSTESTER_H

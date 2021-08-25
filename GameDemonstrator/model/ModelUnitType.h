@@ -22,6 +22,8 @@ public:
 	bool IsUnitTypeRecognisable(int modelUnitTypeId) const;
 	/** */
 	bool IsUnitTypeAttackable(int modelUnitTypeId) const;
+	/** */
+	bool GetCanOccupieCity() const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;

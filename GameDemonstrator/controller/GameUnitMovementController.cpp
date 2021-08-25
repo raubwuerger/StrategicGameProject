@@ -14,6 +14,8 @@
 #include "LogInterface.h"
 #include "controller/GameUnitAttackController.h"
 #include "map/MapUnitItemRepository.h"
+#include "game/GameCityItemRepository.h"
+#include "game/GameCityItem.h"
 
 GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activeGameUnitItem)
 	: ActiveGameUnitItem(activeGameUnitItem),
@@ -23,12 +25,13 @@ GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activ
 	CurrentMapTileOwner = GetCurrentMapTileOwner();
 }
 
-bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexItem* destination) const
+bool GameUnitMovementController::CanUnitMove(int sourceGameUnitItemId, const MapHexItem* destination) const
 {
 	Q_ASSERT(destination);
-	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitItemId);
+	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(sourceGameUnitItemId);
 	Q_ASSERT(gameUnitItem);
 
+	GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId());
 	if (true == IsEnemyOnDestinationMapTile(destination->GetGameMapItemId()))
 	{
 		if (true == GameUnitAttackController::IsAttackSuccessful(gameUnitItem, GetEnemyGameUnit(destination->GetGameMapItemId())))
@@ -37,14 +40,63 @@ bool GameUnitMovementController::CanUnitMove(int gameUnitItemId, const MapHexIte
 			Q_ASSERT(gameUnitItem);
 			MapUnitItemRepository::GetInstance()->Remove(gameUnitItem->GetId());
 		}
-		return TerrainAccessTester::Accessable(gameUnitItem, destination);
+		else
+		{
+			if (false == GameUnitAttackController::IsUnitAttackable(gameUnitItem, GetEnemyGameUnit(destination->GetGameMapItemId())))
+			{
+				return false;
+			}
+			//TODO: Delete attcking Unit
+			MapUnitItemRepository::GetInstance()->Remove(sourceGameUnitItemId);
+			return false;
+		}
+
+		if (true == IsCityOnDestinationMapTile(destination->GetGameMapItemId()))
+		{
+			if (nullptr == gameCityItem)
+			{
+				Q_ASSERT(nullptr);
+				return false;
+			}
+			
+			if (nullptr != gameCityItem)
+			{ 
+				if (false == TerrainAccessTester::Accessable(gameUnitItem, destination))
+				{
+					return false;
+				}
+			}
+		}
+		else
+		{
+			return TerrainAccessTester::Accessable(gameUnitItem, destination);
+		}
 	}
 
-	if (false == TerrainAccessTester::Accessable(gameUnitItem, destination))
+	if (true == IsCityOnDestinationMapTile(destination->GetGameMapItemId()))
 	{
-		return false;
+		if (false == IsStackLimitSufficient(destination->GetGameMapItemId()))
+		{
+			return false;
+		}
+		if (false == TerrainAccessTester::Accessable(gameUnitItem, destination))
+		{
+			return false;
+		}
+		return AttackCity(gameUnitItem, GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId()));
 	}
-	return IsStackLimitSufficient(destination->GetGameMapItemId());
+	else
+	{
+		if (false == TerrainAccessTester::Accessable(gameUnitItem, destination))
+		{
+			return false;
+		}
+		if (false == IsStackLimitSufficient(destination->GetGameMapItemId()))
+		{
+			return false;
+		}
+		return true;
+	}
 }
 
 const ModelTerrainType* GameUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
@@ -97,6 +149,11 @@ bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId) 
 	return gameUnitItem->GetModelOwnerType() != CurrentMapTileOwner;
 }
 
+bool GameUnitMovementController::IsCityOnDestinationMapTile(int gameMapItemId) const
+{
+	return GameCityItemRepository::GetInstance()->IsCityOnGameMapItemId(gameMapItemId);
+}
+
 const GameUnitItem* GameUnitMovementController::GetEnemyGameUnit(int gameMapItemId) const
 {
 	return GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
@@ -123,5 +180,16 @@ const ModelOwnerType* GameUnitMovementController::GetCurrentMapTileOwner()
 	}
 
 	return ActiveGameUnitItem->GetModelOwnerType();
+}
+
+bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const
+{
+	//TODO: Calculate if attack is succesfull
+	if (gameUnitItem->GetModelOwnerTypeId() != gameCityItem->GetModelOwnerTypeId())
+	{
+		int changeOwnerTypeOfCity = 0;
+		//TODO: Change Owner Type
+	}
+	return true;
 }
 

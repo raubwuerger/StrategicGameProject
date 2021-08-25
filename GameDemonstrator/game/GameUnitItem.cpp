@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameUnitItem.h"
+#include "model/ModelUnitType.h"
 
 GameUnitItem::GameUnitItem(int gameUnitId)
 	: Id(gameUnitId),
@@ -66,6 +67,11 @@ void GameUnitItem::UpdateTurn()
 	//TODO: Reset movement points
 	//TODO: Heal Unit
 	//TODO: ...
+}
+
+bool GameUnitItem::CanOccupieCity() const
+{
+	return UnitType->GetCanOccupieCity();
 }
 
 bool GameUnitItem::operator<(const GameUnitItem& rhs) const

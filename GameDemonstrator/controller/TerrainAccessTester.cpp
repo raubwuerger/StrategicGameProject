@@ -106,3 +106,18 @@ bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const i
 
 	return modelCityType->IsPlaceableOnTerrainType(modelTerrainType->GetId());
 }
+
+bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const ModelCityType* modelCityType)
+{
+	if (nullptr == gameUnitItem)
+	{
+		return false;
+	}
+
+	if (nullptr == modelCityType)
+	{
+		return false;
+	}
+
+	return gameUnitItem->CanOccupieCity();
+}

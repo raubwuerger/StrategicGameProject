@@ -53,3 +53,8 @@ bool ModelUnitType::IsUnitTypeAttackable(int modelUnitTypeId) const
 {
 	return AttackableUnitTypes.contains(modelUnitTypeId);
 }
+
+bool ModelUnitType::GetCanOccupieCity() const
+{
+	return CanOccupieCity;
+}

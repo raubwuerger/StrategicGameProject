@@ -5147,7 +5147,7 @@
     <Cities>
         <City>
             <ID>1</ID>
-            <CityItemId>2</CityItemId>
+            <CityItemId>1</CityItemId>
             <OwnerTypeId>2</OwnerTypeId>
             <GameMapItemID>141</GameMapItemID>
             <Name></Name>
@@ -5156,7 +5156,7 @@
         </City>
         <City>
             <ID>2</ID>
-            <CityItemId>3</CityItemId>
+            <CityItemId>1</CityItemId>
             <OwnerTypeId>3</OwnerTypeId>
             <GameMapItemID>660</GameMapItemID>
             <Name></Name>
@@ -5165,7 +5165,7 @@
         </City>
         <City>
             <ID>3</ID>
-            <CityItemId>4</CityItemId>
+            <CityItemId>1</CityItemId>
             <OwnerTypeId>4</OwnerTypeId>
             <GameMapItemID>723</GameMapItemID>
             <Name></Name>
@@ -5174,7 +5174,7 @@
         </City>
         <City>
             <ID>4</ID>
-            <CityItemId>5</CityItemId>
+            <CityItemId>1</CityItemId>
             <OwnerTypeId>5</OwnerTypeId>
             <GameMapItemID>76</GameMapItemID>
             <Name></Name>

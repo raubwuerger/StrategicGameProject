@@ -32,6 +32,8 @@ public:
 	/** */
 	bool IsCityOnGameMapItemId(int mapItemId) const;
 	/** */
+	GameCityItem* GetCityItemByGameMapItemId(int mapItemId);
+	/** */
 	int CreateNewId() const;
 private:
 	/** */

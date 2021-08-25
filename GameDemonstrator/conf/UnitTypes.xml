@@ -415,9 +415,6 @@
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
 		<AttackableUnitTypes>
-			<AttackableUnitType>1</AttackableUnitType>
-			<AttackableUnitType>2</AttackableUnitType>
-			<AttackableUnitType>3</AttackableUnitType>
 			<AttackableUnitType>4</AttackableUnitType>
 			<AttackableUnitType>5</AttackableUnitType>
 			<AttackableUnitType>6</AttackableUnitType>

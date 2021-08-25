@@ -7,13 +7,14 @@ class GameUnitItem;
 class ModelUnitType;
 class ModelTerrainType;
 class ModelOwnerType;
+class GameCityItem;
 
 class GameUnitMovementController
 {
 public:
 	GameUnitMovementController(const GameUnitItem *activeGameUnitItem);
 	/** */
-	bool CanUnitMove(int gameUnitItemId, const MapHexItem* destination ) const;
+	bool CanUnitMove(int sourceGameUnitItemId, const MapHexItem* destination ) const;
 private:
 	/** */
 	const ModelTerrainType* GetModelTerrainType(const MapUnitItem* mapUnitItem) const;
@@ -22,11 +23,15 @@ private:
 	/** */
 	bool IsEnemyOnDestinationMapTile(int gameMapItemId) const;
 	/** */
+	bool IsCityOnDestinationMapTile(int gameMapItemId) const;
+	/** */
 	const GameUnitItem* GetEnemyGameUnit(int gameMapItemId) const;
 	/** */
 	bool IsStackLimitSufficient(int gameMapItemId) const;
 	/** */
 	const ModelOwnerType* GetCurrentMapTileOwner();
+	/** */
+	bool AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const;
 private:
 	const GameUnitItem*		ActiveGameUnitItem;
 	const ModelOwnerType*	CurrentMapTileOwner;

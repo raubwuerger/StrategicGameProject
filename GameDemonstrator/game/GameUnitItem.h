@@ -37,6 +37,8 @@ public:
 	int GetGameMapItemId() const;
 	/** */
 	void UpdateTurn() override;
+	/** */
+	bool CanOccupieCity() const;
 private:
 	friend class GameUnitItemFactory;
 	const int				Id;

@@ -111,6 +111,16 @@ bool GameCityItemRepository::IsCityOnGameMapItemId(int mapItemId) const
 	return true;
 }
 
+GameCityItem* GameCityItemRepository::GetCityItemByGameMapItemId(int mapItemId)
+{
+	if (false == GameCityItemsOnGameMapItem.contains(mapItemId))
+	{
+		return nullptr;
+	}
+
+	return GetGameCityItemById(GameCityItemsOnGameMapItem[mapItemId]);
+}
+
 int GameCityItemRepository::CreateNewId() const
 {
 	if (true == GameCityItems.isEmpty())

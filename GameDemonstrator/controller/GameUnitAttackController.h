@@ -8,7 +8,11 @@ class GameUnitAttackController
 {
 public:
 	/** */
+	static bool IsUnitAttackable(const GameUnitItem* attacker, const GameUnitItem* defender);
+	/** */
 	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender);
+	/** */
+	static bool IsCityAttackable(const GameUnitItem* attacker, const GameCityItem* defender);
 	/** */
 	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameCityItem* defender);
 private:
