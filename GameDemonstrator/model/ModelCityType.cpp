@@ -2,7 +2,13 @@
 #include "ModelCityType.h"
 
 ModelCityType::ModelCityType(int id)
-	: Id(id)
+	: Id(id),
+	Name("City"),
+	PictureName("Not Initialized"),
+	Image(nullptr),
+	Efficiency(-1),
+	SpezializedUnitType(-1),
+	DefenceValue(-1)
 {
 
 }

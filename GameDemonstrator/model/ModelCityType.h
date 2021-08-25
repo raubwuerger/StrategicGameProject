@@ -11,15 +11,17 @@ public:
 	/** */
 	const QString toString() const;
 	/** */
-	void SetImage(const QImage* image) { Image = image; }
-	/** */
 	const QImage* GetImage() const { return Image; }
 	/** */
 	const QString& GetPictureName() const { return PictureName; }
 	/** */
+	void SetName(const QString& name) { Name = name; }
+	/** */
 	const QString& GetName() const { return Name; }
 	/** */
 	bool IsPlaceableOnTerrainType(int terrainTypeId) const;
+	/** */
+	int GetDefenceValue() const { return DefenceValue; }
 private:
 	friend class ModelCityTypeFactory;
 	int				Id;
@@ -29,6 +31,7 @@ private:
 	int				Efficiency;
 	int				SpezializedUnitType;
 	QVector<int>	PlacableTerrainTypes;
+	int				DefenceValue;
 };
 
 #endif // MODELCITYTYPE_H

@@ -57,6 +57,7 @@ ModelCityType* ModelCityTypeFactory::CreateFromXML( const QDomNode& node )
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newType->Efficiency);
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newType->SpezializedUnitType);
+	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_DEFENSEVALUES, newType->DefenceValue);
 
 	DomNodeFinder finder(node);
 	allElementsExtracted &= ParsePlacableTerrainTypes(finder.FindDomeNodeByName(ModelCityTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->PlacableTerrainTypes);
@@ -81,7 +82,7 @@ bool ModelCityTypeFactory::AttacheImage(ModelCityType* type)
 		return false;
 	}
 
-	type->SetImage(terrainTypeImage);
+	type->Image = terrainTypeImage;
 	return true;
 
 }

@@ -12,5 +12,6 @@
 			<TerrainTypeId>4</TerrainTypeId>
 			<TerrainTypeId>5</TerrainTypeId>
 		</PlacableTerrainTypes>
+		<DefenseValues>10</DefenseValues>
 	</CityType>
 </CityTypes>
