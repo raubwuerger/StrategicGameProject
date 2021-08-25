@@ -21,6 +21,8 @@ public:
 	bool ExtractValue( const QString& valueName, QColor& value );
 /** */
 	bool ExtractValue( const QString& valueName, int& value );
+/** */
+	bool ExtractValue(const QString& valueName, bool& value);
 private:
 /** */
 	bool ValidateInput( const QString& valueName );

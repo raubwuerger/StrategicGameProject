@@ -62,6 +62,23 @@ bool DomValueExtractor::ExtractValue( const QString& valueName, int& value )
 	return true;
 }
 
+bool DomValueExtractor::ExtractValue(const QString& valueName, bool& value)
+{
+	if (false == ValidateInput(valueName))
+	{
+		return false;
+	}
+
+	DomElementFinder finder(DomNode);
+	if (false == finder.TryFindElement(valueName, value))
+	{
+		return false;
+	}
+
+	jha::GetLog()->Log_DEBUG(QObject::tr("XML element (int) found %1 with value: %2 ").arg(valueName).arg(QString::number(value)));
+	return true;
+}
+
 bool DomValueExtractor::ValidateInput( const QString& valueName )
 {
 	if( true == valueName.isEmpty() )

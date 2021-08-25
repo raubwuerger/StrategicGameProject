@@ -48,6 +48,24 @@ bool DomElementFinder::TryFindElement( const QString& elementName, QColor& value
 	return true;
 }
 
+bool DomElementFinder::TryFindElement(const QString& elementName, bool& value) const
+{
+	QDomElement element;
+	if (ExtractElement(elementName, element) == false)
+	{
+		return false;
+	}
+
+	bool boolValue;
+	if (false == IsTextBoolean(element.text(), &boolValue))
+	{
+		return false;
+	}
+	value = boolValue;
+	jha::GetLog()->Log_DEBUG(QObject::tr("Element <%1> found with value: %2 ").arg(elementName).arg(value));
+	return true;
+}
+
 bool DomElementFinder::ExtractElement( const QString& elementName, QDomElement& element ) const
 {
 	element = DomNode.firstChildElement(elementName);
@@ -57,4 +75,11 @@ bool DomElementFinder::ExtractElement( const QString& elementName, QDomElement& 
 		return false;
 	}
 	return true;
+}
+
+bool DomElementFinder::IsTextBoolean(const QString& text, bool* value) const
+{
+	bool conversionOk;
+	int intValue = text.toInt(&conversionOk);
+	return false;
 }
