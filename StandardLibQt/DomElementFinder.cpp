@@ -81,5 +81,10 @@ bool DomElementFinder::IsTextBoolean(const QString& text, bool* value) const
 {
 	bool conversionOk;
 	int intValue = text.toInt(&conversionOk);
-	return false;
+	if (false == conversionOk)
+	{
+		//TODO: Here should be checked for string "true", "false", "io", "nio"
+		return false;
+	}
+	return true;
 }
