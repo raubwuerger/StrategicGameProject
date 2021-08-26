@@ -19,7 +19,7 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	this->setFlags(QGraphicsItem::ItemIsFocusable);
 	BoundingRect = QRectF(QPointF(0.0, 0.0), ImageRect);
 	CreatRect();
-	setZValue(255);
+	setZValue(3);
 }
 
 QRectF MapUnitItem::boundingRect() const

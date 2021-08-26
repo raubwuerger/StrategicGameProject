@@ -21,7 +21,7 @@ MapCityItem::MapCityItem( const MapHexItemHexagonData& data, const QPointF& topL
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 	setCacheMode(QGraphicsItem::ItemCoordinateCache);
-	setZValue(1);
+	setZValue(2);
 }
 
 MapCityItem::~MapCityItem()

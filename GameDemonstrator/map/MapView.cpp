@@ -65,6 +65,7 @@ bool MapView::AddedMapUnit(MapUnitItem *mapUnitItem)
 	mapUnitItem->SetEventConnector(ConnectorMapUnitItemInstance);
 	mapUnitItem->SetKeyEventController(KeyEventControllerInstance);
 	Scene->addItem(mapUnitItem);
+	jha::GetLog()->Log_MESSAGE(tr("Successful added MapUnitItem on hex id=%1").arg(QString::number(mapUnitItem->GetMapHexItemId())));
 	return true;
 }
 
