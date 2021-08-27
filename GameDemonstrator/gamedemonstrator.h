@@ -20,6 +20,7 @@ class ConnectorUnitTypeGameMap;
 class ConnectorLoadCreateGame;
 class SerializerGame;
 class GameMode;
+class GameMainDialog;
 
 namespace jha
 {
@@ -35,6 +36,7 @@ public:
 	/** */
 	~GameDemonstrator();
 private:
+	void CreateGameModes();
 	void CreateMenuFile();
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
@@ -46,13 +48,14 @@ private:
 	void InitMainGameThread();
 	void InitLoggingFramwork();
 	void CreateEditorToolbox();
+	void CreateMenuGameModeMenu();
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
 	QMenu	*InfoMenu;
 	QMenu	*EditorMenu;
 	QMenu	*GameModeMenu;
-	QDialog	*MainDialog;
+	GameMainDialog*				GameMainDialogObject;
 	ActionRepository*			ActionRepository;
 	GameTurnDialog*				GameTurnDialogInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
@@ -66,6 +69,8 @@ private:
 	EditorToolbox*				EditorToolboxInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
 	GameMode*					CurrentGameMode;
+	GameMode*					GameModeEditorObject;
+	GameMode*					GameModeSinglePlayerObject;
 	Ui::GameDemonstratorClass ui;
 };
 

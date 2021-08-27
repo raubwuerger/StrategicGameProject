@@ -6,14 +6,21 @@
 
 #include "GameMode.h"
 
+class GameDemonstrator;
+
 /** @stereotype Strategie*/
 class GameModeSinglePlayer : public GameMode
 {
 public:
 	/** */
+	GameModeSinglePlayer(GameDemonstrator* gameDemonstrator);
+	/** */
 	virtual void Activate();
 	/** */
 	virtual void Deavtivate();
+private:
+	/** Restricted */
+	GameModeSinglePlayer();
 };
 
 #endif // GAMEMODESTANDARD_H

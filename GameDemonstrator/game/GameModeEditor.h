@@ -3,17 +3,25 @@
 
 #ifndef GAMEMODEEDITOR_H
 #define GAMEMODEEDITOR_H
+
 #include "GameMode.h"
+
+class GameDemonstrator;
 
 /** @stereotype Strategie*/
 class GameModeEditor : public GameMode
 {
 public:
+	/** */
+	GameModeEditor(GameDemonstrator* gameDemonstrator);;
 public slots:
 	/** */
 	virtual void Activate();
 	/** */
 	virtual void Deavtivate();
+private:
+	/** Restricted */
+	GameModeEditor();
 };
 
 #endif // GAMEMODEEDITOR_H

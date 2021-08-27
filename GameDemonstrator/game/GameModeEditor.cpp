@@ -5,12 +5,19 @@
 #include "GameModeEditor.h"
 
 //=================================================================================================
-void GameModeEditor::Activate() 
+GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
+	: GameMode(gameDemonstrator)
+{
+
+}
+
+//=================================================================================================
+void GameModeEditor::Activate()
 {
 }
 
+//=================================================================================================
 void GameModeEditor::Deavtivate()
 {
 }
-
 

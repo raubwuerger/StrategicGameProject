@@ -30,14 +30,14 @@ void Ui_GameMainDialog::retranslateUi(QDialog *GameMainDialog)
 	CloseGame->setText(QApplication::translate("GameMainDialog", "Close Game", 0));
 }
 
-Ui::GameMainDialog::GameMainDialog(QDialog* dialog)
+GameMainDialog::GameMainDialog(QDialog* dialog)
 {
 	setupUi(dialog);
 	retranslateUi(dialog);
 	QObject::connect(CloseGame, &QPushButton::clicked, dialog, &QDialog::accept);
 }
 
-void Ui::GameMainDialog::Init(GameDemonstrator* gameDemonstrator)
+void GameMainDialog::Init(GameDemonstrator* gameDemonstrator)
 {
 	GameDemonstratorObject = gameDemonstrator;
 	QObject::connect(CloseGame, &QPushButton::clicked, GameDemonstratorObject, &GameDemonstrator::close);

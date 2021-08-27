@@ -34,20 +34,17 @@ public:
     QPushButton *CloseGame;
 };
 
-namespace Ui
+class GameMainDialog: public Ui_GameMainDialog
 {
-    class GameMainDialog: public Ui_GameMainDialog
-	{
-	public:
-		/** */
-		GameMainDialog(QDialog* dialog);
-		/** */
-		void Init(GameDemonstrator* gameDemonstrator);
-	private:
-		QDialog* Dialog;
-		GameDemonstrator* GameDemonstratorObject;
-	};
-}
+public:
+	/** */
+	GameMainDialog(QDialog* dialog);
+	/** */
+	void Init(GameDemonstrator* gameDemonstrator);
+private:
+	QDialog* Dialog;
+	GameDemonstrator* GameDemonstratorObject;
+};
 
 QT_END_NAMESPACE
 

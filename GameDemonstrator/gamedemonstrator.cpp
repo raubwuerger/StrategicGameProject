@@ -36,9 +36,11 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu(nullptr),
 	EditorMenu(nullptr),
 	GameModeMenu(nullptr),
+	GameModeEditorObject(nullptr),
+	GameModeSinglePlayerObject(nullptr),
 	CurrentGameMode(nullptr),
 	ConnectorLoadCreateGameInstance(nullptr),
-	MainDialog(nullptr)
+	GameMainDialogObject(nullptr)
 {
 	ui.setupUi(this);
 
@@ -66,6 +68,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
 	CreateMenuAbout();
+	CreateMenuGameModeMenu();
 	InitMainGameThread();
 
 //	CreateHexItemInfoDialog();
@@ -87,11 +90,12 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	MapViewInstance->show();
 
-	MainDialog = new QDialog(this);
-	Ui::GameMainDialog* gameMainDialog = new Ui::GameMainDialog(MainDialog);
-	gameMainDialog->Init(this);
+	QDialog* dialog = new QDialog(this);
+	GameMainDialogObject = new GameMainDialog(dialog);
+	GameMainDialogObject->Init(this);
+	dialog->show();
 
-	MainDialog->show();
+	CreateGameModes();
 }
 
 GameDemonstrator::~GameDemonstrator()
@@ -115,6 +119,18 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	MainThread = new GameMainThread();
 	MainThread->Init(MainGameLoopInstance);
 	connect(MainGameLoopInstance, &GameMainLoop::SignalTurnFinished, GameTurnDialogInstance, &GameTurnDialog::SlotUpdateGameTurnInfo);
+}
+
+#include "game/GameMode.h"
+#include "game/GameModeEditor.h"
+#include "game/GameModeSinglePlayer.h"
+void GameDemonstrator::CreateGameModes()
+{
+	GameModeEditorObject = new GameModeEditor(this);
+	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
+
+	GameModeSinglePlayerObject = new GameModeSinglePlayer(this);
+	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
 }
 
 void GameDemonstrator::CreateMenuFile()
@@ -174,6 +190,23 @@ void GameDemonstrator::CreateMenuFile()
 	FileMenu->addSeparator();
 	FileMenu->addAction( exitAction );
 }
+
+
+void GameDemonstrator::CreateMenuGameModeMenu()
+{
+	QIcon editorMode(QPixmap(".//Resources//gear_edit.ico"));
+	QAction* actionEditorMode = new QAction(editorMode, tr("&Editor"), this);
+	actionEditorMode->setStatusTip(tr("Open Game Editor"));
+	ActionRepository::GetInstance()->AddAction(actionEditorMode);
+//	connect(actionEditorMode, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
+
+	QIcon gameModeSinglePlayer(QPixmap(".//Resources//gear_edit.ico"));
+	QAction* actionSinglePlayerMode = new QAction(gameModeSinglePlayer, tr("&Editor"), this);
+	actionSinglePlayerMode->setStatusTip(tr("Create Single Player Mode"));
+	ActionRepository::GetInstance()->AddAction(actionSinglePlayerMode);
+//	connect(actionEditorMode, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
+}
+
 
 void GameDemonstrator::InitMainGameThread()
 {

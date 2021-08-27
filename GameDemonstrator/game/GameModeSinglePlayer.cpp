@@ -5,10 +5,19 @@
 #include "GameModeSinglePlayer.h"
 
 //=================================================================================================
-void GameModeSinglePlayer::Activate() 
+GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
+	: GameMode(gameDemonstrator)
+{
+
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::Activate()
 {
 }
 
+//=================================================================================================
 void GameModeSinglePlayer::Deavtivate()
 {
 }
+
