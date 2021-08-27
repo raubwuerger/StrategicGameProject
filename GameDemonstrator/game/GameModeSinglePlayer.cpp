@@ -21,3 +21,9 @@ void GameModeSinglePlayer::Deavtivate()
 {
 }
 
+//=================================================================================================
+bool GameModeSinglePlayer::DoInit()
+{
+	return true;
+}
+

@@ -28,14 +28,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
 	GameTurnDialogInstance(nullptr),
 	MainGameLoopInstance(nullptr),
-	HexItemInfoDialogInstance(nullptr),
-	UnitTypeInfoDialogInstance(nullptr),
-	EditorToolboxInstance(nullptr),
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
-	EditorMenu(nullptr),
-	GameModeMenu(nullptr),
 	GameModeEditorObject(nullptr),
 	GameModeSinglePlayerObject(nullptr),
 	CurrentGameMode(nullptr),
@@ -45,8 +40,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ui.setupUi(this);
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
-	GameModeMenu = menuBar()->addMenu(tr("&GameMode"));
-	EditorMenu = menuBar()->addMenu(tr("&Editor"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
@@ -64,17 +57,12 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	}
 
-	CreateGameTurnInfoDialog();
+//	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
 	CreateMenuAbout();
 	CreateMenuGameModeMenu();
 	InitMainGameThread();
-
-//	CreateHexItemInfoDialog();
-//	CreateUnitTypeInfoDialog();
-//	CreateCityTypeInfoDialog();
-//	CreateEditorToolbox();
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	layoutMain->addWidget(MapViewInstance);
@@ -118,7 +106,7 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 	MainGameLoopInstance = new GameMainLoop(nullptr);
 	MainThread = new GameMainThread();
 	MainThread->Init(MainGameLoopInstance);
-	connect(MainGameLoopInstance, &GameMainLoop::SignalTurnFinished, GameTurnDialogInstance, &GameTurnDialog::SlotUpdateGameTurnInfo);
+//	connect(MainGameLoopInstance, &GameMainLoop::SignalTurnFinished, GameTurnDialogInstance, &GameTurnDialog::SlotUpdateGameTurnInfo);
 }
 
 #include "game/GameMode.h"
@@ -127,9 +115,20 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 void GameDemonstrator::CreateGameModes()
 {
 	GameModeEditorObject = new GameModeEditor(this);
+	GameModeEditorObject->MapViewObject = MapViewInstance;
+	if (false == GameModeEditorObject->Init())
+	{
+		return;
+	}
 	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
 
+
 	GameModeSinglePlayerObject = new GameModeSinglePlayer(this);
+	GameModeSinglePlayerObject->MapViewObject = MapViewInstance;
+	if (false == GameModeSinglePlayerObject->Init())
+	{
+		return;
+	}
 	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
 }
 
@@ -231,40 +230,6 @@ void GameDemonstrator::CreateMenuGameMode()
 	//TODO: Dialog mit parametern (Kartengröße, Gegneranzahl, ...)
 }
 
-void GameDemonstrator::CreateHexItemInfoDialog()
-{
-	QDockWidget *dockHexItem = new QDockWidget(tr("Hex item"), this);
-	dockHexItem->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
- 	HexItemInfoDialogInstance = new HexItemInfoDialog(dockHexItem);
- 	dockHexItem->setWidget( HexItemInfoDialogInstance );
-	addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
-	EditorMenu->addAction(dockHexItem->toggleViewAction());
-	MapViewInstance->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance; //TODO: Sollte das hier passieren
-}
-
-void GameDemonstrator::CreateUnitTypeInfoDialog()
-{
-	QDockWidget *dockUnitType = new QDockWidget(tr("Unit type"), this);
-	dockUnitType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog(dockUnitType);
-	dockUnitType->setWidget(UnitTypeInfoDialogInstance);
-	addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
-	EditorMenu->addAction(dockUnitType->toggleViewAction());
-	MapViewInstance->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance; //TODO: Sollte das hier passieren
-}
-
-#include "dialogs/CityTypeInfoDialog.h"
-void GameDemonstrator::CreateCityTypeInfoDialog()
-{
-	QDockWidget *dockCityType = new QDockWidget(tr("City type"), this);
-	dockCityType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	CityTypeInfoDialogInstance = new CityTypeInfoDialog(dockCityType);
-	dockCityType->setWidget(CityTypeInfoDialogInstance);
-	addDockWidget(Qt::RightDockWidgetArea, dockCityType);
-	EditorMenu->addAction(dockCityType->toggleViewAction());
-	MapViewInstance->MapEventManagerInstance->CityTypeInfoDialog = CityTypeInfoDialogInstance; //TODO: Sollte das hier passieren
-}
-
 #include "LogInterface.h"
 #include "LoggingTableWidget.h"
 #include "LoggerFile.h"
@@ -298,18 +263,4 @@ void GameDemonstrator::InitLoggingFramwork()
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
-}
-
-void GameDemonstrator::CreateEditorToolbox()
-{
-	QDockWidget *editorToolbox = new QDockWidget(tr("Editor Palette"), this);
-	editorToolbox->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-
-	EditorToolboxInstance = new EditorToolbox(editorToolbox);
-	EditorToolboxInstance->MapViewInstance = MapViewInstance;
-	EditorToolboxInstance->Create();
-
-	editorToolbox->setWidget( EditorToolboxInstance );
-	addDockWidget(Qt::LeftDockWidgetArea, editorToolbox);
-	ViewMenu->addAction(editorToolbox->toggleViewAction());
 }

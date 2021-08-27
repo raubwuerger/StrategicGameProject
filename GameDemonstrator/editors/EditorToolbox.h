@@ -67,7 +67,7 @@ private:
 	/** */
 	void CreateGroupBuildingTypes();
 private:
-	friend class GameDemonstrator;
+	friend class GameModeEditor;
 	int								MinimumEditWidth;	//Has been: itemTerrainType->sizeHint().width()
 	QButtonGroup*					GroupTerrainTypes;
 	QButtonGroup*					GroupBuildings;

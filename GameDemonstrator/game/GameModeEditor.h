@@ -7,13 +7,19 @@
 #include "GameMode.h"
 
 class GameDemonstrator;
+class HexItemInfoDialog;
+class UnitTypeInfoDialog;
+class CityTypeInfoDialog;
+class EditorToolbox;
 
 /** @stereotype Strategie*/
 class GameModeEditor : public GameMode
 {
 public:
 	/** */
-	GameModeEditor(GameDemonstrator* gameDemonstrator);;
+	GameModeEditor(GameDemonstrator* gameDemonstrator);
+	/** */
+	bool DoInit() override;
 public slots:
 	/** */
 	virtual void Activate();
@@ -22,6 +28,21 @@ public slots:
 private:
 	/** Restricted */
 	GameModeEditor();
+	/** */
+	void CreateEditorToolbox();
+	/** */
+	void CreateHexItemInfoDialog();
+	/** */
+	void CreateUnitTypeInfoDialog();
+	/** */
+	void CreateCityTypeInfoDialog();
+private:
+	EditorToolbox*				EditorToolboxInstance;
+	HexItemInfoDialog*			HexItemInfoDialogInstance;
+	UnitTypeInfoDialog*			UnitTypeInfoDialogInstance;
+	CityTypeInfoDialog*			CityTypeInfoDialogInstance;
+	QMenu*						EditorMenu;
+
 };
 
 #endif // GAMEMODEEDITOR_H

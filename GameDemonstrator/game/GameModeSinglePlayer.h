@@ -18,6 +18,8 @@ public:
 	virtual void Activate();
 	/** */
 	virtual void Deavtivate();
+	/** */
+	bool DoInit() override;
 private:
 	/** Restricted */
 	GameModeSinglePlayer();

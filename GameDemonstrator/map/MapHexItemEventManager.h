@@ -29,7 +29,7 @@ private:
 	QVector< MapUnitItem* >			UnitItems;
 	const QString DEFAULT_ENTRY;
 
-	friend class GameDemonstrator;
+	friend class GameModeEditor;
 	HexItemInfoDialog*	HexItemInfoDialog;
 	UnitTypeInfoDialog*	UnitTypeInfoDialog;
 	CityTypeInfoDialog*	CityTypeInfoDialog;

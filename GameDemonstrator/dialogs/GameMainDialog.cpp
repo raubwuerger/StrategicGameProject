@@ -35,6 +35,8 @@ GameMainDialog::GameMainDialog(QDialog* dialog)
 	setupUi(dialog);
 	retranslateUi(dialog);
 	QObject::connect(CloseGame, &QPushButton::clicked, dialog, &QDialog::accept);
+	QObject::connect(StartEditor, &QPushButton::clicked, dialog, &QDialog::accept);
+	QObject::connect(StartSingleplayer, &QPushButton::clicked, dialog, &QDialog::accept);
 }
 
 void GameMainDialog::Init(GameDemonstrator* gameDemonstrator)
