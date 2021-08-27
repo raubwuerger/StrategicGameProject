@@ -42,7 +42,8 @@ private:
 	UnitTypeInfoDialog*			UnitTypeInfoDialogInstance;
 	CityTypeInfoDialog*			CityTypeInfoDialogInstance;
 	QMenu*						EditorMenu;
-
+	QSize						DockWidgetMinimumSize;
+	QSize						DockWidgetMaximumSize;
 };
 
 #endif // GAMEMODEEDITOR_H

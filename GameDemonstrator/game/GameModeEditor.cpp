@@ -18,7 +18,11 @@ GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
 		UnitTypeInfoDialogInstance(nullptr),
 		CityTypeInfoDialogInstance(nullptr)
 {
+	DockWidgetMinimumSize.setWidth(200);
+	DockWidgetMinimumSize.setHeight(120);
 
+	DockWidgetMaximumSize.setWidth(300);
+	DockWidgetMaximumSize.setHeight(200);
 }
 
 //=================================================================================================
@@ -65,9 +69,11 @@ void GameModeEditor::CreateHexItemInfoDialog()
 	QDockWidget *dockHexItem = new QDockWidget(tr("Hex item"), GameDemonstratorObject);
 	dockHexItem->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	HexItemInfoDialogInstance = new HexItemInfoDialog(dockHexItem);
+	HexItemInfoDialogInstance->setMinimumSize(DockWidgetMinimumSize);
+	HexItemInfoDialogInstance->setMaximumSize(DockWidgetMaximumSize);
+
 	dockHexItem->setWidget(HexItemInfoDialogInstance);
 	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockHexItem);
-//	dockHexItem->setFeatures(QDockWidget::NoDockWidgetFeatures);
 
 	EditorMenu->addAction(dockHexItem->toggleViewAction());
 	MapViewObject->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance; //TODO: Sollte das hier passieren
@@ -79,9 +85,11 @@ void GameModeEditor::CreateUnitTypeInfoDialog()
 	QDockWidget *dockUnitType = new QDockWidget(tr("Unit type"), GameDemonstratorObject);
 	dockUnitType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog(dockUnitType);
+	UnitTypeInfoDialogInstance->setMinimumSize(DockWidgetMinimumSize);
+	UnitTypeInfoDialogInstance->setMaximumSize(DockWidgetMaximumSize);
+
 	dockUnitType->setWidget(UnitTypeInfoDialogInstance);
 	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockUnitType);
-//	dockUnitType->setFeatures(QDockWidget::NoDockWidgetFeatures);
 	
 	EditorMenu->addAction(dockUnitType->toggleViewAction());
 	MapViewObject->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance; //TODO: Sollte das hier passieren
@@ -93,9 +101,11 @@ void GameModeEditor::CreateCityTypeInfoDialog()
 	QDockWidget *dockCityType = new QDockWidget(tr("City type"), GameDemonstratorObject);
 	dockCityType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	CityTypeInfoDialogInstance = new CityTypeInfoDialog(dockCityType);
+	CityTypeInfoDialogInstance->setMinimumSize(DockWidgetMinimumSize);
+	CityTypeInfoDialogInstance->setMaximumSize(DockWidgetMaximumSize);
+
 	dockCityType->setWidget(CityTypeInfoDialogInstance);
 	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockCityType);
-//	dockCityType->setFeatures(QDockWidget::NoDockWidgetFeatures);
 
 	EditorMenu->addAction(dockCityType->toggleViewAction());
 	MapViewObject->MapEventManagerInstance->CityTypeInfoDialog = CityTypeInfoDialogInstance; //TODO: Sollte das hier passieren
