@@ -611,6 +611,12 @@
     <ClCompile Include="game\GameObject.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="dialogs\GameMainDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameMode.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -674,9 +680,6 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="game\GameMainCounter.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMode.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameModeEditor.h">
@@ -856,9 +859,6 @@
     <ClInclude Include="..\StandardLibQt\ImageLoader.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_CityTypeInfoDialog.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="ConfigurationLoader.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
@@ -870,6 +870,9 @@
     </ClInclude>
     <ClInclude Include="game\GameObject.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\GameMainDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -989,6 +992,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\CityTypeInfoDialog.ui">
       <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="game\GameMode.h">
+      <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

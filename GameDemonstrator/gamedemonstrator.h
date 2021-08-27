@@ -37,6 +37,7 @@ public:
 private:
 	void CreateMenuFile();
 	void CreateMenuAbout();
+	void CreateMenuGameMode();
 	void CreateGameTurnInfoDialog();
 	void CreateMainGameThreadAndLoop();
 	void CreateHexItemInfoDialog();
@@ -50,6 +51,8 @@ private:
 	QMenu	*ViewMenu;
 	QMenu	*InfoMenu;
 	QMenu	*EditorMenu;
+	QMenu	*GameModeMenu;
+	QDialog	*MainDialog;
 	ActionRepository*			ActionRepository;
 	GameTurnDialog*				GameTurnDialogInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;

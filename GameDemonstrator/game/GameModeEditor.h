@@ -9,6 +9,7 @@
 class GameModeEditor : public GameMode
 {
 public:
+public slots:
 	/** */
 	virtual void Activate();
 	/** */

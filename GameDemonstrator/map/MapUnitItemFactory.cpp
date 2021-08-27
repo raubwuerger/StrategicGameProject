@@ -86,11 +86,7 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnitItem* gameItemUn
 		return false;
 	}
 
-	bool creationSuccessfull = mapView->AddedMapUnit(newMapUnitItem);
-	if (true == creationSuccessfull)
-	{
-
-	}
+	return mapView->AddedMapUnit(newMapUnitItem);
 }
 
 bool MapUnitItemFactory::DeleteUnit(MapView* mapView, int unitItemId)

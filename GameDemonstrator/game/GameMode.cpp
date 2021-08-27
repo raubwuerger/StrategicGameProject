@@ -2,10 +2,10 @@
 #include "GameMode.h"
 
 
-GameMode::GameMode()
+GameMode::GameMode(GameDemonstrator* gameDemonstrator)
+	: GameDemonstratorObject(gameDemonstrator)
 {
 }
-
 
 GameMode::~GameMode()
 {

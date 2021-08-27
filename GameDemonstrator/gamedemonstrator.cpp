@@ -22,6 +22,7 @@
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
 #include "RepositoryCleaner.h"
+#include "dialogs/GameMainDialog.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -34,20 +35,21 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
 	EditorMenu(nullptr),
+	GameModeMenu(nullptr),
 	CurrentGameMode(nullptr),
-	ConnectorLoadCreateGameInstance(nullptr)
+	ConnectorLoadCreateGameInstance(nullptr),
+	MainDialog(nullptr)
 {
 	ui.setupUi(this);
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
+	GameModeMenu = menuBar()->addMenu(tr("&GameMode"));
 	EditorMenu = menuBar()->addMenu(tr("&Editor"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
 
 	MapViewInstance = new MapView(this);
 	MapViewInstance->MapEventManagerInstance = new MapHexItemEventManager(nullptr);
-
-	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
 
 	InitLoggingFramwork();
 
@@ -63,16 +65,15 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	CreateGameTurnInfoDialog();
 	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
-	CreateHexItemInfoDialog();
-	CreateUnitTypeInfoDialog();
-	CreateCityTypeInfoDialog();
 	CreateMenuAbout();
 	InitMainGameThread();
 
+//	CreateHexItemInfoDialog();
+//	CreateUnitTypeInfoDialog();
+//	CreateCityTypeInfoDialog();
+//	CreateEditorToolbox();
+
 	QHBoxLayout *layoutMain = new QHBoxLayout;
-
-
-	CreateEditorToolbox();
 	layoutMain->addWidget(MapViewInstance);
 
 	QWidget *widgetMain = new QWidget;
@@ -85,6 +86,12 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ConnectorLoadCreateGameInstance->SetMapView(MapViewInstance);
 
 	MapViewInstance->show();
+
+	MainDialog = new QDialog(this);
+	Ui::GameMainDialog* gameMainDialog = new Ui::GameMainDialog(MainDialog);
+	gameMainDialog->Init(this);
+
+	MainDialog->show();
 }
 
 GameDemonstrator::~GameDemonstrator()
@@ -112,6 +119,8 @@ void GameDemonstrator::CreateMainGameThreadAndLoop()
 
 void GameDemonstrator::CreateMenuFile()
 {
+	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
+
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
@@ -177,10 +186,16 @@ void GameDemonstrator::CreateMenuAbout()
 	QIcon info(":GameDemonstrator/Resources/about.ico");
 	QAction* aboutAction = new QAction(info,tr("&About"), this);
 	aboutAction->setStatusTip(tr("Info about application"));
-//	connect(aboutAction, SIGNAL(triggered()), aboutAction, SLOT(show()));
+	connect(aboutAction, SIGNAL(triggered()), aboutAction, SLOT(show()));
 	ActionRepository::GetInstance()->AddAction(aboutAction);
 
 	InfoMenu->addAction( aboutAction );
+}
+
+void GameDemonstrator::CreateMenuGameMode()
+{
+	//TODO: Togglebutton editor/single player
+	//TODO: Dialog mit parametern (Kartengröße, Gegneranzahl, ...)
 }
 
 void GameDemonstrator::CreateHexItemInfoDialog()
