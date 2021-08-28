@@ -4,7 +4,6 @@
 #include "Action.h"
 #include "LogFactory.h"
 #include "ConfigurationLoader.h"
-#include "game/GameMainThread.h"
 #include "game/GameMainLoop.h"
 #include "dialogs/GameTurnDialog.h"
 #include "dialogs/HexItemInfoDialog.h"
@@ -56,13 +55,11 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	{
 
 	}
-
+	MainGameLoopInstance = new GameMainLoop(this);
 //	CreateGameTurnInfoDialog();
-	CreateMainGameThreadAndLoop();
 	CreateMenuFile();
 	CreateMenuAbout();
 	CreateMenuGameModeMenu();
-	InitMainGameThread();
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	layoutMain->addWidget(MapViewInstance);
@@ -99,14 +96,6 @@ void GameDemonstrator::CreateGameTurnInfoDialog()
  	dockCountry->setWidget( GameTurnDialogInstance );
 	addDockWidget(Qt::RightDockWidgetArea, dockCountry);
 	ViewMenu->addAction(dockCountry->toggleViewAction());
-}
-
-void GameDemonstrator::CreateMainGameThreadAndLoop()
-{
-	MainGameLoopInstance = new GameMainLoop(nullptr);
-	MainThread = new GameMainThread();
-	MainThread->Init(MainGameLoopInstance);
-//	connect(MainGameLoopInstance, &GameMainLoop::SignalTurnFinished, GameTurnDialogInstance, &GameTurnDialog::SlotUpdateGameTurnInfo);
 }
 
 #include "game/GameMode.h"
@@ -190,13 +179,6 @@ void GameDemonstrator::CreateMenuGameModeMenu()
 	actionSinglePlayerMode->setStatusTip(tr("Create Single Player Mode"));
 	ActionRepository::GetInstance()->AddAction(actionSinglePlayerMode);
 //	connect(actionEditorMode, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
-}
-
-
-void GameDemonstrator::InitMainGameThread()
-{
-	MainGameLoopInstance->moveToThread(MainThread);
-	MainThread->start();
 }
 
 void GameDemonstrator::CreateMenuAbout()

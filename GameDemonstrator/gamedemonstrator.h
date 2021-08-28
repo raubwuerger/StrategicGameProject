@@ -41,8 +41,6 @@ private:
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
 	void CreateGameTurnInfoDialog();
-	void CreateMainGameThreadAndLoop();
-	void InitMainGameThread();
 	void InitLoggingFramwork();
 	void CreateMenuGameModeMenu();
 private:

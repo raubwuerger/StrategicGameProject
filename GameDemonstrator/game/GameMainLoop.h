@@ -13,14 +13,6 @@ public:
 	~GameMainLoop();
 public slots:
 	/** */
-	void SlotRun();
-	/** */
-	void SlotStart();
-	/** */
-	void SlotStop();
-	/** */
-	void SlotPause();
-	/** */
 	void SlotStep();
 signals:
 	void SignalTurnFinished( QDate date );
