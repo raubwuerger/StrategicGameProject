@@ -7,6 +7,7 @@
 #include "GameMode.h"
 
 class GameDemonstrator;
+class GameTurnDialog;
 
 /** @stereotype Strategie*/
 class GameModeSinglePlayer : public GameMode
@@ -23,6 +24,11 @@ public:
 private:
 	/** Restricted */
 	GameModeSinglePlayer();
+	/** */
+	void CreateGameTurnInfoDialog();
+private:
+	GameTurnDialog*				GameTurnDialogInstance;
+	QMenu*						GameMenu;
 };
 
 #endif // GAMEMODESTANDARD_H

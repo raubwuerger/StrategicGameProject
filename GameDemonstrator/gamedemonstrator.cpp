@@ -88,16 +88,6 @@ GameDemonstrator::~GameDemonstrator()
 	RepositoryCleaner::GetInstance()->ReleaseAll();
 }
 
-void GameDemonstrator::CreateGameTurnInfoDialog()
-{
-	QDockWidget *dockCountry = new QDockWidget(tr("Game turn"), this);
-	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
- 	GameTurnDialogInstance = new GameTurnDialog(dockCountry);
- 	dockCountry->setWidget( GameTurnDialogInstance );
-	addDockWidget(Qt::RightDockWidgetArea, dockCountry);
-	ViewMenu->addAction(dockCountry->toggleViewAction());
-}
-
 #include "game/GameMode.h"
 #include "game/GameModeEditor.h"
 #include "game/GameModeSinglePlayer.h"

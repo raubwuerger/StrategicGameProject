@@ -40,7 +40,6 @@ private:
 	void CreateMenuFile();
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
-	void CreateGameTurnInfoDialog();
 	void InitLoggingFramwork();
 	void CreateMenuGameModeMenu();
 private:

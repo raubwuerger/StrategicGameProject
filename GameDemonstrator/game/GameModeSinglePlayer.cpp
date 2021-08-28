@@ -3,17 +3,30 @@
 
 #include "stdafx.h"
 #include "GameModeSinglePlayer.h"
+#include "dialogs\GameTurnDialog.h"
+#include "GameDemonstrator.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
-	: GameMode(gameDemonstrator)
+	: GameMode(gameDemonstrator),
+	GameTurnDialogInstance(nullptr),
+	GameMenu(nullptr)
 {
 
 }
 
 //=================================================================================================
+bool GameModeSinglePlayer::DoInit()
+{
+	GameTurnDialogInstance = new GameTurnDialog();
+	return true;
+}
+
+//=================================================================================================
 void GameModeSinglePlayer::Activate()
 {
+	GameMenu = GameDemonstratorObject->menuBar()->addMenu(tr("&Game"));
+	CreateGameTurnInfoDialog();
 }
 
 //=================================================================================================
@@ -22,8 +35,13 @@ void GameModeSinglePlayer::Deavtivate()
 }
 
 //=================================================================================================
-bool GameModeSinglePlayer::DoInit()
+void GameModeSinglePlayer::CreateGameTurnInfoDialog()
 {
-	return true;
+	QDockWidget *dockCountry = new QDockWidget(tr("Game turn"), GameDemonstratorObject);
+	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	GameTurnDialogInstance = new GameTurnDialog(dockCountry);
+	dockCountry->setWidget(GameTurnDialogInstance);
+	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockCountry);
+	GameMenu->addAction(dockCountry->toggleViewAction());
 }
 
