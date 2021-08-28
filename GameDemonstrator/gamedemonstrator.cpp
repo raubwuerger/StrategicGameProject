@@ -160,18 +160,6 @@ void GameDemonstrator::CreateMenuFile()
 	connect(nextTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStep, Qt::QueuedConnection);
 	ActionRepository::GetInstance()->AddAction(nextTurnAction);
 
-	QIcon start(":GameDemonstrator/Resources/media_play_green.ico");
-	QAction* startTurnAction = new QAction(start,tr("&Start"), this);
-	startTurnAction->setStatusTip(tr("Start turn"));
-	connect(startTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStart, Qt::QueuedConnection);
-	ActionRepository::GetInstance()->AddAction(startTurnAction);
-
-	QIcon stop(":GameDemonstrator/Resources/media_stop_red.ico");
-	QAction* stopTurnAction = new QAction(stop,tr("S&top"), this);
-	stopTurnAction->setStatusTip(tr("Stop turn"));
-	connect(stopTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotPause, Qt::QueuedConnection);
-	ActionRepository::GetInstance()->AddAction(stopTurnAction);
-
 	QIcon exit(":GameDemonstrator/Resources/exit.ico");
 	QAction* exitAction = new QAction(exit,tr("E&xit"), this);
 	exitAction->setShortcuts(QKeySequence::Quit);
@@ -183,8 +171,6 @@ void GameDemonstrator::CreateMenuFile()
 	FileMenu->addAction( loadGameAction );
 	FileMenu->addAction( saveGameAction );
 	FileMenu->addSeparator();
-	FileMenu->addAction( startTurnAction );
-	FileMenu->addAction( stopTurnAction );
 	FileMenu->addAction( nextTurnAction );
 	FileMenu->addSeparator();
 	FileMenu->addAction( exitAction );
