@@ -4,6 +4,8 @@
 #include "BaseRepository.h"
 
 class MapCityItem;
+class GameCityItem;
+class MapView;
 
 class MapCityItemRepository : public BaseRepository
 {
@@ -12,6 +14,8 @@ public:
 	static MapCityItemRepository* GetInstance();
 	/** */
 	void Init();
+	/** */
+	void Release() override;
 	/** */
 	QMap<int, MapCityItem*>::const_iterator GetFirstIterator() const;
 	/** */
@@ -27,15 +31,17 @@ public:
 	/** */
 	MapCityItem* RemoveById(int mapCityItemId);
 	/** */
-	void Release() override;
+	bool UpdateMapCityItemOwner(const GameCityItem* gameCityItem);
 private:
 	/** */
 	MapCityItemRepository();
 	/** */
 	~MapCityItemRepository();
 private:
+	friend class GameDemonstrator;
 	QMap<int, MapCityItem*>			MapCityItems;
 	static MapCityItemRepository*	Instance;
+	static MapView*					MapViewInstance;
 };
 
 #endif // MAPCITYITEMREPOSITORY_H

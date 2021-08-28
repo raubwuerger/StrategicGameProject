@@ -37,6 +37,8 @@ public:
 	bool AddCity(MapCityItem *mapCityItem);
 	/** */
 	bool RemoveCity(MapCityItem *mapCityItem);
+	/** */
+	bool UpdateCity(MapCityItem *mapCityItem);
 protected:
 	/** */
 	virtual void wheelEvent( QWheelEvent *event );

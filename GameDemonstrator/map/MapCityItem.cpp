@@ -60,6 +60,11 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 	painter->drawPath(path);
 }
 
+void MapCityItem::SetOwnerColor(const QColor ownerColor)
+{
+	Color = ownerColor;
+}
+
 QRectF MapCityItem::boundingRect() const
 {
 	return HexData.BoundingRect;

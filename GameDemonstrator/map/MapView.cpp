@@ -102,6 +102,17 @@ bool MapView::RemoveCity(MapCityItem *mapCityItem)
 	return true;
 }
 
+bool MapView::UpdateCity(MapCityItem *mapCityItem)
+{
+	if (nullptr == mapCityItem)
+	{
+		return false;
+	}
+
+	mapCityItem->update();
+	return true;
+}
+
 void MapView::InitMapEventManager()
 {
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);

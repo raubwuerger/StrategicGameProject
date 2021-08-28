@@ -2,8 +2,13 @@
 #include "MapCityItemRepository.h"
 #include "MapCityItem.h"
 #include "LogInterface.h"
+#include "game/GameCityItem.h"
+#include "model/ModelOwnerType.h"
+#include "map/MapView.h"
 
-MapCityItemRepository* MapCityItemRepository::Instance = nullptr;
+MapCityItemRepository*	MapCityItemRepository::Instance = nullptr;
+MapView*				MapCityItemRepository::MapViewInstance = nullptr;
+
 
 MapCityItemRepository* MapCityItemRepository::GetInstance()
 {
@@ -19,6 +24,21 @@ MapCityItemRepository* MapCityItemRepository::GetInstance()
 void MapCityItemRepository::Init()
 {
 	MapCityItems.clear();
+}
+
+void MapCityItemRepository::Release()
+{
+	MapCityItems.clear();
+}
+
+MapCityItemRepository::MapCityItemRepository()
+{
+
+}
+
+MapCityItemRepository::~MapCityItemRepository()
+{
+
 }
 
 QMap<int, MapCityItem*>::const_iterator MapCityItemRepository::GetFirstIterator() const
@@ -78,17 +98,18 @@ MapCityItem* MapCityItemRepository::RemoveById(int mapCityItemId)
 	return MapCityItems.take(mapCityItemId);
 }
 
-void MapCityItemRepository::Release()
+bool MapCityItemRepository::UpdateMapCityItemOwner(const GameCityItem* gameCityItem)
 {
-	MapCityItems.clear();
-}
+	if (false == MapCityItems.contains(gameCityItem->GetId()))
+	{
+		Q_ASSERT(nullptr);
+		jha::GetLog()->Log_MESSAGE(QObject::tr("MapCityItem with id=%1 not found!").arg(QString::number(gameCityItem->GetId())));
+		return false;
+	}
+	Q_ASSERT(MapViewInstance);
+	MapCityItem* toUpdate = MapCityItems[gameCityItem->GetId()];
 
-MapCityItemRepository::MapCityItemRepository()
-{
-
-}
-
-MapCityItemRepository::~MapCityItemRepository()
-{
-
+	toUpdate->SetOwnerColor(gameCityItem->GetModelOwnerType()->GetColor());
+	MapViewInstance->UpdateCity(toUpdate);
+	return true;
 }

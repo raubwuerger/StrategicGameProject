@@ -25,6 +25,8 @@ public:
 	void SetEventConnector( ConnectorMapCityItem * eventConnector );
 	/** */
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+	/** */
+	void SetOwnerColor(const QColor ownerColor);
 	/** Set m_TerrainImage */
 	bool SetTerrainImage( const QImage * val);
 	/** */

@@ -22,6 +22,7 @@
 #include "editors/EditorToolbox.h"
 #include "RepositoryCleaner.h"
 #include "dialogs/GameMainDialog.h"
+#include "map/MapCityItemRepository.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -56,7 +57,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	}
 	MainGameLoopInstance = new GameMainLoop(this);
-//	CreateGameTurnInfoDialog();
 	CreateMenuFile();
 	CreateMenuAbout();
 	CreateMenuGameModeMenu();
@@ -70,6 +70,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	setWindowState(windowState() | Qt::WindowMaximized);
 
 	MapUnitItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
+	MapCityItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
 
 	ConnectorLoadCreateGameInstance->SetMapView(MapViewInstance);
 

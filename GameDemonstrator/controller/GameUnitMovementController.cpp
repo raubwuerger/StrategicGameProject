@@ -16,6 +16,7 @@
 #include "map/MapUnitItemRepository.h"
 #include "game/GameCityItemRepository.h"
 #include "game/GameCityItem.h"
+#include "map/MapCityItemRepository.h"
 
 GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activeGameUnitItem)
 	: ActiveGameUnitItem(activeGameUnitItem),
@@ -198,6 +199,7 @@ bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, co
 	{
 		GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, gameUnitItem->GetModelOwnerType());
 	}
-	return true;
+
+	return MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);
 }
 
