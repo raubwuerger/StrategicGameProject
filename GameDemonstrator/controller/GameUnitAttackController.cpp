@@ -97,18 +97,13 @@ bool GameUnitAttackController::IsAttackSuccessful(const GameUnitItem* attacker, 
 		return false;
 	}
 
+	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
 	return true;
 }
 
-bool GameUnitAttackController::IsCityAttackable(const GameUnitItem* attacker, const GameCityItem* defender)
+bool GameUnitAttackController::IsCityOccupiable(const GameUnitItem* attacker)
 {
 	if (nullptr == attacker)
-	{
-		Q_ASSERT(true);
-		return false;
-	}
-
-	if (nullptr == defender)
 	{
 		Q_ASSERT(true);
 		return false;

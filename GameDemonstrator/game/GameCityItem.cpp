@@ -36,6 +36,16 @@ const ModelOwnerType* GameCityItem::GetModelOwnerType() const
 	return OwnerType;
 }
 
+void GameCityItem::SetModelOwnerType(const ModelOwnerType* modelOwnerType)
+{
+	OwnerType = modelOwnerType;
+}
+
+void GameCityItem::SetModelOwnerTypeId(int modelOwnerTypeId)
+{
+	OwnerTypeId = modelOwnerTypeId;
+}
+
 const GameMapItem* GameCityItem::GetGameMapItem() const
 {
 	return MapItem;

@@ -184,11 +184,19 @@ const ModelOwnerType* GameUnitMovementController::GetCurrentMapTileOwner()
 
 bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const
 {
-	//TODO: Calculate if attack is succesfull
+	if (false == GameUnitAttackController::IsCityOccupiable(gameUnitItem))
+	{
+		return false;
+	}
+
+	if (false == GameUnitAttackController::IsAttackSuccessful(gameUnitItem, gameCityItem))
+	{
+		return false;
+	}
+
 	if (gameUnitItem->GetModelOwnerTypeId() != gameCityItem->GetModelOwnerTypeId())
 	{
-		int changeOwnerTypeOfCity = 0;
-		//TODO: Change Owner Type
+		GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, gameUnitItem->GetModelOwnerType());
 	}
 	return true;
 }

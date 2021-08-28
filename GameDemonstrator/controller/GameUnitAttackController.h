@@ -12,7 +12,7 @@ public:
 	/** */
 	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender);
 	/** */
-	static bool IsCityAttackable(const GameUnitItem* attacker, const GameCityItem* defender);
+	static bool IsCityOccupiable(const GameUnitItem* attacker);
 	/** */
 	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameCityItem* defender);
 private:

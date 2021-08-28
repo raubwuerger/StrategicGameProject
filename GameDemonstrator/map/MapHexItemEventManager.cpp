@@ -10,6 +10,8 @@
 MapHexItemEventManager::MapHexItemEventManager(QObject *parent)
 	: QObject(parent),
 	HexItemInfoDialog(nullptr),
+	UnitTypeInfoDialog(nullptr),
+	CityTypeInfoDialog(nullptr),
 	DEFAULT_ENTRY("---")
 {
 

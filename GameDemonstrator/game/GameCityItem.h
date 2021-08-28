@@ -26,6 +26,10 @@ public:
 	/** */
 	const ModelOwnerType* GetModelOwnerType() const;
 	/** */
+	void SetModelOwnerType(const ModelOwnerType* modelOwnerType);
+	/** */
+	void SetModelOwnerTypeId(int modelOwnerTypeId);
+	/** */
 	int GetModelOwnerTypeId() const;
 	/** */
 	const GameMapItem* GetGameMapItem() const;
