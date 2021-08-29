@@ -49,6 +49,11 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
+	if (false == ActiveModelCityType->IsPlaceableOnTerrainType(GetModelTerrainType(mapItemId)))
+	{
+		return;
+	}
+
 	if ( true == GameCityItemRepository::GetInstance()->IsCityOnGameMapItemId(mapItemId))
 	{
 		return;
@@ -102,4 +107,17 @@ void CityTypeEditor::SlotDeleteCity(int mapItemId)
 	MapViewInstance->RemoveCity(mapCityItem);
 	delete gameCityItem;
 	delete mapCityItem;
+}
+
+#include "model/ModelTerrainType.h"
+#include "game/GameMapItemRepository.h"
+#include "game/GameMapItem.h"
+int CityTypeEditor::GetModelTerrainType(int mapId)
+{
+	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapId);
+	if (nullptr == gameMapItem)
+	{
+		return NOT_INITIALIZED_INT;
+	}
+	return gameMapItem->GetModelTerrainTypeId();
 }
