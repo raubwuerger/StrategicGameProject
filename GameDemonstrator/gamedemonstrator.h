@@ -21,6 +21,7 @@ class ConnectorLoadCreateGame;
 class SerializerGame;
 class GameMode;
 class GameMainDialog;
+class GameModeController;
 
 namespace jha
 {
@@ -36,7 +37,7 @@ public:
 	/** */
 	~GameDemonstrator();
 private:
-	void CreateGameModes();
+	void CreateGameModeController();
 	void CreateMenuFile();
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
@@ -49,15 +50,12 @@ private:
 	GameMainDialog*				GameMainDialogObject;
 	ActionRepository*			ActionRepository;
 	GameTurnDialog*				GameTurnDialogInstance;
-	GameMainThread*				MainThread;
 	GameMainLoop*				MainGameLoopInstance;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
 	SerializerGame*				ConnectorSaveGameInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
-	GameMode*					CurrentGameMode;
-	GameMode*					GameModeEditorObject;
-	GameMode*					GameModeSinglePlayerObject;
+	GameModeController*			GameModeControllerObject;
 	Ui::GameDemonstratorClass	ui;
 };
 

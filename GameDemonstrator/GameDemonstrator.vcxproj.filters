@@ -617,6 +617,9 @@
     <ClCompile Include="io\GameMapItemCreatorSimple.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
+    <ClCompile Include="gameController\GameModeController.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -873,6 +876,9 @@
     </ClInclude>
     <ClInclude Include="io\IGameMapItemCreator.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="gameController\GameModeController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

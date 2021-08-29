@@ -31,9 +31,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
-	GameModeEditorObject(nullptr),
-	GameModeSinglePlayerObject(nullptr),
-	CurrentGameMode(nullptr),
+	GameModeControllerObject(nullptr),
 	ConnectorLoadCreateGameInstance(nullptr),
 	GameMainDialogObject(nullptr)
 {
@@ -81,7 +79,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameMainDialogObject->Init(this);
 	dialog->show();
 
-	CreateGameModes();
+	CreateGameModeController();
 }
 
 GameDemonstrator::~GameDemonstrator()
@@ -89,31 +87,13 @@ GameDemonstrator::~GameDemonstrator()
 	RepositoryCleaner::GetInstance()->ReleaseAll();
 }
 
-#include "gameController/GameMode.h"
-#include "gameController/GameModeEditor.h"
-#include "gameController/GameModeSinglePlayer.h"
-void GameDemonstrator::CreateGameModes()
+#include "gameController/GameModeController.h"
+void GameDemonstrator::CreateGameModeController()
 {
-	GameModeEditorObject = new GameModeEditor(this);
-	GameModeEditorObject->MapViewObject = MapViewInstance;
-	if (false == GameModeEditorObject->Init())
-	{
-		return;
-	}
-	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
-
-
-	GameModeSinglePlayerObject = new GameModeSinglePlayer(this);
-	GameModeSinglePlayerObject->MapViewObject = MapViewInstance;
-	if (false == GameModeSinglePlayerObject->Init())
-	{
-		return;
-	}
-	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
-
-
-	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Deavtivate);
-	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deavtivate);
+	GameModeControllerObject = new GameModeController;
+	GameModeControllerObject->MapViewObject = MapViewInstance;
+	GameModeControllerObject->GameMainDialogObject = GameMainDialogObject;
+	GameModeControllerObject->Init(this);
 }
 
 void GameDemonstrator::CreateMenuFile()

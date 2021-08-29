@@ -22,17 +22,10 @@ public:
 private:
 	/** */
 	virtual bool DoInit() = 0;
-	/** */
-	void CreateGameModeChangeMenu();
-	/** */
-	void CreateMenuEntryEditor();
-	/** */
-	void CreateMenuEntrySinglePlayer();
 protected:
-	friend class GameDemonstrator;
+	friend class GameModeController;
 	GameDemonstrator*	GameDemonstratorObject;
 	MapView*			MapViewObject;
-	static QMenu*		GameModeChangeMenu;
 };
 
 #endif // GAMEMODE_H
