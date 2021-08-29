@@ -443,12 +443,6 @@
     <ClCompile Include="game\GameMapItemFactory.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameMapItemCreatorSimple.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMapItemCreatorSaveGame.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="map\MapHexItemEventManager.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
@@ -617,6 +611,12 @@
     <ClCompile Include="gameController\GameFactory.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
+    <ClCompile Include="io\GameMapItemCreatorSaveGame.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="io\GameMapItemCreatorSimple.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -778,15 +778,6 @@
     <ClInclude Include="game\GameMapItemFactory.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameMapItemCreatorSimple.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapItemCreatorSaveGame.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\IGameMapItemCreator.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="controller\KeyEventController.h">
       <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
@@ -873,6 +864,15 @@
     </ClInclude>
     <ClInclude Include="gameController\GameFactory.h">
       <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="io\GameMapItemCreatorSaveGame.h">
+      <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="io\GameMapItemCreatorSimple.h">
+      <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="io\IGameMapItemCreator.h">
+      <Filter>Header Dateien\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

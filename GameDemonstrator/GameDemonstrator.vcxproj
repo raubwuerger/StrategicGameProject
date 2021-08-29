@@ -226,8 +226,6 @@
     <ClCompile Include="game\GameCityItem.cpp" />
     <ClCompile Include="game\GameCityItemFactory.cpp" />
     <ClCompile Include="game\GameCityItemRepository.cpp" />
-    <ClCompile Include="game\GameMapItemCreatorSaveGame.cpp" />
-    <ClCompile Include="game\GameMapItemCreatorSimple.cpp" />
     <ClCompile Include="game\GameMapItemFactory.cpp" />
     <ClCompile Include="game\GameMapItem.cpp" />
     <ClCompile Include="game\GameMapItemRepository.cpp" />
@@ -485,6 +483,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="io\GameMapItemCreatorSaveGame.cpp" />
+    <ClCompile Include="io\GameMapItemCreatorSimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
     <ClCompile Include="io\SerializeBinary.cpp" />
@@ -890,12 +890,12 @@
     <ClInclude Include="game\GameUnitItem.h" />
     <ClInclude Include="game\GameUnitItemFactory.h" />
     <ClInclude Include="game\GameUnitItemRepository.h" />
-    <ClInclude Include="game\IGameMapItemCreator.h" />
-    <ClInclude Include="game\GameMapItemCreatorSaveGame.h" />
-    <ClInclude Include="game\GameMapItemCreatorSimple.h" />
     <ClInclude Include="game\GameMapItemFactory.h" />
     <ClInclude Include="game\GameMapItem.h" />
     <ClInclude Include="game\GameMapItemRepository.h" />
+    <ClInclude Include="io\GameMapItemCreatorSaveGame.h" />
+    <ClInclude Include="io\GameMapItemCreatorSimple.h" />
+    <ClInclude Include="io\IGameMapItemCreator.h" />
     <ClInclude Include="MapHexItemHexagonData.h" />
     <CustomBuild Include="map\MapGraphicsScene.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameMapItemFactory.h"
-#include "GameMapItemCreatorSimple.h"
+#include "io\GameMapItemCreatorSimple.h"
 
 GameMapItemFactory::GameMapItemFactory()
 	: TheGameMap(nullptr)

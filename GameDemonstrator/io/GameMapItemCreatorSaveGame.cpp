@@ -6,8 +6,8 @@
 #include "DomNodeFinder.h"
 #include "DomValueExtractor.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "GameMapItem.h"
-#include "GameMapItemRepository.h"
+#include "game/GameMapItem.h"
+#include "game/GameMapItemRepository.h"
 #include "model/ModelUnitTypeRepository.h"
 
 GameMapItemCreatorSaveGame::GameMapItemCreatorSaveGame( const QDomNode mapElements )

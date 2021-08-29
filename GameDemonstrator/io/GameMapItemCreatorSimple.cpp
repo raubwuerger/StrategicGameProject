@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "GameMapItemCreatorSimple.h"
-#include "GameMapItemRepository.h"
+#include "game/GameMapItemRepository.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "GameMapItem.h"
+#include "game/GameMapItem.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 
