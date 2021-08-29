@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>437</width>
+    <height>259</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,50 +18,138 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>391</width>
-     <height>291</height>
+     <width>428</width>
+     <height>251</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0,0,0" columnstretch="2,1,1,0">
-    <item row="4" column="1">
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0" columnstretch="2,0,0,0">
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelDifficulty">
+      <property name="text">
+       <string>Difficulty:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="3">
+     <widget class="QPushButton" name="pushButtonCancel">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
      <widget class="QPushButton" name="pushButtonOk">
       <property name="text">
        <string>Ok</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEditTilesY">
-      <property name="text">
-       <string>60</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEditTilesX">
+    <item row="0" column="2">
+     <widget class="QLineEdit" name="lineEditTilesCols">
       <property name="text">
        <string>120</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="labelTilesY">
-      <property name="text">
-       <string>Tiles Y:</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
-     <widget class="QLabel" name="labelTilesX">
+     <widget class="QLabel" name="labelMapsize">
       <property name="text">
-       <string>Tiles X:</string>
+       <string>Map size (cols/rows)</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="4" column="2">
-     <widget class="QPushButton" name="pushButtonCancel">
+     <widget class="QComboBox" name="comboDifficulty">
+      <item>
+       <property name="text">
+        <string>Easy</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Medium</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Hard</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="labelChoosePlayer">
       <property name="text">
-       <string>Cancel</string>
+       <string>Choose Player:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLineEdit" name="lineEditTilesRows">
+      <property name="text">
+       <string>60</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QComboBox" name="comboBoxChoosePlayer">
+      <item>
+       <property name="text">
+        <string>Player 1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Player 2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Player 3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Player 4</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QComboBox" name="comboBoxEnemyCount">
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelEnemyCount">
+      <property name="text">
+       <string>Difficulty:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>

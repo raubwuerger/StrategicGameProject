@@ -5,19 +5,19 @@
 #include "ui_CreateNewMapDialog.h"
 
 /** @stereotype BorlandFormclass*/
-class CreateNewMapDialog : public QDialog
+class CreateNewGameDialog : public QDialog
 {
 	Q_OBJECT
 
 public:
 	/** */
-	CreateNewMapDialog(QWidget *parent = 0);
+	CreateNewGameDialog(QWidget *parent = 0);
 	/** */
-	~CreateNewMapDialog();
+	~CreateNewGameDialog();
 	/** */
-	int GetTilesX() const;
+	int GetTilesRows() const;
 	/** */
-	int GetTilesY() const;
+	int GetTilesCols() const;
 private:
 	Ui::CreateNewMapDialog ui;
 };

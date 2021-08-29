@@ -317,12 +317,6 @@
     <ClCompile Include="editors\TerrainTypeEditor.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewMapDialog.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewMapDialog.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameTurnDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -340,9 +334,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_UnitTypeInfoDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="dialogs\CreateNewMapDialog.cpp">
-      <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="dialogs\GameTurnDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
@@ -607,6 +598,15 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameMode.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\CreateNewGameDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CreateNewGameDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CreateNewGameDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -915,9 +915,6 @@
     <CustomBuild Include="editors\TerrainTypeEditor.h">
       <Filter>Header Dateien\Editor</Filter>
     </CustomBuild>
-    <CustomBuild Include="dialogs\CreateNewMapDialog.h">
-      <Filter>Header Dateien\Dialogs</Filter>
-    </CustomBuild>
     <CustomBuild Include="dialogs\GameTurnDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
@@ -983,6 +980,9 @@
     </CustomBuild>
     <CustomBuild Include="game\GameMode.h">
       <Filter>Header Dateien\Game</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\CreateNewGameDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
