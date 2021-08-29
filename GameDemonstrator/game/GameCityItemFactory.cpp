@@ -14,6 +14,7 @@
 #include "model/ModelCityType.h"
 
 GameCityItemFactory::GameCityItemFactory()
+	: DefaultCityName("City")
 {
 }
 
@@ -57,6 +58,11 @@ const GameMapItem* GameCityItemFactory::GetGameMapItem(const GameCityParameterOb
 	return GameMapItemRepository::GetInstance()->GetGameMapItemById(obj.GameMapItemId);
 }
 
+QString GameCityItemFactory::CreateCityName(int cityId) const
+{
+	return DefaultCityName + " " + QString::number(cityId);
+}
+
 bool GameCityItemFactory::Create(const QDomNode city)
 {
 	return CreateItems(city);
@@ -97,6 +103,8 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 
 	newItem->MapItemId = mapItem->GetId();
 	newItem->MapItem = mapItem;
+
+	newItem->Name = CreateCityName(newItem->GetId());
 
 	if (false == GameCityItemRepository::GetInstance()->RegisterItem(newItem))
 	{
@@ -257,5 +265,14 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	obj.GameMapItemObject = gameMapItem;
 	obj.Id = id;
 
-	return Create(obj);
+	GameCityItem *gameCityItem = Create(obj);
+	if (nullptr == gameCityItem)
+	{
+		return nullptr;
+	}
+
+	gameCityItem->Efficiency = efficiency;
+	gameCityItem->Name = name;
+
+	return gameCityItem;
 }

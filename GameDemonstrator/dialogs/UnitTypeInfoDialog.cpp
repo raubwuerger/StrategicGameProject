@@ -31,3 +31,8 @@ void UnitTypeInfoDialog::SetMapItemId(const QString& mapItemId)
 {
 	ui.lineEditMapId->setText(mapItemId);
 }
+
+void UnitTypeInfoDialog::SetOwnerName(const QString& ownerName)
+{
+	ui.lineEditOwner->setText(ownerName);
+}

@@ -58,6 +58,7 @@ void MapHexItemEventManager::SlotUpdateMapItemInfo(int gameMapItemId)
 
 #include "dialogs/UnitTypeInfoDialog.h"
 #include "model/ModelUnitType.h"
+#include "model/ModelOwnerType.h"
 void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 {
 	if (nullptr == UnitTypeInfoDialog)
@@ -69,6 +70,7 @@ void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 	QString mapUnitItemName(DEFAULT_ENTRY);
 	QString mapUnitItemType(DEFAULT_ENTRY);
 	QString mapHexItemId(DEFAULT_ENTRY);
+	QString mapUnitItemOwnerName(DEFAULT_ENTRY);
 
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItemId);
 	if (nullptr != gameUnitItem)
@@ -76,12 +78,14 @@ void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 		mapUnitItemName = gameUnitItem->GetName();
 		mapUnitItemType = gameUnitItem->GetModelUnitType()->GetName();
 		mapHexItemId = QString::number(gameUnitItem->GetGameMapItemId());
+		mapUnitItemOwnerName = gameUnitItem->GetModelOwnerType()->GetName();
 	}
 
 	UnitTypeInfoDialog->SetId(mapUnitItem);
 	UnitTypeInfoDialog->SetName(mapUnitItemName);
 	UnitTypeInfoDialog->SetType(mapUnitItemType);
 	UnitTypeInfoDialog->SetMapItemId(mapHexItemId);
+	UnitTypeInfoDialog->SetOwnerName(mapUnitItemOwnerName);
 }
 
 #include "dialogs/CityTypeInfoDialog.h"
@@ -94,21 +98,24 @@ void MapHexItemEventManager::SlotUpdateMapCityItemInfo(int mapCityItemId)
 		return;
 	}
 
-	QString mapUnitItem(QString::number(mapCityItemId));
-	QString mapUnitItemName(DEFAULT_ENTRY);
-	QString mapUnitItemType(DEFAULT_ENTRY);
+	QString cityItemId(QString::number(mapCityItemId));
+	QString cityItemName(DEFAULT_ENTRY);
+	QString cityItemTypeId(DEFAULT_ENTRY);
 	QString mapHexItemId(DEFAULT_ENTRY);
+	QString cityOwner(DEFAULT_ENTRY);
 
 	const GameCityItem* item = GameCityItemRepository::GetInstance()->GetGameCityItemById(mapCityItemId);
 	if (nullptr != item)
 	{
-		mapUnitItemName = item->GetName();
-		mapUnitItemType = item->GetCityTypeId();
+		cityItemName = item->GetName();
+		cityItemTypeId = QString::number(item->GetCityTypeId());
 		mapHexItemId = QString::number(item->GetGameMapItemId());
+		cityOwner = item->GetModelOwnerType()->GetName();
 	}
 
-	CityTypeInfoDialog->SetId(mapUnitItem);
-	CityTypeInfoDialog->SetName(mapUnitItemName);
-	CityTypeInfoDialog->SetType(mapUnitItemType);
+	CityTypeInfoDialog->SetId(cityItemId);
+	CityTypeInfoDialog->SetName(cityItemName);
+	CityTypeInfoDialog->SetType(cityItemTypeId);
 	CityTypeInfoDialog->SetMapItemId(mapHexItemId);
+	CityTypeInfoDialog->SetOwnerName(cityOwner);
 }

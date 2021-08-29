@@ -57,6 +57,10 @@ private:
 	const ModelOwnerType* GetModelOwnerType(const GameCityParameterObject obj) const;
 	/** */
 	const GameMapItem* GetGameMapItem(const GameCityParameterObject obj) const;
+	/** */
+	QString	CreateCityName( int cityId ) const;
+private:
+	const QString	DefaultCityName;
 };
 
 #endif  //GAMECITYITEMFACTORY_H

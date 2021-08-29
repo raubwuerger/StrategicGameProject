@@ -3,6 +3,7 @@
 
 class ModelTerrainType;
 class ModelOwnerType;
+class IGameMapItemCreator;
 
 /** Game tile */
 class GameMapItem
@@ -26,10 +27,16 @@ public:
 	const int GetCol() const;
 	/** */
 	bool operator < (const GameMapItem& rhs) const;
+	/** */
+	int GetModelTerrainTypeId() const;
+	/** */
+	void SetModelTerrainTypeId(int modelTerrainTypeId);
 private:
+	friend class IGameMapItemCreator;
 	const int		Row;
 	const int		Col;
 	const int		Id;
+	int				ModelTerrainTypeId;
 	const ModelTerrainType*	TerrainType;
 	const ModelOwnerType*	OwnerType;
 };

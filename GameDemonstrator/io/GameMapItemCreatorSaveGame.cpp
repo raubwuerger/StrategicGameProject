@@ -151,7 +151,8 @@ GameMapItem* GameMapItemCreatorSaveGame::CreateFromXML(const QDomNode& mapNode)
 	}
 
 	GameMapItem *newModelMapItem = new GameMapItem( currentRow, currentCol, currentId );
-	newModelMapItem->SetModelTerrainType( ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp) );
+	newModelMapItem->SetModelTerrainType(ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp));
+	newModelMapItem->SetModelTerrainTypeId(currentTerrainTyp);
 	return newModelMapItem;
 }
 

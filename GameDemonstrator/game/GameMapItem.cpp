@@ -5,6 +5,7 @@ GameMapItem::GameMapItem( int row, int col, int id )
 	: 	Row(row),
 		Col(col),
 		Id(id),
+		ModelTerrainTypeId(NOT_INITIALIZED_INT),
 		TerrainType(nullptr),
 		OwnerType(nullptr)
 {
@@ -42,6 +43,16 @@ const int GameMapItem::GetRow() const
 const int GameMapItem::GetCol() const
 {
 	return Col;
+}
+
+int GameMapItem::GetModelTerrainTypeId() const
+{
+	return ModelTerrainTypeId;
+}
+
+void GameMapItem::SetModelTerrainTypeId(int modelTerrainTypeId)
+{
+	ModelTerrainTypeId = modelTerrainTypeId;
 }
 
 bool GameMapItem::operator<(const GameMapItem& rhs) const
