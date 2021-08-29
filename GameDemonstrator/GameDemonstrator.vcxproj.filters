@@ -90,6 +90,12 @@
     <Filter Include="Source Dateien\Controller">
       <UniqueIdentifier>{1b269244-e199-4693-af20-66776c4aa7d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Dateien\GameController">
+      <UniqueIdentifier>{bfa337bf-f0b7-4212-b0c2-e7fefaf80f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Dateien\GameController">
+      <UniqueIdentifier>{19eae087-8c63-4877-ac65-d2fafec341d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -200,24 +206,6 @@
     <ClCompile Include="model\ModelOwnerType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameMainLoop.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameMainLoop.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMainCounter.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMainLoop.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMode.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameModeEditor.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="model\ModelTerrainXMLItems.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -262,9 +250,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorLoadCreateGame.cpp">
       <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameModeSinglePlayer.cpp">
-      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="map\MapUnitItem.cpp">
       <Filter>Source Dateien\Map</Filter>
@@ -426,12 +411,6 @@
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="game\GameUnitItemRepository.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameConfig.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="..\StandardLibQt\DomNodeListFinder.cpp">
@@ -596,9 +575,6 @@
     <ClCompile Include="dialogs\GameMainDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameMode.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="dialogs\CreateNewGameDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
@@ -607,6 +583,39 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_CreateNewGameDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameMainLoop.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameMainLoop.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameMode.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameMode.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameMainCounter.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameMainLoop.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameMode.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameModeEditor.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameModeSinglePlayer.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameConfig.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameFactory.cpp">
+      <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -670,12 +679,6 @@
     <ClInclude Include="model\ModelTerrainType.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameMainCounter.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameModeEditor.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="model\ModelTerrainXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
@@ -699,9 +702,6 @@
     </ClInclude>
     <ClInclude Include="model\ModelUnitTypeRepository.h">
       <Filter>Header Dateien\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameModeSinglePlayer.h">
-      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="map\MapUnitItem.h">
       <Filter>Header Dateien\Map</Filter>
@@ -755,12 +755,6 @@
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameUnitItemRepository.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\DomNodeListFinder.h">
@@ -865,6 +859,21 @@
     <ClInclude Include="dialogs\GameMainDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="gameController\GameMainCounter.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="gameController\GameModeEditor.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="gameController\GameModeSinglePlayer.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="gameController\GameConfig.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="gameController\GameFactory.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -893,9 +902,6 @@
     </CustomBuild>
     <CustomBuild Include="model\ModelOwnerTypeFactory.h">
       <Filter>Header Dateien\Model</Filter>
-    </CustomBuild>
-    <CustomBuild Include="game\GameMainLoop.h">
-      <Filter>Header Dateien\Game</Filter>
     </CustomBuild>
     <CustomBuild Include="ActionRepository.h">
       <Filter>Header Dateien</Filter>
@@ -978,11 +984,14 @@
     <CustomBuild Include="dialogs\CityTypeInfoDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="game\GameMode.h">
-      <Filter>Header Dateien\Game</Filter>
-    </CustomBuild>
     <CustomBuild Include="dialogs\CreateNewGameDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameMainLoop.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameMode.h">
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

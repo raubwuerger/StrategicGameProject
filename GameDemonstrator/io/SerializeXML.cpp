@@ -3,7 +3,7 @@
 #include "LogInterface.h"
 #include <QtXML>
 #include "SerializeXMLItems.h"
-#include "game/GameMainCounter.h"
+#include "gameController/GameMainCounter.h"
 #include "game/GameMapItemRepository.h"
 #include "game/GameMapItem.h"
 #include "model/ModelTerrainType.h"

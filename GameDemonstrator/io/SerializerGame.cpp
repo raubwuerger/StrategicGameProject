@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "SerializerGame.h"
 #include "SerializeXML.h"
-#include "game\GameMainCounter.h"
-#include "game\GameConfig.h"
+#include "gameController\GameMainCounter.h"
+#include "gameController\GameConfig.h"
 #include "model\ModelProgramFactory.h"
 #include "model\ModelProgramSettings.h"
 

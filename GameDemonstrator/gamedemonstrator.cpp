@@ -4,7 +4,7 @@
 #include "Action.h"
 #include "LogFactory.h"
 #include "ConfigurationLoader.h"
-#include "game/GameMainLoop.h"
+#include "gameController/GameMainLoop.h"
 #include "dialogs/GameTurnDialog.h"
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
@@ -89,9 +89,9 @@ GameDemonstrator::~GameDemonstrator()
 	RepositoryCleaner::GetInstance()->ReleaseAll();
 }
 
-#include "game/GameMode.h"
-#include "game/GameModeEditor.h"
-#include "game/GameModeSinglePlayer.h"
+#include "gameController/GameMode.h"
+#include "gameController/GameModeEditor.h"
+#include "gameController/GameModeSinglePlayer.h"
 void GameDemonstrator::CreateGameModes()
 {
 	GameModeEditorObject = new GameModeEditor(this);

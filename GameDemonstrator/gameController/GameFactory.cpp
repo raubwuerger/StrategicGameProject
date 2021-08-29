@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameFactory.h"
-#include "GameMapItemFactory.h"
+#include "game\GameMapItemFactory.h"
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
 
