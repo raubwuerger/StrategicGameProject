@@ -26,9 +26,10 @@ private:
 	GameModeSinglePlayer();
 	/** */
 	void CreateGameTurnInfoDialog();
+	/** */
+	void ShowCreateNewGameDialog();
 private:
 	GameTurnDialog*				GameTurnDialogInstance;
-	QMenu*						GameMenu;
 };
 
 #endif // GAMEMODESTANDARD_H

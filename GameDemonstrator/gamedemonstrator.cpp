@@ -110,6 +110,10 @@ void GameDemonstrator::CreateGameModes()
 		return;
 	}
 	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
+
+
+	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Deavtivate);
+	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deavtivate);
 }
 
 void GameDemonstrator::CreateMenuFile()

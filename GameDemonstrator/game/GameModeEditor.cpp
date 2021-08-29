@@ -16,7 +16,8 @@ GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
 	: GameMode(gameDemonstrator),
 		HexItemInfoDialogInstance(nullptr),
 		UnitTypeInfoDialogInstance(nullptr),
-		CityTypeInfoDialogInstance(nullptr)
+		CityTypeInfoDialogInstance(nullptr),
+		EditorMenu(nullptr)
 {
 	DockWidgetMinimumSize.setWidth(200);
 	DockWidgetMinimumSize.setHeight(120);
@@ -51,6 +52,10 @@ bool GameModeEditor::DoInit()
 //=================================================================================================
 void GameModeEditor::Activate()
 {
+	if (nullptr != EditorMenu)
+	{
+		return;
+	}
 	EditorMenu = GameDemonstratorObject->menuBar()->addMenu(tr("&Editor"));
 	CreateEditorToolbox();
 	CreateHexItemInfoDialog();
@@ -61,6 +66,10 @@ void GameModeEditor::Activate()
 //=================================================================================================
 void GameModeEditor::Deavtivate()
 {
+	if(nullptr != EditorMenu)
+	{
+		EditorMenu->hide();
+	}
 }
 
 //=================================================================================================
