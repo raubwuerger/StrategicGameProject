@@ -65,6 +65,7 @@ void GameModeController::CreateMenuEntryEditor(GameDemonstrator* gameDemonstrato
 	modeEditorAction->setStatusTip(QObject::tr("Open editor"));
 	ActionRepository::GetInstance()->AddAction(modeEditorAction);
 	GameModeChangeMenu->addAction(modeEditorAction);
+	//	connect(modeEditorAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
 }
 
 void GameModeController::CreateMenuEntrySinglePlayer(GameDemonstrator* gameDemonstrator)

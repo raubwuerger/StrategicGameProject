@@ -42,7 +42,6 @@ private:
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
 	void InitLoggingFramwork();
-	void CreateMenuGameModeMenu();
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;

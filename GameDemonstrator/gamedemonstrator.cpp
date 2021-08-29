@@ -57,7 +57,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MainGameLoopInstance = new GameMainLoop(this);
 	CreateMenuFile();
 	CreateMenuAbout();
-	CreateMenuGameModeMenu();
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	layoutMain->addWidget(MapViewInstance);
@@ -140,22 +139,6 @@ void GameDemonstrator::CreateMenuFile()
 	FileMenu->addAction( exitAction );
 }
 
-
-void GameDemonstrator::CreateMenuGameModeMenu()
-{
-	QIcon editorMode(QPixmap(".//Resources//gear_edit.ico"));
-	QAction* actionEditorMode = new QAction(editorMode, tr("&Editor"), this);
-	actionEditorMode->setStatusTip(tr("Open Game Editor"));
-	ActionRepository::GetInstance()->AddAction(actionEditorMode);
-//	connect(actionEditorMode, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
-
-	QIcon gameModeSinglePlayer(QPixmap(".//Resources//gear_edit.ico"));
-	QAction* actionSinglePlayerMode = new QAction(gameModeSinglePlayer, tr("&Editor"), this);
-	actionSinglePlayerMode->setStatusTip(tr("Create Single Player Mode"));
-	ActionRepository::GetInstance()->AddAction(actionSinglePlayerMode);
-//	connect(actionEditorMode, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
-}
-
 void GameDemonstrator::CreateMenuAbout()
 {
 	QIcon info(":GameDemonstrator/Resources/about.ico");
@@ -165,12 +148,6 @@ void GameDemonstrator::CreateMenuAbout()
 	ActionRepository::GetInstance()->AddAction(aboutAction);
 
 	InfoMenu->addAction( aboutAction );
-}
-
-void GameDemonstrator::CreateMenuGameMode()
-{
-	//TODO: Togglebutton editor/single player
-	//TODO: Dialog mit parametern (Kartengröße, Gegneranzahl, ...)
 }
 
 #include "LogInterface.h"
