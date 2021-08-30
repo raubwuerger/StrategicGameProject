@@ -10,6 +10,12 @@ class GameObject
 public:
 	/** */
 	virtual void UpdateTurn() = 0;
+	/** */
+	virtual bool Moved() = 0;
+	/** */
+	virtual void Attacks() = 0;
+	/** */
+	virtual void Defends() = 0;
 };
 
 #endif // GAMEOBJECT_H

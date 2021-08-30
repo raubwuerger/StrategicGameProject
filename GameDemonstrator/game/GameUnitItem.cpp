@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameUnitItem.h"
 #include "model/ModelUnitType.h"
+#include "GameUnitItemRuntimeData.h"
 
 GameUnitItem::GameUnitItem(int gameUnitId)
 	: Id(gameUnitId),
@@ -9,7 +10,8 @@ GameUnitItem::GameUnitItem(int gameUnitId)
 		MapItem(nullptr),
 		UnitTypeId(-1),
 		OwnerTypeId(-1),
-		MapItemId(-1)
+		MapItemId(-1),
+		RuntimeData(nullptr)
 {
 }
 
@@ -64,9 +66,46 @@ int GameUnitItem::GetGameMapItemId() const
 
 void GameUnitItem::UpdateTurn()
 {
+	RuntimeData->CurrenMovementPoints = RuntimeData->BaseMovementPoints;
+	RuntimeData->CurrentStrength = RuntimeData->BaseStrength;
 	//TODO: Reset movement points
 	//TODO: Heal Unit
 	//TODO: ...
+}
+
+bool GameUnitItem::CanMove() const
+{
+	Q_ASSERT(RuntimeData);
+	if (0 < RuntimeData->CurrenMovementPoints)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool GameUnitItem::Moved()
+{
+	if (false == CanMove())
+	{
+		return false;
+	}
+	RuntimeData->CurrenMovementPoints--;
+	return true;
+}
+
+void GameUnitItem::Attacks()
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
+void GameUnitItem::Defends()
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
+int GameUnitItem::GetStrength() const
+{
+	return RuntimeData->CurrentStrength;
 }
 
 bool GameUnitItem::CanOccupieCity() const

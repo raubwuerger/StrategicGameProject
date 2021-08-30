@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameCityItem.h"
+#include "GameCityItemRuntimeData.h"
 
 GameCityItem::GameCityItem(int id)
 	: Id(id),
@@ -8,7 +9,8 @@ GameCityItem::GameCityItem(int id)
 		OwnerTypeId(-1),
 		MapItemId(-1),
 		Efficiency(-1),
-		SpezializedUnitTypeId(-1)
+		SpezializedUnitTypeId(-1),
+		RuntimeData(nullptr)
 {
 }
 
@@ -85,6 +87,21 @@ int GameCityItem::GetEfficiency() const
 int GameCityItem::GetSpezializedUnitTypeId() const
 {
 	return SpezializedUnitTypeId;
+}
+
+bool GameCityItem::Moved()
+{
+	return false; // Nothing to do
+}
+
+void GameCityItem::Attacks()
+{
+	return; // Nothing to do
+}
+
+void GameCityItem::Defends()
+{
+	return; // 
 }
 
 bool GameCityItem::operator<(const GameCityItem& rhs) const

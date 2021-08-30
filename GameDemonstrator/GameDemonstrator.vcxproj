@@ -228,6 +228,7 @@
     <ClCompile Include="game\GameCityItem.cpp" />
     <ClCompile Include="game\GameCityItemFactory.cpp" />
     <ClCompile Include="game\GameCityItemRepository.cpp" />
+    <ClCompile Include="game\GameCityItemRuntimeData.cpp" />
     <ClCompile Include="game\GameMapItemFactory.cpp" />
     <ClCompile Include="game\GameMapItem.cpp" />
     <ClCompile Include="game\GameMapItemRepository.cpp" />
@@ -235,6 +236,7 @@
     <ClCompile Include="game\GameUnitItem.cpp" />
     <ClCompile Include="game\GameUnitItemFactory.cpp" />
     <ClCompile Include="game\GameUnitItemRepository.cpp" />
+    <ClCompile Include="game\GameUnitItemRuntimeData.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ActionRepository.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -915,6 +917,7 @@
     <ClInclude Include="game\GameCityItem.h" />
     <ClInclude Include="game\GameCityItemFactory.h" />
     <ClInclude Include="game\GameCityItemRepository.h" />
+    <ClInclude Include="game\GameCityItemRuntimeData.h" />
     <ClInclude Include="game\GameObject.h" />
     <ClInclude Include="game\GameUnitItem.h" />
     <ClInclude Include="game\GameUnitItemFactory.h" />
@@ -922,6 +925,7 @@
     <ClInclude Include="game\GameMapItemFactory.h" />
     <ClInclude Include="game\GameMapItem.h" />
     <ClInclude Include="game\GameMapItemRepository.h" />
+    <ClInclude Include="game\GameUnitItemRuntimeData.h" />
     <ClInclude Include="io\GameMapItemCreatorSaveGame.h" />
     <ClInclude Include="io\GameMapItemCreatorSimple.h" />
     <ClInclude Include="io\IGameMapItemCreator.h" />

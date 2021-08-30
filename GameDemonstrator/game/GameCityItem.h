@@ -6,6 +6,7 @@
 class GameMapItem;
 class ModelOwnerType;
 class ModelCityType;
+class GameCityItemRuntimeData;
 
 /** Game unit tile */
 class GameCityItem : public GameObject
@@ -40,11 +41,17 @@ public:
 	/** */
 	int GetCityTypeId() const;
 	/** */
-	void UpdateTurn() override;
-	/** */
 	int GetEfficiency() const;
 	/** */
 	int GetSpezializedUnitTypeId() const;
+	/** */
+	void UpdateTurn() override;
+	/** */
+	bool Moved() override;
+	/** */
+	void Attacks() override;
+	/** */
+	void Defends() override;
 private:
 	friend class GameCityItemFactory;
 	const int				Id;
@@ -57,6 +64,7 @@ private:
 	QString					Name;
 	int						Efficiency;
 	int						SpezializedUnitTypeId;
+	GameCityItemRuntimeData*RuntimeData;
 };
 
 #endif // GAMECITYTYPE_H

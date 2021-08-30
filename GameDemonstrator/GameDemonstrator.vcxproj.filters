@@ -629,6 +629,12 @@
     <ClCompile Include="gameController\GameController.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameUnitItemRuntimeData.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCityItemRuntimeData.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -891,6 +897,12 @@
     </ClInclude>
     <ClInclude Include="gameController\GameController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitItemRuntimeData.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityItemRuntimeData.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
