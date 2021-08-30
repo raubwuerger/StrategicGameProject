@@ -22,7 +22,18 @@ GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 bool GameModeSinglePlayer::DoInit()
 {
 	CreateGameTurnInfoDialog();
+	CreateGameMenu();
+	CreateMenuEntries();
+
+	HideDockWidgets();
+	HideMenu();
 	return true;
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::CreateGameMenu()
+{
+	GameMenu = GameDemonstratorObject->menuBar()->addMenu(MenuTitle);
 }
 
 //=================================================================================================

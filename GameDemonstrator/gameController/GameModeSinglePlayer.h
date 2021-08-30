@@ -28,6 +28,8 @@ private:
 	/** Restricted */
 	GameModeSinglePlayer();
 	/** */
+	void CreateGameMenu();
+	/** */
 	void CreateGameTurnInfoDialog();
 	/** */
 	bool ShowCreateNewGameDialog();
