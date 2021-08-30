@@ -626,6 +626,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameModeController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="gameController\GameController.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -885,6 +888,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_GameMainDialog.h">
       <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="gameController\GameController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
