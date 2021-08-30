@@ -29,6 +29,8 @@ private:
 	/** Restricted */
 	GameModeEditor();
 	/** */
+	void CreateEditorMenu();
+	/** */
 	void CreateEditorToolbox();
 	/** */
 	void CreateHexItemInfoDialog();
@@ -36,6 +38,14 @@ private:
 	void CreateUnitTypeInfoDialog();
 	/** */
 	void CreateCityTypeInfoDialog();
+	/** */
+	void HideMenu();
+	/** */
+	void ShowMenu();
+	/** */
+	void HideDockWidgets();
+	/** */
+	void ShowDockWidgets();
 private:
 	EditorToolbox*				EditorToolboxInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
@@ -44,6 +54,8 @@ private:
 	QMenu*						EditorMenu;
 	QSize						DockWidgetMinimumSize;
 	QSize						DockWidgetMaximumSize;
+	QVector<QDockWidget*>		DockWidgets;
+	const QString				MenuTitle;
 };
 
 #endif // GAMEMODEEDITOR_H

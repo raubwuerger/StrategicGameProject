@@ -6,11 +6,14 @@
 #include "dialogs\GameTurnDialog.h"
 #include "GameDemonstrator.h"
 #include "dialogs/CreateNewGameDialog.h"
+#include "ActionRepository.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 	: GameMode(gameDemonstrator),
-	GameTurnDialogInstance(nullptr)
+	GameTurnDialogInstance(nullptr),
+	GameMenu(nullptr),
+	MenuTitle("&Game")
 {
 
 }
@@ -18,18 +21,85 @@ GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 //=================================================================================================
 bool GameModeSinglePlayer::DoInit()
 {
+	CreateGameTurnInfoDialog();
 	return true;
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::CreateGameTurnInfoDialog()
+{
+	if (nullptr != GameTurnDialogInstance)
+	{
+		GameTurnDialogInstance->show();
+	}
 }
 
 //=================================================================================================
 void GameModeSinglePlayer::Activate(int type)
 {
-	if( false == ShowCreateNewGameDialog() )
+	ShowDockWidgets();
+	ShowMenu();
+	if (false == ShowCreateNewGameDialog())
 	{
 		GameDemonstratorObject->ShowGameMainDialog();
 		return;
 	}
-	ShowGameTurnInfoDialog();
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::Deactivate(int type)
+{
+	HideMenu();
+	HideDockWidgets();
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::ShowMenu()
+{
+	if (nullptr != GameMenu)
+	{
+		GameMenu->setTitle(MenuTitle);
+	}
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::HideMenu()
+{
+	if (nullptr != GameMenu)
+	{
+		GameMenu->setTitle(QString(""));
+	}
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::ShowDockWidgets()
+{
+	QVectorIterator<QDockWidget*> dockWidgets(DockWidgets);
+	while (dockWidgets.hasNext())
+	{
+		dockWidgets.next()->show();
+	}
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::CreateMenuEntries()
+{
+	QIcon next(QPixmap(".//Resources//media_end.ico"));
+	QAction* nextTurnAction = new QAction(next, tr("&Next turn"), this);
+	nextTurnAction->setStatusTip(tr("Next turn"));
+//	connect(nextTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStep, Qt::QueuedConnection);
+	GameMenu->addAction(nextTurnAction);
+	ActionRepository::GetInstance()->AddAction(nextTurnAction);
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::HideDockWidgets()
+{
+	QVectorIterator<QDockWidget*> dockWidgets(DockWidgets);
+	while (dockWidgets.hasNext())
+	{
+		dockWidgets.next()->hide();
+	}
 }
 
 //=================================================================================================
@@ -41,37 +111,7 @@ void GameModeSinglePlayer::LoadGame()
 		GameDemonstratorObject->ShowGameMainDialog();
 		return;
 	}
-	ShowGameTurnInfoDialog();
-}
-
-//=================================================================================================
-void GameModeSinglePlayer::ShowGameTurnInfoDialog()
-{
-	if (nullptr != GameTurnDialogInstance)
-	{
-		GameTurnDialogInstance->show();
-	}
-}
-
-//=================================================================================================
-void GameModeSinglePlayer::Deactivate(int type)
-{
-	if (nullptr != GameTurnDialogInstance)
-	{
-		GameTurnDialogInstance->hide();
-	}
-}
-
-//=================================================================================================
-void GameModeSinglePlayer::CreateGameTurnInfoDialog()
-{
-	GameTurnDialogInstance = new GameTurnDialog();
-	QDockWidget *dockCountry = new QDockWidget(tr("Game turn"), GameDemonstratorObject);
-	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	GameTurnDialogInstance = new GameTurnDialog(dockCountry);
-	dockCountry->setWidget(GameTurnDialogInstance);
-	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockCountry);
-	GameTurnDialogInstance->hide();
+	CreateGameTurnInfoDialog();
 }
 
 //=================================================================================================

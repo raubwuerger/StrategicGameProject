@@ -121,12 +121,6 @@ void GameDemonstrator::CreateMenuFile()
 	ActionRepository::GetInstance()->AddAction(saveGameAction);
 	connect(saveGameAction, &QAction::triggered, ConnectorSaveGameInstance, &SerializerGame::SlotSaveGame, Qt::QueuedConnection);
 
-	QIcon next(QPixmap(".//Resources//media_end.ico"));
-	QAction* nextTurnAction = new QAction(next, tr("&Next turn"), this);
-	nextTurnAction->setStatusTip(tr("Next turn"));
-	connect(nextTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStep, Qt::QueuedConnection);
-	ActionRepository::GetInstance()->AddAction(nextTurnAction);
-
 	QIcon exit(":GameDemonstrator/Resources/exit.ico");
 	QAction* exitAction = new QAction(exit,tr("E&xit"), this);
 	exitAction->setShortcuts(QKeySequence::Quit);
@@ -137,8 +131,6 @@ void GameDemonstrator::CreateMenuFile()
 	FileMenu->addAction( createAction );
 	FileMenu->addAction( loadGameAction );
 	FileMenu->addAction( saveGameAction );
-	FileMenu->addSeparator();
-	FileMenu->addAction( nextTurnAction );
 	FileMenu->addSeparator();
 	FileMenu->addAction( exitAction );
 }

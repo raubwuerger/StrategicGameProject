@@ -36,9 +36,20 @@ private:
 	/** */
 	bool LoadSaveGame( QString& savegameName);
 	/** */
-	void ShowGameTurnInfoDialog();
+	void HideMenu();
+	/** */
+	void ShowMenu();
+	/** */
+	void HideDockWidgets();
+	/** */
+	void ShowDockWidgets();
+	/** */
+	void CreateMenuEntries();
 private:
 	GameTurnDialog*				GameTurnDialogInstance;
+	QVector<QDockWidget*>		DockWidgets;
+	const QString				MenuTitle;
+	QMenu*						GameMenu;
 };
 
 #endif // GAMEMODESTANDARD_H

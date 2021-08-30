@@ -17,13 +17,86 @@ GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
 		HexItemInfoDialogInstance(nullptr),
 		UnitTypeInfoDialogInstance(nullptr),
 		CityTypeInfoDialogInstance(nullptr),
-		EditorMenu(nullptr)
+		EditorMenu(nullptr),
+		MenuTitle("&Editor")
 {
 	DockWidgetMinimumSize.setWidth(200);
 	DockWidgetMinimumSize.setHeight(120);
 
 	DockWidgetMaximumSize.setWidth(300);
 	DockWidgetMaximumSize.setHeight(200);
+}
+
+//=================================================================================================
+bool GameModeEditor::DoInit()
+{
+	CreateEditorMenu();
+	CreateEditorToolbox();
+	CreateHexItemInfoDialog();
+	CreateUnitTypeInfoDialog();
+	CreateCityTypeInfoDialog();
+
+	HideDockWidgets();
+	HideMenu();
+	return true;
+}
+
+//=================================================================================================
+void GameModeEditor::CreateEditorMenu()
+{
+	EditorMenu = GameDemonstratorObject->menuBar()->addMenu(MenuTitle);
+}
+
+//=================================================================================================
+void GameModeEditor::Activate(int type)
+{
+	ShowDockWidgets();
+	ShowMenu();
+}
+
+//=================================================================================================
+void GameModeEditor::ShowDockWidgets()
+{
+	QVectorIterator<QDockWidget*> dockWidgets(DockWidgets);
+	while (dockWidgets.hasNext())
+	{
+		dockWidgets.next()->show();
+	}
+}
+
+//=================================================================================================
+void GameModeEditor::Deactivate(int type)
+{
+	HideMenu();
+	HideDockWidgets();
+}
+
+//=================================================================================================
+void GameModeEditor::HideMenu()
+{
+	if (nullptr != EditorMenu)
+	{
+		EditorMenu->setTitle(QString(""));
+	}
+}
+
+//=================================================================================================
+void GameModeEditor::ShowMenu()
+{
+	if (nullptr != EditorMenu)
+	{
+		EditorMenu->setTitle(MenuTitle);
+	}
+}
+
+//=================================================================================================
+void GameModeEditor::HideDockWidgets()
+{
+	QVectorIterator<QDockWidget*> dockWidgets(DockWidgets);
+	while (dockWidgets.hasNext())
+	{
+		dockWidgets.next()->hide();
+	}
 }
 
 //=================================================================================================
@@ -38,63 +111,15 @@ void GameModeEditor::CreateEditorToolbox()
 
 	editorToolbox->setWidget(EditorToolboxInstance);
 	GameDemonstratorObject->addDockWidget(Qt::LeftDockWidgetArea, editorToolbox);
-}
 
-//=================================================================================================
-bool GameModeEditor::DoInit()
-{
-	HexItemInfoDialogInstance = new HexItemInfoDialog();
-	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog();
-	CityTypeInfoDialogInstance = new CityTypeInfoDialog();
-	return true;
-}
-
-//=================================================================================================
-void GameModeEditor::Activate(int type)
-{
-	if (nullptr != EditorMenu)
-	{
-		return;
-	}
-	EditorMenu = GameDemonstratorObject->menuBar()->addMenu(tr("&Editor"));
-	CreateEditorToolbox();
-	CreateHexItemInfoDialog();
-	CreateUnitTypeInfoDialog();
-	CreateCityTypeInfoDialog();
-}
-
-//=================================================================================================
-void GameModeEditor::Deactivate(int type)
-{
-	if(nullptr != EditorMenu)
-	{
-		EditorMenu->hide();
-	}
-
-	if (nullptr != EditorToolboxInstance)
-	{
-		EditorToolboxInstance->hide();
-	}
-
-	if (nullptr != HexItemInfoDialogInstance)
-	{
-		HexItemInfoDialogInstance->hide();
-	}
-
-	if (nullptr != UnitTypeInfoDialogInstance)
-	{
-		UnitTypeInfoDialogInstance->hide();
-	}
-
-	if (nullptr != CityTypeInfoDialogInstance)
-	{
-		CityTypeInfoDialogInstance->hide();
-	}
+	DockWidgets.push_back(editorToolbox);
 }
 
 //=================================================================================================
 void GameModeEditor::CreateHexItemInfoDialog()
 {
+	HexItemInfoDialogInstance = new HexItemInfoDialog();
+
 	QDockWidget *dockHexItem = new QDockWidget(tr("Hex item"), GameDemonstratorObject);
 	dockHexItem->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	HexItemInfoDialogInstance = new HexItemInfoDialog(dockHexItem);
@@ -106,11 +131,15 @@ void GameModeEditor::CreateHexItemInfoDialog()
 
 	EditorMenu->addAction(dockHexItem->toggleViewAction());
 	MapViewObject->MapEventManagerInstance->HexItemInfoDialog = HexItemInfoDialogInstance; //TODO: Sollte das hier passieren
+
+	DockWidgets.push_back(dockHexItem);
 }
 
 //=================================================================================================
 void GameModeEditor::CreateUnitTypeInfoDialog()
 {
+	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog();
+
 	QDockWidget *dockUnitType = new QDockWidget(tr("Unit type"), GameDemonstratorObject);
 	dockUnitType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	UnitTypeInfoDialogInstance = new UnitTypeInfoDialog(dockUnitType);
@@ -122,11 +151,15 @@ void GameModeEditor::CreateUnitTypeInfoDialog()
 	
 	EditorMenu->addAction(dockUnitType->toggleViewAction());
 	MapViewObject->MapEventManagerInstance->UnitTypeInfoDialog = UnitTypeInfoDialogInstance; //TODO: Sollte das hier passieren
+
+	DockWidgets.push_back(dockUnitType);
 }
 
 //=================================================================================================
 void GameModeEditor::CreateCityTypeInfoDialog()
 {
+	CityTypeInfoDialogInstance = new CityTypeInfoDialog();
+
 	QDockWidget *dockCityType = new QDockWidget(tr("City type"), GameDemonstratorObject);
 	dockCityType->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	CityTypeInfoDialogInstance = new CityTypeInfoDialog(dockCityType);
@@ -138,6 +171,6 @@ void GameModeEditor::CreateCityTypeInfoDialog()
 
 	EditorMenu->addAction(dockCityType->toggleViewAction());
 	MapViewObject->MapEventManagerInstance->CityTypeInfoDialog = CityTypeInfoDialogInstance; //TODO: Sollte das hier passieren
+
+	DockWidgets.push_back(dockCityType);
 }
-
-
