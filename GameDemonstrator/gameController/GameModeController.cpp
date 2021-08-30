@@ -31,7 +31,7 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 	{
 		return;
 	}
-	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
+	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
 
 
 	GameModeSinglePlayerObject = new GameModeSinglePlayer(gameDemonstrator);
@@ -40,11 +40,11 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 	{
 		return;
 	}
-	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
+	QObject::connect(GameMainDialogObject->ui.StartSingleplayer, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
 
 
-	QObject::connect(GameMainDialogObject->StartEditor, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Deavtivate);
-	QObject::connect(GameMainDialogObject->StartSingleplayer, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deavtivate);
+	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Deavtivate);
+	QObject::connect(GameMainDialogObject->ui.StartSingleplayer, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deavtivate);
 }
 
 void GameModeController::CreateMenuEntries(GameDemonstrator* gameDemonstrator)

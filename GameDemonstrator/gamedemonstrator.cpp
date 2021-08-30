@@ -73,10 +73,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	MapViewInstance->show();
 
-	QDialog* dialog = new QDialog(this);
-	GameMainDialogObject = new GameMainDialog(dialog);
+	GameMainDialogObject = new GameMainDialog(this);
 	GameMainDialogObject->Init(this);
-	dialog->show();
+	GameMainDialogObject->show();
 
 	CreateGameModeController();
 }
