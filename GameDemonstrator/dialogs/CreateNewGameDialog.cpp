@@ -23,3 +23,18 @@ int CreateNewGameDialog::GetTilesCols() const
 {
 	return ui.lineEditTilesCols->text().toInt();
 }
+
+int CreateNewGameDialog::GetOwnerTypeId() const
+{
+	return ui.comboBoxChoosePlayer->currentIndex();
+}
+
+int CreateNewGameDialog::GetOpponentCount() const
+{
+	return ui.comboBoxOpponentCount->currentIndex();
+}
+
+int CreateNewGameDialog::GetDifficultyLevel() const
+{
+	return ui.comboDifficulty->currentIndex();
+}

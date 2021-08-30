@@ -75,14 +75,19 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	GameMainDialogObject = new GameMainDialog(this);
 	GameMainDialogObject->Init(this);
-	GameMainDialogObject->show();
 
 	CreateGameModeController();
+	ShowGameMainDialog();
 }
 
 GameDemonstrator::~GameDemonstrator()
 {
 	RepositoryCleaner::GetInstance()->ReleaseAll();
+}
+
+void GameDemonstrator::ShowGameMainDialog()
+{
+	GameMainDialogObject->show();
 }
 
 #include "gameController/GameModeController.h"

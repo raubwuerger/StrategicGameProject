@@ -18,6 +18,12 @@ public:
 	int GetTilesRows() const;
 	/** */
 	int GetTilesCols() const;
+	/** */
+	int GetOwnerTypeId() const;
+	/** */
+	int GetOpponentCount() const;
+	/** */
+	int GetDifficultyLevel() const;
 private:
 	Ui::CreateNewMapDialog ui;
 };

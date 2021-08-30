@@ -8,6 +8,7 @@
 
 class GameDemonstrator;
 class GameTurnDialog;
+class CreateNewGameDialog;
 
 /** @stereotype Strategie*/
 class GameModeSinglePlayer : public GameMode
@@ -28,6 +29,8 @@ private:
 	void CreateGameTurnInfoDialog();
 	/** */
 	void ShowCreateNewGameDialog();
+	/** */
+	void CreateNewGame(CreateNewGameDialog* dialog);
 private:
 	GameTurnDialog*				GameTurnDialogInstance;
 };

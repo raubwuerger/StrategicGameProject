@@ -56,6 +56,22 @@ void GameModeSinglePlayer::CreateGameTurnInfoDialog()
 void GameModeSinglePlayer::ShowCreateNewGameDialog()
 {
 	CreateNewGameDialog* dialog = new CreateNewGameDialog();
-	dialog->exec();
+	if (QDialog::Accepted == dialog->exec())
+	{
+		CreateNewGame(dialog);
+		return;
+	}
+	GameDemonstratorObject->ShowGameMainDialog();
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::CreateNewGame(CreateNewGameDialog* dialog)
+{
+	int rows = dialog->GetTilesRows();
+	int cols = dialog->GetTilesCols();
+
+	int owner = dialog->GetOwnerTypeId();
+	int opponents = dialog->GetOpponentCount();
+	int diffuclty = dialog->GetDifficultyLevel();
 }
 

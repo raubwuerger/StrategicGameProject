@@ -36,6 +36,9 @@ public:
 	GameDemonstrator(QWidget *parent = 0);
 	/** */
 	~GameDemonstrator();
+public slots:
+	/** */
+	void ShowGameMainDialog();
 private:
 	void CreateGameModeController();
 	void CreateMenuFile();
