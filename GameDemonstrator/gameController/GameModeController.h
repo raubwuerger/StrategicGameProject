@@ -7,13 +7,20 @@ class GameMainDialog;
 class MapView;
 
 /** Handles the differen GameModes */
-class GameModeController
+class GameModeController : public QObject
 {
+	Q_OBJECT
 public:
 	/** */
 	GameModeController();
 	/** */
 	bool Init(GameDemonstrator* gameDemonstrator);
+public slots:
+	/** */
+	void LoadGame();
+signals:
+	/** */
+	void LoadSavedGame();
 private:
 	/** */
 	void CreateGameModes(GameDemonstrator* gameDemonstrator);

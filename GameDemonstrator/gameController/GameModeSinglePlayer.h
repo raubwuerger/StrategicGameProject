@@ -15,22 +15,28 @@ class GameModeSinglePlayer : public GameMode
 {
 public:
 	/** */
+	bool DoInit() override;
+	/** */
 	GameModeSinglePlayer(GameDemonstrator* gameDemonstrator);
 	/** */
-	virtual void Activate();
+	virtual void Activate(int type);
 	/** */
-	virtual void Deavtivate();
+	virtual void Deactivate(int type);
 	/** */
-	bool DoInit() override;
+	void LoadGame();
 private:
 	/** Restricted */
 	GameModeSinglePlayer();
 	/** */
 	void CreateGameTurnInfoDialog();
 	/** */
-	void ShowCreateNewGameDialog();
+	bool ShowCreateNewGameDialog();
 	/** */
-	void CreateNewGame(CreateNewGameDialog* dialog);
+	bool CreateNewGame(CreateNewGameDialog* dialog);
+	/** */
+	bool LoadSaveGame( QString& savegameName);
+	/** */
+	void ShowGameTurnInfoDialog();
 private:
 	GameTurnDialog*				GameTurnDialogInstance;
 };

@@ -620,6 +620,12 @@
     <ClCompile Include="gameController\GameModeController.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameModeController.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameModeController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -877,8 +883,8 @@
     <ClInclude Include="io\IGameMapItemCreator.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
-    <ClInclude Include="gameController\GameModeController.h">
-      <Filter>Header Dateien\GameController</Filter>
+    <ClInclude Include="GeneratedFiles\ui_GameMainDialog.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -997,6 +1003,12 @@
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameMode.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameMainDialog.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameModeController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>

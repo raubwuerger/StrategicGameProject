@@ -22,9 +22,9 @@ public:
 	bool DoInit() override;
 public slots:
 	/** */
-	virtual void Activate();
+	virtual void Activate(int type);
 	/** */
-	virtual void Deavtivate();
+	virtual void Deactivate(int type);
 private:
 	/** Restricted */
 	GameModeEditor();

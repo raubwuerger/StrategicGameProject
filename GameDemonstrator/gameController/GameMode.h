@@ -16,9 +16,9 @@ public:
 	/** */
 	bool Init();
 	/** */
-	virtual void Activate() = 0;
+	virtual void Activate( int type ) = 0;
 	/** */
-	virtual void Deavtivate() = 0;
+	virtual void Deactivate(int type ) = 0;
 private:
 	/** */
 	virtual bool DoInit() = 0;

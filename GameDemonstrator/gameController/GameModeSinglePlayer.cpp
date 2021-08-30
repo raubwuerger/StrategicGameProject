@@ -18,19 +18,43 @@ GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 //=================================================================================================
 bool GameModeSinglePlayer::DoInit()
 {
-	GameTurnDialogInstance = new GameTurnDialog();
 	return true;
 }
 
 //=================================================================================================
-void GameModeSinglePlayer::Activate()
+void GameModeSinglePlayer::Activate(int type)
 {
-	CreateGameTurnInfoDialog();
-	ShowCreateNewGameDialog();
+	if( false == ShowCreateNewGameDialog() )
+	{
+		GameDemonstratorObject->ShowGameMainDialog();
+		return;
+	}
+	ShowGameTurnInfoDialog();
 }
 
 //=================================================================================================
-void GameModeSinglePlayer::Deavtivate()
+void GameModeSinglePlayer::LoadGame()
+{
+	QString savegameName;
+	if (false == LoadSaveGame(savegameName))
+	{
+		GameDemonstratorObject->ShowGameMainDialog();
+		return;
+	}
+	ShowGameTurnInfoDialog();
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::ShowGameTurnInfoDialog()
+{
+	if (nullptr != GameTurnDialogInstance)
+	{
+		GameTurnDialogInstance->show();
+	}
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::Deactivate(int type)
 {
 	if (nullptr != GameTurnDialogInstance)
 	{
@@ -41,31 +65,29 @@ void GameModeSinglePlayer::Deavtivate()
 //=================================================================================================
 void GameModeSinglePlayer::CreateGameTurnInfoDialog()
 {
-	if (nullptr != GameTurnDialogInstance)
-	{
-		return;
-	}
+	GameTurnDialogInstance = new GameTurnDialog();
 	QDockWidget *dockCountry = new QDockWidget(tr("Game turn"), GameDemonstratorObject);
 	dockCountry->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	GameTurnDialogInstance = new GameTurnDialog(dockCountry);
 	dockCountry->setWidget(GameTurnDialogInstance);
 	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockCountry);
+	GameTurnDialogInstance->hide();
 }
 
 //=================================================================================================
-void GameModeSinglePlayer::ShowCreateNewGameDialog()
+bool GameModeSinglePlayer::ShowCreateNewGameDialog()
 {
 	CreateNewGameDialog* dialog = new CreateNewGameDialog();
 	if (QDialog::Accepted == dialog->exec())
 	{
 		CreateNewGame(dialog);
-		return;
+		return true;
 	}
-	GameDemonstratorObject->ShowGameMainDialog();
+	return false;
 }
 
 //=================================================================================================
-void GameModeSinglePlayer::CreateNewGame(CreateNewGameDialog* dialog)
+bool GameModeSinglePlayer::CreateNewGame(CreateNewGameDialog* dialog)
 {
 	int rows = dialog->GetTilesRows();
 	int cols = dialog->GetTilesCols();
@@ -73,5 +95,19 @@ void GameModeSinglePlayer::CreateNewGame(CreateNewGameDialog* dialog)
 	int owner = dialog->GetOwnerTypeId();
 	int opponents = dialog->GetOpponentCount();
 	int diffuclty = dialog->GetDifficultyLevel();
+
+	return false;
+}
+
+//=================================================================================================
+bool GameModeSinglePlayer::LoadSaveGame(QString& savegameName)
+{
+	savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./savegames", tr("Image Files (*.xml )"));
+	if (true == savegameName.isNull())
+	{
+		return false;
+	}
+
+	return true;
 }
 

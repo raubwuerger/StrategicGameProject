@@ -50,7 +50,7 @@ bool GameModeEditor::DoInit()
 }
 
 //=================================================================================================
-void GameModeEditor::Activate()
+void GameModeEditor::Activate(int type)
 {
 	if (nullptr != EditorMenu)
 	{
@@ -64,7 +64,7 @@ void GameModeEditor::Activate()
 }
 
 //=================================================================================================
-void GameModeEditor::Deavtivate()
+void GameModeEditor::Deactivate(int type)
 {
 	if(nullptr != EditorMenu)
 	{
