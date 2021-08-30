@@ -36,7 +36,6 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 	{
 		return;
 	}
-	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
 
 
 	GameModeSinglePlayerObject = new GameModeSinglePlayer(gameDemonstrator);
@@ -45,14 +44,17 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 	{
 		return;
 	}
+
+	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Deactivate);
+	QObject::connect(GameMainDialogObject->ui.CreateGame, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deactivate);
+	QObject::connect(GameMainDialogObject->ui.LoadGame, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deactivate);
+
+	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, GameModeEditorObject, &GameMode::Activate);
 	QObject::connect(GameMainDialogObject->ui.CreateGame, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Activate);
 
 	QObject::connect(GameMainDialogObject->ui.LoadGame, &QPushButton::clicked, this, &GameModeController::LoadGame);
 	QObject::connect(this, &GameModeController::LoadSavedGame, reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject), &GameModeSinglePlayer::LoadGame);
 
-	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, GameModeSinglePlayerObject, &GameMode::Deactivate);
-	QObject::connect(GameMainDialogObject->ui.CreateGame, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deactivate);
-	QObject::connect(GameMainDialogObject->ui.LoadGame, &QPushButton::clicked, GameModeEditorObject, &GameMode::Deactivate);
 }
 
 void GameModeController::CreateMenuEntries(GameDemonstrator* gameDemonstrator)
@@ -73,7 +75,9 @@ void GameModeController::CreateMenuEntryEditor(GameDemonstrator* gameDemonstrato
 	modeEditorAction->setStatusTip(QObject::tr("Open editor"));
 	ActionRepository::GetInstance()->AddAction(modeEditorAction);
 	GameModeChangeMenu->addAction(modeEditorAction);
-	//	connect(modeEditorAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
+
+	connect(modeEditorAction, &QAction::triggered, GameModeSinglePlayerObject, &GameMode::Deactivate, Qt::QueuedConnection);
+	connect(modeEditorAction, &QAction::triggered, GameModeEditorObject, &GameMode::Activate, Qt::QueuedConnection);
 }
 
 void GameModeController::CreateMenuEntrySinglePlayer(GameDemonstrator* gameDemonstrator)
@@ -83,5 +87,7 @@ void GameModeController::CreateMenuEntrySinglePlayer(GameDemonstrator* gameDemon
 	modeSinglePlayerAction->setStatusTip(QObject::tr("Open single player"));
 	ActionRepository::GetInstance()->AddAction(modeSinglePlayerAction);
 	GameModeChangeMenu->addAction(modeSinglePlayerAction);
-	//	connect(modeSinglePlayerAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
+
+	connect(modeSinglePlayerAction, &QAction::triggered, GameModeEditorObject, &GameMode::Deactivate, Qt::QueuedConnection);
+	connect(modeSinglePlayerAction, &QAction::triggered, GameModeSinglePlayerObject, &GameMode::Activate, Qt::QueuedConnection);
 }

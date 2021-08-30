@@ -70,6 +70,26 @@ void GameModeEditor::Deactivate(int type)
 	{
 		EditorMenu->hide();
 	}
+
+	if (nullptr != EditorToolboxInstance)
+	{
+		EditorToolboxInstance->hide();
+	}
+
+	if (nullptr != HexItemInfoDialogInstance)
+	{
+		HexItemInfoDialogInstance->hide();
+	}
+
+	if (nullptr != UnitTypeInfoDialogInstance)
+	{
+		UnitTypeInfoDialogInstance->hide();
+	}
+
+	if (nullptr != CityTypeInfoDialogInstance)
+	{
+		CityTypeInfoDialogInstance->hide();
+	}
 }
 
 //=================================================================================================
