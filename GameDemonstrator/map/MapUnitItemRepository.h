@@ -19,6 +19,8 @@ public:
 	MapUnitItem* Remove(int gameUnitItemId);
 	/** */
 	void Release() override;
+	/** */
+	MapUnitItem* GetMapUnitItem(int id);
 private:
 	/** */
 	MapUnitItemRepository();

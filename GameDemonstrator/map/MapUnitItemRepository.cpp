@@ -63,6 +63,15 @@ void MapUnitItemRepository::Release()
 	MapUnitItems.clear();
 }
 
+MapUnitItem* MapUnitItemRepository::GetMapUnitItem(int id)
+{
+	if (false == MapUnitItems.contains(id))
+	{
+		return nullptr;
+	}
+	return MapUnitItems[id];
+}
+
 MapUnitItemRepository::MapUnitItemRepository()
 {
 
