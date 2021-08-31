@@ -32,6 +32,11 @@ const QColor& ModelOwnerType::GetColor() const
 	return Color;
 }
 
+bool ModelOwnerType::operator==(const ModelOwnerType& rhs) const
+{
+	return this->Id == rhs.Id;
+}
+
 bool ModelOwnerType::GetHuman() const
 {
 	return Human;

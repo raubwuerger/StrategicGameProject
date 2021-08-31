@@ -24,6 +24,8 @@ public:
 	QString toString() const;
 	/** */
 	const QColor& GetColor() const;
+	/** */
+	bool operator==(const ModelOwnerType& rhs) const;
 private:
 	friend class ModelOwnerTypeFactory;
 	const int		Id;
