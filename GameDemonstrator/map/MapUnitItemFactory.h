@@ -23,6 +23,9 @@ private:
 	const QPointF AdjustTopLeftPosition(const QPointF& topLeftPosition);
 	/** */
 	const QImage* GetImage(const GameUnitItem* gameUnitItem);
+private:
+	int		DefaultBorderWidth;
+	int		DefaultBorderWidthSelected;
 };
 
 #endif // MAPVIEWUNITITEMFACTORY_H

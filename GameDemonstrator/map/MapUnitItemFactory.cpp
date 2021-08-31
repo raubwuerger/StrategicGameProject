@@ -12,6 +12,9 @@
 #include "model\ModelOwnerType.h"
 
 MapUnitItemFactory::MapUnitItemFactory()
+	: DefaultBorderWidth(2),
+	DefaultBorderWidthSelected(4)
+
 {
 }
 
@@ -41,6 +44,8 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 		}
 		const QPointF topLeftPoint = mapHexItem->GetTopLeftPoint();
 		MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
+		newMapUnitItem->BorderWidth = DefaultBorderWidth;
+		newMapUnitItem->BorderWidthSelected = DefaultBorderWidthSelected;
 		newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 		newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 		newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
@@ -77,6 +82,8 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnitItem* gameItemUn
 	}
 	const QPointF topLeftPoint = mapHexItem->GetTopLeftPoint();
 	MapUnitItem *newMapUnitItem = new MapUnitItem(AdjustTopLeftPosition(topLeftPoint));
+	newMapUnitItem->BorderWidth = DefaultBorderWidth;
+	newMapUnitItem->BorderWidthSelected = DefaultBorderWidthSelected;
 	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 	newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 	newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));

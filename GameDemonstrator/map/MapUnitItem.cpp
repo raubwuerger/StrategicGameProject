@@ -7,7 +7,9 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	: TopLeft(topLeft),
 	UnitItemImage(nullptr),
 	EventConnector(nullptr),
-	Color(Qt::black)
+	Color(Qt::black),
+	BorderWidth(2),
+	BorderWidthSelected(4)
 {
 	ImageRect.setWidth(64);
 	ImageRect.setHeight(43);
@@ -69,6 +71,7 @@ void MapUnitItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
 	if (event->button() == Qt::RightButton)
 	{
+		ShowOriginal();
 		emit EventConnector->SignalUnitItemPressedRightButton(GameUnitId);
 		return;
 	}
@@ -77,7 +80,7 @@ void MapUnitItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 
 void MapUnitItem::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
-	ShowOriginal();
+//	ShowOriginal();
 }
 
 /** */
@@ -91,8 +94,7 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 	painter->setRenderHint(QPainter::Antialiasing);
 	QPainterPath path;
 	path.addRect(BoundingRect);
-	QPen pen(Color, 4);
-	painter->setPen(pen);
+	painter->setPen(this->pen());
 	painter->drawPath(path);
 }
 
@@ -139,14 +141,14 @@ void MapUnitItem::SetKeyEventController(KeyEventController* eventController)
 
 void MapUnitItem::ShowSelected()
 {
-	setPen(QPen(QBrush(Qt::black), 4));
-	update(boundingRect());
+	setPen(QPen(QBrush(Color), BorderWidthSelected));
+	update();
 }
 
 void MapUnitItem::ShowOriginal()
 {
-	setPen(QPen());
-	update(boundingRect());
+	setPen(QPen(QBrush(Color), BorderWidth));
+	update();
 }
 
 void MapUnitItem::CreatRect()
