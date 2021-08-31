@@ -89,6 +89,7 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 		painter->drawImage(BoundingRect.topLeft(), *UnitItemImage);
 	}
 
+	this->pen().setColor(Color);
 	painter->setRenderHint(QPainter::Antialiasing);
 	QPainterPath path;
 	path.addRect(BoundingRect);
