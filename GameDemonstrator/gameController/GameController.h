@@ -2,8 +2,9 @@
 #define GAMECONTROLLER_H
 
 /** */
-class GameController
+class GameController : public QObject
 {
+	Q_OBJECT
 public:
 	/** */
 	GameController();

@@ -635,6 +635,9 @@
     <ClCompile Include="game\GameCityItemRuntimeData.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameController.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -895,9 +898,6 @@
     <ClInclude Include="GeneratedFiles\ui_GameMainDialog.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="gameController\GameController.h">
-      <Filter>Header Dateien\GameController</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameUnitItemRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -1027,6 +1027,9 @@
       <Filter>Form Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameModeController.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
