@@ -39,11 +39,11 @@ public:
 	void SetEventConnector(ConnectorMapUnitItem* eventConnector);
 	/** */
 	void SetKeyEventController(KeyEventController* eventController);
-private:
 	/** */
 	void ShowSelected();
 	/** */
 	void ShowOriginal();
+private:
 	/** */
 	void CreatRect();
 private:
