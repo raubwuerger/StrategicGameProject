@@ -18,12 +18,16 @@ public:
 public slots:
 	/** */
 	void LoadGame();
+	/** */
+	void CreateGame();
 signals:
 	/** */
 	void LoadSavedGame();
+	/** */
+	void CreateNewGame();
 private:
 	/** */
-	void CreateGameModes(GameDemonstrator* gameDemonstrator);
+	void CreateGameModes( GameDemonstrator* gameDemonstrator );
 	/** */
 	void CreateMenuEntries( GameDemonstrator* gameDemonstrator );
 	/** */

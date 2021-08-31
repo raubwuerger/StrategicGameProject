@@ -7,6 +7,11 @@
 #include "GameDemonstrator.h"
 #include "dialogs/CreateNewGameDialog.h"
 #include "ActionRepository.h"
+#include "GameFactory.h"
+#include "GameConfig.h"
+#include "map\MapHexItemFactory.h"
+#include "map\MapUnitItemFactory.h"
+#include "map\MapCityItemFactory.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
@@ -39,10 +44,13 @@ void GameModeSinglePlayer::CreateGameMenu()
 //=================================================================================================
 void GameModeSinglePlayer::CreateGameTurnInfoDialog()
 {
-	if (nullptr != GameTurnDialogInstance)
-	{
-		GameTurnDialogInstance->show();
-	}
+	QDockWidget *dockTurnInfoDialog = new QDockWidget(tr("Game turn"), GameDemonstratorObject);
+	dockTurnInfoDialog->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	GameTurnDialogInstance = new GameTurnDialog(dockTurnInfoDialog);
+	dockTurnInfoDialog->setWidget(GameTurnDialogInstance);
+	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockTurnInfoDialog);
+
+	DockWidgets.push_back(dockTurnInfoDialog);
 }
 
 //=================================================================================================
@@ -50,11 +58,6 @@ void GameModeSinglePlayer::Activate(int type)
 {
 	ShowDockWidgets();
 	ShowMenu();
-	if (false == ShowCreateNewGameDialog())
-	{
-		GameDemonstratorObject->ShowGameMainDialog();
-		return;
-	}
 }
 
 //=================================================================================================
@@ -114,10 +117,10 @@ void GameModeSinglePlayer::HideDockWidgets()
 }
 
 //=================================================================================================
-void GameModeSinglePlayer::LoadGame()
+void GameModeSinglePlayer::LoadSaveGame()
 {
 	QString savegameName;
-	if (false == LoadSaveGame(savegameName))
+	if (false == LoadGame(savegameName))
 	{
 		GameDemonstratorObject->ShowGameMainDialog();
 		return;
@@ -131,14 +134,14 @@ bool GameModeSinglePlayer::ShowCreateNewGameDialog()
 	CreateNewGameDialog* dialog = new CreateNewGameDialog();
 	if (QDialog::Accepted == dialog->exec())
 	{
-		CreateNewGame(dialog);
+		GetGameCreationData(dialog);
 		return true;
 	}
 	return false;
 }
 
 //=================================================================================================
-bool GameModeSinglePlayer::CreateNewGame(CreateNewGameDialog* dialog)
+bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 {
 	int rows = dialog->GetTilesRows();
 	int cols = dialog->GetTilesCols();
@@ -151,13 +154,37 @@ bool GameModeSinglePlayer::CreateNewGame(CreateNewGameDialog* dialog)
 }
 
 //=================================================================================================
-bool GameModeSinglePlayer::LoadSaveGame(QString& savegameName)
+void GameModeSinglePlayer::CreateNewGame()
+{
+	if (false == ShowCreateNewGameDialog())
+	{
+		GameDemonstratorObject->ShowGameMainDialog();
+		return;
+	}
+}
+
+//=================================================================================================
+bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 {
 	savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./savegames", tr("Image Files (*.xml )"));
 	if (true == savegameName.isNull())
 	{
 		return false;
 	}
+
+	GameConfig::CurrentSaveGameName = savegameName;
+
+	GameFactory gameFactory;
+	gameFactory.CreateFromSavegame();
+
+	MapHexItemFactory mapHexItemFactory;
+	mapHexItemFactory.Create(MapViewObject);
+
+	MapUnitItemFactory mapUnitItemFactory;
+	mapUnitItemFactory.Create(MapViewObject);
+
+	MapCityItemFactory mapCityItemFactory;
+	mapCityItemFactory.Create(MapViewObject);
 
 	return true;
 }

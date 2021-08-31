@@ -23,7 +23,9 @@ public:
 	/** */
 	virtual void Deactivate(int type);
 	/** */
-	void LoadGame();
+	void LoadSaveGame();
+	/** */
+	void CreateNewGame();
 private:
 	/** Restricted */
 	GameModeSinglePlayer();
@@ -34,9 +36,9 @@ private:
 	/** */
 	bool ShowCreateNewGameDialog();
 	/** */
-	bool CreateNewGame(CreateNewGameDialog* dialog);
+	bool GetGameCreationData(CreateNewGameDialog* dialog);
 	/** */
-	bool LoadSaveGame( QString& savegameName);
+	bool LoadGame( QString& savegameName);
 	/** */
 	void HideMenu();
 	/** */
