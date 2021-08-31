@@ -23,7 +23,6 @@
 #include "RepositoryCleaner.h"
 #include "dialogs/GameMainDialog.h"
 #include "map/MapCityItemRepository.h"
-#include "gameController/GameController.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -77,8 +76,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameMainDialogObject->Init(this);
 
 	CreateGameModeController();
-	GameControllerObject = new GameController();
-	GameControllerObject->Init();
 	ShowGameMainDialog();
 }
 

@@ -10,7 +10,6 @@ class MapHexItemEventManager;
 class GameMode;
 class GameMainDialog;
 class GameModeController;
-class GameController;
 class SerializerGame;
 class GameMainLoop;
 class ConnectorLoadCreateGame;
@@ -49,7 +48,6 @@ private:
 	SerializerGame*				ConnectorSaveGameInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
 	GameModeController*			GameModeControllerObject;
-	GameController*				GameControllerObject;
 	Ui::GameDemonstratorClass	ui;
 };
 

@@ -12,11 +12,16 @@ public:
 	GameController();
 	/** */
 	void Init();
+	/** */
+	bool InitGame();
 public slots:
 	/** */
 	void SlotGameUnitSelected(int gameUnitId);
 	/** */
 	void SlotGameUnitUnselected(int gameUnitId);
+private:
+	/** */
+	bool IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const;
 private:
 	MapUnitItem*	Selected;
 };
