@@ -22,8 +22,6 @@ public:
 	/** */
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent * event);
 	/** */
-	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
-	/** */
 	void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 	/** Set UnitItemImage */
 	void SetUnitItemImage(const QImage* val);

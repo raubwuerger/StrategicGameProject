@@ -71,16 +71,14 @@ void MapUnitItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
 	if (event->button() == Qt::RightButton)
 	{
-		ShowOriginal();
 		emit EventConnector->SignalUnitItemPressedRightButton(GameUnitId);
 		return;
 	}
-	ShowSelected();
-}
-
-void MapUnitItem::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
-{
-//	ShowOriginal();
+	if (event->button() == Qt::LeftButton)
+	{
+		emit EventConnector->SignalUnitItemPressedLeftButton(GameUnitId);
+		return;
+	}
 }
 
 /** */
