@@ -638,6 +638,9 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_GameController.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1031,6 +1034,9 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameController.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

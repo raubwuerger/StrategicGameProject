@@ -5,23 +5,15 @@
 #include "ui_gamedemonstrator.h"
 
 class ActionRepository;
-class GameTurnDialog;
-class HexItemInfoDialog;
-class CityTypeInfoDialog;
-class UnitTypeInfoDialog;
-class GameMainThread;
-class GameMainLoop;
 class MapView;
 class MapHexItemEventManager;
-class EditorToolbox;
-class CreateNewMap;
-class ConnectorTerrainEditorGameMap;
-class ConnectorUnitTypeGameMap;
-class ConnectorLoadCreateGame;
-class SerializerGame;
 class GameMode;
 class GameMainDialog;
 class GameModeController;
+class GameController;
+class SerializerGame;
+class GameMainLoop;
+class ConnectorLoadCreateGame;
 
 namespace jha
 {
@@ -51,13 +43,13 @@ private:
 	QMenu	*InfoMenu;
 	GameMainDialog*				GameMainDialogObject;
 	ActionRepository*			ActionRepository;
-	GameTurnDialog*				GameTurnDialogInstance;
 	GameMainLoop*				MainGameLoopInstance;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
 	SerializerGame*				ConnectorSaveGameInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
 	GameModeController*			GameModeControllerObject;
+	GameController*				GameControllerObject;
 	Ui::GameDemonstratorClass	ui;
 };
 
