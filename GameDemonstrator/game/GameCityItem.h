@@ -39,7 +39,7 @@ public:
 	/** */
 	const ModelCityType* GetCityModelType() const;
 	/** */
-	int GetCityTypeId() const;
+	int GetModelCityTypeId() const;
 	/** */
 	int GetEfficiency() const;
 	/** */

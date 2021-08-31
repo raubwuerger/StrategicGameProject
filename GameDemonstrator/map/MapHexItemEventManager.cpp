@@ -108,7 +108,7 @@ void MapHexItemEventManager::SlotUpdateMapCityItemInfo(int mapCityItemId)
 	if (nullptr != item)
 	{
 		cityItemName = item->GetName();
-		cityItemTypeId = QString::number(item->GetCityTypeId());
+		cityItemTypeId = QString::number(item->GetModelCityTypeId());
 		mapHexItemId = QString::number(item->GetGameMapItemId());
 		cityOwner = item->GetModelOwnerType()->GetName();
 	}

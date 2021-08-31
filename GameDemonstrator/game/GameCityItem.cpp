@@ -68,7 +68,7 @@ const ModelCityType* GameCityItem::GetCityModelType() const
 	return CityType;
 }
 
-int GameCityItem::GetCityTypeId() const
+int GameCityItem::GetModelCityTypeId() const
 {
 	return CityTypeId;
 }
