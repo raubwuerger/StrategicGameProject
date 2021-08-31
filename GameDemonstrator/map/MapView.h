@@ -55,9 +55,9 @@ private:
 	void DoZoom(QWheelEvent *event);
 public:
 	MapGraphicsScene*		Scene;					
-	ConnectorMapHexItem*	ConnectorMapHexItemInstance;
-	ConnectorMapUnitItem*	ConnectorMapUnitItemInstance;
-	ConnectorMapCityItem*	ConnectorMapCityItemInstance;
+	static ConnectorMapHexItem*		ConnectorMapHexItemInstance;
+	static ConnectorMapUnitItem*	ConnectorMapUnitItemInstance;
+	static ConnectorMapCityItem*	ConnectorMapCityItemInstance;
 	MapHexItemEventManager*		MapEventManagerInstance;	
 private:
 	KeyEventController*	KeyEventControllerInstance;

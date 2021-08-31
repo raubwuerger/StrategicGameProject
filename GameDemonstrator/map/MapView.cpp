@@ -14,13 +14,15 @@
 #include "MapCityItem.h"
 #include "connectors/ConnectorMapCityItem.h"
 
+ConnectorMapHexItem*	MapView::ConnectorMapHexItemInstance = new ConnectorMapHexItem;
+ConnectorMapUnitItem*	MapView::ConnectorMapUnitItemInstance = new ConnectorMapUnitItem;
+ConnectorMapCityItem*	MapView::ConnectorMapCityItemInstance = new ConnectorMapCityItem;
+
+
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
 {
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-	ConnectorMapHexItemInstance = new ConnectorMapHexItem;
-	ConnectorMapUnitItemInstance = new ConnectorMapUnitItem;
-	ConnectorMapCityItemInstance = new ConnectorMapCityItem;
 	Scene = new MapGraphicsScene(this);
 	KeyEventControllerInstance = new KeyEventController;
 }
