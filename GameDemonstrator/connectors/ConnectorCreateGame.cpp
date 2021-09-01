@@ -1,17 +1,17 @@
 #include "stdafx.h"
-#include "ConnectorLoadCreateGame.h"
+#include "ConnectorCreateGame.h"
 #include "gameController\GameFactory.h"
 #include "map\MapView.h"
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"
 
-ConnectorLoadCreateGame::ConnectorLoadCreateGame()
+ConnectorCreateGame::ConnectorCreateGame()
 	: MapViewObject(nullptr)
 {
 }
 
-void ConnectorLoadCreateGame::SlotCreateNewGame()
+void ConnectorCreateGame::SlotCreateNewGame()
 {
 	if( nullptr == MapViewObject )
 	{

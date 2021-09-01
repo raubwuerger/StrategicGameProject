@@ -17,7 +17,7 @@
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "connectors/ConnectorMapHexItem.h"
-#include "connectors/ConnectorLoadCreateGame.h"
+#include "connectors/ConnectorCreateGame.h"
 #include "connectors/ConnectorLoadGame.h"
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
@@ -73,7 +73,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameMainDialogObject = new GameMainDialog(this);
 	GameMainDialogObject->Init(this);
 
-	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
+	ConnectorLoadCreateGameInstance = new ConnectorCreateGame;
 	ConnectorLoadCreateGameInstance->MapViewObject = MapViewInstance;
 
 	ConnectorLoadGameObject = new ConnectorLoadGame;
@@ -111,7 +111,7 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
 	ActionRepository::GetInstance()->AddAction(createAction);
-	connect(createAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
+	connect(createAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);

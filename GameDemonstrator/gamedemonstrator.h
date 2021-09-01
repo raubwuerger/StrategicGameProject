@@ -12,7 +12,7 @@ class GameMainDialog;
 class GameModeController;
 class SerializerGame;
 class GameMainLoop;
-class ConnectorLoadCreateGame;
+class ConnectorCreateGame;
 class ConnectorLoadGame;
 
 namespace jha
@@ -47,7 +47,7 @@ private:
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
 	SerializerGame*				ConnectorSaveGameInstance;
-	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
+	ConnectorCreateGame*	ConnectorLoadCreateGameInstance;
 	ConnectorLoadGame*			ConnectorLoadGameObject;
 	GameModeController*			GameModeControllerObject;
 	Ui::GameDemonstratorClass	ui;

@@ -1,15 +1,15 @@
-#ifndef CONNECTORLOADCREATEGAME_H
-#define CONNECTORLOADCREATEGAME_H
+#ifndef CONNECTORCREATEGAME_H
+#define CONNECTORCREATEGAME_H
 
 class MapView;
 
 /** Kümmert sich um das Erstellen eines neuen Spiels */
-class ConnectorLoadCreateGame : public QObject
+class ConnectorCreateGame : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	ConnectorLoadCreateGame();
+	ConnectorCreateGame();
 public slots:
 	/** */
 	void SlotCreateNewGame();
@@ -18,7 +18,7 @@ private:
 	MapView*			MapViewObject;
 };
 
-#endif // CONNECTORLOADCREATEGAME_H
+#endif // CONNECTORCREATEGAME_H
 
 
 
