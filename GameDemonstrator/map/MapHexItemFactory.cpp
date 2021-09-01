@@ -58,11 +58,13 @@ bool MapHexItemFactory::CreateTopLeftPosition(int row, int col, QPointF &topLeft
 {
 	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
+	const double offsetHexagon = 1.0;
+
 	double startX = 0.0;
-	double offsetX = hexagonTemplate.Side;
+	double offsetX = hexagonTemplate.Side + offsetHexagon;
 
 	double startY = 0.0;
-	double offsetY = hexagonTemplate.Height;
+	double offsetY = hexagonTemplate.Height + offsetHexagon;
 
 	double offsetYEvenCol = hexagonTemplate.Height / 2.0;
 	double cordX = startX + col * offsetX;
