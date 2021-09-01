@@ -41,6 +41,14 @@ public:
 	const QPointF& GetTopLeftPoint() const;
 	/** */
 	const QPointF& GetCenterPoint() const;
+	/** */
+	void SetShowId(bool show) { ShowId = show;  }
+	/** */
+	void SetShowRowAndCol(bool show) { ShowRowAndCol = show; }
+	/** */
+	void SetShowCoordinates(bool show) { ShowCoordinates = show; }
+	/** */
+	void SetShowTextBorder(bool show) { ShowTextBorder = show; }
 private:
 	/** */
 	void CreateHexPolygon( const MapHexItemHexagonData &data );
@@ -60,6 +68,10 @@ private:
 	QString					MapHexItemInfoString;
 	mutable const QImage*	TerrainImage;
 	int						GameMapItemId;
+	bool					ShowId;
+	bool					ShowRowAndCol;
+	bool					ShowCoordinates;
+	bool					ShowTextBorder;
 };
 
 #endif // MAPVIEWHEXITEM_H
