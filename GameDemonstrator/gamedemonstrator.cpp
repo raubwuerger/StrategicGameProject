@@ -68,7 +68,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapUnitItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
 	MapCityItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
 
-	ConnectorLoadCreateGameInstance->SetMapView(MapViewInstance);
+	ConnectorLoadCreateGameInstance->MapViewObject = MapViewInstance;
+	ConnectorLoadCreateGameInstance->GameDemonstratorObject = this;
 
 	MapViewInstance->show();
 

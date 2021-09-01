@@ -2,6 +2,7 @@
 #define CONNECTORLOADCREATEGAME_H
 
 class MapView;
+class GameDemonstrator;
 
 /** Erstellt alle Komponenten die für ein neues Spiel notwendig sind */
 class ConnectorLoadCreateGame : public QObject
@@ -14,15 +15,15 @@ public:
 	~ConnectorLoadCreateGame();
 	/** */
 	void Release();
-	/** */
-	void SetMapView( MapView* mapView );
 public slots:
 	/** */
 	void SlotCreateNewGame();
 	/** */
 	void SlotLoadSaveGame();
 private:
-	MapView				*MapViewInstance;
+	friend class GameDemonstrator;
+	MapView*			MapViewObject;
+	GameDemonstrator*	GameDemonstratorObject;
 };
 
 #endif // CONNECTORLOADCREATEGAME_H
