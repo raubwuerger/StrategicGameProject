@@ -22,7 +22,7 @@ void GameFactory::InitGameController()
 	GameControllerObject->Init();
 }
 
-bool GameFactory::Create(const GameConfig* gameConfig)
+bool GameFactory::Create()
 {
 	GameMapItemFactory factory;
 	factory.Create();

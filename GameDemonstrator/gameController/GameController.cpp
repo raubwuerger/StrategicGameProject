@@ -45,7 +45,7 @@ void GameController::SlotGameUnitSelected(int gameUnitId)
 	{
 		return;
 	}
-
+	
 	if (nullptr != Selected)
 	{
 		Selected->ShowOriginal();

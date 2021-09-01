@@ -29,7 +29,7 @@ void ConnectorLoadCreateGame::SlotCreateNewGame()
 	}
 
 	GameFactory gameFactory;
-	gameFactory.Create(new GameConfig());
+	gameFactory.Create();
 
 	MapHexItemFactory mapHexItemFactory;
 	mapHexItemFactory.Create(MapViewInstance);

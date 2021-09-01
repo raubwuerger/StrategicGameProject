@@ -13,6 +13,8 @@ public:
 	static QString			MapType;
 	static QString			PlayerId;
 	static ModelOwnerType*	OwnerType;
+	static int				MapRows;
+	static int				MapCols;
 };
 
 #endif // GAMECONFIG_H

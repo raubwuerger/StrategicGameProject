@@ -13,7 +13,7 @@ public:
 	/** */
 	void InitGameController();
 	/** */
-	bool Create(const GameConfig* gameConfig);
+	bool Create();
 	/** */
 	bool CreateFromSavegame();
 private:

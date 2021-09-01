@@ -8,5 +8,8 @@ QString			GameConfig::PlayerCount = "2";
 QString			GameConfig::MapType = "1";
 QString			GameConfig::PlayerId = "2";
 ModelOwnerType*	GameConfig::OwnerType = nullptr;
+int				GameConfig::MapRows = 3;
+int				GameConfig::MapCols = 3;
+
 
 

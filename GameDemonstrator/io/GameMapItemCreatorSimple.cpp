@@ -5,6 +5,7 @@
 #include "game/GameMapItem.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
+#include "gameController/GameConfig.h"
 
 GameMapItemCreatorSimple::GameMapItemCreatorSimple()
 	: MapItemId(0)
@@ -15,8 +16,8 @@ GameMapItemCreatorSimple::GameMapItemCreatorSimple()
 bool GameMapItemCreatorSimple::CreateMap()
 {
 	MapItemId = 0;
-	unsigned int cols = ModelProgramFactory::ModelProgramSettingsInstance->DebugCols;
-	unsigned int rows = ModelProgramFactory::ModelProgramSettingsInstance->DebugRows;
+	unsigned int cols = GameConfig::MapCols;
+	unsigned int rows = GameConfig::MapRows;
 
 	QVector< QVector<GameMapItem*> >* simpleMap = new QVector< QVector<GameMapItem*> >();
 	simpleMap->reserve(rows);

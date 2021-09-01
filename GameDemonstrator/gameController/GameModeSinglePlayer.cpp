@@ -12,6 +12,7 @@
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"
+#include "model\ModelOwnerTypeRepository.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
@@ -149,6 +150,19 @@ bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 	int owner = dialog->GetOwnerTypeId();
 	int opponents = dialog->GetOpponentCount();
 	int diffuclty = dialog->GetDifficultyLevel();
+
+	GameConfig::MapRows = rows;
+	GameConfig::MapCols = cols;
+	GameConfig::OwnerType = const_cast<ModelOwnerType*>(ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(owner));
+
+	GameFactory gameFactory;
+	gameFactory.Create();
+
+	MapHexItemFactory mapHexItemFactory;
+	mapHexItemFactory.Create(MapViewObject);
+
+	MapUnitItemFactory mapUnitItemFactory;
+	mapUnitItemFactory.Create(MapViewObject);
 
 	return false;
 }
