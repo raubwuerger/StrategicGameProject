@@ -18,6 +18,7 @@
 #include "model/ModelProgramSettings.h"
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorLoadCreateGame.h"
+#include "connectors/ConnectorLoadGame.h"
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
 #include "RepositoryCleaner.h"
@@ -32,6 +33,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InfoMenu(nullptr),
 	GameModeControllerObject(nullptr),
 	ConnectorLoadCreateGameInstance(nullptr),
+	ConnectorLoadGameObject(nullptr),
 	GameMainDialogObject(nullptr)
 {
 	ui.setupUi(this);
@@ -54,8 +56,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	}
 	MainGameLoopInstance = new GameMainLoop(this);
-	CreateMenuFile();
-	CreateMenuAbout();
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	layoutMain->addWidget(MapViewInstance);
@@ -68,14 +68,20 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapUnitItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
 	MapCityItemRepository::GetInstance()->MapViewInstance = MapViewInstance;
 
-	ConnectorLoadCreateGameInstance->MapViewObject = MapViewInstance;
-	ConnectorLoadCreateGameInstance->GameDemonstratorObject = this;
-
 	MapViewInstance->show();
 
 	GameMainDialogObject = new GameMainDialog(this);
 	GameMainDialogObject->Init(this);
 
+	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
+	ConnectorLoadCreateGameInstance->MapViewObject = MapViewInstance;
+
+	ConnectorLoadGameObject = new ConnectorLoadGame;
+	ConnectorLoadGameObject->MapViewObject = MapViewInstance;
+	ConnectorLoadGameObject->GameDemonstratorObject = this;
+
+	CreateMenuFile();
+	CreateMenuAbout();
 	CreateGameModeController();
 	ShowGameMainDialog();
 }
@@ -101,8 +107,6 @@ void GameDemonstrator::CreateGameModeController()
 
 void GameDemonstrator::CreateMenuFile()
 {
-	ConnectorLoadCreateGameInstance = new ConnectorLoadCreateGame;
-
 	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
@@ -113,7 +117,7 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	ActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorLoadCreateGame::SlotLoadSaveGame, Qt::QueuedConnection);
+	connect(loadGameAction, &QAction::triggered, ConnectorLoadGameObject, &ConnectorLoadGame::SlotLoadSaveGame, Qt::QueuedConnection);
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);

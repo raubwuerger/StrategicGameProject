@@ -7,7 +7,7 @@
     </Game>
     <Players>
         <Player>
-            <ID>1</ID>
+            <ID>2</ID>
             <Name>Spieler 1</Name>
             <Human>1</Human>
         </Player>
@@ -5184,7 +5184,7 @@
         <City>
             <ID>5</ID>
             <CityItemId>1</CityItemId>
-            <OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>2</OwnerTypeId>
             <GameMapItemID>192</GameMapItemID>
             <Name>City 5</Name>
             <Efficiency>-1</Efficiency>
@@ -5193,7 +5193,7 @@
         <City>
             <ID>6</ID>
             <CityItemId>1</CityItemId>
-            <OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>5</OwnerTypeId>
             <GameMapItemID>521</GameMapItemID>
             <Name>City 6</Name>
             <Efficiency>-1</Efficiency>

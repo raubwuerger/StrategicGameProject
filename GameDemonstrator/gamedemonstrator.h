@@ -13,6 +13,7 @@ class GameModeController;
 class SerializerGame;
 class GameMainLoop;
 class ConnectorLoadCreateGame;
+class ConnectorLoadGame;
 
 namespace jha
 {
@@ -47,6 +48,7 @@ private:
 	MapView*					MapViewInstance;
 	SerializerGame*				ConnectorSaveGameInstance;
 	ConnectorLoadCreateGame*	ConnectorLoadCreateGameInstance;
+	ConnectorLoadGame*			ConnectorLoadGameObject;
 	GameModeController*			GameModeControllerObject;
 	Ui::GameDemonstratorClass	ui;
 };
