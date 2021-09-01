@@ -57,6 +57,7 @@ private:
 	ConnectorMapUnitItem*	EventConnector;
 	KeyEventController*		EventController;
 	QColor			Color;
+	int				BorderWidthCurrent;
 	int				BorderWidth;
 	int				BorderWidthSelected;
 };

@@ -9,7 +9,8 @@ MapUnitItem::MapUnitItem( const QPointF& topLeft )
 	EventConnector(nullptr),
 	Color(Qt::black),
 	BorderWidth(2),
-	BorderWidthSelected(4)
+	BorderWidthSelected(4),
+	BorderWidthCurrent(2)
 {
 	ImageRect.setWidth(64);
 	ImageRect.setHeight(43);
@@ -89,11 +90,10 @@ void MapUnitItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* optio
 		painter->drawImage(BoundingRect.topLeft(), *UnitItemImage);
 	}
 
-	this->pen().setColor(Color);
 	painter->setRenderHint(QPainter::Antialiasing);
 	QPainterPath path;
 	path.addRect(BoundingRect);
-	painter->setPen(this->pen());
+	painter->setPen(QPen(Color, BorderWidthCurrent));
 	painter->drawPath(path);
 }
 
@@ -140,13 +140,13 @@ void MapUnitItem::SetKeyEventController(KeyEventController* eventController)
 
 void MapUnitItem::ShowSelected()
 {
-	setPen(QPen(QBrush(Color), BorderWidthSelected));
+	BorderWidthCurrent = BorderWidthSelected;
 	update();
 }
 
 void MapUnitItem::ShowOriginal()
 {
-	setPen(QPen(QBrush(Color), BorderWidth));
+	BorderWidthCurrent = BorderWidth;
 	update();
 }
 
