@@ -10,10 +10,10 @@ class MapHexItemEventManager;
 class GameMode;
 class GameMainDialog;
 class GameModeController;
-class SerializerGame;
 class GameMainLoop;
 class ConnectorCreateGame;
 class ConnectorLoadGame;
+class ConnectorSaveGame;
 
 namespace jha
 {
@@ -46,9 +46,9 @@ private:
 	GameMainLoop*				MainGameLoopInstance;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
-	SerializerGame*				ConnectorSaveGameInstance;
-	ConnectorCreateGame*	ConnectorLoadCreateGameInstance;
+	ConnectorCreateGame*		ConnectorCreateGameObject;
 	ConnectorLoadGame*			ConnectorLoadGameObject;
+	ConnectorSaveGame*			ConnectorSaveGameObject;
 	GameModeController*			GameModeControllerObject;
 	Ui::GameDemonstratorClass	ui;
 };

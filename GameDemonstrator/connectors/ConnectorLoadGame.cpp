@@ -14,12 +14,12 @@ ConnectorLoadGame::ConnectorLoadGame()
 
 }
 
-void ConnectorLoadGame::SlotLoadSaveGame()
+void ConnectorLoadGame::SlotLoadGame()
 {
 	Q_ASSERT(MapViewObject);
 	Q_ASSERT(GameDemonstratorObject);
 
-	QString savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./savegames", tr("Image Files (*.xml )"));
+	QString savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./savegames", tr("Savegame files (*.xml )"));
 	if (true == savegameName.isNull())
 	{
 		return;

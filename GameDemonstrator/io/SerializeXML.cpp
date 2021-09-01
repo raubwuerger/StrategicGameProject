@@ -33,7 +33,7 @@ bool SerializeXML::SaveGame( const QString& saveGameName )
 	{
 		return false;
 	}
-	return false;
+	return true;
 }
 
 //==============================================================================

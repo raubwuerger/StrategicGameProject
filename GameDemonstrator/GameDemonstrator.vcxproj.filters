@@ -650,6 +650,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorCreateGame.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Connectors\ConnectorSaveGame.cpp">
+      <Filter>Source Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorSaveGame.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorSaveGame.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1051,6 +1060,9 @@
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
     <CustomBuild Include="connectors\ConnectorCreateGame.h">
+      <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Connectors\ConnectorSaveGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>

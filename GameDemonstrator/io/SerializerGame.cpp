@@ -23,6 +23,13 @@ bool SerializerGame::SlotSaveGame()
 		Q_ASSERT( SerializeGameInterface != nullptr );
 		return false;
 	}
+
+/*	QString savegameName = QFileDialog::getOpenFileName(this, tr("Open Save Game"), "./savegames", tr("Image Files (*.xml )"));
+	if (true == savegameName.isNull())
+	{
+		return;
+	}
+*/
 	return SerializeGameInterface->SaveGame( CreateSaveGameFileName() );
 }
 

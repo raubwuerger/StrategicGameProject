@@ -2,7 +2,7 @@
 #define SERIALIZERFACTORY_H
 
 class SerializerGame;
-#include <QVector>
+class GameDemonstrator;
 
 class SerializerFactory
 {

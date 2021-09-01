@@ -19,6 +19,7 @@
 #include "connectors/ConnectorMapHexItem.h"
 #include "connectors/ConnectorCreateGame.h"
 #include "connectors/ConnectorLoadGame.h"
+#include "connectors/ConnectorSaveGame.h"
 #include "editors/TerrainTypeEditor.h"
 #include "editors/EditorToolbox.h"
 #include "RepositoryCleaner.h"
@@ -32,8 +33,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
 	GameModeControllerObject(nullptr),
-	ConnectorLoadCreateGameInstance(nullptr),
+	ConnectorCreateGameObject(nullptr),
 	ConnectorLoadGameObject(nullptr),
+	ConnectorSaveGameObject(nullptr),
 	GameMainDialogObject(nullptr)
 {
 	ui.setupUi(this);
@@ -48,7 +50,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	InitLoggingFramwork();
 
 	ActionRepository::GetInstanceFirstTimeInit(parent);
-	ConnectorSaveGameInstance = SerializerFactory().CreateInterface();
 
 	ConfigurationLoader configurationLoader;
 	if (false == configurationLoader.Load())
@@ -73,12 +74,15 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameMainDialogObject = new GameMainDialog(this);
 	GameMainDialogObject->Init(this);
 
-	ConnectorLoadCreateGameInstance = new ConnectorCreateGame;
-	ConnectorLoadCreateGameInstance->MapViewObject = MapViewInstance;
+	ConnectorCreateGameObject = new ConnectorCreateGame;
+	ConnectorCreateGameObject->MapViewObject = MapViewInstance;
 
 	ConnectorLoadGameObject = new ConnectorLoadGame;
 	ConnectorLoadGameObject->MapViewObject = MapViewInstance;
 	ConnectorLoadGameObject->GameDemonstratorObject = this;
+
+	ConnectorSaveGameObject = new ConnectorSaveGame;
+	ConnectorSaveGameObject->GameDemonstratorObject = this;
 
 	CreateMenuFile();
 	CreateMenuAbout();
@@ -111,19 +115,19 @@ void GameDemonstrator::CreateMenuFile()
 	QAction* createAction = new QAction(create,tr("&Create"), this);
 	createAction->setStatusTip(tr("Create new game"));
 	ActionRepository::GetInstance()->AddAction(createAction);
-	connect(createAction, &QAction::triggered, ConnectorLoadCreateGameInstance, &ConnectorCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
+	connect(createAction, &QAction::triggered, ConnectorCreateGameObject, &ConnectorCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
 
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
 	ActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, &QAction::triggered, ConnectorLoadGameObject, &ConnectorLoadGame::SlotLoadSaveGame, Qt::QueuedConnection);
+	connect(loadGameAction, &QAction::triggered, ConnectorLoadGameObject, &ConnectorLoadGame::SlotLoadGame, Qt::QueuedConnection);
 
 	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
 	Action* saveGameAction = new Action(save,tr("&Save"), this);
 	saveGameAction->setStatusTip(tr("Save current game"));
 	ActionRepository::GetInstance()->AddAction(saveGameAction);
-	connect(saveGameAction, &QAction::triggered, ConnectorSaveGameInstance, &SerializerGame::SlotSaveGame, Qt::QueuedConnection);
+	connect(saveGameAction, &QAction::triggered, ConnectorSaveGameObject, &ConnectorSaveGame::SlotSaveGame, Qt::QueuedConnection);
 
 	QIcon exit(":GameDemonstrator/Resources/exit.ico");
 	QAction* exitAction = new QAction(exit,tr("E&xit"), this);

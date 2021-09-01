@@ -12,12 +12,11 @@ public:
 	ConnectorLoadGame();
 public slots:
 	/** */
-	void SlotLoadSaveGame();
+	void SlotLoadGame();
 private:
 	friend class GameDemonstrator;
 	MapView*			MapViewObject;
 	GameDemonstrator*	GameDemonstratorObject;
-
 };
 
 #endif // CONNECTORLOADGAME_H
