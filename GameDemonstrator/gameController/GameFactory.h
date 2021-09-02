@@ -2,7 +2,7 @@
 #define GAMEFACTORY_H
 
 class GameConfig;
-class GameController;
+class GameUnitController;
 class GameModeController;
 class MapView;
 class GameMainDialog;
@@ -24,7 +24,7 @@ private:
 	void InitGameModeController();
 private:
 	friend class GameDemonstrator;
-	static GameController*		GameControllerObject;
+	static GameUnitController*		GameControllerObject;
 	static GameModeController*	GameModeControllerObject;
 	static GameDemonstrator*	GameDemonstratorObject;
 	static MapView*				MapViewObject;

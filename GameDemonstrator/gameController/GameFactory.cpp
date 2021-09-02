@@ -3,10 +3,10 @@
 #include "game\GameMapItemFactory.h"
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
-#include "GameController.h"
+#include "GameUnitController.h"
 #include "GameModeController.h"
 
-GameController* GameFactory::GameControllerObject = nullptr;
+GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
 GameDemonstrator*	GameFactory::GameDemonstratorObject = nullptr;
 MapView*			GameFactory::MapViewObject = nullptr;
@@ -26,7 +26,7 @@ void GameFactory::InitGameController()
 	{
 		return;
 	}
-	GameControllerObject = new GameController();
+	GameControllerObject = new GameUnitController();
 	GameControllerObject->Init();
 }
 

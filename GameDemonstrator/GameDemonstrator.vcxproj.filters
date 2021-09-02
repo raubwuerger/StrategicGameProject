@@ -614,20 +614,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameModeController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="gameController\GameController.cpp">
-      <Filter>Source Dateien\GameController</Filter>
-    </ClCompile>
     <ClCompile Include="game\GameUnitItemRuntimeData.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="game\GameCityItemRuntimeData.cpp">
       <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameController.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameController.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="Connectors\ConnectorLoadGame.cpp">
       <Filter>Source Dateien\Connectors</Filter>
@@ -654,6 +645,15 @@
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorSaveGame.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameUnitController.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameUnitController.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameUnitController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1042,9 +1042,6 @@
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameController.h">
-      <Filter>Header Dateien\GameController</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gameController\GameController.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameController.h">
@@ -1059,8 +1056,11 @@
     <CustomBuild Include="Connectors\ConnectorSaveGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
-    <CustomBuild Include="gameController\GameController.h">
+    <CustomBuild Include="gameController\GameUnitController.h">
       <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameUnitController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

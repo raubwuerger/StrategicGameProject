@@ -7,7 +7,7 @@
 #include "gameController/GameModeSinglePlayer.h"
 #include "map/MapView.h"
 #include "dialogs/GameMainDialog.h"
-#include "GameController.h"
+#include "GameUnitController.h"
 
 QMenu*		GameModeController::GameModeChangeMenu = nullptr;
 

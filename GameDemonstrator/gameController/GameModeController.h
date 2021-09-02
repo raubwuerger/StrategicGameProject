@@ -4,7 +4,7 @@
 class GameDemonstrator;
 class GameMode;
 class GameMainDialog;
-class GameController;
+class GameUnitController;
 class MapView;
 
 /** Handles the differen GameModes */
@@ -42,7 +42,7 @@ private:
 private:
 	friend class GameFactory;
 	GameMainDialog*		GameMainDialogObject;
-	GameController*		GameControllerObject;
+	GameUnitController*		GameControllerObject;
 	MapView*			MapViewObject;
 	GameMode*			CurrentGameMode;
 	GameMode*			GameModeEditorObject;

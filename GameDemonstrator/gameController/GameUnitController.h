@@ -4,12 +4,12 @@
 class MapUnitItem;
 
 /** */
-class GameController : public QObject //TODO -> Rename to GameUnitController
+class GameUnitController : public QObject
 {
 	Q_OBJECT
 public:
 	/** */
-	GameController();
+	GameUnitController();
 	/** */
 	void Init();
 	/** */
