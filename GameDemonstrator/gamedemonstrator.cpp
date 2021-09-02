@@ -25,6 +25,7 @@
 #include "RepositoryCleaner.h"
 #include "dialogs/GameMainDialog.h"
 #include "map/MapCityItemRepository.h"
+#include "gameController/GameFactory.h"
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
@@ -32,7 +33,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
-	GameModeControllerObject(nullptr),
 	ConnectorCreateGameObject(nullptr),
 	ConnectorLoadGameObject(nullptr),
 	ConnectorSaveGameObject(nullptr),
@@ -86,7 +86,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 
 	CreateMenuFile();
 	CreateMenuAbout();
-	CreateGameModeController();
+	InitGameFactory();
 	ShowGameMainDialog();
 }
 
@@ -100,13 +100,13 @@ void GameDemonstrator::ShowGameMainDialog()
 	GameMainDialogObject->show();
 }
 
-#include "gameController/GameModeController.h"
-void GameDemonstrator::CreateGameModeController()
+void GameDemonstrator::InitGameFactory()
 {
-	GameModeControllerObject = new GameModeController;
-	GameModeControllerObject->MapViewObject = MapViewInstance;
-	GameModeControllerObject->GameMainDialogObject = GameMainDialogObject;
-	GameModeControllerObject->Init(this);
+	GameFactory::MapViewObject = MapViewInstance;
+	GameFactory::GameMainDialogObject = GameMainDialogObject;
+	GameFactory::GameDemonstratorObject = this;
+
+	GameFactory gameFactory;
 }
 
 void GameDemonstrator::CreateMenuFile()

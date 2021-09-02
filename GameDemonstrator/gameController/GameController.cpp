@@ -18,8 +18,27 @@ GameController::GameController()
 
 void GameController::Init()
 {
-	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelected );
+}
+
+void GameController::ConnectSinglePlayer()
+{
+	disconnect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelectedEditorMode);
+	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelected);
 	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, this, &GameController::SlotGameUnitUnselected);
+}
+
+void GameController::ConnectEditor()
+{
+	disconnect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelected);
+	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelectedEditorMode);
+	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, this, &GameController::SlotGameUnitUnselected);
+}
+
+void GameController::Disconnect()
+{
+	disconnect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelected);
+	disconnect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, this, &GameController::SlotGameUnitUnselected);
+	disconnect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameController::SlotGameUnitSelectedEditorMode);
 }
 
 bool GameController::InitGame()
@@ -65,6 +84,23 @@ void GameController::SlotGameUnitUnselected(int gameUnitId)
 
 	mapUnitItem->ShowOriginal();
 	Selected = nullptr;
+}
+
+void GameController::SlotGameUnitSelectedEditorMode(int gameUnitId)
+{
+	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetMapUnitItem(gameUnitId);
+	if (nullptr == mapUnitItem)
+	{
+		return;
+	}
+
+	if (nullptr != Selected)
+	{
+		Selected->ShowOriginal();
+	}
+
+	Selected = mapUnitItem;
+	mapUnitItem->ShowSelected();
 }
 
 bool GameController::IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const

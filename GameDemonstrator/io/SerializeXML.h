@@ -20,7 +20,7 @@ public:
 	bool SaveGame( const QString& saveGameName );
 private:
 	/** */
-	bool SaveXMLHeader( const QString& saveGameName );
+	bool CreateSaveGameFile( const QString& saveGameName );
 	/** */
 	bool SaveGame( QXmlStreamWriter& xmlWriter );
 	/** */

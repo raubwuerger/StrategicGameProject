@@ -4,6 +4,7 @@
 class GameDemonstrator;
 class GameMode;
 class GameMainDialog;
+class GameController;
 class MapView;
 
 /** Handles the differen GameModes */
@@ -20,6 +21,10 @@ public slots:
 	void LoadGame();
 	/** */
 	void CreateGame();
+	/** */
+	void SlotModeEditorActivated();
+	/** */
+	void SlotModeSinglePlayerActivated();
 signals:
 	/** */
 	void LoadSavedGame();
@@ -29,14 +34,15 @@ private:
 	/** */
 	void CreateGameModes( GameDemonstrator* gameDemonstrator );
 	/** */
-	void CreateMenuEntries( GameDemonstrator* gameDemonstrator );
+	void CreateMenuEntryGameMode( GameDemonstrator* gameDemonstrator );
 	/** */
 	void CreateMenuEntryEditor( GameDemonstrator* gameDemonstrator );
 	/** */
 	void CreateMenuEntrySinglePlayer( GameDemonstrator* gameDemonstrator );
 private:
-	friend class GameDemonstrator;
+	friend class GameFactory;
 	GameMainDialog*		GameMainDialogObject;
+	GameController*		GameControllerObject;
 	MapView*			MapViewObject;
 	GameMode*			CurrentGameMode;
 	GameMode*			GameModeEditorObject;

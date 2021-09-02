@@ -3,6 +3,9 @@
 
 class GameConfig;
 class GameController;
+class GameModeController;
+class MapView;
+class GameMainDialog;
 
 /* Creates the hole game. From scratch or from savegame. */
 class GameFactory
@@ -11,13 +14,21 @@ public:
 	/** */
 	GameFactory();
 	/** */
-	void InitGameController();
-	/** */
 	bool Create();
 	/** */
 	bool CreateFromSavegame();
 private:
-	static GameController*	GameControllerObject;
+	/** */
+	void InitGameController();
+	/** */
+	void InitGameModeController();
+private:
+	friend class GameDemonstrator;
+	static GameController*		GameControllerObject;
+	static GameModeController*	GameModeControllerObject;
+	static GameDemonstrator*	GameDemonstratorObject;
+	static MapView*				MapViewObject;
+	static GameMainDialog*		GameMainDialogObject;
 };
 
 #endif // GAMEFACTORY_H

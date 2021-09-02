@@ -6,10 +6,7 @@
 
 class ActionRepository;
 class MapView;
-class MapHexItemEventManager;
-class GameMode;
 class GameMainDialog;
-class GameModeController;
 class GameMainLoop;
 class ConnectorCreateGame;
 class ConnectorLoadGame;
@@ -32,7 +29,7 @@ public slots:
 	/** */
 	void ShowGameMainDialog();
 private:
-	void CreateGameModeController();
+	void InitGameFactory();
 	void CreateMenuFile();
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
@@ -49,7 +46,6 @@ private:
 	ConnectorCreateGame*		ConnectorCreateGameObject;
 	ConnectorLoadGame*			ConnectorLoadGameObject;
 	ConnectorSaveGame*			ConnectorSaveGameObject;
-	GameModeController*			GameModeControllerObject;
 	Ui::GameDemonstratorClass	ui;
 };
 

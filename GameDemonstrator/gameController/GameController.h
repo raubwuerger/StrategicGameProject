@@ -4,7 +4,7 @@
 class MapUnitItem;
 
 /** */
-class GameController : public QObject
+class GameController : public QObject //TODO -> Rename to GameUnitController
 {
 	Q_OBJECT
 public:
@@ -13,17 +13,26 @@ public:
 	/** */
 	void Init();
 	/** */
+	void ConnectSinglePlayer();
+	/** */
+	void ConnectEditor();
+	/** */
+	void Disconnect();
+	/** */
 	bool InitGame();
 public slots:
 	/** */
 	void SlotGameUnitSelected(int gameUnitId);
 	/** */
 	void SlotGameUnitUnselected(int gameUnitId);
+	/** */
+	void SlotGameUnitSelectedEditorMode(int gameUnitId);
 private:
 	/** */
 	bool IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const;
 private:
-	MapUnitItem*	Selected;
+	friend class GameModeController;
+	MapUnitItem*		Selected;
 };
 
 #endif // GAMECONTROLLER_H

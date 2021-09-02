@@ -5,17 +5,22 @@
 #include "SerializeXMLItems.h"
 #include "gameController/GameMainCounter.h"
 #include "game/GameMapItemRepository.h"
+#include "game/GameMapItemFactory.h"
 #include "game/GameMapItem.h"
-#include "model/ModelTerrainType.h"
-#include "io\GameMapItemCreatorSaveGame.h"
+#include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItemFactory.h"
-#include "model/ModelProgramFactory.h"
-#include "model/ModelProgramSettings.h"
+#include "game/GameUnitItem.h"
+#include "game/GameCityItemRepository.h"
+#include "game/GameCityItemFactory.h"
+#include "game/GameCityItem.h"
+//#include "model/ModelProgramSettings.h"
+#include "model/ModelUnitType.h"
+#include "model/ModelOwnerType.h"
+#include "model/ModelTerrainType.h"
 #include "DomNodeFinder.h"
 #include "io/ConfigFileLoader.h"
-#include "game/GameUnitItemRepository.h"
-#include "game/GameUnitItem.h"
-#include "game/GameMapItemFactory.h"
+#include "DomNodeListFinder.h"
+
 
 //==============================================================================
 SerializeXML::SerializeXML()
@@ -30,7 +35,7 @@ SerializeXML::~SerializeXML()
 //==============================================================================
 bool SerializeXML::SaveGame( const QString& saveGameName )
 {
-	if( false == SaveXMLHeader(saveGameName) )
+	if( false == CreateSaveGameFile(saveGameName) )
 	{
 		return false;
 	}
@@ -38,13 +43,13 @@ bool SerializeXML::SaveGame( const QString& saveGameName )
 }
 
 //==============================================================================
-bool SerializeXML::SaveXMLHeader( const QString& saveGameName )
+bool SerializeXML::CreateSaveGameFile( const QString& saveGameName )
 {
 	QFile file(saveGameName);
 
 	if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create savegame file: %1 ").arg(saveGameName) );
+		jha::GetLog()->Log_ERROR( QObject::tr("Unable to create save game file: %1 ").arg(saveGameName) );
 		return false;
 	}
 
@@ -63,11 +68,10 @@ bool SerializeXML::SaveXMLHeader( const QString& saveGameName )
 	xmlWriter.writeEndElement();
 
 	file.close();
-	jha::GetLog()->Log_INFO( QObject::tr("Succesfull create savegame: %1").arg(saveGameName) );
+	jha::GetLog()->Log_INFO( QObject::tr("Successful create save game: %1").arg(saveGameName) );
 
 	return true;
 }
-
 
 //==============================================================================
 bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
@@ -156,7 +160,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 	const QVector< QVector<GameMapItem*> >* modelMap = GameMapItemRepository::GetInstance()->GetMapItems();
 	if( nullptr == modelMap )
 	{
-		jha::GetLog()->Log_WARNING( QObject::tr("Unable to save game map!") );
+		jha::GetLog()->Log_WARNING( QObject::tr("No GameMap present!") );
 		xmlWriter.writeEndElement();
 		return false;
 	}
@@ -210,8 +214,6 @@ bool SerializeXML::SaveUnitData(QXmlStreamWriter& xmlWriter)
 	return true;
 }
 
-#include "model/ModelUnitType.h"
-#include "model/ModelOwnerType.h"
 //==============================================================================
 bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitItem)
 {
@@ -225,8 +227,7 @@ bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem*
 	return true;
 }
 
-#include "game/GameCityItemRepository.h"
-#include "game/GameCityItem.h"
+//==============================================================================
 bool SerializeXML::SaveCityData(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES);
@@ -245,6 +246,7 @@ bool SerializeXML::SaveCityData(QXmlStreamWriter& xmlWriter)
 	return true;
 }
 
+//==============================================================================
 bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_CITY);
@@ -276,7 +278,6 @@ bool SerializeXML::LoadGame( const QString& saveGameName )
 	return true;
 }
 
-#include "DomNodeListFinder.h"
 //==============================================================================
 bool SerializeXML::LoadGame(const QDomNodeList& saveGameNodeList)
 {
@@ -335,8 +336,6 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 	}
 	GameMapItemFactory gameMapItemFactory;
 	return gameMapItemFactory.CreateFromSaveGame(domNode);
-//	GameMapItemCreatorSaveGame mapCreatorSaveGame(domNode.cloneNode(true));
-//	return mapCreatorSaveGame.CreateMap();
 }
 
 //==============================================================================
@@ -350,7 +349,6 @@ bool SerializeXML::LoadUnitData(const QDomNode& domNode)
 	return gameUnitItemFactory.CreateGameUnitItemsFromSaveGame(domNode);
 }
 
-#include "game/GameCityItemFactory.h"
 //==============================================================================
 bool SerializeXML::LoadCityData(const QDomNode& domNode)
 {

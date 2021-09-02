@@ -7,11 +7,13 @@
 #include "gameController/GameModeSinglePlayer.h"
 #include "map/MapView.h"
 #include "dialogs/GameMainDialog.h"
+#include "GameController.h"
 
 QMenu*		GameModeController::GameModeChangeMenu = nullptr;
 
 GameModeController::GameModeController()
-	: MapViewObject(nullptr)
+	: MapViewObject(nullptr),
+	GameControllerObject(nullptr)
 {
 
 }
@@ -19,7 +21,7 @@ GameModeController::GameModeController()
 bool GameModeController::Init(GameDemonstrator* gameDemonstrator)
 {
 	CreateGameModes(gameDemonstrator);
-	CreateMenuEntries(gameDemonstrator);
+	CreateMenuEntryGameMode(gameDemonstrator);
 	return true;
 }
 
@@ -31,6 +33,16 @@ void GameModeController::LoadGame()
 void GameModeController::CreateGame()
 {
 	emit CreateNewGame();
+}
+
+void GameModeController::SlotModeEditorActivated()
+{
+	GameControllerObject->ConnectEditor();
+}
+
+void GameModeController::SlotModeSinglePlayerActivated()
+{
+	GameControllerObject->ConnectSinglePlayer();
 }
 
 void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
@@ -63,9 +75,13 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 
 	QObject::connect(this, &GameModeController::CreateNewGame, reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject), &GameModeSinglePlayer::CreateNewGame);
 	QObject::connect(this, &GameModeController::LoadSavedGame, reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject), &GameModeSinglePlayer::LoadSaveGame);
+
+	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, this, &GameModeController::SlotModeEditorActivated);
+	QObject::connect(GameMainDialogObject->ui.CreateGame, &QPushButton::clicked, this, &GameModeController::SlotModeSinglePlayerActivated);
+	QObject::connect(GameMainDialogObject->ui.LoadGame, &QPushButton::clicked, this, &GameModeController::SlotModeSinglePlayerActivated);
 }
 
-void GameModeController::CreateMenuEntries(GameDemonstrator* gameDemonstrator)
+void GameModeController::CreateMenuEntryGameMode(GameDemonstrator* gameDemonstrator)
 {
 	if (nullptr != GameModeChangeMenu)
 	{
