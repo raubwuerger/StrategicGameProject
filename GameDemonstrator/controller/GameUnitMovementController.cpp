@@ -162,7 +162,7 @@ const GameUnitItem* GameUnitMovementController::GetEnemyGameUnit(int gameMapItem
 
 bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
 {
-	int countGameUnitItems = GameUnitItemRepository::GetInstance()->GetGameUnitItemsCountByGameMapItemId(gameMapItemId);
+	int countGameUnitItems = GameUnitItemRepository::GetInstance()->IsGameUnitItemOnGameMapItem(gameMapItemId);
 	const int MAX_STACK_SIZE = 1;
 	bool isStackLimitSufficient = countGameUnitItems < MAX_STACK_SIZE;
 	if (false == isStackLimitSufficient )

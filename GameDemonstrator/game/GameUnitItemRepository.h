@@ -29,7 +29,7 @@ public:
 	/** */
 	int CreateNewId() const;
 	/** */
-	int GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const;
+	bool IsGameUnitItemOnGameMapItem(int gameMapItemId) const;
 	/** */
 	GameUnitItem* RemoveGameUnitItemByGameMapItemId(int gameMapItemId);
 	/** */

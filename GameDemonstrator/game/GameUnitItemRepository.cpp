@@ -100,13 +100,9 @@ int GameUnitItemRepository::CreateNewId() const
 	return ++idOfLastGameUnit;
 }
 
-int GameUnitItemRepository::GetGameUnitItemsCountByGameMapItemId(int gameMapItemId) const
+bool GameUnitItemRepository::IsGameUnitItemOnGameMapItem(int gameMapItemId) const
 {
-	if ( false == GameUnitItemsOnGameMapItem.contains(gameMapItemId))
-	{
-		return 0;
-	}
-	return 1;
+	return GameUnitItemsOnGameMapItem.contains(gameMapItemId);
 }
 
 GameUnitItem* GameUnitItemRepository::RemoveGameUnitItemByGameMapItemId(int gameMapItemId)

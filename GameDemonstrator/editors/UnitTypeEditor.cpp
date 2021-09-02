@@ -166,7 +166,7 @@ void UnitTypeEditor::DeleteUnit( int gameMapItemId )
 
 bool UnitTypeEditor::HasMapHexItemUnits() const
 {
-	return GameUnitItemRepository::GetInstance()->GetGameUnitItemsCountByGameMapItemId(ActiveGameMapItemId);
+	return GameUnitItemRepository::GetInstance()->IsGameUnitItemOnGameMapItem(ActiveGameMapItemId);
 }
 
 bool UnitTypeEditor::IsSelectedGameMapItemInitialized() const
