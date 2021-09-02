@@ -40,7 +40,7 @@ bool GameMapItemCreatorSimple::CreateMap()
 GameMapItem* GameMapItemCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
 {
 	GameMapItem* modelMapItem = new GameMapItem(row,col,++MapItemId);
-	modelMapItem->SetModelTerrainType( ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType() );
+	modelMapItem->SetTerrainTypeObject(ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
 	return modelMapItem;
 }
 

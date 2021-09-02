@@ -6,8 +6,9 @@ GameMapItem::GameMapItem( int row, int col, int id )
 		Col(col),
 		Id(id),
 		ModelTerrainTypeId(NOT_INITIALIZED_INT),
-		TerrainType(nullptr),
-		OwnerType(nullptr)
+		ModelOwnerTypeId(NOT_INITIALIZED_INT),
+		TerrainTypeObject(nullptr),
+		OwnerTypeObject(nullptr)
 {
 }
 
@@ -15,19 +16,19 @@ GameMapItem::~GameMapItem()
 {
 }
 
-void GameMapItem::SetModelTerrainType(const ModelTerrainType *type)
-{
-	TerrainType = type;
-}
-
 const ModelTerrainType* GameMapItem::GetTerrainType() const
 {
-	return TerrainType;
+	return TerrainTypeObject;
 }
 
 const ModelOwnerType* GameMapItem::GetOwnerType() const
 {
-	return OwnerType;
+	return OwnerTypeObject;
+}
+
+int GameMapItem::GetModelOwnerTypeId() const
+{
+	return ModelTerrainTypeId;
 }
 
 const int GameMapItem::GetId() const
@@ -45,14 +46,14 @@ const int GameMapItem::GetCol() const
 	return Col;
 }
 
+void GameMapItem::SetTerrainTypeObject(const ModelTerrainType* modelTerrainType)
+{
+	TerrainTypeObject = modelTerrainType;
+}
+
 int GameMapItem::GetModelTerrainTypeId() const
 {
 	return ModelTerrainTypeId;
-}
-
-void GameMapItem::SetModelTerrainTypeId(int modelTerrainTypeId)
-{
-	ModelTerrainTypeId = modelTerrainTypeId;
 }
 
 bool GameMapItem::operator<(const GameMapItem& rhs) const

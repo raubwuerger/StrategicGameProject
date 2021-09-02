@@ -3,7 +3,7 @@
 
 class ModelTerrainType;
 class ModelOwnerType;
-class IGameMapItemCreator;
+class GameMapItemFactory;
 
 /** Game tile */
 class GameMapItem
@@ -14,11 +14,13 @@ public:
 	/** */
 	~GameMapItem();
 	/** */
-	void SetModelTerrainType( const ModelTerrainType *type );
-	/** */
 	const ModelTerrainType* GetTerrainType() const;
 	/** */
+	int GetModelTerrainTypeId() const;
+	/** */
 	const ModelOwnerType* GetOwnerType() const;
+	/** */
+	int GetModelOwnerTypeId() const;
 	/** */
 	const int GetId() const;
 	/** */
@@ -28,17 +30,16 @@ public:
 	/** */
 	bool operator < (const GameMapItem& rhs) const;
 	/** */
-	int GetModelTerrainTypeId() const;
-	/** */
-	void SetModelTerrainTypeId(int modelTerrainTypeId);
+	void SetTerrainTypeObject(const ModelTerrainType* modelTerrainType);
 private:
-	friend class IGameMapItemCreator;
+	friend class GameMapItemFactory;
 	const int		Row;
 	const int		Col;
 	const int		Id;
 	int				ModelTerrainTypeId;
-	const ModelTerrainType*	TerrainType;
-	const ModelOwnerType*	OwnerType;
+	int				ModelOwnerTypeId;
+	const ModelTerrainType*	TerrainTypeObject;
+	const ModelOwnerType*	OwnerTypeObject;
 };
 
 #endif // GAMEMAPITEM_H

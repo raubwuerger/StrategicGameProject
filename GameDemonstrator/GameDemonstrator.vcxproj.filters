@@ -602,9 +602,6 @@
     <ClCompile Include="gameController\GameFactory.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
-    <ClCompile Include="io\GameMapItemCreatorSaveGame.cpp">
-      <Filter>Source Dateien\IO</Filter>
-    </ClCompile>
     <ClCompile Include="io\GameMapItemCreatorSimple.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
@@ -907,9 +904,6 @@
     <ClInclude Include="gameController\GameFactory.h">
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
-    <ClInclude Include="io\GameMapItemCreatorSaveGame.h">
-      <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
     <ClInclude Include="io\GameMapItemCreatorSimple.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
@@ -1064,6 +1058,9 @@
     </CustomBuild>
     <CustomBuild Include="Connectors\ConnectorSaveGame.h">
       <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameController.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

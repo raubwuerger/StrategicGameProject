@@ -539,7 +539,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="io\GameMapItemCreatorSaveGame.cpp" />
     <ClCompile Include="io\GameMapItemCreatorSimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
@@ -1023,7 +1022,6 @@
     <ClInclude Include="game\GameMapItem.h" />
     <ClInclude Include="game\GameMapItemRepository.h" />
     <ClInclude Include="game\GameUnitItemRuntimeData.h" />
-    <ClInclude Include="io\GameMapItemCreatorSaveGame.h" />
     <ClInclude Include="io\GameMapItemCreatorSimple.h" />
     <ClInclude Include="io\IGameMapItemCreator.h" />
     <ClInclude Include="MapHexItemHexagonData.h" />

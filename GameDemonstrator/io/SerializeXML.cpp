@@ -15,6 +15,7 @@
 #include "io/ConfigFileLoader.h"
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItem.h"
+#include "game/GameMapItemFactory.h"
 
 //==============================================================================
 SerializeXML::SerializeXML()
@@ -332,8 +333,10 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 	{
 		return false;
 	}
-	GameMapItemCreatorSaveGame mapCreatorSaveGame(domNode.cloneNode(true));
-	return mapCreatorSaveGame.CreateMap();
+	GameMapItemFactory gameMapItemFactory;
+	return gameMapItemFactory.CreateFromSaveGame(domNode);
+//	GameMapItemCreatorSaveGame mapCreatorSaveGame(domNode.cloneNode(true));
+//	return mapCreatorSaveGame.CreateMap();
 }
 
 //==============================================================================
