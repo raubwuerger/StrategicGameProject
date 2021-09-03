@@ -68,7 +68,7 @@ int GameUnitItem::GetGameMapItemId() const
 
 void GameUnitItem::UpdateTurn()
 {
-	RuntimeData->CurrenMovementPoints = RuntimeData->BaseMovementPoints;
+	RuntimeData->CurrentMovementPoints = RuntimeData->BaseMovementPoints;
 	RuntimeData->CurrentStrength = RuntimeData->BaseStrength;
 	//TODO: Reset movement points
 	//TODO: Heal Unit
@@ -78,7 +78,7 @@ void GameUnitItem::UpdateTurn()
 bool GameUnitItem::CanMove() const
 {
 	Q_ASSERT(RuntimeData);
-	if (0 < RuntimeData->CurrenMovementPoints)
+	if (0 < RuntimeData->CurrentMovementPoints)
 	{
 		return true;
 	}
@@ -91,7 +91,7 @@ bool GameUnitItem::Move()
 	{
 		return false;
 	}
-	RuntimeData->CurrenMovementPoints--;
+	RuntimeData->CurrentMovementPoints--;
 	return true;
 }
 
@@ -105,9 +105,24 @@ void GameUnitItem::Defends()
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-int GameUnitItem::GetStrength() const
+int GameUnitItem::GetCurrentStrength() const
 {
 	return RuntimeData->CurrentStrength;
+}
+
+int GameUnitItem::GetBaseStrength() const
+{
+	return RuntimeData->BaseStrength;
+}
+
+int GameUnitItem::GetCurrentMovementPoints() const
+{
+	return RuntimeData->CurrentMovementPoints;
+}
+
+int GameUnitItem::GetBaseMovementPoints() const
+{
+	return RuntimeData->BaseMovementPoints;
 }
 
 bool GameUnitItem::InitRuntimeData()
@@ -116,7 +131,7 @@ bool GameUnitItem::InitRuntimeData()
 	RuntimeData->BaseStrength = UnitType->GetStrength();
 	RuntimeData->CurrentStrength = UnitType->GetStrength();
 	RuntimeData->BaseMovementPoints = UnitType->GetMovementPoints();
-	RuntimeData->CurrenMovementPoints = UnitType->GetMovementPoints();
+	RuntimeData->CurrentMovementPoints = UnitType->GetMovementPoints();
 	return true;
 }
 

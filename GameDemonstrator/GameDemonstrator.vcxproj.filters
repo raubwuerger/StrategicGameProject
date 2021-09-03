@@ -665,6 +665,15 @@
     <ClCompile Include="GameDemonstrator_TEST\sources\xml\XMLParseTestItems.cpp">
       <Filter>Source Dateien\test</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameUnitInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameUnitInfoDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\GameUnitInfoDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -919,9 +928,6 @@
     <ClInclude Include="io\IGameMapItemCreator.h">
       <Filter>Header Dateien\IO</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_GameMainDialog.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameUnitItemRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -930,6 +936,9 @@
     </ClInclude>
     <ClInclude Include="GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h">
       <Filter>Header Dateien\test</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1053,9 +1062,6 @@
     <CustomBuild Include="gameController\GameModeController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
-    <CustomBuild Include="gameController\GameController.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="Connectors\ConnectorLoadGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
@@ -1070,6 +1076,12 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameUnitController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameUnitInfoDialog.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameUnitInfoDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

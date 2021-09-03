@@ -49,7 +49,13 @@ public:
 	/** */
 	void Defends() override;
 	/** */
-	int GetStrength() const;
+	int GetCurrentStrength() const;
+	/** */
+	int GetBaseStrength() const;
+	/** */
+	int GetCurrentMovementPoints() const;
+	/** */
+	int GetBaseMovementPoints() const;
 	/** */
 	bool InitRuntimeData();
 	/** */

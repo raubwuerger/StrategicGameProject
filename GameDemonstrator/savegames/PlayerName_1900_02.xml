@@ -4992,79 +4992,101 @@
         <Unit>
             <ID>1</ID>
             <UnitTypeID>1</UnitTypeID>
-            <GameMapItemID>95</GameMapItemID>
-            <Name>Infantery</Name>
+            <GameMapItemID>141</GameMapItemID>
+            <Name>1. Infantery</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>0</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>2</ID>
             <UnitTypeID>2</UnitTypeID>
             <GameMapItemID>50</GameMapItemID>
-            <Name>Tank</Name>
+            <Name>1. Tank</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>20</CurrentStrength>
+            <CurrentMovementPoints>2</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>3</ID>
             <UnitTypeID>3</UnitTypeID>
             <GameMapItemID>96</GameMapItemID>
-            <Name>Artillery</Name>
+            <Name>1. Artillery</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>5</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>4</ID>
             <UnitTypeID>4</UnitTypeID>
             <GameMapItemID>48</GameMapItemID>
-            <Name>Fighter</Name>
+            <Name>1. Fighter</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>5</CurrentStrength>
+            <CurrentMovementPoints>5</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>5</ID>
             <UnitTypeID>5</UnitTypeID>
             <GameMapItemID>94</GameMapItemID>
-            <Name>Bomber</Name>
+            <Name>1. Bomber</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>4</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>6</ID>
             <UnitTypeID>6</UnitTypeID>
             <GameMapItemID>186</GameMapItemID>
-            <Name>Destroyer</Name>
+            <Name>1. Destroyer</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>5</CurrentStrength>
+            <CurrentMovementPoints>4</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>7</ID>
             <UnitTypeID>7</UnitTypeID>
             <GameMapItemID>140</GameMapItemID>
-            <Name>Cruiser</Name>
+            <Name>1. Cruiser</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>8</CurrentStrength>
+            <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>8</ID>
             <UnitTypeID>8</UnitTypeID>
             <GameMapItemID>232</GameMapItemID>
-            <Name>Battleship</Name>
+            <Name>1. Battleship</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>12</CurrentStrength>
+            <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>9</ID>
             <UnitTypeID>9</UnitTypeID>
             <GameMapItemID>93</GameMapItemID>
-            <Name>AircraftCarrier</Name>
+            <Name>1. AircraftCarrier</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>8</CurrentStrength>
+            <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>10</ID>
             <UnitTypeID>10</UnitTypeID>
             <GameMapItemID>49</GameMapItemID>
-            <Name>Submarine</Name>
+            <Name>1. Submarine</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>4</CurrentStrength>
+            <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>11</ID>
             <UnitTypeID>11</UnitTypeID>
             <GameMapItemID>2</GameMapItemID>
-            <Name>Transporter</Name>
+            <Name>1. Transporter</Name>
             <OwnerTypeId>2</OwnerTypeId>
+            <CurrentStrength>1</CurrentStrength>
+            <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>12</ID>
@@ -5072,6 +5094,8 @@
             <GameMapItemID>74</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>3</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>13</ID>
@@ -5079,6 +5103,8 @@
             <GameMapItemID>120</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>3</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>14</ID>
@@ -5086,6 +5112,8 @@
             <GameMapItemID>121</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>3</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>15</ID>
@@ -5093,6 +5121,8 @@
             <GameMapItemID>682</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>4</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>16</ID>
@@ -5100,6 +5130,8 @@
             <GameMapItemID>677</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>4</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>17</ID>
@@ -5107,6 +5139,8 @@
             <GameMapItemID>722</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>4</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>18</ID>
@@ -5114,6 +5148,8 @@
             <GameMapItemID>676</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>4</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>19</ID>
@@ -5121,6 +5157,8 @@
             <GameMapItemID>659</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>5</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>20</ID>
@@ -5128,6 +5166,8 @@
             <GameMapItemID>614</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>5</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>21</ID>
@@ -5135,6 +5175,8 @@
             <GameMapItemID>661</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>5</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>22</ID>
@@ -5142,6 +5184,8 @@
             <GameMapItemID>707</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>5</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
         <Unit>
             <ID>23</ID>
@@ -5149,6 +5193,8 @@
             <GameMapItemID>329</GameMapItemID>
             <Name>Infantery</Name>
             <OwnerTypeId>5</OwnerTypeId>
+            <CurrentStrength>10</CurrentStrength>
+            <CurrentMovementPoints>1</CurrentMovementPoints>
         </Unit>
     </Units>
     <Cities>

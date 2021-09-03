@@ -7,7 +7,7 @@ public:
 	int	BaseStrength;
 	int CurrentStrength;
 	int BaseMovementPoints;
-	int CurrenMovementPoints;
+	int CurrentMovementPoints;
 };
 
 #endif GAMEUNITITEMRUNTIMEDATA_H

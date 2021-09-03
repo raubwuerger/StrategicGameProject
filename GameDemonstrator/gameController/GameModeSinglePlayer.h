@@ -9,6 +9,8 @@
 class GameDemonstrator;
 class GameTurnDialog;
 class CreateNewGameDialog;
+class GameUnitInfoDialog;
+class GameUnitItem;
 
 /** @stereotype Strategie*/
 class GameModeSinglePlayer : public GameMode
@@ -26,6 +28,9 @@ public:
 	void LoadSaveGame();
 	/** */
 	void CreateNewGame();
+public slots:
+	/** */
+	void SlotShowGameUnitInfo(int gameUnitId);
 private:
 	/** Restricted */
 	GameModeSinglePlayer();
@@ -33,6 +38,8 @@ private:
 	void CreateGameMenu();
 	/** */
 	void CreateGameTurnInfoDialog();
+	/** */
+	void CreateGameUnitInfoDialog();
 	/** */
 	bool ShowCreateNewGameDialog();
 	/** */
@@ -49,8 +56,13 @@ private:
 	void ShowDockWidgets();
 	/** */
 	void CreateMenuEntries();
+	/** */
+	QString CreateMovement(const GameUnitItem* gameUnit);
+	/** */
+	QString CreateStrength(const GameUnitItem* gameUnit);
 private:
-	GameTurnDialog*				GameTurnDialogInstance;
+	GameTurnDialog*				GameTurnDialogObject;
+	GameUnitInfoDialog*			GameUnitInfoDialogObject;
 	QVector<QDockWidget*>		DockWidgets;
 	const QString				MenuTitle;
 	QMenu*						GameMenu;

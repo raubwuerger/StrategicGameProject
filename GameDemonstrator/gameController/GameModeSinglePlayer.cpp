@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "GameModeSinglePlayer.h"
 #include "dialogs\GameTurnDialog.h"
+#include "dialogs\GameUnitInfoDialog.h"
 #include "GameDemonstrator.h"
 #include "dialogs/CreateNewGameDialog.h"
 #include "ActionRepository.h"
@@ -13,11 +14,14 @@
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"
 #include "model\ModelOwnerTypeRepository.h"
+#include "map\MapView.h"
+#include "connectors\ConnectorMapUnitItem.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 	: GameMode(gameDemonstrator),
-	GameTurnDialogInstance(nullptr),
+	GameTurnDialogObject(nullptr),
+	GameUnitInfoDialogObject(nullptr),
 	GameMenu(nullptr),
 	MenuTitle("&Game")
 {
@@ -28,11 +32,15 @@ GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 bool GameModeSinglePlayer::DoInit()
 {
 	CreateGameTurnInfoDialog();
+	CreateGameUnitInfoDialog();
 	CreateGameMenu();
 	CreateMenuEntries();
 
 	HideDockWidgets();
 	HideMenu();
+
+	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameModeSinglePlayer::SlotShowGameUnitInfo);
+
 	return true;
 }
 
@@ -47,11 +55,23 @@ void GameModeSinglePlayer::CreateGameTurnInfoDialog()
 {
 	QDockWidget *dockTurnInfoDialog = new QDockWidget(tr("Game turn"), GameDemonstratorObject);
 	dockTurnInfoDialog->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	GameTurnDialogInstance = new GameTurnDialog(dockTurnInfoDialog);
-	dockTurnInfoDialog->setWidget(GameTurnDialogInstance);
+	GameTurnDialogObject = new GameTurnDialog(dockTurnInfoDialog);
+	dockTurnInfoDialog->setWidget(GameTurnDialogObject);
 	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockTurnInfoDialog);
 
 	DockWidgets.push_back(dockTurnInfoDialog);
+}
+
+//=================================================================================================
+void GameModeSinglePlayer::CreateGameUnitInfoDialog()
+{
+	QDockWidget *dockGameUnitInfoDialog = new QDockWidget(tr("Game Unit Info"), GameDemonstratorObject);
+	dockGameUnitInfoDialog->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	GameUnitInfoDialogObject = new GameUnitInfoDialog(dockGameUnitInfoDialog);
+	dockGameUnitInfoDialog->setWidget(GameUnitInfoDialogObject);
+	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockGameUnitInfoDialog);
+
+	DockWidgets.push_back(dockGameUnitInfoDialog);
 }
 
 //=================================================================================================
@@ -176,7 +196,6 @@ void GameModeSinglePlayer::CreateNewGame()
 		return;
 	}
 }
-
 //=================================================================================================
 bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 {
@@ -201,5 +220,46 @@ bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 	mapCityItemFactory.Create(MapViewObject);
 
 	return true;
+}
+
+
+#include "game/GameUnitItemRepository.h"
+#include "game/GameUnitItem.h"
+#include "model/ModelUnitType.h"
+//=================================================================================================
+void GameModeSinglePlayer::SlotShowGameUnitInfo(int gameUnitId)
+{
+	GameUnitItem* gameUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	if (nullptr == gameUnit)
+	{
+		Q_ASSERT(gameUnit);
+		return;
+	}
+
+	GameUnitInfoDialogObject->SetId(QString::number(gameUnit->GetId()));
+	GameUnitInfoDialogObject->SetName(gameUnit->GetName());
+	GameUnitInfoDialogObject->SetType(gameUnit->GetModelUnitType()->GetName());
+	GameUnitInfoDialogObject->SetMovement(CreateMovement(gameUnit));
+	GameUnitInfoDialogObject->SetStrength(CreateStrength(gameUnit));
+}
+
+//=================================================================================================
+QString GameModeSinglePlayer::CreateMovement(const GameUnitItem* gameUnit)
+{
+	QString movementPoints;
+	movementPoints += QString::number(gameUnit->GetCurrentMovementPoints());
+	movementPoints += " / ";
+	movementPoints += QString::number(gameUnit->GetBaseMovementPoints());
+	return movementPoints;
+}
+
+//=================================================================================================
+QString GameModeSinglePlayer::CreateStrength(const GameUnitItem* gameUnit)
+{
+	QString currentStrength;
+	currentStrength += QString::number(gameUnit->GetCurrentStrength());
+	currentStrength += " / ";
+	currentStrength += QString::number(gameUnit->GetBaseStrength());
+	return currentStrength;
 }
 
