@@ -34,10 +34,11 @@ const QString SerializeXMLItems::UNITS_MOVEMENTPOINTS = "CurrentMovementPoints";
 
 const QString SerializeXMLItems::CITIES = "Cities";
 const QString SerializeXMLItems::CITIES_CITY = "City";
-const QString SerializeXMLItems::CITIES_CITYTYPEID = "CityItemId";
+const QString SerializeXMLItems::CITIES_MODELCITYTYPEID = "ModelCityItemId";
 const QString SerializeXMLItems::CITIES_ID = "ID";
 const QString SerializeXMLItems::CITIES_NAME = "Name";
 const QString SerializeXMLItems::CITIES_GAMEMAPITEMID = "GameMapItemID";
 const QString SerializeXMLItems::CITIES_OWNERTYPEID = "OwnerTypeId";
 const QString SerializeXMLItems::CITIES_EFFICIENCY = "Efficiency";
 const QString SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID = "SpezializedUnitTypeId";
+const QString SerializeXMLItems::CITIES_STRENGTH = "Strength";

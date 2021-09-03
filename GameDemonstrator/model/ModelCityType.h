@@ -22,6 +22,10 @@ public:
 	bool IsPlaceableOnTerrainType(int terrainTypeId) const;
 	/** */
 	int GetDefenceValue() const { return DefenceValue; }
+	/** */
+	int GetEfficiency() const { return Efficiency; }
+	/** */
+	int GetSpezializedUnitType() const { return SpezializedUnitType; }
 private:
 	friend class ModelCityTypeFactory;
 	int				Id;

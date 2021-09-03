@@ -253,12 +253,13 @@ bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_CITY);
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_ID, QString::number(gameCityItem->GetId()));
-		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_CITYTYPEID, QString::number(gameCityItem->GetModelCityTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_MODELCITYTYPEID, QString::number(gameCityItem->GetModelCityTypeId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_OWNERTYPEID, QString::number(gameCityItem->GetModelOwnerTypeId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_GAMEMAPITEMID, QString::number(gameCityItem->GetGameMapItemId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_NAME, gameCityItem->GetName());
-		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_EFFICIENCY, QString::number(gameCityItem->GetEfficiency()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_EFFICIENCY, QString::number(gameCityItem->GetCurrentEfficiency()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, QString::number(gameCityItem->GetSpezializedUnitTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_STRENGTH, QString::number(gameCityItem->GetCurrentStrength()));
 		xmlWriter.writeEndElement();
 	return true;
 }

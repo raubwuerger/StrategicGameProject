@@ -42,12 +42,13 @@ public:
 	static const QString CITIES;
 	static const QString CITIES_CITY;
 	static const QString CITIES_ID;
-	static const QString CITIES_CITYTYPEID;
+	static const QString CITIES_MODELCITYTYPEID;
 	static const QString CITIES_NAME;
 	static const QString CITIES_GAMEMAPITEMID;
 	static const QString CITIES_OWNERTYPEID;
 	static const QString CITIES_EFFICIENCY;
 	static const QString CITIES_SPEZIALIZEDUNITTYPEID;
+	static const QString CITIES_STRENGTH;
 
 };
 
