@@ -12,6 +12,7 @@
 #include "GameUnitItemRepository.h"
 #include "GameUnitItem.h"
 #include "GameMapItem.h"
+#include "GameUnitItemRuntimeData.h"
 
 GameUnitItemFactory::GameUnitItemFactory()
 {
@@ -300,12 +301,41 @@ GameUnitItem* GameUnitItemFactory::CreateUnitItemFromXML(const QDomNode& unitNod
 		}
 	}
 
+	QString currentStrength;
+	{
+		DomValueExtractor domNodeListValueExtractor(unitNode);
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_STRENGTH, currentStrength))
+		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_STRENGTH));
+			return nullptr;
+		}
+	}
+
+	QString currentMovementPoints;
+	{
+		DomValueExtractor domNodeListValueExtractor(unitNode);
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_MOVEMENTPOINTS, currentMovementPoints))
+		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnitItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::UNITS_MOVEMENTPOINTS));
+			return nullptr;
+		}
+	}
+
 	GameUnitParameterObject obj;
 	obj.GameMapItemObject = mapItem;
 	obj.ModelOwnerTypeObject = ownerType;
 	obj.ModelUnitTypeObject = modelUnitType;
 	obj.Id = id;
 
-	return CreateGameUnitItem(obj);
+	GameUnitItem* created = CreateGameUnitItem(obj);
+	if (nullptr == created)
+	{
+		return nullptr;
+	}
+
+	created->SetName(unitName);
+	created->GetRuntimeData()->CurrentStrength = currentStrength.toInt();
+	created->GetRuntimeData()->CurrentMovementPoints = currentMovementPoints.toInt();
+	return created;
 }
 

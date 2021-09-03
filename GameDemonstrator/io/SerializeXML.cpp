@@ -219,11 +219,13 @@ bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem*
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::UNITS_UNIT);
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_ID, QString::number(gameUnitItem->GetId()));
-		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_UNITTYPEID, QString::number(gameUnitItem->GetModelUnitType()->GetId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_UNITTYPEID, QString::number(gameUnitItem->GetModelUnitTypeId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_GAMEMAPITEMID, QString::number(gameUnitItem->GetGameMapItemId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_NAME, gameUnitItem->GetName());
-		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_OWNERTYPEID, QString::number(gameUnitItem->GetModelOwnerType()->GetId()));
-	xmlWriter.writeEndElement();
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_OWNERTYPEID, QString::number(gameUnitItem->GetModelOwnerTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_STRENGTH, QString::number(gameUnitItem->GetCurrentStrength()));
+		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_MOVEMENTPOINTS, QString::number(gameUnitItem->GetCurrentMovementPoints()));
+		xmlWriter.writeEndElement();
 	return true;
 }
 

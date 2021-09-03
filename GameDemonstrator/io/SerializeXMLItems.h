@@ -36,6 +36,8 @@ public:
 	static const QString UNITS_GAMEMAPITEMID;
 	static const QString UNITS_OWNERTYPEID;
 	static const QString UNITS_NAME;
+	static const QString UNITS_STRENGTH;
+	static const QString UNITS_MOVEMENTPOINTS;
 
 	static const QString CITIES;
 	static const QString CITIES_CITY;
