@@ -10,11 +10,11 @@ public:
 	/** */
 	static bool IsUnitAttackable(const GameUnitItem* attacker, const GameUnitItem* defender);
 	/** */
-	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender);
+	static bool IsAttackUnitSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender);
 	/** */
 	static bool IsCityOccupiable(const GameUnitItem* attacker);
 	/** */
-	static bool IsAttackSuccessful(const GameUnitItem* attacker, const GameCityItem* defender);
+	static bool IsAttackCitySuccessful(const GameUnitItem* attacker, const GameCityItem* defender);
 private:
 	/** */
 };

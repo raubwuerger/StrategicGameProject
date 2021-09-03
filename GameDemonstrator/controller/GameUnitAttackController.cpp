@@ -34,7 +34,7 @@ bool GameUnitAttackController::IsUnitAttackable(const GameUnitItem* attacker, co
 	return modelAttacker->IsUnitTypeAttackable(modelDefender->GetId());
 }
 
-bool GameUnitAttackController::IsAttackSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender)
+bool GameUnitAttackController::IsAttackUnitSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender)
 {
 	if (nullptr == attacker)
 	{
@@ -71,7 +71,7 @@ bool GameUnitAttackController::IsAttackSuccessful(const GameUnitItem* attacker, 
 	return true;
 }
 
-bool GameUnitAttackController::IsAttackSuccessful(const GameUnitItem* attacker, const GameCityItem* defender)
+bool GameUnitAttackController::IsAttackCitySuccessful(const GameUnitItem* attacker, const GameCityItem* defender)
 {
 	if (nullptr == attacker)
 	{
