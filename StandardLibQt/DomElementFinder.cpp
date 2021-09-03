@@ -86,5 +86,15 @@ bool DomElementFinder::IsTextBoolean(const QString& text, bool* value) const
 		//TODO: Here should be checked for string "true", "false", "io", "nio"
 		return false;
 	}
-	return true;
+	if ( intValue == 0 )
+	{
+		*value = false;
+		return true;
+	}
+	if (intValue == 1)
+	{
+		*value = true;
+		return true;
+	}
+	return false;
 }
