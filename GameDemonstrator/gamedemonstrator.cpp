@@ -48,6 +48,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	MapViewInstance->MapEventManagerInstance = new MapHexItemEventManager(nullptr);
 
 	InitLoggingFramwork();
+	DoSomeTests();
 
 	ActionRepository::GetInstanceFirstTimeInit(parent);
 
@@ -187,4 +188,35 @@ void GameDemonstrator::InitLoggingFramwork()
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
+}
+
+#include "io\ConfigFileLoader.h"
+#include ".\GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h"
+#include "DomValueExtractor.h"
+void GameDemonstrator::DoSomeTests()
+{
+	ConfigFileLoader configFileLoader;
+	if (false == configFileLoader.LoadConfig(XMLParseTestLItems::CONFIG_FILE_NAME, XMLParseTestLItems::ROOT_NAME))
+	{
+		return;
+	}
+
+	QDomNodeList testNodes = configFileLoader.GetQDomNodeList();
+	DomValueExtractor extractor(testNodes.at(0));
+
+	bool allElementsExtracted = true;
+
+	bool booleanValueFalse;
+	allElementsExtracted &= extractor.ExtractValue(XMLParseTestLItems::SUBELEMENT_DataTypeTestBoolean0, booleanValueFalse);
+
+	bool booleanValueTrue;
+	allElementsExtracted &= extractor.ExtractValue(XMLParseTestLItems::SUBELEMENT_DataTypeTestBoolean1, booleanValueTrue);
+
+	bool booleanValueFalse2;
+	allElementsExtracted &= extractor.ExtractValue(XMLParseTestLItems::SUBELEMENT_DataTypeTestBoolean2, booleanValueFalse2);
+
+	bool booleanValueFalseNegativ1;
+	allElementsExtracted &= extractor.ExtractValue(XMLParseTestLItems::SUBELEMENT_DataTypeTestBooleanNegativ1, booleanValueFalseNegativ1);
+
+	int waitForExecution;
 }
