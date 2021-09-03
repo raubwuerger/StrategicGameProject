@@ -43,7 +43,7 @@ public:
 	/** */
 	bool CanMove() const;
 	/** */
-	bool Moved() override;
+	bool Move() override;
 	/** */
 	void Attacks() override;
 	/** */

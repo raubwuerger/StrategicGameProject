@@ -85,7 +85,7 @@ bool GameUnitItem::CanMove() const
 	return false;
 }
 
-bool GameUnitItem::Moved()
+bool GameUnitItem::Move()
 {
 	if (false == CanMove())
 	{

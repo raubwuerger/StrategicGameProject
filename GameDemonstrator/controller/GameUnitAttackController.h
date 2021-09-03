@@ -9,12 +9,12 @@ class GameUnitAttackController
 public:
 	/** */
 	static bool IsUnitAttackable(const GameUnitItem* attacker, const GameUnitItem* defender);
-	/** */
-	static bool IsAttackUnitSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender);
+	/** If attack was successful true will be returned, otherwise false */
+	static bool AttackUnit(const GameUnitItem* attacker, const GameUnitItem* defender);
 	/** */
 	static bool IsCityOccupiable(const GameUnitItem* attacker);
-	/** */
-	static bool IsAttackCitySuccessful(const GameUnitItem* attacker, const GameCityItem* defender);
+	/** If attack was successful true will be returned, otherwise false */
+	static bool AttackCity(const GameUnitItem* attacker, const GameCityItem* defender);
 private:
 	/** */
 };

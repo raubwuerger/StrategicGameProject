@@ -11,7 +11,7 @@ public:
 	/** */
 	virtual void UpdateTurn() = 0;
 	/** */
-	virtual bool Moved() = 0;
+	virtual bool Move() = 0;
 	/** */
 	virtual void Attacks() = 0;
 	/** */

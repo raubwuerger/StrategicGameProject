@@ -34,7 +34,7 @@ bool GameUnitAttackController::IsUnitAttackable(const GameUnitItem* attacker, co
 	return modelAttacker->IsUnitTypeAttackable(modelDefender->GetId());
 }
 
-bool GameUnitAttackController::IsAttackUnitSuccessful(const GameUnitItem* attacker, const GameUnitItem* defender)
+bool GameUnitAttackController::AttackUnit(const GameUnitItem* attacker, const GameUnitItem* defender)
 {
 	if (nullptr == attacker)
 	{
@@ -68,10 +68,11 @@ bool GameUnitAttackController::IsAttackUnitSuccessful(const GameUnitItem* attack
 	}
 
 	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
+	const_cast<GameUnitItem*>(attacker)->Move();
 	return true;
 }
 
-bool GameUnitAttackController::IsAttackCitySuccessful(const GameUnitItem* attacker, const GameCityItem* defender)
+bool GameUnitAttackController::AttackCity(const GameUnitItem* attacker, const GameCityItem* defender)
 {
 	if (nullptr == attacker)
 	{
@@ -98,6 +99,7 @@ bool GameUnitAttackController::IsAttackCitySuccessful(const GameUnitItem* attack
 	}
 
 	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
+	const_cast<GameUnitItem*>(attacker)->Move();
 	return true;
 }
 

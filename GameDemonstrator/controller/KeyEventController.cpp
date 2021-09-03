@@ -89,7 +89,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);
 	mapUnitItem->moveBy(offsetCenterPoint.x(), offsetCenterPoint.y());
 	GameUnitItemRepository::GetInstance()->UpdateGameUnitItemsOnGameMapItem(movedGameUnitItem, sourceMapHexItem->GetGameMapItemId());
-	return true;
+	return movedGameUnitItem->Move();
 }
 
 void KeyEventController::HandleKeyReleaseEvent(MapUnitItem* mapUnitItem, QKeyEvent* keyEvent)

@@ -29,7 +29,7 @@ GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activ
 bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItemId, const MapHexItem* destination) const
 {
 	Q_ASSERT(destination);
-	const GameUnitItem* playerUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(sourceGameUnitItemId);
+	GameUnitItem* playerUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(sourceGameUnitItemId);
 	Q_ASSERT(playerUnit);
 	if( false == playerUnit->CanMove() )
 	{
@@ -49,11 +49,12 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 	if (true == IsEnemyOnDestinationMapTile(destination->GetGameMapItemId()))
 	{
 		const GameUnitItem* enemyUnit = GetEnemyGameUnit(destination->GetGameMapItemId());
-		if (true == GameUnitAttackController::IsAttackUnitSuccessful(playerUnit,enemyUnit))
+		if (true == GameUnitAttackController::AttackUnit(playerUnit,enemyUnit))
 		{
 			enemyUnit = GameUnitItemRepository::GetInstance()->RemoveGameUnitItem(enemyUnit);
 			Q_ASSERT(enemyUnit);
-			MapUnitItemRepository::GetInstance()->Remove(enemyUnit->GetId());
+			playerUnit->Move();
+			delete MapUnitItemRepository::GetInstance()->Remove(enemyUnit->GetId());
 			if (true == IsEnemyCityOnDestinationMapTile(destination->GetGameMapItemId()) && true == GameUnitAttackController::IsCityOccupiable(playerUnit))
 			{
 				return false;
@@ -63,7 +64,8 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 		else
 		{
 			playerUnit = GameUnitItemRepository::GetInstance()->RemoveGameUnitItem(playerUnit);
-			MapUnitItemRepository::GetInstance()->Remove(playerUnit->GetId());
+			playerUnit->Move();
+			delete MapUnitItemRepository::GetInstance()->Remove(playerUnit->GetId());
 			return false;
 		}
 	}
@@ -75,16 +77,18 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 			return true;
 		}
 		GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId());
-		if (true == GameUnitAttackController::IsAttackCitySuccessful(playerUnit, GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId())))
+		if (true == GameUnitAttackController::AttackCity(playerUnit, GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId())))
 		{
 			GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetModelOwnerType());
 			MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);
+			playerUnit->Move();
 			return true;
 		}
 		else
 		{
+			playerUnit->Move();
 			playerUnit = GameUnitItemRepository::GetInstance()->RemoveGameUnitItem(playerUnit);
-			MapUnitItemRepository::GetInstance()->Remove(playerUnit->GetId());
+			delete MapUnitItemRepository::GetInstance()->Remove(playerUnit->GetId());
 			return false;
 		}
 	}
@@ -199,7 +203,7 @@ bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, co
 		return false;
 	}
 
-	if (false == GameUnitAttackController::IsAttackCitySuccessful(gameUnitItem, gameCityItem))
+	if (false == GameUnitAttackController::AttackCity(gameUnitItem, gameCityItem))
 	{
 		return false;
 	}

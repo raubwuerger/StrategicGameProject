@@ -89,7 +89,7 @@ int GameCityItem::GetSpezializedUnitTypeId() const
 	return SpezializedUnitTypeId;
 }
 
-bool GameCityItem::Moved()
+bool GameCityItem::Move()
 {
 	return false; // Nothing to do
 }

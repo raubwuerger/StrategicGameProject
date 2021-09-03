@@ -47,7 +47,7 @@ public:
 	/** */
 	void UpdateTurn() override;
 	/** */
-	bool Moved() override;
+	bool Move() override;
 	/** */
 	void Attacks() override;
 	/** */
