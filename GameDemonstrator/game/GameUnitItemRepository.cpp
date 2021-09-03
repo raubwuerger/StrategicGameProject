@@ -5,6 +5,14 @@
 
 GameUnitItemRepository*	GameUnitItemRepository::Instance = nullptr;
 
+GameUnitItemRepository::GameUnitItemRepository()
+{
+}
+
+GameUnitItemRepository::~GameUnitItemRepository()
+{
+}
+
 GameUnitItemRepository* GameUnitItemRepository::GetInstance()
 {
 	if( Instance != nullptr )
@@ -124,12 +132,17 @@ GameUnitItem* GameUnitItemRepository::RemoveGameUnitItemByGameMapItemId(int game
 	return toDelete;
 }
 
-GameUnitItemRepository::GameUnitItemRepository()
+GameUnitItem* GameUnitItemRepository::RemoveGameUnitItem(const GameUnitItem* gameUnitItem)
 {
-}
+	Q_ASSERT(gameUnitItem);
+	if (nullptr == gameUnitItem)
+	{
+		return nullptr;
+	}
 
-GameUnitItemRepository::~GameUnitItemRepository()
-{
+	Q_ASSERT(GameUnitItemsOnGameMapItem.contains(gameUnitItem->GetGameMapItemId()));
+	GameUnitItemsOnGameMapItem.remove(gameUnitItem->GetGameMapItemId());
+	return GameUnitItems.take(gameUnitItem->GetId());
 }
 
 bool GameUnitItemRepository::UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* gameUnitItem)

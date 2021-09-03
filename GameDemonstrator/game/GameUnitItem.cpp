@@ -17,6 +17,8 @@ GameUnitItem::GameUnitItem(int gameUnitId)
 
 GameUnitItem::~GameUnitItem()
 {
+	delete RuntimeData;
+	RuntimeData = nullptr;
 }
 
 const ModelUnitType* GameUnitItem::GetModelUnitType() const
@@ -106,6 +108,16 @@ void GameUnitItem::Defends()
 int GameUnitItem::GetStrength() const
 {
 	return RuntimeData->CurrentStrength;
+}
+
+bool GameUnitItem::InitRuntimeData()
+{
+	RuntimeData = new GameUnitItemRuntimeData();
+	RuntimeData->BaseStrength = UnitType->GetStrength();
+	RuntimeData->CurrentStrength = UnitType->GetStrength();
+	RuntimeData->BaseMovementPoints = UnitType->GetMovementPoints();
+	RuntimeData->CurrenMovementPoints = UnitType->GetMovementPoints();
+	return true;
 }
 
 bool GameUnitItem::CanOccupieCity() const

@@ -14,16 +14,18 @@ class GameUnitMovementController
 public:
 	GameUnitMovementController(const GameUnitItem *activeGameUnitItem);
 	/** */
-	bool CanUnitMove(int sourceGameUnitItemId, const MapHexItem* destination ) const;
+	bool CanUnitMoveToDestination(int sourceGameUnitItemId, const MapHexItem* destination ) const;
 private:
 	/** */
 	const ModelTerrainType* GetModelTerrainType(const MapUnitItem* mapUnitItem) const;
 	/** */
 	const GameUnitItem* GetGameUnitItem(const MapUnitItem* mapUnitItem) const;
 	/** */
+	bool IsOwnUnitOnDestinationMapTile(int gameMapItemId) const;
+	/** */
 	bool IsEnemyOnDestinationMapTile(int gameMapItemId) const;
 	/** */
-	bool IsCityOnDestinationMapTile(int gameMapItemId) const;
+	bool IsEnemyCityOnDestinationMapTile(int gameMapItemId) const;
 	/** */
 	const GameUnitItem* GetEnemyGameUnit(int gameMapItemId) const;
 	/** */

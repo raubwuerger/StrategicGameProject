@@ -245,6 +245,7 @@
     <ClCompile Include="gameController\GameModeEditor.cpp" />
     <ClCompile Include="gameController\GameModeSinglePlayer.cpp" />
     <ClCompile Include="gamedemonstrator.cpp" />
+    <ClCompile Include="GameDemonstrator_TEST\sources\xml\XMLParseTestItems.cpp" />
     <ClCompile Include="game\GameCityItem.cpp" />
     <ClCompile Include="game\GameCityItemFactory.cpp" />
     <ClCompile Include="game\GameCityItemRepository.cpp" />
@@ -992,6 +993,7 @@
     </CustomBuild>
     <ClInclude Include="gameController\GameModeEditor.h" />
     <ClInclude Include="gameController\GameModeSinglePlayer.h" />
+    <ClInclude Include="GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h" />
     <ClInclude Include="game\GameCityItem.h" />
     <ClInclude Include="game\GameCityItemFactory.h" />
     <ClInclude Include="game\GameCityItemRepository.h" />

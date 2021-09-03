@@ -96,6 +96,12 @@
     <Filter Include="Header Dateien\GameController">
       <UniqueIdentifier>{19eae087-8c63-4877-ac65-d2fafec341d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Dateien\test">
+      <UniqueIdentifier>{4509f1b7-1a01-4cda-ad0f-26e61dd47b07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Dateien\test">
+      <UniqueIdentifier>{23e5c84a-e2e5-4bcc-b292-1b34761d33f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -656,6 +662,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameUnitController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GameDemonstrator_TEST\sources\xml\XMLParseTestItems.cpp">
+      <Filter>Source Dateien\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -919,6 +928,9 @@
     <ClInclude Include="game\GameCityItemRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
+    <ClInclude Include="GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h">
+      <Filter>Header Dateien\test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1044,9 +1056,6 @@
     <CustomBuild Include="gameController\GameController.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="gameController\GameController.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="Connectors\ConnectorLoadGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
@@ -1057,7 +1066,7 @@
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameUnitController.h">
-      <Filter>Header Dateien</Filter>
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameUnitController.h">
       <Filter>Header Dateien\GameController</Filter>

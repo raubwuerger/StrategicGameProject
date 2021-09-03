@@ -24,6 +24,10 @@ public:
 	bool IsUnitTypeAttackable(int modelUnitTypeId) const;
 	/** */
 	bool GetCanOccupieCity() const;
+	/** */
+	int GetStrength() const { return Strength; }
+	/** */
+	int GetMovementPoints() const { return MovementPoints; }
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;

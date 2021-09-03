@@ -33,6 +33,8 @@ public:
 	/** */
 	GameUnitItem* RemoveGameUnitItemByGameMapItemId(int gameMapItemId);
 	/** */
+	GameUnitItem* RemoveGameUnitItem(const GameUnitItem* gameUnitItem);
+	/** */
 	bool UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* movedUnitItem, int oldMapId);
 private:
 	/** */

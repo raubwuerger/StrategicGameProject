@@ -51,6 +51,8 @@ public:
 	/** */
 	int GetStrength() const;
 	/** */
+	bool InitRuntimeData();
+	/** */
 	GameUnitItemRuntimeData* GetRuntimeData() { return RuntimeData; }
 private:
 	friend class GameUnitItemFactory;

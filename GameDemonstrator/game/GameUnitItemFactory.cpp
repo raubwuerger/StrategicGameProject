@@ -64,6 +64,7 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItem(const GameUnitParameterObj
 	newUnitItem->MapItemId = mapItem->GetId();
 
 	newUnitItem->SetName(CreateName(unitType));
+	Q_ASSERT(newUnitItem->InitRuntimeData());
 
 	if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(newUnitItem))
 	{
