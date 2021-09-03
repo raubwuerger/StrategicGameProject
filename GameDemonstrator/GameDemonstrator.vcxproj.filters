@@ -674,6 +674,24 @@
     <ClCompile Include="dialogs\GameUnitInfoDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="dialogs\GameCityInfoDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameCityInfoDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameCityInfoDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="gameController\GameInfoDialogController.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameInfoDialogController.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameInfoDialogController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1082,6 +1100,15 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\GameUnitInfoDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameCityInfoDialog.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameCityInfoDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

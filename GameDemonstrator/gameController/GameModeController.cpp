@@ -13,7 +13,8 @@ QMenu*		GameModeController::GameModeChangeMenu = nullptr;
 
 GameModeController::GameModeController()
 	: MapViewObject(nullptr),
-	GameControllerObject(nullptr)
+	GameControllerObject(nullptr),
+	GameInfoDialogControllerObject(nullptr)
 {
 
 }
@@ -57,6 +58,7 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 
 	GameModeSinglePlayerObject = new GameModeSinglePlayer(gameDemonstrator);
 	GameModeSinglePlayerObject->MapViewObject = MapViewObject;
+	reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject)->GameInfoDialogControllerObject = GameInfoDialogControllerObject;
 	if (false == GameModeSinglePlayerObject->Init())
 	{
 		return;

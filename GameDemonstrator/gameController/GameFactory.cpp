@@ -5,17 +5,18 @@
 #include "io\SerializerGame.h"
 #include "GameUnitController.h"
 #include "GameModeController.h"
+#include "GameInfoDialogController.h"
 
 GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
 GameDemonstrator*	GameFactory::GameDemonstratorObject = nullptr;
 MapView*			GameFactory::MapViewObject = nullptr;
 GameMainDialog*		GameFactory::GameMainDialogObject = nullptr;
-
-
+GameInfoDialogController*	GameFactory::GameInfoDialogControllerObject = nullptr;
 
 GameFactory::GameFactory()
 {
+	InitGameInfoDialogController();
 	InitGameController();
 	InitGameModeController();
 }
@@ -40,7 +41,21 @@ void GameFactory::InitGameModeController()
 	GameModeControllerObject->MapViewObject = MapViewObject;
 	GameModeControllerObject->GameMainDialogObject = GameMainDialogObject;
 	GameModeControllerObject->GameControllerObject = GameControllerObject;
+	GameModeControllerObject->GameInfoDialogControllerObject = GameInfoDialogControllerObject;
 	GameModeControllerObject->Init(GameDemonstratorObject);
+}
+
+void GameFactory::InitGameInfoDialogController()
+{
+	if (nullptr != GameInfoDialogControllerObject)
+	{
+		return;
+	}
+
+	GameInfoDialogControllerObject = new GameInfoDialogController;
+	GameInfoDialogControllerObject->GameDemonstratorObject = GameDemonstratorObject;
+	GameInfoDialogControllerObject->MapViewObject = MapViewObject;
+	GameInfoDialogControllerObject->Init();
 }
 
 bool GameFactory::Create()

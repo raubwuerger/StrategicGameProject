@@ -7,10 +7,8 @@
 #include "GameMode.h"
 
 class GameDemonstrator;
-class GameTurnDialog;
 class CreateNewGameDialog;
-class GameUnitInfoDialog;
-class GameUnitItem;
+class GameInfoDialogController;
 
 /** @stereotype Strategie*/
 class GameModeSinglePlayer : public GameMode
@@ -28,18 +26,11 @@ public:
 	void LoadSaveGame();
 	/** */
 	void CreateNewGame();
-public slots:
-	/** */
-	void SlotShowGameUnitInfo(int gameUnitId);
 private:
 	/** Restricted */
 	GameModeSinglePlayer();
 	/** */
 	void CreateGameMenu();
-	/** */
-	void CreateGameTurnInfoDialog();
-	/** */
-	void CreateGameUnitInfoDialog();
 	/** */
 	bool ShowCreateNewGameDialog();
 	/** */
@@ -56,16 +47,11 @@ private:
 	void ShowDockWidgets();
 	/** */
 	void CreateMenuEntries();
-	/** */
-	QString CreateMovement(const GameUnitItem* gameUnit);
-	/** */
-	QString CreateStrength(const GameUnitItem* gameUnit);
 private:
-	GameTurnDialog*				GameTurnDialogObject;
-	GameUnitInfoDialog*			GameUnitInfoDialogObject;
-	QVector<QDockWidget*>		DockWidgets;
+	friend class GameModeController;
 	const QString				MenuTitle;
 	QMenu*						GameMenu;
+	GameInfoDialogController*	GameInfoDialogControllerObject;
 };
 
 #endif // GAMEMODESTANDARD_H
