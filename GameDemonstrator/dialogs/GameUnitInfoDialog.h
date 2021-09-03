@@ -20,6 +20,10 @@ public:
 	void SetMovement(const QString& movement) { ui.lineEditTypeMovement->setText(movement); }
 	/** */
 	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	/** */
+	void SetOwner(const QString& owner) { ui.lineEditOwner->setText(owner); }
+	/** */
+	void SetOwnerColor(QColor ownerColor);
 private:
 	Ui::GameUnitInfoDialog ui;
 };

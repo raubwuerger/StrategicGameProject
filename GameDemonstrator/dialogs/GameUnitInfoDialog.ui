@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>260</width>
-    <height>210</height>
+    <height>252</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>260</width>
-    <height>210</height>
+    <height>252</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -147,6 +147,32 @@
      <width>113</width>
      <height>28</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditOwner">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>210</y>
+     <width>113</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelOwnerType">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>210</y>
+     <width>90</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Owner:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
  </widget>
