@@ -40,6 +40,7 @@ bool GameModeSinglePlayer::DoInit()
 	HideMenu();
 
 	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameModeSinglePlayer::SlotShowGameUnitInfo);
+	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameModeSinglePlayer::SlotShowGameUnitInfo);
 
 	return true;
 }
@@ -146,7 +147,6 @@ void GameModeSinglePlayer::LoadSaveGame()
 		GameDemonstratorObject->ShowGameMainDialog();
 		return;
 	}
-	CreateGameTurnInfoDialog();
 }
 
 //=================================================================================================
@@ -226,6 +226,7 @@ bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItem.h"
 #include "model/ModelUnitType.h"
+#include "model/ModelOwnerType.h"
 //=================================================================================================
 void GameModeSinglePlayer::SlotShowGameUnitInfo(int gameUnitId)
 {
@@ -241,6 +242,8 @@ void GameModeSinglePlayer::SlotShowGameUnitInfo(int gameUnitId)
 	GameUnitInfoDialogObject->SetType(gameUnit->GetModelUnitType()->GetName());
 	GameUnitInfoDialogObject->SetMovement(CreateMovement(gameUnit));
 	GameUnitInfoDialogObject->SetStrength(CreateStrength(gameUnit));
+	GameUnitInfoDialogObject->SetOwner(gameUnit->GetModelOwnerType()->GetName());
+	GameUnitInfoDialogObject->SetOwnerColor(gameUnit->GetModelOwnerType()->GetColor());
 }
 
 //=================================================================================================

@@ -5,7 +5,6 @@
 #include "LogFactory.h"
 #include "ConfigurationLoader.h"
 #include "gameController/GameMainLoop.h"
-#include "dialogs/GameTurnDialog.h"
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
 #include "map/MapView.h"
