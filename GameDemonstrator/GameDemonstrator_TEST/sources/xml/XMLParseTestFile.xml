@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTypeTests>
+	<DataTypeTest>
+	<!--Bool tests valid -->
+		<DataTypeTestBoolean0>0</DataTypeTestBoolean0>
+		<DataTypeTestBoolean1>1</DataTypeTestBoolean1>
+		<!--Bool tests failure -->
+		<DataTypeTestBooleanNegativ1>-1</DataTypeTestBooleanNegativ1>
+		<DataTypeTestBoolean2>2</DataTypeTestBoolean2>
+	</DataTypeTest>
+</DataTypeTests>
