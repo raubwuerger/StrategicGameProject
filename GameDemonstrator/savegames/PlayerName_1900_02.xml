@@ -5200,93 +5200,103 @@
     <Cities>
         <City>
             <ID>1</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>2</OwnerTypeId>
             <GameMapItemID>141</GameMapItemID>
             <Name>City 1</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>2</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>3</OwnerTypeId>
             <GameMapItemID>660</GameMapItemID>
             <Name>City 2</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>3</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>4</OwnerTypeId>
             <GameMapItemID>723</GameMapItemID>
             <Name>City 3</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>4</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>5</OwnerTypeId>
             <GameMapItemID>76</GameMapItemID>
             <Name>City 4</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>6</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>5</OwnerTypeId>
             <GameMapItemID>521</GameMapItemID>
             <Name>City 6</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>7</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>1</OwnerTypeId>
             <GameMapItemID>215</GameMapItemID>
             <Name>City 7</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>8</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>4</OwnerTypeId>
             <GameMapItemID>681</GameMapItemID>
             <Name>City 8</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>9</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>1</OwnerTypeId>
             <GameMapItemID>192</GameMapItemID>
             <Name>City 9</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>10</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>5</OwnerTypeId>
             <GameMapItemID>282</GameMapItemID>
             <Name>City 10</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
         <City>
             <ID>11</ID>
-            <CityItemId>1</CityItemId>
+            <ModelCityItemId>1</ModelCityItemId>
             <OwnerTypeId>5</OwnerTypeId>
             <GameMapItemID>329</GameMapItemID>
             <Name>City 11</Name>
-            <Efficiency>-1</Efficiency>
+            <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+			<Strength>10</Strength>
         </City>
     </Cities>
 </Savegame>
