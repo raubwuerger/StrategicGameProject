@@ -59,6 +59,10 @@ private:
 	const GameMapItem* GetGameMapItem(const GameCityParameterObject obj) const;
 	/** */
 	QString	CreateCityName( int cityId ) const;
+	/** */
+	int GetBaseEfficency(int cityId) const;
+	/** */
+	int GetBaseStrength(int cityId) const;
 private:
 	const QString	DefaultCityName;
 };

@@ -11,6 +11,7 @@
 #include "GameMapItem.h"
 #include "GameCityItemRepository.h"
 #include "GameCityItem.h"
+#include "GameCityItemRuntimeData.h"
 #include "model/ModelCityType.h"
 
 GameCityItemFactory::GameCityItemFactory()
@@ -63,6 +64,20 @@ QString GameCityItemFactory::CreateCityName(int cityId) const
 	return DefaultCityName + " " + QString::number(cityId);
 }
 
+int GameCityItemFactory::GetBaseEfficency(int cityId) const
+{
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityId);
+	Q_ASSERT(modelCityType);
+	return modelCityType->GetEfficiency();
+}
+
+int GameCityItemFactory::GetBaseStrength(int cityId) const
+{
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityId);
+	Q_ASSERT(modelCityType);
+	return modelCityType->GetDefenceValue();
+}
+
 bool GameCityItemFactory::Create(const QDomNode city)
 {
 	return CreateItems(city);
@@ -105,6 +120,7 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 	newItem->MapItem = mapItem;
 
 	newItem->Name = CreateCityName(newItem->GetId());
+	newItem->InitRuntimeData();
 
 	if (false == GameCityItemRepository::GetInstance()->RegisterItem(newItem))
 	{
@@ -181,19 +197,19 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 		}
 	}
 
-	int cityTypeId = -1;
+	int modelCityTypeId = -1;
 	{
 		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_CITYTYPEID, cityTypeId))
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_MODELCITYTYPEID, modelCityTypeId))
 		{
 			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem: %1 not found!").arg(SerializeXMLItems::CITIES_ID));
 			return nullptr;
 		}
 	}
-	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityTypeId);
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
 	if (nullptr == modelCityType)
 	{
-		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: ModelCityType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(cityTypeId)));
+		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: ModelCityType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(modelCityTypeId)));
 		return nullptr;
 	}
 
@@ -259,6 +275,16 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 		}
 	}
 
+	int strength = 0;
+	{
+		DomValueExtractor domNodeListValueExtractor(node);
+		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_STRENGTH, strength))
+		{
+			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_STRENGTH));
+			return nullptr;
+		}
+	}
+
 	GameCityParameterObject obj;
 	obj.ModelCityTypeObject = modelCityType;
 	obj.ModelOwnerTypeObject = modelOwnerType;
@@ -271,7 +297,10 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 		return nullptr;
 	}
 
-	gameCityItem->Efficiency = efficiency;
+	gameCityItem->GetRuntimeData()->CurrentEfficiency = efficiency;
+	gameCityItem->GetRuntimeData()->BaseEfficiency = GetBaseEfficency(modelCityTypeId);
+	gameCityItem->GetRuntimeData()->CurrentStrength = strength;
+	gameCityItem->GetRuntimeData()->BaseStrength = GetBaseStrength(modelCityTypeId);
 	gameCityItem->Name = name;
 
 	return gameCityItem;

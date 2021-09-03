@@ -41,8 +41,6 @@ public:
 	/** */
 	int GetModelCityTypeId() const;
 	/** */
-	int GetEfficiency() const;
-	/** */
 	int GetSpezializedUnitTypeId() const;
 	/** */
 	void UpdateTurn() override;
@@ -52,6 +50,19 @@ public:
 	void Attacks() override;
 	/** */
 	void Defends() override;
+	/** */
+	int GetBaseStrength() const;
+	/** */
+	int GetCurrentStrength() const;
+	/** */
+	int GetBaseEfficiency() const;
+	/** */
+	int GetCurrentEfficiency() const;
+	/** */
+	bool InitRuntimeData();
+	/** */
+	GameCityItemRuntimeData* GetRuntimeData() { return RuntimeData; }
+
 private:
 	friend class GameCityItemFactory;
 	const int				Id;
@@ -62,7 +73,6 @@ private:
 	const ModelOwnerType*	OwnerType;
 	const GameMapItem*		MapItem;
 	QString					Name;
-	int						Efficiency;
 	int						SpezializedUnitTypeId;
 	GameCityItemRuntimeData*RuntimeData;
 };

@@ -9,7 +9,7 @@ class GameUnitInfoDialog : public QWidget
 	Q_OBJECT
 public:
 	/** */
-	GameUnitInfoDialog(QWidget *parent);
+	GameUnitInfoDialog(QWidget *parent = 0);
 	/** */
 	void SetId(const QString& id) { ui.lineEditId->setText(id); }
 	/** */

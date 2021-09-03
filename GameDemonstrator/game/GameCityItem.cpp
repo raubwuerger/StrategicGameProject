@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameCityItem.h"
 #include "GameCityItemRuntimeData.h"
+#include "Model\ModelCityType.h"
 
 GameCityItem::GameCityItem(int id)
 	: Id(id),
@@ -8,7 +9,6 @@ GameCityItem::GameCityItem(int id)
 		MapItem(nullptr),
 		OwnerTypeId(-1),
 		MapItemId(-1),
-		Efficiency(-1),
 		SpezializedUnitTypeId(-1),
 		RuntimeData(nullptr)
 {
@@ -79,11 +79,6 @@ void GameCityItem::UpdateTurn()
 	//TODO: ...
 }
 
-int GameCityItem::GetEfficiency() const
-{
-	return Efficiency;
-}
-
 int GameCityItem::GetSpezializedUnitTypeId() const
 {
 	return SpezializedUnitTypeId;
@@ -102,6 +97,36 @@ void GameCityItem::Attacks()
 void GameCityItem::Defends()
 {
 	return; // 
+}
+
+int GameCityItem::GetBaseStrength() const
+{
+	return RuntimeData->BaseStrength;
+}
+
+int GameCityItem::GetCurrentStrength() const
+{
+	return RuntimeData->CurrentStrength;
+}
+
+int GameCityItem::GetBaseEfficiency() const
+{
+	return RuntimeData->BaseEfficiency;
+}
+
+int GameCityItem::GetCurrentEfficiency() const
+{
+	return RuntimeData->CurrentEfficiency;
+}
+
+bool GameCityItem::InitRuntimeData()
+{
+	RuntimeData = new GameCityItemRuntimeData();
+	RuntimeData->BaseEfficiency = CityType->GetEfficiency();
+	RuntimeData->CurrentEfficiency = CityType->GetEfficiency();
+	RuntimeData->BaseStrength = CityType->GetDefenceValue();
+	RuntimeData->CurrentStrength = CityType->GetDefenceValue();
+	return true;
 }
 
 bool GameCityItem::operator<(const GameCityItem& rhs) const

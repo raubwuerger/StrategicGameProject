@@ -6,8 +6,12 @@
 #include "GameDemonstrator.h"
 #include "game\GameUnitItem.h"
 #include "game\GameUnitItemRepository.h"
+#include "game\GameCityItem.h"
+#include "game\GameCityItemRepository.h"
 #include "model\ModelUnitType.h"
 #include "model\ModelOwnerType.h"
+#include "model\ModelUnitTypeRepository.h"
+#include "model\ModelUnitType.h"
 #include "map\MapView.h"
 #include "connectors\ConnectorMapUnitItem.h"
 #include "connectors\ConnectorMapCityItem.h"
@@ -25,9 +29,13 @@ GameInfoDialogController::GameInfoDialogController()
 void GameInfoDialogController::Init()
 {
 	CreateGameTurnInfoDialog();
+	CreateGameCityInfoDialog();
 	CreateGameUnitInfoDialog();
+
 	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameInfoDialogController::SlotShowGameUnitInfo);
 	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameInfoDialogController::SlotShowGameUnitInfo);
+
+	QObject::connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, this, &GameInfoDialogController::SlotShowGameCityInfo);
 }
 
 void GameInfoDialogController::ShowDockWidgets()
@@ -60,10 +68,28 @@ void GameInfoDialogController::SlotShowGameUnitInfo(int gameUnitId)
 	GameUnitInfoDialogObject->SetId(QString::number(gameUnit->GetId()));
 	GameUnitInfoDialogObject->SetName(gameUnit->GetName());
 	GameUnitInfoDialogObject->SetType(gameUnit->GetModelUnitType()->GetName());
-	GameUnitInfoDialogObject->SetMovement(CreateMovement(gameUnit));
-	GameUnitInfoDialogObject->SetStrength(CreateStrength(gameUnit));
+	GameUnitInfoDialogObject->SetMovement(CreateUnitMovementPoints(gameUnit));
+	GameUnitInfoDialogObject->SetStrength(CreateUnitStrength(gameUnit));
 	GameUnitInfoDialogObject->SetOwner(gameUnit->GetModelOwnerType()->GetName());
 	GameUnitInfoDialogObject->SetOwnerColor(gameUnit->GetModelOwnerType()->GetColor());
+}
+
+void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
+{
+	GameCityItem* gameCity = GameCityItemRepository::GetInstance()->GetGameCityItemById(gameCityId);
+	if (nullptr == gameCity)
+	{
+		Q_ASSERT(gameCity);
+		return;
+	}
+
+	GameCityInfoDialogObject->SetId(QString::number(gameCity->GetId()));
+	GameCityInfoDialogObject->SetName(gameCity->GetName());
+	GameCityInfoDialogObject->SetOwner(gameCity->GetModelOwnerType()->GetName());
+	GameCityInfoDialogObject->SetOwnerColor(gameCity->GetModelOwnerType()->GetColor());
+	GameCityInfoDialogObject->SetEfficiency( CreateCityEfficiency(gameCity));
+	GameCityInfoDialogObject->SetSpecialization(GetSpecializedUnitName(gameCity));
+	GameCityInfoDialogObject->SetStrength(CreateCityStrength(gameCity));
 }
 
 void GameInfoDialogController::CreateGameTurnInfoDialog()
@@ -79,16 +105,31 @@ void GameInfoDialogController::CreateGameTurnInfoDialog()
 
 void GameInfoDialogController::CreateGameUnitInfoDialog()
 {
-	QDockWidget *dockGameUnitInfoDialog = new QDockWidget(tr("Game Unit Info"), GameDemonstratorObject);
-	dockGameUnitInfoDialog->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	GameUnitInfoDialogObject = new GameUnitInfoDialog(dockGameUnitInfoDialog);
-	dockGameUnitInfoDialog->setWidget(GameUnitInfoDialogObject);
-	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockGameUnitInfoDialog);
+	QDockWidget *dockWidget = new QDockWidget(tr("Game Unit Info"), GameDemonstratorObject);
+	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-	DockWidgets.push_back(dockGameUnitInfoDialog);
+	GameUnitInfoDialogObject = new GameUnitInfoDialog(dockWidget);
+	dockWidget->setWidget(GameUnitInfoDialogObject);
+
+	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+
+	DockWidgets.push_back(dockWidget);
 }
 
-QString GameInfoDialogController::CreateMovement(const GameUnitItem* gameUnit)
+void GameInfoDialogController::CreateGameCityInfoDialog()
+{
+	QDockWidget *dockWidget = new QDockWidget(tr("Game City Info"), GameDemonstratorObject);
+	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+
+	GameCityInfoDialogObject = new GameCityInfoDialog(dockWidget);
+	dockWidget->setWidget(GameCityInfoDialogObject);
+
+	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+
+	DockWidgets.push_back(dockWidget);
+}
+
+QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* gameUnit) const
 {
 	QString movementPoints;
 	movementPoints += QString::number(gameUnit->GetCurrentMovementPoints());
@@ -97,11 +138,39 @@ QString GameInfoDialogController::CreateMovement(const GameUnitItem* gameUnit)
 	return movementPoints;
 }
 
-QString GameInfoDialogController::CreateStrength(const GameUnitItem* gameUnit)
+QString GameInfoDialogController::CreateUnitStrength(const GameUnitItem* gameUnit) const
 {
 	QString currentStrength;
 	currentStrength += QString::number(gameUnit->GetCurrentStrength());
 	currentStrength += " / ";
 	currentStrength += QString::number(gameUnit->GetBaseStrength());
 	return currentStrength;
+}
+
+QString GameInfoDialogController::CreateCityEfficiency(const GameCityItem* gameCity) const
+{
+	QString efficiency;
+	efficiency += QString::number(gameCity->GetCurrentEfficiency());
+	efficiency += " / ";
+	efficiency += QString::number(gameCity->GetBaseEfficiency());
+	return efficiency;
+}
+
+QString GameInfoDialogController::CreateCityStrength(const GameCityItem* gameCity) const
+{
+	QString currentStrength;
+	currentStrength += QString::number(gameCity->GetCurrentStrength());
+	currentStrength += " / ";
+	currentStrength += QString::number(gameCity->GetBaseStrength());
+	return currentStrength;
+}
+
+QString GameInfoDialogController::GetSpecializedUnitName(const GameCityItem* gameCity)
+{
+	const ModelUnitType* specialized = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(gameCity->GetSpezializedUnitTypeId());
+	if (nullptr == specialized)
+	{
+		return "Not specialized!";
+	}
+	return specialized->GetName();
 }
