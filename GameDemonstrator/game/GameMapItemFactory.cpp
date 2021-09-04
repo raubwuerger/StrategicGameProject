@@ -138,7 +138,7 @@ GameMapItem* GameMapItemFactory::CreateGameMapItem(const QDomNode& node)
 	}
 
 	GameMapItem *newModelMapItem = new GameMapItem(currentRow, currentCol, currentId);
-	newModelMapItem->SetTerrainTypeObject(ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp));
+	newModelMapItem->SetModelTerrainType(ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp));
 	newModelMapItem->ModelTerrainTypeId = currentTerrainTyp;
 	return newModelMapItem;
 }

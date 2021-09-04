@@ -6,7 +6,8 @@
 GameOwnerItemRepository* GameOwnerItemRepository::Instance = nullptr;
 
 GameOwnerItemRepository::GameOwnerItemRepository()
-	: BaseRepository()
+	: BaseRepository(),
+	DefaultGameOwnerTypeId(NOT_INITIALIZED_INT)
 {
 
 }
@@ -46,6 +47,10 @@ bool GameOwnerItemRepository::RegisterItem(GameOwnerItem* item)
 		jha::GetLog()->Log_WARNING(QObject::tr("GameOwnerItem with id=%1 already exists!").arg(item->GetId()));
 		return false;
 	}
+	if (0 == GetItemCount())
+	{
+		DefaultGameOwnerTypeId = item->GetId();
+	}
 	GameOwnerItems.insert(item->GetId(), item);
 	return true;
 }
@@ -81,4 +86,22 @@ const GameOwnerItem* GameOwnerItemRepository::GetHuman() const
 		return iterator.value();
 	}
 	return nullptr;
+}
+
+int GameOwnerItemRepository::CreateNewId()
+{
+	//TODO: Gefährlich da beim laden diese Id schon vorhanden sein könnte!
+	//TODO: Testen ob die erzeugte id schon in der map ist!!
+	int newId = GameOwnerItems.size();
+	return ++newId;
+}
+
+int GameOwnerItemRepository::GetItemCount() const
+{
+	return GameOwnerItems.size();
+}
+
+const GameOwnerItem* GameOwnerItemRepository::GetDefaultOwnerType() const
+{
+	return GameOwnerItems[DefaultGameOwnerTypeId];
 }

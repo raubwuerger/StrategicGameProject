@@ -7,6 +7,30 @@
 #include "DomValueExtractor.h"
 #include "io\SerializeXMLItems.h"
 #include "model\ModelOwnerTypeRepository.h"
+#include "model\ModelOwnerType.h"
+
+bool GameOwnerItemFactory::Create()
+{
+	GameOwnerItemRepository::GetInstance()->Init();
+
+	QMap<int, const ModelOwnerType*>::const_iterator iterator = ModelOwnerTypeRepository::GetInstance()->GetFirstIterator();
+	while (iterator != ModelOwnerTypeRepository::GetInstance()->GetLastIterator())
+	{ 
+		GameOwnerItemRepository::GetInstance()->RegisterItem(CreateItem(iterator.value()));
+		iterator++;
+	}
+
+	return GameOwnerItemRepository::GetInstance()->GetItemCount() > 0;
+}
+
+GameOwnerItem* GameOwnerItemFactory::CreateItem(const ModelOwnerType* model)
+{
+	GameOwnerItem* item = new GameOwnerItem(GameOwnerItemRepository::GetInstance()->CreateNewId());
+	item->Name = model->GetName();
+	item->ModelOwnerTypeId = model->GetId();
+	item->ModelOwnerTypeObject = model;
+	return item;
+}
 
 bool GameOwnerItemFactory::CreateItemsFromSaveGame(const QDomNode node)
 {

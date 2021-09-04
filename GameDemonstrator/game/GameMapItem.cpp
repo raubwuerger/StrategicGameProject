@@ -46,8 +46,9 @@ const int GameMapItem::GetCol() const
 	return Col;
 }
 
-void GameMapItem::SetTerrainTypeObject(const ModelTerrainType* modelTerrainType)
+void GameMapItem::SetModelTerrainType(const ModelTerrainType* modelTerrainType)
 {
+	Q_ASSERT(modelTerrainType);
 	TerrainTypeObject = modelTerrainType;
 }
 

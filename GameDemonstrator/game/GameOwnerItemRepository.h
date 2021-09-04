@@ -24,12 +24,19 @@ public:
 	QMap<int, GameOwnerItem*>::const_iterator GetLastIterator() const;
 	/** */
 	const GameOwnerItem* GetHuman() const;
+	/** */
+	int CreateNewId();
+	/** */
+	int GetItemCount() const;
+	/** */
+	const GameOwnerItem* GetDefaultOwnerType() const;
 private:
 	/** */
 	GameOwnerItemRepository();
 private:
 	static GameOwnerItemRepository*	Instance;
 	QMap<int, GameOwnerItem*>	GameOwnerItems;
+	int		DefaultGameOwnerTypeId;
 
 };
 

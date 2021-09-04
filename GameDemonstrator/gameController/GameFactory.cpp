@@ -7,6 +7,9 @@
 #include "GameModeController.h"
 #include "GameInfoDialogController.h"
 #include "GameTurnController.h"
+#include "game\GameOwnerItemFactory.h"
+#include "game\GameOwnerItemRepository.h"
+#include "gameController\GameConfig.h"
 
 GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
@@ -68,6 +71,11 @@ void GameFactory::InitGameTurnController()
 	GameTurnControllerObject = new GameTurnController();
 }
 
+void GameFactory::SetDefaultOwnerType()
+{
+	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetDefaultOwnerType());
+}
+
 bool GameFactory::Create()
 {
 	GameMapItemFactory factory;
@@ -75,6 +83,15 @@ bool GameFactory::Create()
 	{
 		return false;
 	}
+
+	GameOwnerItemFactory ownerFactory;
+	if (false == ownerFactory.Create())
+	{
+		return false;
+	}
+
+	SetDefaultOwnerType();
+
 	if (false == GameControllerObject->InitGame())
 	{
 		return false;

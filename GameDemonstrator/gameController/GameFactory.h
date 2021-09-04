@@ -28,6 +28,8 @@ private:
 	void InitGameInfoDialogController();
 	/** */
 	void InitGameTurnController();
+	/** */
+	void SetDefaultOwnerType();
 private:
 	friend class GameDemonstrator;
 	static GameUnitController*	GameControllerObject;

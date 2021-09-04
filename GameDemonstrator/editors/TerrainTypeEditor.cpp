@@ -78,7 +78,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 		return;
 	}
 
-	gameMapItemToUpdate->SetTerrainTypeObject(ActiveTerrainType);
+	gameMapItemToUpdate->SetModelTerrainType(ActiveTerrainType);
 }
 
 bool TerrainTypeEditor::IsTerrainTypeValid(int gameMapItemId) const

@@ -15,6 +15,8 @@ public:
 	/** */
 	~CreateNewGameDialog();
 	/** */
+	void OnlyShowMapDimensions();
+	/** */
 	int GetTilesRows() const;
 	/** */
 	int GetTilesCols() const;

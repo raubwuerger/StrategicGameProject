@@ -248,6 +248,10 @@ QWidget * EditorToolbox::CreateOwnerTypeWidget(const ModelOwnerType* modelOwnerT
 	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, UnitTypeEditorInstance, &UnitTypeEditor::SlotActiveOwnerTypeId);
 	connect(selector, &OwnerTypeIdSelector::SignalOwnerTypeActive, CityTypeEditorInstance, &CityTypeEditor::SlotActiveOwnerTypeId);
 
+	//TODO: Gehört das hier her?
+	const int OWNER_TYPE_NEUTRAL = 1;
+	emit selector->SignalOwnerTypeActive(OWNER_TYPE_NEUTRAL);
+
 	QGridLayout *layout = new QGridLayout;
 	layout->addWidget(button, 0, 0, Qt::AlignHCenter);
 	layout->addWidget(new QLabel(modelOwnerType->GetName()), 1, 0, Qt::AlignCenter);

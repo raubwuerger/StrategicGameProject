@@ -132,11 +132,13 @@ bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 
 	int owner = dialog->GetOwnerTypeId();
 	int opponents = dialog->GetOpponentCount();
-	int diffuclty = dialog->GetDifficultyLevel();
+	int difficulty = dialog->GetDifficultyLevel();
 
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
 	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetItemById(owner));
+	GameConfig::DifficultyLevel = difficulty;
+	GameConfig::PlayerCount = (opponents + 1);
 
 	GameFactory gameFactory;
 	gameFactory.Create();

@@ -5,6 +5,7 @@
 #include "game/GameMapItem.h"
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
+#include "model/ModelTerrainType.h"
 #include "gameController/GameConfig.h"
 
 GameMapItemCreatorSimple::GameMapItemCreatorSimple()
@@ -40,7 +41,10 @@ bool GameMapItemCreatorSimple::CreateMap()
 GameMapItem* GameMapItemCreatorSimple::CreateGameMapItem( unsigned int row, unsigned int col )
 {
 	GameMapItem* modelMapItem = new GameMapItem(row,col,++MapItemId);
-	modelMapItem->SetTerrainTypeObject(ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType());
+	const ModelTerrainType* defaultModelTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
+	Q_ASSERT(defaultModelTerrainType);
+	modelMapItem->SetModelTerrainType(defaultModelTerrainType);
+	modelMapItem->SetModelTerrainTypeId(defaultModelTerrainType->GetId());
 	return modelMapItem;
 }
 

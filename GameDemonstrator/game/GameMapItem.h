@@ -30,7 +30,9 @@ public:
 	/** */
 	bool operator < (const GameMapItem& rhs) const;
 	/** */
-	void SetTerrainTypeObject(const ModelTerrainType* modelTerrainType);
+	void SetModelTerrainType(const ModelTerrainType* modelTerrainType);
+	/** */
+	void SetModelTerrainTypeId(int id) { ModelTerrainTypeId = id; }
 private:
 	friend class GameMapItemFactory;
 	const int		Row;

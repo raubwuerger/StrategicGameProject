@@ -14,6 +14,16 @@ CreateNewGameDialog::~CreateNewGameDialog()
 
 }
 
+void CreateNewGameDialog::OnlyShowMapDimensions()
+{
+	ui.comboBoxChoosePlayer->hide();
+	ui.labelChoosePlayer->hide();
+	ui.comboBoxOpponentCount->hide();
+	ui.labelEnemyCount->hide();
+	ui.comboDifficulty->hide();
+	ui.labelDifficulty->hide();
+}
+
 int CreateNewGameDialog::GetTilesRows() const
 {
 	return ui.lineEditTilesRows->text().toInt();
