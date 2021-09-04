@@ -13,6 +13,9 @@
 #include "game/GameCityItemRepository.h"
 #include "game/GameCityItemFactory.h"
 #include "game/GameCityItem.h"
+#include "game/GameOwnerItem.h"
+#include "game/GameOwnerItemFactory.h"
+#include "game/GameOwnerItemRepository.h"
 #include "model/ModelUnitType.h"
 #include "model/ModelOwnerType.h"
 #include "model/ModelOwnerTypeRepository.h"
@@ -115,11 +118,24 @@ bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS );
-		xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS_PLAYER );
-			xmlWriter.writeTextElement( SerializeXMLItems::MAP_ID, "1" );
-			xmlWriter.writeTextElement( SerializeXMLItems::PLAYER_NAME, "Spieler 1" );
-			xmlWriter.writeTextElement( SerializeXMLItems::PLAYER_HUMAN, "1" );
-		xmlWriter.writeEndElement();
+	QMap<int, GameOwnerItem*>::const_iterator iterator = GameOwnerItemRepository::GetInstance()->GetFirstIterator();
+	while (iterator != GameOwnerItemRepository::GetInstance()->GetLastIterator())
+	{
+		SavePlayer(xmlWriter, iterator.value());
+		iterator++;
+	}
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::SavePlayer(QXmlStreamWriter& xmlWriter, const GameOwnerItem* item)
+{
+	xmlWriter.writeStartElement(SerializeXMLItems::PLAYERS_PLAYER);
+		xmlWriter.writeTextElement(SerializeXMLItems::PLAYER_ID, QString::number(item->GetId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::PLAYER_OWNERTYPEID, QString::number(item->GetModelOwnerTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::PLAYER_NAME, item->GetName());
+		xmlWriter.writeTextElement(SerializeXMLItems::PLAYER_HUMAN, QString::number(item->GetIsHuman()));
 	xmlWriter.writeEndElement();
 	return true;
 }
@@ -255,7 +271,7 @@ bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_CITY);
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_ID, QString::number(gameCityItem->GetId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_MODELCITYTYPEID, QString::number(gameCityItem->GetModelCityTypeId()));
-		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_OWNERTYPEID, QString::number(gameCityItem->GetModelOwnerTypeId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_OWNERTYPEID, QString::number(gameCityItem->GetGameOwnerItemId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_GAMEMAPITEMID, QString::number(gameCityItem->GetGameMapItemId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_NAME, gameCityItem->GetName());
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_EFFICIENCY, QString::number(gameCityItem->GetCurrentEfficiency()));
@@ -327,8 +343,20 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 	{
 		return false;
 	}
-	QString domNodeName = domNode.nodeName();
-	GameConfig::PlayerOwnerType = const_cast<ModelOwnerType*>(ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(2));
+	GameOwnerItemFactory factory;
+	bool successful = factory.CreateItemsFromSaveGame(domNode);
+	if (false == successful)
+	{
+		return false;
+	}
+
+	const GameOwnerItem* human = GameOwnerItemRepository::GetInstance()->GetHuman();
+	if (nullptr == human)
+	{
+		jha::GetLog()->Log_WARNING(QObject::tr("No human player defined in save game!"));
+		return false;
+	}
+	GameConfig::Player = const_cast<GameOwnerItem*>(human);
 	return true;
 }
 

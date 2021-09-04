@@ -4,7 +4,7 @@
 #include "GameObject.h"
 
 class GameMapItem;
-class ModelOwnerType;
+class GameOwnerItem;
 class ModelCityType;
 class GameCityItemRuntimeData;
 
@@ -25,13 +25,13 @@ public:
 	/** */
 	void SetName( const QString& name);
 	/** */
-	const ModelOwnerType* GetModelOwnerType() const;
+	const GameOwnerItem* GetGameOwnerItem() const;
 	/** */
-	void SetModelOwnerType(const ModelOwnerType* modelOwnerType);
+	void SetGameOwnerItem(const GameOwnerItem* gameOwnerItem);
 	/** */
-	void SetModelOwnerTypeId(int modelOwnerTypeId);
+	void SetGameOwnerItemId(int gameOwnerItemId);
 	/** */
-	int GetModelOwnerTypeId() const;
+	int GetGameOwnerItemId() const;
 	/** */
 	const GameMapItem* GetGameMapItem() const;
 	/** */
@@ -67,10 +67,10 @@ private:
 	friend class GameCityItemFactory;
 	const int				Id;
 	int						CityTypeId;
-	int						OwnerTypeId;
+	int						OwnerItemId;
 	int						MapItemId;
 	const ModelCityType*	CityType;
-	const ModelOwnerType*	OwnerType;
+	const GameOwnerItem*	OwnerItem;
 	const GameMapItem*		MapItem;
 	QString					Name;
 	int						SpezializedUnitTypeId;

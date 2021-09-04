@@ -73,7 +73,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.GameUnitItemObject = sourceUnitItem;
-	gameUnitParameterObject.ModelOwnerTypeObject = sourceUnitItem->GetModelOwnerType();
+	gameUnitParameterObject.GameOwnerItemObject = sourceUnitItem->GetGameOwnerItem();
 	gameUnitParameterObject.GameMapItemId = destMapHexItem->GetGameMapItemId();
 	gameUnitParameterObject.ModelUnitTypeObject = sourceUnitItem->GetModelUnitType();
 	

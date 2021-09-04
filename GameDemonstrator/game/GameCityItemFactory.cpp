@@ -4,8 +4,8 @@
 #include "LogInterface.h"
 #include "DomValueExtractor.h"
 #include "io\SerializeXMLItems.h"
-#include "model\ModelOwnerTypeRepository.h"
-#include "model\ModelOwnerType.h"
+#include "game\GameOwnerItemRepository.h"
+#include "game\GameOwnerItem.h"
 #include "model\ModelCityTypeRepository.h"
 #include "GameMapItemRepository.h"
 #include "GameMapItem.h"
@@ -41,13 +41,13 @@ const ModelCityType* GameCityItemFactory::GetModelCityType(const GameCityParamet
 	return ModelCityTypeRepository::GetInstance()->GetTypeById(obj.ModelCityTypeId);
 }
 
-const ModelOwnerType* GameCityItemFactory::GetModelOwnerType(const GameCityParameterObject obj) const
+const GameOwnerItem* GameCityItemFactory::GetGameOwnerItem(const GameCityParameterObject obj) const
 {
-	if (nullptr != obj.ModelOwnerTypeObject)
+	if (nullptr != obj.GameOwnerItemObject)
 	{
-		return obj.ModelOwnerTypeObject;
+		return obj.GameOwnerItemObject;
 	}
-	return ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(obj.ModelOwnerTypeId);
+	return GameOwnerItemRepository::GetInstance()->GetItemById(obj.GameOwnerItemId);
 }
 
 const GameMapItem* GameCityItemFactory::GetGameMapItem(const GameCityParameterObject obj) const
@@ -102,8 +102,8 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 		return nullptr;
 	}
 
-	const ModelOwnerType* ownerType = GetModelOwnerType(obj);
-	if (nullptr == ownerType)
+	const GameOwnerItem* ownerItem = GetGameOwnerItem(obj);
+	if (nullptr == ownerItem)
 	{
 		return nullptr;
 	}
@@ -113,8 +113,8 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 	newItem->CityTypeId = cityItem->GetId();
 	newItem->CityType = cityItem;
 
-	newItem->OwnerTypeId = ownerType->GetId();
-	newItem->OwnerType = ownerType;
+	newItem->OwnerItemId = ownerItem->GetId();
+	newItem->OwnerItem = ownerItem;
 
 	newItem->MapItemId = mapItem->GetId();
 	newItem->MapItem = mapItem;
@@ -139,7 +139,7 @@ bool GameCityItemFactory::Validate(const GameCityParameterObject obj)
 		return false;
 	}
 
-	if (-1 == obj.ModelOwnerTypeId && nullptr == obj.ModelOwnerTypeObject)
+	if (-1 == obj.GameOwnerItemId && nullptr == obj.GameOwnerItemObject)
 	{
 		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelOwnerTypeId or ModelOwnerTypeObject are invalid!"));
 		return false;
@@ -215,8 +215,8 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	int ownerTypeId = -1;
 	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_OWNERTYPEID, ownerTypeId);
 
-	const ModelOwnerType* modelOwnerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
-	if (nullptr == modelOwnerType)
+	const GameOwnerItem* gameOwnerItem = GameOwnerItemRepository::GetInstance()->GetItemById(ownerTypeId);
+	if (nullptr == gameOwnerItem)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: ModelOwnerType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(ownerTypeId)));
 		return nullptr;
@@ -242,7 +242,7 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 
 	GameCityParameterObject obj;
 	obj.ModelCityTypeObject = modelCityType;
-	obj.ModelOwnerTypeObject = modelOwnerType;
+	obj.GameOwnerItemObject = gameOwnerItem;
 	obj.GameMapItemObject = gameMapItem;
 	obj.Id = id;
 

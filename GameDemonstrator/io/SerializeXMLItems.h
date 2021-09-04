@@ -13,9 +13,10 @@ public:
 
 	static const QString PLAYERS;
 	static const QString PLAYERS_PLAYER;
+	static const QString PLAYER_ID;
+	static const QString PLAYER_OWNERTYPEID;
 	static const QString PLAYER_NAME;
 	static const QString PLAYER_HUMAN;
-	static const QString PLAYER_ISPLAYER;
 
 	static const QString MAP;
 

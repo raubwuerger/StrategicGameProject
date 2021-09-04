@@ -79,7 +79,7 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 		GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId());
 		if (true == GameUnitAttackController::AttackCity(playerUnit, GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId())))
 		{
-			GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetModelOwnerType());
+			GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetGameOwnerItem());
 			MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);
 			playerUnit->Move();
 			return true;
@@ -143,7 +143,7 @@ bool GameUnitMovementController::IsOwnUnitOnDestinationMapTile(int gameMapItemId
 	{
 		return false;
 	}
-	return gameUnitItem->GetModelOwnerType() == CurrentMapTileOwner;
+	return gameUnitItem->GetGameOwnerItem() == CurrentMapTileOwner;
 }
 
 bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId) const
@@ -153,7 +153,7 @@ bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId) 
 	{
 		return false;
 	}
-	return gameUnitItem->GetModelOwnerType() != CurrentMapTileOwner;
+	return gameUnitItem->GetGameOwnerItem() != CurrentMapTileOwner;
 }
 
 bool GameUnitMovementController::IsEnemyCityOnDestinationMapTile(int gameMapItemId) const
@@ -164,7 +164,7 @@ bool GameUnitMovementController::IsEnemyCityOnDestinationMapTile(int gameMapItem
 		return false;
 	}
 	int ownOwnerTypeId = ActiveGameUnitItem->GetModelOwnerTypeId();
-	int enemyOwnerTypeId = gameCityItem->GetModelOwnerTypeId();
+	int enemyOwnerTypeId = gameCityItem->GetGameOwnerItemId();
 	return ownOwnerTypeId != enemyOwnerTypeId;
 }
 
@@ -185,7 +185,7 @@ bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
 	return isStackLimitSufficient;
 }
 
-const ModelOwnerType* GameUnitMovementController::GetCurrentMapTileOwner()
+const GameOwnerItem* GameUnitMovementController::GetCurrentMapTileOwner()
 {
 	if (nullptr == ActiveGameUnitItem)
 	{
@@ -193,7 +193,7 @@ const ModelOwnerType* GameUnitMovementController::GetCurrentMapTileOwner()
 		return nullptr;
 	}
 
-	return ActiveGameUnitItem->GetModelOwnerType();
+	return ActiveGameUnitItem->GetGameOwnerItem();
 }
 
 bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const
@@ -208,9 +208,9 @@ bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, co
 		return false;
 	}
 
-	if (gameUnitItem->GetModelOwnerTypeId() != gameCityItem->GetModelOwnerTypeId())
+	if (gameUnitItem->GetModelOwnerTypeId() != gameCityItem->GetGameOwnerItemId())
 	{
-		GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, gameUnitItem->GetModelOwnerType());
+		GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, gameUnitItem->GetGameOwnerItem());
 	}
 
 	return MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);

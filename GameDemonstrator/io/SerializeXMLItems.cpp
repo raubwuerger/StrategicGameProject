@@ -10,6 +10,8 @@ const QString SerializeXMLItems::GAME_GAMETURN = "Gameturn";
 
 const QString SerializeXMLItems::PLAYERS = "Players";
 const QString SerializeXMLItems::PLAYERS_PLAYER = "Player";
+const QString SerializeXMLItems::PLAYER_ID = "ID";
+const QString SerializeXMLItems::PLAYER_OWNERTYPEID = "OwnerTypeId";
 const QString SerializeXMLItems::PLAYER_NAME = "Name";
 const QString SerializeXMLItems::PLAYER_HUMAN = "Human";
 

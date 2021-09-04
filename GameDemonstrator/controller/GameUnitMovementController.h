@@ -6,7 +6,7 @@ class MapHexItem;
 class GameUnitItem;
 class ModelUnitType;
 class ModelTerrainType;
-class ModelOwnerType;
+class GameOwnerItem;
 class GameCityItem;
 
 class GameUnitMovementController
@@ -31,12 +31,12 @@ private:
 	/** */
 	bool IsStackLimitSufficient(int gameMapItemId) const;
 	/** */
-	const ModelOwnerType* GetCurrentMapTileOwner();
+	const GameOwnerItem* GetCurrentMapTileOwner();
 	/** */
 	bool AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const;
 private:
 	const GameUnitItem*		ActiveGameUnitItem;
-	const ModelOwnerType*	CurrentMapTileOwner;
+	const GameOwnerItem*	CurrentMapTileOwner;
 };
 
 #endif // MAPITEMMAPUNITMOVEMENTCONTROLLER_H

@@ -6,7 +6,7 @@ QString			GameConfig::CurrentTurn = "";
 QString			GameConfig::DifficultyLevel = "1";
 QString			GameConfig::PlayerCount = "2";
 QString			GameConfig::MapType = "1";
-ModelOwnerType*	GameConfig::PlayerOwnerType = nullptr;
+GameOwnerItem*	GameConfig::Player = nullptr;
 int				GameConfig::MapRows = 3;
 int				GameConfig::MapCols = 3;
 

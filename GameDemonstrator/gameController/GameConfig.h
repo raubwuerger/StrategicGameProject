@@ -1,7 +1,7 @@
 #ifndef GAMECONFIG_H
 #define GAMECONFIG_H
 
-class ModelOwnerType;
+class GameOwnerItem;
 
 class GameConfig
 {
@@ -11,7 +11,7 @@ public:
 	static QString			DifficultyLevel;
 	static QString			PlayerCount;
 	static QString			MapType;
-	static ModelOwnerType*	PlayerOwnerType;
+	static GameOwnerItem*	Player;
 	static int				MapRows;
 	static int				MapCols;
 };

@@ -8,6 +8,7 @@ class QDomNode;
 class QDomNodeList;
 class GameUnitItem;
 class GameCityItem;
+class GameOwnerItem;
 
 class SerializeXML : public ISerializeGameInterface
 {
@@ -27,6 +28,8 @@ private:
 	bool SaveGameData( QXmlStreamWriter& xmlWriter );
 	/** */
 	bool SavePlayerData( QXmlStreamWriter& xmlWriter );
+	/** */
+	bool SavePlayer(QXmlStreamWriter& xmlWriter, const GameOwnerItem* item);
 	/** */
 	bool SaveMapData( QXmlStreamWriter& xmlWriter );
 	/** */

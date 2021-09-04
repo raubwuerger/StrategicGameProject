@@ -88,7 +88,7 @@ void UnitTypeEditor::CreateUnit()
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.GameMapItemId = ActiveGameMapItemId;
 	gameUnitParameterObject.ModelUnitTypeObject = ActiveModelUnitType;
-	gameUnitParameterObject.ModelOwnerTypeId = ActiveGameOwnerItemId;
+	gameUnitParameterObject.GameOwnerItemId = ActiveGameOwnerItemId;
 
 	GameUnitItemFactory gameUnitItemFactory;
 	GameUnitItem* created = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);

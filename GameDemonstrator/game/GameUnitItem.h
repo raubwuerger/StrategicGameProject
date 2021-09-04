@@ -5,7 +5,7 @@
 
 class ModelUnitType;
 class GameMapItem;
-class ModelOwnerType;
+class GameOwnerItem;
 class GameUnitItemRuntimeData;
 
 /** Game unit tile */
@@ -19,7 +19,7 @@ public:
 	/** */
 	const ModelUnitType* GetModelUnitType() const;
 	/** */
-	const ModelOwnerType* GetModelOwnerType() const;
+	const GameOwnerItem* GetGameOwnerItem() const;
 	/** */
 	const GameMapItem* GetGameMapItem() const;
 	/** */
@@ -64,10 +64,10 @@ private:
 	friend class GameUnitItemFactory;
 	const int				Id;
 	int						UnitTypeId;
-	int						OwnerTypeId;
+	int						OwnerItemId;
 	int						MapItemId;
 	const ModelUnitType*	UnitType;
-	const ModelOwnerType*	OwnerType;
+	const GameOwnerItem*	OwnerItem;
 	const GameMapItem*		MapItem;
 	QString					Name;
 	GameUnitItemRuntimeData*RuntimeData;

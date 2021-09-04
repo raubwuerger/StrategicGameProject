@@ -6,10 +6,10 @@
 GameUnitItem::GameUnitItem(int gameUnitId)
 	: Id(gameUnitId),
 		UnitType(nullptr),
-		OwnerType(nullptr),
+		OwnerItem(nullptr),
 		MapItem(nullptr),
 		UnitTypeId(-1),
-		OwnerTypeId(-1),
+		OwnerItemId(-1),
 		MapItemId(-1),
 		RuntimeData(nullptr)
 {
@@ -26,9 +26,9 @@ const ModelUnitType* GameUnitItem::GetModelUnitType() const
 	return UnitType;
 }
 
-const ModelOwnerType* GameUnitItem::GetModelOwnerType() const
+const GameOwnerItem* GameUnitItem::GetGameOwnerItem() const
 {
-	return OwnerType;
+	return OwnerItem;
 }
 
 const GameMapItem* GameUnitItem::GetGameMapItem() const
@@ -58,7 +58,7 @@ int GameUnitItem::GetModelUnitTypeId() const
 
 int GameUnitItem::GetModelOwnerTypeId() const
 {
-	return OwnerTypeId;
+	return OwnerItemId;
 }
 
 int GameUnitItem::GetGameMapItemId() const

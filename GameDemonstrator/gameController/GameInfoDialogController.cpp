@@ -8,8 +8,9 @@
 #include "game\GameUnitItemRepository.h"
 #include "game\GameCityItem.h"
 #include "game\GameCityItemRepository.h"
+#include "game\GameOwnerItem.h"
 #include "model\ModelUnitType.h"
-#include "model\ModelOwnerType.h"
+//#include "model\ModelOwnerType.h"
 #include "model\ModelUnitTypeRepository.h"
 #include "model\ModelUnitType.h"
 #include "map\MapView.h"
@@ -70,8 +71,8 @@ void GameInfoDialogController::SlotShowGameUnitInfo(int gameUnitId)
 	GameUnitInfoDialogObject->SetType(gameUnit->GetModelUnitType()->GetName());
 	GameUnitInfoDialogObject->SetMovement(CreateUnitMovementPoints(gameUnit));
 	GameUnitInfoDialogObject->SetStrength(CreateUnitStrength(gameUnit));
-	GameUnitInfoDialogObject->SetOwner(gameUnit->GetModelOwnerType()->GetName());
-	GameUnitInfoDialogObject->SetOwnerColor(gameUnit->GetModelOwnerType()->GetColor());
+	GameUnitInfoDialogObject->SetOwner(gameUnit->GetGameOwnerItem()->GetName());
+	GameUnitInfoDialogObject->SetOwnerColor(gameUnit->GetGameOwnerItem()->GetColor());
 }
 
 void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
@@ -85,8 +86,8 @@ void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 
 	GameCityInfoDialogObject->SetId(QString::number(gameCity->GetId()));
 	GameCityInfoDialogObject->SetName(gameCity->GetName());
-	GameCityInfoDialogObject->SetOwner(gameCity->GetModelOwnerType()->GetName());
-	GameCityInfoDialogObject->SetOwnerColor(gameCity->GetModelOwnerType()->GetColor());
+	GameCityInfoDialogObject->SetOwner(gameCity->GetGameOwnerItem()->GetName());
+	GameCityInfoDialogObject->SetOwnerColor(gameCity->GetGameOwnerItem()->GetColor());
 	GameCityInfoDialogObject->SetEfficiency( CreateCityEfficiency(gameCity));
 	GameCityInfoDialogObject->SetSpecialization(GetSpecializedUnitName(gameCity));
 	GameCityInfoDialogObject->SetStrength(CreateCityStrength(gameCity));
@@ -167,10 +168,15 @@ QString GameInfoDialogController::CreateCityStrength(const GameCityItem* gameCit
 
 QString GameInfoDialogController::GetSpecializedUnitName(const GameCityItem* gameCity)
 {
+	QString notSpecialized("Not specialized!");
+	if (NOT_INITIALIZED_INT == gameCity->GetSpezializedUnitTypeId())
+	{
+		return notSpecialized;
+	}
 	const ModelUnitType* specialized = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(gameCity->GetSpezializedUnitTypeId());
 	if (nullptr == specialized)
 	{
-		return "Not specialized!";
+		return notSpecialized;
 	}
 	return specialized->GetName();
 }

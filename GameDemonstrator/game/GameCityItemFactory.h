@@ -3,7 +3,7 @@
 
 class QDomNode;
 class GameCityItem;
-class ModelOwnerType;
+class GameOwnerItem;
 class ModelCityType;
 class GameMapItem;
 
@@ -13,20 +13,20 @@ struct GameCityParameterObject
 		: Id(-1),
 		ModelCityTypeId(-1),
 		GameMapItemId(-1),
-		ModelOwnerTypeId(-1),
+		GameOwnerItemId(-1),
 		ModelCityTypeObject(nullptr),
 		GameMapItemObject(nullptr),
-		ModelOwnerTypeObject(nullptr),
+		GameOwnerItemObject(nullptr),
 		GameCityItemObject(nullptr)
 	{
 	}
 	int	Id;
 	int ModelCityTypeId;
 	int GameMapItemId;
-	int ModelOwnerTypeId;
+	int GameOwnerItemId;
 	const ModelCityType*	ModelCityTypeObject;
 	const GameMapItem*		GameMapItemObject;
-	const ModelOwnerType*	ModelOwnerTypeObject;
+	const GameOwnerItem*	GameOwnerItemObject;
 	GameCityItem*			GameCityItemObject;
 };
 
@@ -54,7 +54,7 @@ private:
 	/** */
 	const ModelCityType* GetModelCityType(const GameCityParameterObject obj) const;
 	/** */
-	const ModelOwnerType* GetModelOwnerType(const GameCityParameterObject obj) const;
+	const GameOwnerItem* GetGameOwnerItem(const GameCityParameterObject obj) const;
 	/** */
 	const GameMapItem* GetGameMapItem(const GameCityParameterObject obj) const;
 	/** */

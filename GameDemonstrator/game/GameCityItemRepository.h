@@ -4,7 +4,7 @@
 #include "BaseRepository.h"
 
 class GameCityItem;
-class ModelOwnerType;
+class GameOwnerItem;
 
 /** Repräsentiert die Karte im Speicher */
 class GameCityItemRepository : public BaseRepository
@@ -37,7 +37,7 @@ public:
 	/** */
 	int CreateNewId() const;
 	/** */
-	bool ChangeOwner(const GameCityItem* gameCityItem, const ModelOwnerType* modelOwnerType);
+	bool ChangeOwner(const GameCityItem* gameCityItem, const GameOwnerItem* gameOwnerItem);
 private:
 	/** */
 	GameCityItemRepository();

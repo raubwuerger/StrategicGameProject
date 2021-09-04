@@ -62,7 +62,7 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	GameCityParameterObject obj;
 	obj.GameMapItemId = mapItemId;
 	obj.ModelCityTypeObject = ActiveModelCityType;
-	obj.ModelOwnerTypeId = OwnerTypeId;
+	obj.GameOwnerItemId = OwnerTypeId;
 	GameCityItemFactory gameFactory;
 	GameCityItem* created = gameFactory.Create(obj);
 	if (nullptr == created)

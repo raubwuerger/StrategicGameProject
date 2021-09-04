@@ -13,7 +13,7 @@
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"
-#include "model\ModelOwnerTypeRepository.h"
+#include "game\GameOwnerItemRepository.h"
 #include "map\MapView.h"
 #include "GameInfoDialogController.h"
 #include "GameTurnController.h"
@@ -136,7 +136,7 @@ bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
-	GameConfig::PlayerOwnerType = const_cast<ModelOwnerType*>(ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(owner));
+	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetItemById(owner));
 
 	GameFactory gameFactory;
 	gameFactory.Create();

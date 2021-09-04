@@ -2,7 +2,7 @@
 #include "GameCityItemRepository.h"
 #include "GameCityItem.h"
 #include "LogInterface.h"
-#include "model\ModelOwnerType.h"
+#include "game\GameOwnerItem.h"
 
 GameCityItemRepository*	GameCityItemRepository::Instance = nullptr;
 
@@ -137,11 +137,11 @@ int GameCityItemRepository::CreateNewId() const
 	return ++idOfLastGameUnit;
 }
 
-bool GameCityItemRepository::ChangeOwner(const GameCityItem* gameCityItem, const ModelOwnerType* modelOwnerType)
+bool GameCityItemRepository::ChangeOwner(const GameCityItem* gameCityItem, const GameOwnerItem* gameOwnerItem)
 {
 	GameCityItem* gameCityItemToChange = GetGameCityItemById(gameCityItem->GetId());
-	gameCityItemToChange->SetModelOwnerType(modelOwnerType);
-	gameCityItemToChange->SetModelOwnerTypeId(modelOwnerType->GetId());
+	gameCityItemToChange->SetGameOwnerItem(gameOwnerItem);
+	gameCityItemToChange->SetGameOwnerItemId(gameOwnerItem->GetId());
 	return true;
 }
 

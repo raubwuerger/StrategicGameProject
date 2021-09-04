@@ -5,6 +5,7 @@
 #include "model\ModelTerrainType.h"
 #include "game\GameUnitItemRepository.h"
 #include "game\GameUnitItem.h"
+#include "game\GameOwnerItem.h"
 #include "MapHexItemRepository.h"
 
 MapHexItemEventManager::MapHexItemEventManager(QObject *parent)
@@ -78,7 +79,7 @@ void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 		mapUnitItemName = gameUnitItem->GetName();
 		mapUnitItemType = gameUnitItem->GetModelUnitType()->GetName();
 		mapHexItemId = QString::number(gameUnitItem->GetGameMapItemId());
-		mapUnitItemOwnerName = gameUnitItem->GetModelOwnerType()->GetName();
+		mapUnitItemOwnerName = gameUnitItem->GetGameOwnerItem()->GetName();
 	}
 
 	UnitTypeInfoDialog->SetId(mapUnitItem);
@@ -110,7 +111,7 @@ void MapHexItemEventManager::SlotUpdateMapCityItemInfo(int mapCityItemId)
 		cityItemName = item->GetName();
 		cityItemTypeId = QString::number(item->GetModelCityTypeId());
 		mapHexItemId = QString::number(item->GetGameMapItemId());
-		cityOwner = item->GetModelOwnerType()->GetName();
+		cityOwner = item->GetGameOwnerItem()->GetName();
 	}
 
 	CityTypeInfoDialog->SetId(cityItemId);

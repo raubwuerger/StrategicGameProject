@@ -5,9 +5,9 @@
 
 GameCityItem::GameCityItem(int id)
 	: Id(id),
-		OwnerType(nullptr),
+		OwnerItem(nullptr),
 		MapItem(nullptr),
-		OwnerTypeId(-1),
+		OwnerItemId(-1),
 		MapItemId(-1),
 		SpezializedUnitTypeId(-1),
 		RuntimeData(nullptr)
@@ -33,19 +33,19 @@ void GameCityItem::SetName(const QString& name)
 	Name = name;
 }
 
-const ModelOwnerType* GameCityItem::GetModelOwnerType() const
+const GameOwnerItem* GameCityItem::GetGameOwnerItem() const
 {
-	return OwnerType;
+	return OwnerItem;
 }
 
-void GameCityItem::SetModelOwnerType(const ModelOwnerType* modelOwnerType)
+void GameCityItem::SetGameOwnerItem(const GameOwnerItem* gameOwnerItem)
 {
-	OwnerType = modelOwnerType;
+	OwnerItem = gameOwnerItem;
 }
 
-void GameCityItem::SetModelOwnerTypeId(int modelOwnerTypeId)
+void GameCityItem::SetGameOwnerItemId(int gameOwnerItemId)
 {
-	OwnerTypeId = modelOwnerTypeId;
+	OwnerItemId = gameOwnerItemId;
 }
 
 const GameMapItem* GameCityItem::GetGameMapItem() const
@@ -53,9 +53,9 @@ const GameMapItem* GameCityItem::GetGameMapItem() const
 	return MapItem;
 }
 
-int GameCityItem::GetModelOwnerTypeId() const
+int GameCityItem::GetGameOwnerItemId() const
 {
-	return OwnerTypeId;
+	return OwnerItemId;
 }
 
 int GameCityItem::GetGameMapItemId() const

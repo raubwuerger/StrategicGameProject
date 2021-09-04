@@ -6,7 +6,7 @@
 #include "connectors/ConnectorMapUnitItem.h"
 #include "gameconfig.h"
 #include "model/ModelOwnerTypeRepository.h"
-#include "model/ModelOwnerType.h"
+#include "game/GameOwnerItem.h"
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItem.h"
 
@@ -43,12 +43,12 @@ void GameUnitController::Disconnect()
 
 bool GameUnitController::InitGame()
 {
-	const ModelOwnerType* ownerType = GameConfig::PlayerOwnerType;
+	GameOwnerItem* ownerType = GameConfig::Player;
 	if (nullptr == ownerType)
 	{
 		return false;
 	}
-	GameConfig::PlayerOwnerType = const_cast<ModelOwnerType*>(ownerType);
+	GameConfig::Player = const_cast<GameOwnerItem*>(ownerType);
 	return true;
 }
 
@@ -108,5 +108,5 @@ bool GameUnitController::IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 	Q_ASSERT(gameUnitItem);
 
-	return GameConfig::PlayerOwnerType->operator==(*gameUnitItem->GetModelOwnerType());
+	return GameConfig::Player->operator==(*gameUnitItem->GetGameOwnerItem());
 }

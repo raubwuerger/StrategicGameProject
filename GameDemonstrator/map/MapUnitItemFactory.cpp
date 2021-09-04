@@ -9,7 +9,7 @@
 #include "MapHexItem.h"
 #include "MapView.h"
 #include "model\ModelUnitType.h"
-#include "model\ModelOwnerType.h"
+#include "game\GameOwnerItem.h"
 
 MapUnitItemFactory::MapUnitItemFactory()
 	: DefaultBorderWidth(2),
@@ -49,7 +49,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 		newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 		newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 		newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
-		newMapUnitItem->Color = gameItemUnit->GetModelOwnerType()->GetColor();
+		newMapUnitItem->Color = gameItemUnit->GetGameOwnerItem()->GetColor();
 		if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))
 		{
 			return false;
@@ -87,7 +87,7 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnitItem* gameItemUn
 	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 	newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 	newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
-	newMapUnitItem->Color = gameItemUnit->GetModelOwnerType()->GetColor();
+	newMapUnitItem->Color = gameItemUnit->GetGameOwnerItem()->GetColor();
 	if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))
 	{
 		return false;
