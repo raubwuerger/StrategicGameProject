@@ -692,6 +692,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameInfoDialogController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="gameController\GameTurnController.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameTurnController.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameTurnController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1108,6 +1117,12 @@
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameTurnController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>

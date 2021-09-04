@@ -27,12 +27,12 @@ bool GameMapItemFactory::CreateFromSaveGame(const QDomNode mapElements)
 {
 	DomNodeFinder domNodeFinder(mapElements);
 
-	if (false == InitializeMap(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::SETTINGS)))
+	if (false == InitializeMap(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAP_SETTINGS)))
 	{
 		return false;
 	}
 
-	if (false == CreateGameMapItems(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAPITEMS)))
+	if (false == CreateGameMapItems(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAP_MAPITEMS)))
 	{
 		return false;
 	}
@@ -56,8 +56,8 @@ bool GameMapItemFactory::InitializeMap(const QDomNode& settings)
 
 	bool allElementsExtracted = true;
 	DomValueExtractor domNodeListValueExtractor(settings);
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ROWS, GameConfig::MapRows);
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::COLS, GameConfig::MapCols);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::MAP_SETTINGS_ROWS, GameConfig::MapRows);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::MAP_SETTINGS_COLS, GameConfig::MapCols);
 
 	return allElementsExtracted;
 }
@@ -118,16 +118,16 @@ GameMapItem* GameMapItemFactory::CreateGameMapItem(const QDomNode& node)
 	bool allElementsExtracted = true;
 	int currentId = -1;
 	DomValueExtractor domNodeListValueExtractor(node);
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ID, currentId);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::MAP_ID, currentId);
 
 	int currentRow = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ROW, currentRow);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::MAP_ROW, currentRow);
 
 	int currentCol = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::COL, currentCol);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::MAP_COL, currentCol);
 
 	int currentTerrainTyp = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::TERRAINTYPE, currentTerrainTyp);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::MAP_TERRAINTYPE, currentTerrainTyp);
 
 	if (false == allElementsExtracted)
 	{

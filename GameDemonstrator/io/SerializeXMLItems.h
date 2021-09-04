@@ -7,27 +7,28 @@ public:
 	static const QString SAVEGAME;
 
 	static const QString GAME;
-	static const QString VERSION;
-	static const QString PLAYERCOUNT;
-	static const QString GAMETURN;
+	static const QString GAME_VERSION;
+	static const QString GAME_PLAYERCOUNT;
+	static const QString GAME_GAMETURN;
 
 	static const QString PLAYERS;
-	static const QString PLAYER;
-	static const QString NAME;
-	static const QString HUMAN;
+	static const QString PLAYERS_PLAYER;
+	static const QString PLAYER_NAME;
+	static const QString PLAYER_HUMAN;
+	static const QString PLAYER_ISPLAYER;
 
 	static const QString MAP;
 
-	static const QString SETTINGS;
-	static const QString ROWS;
-	static const QString COLS;
+	static const QString MAP_SETTINGS;
+	static const QString MAP_SETTINGS_ROWS;
+	static const QString MAP_SETTINGS_COLS;
 
-	static const QString MAPITEMS;
-	static const QString MAPITEM;
-	static const QString ID;
-	static const QString ROW;
-	static const QString COL;
-	static const QString TERRAINTYPE;
+	static const QString MAP_MAPITEMS;
+	static const QString MAP_MAPITEM;
+	static const QString MAP_ID;
+	static const QString MAP_ROW;
+	static const QString MAP_COL;
+	static const QString MAP_TERRAINTYPE;
 
 	static const QString UNITS;
 	static const QString UNITS_UNIT;

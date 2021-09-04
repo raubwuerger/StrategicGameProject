@@ -6,16 +6,20 @@
 #include "GameUnitController.h"
 #include "GameModeController.h"
 #include "GameInfoDialogController.h"
+#include "GameTurnController.h"
 
 GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
 GameDemonstrator*	GameFactory::GameDemonstratorObject = nullptr;
+GameTurnController* GameFactory::GameTurnControllerObject = nullptr;
+
 MapView*			GameFactory::MapViewObject = nullptr;
 GameMainDialog*		GameFactory::GameMainDialogObject = nullptr;
 GameInfoDialogController*	GameFactory::GameInfoDialogControllerObject = nullptr;
 
 GameFactory::GameFactory()
 {
+	InitGameTurnController();
 	InitGameInfoDialogController();
 	InitGameController();
 	InitGameModeController();
@@ -42,6 +46,7 @@ void GameFactory::InitGameModeController()
 	GameModeControllerObject->GameMainDialogObject = GameMainDialogObject;
 	GameModeControllerObject->GameControllerObject = GameControllerObject;
 	GameModeControllerObject->GameInfoDialogControllerObject = GameInfoDialogControllerObject;
+	GameModeControllerObject->GameTurnControllerObject = GameTurnControllerObject;
 	GameModeControllerObject->Init(GameDemonstratorObject);
 }
 
@@ -56,6 +61,11 @@ void GameFactory::InitGameInfoDialogController()
 	GameInfoDialogControllerObject->GameDemonstratorObject = GameDemonstratorObject;
 	GameInfoDialogControllerObject->MapViewObject = MapViewObject;
 	GameInfoDialogControllerObject->Init();
+}
+
+void GameFactory::InitGameTurnController()
+{
+	GameTurnControllerObject = new GameTurnController();
 }
 
 bool GameFactory::Create()

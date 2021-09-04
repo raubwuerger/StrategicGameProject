@@ -2,24 +2,27 @@
 #include "SerializeXMLItems.h"
 
 const QString SerializeXMLItems::SAVEGAME = "Savegame";
+
 const QString SerializeXMLItems::GAME = "Game";
-const QString SerializeXMLItems::VERSION = "Version";
-const QString SerializeXMLItems::PLAYERCOUNT = "Playercount";
-const QString SerializeXMLItems::GAMETURN = "Gameturn";
+const QString SerializeXMLItems::GAME_VERSION = "Version";
+const QString SerializeXMLItems::GAME_PLAYERCOUNT = "Playercount";
+const QString SerializeXMLItems::GAME_GAMETURN = "Gameturn";
+
 const QString SerializeXMLItems::PLAYERS = "Players";
-const QString SerializeXMLItems::PLAYER = "Player";
-const QString SerializeXMLItems::NAME = "Name";
-const QString SerializeXMLItems::HUMAN = "Human";
+const QString SerializeXMLItems::PLAYERS_PLAYER = "Player";
+const QString SerializeXMLItems::PLAYER_NAME = "Name";
+const QString SerializeXMLItems::PLAYER_HUMAN = "Human";
+
 const QString SerializeXMLItems::MAP = "Map";
-const QString SerializeXMLItems::MAPITEMS = "MapItems";
-const QString SerializeXMLItems::MAPITEM = "MapItem";
-const QString SerializeXMLItems::ID = "ID";
-const QString SerializeXMLItems::ROW = "Row";
-const QString SerializeXMLItems::COL = "Col";
-const QString SerializeXMLItems::TERRAINTYPE = "TerrainType";
-const QString SerializeXMLItems::SETTINGS = "Settings";
-const QString SerializeXMLItems::ROWS = "Rows";
-const QString SerializeXMLItems::COLS = "Cols";
+const QString SerializeXMLItems::MAP_MAPITEMS = "MapItems";
+const QString SerializeXMLItems::MAP_MAPITEM = "MapItem";
+const QString SerializeXMLItems::MAP_ID = "ID";
+const QString SerializeXMLItems::MAP_ROW = "Row";
+const QString SerializeXMLItems::MAP_COL = "Col";
+const QString SerializeXMLItems::MAP_TERRAINTYPE = "TerrainType";
+const QString SerializeXMLItems::MAP_SETTINGS = "Settings";
+const QString SerializeXMLItems::MAP_SETTINGS_ROWS = "Rows";
+const QString SerializeXMLItems::MAP_SETTINGS_COLS = "Cols";
 
 const QString SerializeXMLItems::UNITS = "Units";
 const QString SerializeXMLItems::UNITS_UNIT = "Unit";

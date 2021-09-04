@@ -11,8 +11,7 @@ public:
 	static QString			DifficultyLevel;
 	static QString			PlayerCount;
 	static QString			MapType;
-	static QString			PlayerId;
-	static ModelOwnerType*	OwnerType;
+	static ModelOwnerType*	PlayerOwnerType;
 	static int				MapRows;
 	static int				MapCols;
 };

@@ -13,13 +13,14 @@
 #include "game/GameCityItemRepository.h"
 #include "game/GameCityItemFactory.h"
 #include "game/GameCityItem.h"
-//#include "model/ModelProgramSettings.h"
 #include "model/ModelUnitType.h"
 #include "model/ModelOwnerType.h"
+#include "model/ModelOwnerTypeRepository.h"
 #include "model/ModelTerrainType.h"
 #include "DomNodeFinder.h"
 #include "io/ConfigFileLoader.h"
 #include "DomNodeListFinder.h"
+#include "gameController/GameConfig.h"
 
 
 //==============================================================================
@@ -103,9 +104,9 @@ bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::GAME );
-		xmlWriter.writeTextElement( SerializeXMLItems::VERSION, "0.9" );
-		xmlWriter.writeTextElement( SerializeXMLItems::PLAYERCOUNT, "2");
-		xmlWriter.writeTextElement( SerializeXMLItems::GAMETURN, GameMainCounter::GetInstance()->GetCurrentDate().toString("yyyy-MM"));
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_VERSION, "0.9" );
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_PLAYERCOUNT, "2");
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_GAMETURN, GameMainCounter::GetInstance()->GetCurrentDate().toString("yyyy-MM"));
 	xmlWriter.writeEndElement();
 	return true;
 }
@@ -114,10 +115,10 @@ bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS );
-		xmlWriter.writeStartElement( SerializeXMLItems::PLAYER );
-			xmlWriter.writeTextElement( SerializeXMLItems::ID, "1" );
-			xmlWriter.writeTextElement( SerializeXMLItems::NAME, "Spieler 1" );
-			xmlWriter.writeTextElement( SerializeXMLItems::HUMAN, "1" );
+		xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS_PLAYER );
+			xmlWriter.writeTextElement( SerializeXMLItems::MAP_ID, "1" );
+			xmlWriter.writeTextElement( SerializeXMLItems::PLAYER_NAME, "Spieler 1" );
+			xmlWriter.writeTextElement( SerializeXMLItems::PLAYER_HUMAN, "1" );
 		xmlWriter.writeEndElement();
 	xmlWriter.writeEndElement();
 	return true;
@@ -145,9 +146,9 @@ bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 //==============================================================================
 bool SerializeXML::SaveMapSettings(QXmlStreamWriter& xmlWriter)
 {
-	xmlWriter.writeStartElement( SerializeXMLItems::SETTINGS );
-		xmlWriter.writeTextElement( SerializeXMLItems::ROWS, QString::number(GameMapItemRepository::GetInstance()->GetRows()) );
-		xmlWriter.writeTextElement( SerializeXMLItems::COLS, QString::number(GameMapItemRepository::GetInstance()->GetCols()) );
+	xmlWriter.writeStartElement( SerializeXMLItems::MAP_SETTINGS );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_SETTINGS_ROWS, QString::number(GameMapItemRepository::GetInstance()->GetRows()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_SETTINGS_COLS, QString::number(GameMapItemRepository::GetInstance()->GetCols()) );
 	xmlWriter.writeEndElement();
 	return true;
 }
@@ -155,7 +156,7 @@ bool SerializeXML::SaveMapSettings(QXmlStreamWriter& xmlWriter)
 //==============================================================================
 bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 {
-	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEMS );
+	xmlWriter.writeStartElement( SerializeXMLItems::MAP_MAPITEMS );
 
 	const QVector< QVector<GameMapItem*> >* modelMap = GameMapItemRepository::GetInstance()->GetMapItems();
 	if( nullptr == modelMap )
@@ -186,11 +187,11 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 //==============================================================================
 bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const GameMapItem* modelMapItem)
 {
-	xmlWriter.writeStartElement( SerializeXMLItems::MAPITEM );
-		xmlWriter.writeTextElement( SerializeXMLItems::ID, QString::number(modelMapItem->GetId()) );
-		xmlWriter.writeTextElement( SerializeXMLItems::ROW, QString::number(modelMapItem->GetRow()) );
-		xmlWriter.writeTextElement( SerializeXMLItems::COL, QString::number(modelMapItem->GetCol()) );
-		xmlWriter.writeTextElement( SerializeXMLItems::TERRAINTYPE, QString::number(modelMapItem->GetTerrainType()->GetId()) );
+	xmlWriter.writeStartElement( SerializeXMLItems::MAP_MAPITEM );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_ID, QString::number(modelMapItem->GetId()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_ROW, QString::number(modelMapItem->GetRow()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_COL, QString::number(modelMapItem->GetCol()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_TERRAINTYPE, QString::number(modelMapItem->GetTerrainType()->GetId()) );
 	xmlWriter.writeEndElement();
 	return true;
 }
@@ -327,6 +328,7 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 		return false;
 	}
 	QString domNodeName = domNode.nodeName();
+	GameConfig::PlayerOwnerType = const_cast<ModelOwnerType*>(ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(2));
 	return true;
 }
 

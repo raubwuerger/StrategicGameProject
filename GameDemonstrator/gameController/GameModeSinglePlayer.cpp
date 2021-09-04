@@ -16,13 +16,15 @@
 #include "model\ModelOwnerTypeRepository.h"
 #include "map\MapView.h"
 #include "GameInfoDialogController.h"
+#include "GameTurnController.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
 	: GameMode(gameDemonstrator),
 		GameMenu(nullptr),
 		MenuTitle("&Game"),
-		GameInfoDialogControllerObject(nullptr)
+		GameInfoDialogControllerObject(nullptr),
+		GameTurnControllerObject(nullptr)
 {
 
 }
@@ -88,7 +90,7 @@ void GameModeSinglePlayer::CreateMenuEntries()
 	QIcon next(QPixmap(".//Resources//media_end.ico"));
 	QAction* nextTurnAction = new QAction(next, tr("&Next turn"), this);
 	nextTurnAction->setStatusTip(tr("Next turn"));
-//	connect(nextTurnAction, &QAction::triggered, MainGameLoopInstance, &GameMainLoop::SlotStep, Qt::QueuedConnection);
+	connect(nextTurnAction, &QAction::triggered, GameTurnControllerObject, &GameTurnController::SlotStartNextTurn, Qt::QueuedConnection);
 	GameMenu->addAction(nextTurnAction);
 	ActionRepository::GetInstance()->AddAction(nextTurnAction);
 }
@@ -134,7 +136,7 @@ bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
-	GameConfig::OwnerType = const_cast<ModelOwnerType*>(ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(owner));
+	GameConfig::PlayerOwnerType = const_cast<ModelOwnerType*>(ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(owner));
 
 	GameFactory gameFactory;
 	gameFactory.Create();

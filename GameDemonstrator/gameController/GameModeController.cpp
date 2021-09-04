@@ -58,7 +58,8 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 
 	GameModeSinglePlayerObject = new GameModeSinglePlayer(gameDemonstrator);
 	GameModeSinglePlayerObject->MapViewObject = MapViewObject;
-	reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject)->GameInfoDialogControllerObject = GameInfoDialogControllerObject;
+	GameModeSinglePlayerObject->GameInfoDialogControllerObject = GameInfoDialogControllerObject;
+	GameModeSinglePlayerObject->GameTurnControllerObject = GameTurnControllerObject;
 	if (false == GameModeSinglePlayerObject->Init())
 	{
 		return;
@@ -75,8 +76,8 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 	QObject::connect(GameMainDialogObject->ui.CreateGame, &QPushButton::clicked, this, &GameModeController::CreateGame);
 	QObject::connect(GameMainDialogObject->ui.LoadGame, &QPushButton::clicked, this, &GameModeController::LoadGame);
 
-	QObject::connect(this, &GameModeController::CreateNewGame, reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject), &GameModeSinglePlayer::CreateNewGame);
-	QObject::connect(this, &GameModeController::LoadSavedGame, reinterpret_cast<GameModeSinglePlayer*>(GameModeSinglePlayerObject), &GameModeSinglePlayer::LoadSaveGame);
+	QObject::connect(this, &GameModeController::CreateNewGame, GameModeSinglePlayerObject, &GameModeSinglePlayer::CreateNewGame);
+	QObject::connect(this, &GameModeController::LoadSavedGame, GameModeSinglePlayerObject, &GameModeSinglePlayer::LoadSaveGame);
 
 	QObject::connect(GameMainDialogObject->ui.StartEditor, &QPushButton::clicked, this, &GameModeController::SlotModeEditorActivated);
 	QObject::connect(GameMainDialogObject->ui.CreateGame, &QPushButton::clicked, this, &GameModeController::SlotModeSinglePlayerActivated);

@@ -43,12 +43,12 @@ void GameUnitController::Disconnect()
 
 bool GameUnitController::InitGame()
 {
-	const ModelOwnerType* ownerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(GameConfig::PlayerId.toInt());
+	const ModelOwnerType* ownerType = GameConfig::PlayerOwnerType;
 	if (nullptr == ownerType)
 	{
 		return false;
 	}
-	GameConfig::OwnerType = const_cast<ModelOwnerType*>(ownerType);
+	GameConfig::PlayerOwnerType = const_cast<ModelOwnerType*>(ownerType);
 	return true;
 }
 
@@ -108,5 +108,5 @@ bool GameUnitController::IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 	Q_ASSERT(gameUnitItem);
 
-	return GameConfig::OwnerType->operator==(*gameUnitItem->GetModelOwnerType());
+	return GameConfig::PlayerOwnerType->operator==(*gameUnitItem->GetModelOwnerType());
 }

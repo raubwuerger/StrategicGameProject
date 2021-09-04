@@ -9,6 +9,7 @@
 class GameDemonstrator;
 class CreateNewGameDialog;
 class GameInfoDialogController;
+class GameTurnController;
 
 /** @stereotype Strategie*/
 class GameModeSinglePlayer : public GameMode
@@ -52,6 +53,7 @@ private:
 	const QString				MenuTitle;
 	QMenu*						GameMenu;
 	GameInfoDialogController*	GameInfoDialogControllerObject;
+	GameTurnController*			GameTurnControllerObject;
 };
 
 #endif // GAMEMODESTANDARD_H

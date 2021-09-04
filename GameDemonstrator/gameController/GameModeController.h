@@ -7,6 +7,8 @@ class GameMainDialog;
 class GameUnitController;
 class GameInfoDialogController;
 class MapView;
+class GameTurnController;
+class GameModeSinglePlayer;
 
 /** Handles the differen GameModes */
 class GameModeController : public QObject
@@ -45,10 +47,11 @@ private:
 	GameMainDialog*		GameMainDialogObject;
 	GameUnitController*	GameControllerObject;
 	GameInfoDialogController*	GameInfoDialogControllerObject;
+	GameTurnController*	GameTurnControllerObject;
 	MapView*			MapViewObject;
 	GameMode*			CurrentGameMode;
 	GameMode*			GameModeEditorObject;
-	GameMode*			GameModeSinglePlayerObject;
+	GameModeSinglePlayer*	GameModeSinglePlayerObject;
 	static QMenu*		GameModeChangeMenu;
 };
 

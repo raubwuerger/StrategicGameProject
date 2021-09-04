@@ -7,6 +7,7 @@ class GameModeController;
 class MapView;
 class GameMainDialog;
 class GameInfoDialogController;
+class GameTurnController;
 
 /* Creates the hole game. From scratch or from savegame. */
 class GameFactory
@@ -25,11 +26,14 @@ private:
 	void InitGameModeController();
 	/** */
 	void InitGameInfoDialogController();
+	/** */
+	void InitGameTurnController();
 private:
 	friend class GameDemonstrator;
 	static GameUnitController*	GameControllerObject;
 	static GameModeController*	GameModeControllerObject;
 	static GameInfoDialogController*	GameInfoDialogControllerObject;
+	static GameTurnController*	GameTurnControllerObject;
 
 	static GameDemonstrator*	GameDemonstratorObject;
 	static MapView*				MapViewObject;
