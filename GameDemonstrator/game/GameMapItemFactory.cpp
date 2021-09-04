@@ -9,6 +9,7 @@
 #include "io\SerializeXMLItems.h"
 #include "gameController\GameConfig.h"
 #include "LogInterface.h"
+#include "io\GameMapItemCreatorSimple.h"
 
 GameMapItemFactory::GameMapItemFactory()
 {
@@ -20,7 +21,8 @@ GameMapItemFactory::~GameMapItemFactory()
 
 bool GameMapItemFactory::Create()
 {
-	return false;
+	GameMapItemCreatorSimple gameMapItemCreatorSimple;
+	return gameMapItemCreatorSimple.CreateMap();
 }
 
 bool GameMapItemFactory::CreateFromSaveGame(const QDomNode mapElements)

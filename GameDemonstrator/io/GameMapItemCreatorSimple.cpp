@@ -27,7 +27,7 @@ bool GameMapItemCreatorSimple::CreateMap()
 		tempRow.reserve(cols);
 		for( unsigned int currentCol = 0; currentCol < cols; currentCol++ )
 		{
-			tempRow.append( CreateModelMapItem(currentRow,currentCol) );
+			tempRow.append( CreateGameMapItem(currentRow,currentCol) );
 		}
 		simpleMap->append(tempRow);
 	}
@@ -37,7 +37,7 @@ bool GameMapItemCreatorSimple::CreateMap()
 	return true;
 }
 
-GameMapItem* GameMapItemCreatorSimple::CreateModelMapItem( unsigned int row, unsigned int col )
+GameMapItem* GameMapItemCreatorSimple::CreateGameMapItem( unsigned int row, unsigned int col )
 {
 	GameMapItem* modelMapItem = new GameMapItem(row,col,++MapItemId);
 	modelMapItem->SetTerrainTypeObject(ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType());

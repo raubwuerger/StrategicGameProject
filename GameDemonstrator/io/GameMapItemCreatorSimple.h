@@ -12,7 +12,7 @@ public:
 	/** */
 	virtual bool CreateMap();
 private:
-	GameMapItem* CreateModelMapItem( unsigned int row, unsigned int col );
+	GameMapItem* CreateGameMapItem( unsigned int row, unsigned int col );
 private:
 	int MapItemId;
 };

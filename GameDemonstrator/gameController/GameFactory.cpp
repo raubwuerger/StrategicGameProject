@@ -71,8 +71,14 @@ void GameFactory::InitGameTurnController()
 bool GameFactory::Create()
 {
 	GameMapItemFactory factory;
-	factory.Create();
-	GameControllerObject->InitGame();
+	if (false == factory.Create())
+	{
+		return false;
+	}
+	if (false == GameControllerObject->InitGame())
+	{
+		return false;
+	}
 	return true;
 }
 

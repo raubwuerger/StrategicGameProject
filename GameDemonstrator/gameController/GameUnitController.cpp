@@ -48,7 +48,6 @@ bool GameUnitController::InitGame()
 	{
 		return false;
 	}
-	GameConfig::Player = const_cast<GameOwnerItem*>(ownerType);
 	return true;
 }
 
