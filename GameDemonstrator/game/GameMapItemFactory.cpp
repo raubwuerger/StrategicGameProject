@@ -129,6 +129,12 @@ GameMapItem* GameMapItemFactory::CreateGameMapItem(const QDomNode& node)
 	int currentTerrainTyp = -1;
 	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::TERRAINTYPE, currentTerrainTyp);
 
+	if (false == allElementsExtracted)
+	{
+		Q_ASSERT(allElementsExtracted);
+		return nullptr;
+	}
+
 	GameMapItem *newModelMapItem = new GameMapItem(currentRow, currentCol, currentId);
 	newModelMapItem->SetTerrainTypeObject(ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp));
 	newModelMapItem->ModelTerrainTypeId = currentTerrainTyp;

@@ -187,25 +187,14 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 		return nullptr;
 	}
 
+	bool allElementsExtracted = true;
 	int id = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_ID, id))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem: %1 not found!").arg(SerializeXMLItems::CITIES_ID));
-			return nullptr;
-		}
-	}
+	DomValueExtractor domNodeListValueExtractor(node);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_ID, id);
 
 	int modelCityTypeId = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_MODELCITYTYPEID, modelCityTypeId))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem: %1 not found!").arg(SerializeXMLItems::CITIES_ID));
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_MODELCITYTYPEID, modelCityTypeId);
+
 	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
 	if (nullptr == modelCityType)
 	{
@@ -214,14 +203,8 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	}
 
 	int mapItemId = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_GAMEMAPITEMID, mapItemId))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_GAMEMAPITEMID));
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_GAMEMAPITEMID, mapItemId);
+
 	const GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapItemId);
 	if (nullptr == gameMapItem)
 	{
@@ -230,14 +213,8 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	}
 
 	int ownerTypeId = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_OWNERTYPEID, ownerTypeId))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_OWNERTYPEID));
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_OWNERTYPEID, ownerTypeId);
+
 	const ModelOwnerType* modelOwnerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
 	if (nullptr == modelOwnerType)
 	{
@@ -246,43 +223,21 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	}
 
 	QString name;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_NAME, name))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_NAME));
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_NAME, name);
 
 	int efficiency = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_EFFICIENCY, efficiency))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_EFFICIENCY));
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_EFFICIENCY, efficiency);
 
 	int spezializedUnitTypeId = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, spezializedUnitTypeId))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID));
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, spezializedUnitTypeId);
 
 	int strength = 0;
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_STRENGTH, strength);
+
+	if (false == allElementsExtracted)
 	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_STRENGTH, strength))
-		{
-			jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCityItem with id=%1: %2 not found!").arg(QString::number(id)).arg(SerializeXMLItems::CITIES_STRENGTH));
-			return nullptr;
-		}
+		Q_ASSERT(allElementsExtracted);
+		return nullptr;
 	}
 
 	GameCityParameterObject obj;
