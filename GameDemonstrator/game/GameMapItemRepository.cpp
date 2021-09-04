@@ -16,13 +16,14 @@ GameMapItemRepository* GameMapItemRepository::GetInstance()
 	return Instance;
 }
 
-void GameMapItemRepository::Init()
+bool GameMapItemRepository::Init()
 {
 	if ( nullptr != MapItems )
 	{ 
 		MapItems->clear();
 	}
 	IdToModelMapItem.clear();
+	return true;
 }
 
 void GameMapItemRepository::Release()

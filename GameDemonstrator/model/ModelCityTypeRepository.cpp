@@ -16,9 +16,10 @@ ModelCityTypeRepository* ModelCityTypeRepository::GetInstance()
 	return Instance;
 }
 
-void ModelCityTypeRepository::Init()
+bool ModelCityTypeRepository::Init()
 {
 	Types.clear();
+	return true;
 }
 
 ModelCityTypeRepository::ModelCityTypeRepository()

@@ -49,3 +49,8 @@ void ActionRepository::Release()
 	delete Instance;
 	Instance = nullptr;
 }
+
+bool ActionRepository::Init()
+{
+	return true;
+}

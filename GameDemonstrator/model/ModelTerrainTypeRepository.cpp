@@ -16,9 +16,10 @@ ModelTerrainTypeRepository* ModelTerrainTypeRepository::GetInstance()
 	return Instance;
 }
 
-void ModelTerrainTypeRepository::Init()
+bool ModelTerrainTypeRepository::Init()
 {
 	TerrainTypes.clear();
+	return true;
 }
 
 ModelTerrainTypeRepository::ModelTerrainTypeRepository()

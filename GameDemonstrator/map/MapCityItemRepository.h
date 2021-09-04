@@ -13,7 +13,7 @@ public:
 	/** */
 	static MapCityItemRepository* GetInstance();
 	/** */
-	void Init();
+	bool Init() override;
 	/** */
 	void Release() override;
 	/** */

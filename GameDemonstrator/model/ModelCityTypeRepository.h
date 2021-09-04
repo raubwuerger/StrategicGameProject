@@ -10,7 +10,7 @@ public:
 	/** */
 	static ModelCityTypeRepository* GetInstance();
 	/** */
-	void Init();
+	bool Init() override;
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
 	bool RegisterType( ModelCityType *type  );
 	/** */

@@ -17,15 +17,17 @@ GameCityItemRepository* GameCityItemRepository::GetInstance()
 	return Instance;
 }
 
-void GameCityItemRepository::Init()
+bool GameCityItemRepository::Init()
 {
 	GameCityItems.clear();
 	GameCityItemsOnGameMapItem.clear();
+	return true;
 }
 
 void GameCityItemRepository::Release()
 {
 	delete Instance;
+	Instance = nullptr;
 }
 
 bool GameCityItemRepository::RegisterItem(GameCityItem* gameCityItem)

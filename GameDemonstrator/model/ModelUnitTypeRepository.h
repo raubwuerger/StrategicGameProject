@@ -11,7 +11,7 @@ public:
 	/** */
 	static ModelUnitTypeRepository* GetInstance();
 	/** */
-	void Init();
+	bool Init() override;
 	/** */
 	void Release() override;
 	/** */

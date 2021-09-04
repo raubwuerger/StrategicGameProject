@@ -10,7 +10,7 @@ public:
 	/** */
 	static ModelTerrainTypeRepository* GetInstance();
 	/** */
-	void Init();
+	bool Init() override;
 	/** If no TerrainTypes are registered, the first will be set as DefaultTerrainType */
 	bool RegisterTerrainType( ModelTerrainType *terrainType  );
 	/** */

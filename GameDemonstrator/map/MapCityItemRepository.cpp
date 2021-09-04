@@ -21,9 +21,10 @@ MapCityItemRepository* MapCityItemRepository::GetInstance()
 	return Instance;
 }
 
-void MapCityItemRepository::Init()
+bool MapCityItemRepository::Init()
 {
 	MapCityItems.clear();
+	return true;
 }
 
 void MapCityItemRepository::Release()

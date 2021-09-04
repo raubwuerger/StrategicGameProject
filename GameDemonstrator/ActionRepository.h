@@ -17,6 +17,8 @@ public:
 	void AddAction( QAction* action );
 	/** */
 	void Release();
+	/** */
+	bool Init() override;
 private:
 	/** */
 	ActionRepository(QObject *parent);

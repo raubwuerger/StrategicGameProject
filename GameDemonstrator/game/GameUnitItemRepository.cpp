@@ -24,10 +24,11 @@ GameUnitItemRepository* GameUnitItemRepository::GetInstance()
 	return Instance;
 }
 
-void GameUnitItemRepository::Init()
+bool GameUnitItemRepository::Init()
 {
 	GameUnitItems.clear();
 	GameUnitItemsOnGameMapItem.clear();
+	return true;
 }
 
 void GameUnitItemRepository::Release()

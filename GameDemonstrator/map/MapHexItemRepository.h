@@ -11,7 +11,7 @@ public:
 	/** */
 	static MapHexItemRepository* GetInstance();
 	/** */
-	void Init();
+	bool Init() override;
 	/** */
 	QVector< QVector<MapHexItem*>>::const_iterator GetFirstIterator() const;
 	/** */

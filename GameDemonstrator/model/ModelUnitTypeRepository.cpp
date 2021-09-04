@@ -16,9 +16,10 @@ ModelUnitTypeRepository* ModelUnitTypeRepository::GetInstance()
 	return Instance;
 }
 
-void ModelUnitTypeRepository::Init()
+bool ModelUnitTypeRepository::Init()
 {
 	Repository.clear();
+	return true;
 }
 
 void ModelUnitTypeRepository::Release()

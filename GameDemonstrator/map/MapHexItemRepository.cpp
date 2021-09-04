@@ -16,10 +16,11 @@ MapHexItemRepository* MapHexItemRepository::GetInstance()
 	return Instance;
 }
 
-void MapHexItemRepository::Init()
+bool MapHexItemRepository::Init()
 {
 	MapHexItems.clear();
 	MapHexItemsById.clear();
+	return true;
 }
 
 QVector< QVector<MapHexItem*>>::const_iterator MapHexItemRepository::GetFirstIterator() const
