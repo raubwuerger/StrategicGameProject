@@ -54,23 +54,12 @@ bool GameMapItemFactory::InitializeMap(const QDomNode& settings)
 		return false;
 	}
 
-	{
-		DomValueExtractor domNodeListValueExtractor(settings);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ROWS, GameConfig::MapRows))
-		{
-			return false;
-		}
-	}
+	bool allElementsExtracted = true;
+	DomValueExtractor domNodeListValueExtractor(settings);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ROWS, GameConfig::MapRows);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::COLS, GameConfig::MapCols);
 
-	{
-		DomValueExtractor domNodeListValueExtractor(settings);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::COLS, GameConfig::MapCols))
-		{
-			return false;
-		}
-	}
-
-	return true;
+	return allElementsExtracted;
 }
 
 const ModelTerrainType* GameMapItemFactory::GetModelTerrainType(const GameMapParameterObject& obj) const
@@ -126,41 +115,19 @@ GameMapItem* GameMapItemFactory::CreateGameMapItem(const QDomNode& node)
 		return nullptr;
 	}
 
+	bool allElementsExtracted = true;
 	int currentId = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ID, currentId))
-		{
-			return nullptr;
-		}
-	}
+	DomValueExtractor domNodeListValueExtractor(node);
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ID, currentId);
 
 	int currentRow = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ROW, currentRow))
-		{
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::ROW, currentRow);
 
 	int currentCol = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::COL, currentCol))
-		{
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::COL, currentCol);
 
 	int currentTerrainTyp = -1;
-	{
-		DomValueExtractor domNodeListValueExtractor(node);
-		if (false == domNodeListValueExtractor.ExtractValue(SerializeXMLItems::TERRAINTYPE, currentTerrainTyp))
-		{
-			return nullptr;
-		}
-	}
+	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::TERRAINTYPE, currentTerrainTyp);
 
 	GameMapItem *newModelMapItem = new GameMapItem(currentRow, currentCol, currentId);
 	newModelMapItem->SetTerrainTypeObject(ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp));
