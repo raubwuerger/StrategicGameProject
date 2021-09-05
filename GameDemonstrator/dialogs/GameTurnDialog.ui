@@ -6,40 +6,75 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>190</width>
-    <height>71</height>
+    <width>260</width>
+    <height>88</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>190</width>
-    <height>0</height>
+    <width>260</width>
+    <height>88</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>260</width>
+    <height>88</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>GameTurnDialog</string>
   </property>
-  <widget class="QPlainTextEdit" name="turnInfoEdit">
+  <widget class="QLineEdit" name="lineEditOwner">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>20</y>
-     <width>171</width>
-     <height>31</height>
+     <x>130</x>
+     <y>50</y>
+     <width>113</width>
+     <height>28</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="Turn">
+  <widget class="QLabel" name="labelOwner">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
-     <width>53</width>
-     <height>16</height>
+     <x>20</x>
+     <y>52</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTurn">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>12</y>
+     <width>100</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>Turn:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditTurn">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>10</y>
+     <width>113</width>
+     <height>28</height>
+    </rect>
    </property>
   </widget>
  </widget>
