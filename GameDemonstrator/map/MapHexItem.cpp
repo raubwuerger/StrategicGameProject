@@ -106,13 +106,12 @@ void MapHexItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 	if (event->button() == Qt::LeftButton )
 	{
 		emit EventItem->SignalHexItemPressedLeftButton(GameMapItemId);
-		return;
 	}
 	if (event->button() == Qt::RightButton)
 	{
 		emit EventItem->SignalHexItemPressedRightButton(GameMapItemId);
-		return;
 	}
+	QGraphicsItem::mousePressEvent(event);
 }
 
 void MapHexItem::SetEventConnector(ConnectorMapHexItem * eventConnector)
