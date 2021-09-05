@@ -8,24 +8,30 @@
     <Players>
         <Player>
             <ID>1</ID>
+			<OwnerTypeId>1</OwnerTypeId>
+            <Name>Neutral</Name>
+            <Human>0</Human>
+        </Player>
+        <Player>
+            <ID>2</ID>
 			<OwnerTypeId>2</OwnerTypeId>
             <Name>Spieler 1</Name>
             <Human>1</Human>
         </Player>
         <Player>
-            <ID>2</ID>
+            <ID>3</ID>
 			<OwnerTypeId>3</OwnerTypeId>
             <Name>Spieler 2</Name>
             <Human>0</Human>
         </Player>
         <Player>
-            <ID>3</ID>
+            <ID>4</ID>
 			<OwnerTypeId>4</OwnerTypeId>
             <Name>Spieler 3</Name>
             <Human>0</Human>
         </Player>
         <Player>
-            <ID>4</ID>
+            <ID>5</ID>
 			<OwnerTypeId>5</OwnerTypeId>
             <Name>Spieler 4</Name>
             <Human>0</Human>
