@@ -43,6 +43,7 @@ void GameUnitController::Disconnect()
 
 bool GameUnitController::InitGame()
 {
+	Selected = nullptr;
 	GameOwnerItem* ownerType = GameConfig::Player;
 	if (nullptr == ownerType)
 	{
