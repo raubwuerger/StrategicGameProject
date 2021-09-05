@@ -4,7 +4,7 @@
 #include "Model\ModelCityType.h"
 
 GameCityItem::GameCityItem(int id)
-	: Id(id),
+	:	Id(id),
 		OwnerItem(nullptr),
 		MapItem(nullptr),
 		OwnerItemId(-1),
@@ -73,7 +73,7 @@ int GameCityItem::GetModelCityTypeId() const
 	return CityTypeId;
 }
 
-void GameCityItem::UpdateTurn()
+void GameCityItem::UpdateTurn() const
 {
 	//TODO: Increase build unit step
 	//TODO: ...
@@ -84,17 +84,17 @@ int GameCityItem::GetSpezializedUnitTypeId() const
 	return SpezializedUnitTypeId;
 }
 
-bool GameCityItem::Move()
+bool GameCityItem::Move() const
 {
 	return false; // Nothing to do
 }
 
-void GameCityItem::Attacks()
+void GameCityItem::Attacks() const
 {
 	return; // Nothing to do
 }
 
-void GameCityItem::Defends()
+void GameCityItem::Defends() const
 {
 	return; // 
 }

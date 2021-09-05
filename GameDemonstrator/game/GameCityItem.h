@@ -43,13 +43,13 @@ public:
 	/** */
 	int GetSpezializedUnitTypeId() const;
 	/** */
-	void UpdateTurn() override;
+	void UpdateTurn() const override;
 	/** */
-	bool Move() override;
+	bool Move() const override;
 	/** */
-	void Attacks() override;
+	void Attacks() const override;
 	/** */
-	void Defends() override;
+	void Defends() const override;
 	/** */
 	int GetBaseStrength() const;
 	/** */

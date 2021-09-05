@@ -1,6 +1,8 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+class GameObjectController;
+
 /** 
 *	This class is responsible for turn actions. Restore movement points, hit points, build steps (cities)
 */
@@ -9,13 +11,22 @@ class GameObject
 {
 public:
 	/** */
-	virtual void UpdateTurn() = 0;
+	GameObject();
 	/** */
-	virtual bool Move() = 0;
+	virtual void UpdateTurn() const = 0;
 	/** */
-	virtual void Attacks() = 0;
+	virtual bool Move() const = 0;
 	/** */
-	virtual void Defends() = 0;
+	virtual void Attacks() const = 0;
+	/** */
+	virtual void Defends() const = 0;
+	/** */
+	virtual void SetUID(int uid);
+	/** */
+	bool operator==(const GameObject& rhs) const;
+private:
+	friend class GameObjectController;
+	int	UID;
 };
 
 #endif // GAMEOBJECT_H

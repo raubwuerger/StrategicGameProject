@@ -39,15 +39,15 @@ public:
 	/** */
 	bool CanOccupieCity() const;
 	/** */
-	void UpdateTurn() override;
+	void UpdateTurn() const override;
 	/** */
 	bool CanMove() const;
 	/** */
-	bool Move() override;
+	bool Move() const override;
 	/** */
-	void Attacks() override;
+	void Attacks() const override;
 	/** */
-	void Defends() override;
+	void Defends() const override;
 	/** */
 	int GetCurrentStrength() const;
 	/** */

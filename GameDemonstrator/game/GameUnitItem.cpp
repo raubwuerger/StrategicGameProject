@@ -66,7 +66,7 @@ int GameUnitItem::GetGameMapItemId() const
 	return MapItemId;
 }
 
-void GameUnitItem::UpdateTurn()
+void GameUnitItem::UpdateTurn() const
 {
 	RuntimeData->CurrentMovementPoints = RuntimeData->BaseMovementPoints;
 	RuntimeData->CurrentStrength = RuntimeData->BaseStrength;
@@ -85,7 +85,7 @@ bool GameUnitItem::CanMove() const
 	return false;
 }
 
-bool GameUnitItem::Move()
+bool GameUnitItem::Move() const
 {
 	if (false == CanMove())
 	{
@@ -95,12 +95,12 @@ bool GameUnitItem::Move()
 	return true;
 }
 
-void GameUnitItem::Attacks()
+void GameUnitItem::Attacks() const
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-void GameUnitItem::Defends()
+void GameUnitItem::Defends() const
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
