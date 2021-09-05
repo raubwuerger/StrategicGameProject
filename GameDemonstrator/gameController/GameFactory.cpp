@@ -105,6 +105,7 @@ bool GameFactory::Create()
 	{
 		return false;
 	}
+	emit GameTurnControllerObject->SignalUpdateTurnDialog();
 	return true;
 }
 
@@ -115,6 +116,10 @@ bool GameFactory::CreateFromSavegame()
 	{
 		return false;
 	}
-	GameControllerObject->InitGame();
+	if (false == GameControllerObject->InitGame())
+	{
+		return false;
+	}
+	emit GameTurnControllerObject->SignalUpdateTurnDialog();
 	return true;
 }
