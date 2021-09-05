@@ -8,31 +8,31 @@
     <Players>
         <Player>
             <ID>1</ID>
-			<OwnerTypeId>1</OwnerTypeId>
+            <OwnerTypeId>1</OwnerTypeId>
             <Name>Neutral</Name>
             <Human>0</Human>
         </Player>
         <Player>
             <ID>2</ID>
-			<OwnerTypeId>2</OwnerTypeId>
+            <OwnerTypeId>2</OwnerTypeId>
             <Name>Spieler 1</Name>
             <Human>1</Human>
         </Player>
         <Player>
             <ID>3</ID>
-			<OwnerTypeId>3</OwnerTypeId>
+            <OwnerTypeId>3</OwnerTypeId>
             <Name>Spieler 2</Name>
             <Human>0</Human>
         </Player>
         <Player>
             <ID>4</ID>
-			<OwnerTypeId>4</OwnerTypeId>
+            <OwnerTypeId>4</OwnerTypeId>
             <Name>Spieler 3</Name>
             <Human>0</Human>
         </Player>
         <Player>
             <ID>5</ID>
-			<OwnerTypeId>5</OwnerTypeId>
+            <OwnerTypeId>5</OwnerTypeId>
             <Name>Spieler 4</Name>
             <Human>0</Human>
         </Player>
@@ -5231,7 +5231,7 @@
             <Name>City 1</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>2</ID>
@@ -5241,7 +5241,7 @@
             <Name>City 2</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>3</ID>
@@ -5251,7 +5251,7 @@
             <Name>City 3</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>4</ID>
@@ -5261,7 +5261,7 @@
             <Name>City 4</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>6</ID>
@@ -5271,7 +5271,7 @@
             <Name>City 6</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>7</ID>
@@ -5281,7 +5281,7 @@
             <Name>City 7</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>8</ID>
@@ -5291,7 +5291,7 @@
             <Name>City 8</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>9</ID>
@@ -5301,7 +5301,7 @@
             <Name>City 9</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>10</ID>
@@ -5311,7 +5311,7 @@
             <Name>City 10</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
         <City>
             <ID>11</ID>
@@ -5321,7 +5321,7 @@
             <Name>City 11</Name>
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
-			<Strength>10</Strength>
+            <Strength>10</Strength>
         </City>
     </Cities>
 </Savegame>
