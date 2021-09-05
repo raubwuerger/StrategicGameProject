@@ -710,6 +710,15 @@
     <ClCompile Include="game\GameOwnerItemRepository.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="gameController\GameObjectController.cpp">
+      <Filter>Source Dateien\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameObjectController.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameObjectController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1141,6 +1150,12 @@
       <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameTurnController.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameObjectController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>

@@ -66,9 +66,9 @@ QSize GameMapMoveInfo::GetCorrectOffset(int movementDirection, const MapHexItem*
 	int isEvenInt = mapHexItem->GetCol() % 2;
 	if (0 == isEvenInt)
 	{
-		return MovementTypeColumEven[movementDirection];
+		return MovementTypeColumEven.value(movementDirection);
 	}
 
-	return MovementTypeColumOdd[movementDirection];
+	return MovementTypeColumOdd.value(movementDirection);
 }
 

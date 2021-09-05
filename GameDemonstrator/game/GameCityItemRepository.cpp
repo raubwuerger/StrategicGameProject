@@ -3,8 +3,18 @@
 #include "GameCityItem.h"
 #include "LogInterface.h"
 #include "game\GameOwnerItem.h"
+#include "gameController\GameObjectController.h"
 
 GameCityItemRepository*	GameCityItemRepository::Instance = nullptr;
+
+GameCityItemRepository::GameCityItemRepository()
+	: UID(10000) //TODO: Get UID from somewhere else
+{
+}
+
+GameCityItemRepository::~GameCityItemRepository()
+{
+}
 
 GameCityItemRepository* GameCityItemRepository::GetInstance()
 {
@@ -44,6 +54,9 @@ bool GameCityItemRepository::RegisterItem(GameCityItem* gameCityItem)
 	}
 	GameCityItems.insert(gameCityItem->GetId(), gameCityItem);
 	UpdateGameCityItemsOnGameMapItem(gameCityItem);
+
+	gameCityItem->SetUID(GenerateUID(gameCityItem));
+	GameObjectController::GetInstance()->RegisterObject(gameCityItem);
 
 	return true;
 }
@@ -145,14 +158,6 @@ bool GameCityItemRepository::ChangeOwner(const GameCityItem* gameCityItem, const
 	return true;
 }
 
-GameCityItemRepository::GameCityItemRepository()
-{
-}
-
-GameCityItemRepository::~GameCityItemRepository()
-{
-}
-
 bool GameCityItemRepository::UpdateGameCityItemsOnGameMapItem(const GameCityItem* gameCityItem)
 {
 	if (true == GameCityItemsOnGameMapItem.contains(gameCityItem->GetGameMapItemId()))
@@ -162,4 +167,9 @@ bool GameCityItemRepository::UpdateGameCityItemsOnGameMapItem(const GameCityItem
 	}
 	GameCityItemsOnGameMapItem.insert(gameCityItem->GetGameMapItemId(), gameCityItem->GetId());
 	return true;
+}
+
+int GameCityItemRepository::GenerateUID(GameCityItem* item)
+{
+	return UID + item->GetId();
 }

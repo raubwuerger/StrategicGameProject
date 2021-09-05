@@ -45,11 +45,14 @@ private:
 	~GameCityItemRepository();
 	/** */
 	bool UpdateGameCityItemsOnGameMapItem(const GameCityItem* gameUnitItem);
+	/** */
+	int GenerateUID(GameCityItem* item);
 private:
 	friend class GameCityItemFactory;
 	static GameCityItemRepository*	Instance;
 	QMap<int, GameCityItem*>		GameCityItems;
 	QMap<int, int>					GameCityItemsOnGameMapItem;
+	int								UID;
 };
 
 #endif // GAMECITYITEMREPOSITORY_H

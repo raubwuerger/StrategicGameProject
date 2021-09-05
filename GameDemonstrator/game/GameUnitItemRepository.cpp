@@ -2,10 +2,13 @@
 #include "GameUnitItemRepository.h"
 #include "GameUnitItem.h"
 #include "LogInterface.h"
+#include "gameController\GameObjectController.h"
+
 
 GameUnitItemRepository*	GameUnitItemRepository::Instance = nullptr;
 
 GameUnitItemRepository::GameUnitItemRepository()
+	: UID(20000) //TODO: Get UID from somewhere else
 {
 }
 
@@ -36,7 +39,7 @@ void GameUnitItemRepository::Release()
 	delete Instance;
 }
 
-bool GameUnitItemRepository::RegisterGameUnitItem(GameUnitItem* gameUnitItem)
+bool GameUnitItemRepository::RegisterItem(GameUnitItem* gameUnitItem)
 {
 	if (nullptr == gameUnitItem)
 	{
@@ -48,8 +51,11 @@ bool GameUnitItemRepository::RegisterGameUnitItem(GameUnitItem* gameUnitItem)
 		jha::GetLog()->Log_WARNING(QObject::tr("GameUnitItem with id=%1 already exists!").arg(gameUnitItem->GetId()));
 		return false;
 	}
+	gameUnitItem->SetUID(GenerateUID(gameUnitItem));
 	GameUnitItems.insert(gameUnitItem->GetId(), gameUnitItem);
 	UpdateGameUnitItemsOnGameMapItem(gameUnitItem);
+
+	GameObjectController::GetInstance()->RegisterObject(gameUnitItem);
 
 	return true;
 }
@@ -121,16 +127,8 @@ GameUnitItem* GameUnitItemRepository::RemoveGameUnitItemByGameMapItemId(int game
 		return nullptr;
 	}
 
-	int gemeUnitItemToDelete = GameUnitItemsOnGameMapItem.take(gameMapItemId);
-	GameUnitItem* toDelete = GameUnitItems.take(gemeUnitItemToDelete);
-	if (nullptr == toDelete)
-	{
-		jha::GetLog()->Log_FATAL(QObject::tr("Requested GameUnitItemId %1 is not registered!").arg(QString::number(gemeUnitItemToDelete)));
-		return nullptr;
-	}
-
-	jha::GetLog()->Log_MESSAGE(QObject::tr("Removed GameUnit (%1) from map!").arg(toDelete->GetName()));
-	return toDelete;
+	int gemeUnitItemToDelete = GameUnitItemsOnGameMapItem[gameMapItemId];
+	return RemoveGameUnitItem(GameUnitItems[gemeUnitItemToDelete]);
 }
 
 GameUnitItem* GameUnitItemRepository::RemoveGameUnitItem(const GameUnitItem* gameUnitItem)
@@ -143,6 +141,7 @@ GameUnitItem* GameUnitItemRepository::RemoveGameUnitItem(const GameUnitItem* gam
 
 	Q_ASSERT(GameUnitItemsOnGameMapItem.contains(gameUnitItem->GetGameMapItemId()));
 	GameUnitItemsOnGameMapItem.remove(gameUnitItem->GetGameMapItemId());
+	GameObjectController::GetInstance()->UnregisterObject(gameUnitItem);
 	return GameUnitItems.take(gameUnitItem->GetId());
 }
 
@@ -165,4 +164,9 @@ bool GameUnitItemRepository::UpdateGameUnitItemsOnGameMapItem(const GameUnitItem
 	}
 	GameUnitItemsOnGameMapItem.take(oldMapId);
 	return UpdateGameUnitItemsOnGameMapItem(movedUnitItem);
+}
+
+int GameUnitItemRepository::GenerateUID(const GameUnitItem* item)
+{
+	return UID + item->GetId();
 }

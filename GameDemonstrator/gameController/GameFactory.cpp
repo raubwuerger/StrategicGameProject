@@ -9,7 +9,9 @@
 #include "GameTurnController.h"
 #include "game\GameOwnerItemFactory.h"
 #include "game\GameOwnerItemRepository.h"
-#include "gameController\GameConfig.h"
+#include "GameConfig.h"
+#include "GameObjectController.h"
+#include "dialogs\GameTurnDialog.h"
 
 GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
@@ -26,6 +28,7 @@ GameFactory::GameFactory()
 	InitGameInfoDialogController();
 	InitGameController();
 	InitGameModeController();
+	InitSignalConnections();
 }
 
 void GameFactory::InitGameController()
@@ -74,6 +77,12 @@ void GameFactory::InitGameTurnController()
 void GameFactory::SetDefaultOwnerType()
 {
 	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetDefaultOwnerType());
+}
+
+void GameFactory::InitSignalConnections()
+{
+	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject->GameTurnDialogObject, &GameTurnDialog::SlotUpdateGameTurnInfo);
+	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnObjects, GameObjectController::GetInstance(), &GameObjectController::SlotDoUpdateTurn);
 }
 
 bool GameFactory::Create()

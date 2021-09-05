@@ -67,7 +67,7 @@ GameUnitItem* GameUnitItemFactory::CreateGameUnitItem(const GameUnitParameterObj
 	newUnitItem->SetName(CreateName(unitType));
 	Q_ASSERT(newUnitItem->InitRuntimeData());
 
-	if (false == GameUnitItemRepository::GetInstance()->RegisterGameUnitItem(newUnitItem))
+	if (false == GameUnitItemRepository::GetInstance()->RegisterItem(newUnitItem))
 	{
 		delete unitType;
 		return nullptr;

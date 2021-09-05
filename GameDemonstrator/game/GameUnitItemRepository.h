@@ -15,7 +15,7 @@ public:
 	/** */
 	void Release() override;
 	/** */
-	bool RegisterGameUnitItem(GameUnitItem* gameUnitItem);
+	bool RegisterItem(GameUnitItem* gameUnitItem);
 	/** */
 	int GetCount() const;
 	/** */
@@ -43,11 +43,14 @@ private:
 	~GameUnitItemRepository();
 	/** */
 	bool UpdateGameUnitItemsOnGameMapItem(const GameUnitItem* gameUnitItem);
+	/** */
+	int GenerateUID(const GameUnitItem* item);
 private:
 	friend class GameUnitItemFactory;
 	static GameUnitItemRepository*	Instance;
 	QMap<int, GameUnitItem*>		GameUnitItems;
 	QMap<int, int>					GameUnitItemsOnGameMapItem;
+	int								UID;
 };
 
 #endif // GAMEUNITITEMREPOSITORY_H

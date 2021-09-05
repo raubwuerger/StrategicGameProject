@@ -30,6 +30,8 @@ private:
 	void InitGameTurnController();
 	/** */
 	void SetDefaultOwnerType();
+	/** */
+	void InitSignalConnections();
 private:
 	friend class GameDemonstrator;
 	static GameUnitController*	GameControllerObject;

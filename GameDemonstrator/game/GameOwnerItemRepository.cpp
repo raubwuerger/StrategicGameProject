@@ -61,7 +61,7 @@ const GameOwnerItem* GameOwnerItemRepository::GetItemById(int id) const
 	{
 		return nullptr;
 	}
-	return GameOwnerItems[id];
+	return GameOwnerItems.value(id);
 }
 
 QMap<int, GameOwnerItem*>::const_iterator GameOwnerItemRepository::GetFirstIterator() const
@@ -103,5 +103,5 @@ int GameOwnerItemRepository::GetItemCount() const
 
 const GameOwnerItem* GameOwnerItemRepository::GetDefaultOwnerType() const
 {
-	return GameOwnerItems[DefaultGameOwnerTypeId];
+	return GameOwnerItems.value(DefaultGameOwnerTypeId);
 }
