@@ -17,10 +17,6 @@ public:
 	bool CanUnitMoveToDestination(int sourceGameUnitItemId, const MapHexItem* destination ) const;
 private:
 	/** */
-	const ModelTerrainType* GetModelTerrainType(const MapUnitItem* mapUnitItem) const;
-	/** */
-	const GameUnitItem* GetGameUnitItem(const MapUnitItem* mapUnitItem) const;
-	/** */
 	bool IsOwnUnitOnDestinationMapTile(int gameMapItemId) const;
 	/** */
 	bool IsEnemyOnDestinationMapTile(int gameMapItemId) const;
@@ -28,8 +24,6 @@ private:
 	bool IsEnemyCityOnDestinationMapTile(int gameMapItemId) const;
 	/** */
 	const GameUnitItem* GetEnemyGameUnit(int gameMapItemId) const;
-	/** */
-	bool IsStackLimitSufficient(int gameMapItemId) const;
 	/** */
 	const GameOwnerItem* GetCurrentMapTileOwner();
 	/** */

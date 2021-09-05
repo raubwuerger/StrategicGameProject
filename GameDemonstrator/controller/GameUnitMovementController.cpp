@@ -1,22 +1,22 @@
 #include "stdafx.h"
+#include "model/ModelTerrainType.h"
+#include "model/ModelUnitType.h"
 #include "GameUnitMovementController.h"
-#include "map/MapHexItemRepository.h"
-#include "map/MapUnitItem.h"
-#include "map/MapHexItem.h"
 #include "game/GameMapItemRepository.h"
 #include "game/GameMapItem.h"
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItem.h"
-#include "model/ModelTerrainType.h"
-#include "model/ModelUnitType.h"
 #include "game/GameUnitItemRepository.h"
-#include "controller/TerrainAccessTester.h"
-#include "LogInterface.h"
-#include "controller/GameUnitAttackController.h"
-#include "map/MapUnitItemRepository.h"
 #include "game/GameCityItemRepository.h"
 #include "game/GameCityItem.h"
+#include "map/MapHexItemRepository.h"
+#include "map/MapUnitItem.h"
+#include "map/MapHexItem.h"
+#include "map/MapUnitItemRepository.h"
 #include "map/MapCityItemRepository.h"
+#include "controller/TerrainAccessTester.h"
+#include "controller/GameUnitAttackController.h"
+#include "LogInterface.h"
 
 GameUnitMovementController::GameUnitMovementController(const GameUnitItem *activeGameUnitItem)
 	: ActiveGameUnitItem(activeGameUnitItem),
@@ -96,46 +96,6 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 	return true;
 }
 
-const ModelTerrainType* GameUnitMovementController::GetModelTerrainType(const MapUnitItem* mapUnitItem) const
-{
-	const MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
-	if (nullptr == sourceMapHexItem)
-	{
-		return false;
-	}
-
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(sourceMapHexItem->GetGameMapItemId());
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
-
-	return gameMapItem->GetTerrainType();
-}
-
-const GameUnitItem* GameUnitMovementController::GetGameUnitItem(const MapUnitItem* mapUnitItem) const
-{
-	const MapHexItem* sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
-	if (nullptr == sourceMapHexItem)
-	{
-		return false;
-	}
-
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(sourceMapHexItem->GetGameMapItemId());
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
-
-	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
-
-	return GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
-}
-
 bool GameUnitMovementController::IsOwnUnitOnDestinationMapTile(int gameMapItemId) const
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
@@ -171,18 +131,6 @@ bool GameUnitMovementController::IsEnemyCityOnDestinationMapTile(int gameMapItem
 const GameUnitItem* GameUnitMovementController::GetEnemyGameUnit(int gameMapItemId) const
 {
 	return GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
-}
-
-bool GameUnitMovementController::IsStackLimitSufficient(int gameMapItemId) const
-{
-	int countGameUnitItems = GameUnitItemRepository::GetInstance()->IsGameUnitItemOnGameMapItem(gameMapItemId);
-	const int MAX_STACK_SIZE = 1;
-	bool isStackLimitSufficient = countGameUnitItems < MAX_STACK_SIZE;
-	if (false == isStackLimitSufficient )
-	{
-		jha::GetLog()->Log_DEBUG(QObject::tr("Stack limit exceeded on game map item id %1").arg(QString::number(gameMapItemId)));
-	}
-	return isStackLimitSufficient;
 }
 
 const GameOwnerItem* GameUnitMovementController::GetCurrentMapTileOwner()
