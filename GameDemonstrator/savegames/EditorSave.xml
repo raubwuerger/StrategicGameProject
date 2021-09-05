@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Savegame>
-    <Game>
-        <Version>0.9</Version>
-        <Playercount>2</Playercount>
-        <Gameturn>1900-01</Gameturn>
-    </Game>
+    <GameData>
+        <VersionMajor>0</VersionMajor>
+        <VersionMinor>9</VersionMinor>
+        <VersionRevision>0</VersionRevision>
+		<PlayerId>2</PlayerId>
+        <PlayerCount>5</PlayerCount>
+        <Gameturn>5</Gameturn>
+		<DifficultyLevel>1</DifficultyLevel>
+    </GameData>
     <Players>
         <Player>
             <ID>1</ID>

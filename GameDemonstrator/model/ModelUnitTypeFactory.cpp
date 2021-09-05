@@ -133,7 +133,6 @@ bool ModelUnitTypeFactory::ParseTerrainTypes(const QDomNode& domNode, QVector<in
 	return !terrainTypes.isEmpty();
 }
 
-#include "DomNodeListValueExtractor.h"
 bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& domNode, QVector<int>& attackValues)
 {
 	if (true == domNode.isNull())
