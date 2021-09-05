@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameTurnDialog.h"
+#include "gameController/GameConfig.h"
 
 GameTurnDialog::GameTurnDialog(QWidget *parent)
 	: QWidget(parent)
@@ -12,7 +13,7 @@ GameTurnDialog::~GameTurnDialog()
 
 }
 
-void GameTurnDialog::SlotUpdateGameTurnInfo(QDate date)
+void GameTurnDialog::SlotUpdateGameTurnInfo()
 {
-	ui.turnInfoEdit->setPlainText( date.toString("MMMM, yyyy") );
+	ui.turnInfoEdit->setPlainText(QString::number(GameConfig::CurrentTurn));
 }

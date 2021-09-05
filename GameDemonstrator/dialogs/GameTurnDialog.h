@@ -15,7 +15,8 @@ public:
 	/** */
 	~GameTurnDialog();
 public slots:
-	void SlotUpdateGameTurnInfo( QDate date );
+	/** */
+	void SlotUpdateGameTurnInfo();
 private:
 	Ui::GameTurnDialog ui;
 };

@@ -14,6 +14,8 @@ public slots:
 signals:
 	/** */
 	void SignalUpdateTurnDialog();
+	/** */
+	void SignalUpdateTurnObjects();
 };
 
 #endif // GAMETURNCONTROLLER_H
