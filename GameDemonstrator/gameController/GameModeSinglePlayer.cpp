@@ -9,7 +9,7 @@
 #include "dialogs/CreateNewGameDialog.h"
 #include "ActionRepository.h"
 #include "GameFactory.h"
-#include "GameConfig.h"
+#include "game\GameConfig.h"
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"

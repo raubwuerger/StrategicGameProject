@@ -23,7 +23,7 @@
 #include "DomNodeFinder.h"
 #include "io/ConfigFileLoader.h"
 #include "DomNodeListFinder.h"
-#include "gameController/GameConfig.h"
+#include "game/GameConfig.h"
 #include "game/GameDataFactory.h"
 
 

@@ -9,8 +9,8 @@
 #include "GameTurnController.h"
 #include "game\GameOwnerItemFactory.h"
 #include "game\GameOwnerItemRepository.h"
-#include "game/GameUnitItemFactory.h"
-#include "GameConfig.h"
+#include "game\GameUnitItemFactory.h"
+#include "game\GameConfig.h"
 #include "GameObjectController.h"
 #include "dialogs\GameTurnDialog.h"
 

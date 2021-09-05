@@ -4,7 +4,7 @@
 #include "map/MapUnitItemRepository.h"
 #include "map/MapUnitItem.h"
 #include "connectors/ConnectorMapUnitItem.h"
-#include "gameconfig.h"
+#include "game\gameconfig.h"
 #include "model/ModelOwnerTypeRepository.h"
 #include "game/GameOwnerItem.h"
 #include "game/GameUnitItemRepository.h"

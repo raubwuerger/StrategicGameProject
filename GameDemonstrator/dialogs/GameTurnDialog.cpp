@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameTurnDialog.h"
-#include "gameController/GameConfig.h"
+#include "game/GameConfig.h"
 #include "game/GameOwnerItem.h"
 
 GameTurnDialog::GameTurnDialog(QWidget *parent)

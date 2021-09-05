@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ConnectorLoadGame.h"
 #include "GameDemonstrator.h"
-#include "gameController/GameConfig.h"
+#include "game/GameConfig.h"
 #include "gameController/GameFactory.h"
 #include "map/MapHexItemFactory.h"
 #include "map/MapUnitItemFactory.h"

@@ -7,7 +7,7 @@
 #include "DomNodeFinder.h"
 #include "DomValueExtractor.h"
 #include "io\SerializeXMLItems.h"
-#include "gameController\GameConfig.h"
+#include "game\GameConfig.h"
 #include "LogInterface.h"
 #include "io\GameMapItemCreatorSimple.h"
 

@@ -6,7 +6,7 @@
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "model/ModelTerrainType.h"
-#include "gameController/GameConfig.h"
+#include "game/GameConfig.h"
 
 GameMapItemCreatorSimple::GameMapItemCreatorSimple()
 	: MapItemId(0)

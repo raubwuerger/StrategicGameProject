@@ -15,7 +15,7 @@
 #include "map\MapView.h"
 #include "connectors\ConnectorMapUnitItem.h"
 #include "connectors\ConnectorMapCityItem.h"
-#include "gameController\GameConfig.h"
+#include "game\GameConfig.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),

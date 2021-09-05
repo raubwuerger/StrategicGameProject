@@ -2,7 +2,7 @@
 #include "SerializerGame.h"
 #include "SerializeXML.h"
 #include "gameController\GameMainCounter.h"
-#include "gameController\GameConfig.h"
+#include "game\GameConfig.h"
 #include "model\ModelProgramFactory.h"
 #include "model\ModelProgramSettings.h"
 

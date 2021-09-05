@@ -602,9 +602,6 @@
     <ClCompile Include="gameController\GameModeSinglePlayer.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
-    <ClCompile Include="gameController\GameConfig.cpp">
-      <Filter>Source Dateien\GameController</Filter>
-    </ClCompile>
     <ClCompile Include="gameController\GameFactory.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
@@ -724,6 +721,9 @@
     </ClCompile>
     <ClCompile Include="..\StandardLibQt\DomNodeListPrinter.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameConfig.cpp">
+      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -967,9 +967,6 @@
     <ClInclude Include="gameController\GameModeSinglePlayer.h">
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
-    <ClInclude Include="gameController\GameConfig.h">
-      <Filter>Header Dateien\GameController</Filter>
-    </ClInclude>
     <ClInclude Include="gameController\GameFactory.h">
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
@@ -1005,6 +1002,9 @@
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\DomNodeListPrinter.h">
       <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameConfig.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1169,6 +1169,9 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameObjectController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien</Filter>

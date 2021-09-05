@@ -2,11 +2,10 @@
 #include "GameDataFactory.h"
 #include <QtXml>
 #include "LogInterface.h"
-#include "gameController/GameConfig.h"
+#include "game/GameConfig.h"
 #include "DomValueExtractor.h"
 #include "io\SerializeXMLItems.h"
 #include "GameOwnerItemRepository.h"
-#include "gameController/GameConfig.h"
 #include "DomNodeListValueExtractor.h"
 
 

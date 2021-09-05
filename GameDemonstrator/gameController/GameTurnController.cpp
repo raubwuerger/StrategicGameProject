@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameTurnController.h"
-#include "GameConfig.h"
+#include "game\GameConfig.h"
 
 GameTurnController::GameTurnController()
 {

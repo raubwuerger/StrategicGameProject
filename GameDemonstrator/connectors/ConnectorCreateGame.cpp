@@ -6,7 +6,7 @@
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"
 #include "dialogs\CreateNewGameDialog.h"
-#include "gameController\GameConfig.h"
+#include "game\GameConfig.h"
 
 ConnectorCreateGame::ConnectorCreateGame()
 	: MapViewObject(nullptr)
