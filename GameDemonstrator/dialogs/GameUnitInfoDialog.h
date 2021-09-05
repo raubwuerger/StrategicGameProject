@@ -19,11 +19,18 @@ public:
 	/** */
 	void SetMovement(const QString& movement) { ui.lineEditTypeMovement->setText(movement); }
 	/** */
+	void SetMovementColor(const QColor& color);
+	/** */
 	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	/** */
+	void SetStrengthColor(const QColor& color);
 	/** */
 	void SetOwner(const QString& owner) { ui.lineEditOwner->setText(owner); }
 	/** */
-	void SetOwnerColor(QColor ownerColor);
+	void SetOwnerColor(const QColor& color);
+private:
+	/** */
+	QColor GetAdjustedTextColor(const QColor& color);
 private:
 	Ui::GameUnitInfoDialog ui;
 };

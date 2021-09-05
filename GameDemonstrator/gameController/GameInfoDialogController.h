@@ -39,7 +39,11 @@ private:
 	/** */
 	QString CreateUnitMovementPoints(const GameUnitItem* gameUnit) const;
 	/** */
+	QColor CreateMovementColor(const GameUnitItem* gameUnit) const;
+	/** */
 	QString CreateUnitStrength(const GameUnitItem* gameUnit) const;
+	/** */
+	QColor CreateStrengthColor(const GameUnitItem* gameUnit) const;
 	/** */
 	QString CreateCityEfficiency(const GameCityItem* gameCity) const;
 	/** */
@@ -54,6 +58,9 @@ private:
 	GameTurnDialog*			GameTurnDialogObject;
 	GameUnitInfoDialog*		GameUnitInfoDialogObject;
 	GameCityInfoDialog*		GameCityInfoDialogObject;
+	QColor					LightRed;
+	QColor					LightYellow;
+	QColor					LightGreen;
 };
 
 #endif // GAMEINFODIALOGCONTROLLER_H

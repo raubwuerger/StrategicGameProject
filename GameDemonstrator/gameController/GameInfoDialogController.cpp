@@ -24,7 +24,9 @@ GameInfoDialogController::GameInfoDialogController()
 	GameCityInfoDialogObject(nullptr),
 	GameDemonstratorObject(nullptr)
 {
-
+	LightRed = QColor(255, 51, 51);
+	LightYellow = QColor(255, 255, 224);
+	LightGreen = QColor(144, 238, 144);
 }
 
 void GameInfoDialogController::Init()
@@ -70,7 +72,9 @@ void GameInfoDialogController::SlotShowGameUnitInfo(int gameUnitId)
 	GameUnitInfoDialogObject->SetName(gameUnit->GetName());
 	GameUnitInfoDialogObject->SetType(gameUnit->GetModelUnitType()->GetName());
 	GameUnitInfoDialogObject->SetMovement(CreateUnitMovementPoints(gameUnit));
+	GameUnitInfoDialogObject->SetMovementColor(CreateMovementColor(gameUnit));
 	GameUnitInfoDialogObject->SetStrength(CreateUnitStrength(gameUnit));
+	GameUnitInfoDialogObject->SetStrengthColor(CreateStrengthColor(gameUnit));
 	GameUnitInfoDialogObject->SetOwner(gameUnit->GetGameOwnerItem()->GetName());
 	GameUnitInfoDialogObject->SetOwnerColor(gameUnit->GetGameOwnerItem()->GetColor());
 }
@@ -146,6 +150,19 @@ QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* g
 	return movementPoints;
 }
 
+QColor GameInfoDialogController::CreateMovementColor(const GameUnitItem* gameUnit) const
+{
+	if (0 == gameUnit->GetCurrentMovementPoints())
+	{
+		return LightRed;
+	}
+	if (gameUnit->GetCurrentMovementPoints() == gameUnit->GetBaseMovementPoints())
+	{
+		return LightGreen;
+	}
+	return LightYellow;
+}
+
 QString GameInfoDialogController::CreateUnitStrength(const GameUnitItem* gameUnit) const
 {
 	QString currentStrength;
@@ -153,6 +170,24 @@ QString GameInfoDialogController::CreateUnitStrength(const GameUnitItem* gameUni
 	currentStrength += " / ";
 	currentStrength += QString::number(gameUnit->GetBaseStrength());
 	return currentStrength;
+}
+
+QColor GameInfoDialogController::CreateStrengthColor(const GameUnitItem* gameUnit) const
+{
+	if (0 == gameUnit->GetCurrentStrength() )
+	{
+		return LightRed;
+	}
+	double strengthFactor = static_cast<double>(gameUnit->GetCurrentStrength()) / static_cast<double>(gameUnit->GetBaseStrength());
+	if (strengthFactor >= 0.8)
+	{
+		return LightGreen;
+	}
+	if (strengthFactor <= 0.2)
+	{
+		return LightRed;
+	}
+	return LightYellow;
 }
 
 QString GameInfoDialogController::CreateCityEfficiency(const GameCityItem* gameCity) const
@@ -187,3 +222,4 @@ QString GameInfoDialogController::GetSpecializedUnitName(const GameCityItem* gam
 	}
 	return specialized->GetName();
 }
+

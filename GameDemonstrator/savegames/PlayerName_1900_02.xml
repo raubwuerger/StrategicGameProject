@@ -5024,7 +5024,7 @@
             <GameMapItemID>141</GameMapItemID>
             <Name>1. Infantery</Name>
             <OwnerTypeId>2</OwnerTypeId>
-            <CurrentStrength>10</CurrentStrength>
+            <CurrentStrength>9</CurrentStrength>
             <CurrentMovementPoints>0</CurrentMovementPoints>
         </Unit>
         <Unit>
@@ -5051,7 +5051,7 @@
             <GameMapItemID>48</GameMapItemID>
             <Name>1. Fighter</Name>
             <OwnerTypeId>2</OwnerTypeId>
-            <CurrentStrength>5</CurrentStrength>
+            <CurrentStrength>4</CurrentStrength>
             <CurrentMovementPoints>5</CurrentMovementPoints>
         </Unit>
         <Unit>
@@ -5060,7 +5060,7 @@
             <GameMapItemID>94</GameMapItemID>
             <Name>1. Bomber</Name>
             <OwnerTypeId>2</OwnerTypeId>
-            <CurrentStrength>10</CurrentStrength>
+            <CurrentStrength>1</CurrentStrength>
             <CurrentMovementPoints>4</CurrentMovementPoints>
         </Unit>
         <Unit>
@@ -5069,7 +5069,7 @@
             <GameMapItemID>186</GameMapItemID>
             <Name>1. Destroyer</Name>
             <OwnerTypeId>2</OwnerTypeId>
-            <CurrentStrength>5</CurrentStrength>
+            <CurrentStrength>1</CurrentStrength>
             <CurrentMovementPoints>4</CurrentMovementPoints>
         </Unit>
         <Unit>
@@ -5087,7 +5087,7 @@
             <GameMapItemID>232</GameMapItemID>
             <Name>1. Battleship</Name>
             <OwnerTypeId>2</OwnerTypeId>
-            <CurrentStrength>12</CurrentStrength>
+            <CurrentStrength>7</CurrentStrength>
             <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
@@ -5096,7 +5096,7 @@
             <GameMapItemID>93</GameMapItemID>
             <Name>1. AircraftCarrier</Name>
             <OwnerTypeId>2</OwnerTypeId>
-            <CurrentStrength>8</CurrentStrength>
+            <CurrentStrength>2</CurrentStrength>
             <CurrentMovementPoints>3</CurrentMovementPoints>
         </Unit>
         <Unit>
