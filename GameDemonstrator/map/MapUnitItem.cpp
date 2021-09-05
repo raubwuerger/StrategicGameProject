@@ -32,12 +32,17 @@ QRectF MapUnitItem::boundingRect() const
 
 void MapUnitItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 {
+	EmitSignalUnitItemEntered();
+	QGraphicsPolygonItem::hoverEnterEvent(event);
+	event->ignore();
+}
+
+void MapUnitItem::EmitSignalUnitItemEntered()
+{
 	if (EventConnector != nullptr)
 	{
 		emit EventConnector->SignalUnitItemEntered(GameUnitId);
 	}
-	QGraphicsPolygonItem::hoverEnterEvent(event);
-	event->ignore();
 }
 
 void MapUnitItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)

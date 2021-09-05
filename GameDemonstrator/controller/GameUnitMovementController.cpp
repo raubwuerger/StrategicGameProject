@@ -54,6 +54,7 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 			enemyUnit = GameUnitItemRepository::GetInstance()->RemoveGameUnitItem(enemyUnit);
 			Q_ASSERT(enemyUnit);
 			playerUnit->Move();
+			EmitMapUnitItemMoved(playerUnit);
 			delete MapUnitItemRepository::GetInstance()->Remove(enemyUnit->GetId());
 			if (true == IsEnemyCityOnDestinationMapTile(destination->GetGameMapItemId()) && true == GameUnitAttackController::IsCityOccupiable(playerUnit))
 			{
@@ -65,6 +66,7 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 		{
 			playerUnit = GameUnitItemRepository::GetInstance()->RemoveGameUnitItem(playerUnit);
 			playerUnit->Move();
+			EmitMapUnitItemMoved(playerUnit);
 			delete MapUnitItemRepository::GetInstance()->Remove(playerUnit->GetId());
 			return false;
 		}
@@ -82,17 +84,20 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 			GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetGameOwnerItem());
 			MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);
 			playerUnit->Move();
+			EmitMapUnitItemMoved(playerUnit);
 			return true;
 		}
 		else
 		{
 			playerUnit->Move();
+			EmitMapUnitItemMoved(playerUnit);
 			playerUnit = GameUnitItemRepository::GetInstance()->RemoveGameUnitItem(playerUnit);
 			delete MapUnitItemRepository::GetInstance()->Remove(playerUnit->GetId());
 			return false;
 		}
 	}
 
+	EmitMapUnitItemMoved(playerUnit);
 	return true;
 }
 
@@ -162,5 +167,16 @@ bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, co
 	}
 
 	return MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);
+}
+
+bool GameUnitMovementController::EmitMapUnitItemMoved(const GameUnitItem* gameUnitItem) const
+{
+	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetMapUnitItem(gameUnitItem->GetId());
+	if (nullptr == mapUnitItem)
+	{
+		return false;
+	}
+	mapUnitItem->EmitSignalUnitItemEntered();
+	return true;
 }
 

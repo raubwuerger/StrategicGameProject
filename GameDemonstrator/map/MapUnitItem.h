@@ -43,6 +43,8 @@ public:
 	void ShowSelected();
 	/** */
 	void ShowOriginal();
+	/** */
+	void EmitSignalUnitItemEntered();
 private:
 	/** */
 	void CreatRect();

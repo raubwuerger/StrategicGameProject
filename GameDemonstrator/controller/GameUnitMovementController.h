@@ -28,6 +28,8 @@ private:
 	const GameOwnerItem* GetCurrentMapTileOwner();
 	/** */
 	bool AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const;
+	/** */
+	bool EmitMapUnitItemMoved(const GameUnitItem* gameUnitItem) const;
 private:
 	const GameUnitItem*		ActiveGameUnitItem;
 	const GameOwnerItem*	CurrentMapTileOwner;
