@@ -27,6 +27,8 @@ public slots:
 	void SlotShowGameUnitInfo(int gameUnitId);
 	/** */
 	void SlotShowGameCityInfo(int gameCityId);
+	/** */
+	void SlotShowTurnInfoDialog();
 private:
 	/** */
 	void CreateGameTurnInfoDialog();

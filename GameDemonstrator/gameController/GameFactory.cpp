@@ -81,7 +81,7 @@ void GameFactory::SetDefaultOwnerType()
 
 void GameFactory::InitSignalConnections()
 {
-	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject->GameTurnDialogObject, &GameTurnDialog::SlotUpdateGameTurnInfo);
+	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject, &GameInfoDialogController::SlotShowTurnInfoDialog);
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnObjects, GameObjectController::GetInstance(), &GameObjectController::SlotDoUpdateTurn);
 }
 

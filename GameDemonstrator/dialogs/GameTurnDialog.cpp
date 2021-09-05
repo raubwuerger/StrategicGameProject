@@ -14,25 +14,30 @@ GameTurnDialog::~GameTurnDialog()
 
 }
 
-void GameTurnDialog::SlotUpdateGameTurnInfo()
+void GameTurnDialog::SetGameTurn(const QString& gameTurn)
 {
-	ui.lineEditTurn->setText(QString::number(GameConfig::CurrentTurn));
-	
-	QString ownerName("");
-	QColor ownerColor(Qt::white);
-	GameOwnerItem* gameOwnerItem = GameConfig::Player;
-	if (nullptr != gameOwnerItem)
-	{
-		ownerName = gameOwnerItem->GetName();
-		ownerColor = gameOwnerItem->GetColor();
-	}
-	ui.lineEditOwner->setText(ownerName);
+	ui.lineEditTurn->setText(gameTurn);
+}
 
+void GameTurnDialog::SetPlayerName(const QString& playerName)
+{
+	ui.lineEditOwner->setText(playerName);
+}
+
+void GameTurnDialog::SetPlayerColor(QColor color)
+{
 	QPalette palette;
-	palette.setColor(QPalette::Base, ownerColor);
-	if (ownerColor == Qt::blue || ownerColor == Qt::green || ownerColor == Qt::darkGreen)
+	palette.setColor(QPalette::Base, color);
+	if (color == Qt::blue || color == Qt::green || color == Qt::darkGreen)
 	{
 		palette.setColor(QPalette::Text, Qt::white);
 	}
+	ui.lineEditOwner->setPalette(palette);
+}
+
+void GameTurnDialog::SetPlayerTextColor(QColor color)
+{
+	QPalette palette;
+	palette.setColor(QPalette::Text, color);
 	ui.lineEditOwner->setPalette(palette);
 }

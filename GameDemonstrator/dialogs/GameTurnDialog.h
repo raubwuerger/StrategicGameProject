@@ -14,9 +14,15 @@ public:
 	GameTurnDialog(QWidget *parent = 0);
 	/** */
 	~GameTurnDialog();
-public slots:
 	/** */
-	void SlotUpdateGameTurnInfo();
+	void SetGameTurn(const QString& gameTurn);
+	/** */
+	void SetPlayerName(const QString& playerName);
+	/** */
+	void SetPlayerColor(QColor color);
+private:
+	/** */
+	void SetPlayerTextColor(QColor color);
 private:
 	Ui::GameTurnDialog ui;
 };

@@ -10,12 +10,12 @@
 #include "game\GameCityItemRepository.h"
 #include "game\GameOwnerItem.h"
 #include "model\ModelUnitType.h"
-//#include "model\ModelOwnerType.h"
 #include "model\ModelUnitTypeRepository.h"
 #include "model\ModelUnitType.h"
 #include "map\MapView.h"
 #include "connectors\ConnectorMapUnitItem.h"
 #include "connectors\ConnectorMapCityItem.h"
+#include "gameController\GameConfig.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),
@@ -91,6 +91,13 @@ void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 	GameCityInfoDialogObject->SetEfficiency( CreateCityEfficiency(gameCity));
 	GameCityInfoDialogObject->SetSpecialization(GetSpecializedUnitName(gameCity));
 	GameCityInfoDialogObject->SetStrength(CreateCityStrength(gameCity));
+}
+
+void GameInfoDialogController::SlotShowTurnInfoDialog()
+{
+	GameTurnDialogObject->SetGameTurn(QString::number(GameConfig::CurrentTurn));
+	GameTurnDialogObject->SetPlayerName(GameConfig::Player->GetName());
+	GameTurnDialogObject->SetPlayerColor(GameConfig::Player->GetColor());
 }
 
 void GameInfoDialogController::CreateGameTurnInfoDialog()
