@@ -22,6 +22,11 @@ GameUnitItemFactory::~GameUnitItemFactory()
 {
 }
 
+bool GameUnitItemFactory::Init()
+{
+	return GameUnitItemRepository::GetInstance()->Init();
+}
+
 GameUnitItem* GameUnitItemFactory::CreateGameUnitItem(const GameUnitParameterObject obj)
 {
 	if (false == Validate(obj))

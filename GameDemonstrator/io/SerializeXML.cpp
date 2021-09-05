@@ -24,6 +24,7 @@
 #include "io/ConfigFileLoader.h"
 #include "DomNodeListFinder.h"
 #include "gameController/GameConfig.h"
+#include "game/GameDataFactory.h"
 
 
 //==============================================================================
@@ -107,10 +108,14 @@ bool SerializeXML::SaveGame( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::GAME );
-		xmlWriter.writeTextElement( SerializeXMLItems::GAME_VERSION, "0.9" );
-		xmlWriter.writeTextElement( SerializeXMLItems::GAME_PLAYERCOUNT, "2");
-		xmlWriter.writeTextElement( SerializeXMLItems::GAME_GAMETURN, GameMainCounter::GetInstance()->GetCurrentDate().toString("yyyy-MM"));
-	xmlWriter.writeEndElement();
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_VERSION_MAJOR, QString::number(GameConfig::VersionMajor) );
+		xmlWriter.writeTextElement(SerializeXMLItems::GAME_VERSION_MINOR, QString::number(GameConfig::VersionMinor));
+		xmlWriter.writeTextElement(SerializeXMLItems::GAME_VERSION_REVISION, QString::number(GameConfig::VersionRevision));
+		xmlWriter.writeTextElement(SerializeXMLItems::GAME_PLAYER, QString::number(GameConfig::PlayerId));
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_PLAYERCOUNT, QString::number(GameConfig::PlayerCount));
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_GAMETURN, QString::number(GameConfig::CurrentTurn));
+		xmlWriter.writeTextElement( SerializeXMLItems::GAME_DIFFICULTYLEVEL, QString::number(GameConfig::DifficultyLevel));
+		xmlWriter.writeEndElement();
 	return true;
 }
 
@@ -295,7 +300,7 @@ bool SerializeXML::LoadGame( const QString& saveGameName )
 		return false;
 	}
 
-	return true;
+	return UpdateGameConfig();
 }
 
 //==============================================================================
@@ -332,8 +337,9 @@ bool SerializeXML::LoadGameData( const QDomNode& domNode )
 	{
 		return false;
 	}
-	QString domNodeName = domNode.nodeName();
-	return true;
+
+	GameDataFactory factory;
+	return factory.CreateGameDataFromSaveGame(domNode);
 }
 
 //==============================================================================
@@ -343,6 +349,7 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 	{
 		return false;
 	}
+
 	GameOwnerItemFactory factory;
 	bool successful = factory.CreateItemsFromSaveGame(domNode);
 	if (false == successful)
@@ -391,4 +398,11 @@ bool SerializeXML::LoadCityData(const QDomNode& domNode)
 	}
 	GameCityItemFactory factory;
 	return factory.Create(domNode);
+}
+
+//==============================================================================
+bool SerializeXML::UpdateGameConfig()
+{
+	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetItemById(GameConfig::PlayerId));
+	return GameConfig::Player != nullptr;
 }

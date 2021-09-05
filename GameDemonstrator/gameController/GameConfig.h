@@ -7,11 +7,15 @@ class GameConfig
 {
 public:
 	static QString			CurrentSaveGameName;
+	static int				VersionMajor;
+	static int				VersionMinor;
+	static int				VersionRevision;
+	static int				PlayerId;
+	static int				PlayerCount;
 	static int				CurrentTurn;
-	static QString			DifficultyLevel;
-	static QString			PlayerCount;
-	static QString			MapType;
 	static GameOwnerItem*	Player;
+	static int				DifficultyLevel;
+	static QString			MapType;
 	static int				MapRows;
 	static int				MapCols;
 };

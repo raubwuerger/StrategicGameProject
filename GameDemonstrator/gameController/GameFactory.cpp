@@ -9,6 +9,7 @@
 #include "GameTurnController.h"
 #include "game\GameOwnerItemFactory.h"
 #include "game\GameOwnerItemRepository.h"
+#include "game/GameUnitItemFactory.h"
 #include "GameConfig.h"
 #include "GameObjectController.h"
 #include "dialogs\GameTurnDialog.h"
@@ -74,9 +75,10 @@ void GameFactory::InitGameTurnController()
 	GameTurnControllerObject = new GameTurnController();
 }
 
-void GameFactory::SetDefaultOwnerType()
+void GameFactory::SetDefaultGameValues()
 {
 	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetDefaultOwnerType());
+	GameConfig::CurrentTurn = 1;
 }
 
 void GameFactory::InitSignalConnections()
@@ -99,7 +101,13 @@ bool GameFactory::Create()
 		return false;
 	}
 
-	SetDefaultOwnerType();
+	GameUnitItemFactory unitFactory;
+	if (false == unitFactory.Init())
+	{
+		return false;
+	}
+
+	SetDefaultGameValues();
 
 	if (false == GameControllerObject->InitGame())
 	{

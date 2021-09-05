@@ -7,9 +7,13 @@ public:
 	static const QString SAVEGAME;
 
 	static const QString GAME;
-	static const QString GAME_VERSION;
+	static const QString GAME_VERSION_MAJOR;
+	static const QString GAME_VERSION_MINOR;
+	static const QString GAME_VERSION_REVISION;
+	static const QString GAME_PLAYER;
 	static const QString GAME_PLAYERCOUNT;
 	static const QString GAME_GAMETURN;
+	static const QString GAME_DIFFICULTYLEVEL;
 
 	static const QString PLAYERS;
 	static const QString PLAYERS_PLAYER;

@@ -719,6 +719,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameObjectController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameDataFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\DomNodeListPrinter.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -994,6 +1000,12 @@
     <ClInclude Include="game\GameOwnerItemRepository.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
+    <ClInclude Include="game\GameDataFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\DomNodeListPrinter.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1157,6 +1169,9 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameObjectController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

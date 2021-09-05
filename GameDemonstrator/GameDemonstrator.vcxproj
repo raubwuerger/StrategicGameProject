@@ -154,6 +154,7 @@
     <ClCompile Include="..\StandardLibQt\DomElementFinder.cpp" />
     <ClCompile Include="..\StandardLibQt\DomNodeFinder.cpp" />
     <ClCompile Include="..\StandardLibQt\DomNodeListFinder.cpp" />
+    <ClCompile Include="..\StandardLibQt\DomNodeListPrinter.cpp" />
     <ClCompile Include="..\StandardLibQt\DomNodeListValueExtractor.cpp" />
     <ClCompile Include="..\StandardLibQt\DomValueExtractor.cpp" />
     <ClCompile Include="..\StandardLibQt\ImageLoader.cpp" />
@@ -255,6 +256,7 @@
     <ClCompile Include="game\GameCityItemFactory.cpp" />
     <ClCompile Include="game\GameCityItemRepository.cpp" />
     <ClCompile Include="game\GameCityItemRuntimeData.cpp" />
+    <ClCompile Include="game\GameDataFactory.cpp" />
     <ClCompile Include="game\GameMapItemFactory.cpp" />
     <ClCompile Include="game\GameMapItem.cpp" />
     <ClCompile Include="game\GameMapItemRepository.cpp" />
@@ -643,6 +645,7 @@
     <ClInclude Include="..\StandardLibQt\DomElementFinder.h" />
     <ClInclude Include="..\StandardLibQt\DomNodeFinder.h" />
     <ClInclude Include="..\StandardLibQt\DomNodeListFinder.h" />
+    <ClInclude Include="..\StandardLibQt\DomNodeListPrinter.h" />
     <ClInclude Include="..\StandardLibQt\DomNodeListValueExtractor.h" />
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h" />
     <ClInclude Include="..\StandardLibQt\ImageLoader.h" />
@@ -1154,6 +1157,7 @@
     <ClInclude Include="game\GameCityItemFactory.h" />
     <ClInclude Include="game\GameCityItemRepository.h" />
     <ClInclude Include="game\GameCityItemRuntimeData.h" />
+    <ClInclude Include="game\GameDataFactory.h" />
     <ClInclude Include="game\GameObject.h" />
     <ClInclude Include="game\GameOwnerItem.h" />
     <ClInclude Include="game\GameOwnerItemFactory.h" />

@@ -62,6 +62,8 @@ private:
 	bool LoadUnitData(const QDomNode& domNode);
 	/** */
 	bool LoadCityData(const QDomNode& domNode);
+	/** */
+	bool UpdateGameConfig();
 };
 
 #endif // SERIALIZEXML_H

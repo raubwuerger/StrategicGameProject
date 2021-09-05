@@ -29,7 +29,7 @@ private:
 	/** */
 	void InitGameTurnController();
 	/** */
-	void SetDefaultOwnerType();
+	void SetDefaultGameValues();
 	/** */
 	void InitSignalConnections();
 private:

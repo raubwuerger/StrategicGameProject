@@ -39,6 +39,8 @@ public:
 	/** */
 	~GameUnitItemFactory();
 	/** */
+	bool Init();
+	/** */
 	GameUnitItem* CreateGameUnitItem(const GameUnitParameterObject obj);
 	/** */
 	GameUnitItem* UpdateGameUnitItem(const GameUnitParameterObject obj);

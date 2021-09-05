@@ -3,10 +3,14 @@
 
 const QString SerializeXMLItems::SAVEGAME = "Savegame";
 
-const QString SerializeXMLItems::GAME = "Game";
-const QString SerializeXMLItems::GAME_VERSION = "Version";
-const QString SerializeXMLItems::GAME_PLAYERCOUNT = "Playercount";
+const QString SerializeXMLItems::GAME = "GameData";
+const QString SerializeXMLItems::GAME_VERSION_MAJOR = "VersionMajor";
+const QString SerializeXMLItems::GAME_VERSION_MINOR = "VersionMinor";
+const QString SerializeXMLItems::GAME_VERSION_REVISION = "VersionRevision";
+const QString SerializeXMLItems::GAME_PLAYER = "PlayerId";
+const QString SerializeXMLItems::GAME_PLAYERCOUNT = "PlayerCount";
 const QString SerializeXMLItems::GAME_GAMETURN = "Gameturn";
+const QString SerializeXMLItems::GAME_DIFFICULTYLEVEL = "DifficultyLevel";
 
 const QString SerializeXMLItems::PLAYERS = "Players";
 const QString SerializeXMLItems::PLAYERS_PLAYER = "Player";
