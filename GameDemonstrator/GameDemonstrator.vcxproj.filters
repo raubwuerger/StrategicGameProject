@@ -683,12 +683,6 @@
     <ClCompile Include="gameController\GameInfoDialogController.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameInfoDialogController.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameInfoDialogController.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="gameController\GameTurnController.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
@@ -727,9 +721,6 @@
     </ClCompile>
     <ClCompile Include="dialogs\MapCitySettingsDialog.cpp">
       <Filter>Header Dateien\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_MapCitySettingsDialog.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1012,6 +1003,9 @@
     <ClInclude Include="game\GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
+    <ClInclude Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien\GameController</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1162,9 +1156,6 @@
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
-      <Filter>Header Dateien\GameController</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameTurnController.h">
@@ -1188,8 +1179,8 @@
     <CustomBuild Include="dialogs\MapCitySettingsDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="dialogs\MapCitySettingsDialog.h">
-      <Filter>Header Dateien\Dialogs</Filter>
+    <CustomBuild Include="dialogs\GameInfoDialogController.h">
+      <Filter>Header Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
