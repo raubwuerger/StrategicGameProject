@@ -49,6 +49,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>1</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -98,6 +99,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>1</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -144,6 +146,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>1</CanOccupieCity>
 		<GetCounterattack>0</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -196,6 +199,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -247,6 +251,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -296,6 +301,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -345,6 +351,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -393,6 +400,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -438,6 +446,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -484,6 +493,7 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -523,5 +533,6 @@
 		</RecognisableUnitTypes>
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
+		<ProductionCost>100</ProductionCost>
 	</UnitType>
 </UnitTypes>

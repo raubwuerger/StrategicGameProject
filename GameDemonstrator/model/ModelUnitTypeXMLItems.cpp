@@ -23,6 +23,7 @@ const QString ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES = "Recognisable
 const QString ModelUnitTypeXMLItems::SUBELEMENT_RECOGNISABLE_UNITTYPE = "RecognisableUnitType";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY = "CanOccupieCity";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK = "GetCounterattack";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_PRODUCTIONCOST = "ProductionCost";
 
 
 

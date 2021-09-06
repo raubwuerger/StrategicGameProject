@@ -28,6 +28,8 @@ public:
 	int GetStrength() const { return Strength; }
 	/** */
 	int GetMovementPoints() const { return MovementPoints; }
+	/** */
+	int GetProductionCost() const { return ProductionCost; }
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
@@ -44,6 +46,7 @@ private:
 	QVector<int>	RecognisableUnitTypes;
 	bool			CanOccupieCity;
 	bool			GetCounterattack;
+	int				ProductionCost;
 };
 
 #endif

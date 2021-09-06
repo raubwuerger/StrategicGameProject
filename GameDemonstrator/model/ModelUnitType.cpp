@@ -10,7 +10,8 @@ ModelUnitType::ModelUnitType(int id)
 	Range(NOT_INITIALIZED_INT),
 	MovementPoints(NOT_INITIALIZED_INT),
 	CanOccupieCity(NOT_INITIALIZED_BOOL),
-	GetCounterattack(NOT_INITIALIZED_BOOL)
+	GetCounterattack(NOT_INITIALIZED_BOOL),
+	ProductionCost(NOT_INITIALIZED_INT)
 {
 }
 
