@@ -49,6 +49,10 @@ public:
 	void SetShowCoordinates(bool show) { ShowCoordinates = show; }
 	/** */
 	void SetShowTextBorder(bool show) { ShowTextBorder = show; }
+	/** */
+	void SetShowText(bool show) { ShowText = show; }
+	/** */
+	void SetShowHexBorder(bool show) { DrawHexBorder = show; }
 private:
 	/** */
 	void CreateHexPolygon( const MapHexItemHexagonData &data );
@@ -58,6 +62,8 @@ private:
 	void ShowOriginal();
 	/** */
 	void CreateMapHexItemInfoString();
+	/** */
+	void ShowTextOnItem(QPainter *painter);
 private:
 	int Row;
 	int Col;
@@ -72,6 +78,8 @@ private:
 	bool					ShowRowAndCol;
 	bool					ShowCoordinates;
 	bool					ShowTextBorder;
+	bool					ShowText;
+	bool					DrawHexBorder;
 };
 
 #endif // MAPVIEWHEXITEM_H

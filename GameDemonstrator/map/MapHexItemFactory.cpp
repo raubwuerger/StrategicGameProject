@@ -11,6 +11,9 @@
 
 bool MapHexItemFactory::Create(MapView* mapView)
 {
+	bool showText = true;
+	bool showHexBorder = true;
+
 	if (nullptr == mapView)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
@@ -43,6 +46,8 @@ bool MapHexItemFactory::Create(MapView* mapView)
 			mapItem->SetRowAndCol(currentRow, currentCol);
 			mapItem->SetGameMapItemId(gameMapItem->GetId());
 			mapItem->SetTerrainImage(GetImage(gameMapItem));
+			mapItem->SetShowText(showText);
+			mapItem->SetShowHexBorder(showHexBorder);
 			mapView->AddMapHexItem(mapItem);
 			mapHexItemRow.push_back(mapItem);
 		}

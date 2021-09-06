@@ -17,7 +17,9 @@ MapHexItem::MapHexItem( const MapHexItemHexagonData& data, const QPointF& topLef
 	ShowId(true),
 	ShowRowAndCol(true),
 	ShowCoordinates(false),
-	ShowTextBorder(false)
+	ShowTextBorder(false),
+	ShowText(true), 
+	DrawHexBorder(true)
 
 {
 	this->HexData.MovePosition(topLeft);
@@ -44,30 +46,43 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
 	}
 
+	ShowTextOnItem(painter);
+
+	if (false == DrawHexBorder)
+	{
+		return;
+	}
+	QGraphicsPolygonItem::paint(painter,option,widget);
+}
+
+void MapHexItem::ShowTextOnItem(QPainter *painter)
+{
+	if (false == ShowText)
+	{
+		return;
+	}
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
 	QRectF textBoundingRect = HexData.BoundingRect;
-	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
-	textBoundingRect.setHeight( textBoundingRect.height() * 0.6 );
-	
-	QPointF centerPosText( CenterPoint );
-	centerPosText.setX( HexData.BoundingRect.x() + ((HexData.BoundingRect.width() - textBoundingRect.width()) / 2.0) );
-	centerPosText.setY( HexData.BoundingRect.y() + ((HexData.BoundingRect.height() - textBoundingRect.height()) / 2.0) );
+	textBoundingRect.setWidth(textBoundingRect.width() * 0.6);
+	textBoundingRect.setHeight(textBoundingRect.height() * 0.6);
 
-	textBoundingRect.moveTopLeft( centerPosText );
+	QPointF centerPosText(CenterPoint);
+	centerPosText.setX(HexData.BoundingRect.x() + ((HexData.BoundingRect.width() - textBoundingRect.width()) / 2.0));
+	centerPosText.setY(HexData.BoundingRect.y() + ((HexData.BoundingRect.height() - textBoundingRect.height()) / 2.0));
+
+	textBoundingRect.moveTopLeft(centerPosText);
 
 	QFont font;
 	font.setPixelSize(12);
 
 	QTextOption textOption;
-	textOption.setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
+	textOption.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	painter->setFont(font);
 	painter->drawText(textBoundingRect, MapHexItemInfoString, textOption);
-	if ( true == ShowTextBorder )
+	if (true == ShowTextBorder)
 	{
 		painter->drawRect(textBoundingRect);
 	}
-
-	QGraphicsPolygonItem::paint(painter,option,widget);
 }
 
 int MapHexItem::GetRow() const
