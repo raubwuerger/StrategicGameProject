@@ -3,12 +3,13 @@
 
 ModelCityType::ModelCityType(int id)
 	: Id(id),
-	Name("City"),
-	PictureName("Not Initialized"),
+	Name(NOT_INITIALIZED_STRING),
+	PictureName(NOT_INITIALIZED_STRING),
 	Image(nullptr),
-	Efficiency(-1),
-	SpezializedUnitType(-1),
-	DefenceValue(-1)
+	Efficiency(NOT_INITIALIZED_INT),
+	SpezializedUnitType(NOT_INITIALIZED_INT),
+	DefenceValue(NOT_INITIALIZED_INT),
+	BaseProductionPoints(NOT_INITIALIZED_INT)
 {
 
 }

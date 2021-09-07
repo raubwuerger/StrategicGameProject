@@ -13,5 +13,6 @@
 			<TerrainTypeId>5</TerrainTypeId>
 		</PlacableTerrainTypes>
 		<DefenseValues>10</DefenseValues>
+		<BaseProductionPoints>10</BaseProductionPoints>
 	</CityType>
 </CityTypes>

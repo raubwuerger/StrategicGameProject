@@ -13,3 +13,4 @@ const QString ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED = "SpezializedUnitTy
 const QString ModelCityTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES = "PlacableTerrainTypes";
 const QString ModelCityTypeXMLItems::SUBELEMENT_TERRAINTYPEID = "TerrainTypeId";
 const QString ModelCityTypeXMLItems::SUBELEMENT_DEFENSEVALUES = "DefenseValues";
+const QString ModelCityTypeXMLItems::SUBELEMENT_BASEPRODUCTIONPOINTS = "BaseProductionPoints";

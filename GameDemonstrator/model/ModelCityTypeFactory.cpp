@@ -58,6 +58,7 @@ ModelCityType* ModelCityTypeFactory::CreateFromXML( const QDomNode& node )
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_EFFICIENCY, newType->Efficiency);
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_SPECIALIZED, newType->SpezializedUnitType);
 	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_DEFENSEVALUES, newType->DefenceValue);
+	allElementsExtracted &= extractor.ExtractValue(ModelCityTypeXMLItems::SUBELEMENT_BASEPRODUCTIONPOINTS, newType->BaseProductionPoints);
 
 	DomNodeFinder finder(node);
 	allElementsExtracted &= ParsePlacableTerrainTypes(finder.FindDomeNodeByName(ModelCityTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->PlacableTerrainTypes);

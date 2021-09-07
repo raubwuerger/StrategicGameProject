@@ -26,6 +26,8 @@ public:
 	int GetEfficiency() const { return Efficiency; }
 	/** */
 	int GetSpezializedUnitType() const { return SpezializedUnitType; }
+	/** */
+	int GetBaseProductionPoints() const { return BaseProductionPoints; }
 private:
 	friend class ModelCityTypeFactory;
 	int				Id;
@@ -36,6 +38,7 @@ private:
 	int				SpezializedUnitType;
 	QVector<int>	PlacableTerrainTypes;
 	int				DefenceValue;
+	int				BaseProductionPoints;
 };
 
 #endif // MODELCITYTYPE_H
