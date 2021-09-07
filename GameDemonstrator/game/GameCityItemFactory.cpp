@@ -257,6 +257,7 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	gameCityItem->GetRuntimeData()->CurrentStrength = strength;
 	gameCityItem->GetRuntimeData()->BaseStrength = GetBaseStrength(modelCityTypeId);
 	gameCityItem->Name = name;
+	gameCityItem->SpezializedUnitTypeId = spezializedUnitTypeId;
 
 	return gameCityItem;
 }

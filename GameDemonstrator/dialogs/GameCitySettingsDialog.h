@@ -11,6 +11,14 @@ class GameCitySettingsDialog : public QWidget
 public:
 	/** */
 	GameCitySettingsDialog(QWidget *parent = 0);
+	/** */
+	void SetName(const QString& name);
+	/** */
+	void SetEfficiency(const QString& efficiency) { ui.lineEditEfficiency->setText(efficiency); }
+	/** */
+	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	/** */
+	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
 private:
 	Ui::CityEditDialog ui;
 };

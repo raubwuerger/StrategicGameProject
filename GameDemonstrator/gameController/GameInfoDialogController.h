@@ -18,6 +18,8 @@ public:
 	/** */
 	GameInfoDialogController();
 	/** */
+	~GameInfoDialogController();
+	/** */
 	void Init();
 	/** */
 	void ShowDockWidgets();
@@ -55,6 +57,8 @@ private:
 	QString CreateCityStrength(const GameCityItem* gameCity)  const;
 	/** */
 	QString GetSpecializedUnitName(const GameCityItem* gameCity);
+	/** */
+	QString GetUnitType(int id);
 private:
 	friend class GameFactory;
 	QVector<QDockWidget*>	DockWidgets;

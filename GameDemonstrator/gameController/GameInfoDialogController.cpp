@@ -16,12 +16,15 @@
 #include "connectors\ConnectorMapUnitItem.h"
 #include "connectors\ConnectorMapCityItem.h"
 #include "game\GameConfig.h"
+#include "dialogs\GameCitySettingsDialog.h"
+#include "game\GameCityItem.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),
 	GameTurnDialogObject(nullptr),
 	GameUnitInfoDialogObject(nullptr),
 	GameCityInfoDialogObject(nullptr),
+	GameCitySettingsDialogObject(nullptr),
 	GameDemonstratorObject(nullptr)
 {
 	LightRed = QColor(255, 51, 51);
@@ -29,11 +32,20 @@ GameInfoDialogController::GameInfoDialogController()
 	LightGreen = QColor(144, 238, 144);
 }
 
+GameInfoDialogController::~GameInfoDialogController()
+{
+	delete GameTurnDialogObject;
+	delete GameUnitInfoDialogObject;
+	delete GameCityInfoDialogObject;
+	delete GameCitySettingsDialogObject;
+}
+
 void GameInfoDialogController::Init()
 {
 	CreateGameTurnInfoDialog();
 	CreateGameCityInfoDialog();
 	CreateGameUnitInfoDialog();
+	CreateGameCitySettingsDialog();
 
 	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameInfoDialogController::SlotShowGameUnitInfo);
 	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameInfoDialogController::SlotShowGameUnitInfo);
@@ -108,7 +120,28 @@ void GameInfoDialogController::SlotShowTurnInfoDialog()
 
 void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 {
+	const GameCityItem* gameCity = GameCityItemRepository::GetInstance()->GetGameCityItemById(gameCityId);
+	if (nullptr == gameCity)
+	{
+		Q_ASSERT(gameCity);
+		return;
+	}
+	GameCitySettingsDialogObject->SetName(gameCity->GetName());
+	GameCitySettingsDialogObject->SetEfficiency(QString::number(gameCity->GetCurrentEfficiency()));
+	GameCitySettingsDialogObject->SetStrength(QString::number(gameCity->GetCurrentStrength()));
+	GameCitySettingsDialogObject->SetSpecialization(GetUnitType(gameCity->GetSpezializedUnitTypeId()));
+	GameCitySettingsDialogObject->show();
+}
 
+QString GameInfoDialogController::GetUnitType(int id)
+{
+	const ModelUnitType* unitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(id);
+	if (nullptr == unitType)
+	{
+		Q_ASSERT(unitType);
+		return NOT_INITIALIZED_STRING;
+	}
+	return unitType->GetName();
 }
 
 void GameInfoDialogController::CreateGameTurnInfoDialog()
@@ -150,7 +183,8 @@ void GameInfoDialogController::CreateGameCityInfoDialog()
 
 void GameInfoDialogController::CreateGameCitySettingsDialog()
 {
-
+	GameCitySettingsDialogObject = new GameCitySettingsDialog();
+	GameCitySettingsDialogObject->hide();
 }
 
 QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* gameUnit) const

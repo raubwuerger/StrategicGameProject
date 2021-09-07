@@ -394,7 +394,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonProduceEfficiency_2">
+  <widget class="QPushButton" name="pushButtonOk">
    <property name="geometry">
     <rect>
      <x>590</x>
@@ -406,8 +406,11 @@
    <property name="text">
     <string>Ok</string>
    </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonProduceEfficiency_3">
+  <widget class="QPushButton" name="pushButtonCancel">
    <property name="geometry">
     <rect>
      <x>590</x>

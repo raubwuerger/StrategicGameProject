@@ -129,7 +129,7 @@ void MapCityItem::CreateMapCityItemInfoString()
 
 void MapCityItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-	emit EventItem->SignalCityItemDoubleClick(GameMapItemId);
+	emit EventItem->SignalCityItemDoubleClick(MapCityItemId);
 }
 
 bool MapCityItem::SetTerrainImage( const QImage * val )

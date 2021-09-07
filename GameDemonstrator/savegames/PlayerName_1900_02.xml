@@ -5234,7 +5234,7 @@
             <GameMapItemID>141</GameMapItemID>
             <Name>City 1</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5244,7 +5244,7 @@
             <GameMapItemID>660</GameMapItemID>
             <Name>City 2</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5254,7 +5254,7 @@
             <GameMapItemID>723</GameMapItemID>
             <Name>City 3</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5264,7 +5264,7 @@
             <GameMapItemID>76</GameMapItemID>
             <Name>City 4</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5274,7 +5274,7 @@
             <GameMapItemID>521</GameMapItemID>
             <Name>City 6</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5284,7 +5284,7 @@
             <GameMapItemID>215</GameMapItemID>
             <Name>City 7</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5294,7 +5294,7 @@
             <GameMapItemID>681</GameMapItemID>
             <Name>City 8</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5304,7 +5304,7 @@
             <GameMapItemID>192</GameMapItemID>
             <Name>City 9</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5314,7 +5314,7 @@
             <GameMapItemID>282</GameMapItemID>
             <Name>City 10</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
         <City>
@@ -5324,7 +5324,7 @@
             <GameMapItemID>329</GameMapItemID>
             <Name>City 11</Name>
             <Efficiency>100</Efficiency>
-            <SpezializedUnitTypeId>-1</SpezializedUnitTypeId>
+            <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
         </City>
     </Cities>
