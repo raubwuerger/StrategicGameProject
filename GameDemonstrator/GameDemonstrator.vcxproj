@@ -1447,6 +1447,7 @@
     <ClInclude Include="GeneratedFiles\ui_GameTurnDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_HexItemInfoDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h" />
     <ClInclude Include="RepositoryCleaner.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />

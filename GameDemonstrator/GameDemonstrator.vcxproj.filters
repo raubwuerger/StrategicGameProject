@@ -1021,6 +1021,9 @@
     <ClInclude Include="command\CommandBasic.h">
       <Filter>Header Dateien\Command</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h">
+      <Filter>Header Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1170,9 +1173,6 @@
     <CustomBuild Include="dialogs\GameCityInfoDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
-    <CustomBuild Include="gameController\GameInfoDialogController.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="gameController\GameTurnController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
@@ -1196,6 +1196,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\MapCitySettingsDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
