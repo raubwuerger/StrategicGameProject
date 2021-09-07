@@ -728,10 +728,10 @@
     <ClCompile Include="dialogs\MapCitySettingsDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="command\BaseCommand.cpp">
+    <ClCompile Include="command\CommandProduceUnit.cpp">
       <Filter>Source Dateien\Command</Filter>
     </ClCompile>
-    <ClCompile Include="command\CommandProduceUnit.cpp">
+    <ClCompile Include="command\CommandBasic.cpp">
       <Filter>Source Dateien\Command</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1015,10 +1015,10 @@
     <ClInclude Include="game\GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="command\BaseCommand.h">
+    <ClInclude Include="command\CommandProduceUnit.h">
       <Filter>Header Dateien\Command</Filter>
     </ClInclude>
-    <ClInclude Include="command\CommandProduceUnit.h">
+    <ClInclude Include="command\CommandBasic.h">
       <Filter>Header Dateien\Command</Filter>
     </ClInclude>
   </ItemGroup>

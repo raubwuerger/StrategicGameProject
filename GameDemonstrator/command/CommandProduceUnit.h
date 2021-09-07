@@ -1,9 +1,9 @@
 #ifndef COMMANDPRODUCEUNIT_H
 #define COMMANDPRODUCEUNIT_H
 
-#include "BaseCommand.h"
+#include "CommandBasic.h"
 
-class CommandProduceUnit : public BaseCommand
+class CommandProduceUnit : public CommandBasic
 {
 
 };

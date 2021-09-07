@@ -1,7 +1,7 @@
 #ifndef BASECOMMAND_H
 #define BASECOMMAND_H
 
-class BaseCommand
+class CommandBasic
 {
 
 };
