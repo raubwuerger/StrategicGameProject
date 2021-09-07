@@ -8,7 +8,7 @@ class GameCityInfoDialog;
 class GameUnitItem;
 class GameDemonstrator;
 class GameCityItem;
-class MapCitySettingsDialog;
+class GameCitySettingsDialog;
 
 /** Controlls and connects all game info dialogs */
 class GameInfoDialogController : public QObject
@@ -63,7 +63,7 @@ private:
 	GameTurnDialog*			GameTurnDialogObject;
 	GameUnitInfoDialog*		GameUnitInfoDialogObject;
 	GameCityInfoDialog*		GameCityInfoDialogObject;
-	MapCitySettingsDialog*	GameCitySettingsDialogObject;
+	GameCitySettingsDialog*	GameCitySettingsDialogObject;
 	QColor					LightRed;
 	QColor					LightYellow;
 	QColor					LightGreen;

@@ -5,12 +5,12 @@
 #include "ui_MapCitySettingsDialog.h"
 
 
-class MapCitySettingsDialog : public QWidget
+class GameCitySettingsDialog : public QWidget
 {
 	Q_OBJECT
 public:
 	/** */
-	MapCitySettingsDialog(QWidget *parent = 0);
+	GameCitySettingsDialog(QWidget *parent = 0);
 private:
 	Ui::CityEditDialog ui;
 };
