@@ -39,6 +39,8 @@ void GameInfoDialogController::Init()
 	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameInfoDialogController::SlotShowGameUnitInfo);
 
 	QObject::connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, this, &GameInfoDialogController::SlotShowGameCityInfo);
+	QObject::connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemDoubleClick, this, &GameInfoDialogController::SlotShowGameCitySettingsDialog);
+
 }
 
 void GameInfoDialogController::ShowDockWidgets()
@@ -104,6 +106,11 @@ void GameInfoDialogController::SlotShowTurnInfoDialog()
 	GameTurnDialogObject->SetPlayerColor(GameConfig::Player->GetColor());
 }
 
+void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
+{
+
+}
+
 void GameInfoDialogController::CreateGameTurnInfoDialog()
 {
 	QDockWidget *dockTurnInfoDialog = new QDockWidget(tr("Game turn"), GameDemonstratorObject);
@@ -139,6 +146,11 @@ void GameInfoDialogController::CreateGameCityInfoDialog()
 	GameDemonstratorObject->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
 
 	DockWidgets.push_back(dockWidget);
+}
+
+void GameInfoDialogController::CreateGameCitySettingsDialog()
+{
+
 }
 
 QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* gameUnit) const

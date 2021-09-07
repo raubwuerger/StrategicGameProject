@@ -11,9 +11,11 @@ signals :
 	/** */
 	void SignalHexItemEntered(int gameMapItemId);
 	/** */
-	void SignalCityItemPressedLeftButton(int modelCityId);
+	void SignalCityItemPressedLeftButton(int gameCityId);
 	/** */
 	void SignalCityItemPressedRightButton(int gameCityId);
+	/** */
+	void SignalCityItemDoubleClick(int gameCityId);
 };
 
 #endif // CONNECTORMAPCITYITEM_H

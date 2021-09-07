@@ -39,6 +39,9 @@ public:
 	const QPointF& GetCenterPoint() const;
 	/** */
 	int GetId() const { return MapCityItemId;  }
+protected:
+	/** */
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 private:
 	/** */
 	void CreateHexPolygon(const MapHexItemHexagonData &data);
