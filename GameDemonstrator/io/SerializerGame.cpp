@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SerializerGame.h"
 #include "SerializeXML.h"
-#include "gameController\GameMainCounter.h"
 #include "game\GameConfig.h"
 #include "model\ModelProgramFactory.h"
 #include "model\ModelProgramSettings.h"
@@ -16,23 +15,6 @@ SerializerGame::~SerializerGame()
 	delete SerializeGameInterface;
 }
 
-bool SerializerGame::SlotSaveGame()
-{
-	if( nullptr == SerializeGameInterface )
-	{
-		Q_ASSERT( SerializeGameInterface != nullptr );
-		return false;
-	}
-
-/*	QString savegameName = QFileDialog::getOpenFileName(this, tr("Open Save Game"), "./savegames", tr("Image Files (*.xml )"));
-	if (true == savegameName.isNull())
-	{
-		return;
-	}
-*/
-	return SerializeGameInterface->SaveGame( CreateSaveGameFileName() );
-}
-
 bool SerializerGame::LoadGame()
 {
 	if( nullptr == SerializeGameInterface )
@@ -42,17 +24,3 @@ bool SerializerGame::LoadGame()
 	}
 	return SerializeGameInterface->LoadGame( GameConfig::CurrentSaveGameName );
 }
-
-QString SerializerGame::CreateSaveGameFileName() const
-{
-	QString saveGamePath(ModelProgramFactory::ModelProgramSettingsInstance->SaveGamePath);
-	QString saveGameFile(saveGamePath);
-	saveGameFile += "PlayerName_";
-	saveGameFile += GameMainCounter::GetInstance()->GetCurrentDate().toString( "yyyy_MM" );
-	saveGameFile += ".xml";
-
-	QDir().mkpath(saveGamePath);
-	return saveGameFile;
-}
-
-

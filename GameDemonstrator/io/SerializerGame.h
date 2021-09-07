@@ -15,11 +15,6 @@ public:
 	virtual ~SerializerGame();
 	/** */
 	bool LoadGame();
-public slots:
-	/** */
-	bool SlotSaveGame();
-private:
-	QString CreateSaveGameFileName() const;
 private:
 	friend class SerializerFactory;
 	ISerializeGameInterface* SerializeGameInterface;

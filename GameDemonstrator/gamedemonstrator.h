@@ -7,7 +7,6 @@
 class ActionRepository;
 class MapView;
 class GameMainDialog;
-class GameMainLoop;
 class ConnectorCreateGame;
 class ConnectorLoadGame;
 class ConnectorSaveGame;
@@ -41,7 +40,6 @@ private:
 	QMenu	*InfoMenu;
 	GameMainDialog*				GameMainDialogObject;
 	ActionRepository*			ActionRepository;
-	GameMainLoop*				MainGameLoopInstance;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
 	ConnectorCreateGame*		ConnectorCreateGameObject;

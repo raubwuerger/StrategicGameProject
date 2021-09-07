@@ -28,7 +28,6 @@
 
 GameDemonstrator::GameDemonstrator(QWidget *parent)
 	: QMainWindow(parent),
-	MainGameLoopInstance(nullptr),
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
@@ -56,7 +55,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	{
 
 	}
-	MainGameLoopInstance = new GameMainLoop(this);
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;
 	layoutMain->addWidget(MapViewInstance);

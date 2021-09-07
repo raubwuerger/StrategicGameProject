@@ -581,23 +581,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CreateNewGameDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameMainLoop.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameMainLoop.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameMode.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GameMode.cpp">
       <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="gameController\GameMainCounter.cpp">
-      <Filter>Source Dateien\GameController</Filter>
-    </ClCompile>
-    <ClCompile Include="gameController\GameMainLoop.cpp">
-      <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
     <ClCompile Include="gameController\GameMode.cpp">
       <Filter>Source Dateien\GameController</Filter>
@@ -731,18 +719,6 @@
     <ClCompile Include="command\CommandBasic.cpp">
       <Filter>Source Dateien\Command</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameInfoDialogController.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_MapCitySettingsDialog.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameInfoDialogController.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MapCitySettingsDialog.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="dialogs\GameCitySettingsDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
@@ -757,6 +733,12 @@
     </ClCompile>
     <ClCompile Include="game\GameUnitProductionRepository.cpp">
       <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameInfoDialogController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameInfoDialogController.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -991,9 +973,6 @@
     <ClInclude Include="dialogs\GameMainDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="gameController\GameMainCounter.h">
-      <Filter>Header Dateien\GameController</Filter>
-    </ClInclude>
     <ClInclude Include="gameController\GameModeEditor.h">
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
@@ -1017,9 +996,6 @@
     </ClInclude>
     <ClInclude Include="GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h">
       <Filter>Header Dateien\test</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h">
-      <Filter>Header Dateien</Filter>
     </ClInclude>
     <ClInclude Include="game\GameOwnerItem.h">
       <Filter>Header Dateien\Game</Filter>
@@ -1045,14 +1021,17 @@
     <ClInclude Include="command\CommandBasic.h">
       <Filter>Header Dateien\Command</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameUnitProduction.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameUnitProductionRepository.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h">
+      <Filter>Generierte Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1163,9 +1142,6 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\CreateNewGameDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gameController\GameMainLoop.h">
-      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameMode.h">
       <Filter>Header Dateien\GameController</Filter>
