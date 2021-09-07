@@ -2,7 +2,7 @@
 #include "GameCitySettingsDialog.h"
 
 GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
-	: QWidget(parent)
+	: QDialog(parent)
 {
 	ui.setupUi(this);
 	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);

@@ -5,7 +5,7 @@
 #include "ui_MapCitySettingsDialog.h"
 
 
-class GameCitySettingsDialog : public QWidget
+class GameCitySettingsDialog : public QDialog
 {
 	Q_OBJECT
 public:
@@ -19,6 +19,8 @@ public:
 	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
 	/** */
 	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
+	/** */
+//	void SetProductionProgress( int progress,  )
 private:
 	Ui::CityEditDialog ui;
 };

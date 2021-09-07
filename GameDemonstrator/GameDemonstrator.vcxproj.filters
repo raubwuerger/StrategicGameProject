@@ -752,6 +752,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameCitySettingsDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameUnitProduction.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitProductionRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1041,6 +1047,12 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h">
       <Filter>Header Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitProduction.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitProductionRepository.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
