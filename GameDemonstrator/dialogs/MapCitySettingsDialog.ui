@@ -152,7 +152,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="layoutWidgetProgress">
     <property name="geometry">
      <rect>
       <x>150</x>
