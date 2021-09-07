@@ -8,6 +8,9 @@
 class MapCitySettingsDialog : public QWidget
 {
 	Q_OBJECT
+public:
+	/** */
+	MapCitySettingsDialog(QWidget *parent = 0);
 };
 
 #endif // MAPCITYSETTINGSDIALOG_H

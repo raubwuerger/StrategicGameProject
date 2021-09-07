@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>807</width>
-    <height>746</height>
+    <width>750</width>
+    <height>696</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -129,7 +129,7 @@
    <property name="title">
     <string>GroupBox</string>
    </property>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="pushButtonProduceEfficiency">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -142,7 +142,7 @@
      <string>Efficiency</string>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar_12">
+   <widget class="QProgressBar" name="progressBarProgressEfficieny">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -167,7 +167,7 @@
      <number>24</number>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -178,77 +178,77 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButtonProduceInfantry">
        <property name="text">
         <string>Infantry</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButtonProduceTank">
        <property name="text">
         <string>Tank</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pushButtonProduceArtillery">
        <property name="text">
         <string>Artillery</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButtonProduceFighter">
        <property name="text">
         <string>Fighter</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="pushButtonProduceBomber">
        <property name="text">
         <string>Bomber</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="pushButtonProduceDestroyer">
        <property name="text">
         <string>Destroyer</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="pushButtonProduceCruiser">
        <property name="text">
         <string>Cruiser</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="pushButtonProduceBattleshitp">
        <property name="text">
         <string>Battleship</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_10">
+      <widget class="QPushButton" name="pushButtonProduceCarrier">
        <property name="text">
         <string>Carrier</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_11">
+      <widget class="QPushButton" name="pushButtonProduceSubmarine">
        <property name="text">
         <string>Submarine</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_9">
+      <widget class="QPushButton" name="pushButtonProduceTransport">
        <property name="text">
         <string>Transport</string>
        </property>
@@ -256,7 +256,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -267,7 +267,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QProgressBar" name="progressBar">
+      <widget class="QProgressBar" name="progressBarProgressInfantry">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -286,7 +286,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_2">
+      <widget class="QProgressBar" name="progressBarProgressTank">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -305,7 +305,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_3">
+      <widget class="QProgressBar" name="progressBarProgressArtillery">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -324,7 +324,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_5">
+      <widget class="QProgressBar" name="progressBarProgressFighter">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -343,7 +343,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_4">
+      <widget class="QProgressBar" name="progressBarProgressBomber">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -362,7 +362,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_6">
+      <widget class="QProgressBar" name="progressBarProgressDestroyer">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -381,7 +381,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_7">
+      <widget class="QProgressBar" name="progressBarProgressCruiser">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -400,7 +400,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_8">
+      <widget class="QProgressBar" name="progressBarProgressBattleship">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -419,7 +419,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_9">
+      <widget class="QProgressBar" name="progressBarProgressCarrier">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -438,7 +438,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_10">
+      <widget class="QProgressBar" name="progressBarProgressSubmarine">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -457,7 +457,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar_11">
+      <widget class="QProgressBar" name="progressBarProgressTransport">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -488,7 +488,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="tableWidgetUnitStats">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -496,6 +496,19 @@
      <width>331</width>
      <height>451</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonProduceEfficiency_2">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>20</y>
+     <width>112</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Efficiency</string>
    </property>
   </widget>
  </widget>
