@@ -11,6 +11,8 @@ class MapCitySettingsDialog : public QWidget
 public:
 	/** */
 	MapCitySettingsDialog(QWidget *parent = 0);
+private:
+	Ui::CityEditDialog ui;
 };
 
 #endif // MAPCITYSETTINGSDIALOG_H
