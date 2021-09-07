@@ -102,6 +102,12 @@
     <Filter Include="Header Dateien\test">
       <UniqueIdentifier>{23e5c84a-e2e5-4bcc-b292-1b34761d33f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Command">
+      <UniqueIdentifier>{8278f48c-cd5c-4ac0-890e-9e755129cdaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Command">
+      <UniqueIdentifier>{76e50098-4d9e-4236-9aac-b16fb505e112}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -722,6 +728,12 @@
     <ClCompile Include="dialogs\MapCitySettingsDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="command\BaseCommand.cpp">
+      <Filter>Source Dateien\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\CommandProduceUnit.cpp">
+      <Filter>Source Dateien\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1002,6 +1014,12 @@
     </ClInclude>
     <ClInclude Include="game\GameConfig.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="command\BaseCommand.h">
+      <Filter>Header Dateien\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\CommandProduceUnit.h">
+      <Filter>Header Dateien\Command</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
