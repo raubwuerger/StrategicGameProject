@@ -11,16 +11,20 @@ public:
 	/** */
 	static GameUnitProductionRepository* GetInstance();
 	/** */
-	bool RegisterGameUnitProduction(GameUnitProduction* gameUnitProduction);
+	bool RegisterGameUnitProduction(const GameUnitProduction* gameUnitProduction);
 	/** */
 	bool Init() override;
 	/** */
 	void Release() override;
+	/** */
+	void UpdateTurn();
 private:
 	/** */
 	GameUnitProductionRepository();
+	/** */
+	void CreateGameUnit(const GameUnitProduction* gameUnitProduction);
 private:
-	QMap<int, GameUnitProduction*>	CityProductions;
+	QMap<int, const GameUnitProduction*>	CityProductions;
 	static GameUnitProductionRepository* Instance;
 };
 

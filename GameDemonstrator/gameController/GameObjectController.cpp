@@ -1,10 +1,26 @@
 #include "stdafx.h"
 #include "GameObjectController.h"
 #include "Game\GameObject.h"
+#include "game\GameCityItem.h"
+#include "game\GameUnitProductionRepository.h"
 
 GameObjectController::GameObjectController()
 {
 
+}
+
+bool GameObjectController::CheckIfGameObjectIsOfTypeGameCity(const GameObject* object) const
+{
+	if (object->UID >= 20000)
+	{
+		return false;
+	}
+
+	if (object->UID < 10000)
+	{
+		return false;
+	}
+	return true;
 }
 
 GameObjectController*	GameObjectController::Instance = nullptr;
@@ -27,6 +43,12 @@ bool GameObjectController::RegisterObject(const GameObject* object)
 	{
 		return false;
 	}
+
+	if (true == CheckIfGameObjectIsOfTypeGameCity(object))
+	{
+		GameUnitProductionRepository::GetInstance()->RegisterGameUnitProduction(reinterpret_cast<const GameCityItem*>(object)->GetUnitProduction());
+	}
+	
 	GameObjects.insert(object->UID,object);
 	return true;
 }
@@ -61,4 +83,6 @@ void GameObjectController::SlotDoUpdateTurn()
 	{
 		iterator.next().value()->UpdateTurn();
 	}
+
+	GameUnitProductionRepository::GetInstance()->UpdateTurn();
 }

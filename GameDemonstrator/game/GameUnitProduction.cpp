@@ -48,6 +48,11 @@ int GameUnitProduction::GetProductionProgress() const
 	return ProductionProgress;
 }
 
+void GameUnitProduction::SetProductionProgress(int progress)
+{
+	ProductionProgress = progress;
+}
+
 bool GameUnitProduction::IsGameUnitInProduction() const
 {
 	return GameUnitId != NOT_INITIALIZED_INT;

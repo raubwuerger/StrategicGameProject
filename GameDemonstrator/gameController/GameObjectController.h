@@ -25,9 +25,11 @@ public slots:
 private:
 	/** */
 	GameObjectController();
+	/** */
+	bool CheckIfGameObjectIsOfTypeGameCity(const GameObject* object) const;
 private:
 	static GameObjectController*	Instance;
-	QMap<int,const GameObject*>			GameObjects;
+	QMap<int,const GameObject*>		GameObjects;
 };
 
 #endif // GAMEOBJECTCONTROLLER_H

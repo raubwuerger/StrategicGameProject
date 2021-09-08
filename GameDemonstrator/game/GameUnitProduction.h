@@ -21,6 +21,8 @@ public:
 	/** */
 	int GetProductionProgress() const;
 	/** */
+	void SetProductionProgress(int progress);
+	/** */
 	bool IsGameUnitInProduction() const;
 private:
 	int GameCityId;
@@ -28,4 +30,4 @@ private:
 	int	ProductionProgress;
 };
 
-#endif // GAMEUNITPRODUCTION_H
+#endif // GAMEUNITPRODUCTION_H 
