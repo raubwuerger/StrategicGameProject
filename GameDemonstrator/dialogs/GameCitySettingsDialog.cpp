@@ -31,7 +31,12 @@ void GameCitySettingsDialog::SetProductionProgress(const GameUnitProduction* gam
 		ProductionItems.last()->setValue(gameUnitProduction->GetProductionProgress());
 		return;
 	}
-	ProductionItems[gameUnitProduction->GetGameUnitId() - 1]->setValue(gameUnitProduction->GetProductionProgress());
+	QString safe = "QProgressBar::chunk {background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #78d,stop: 0.4999 #46a,stop: 0.5 #45a,stop: 1 #238 );border-bottom-right-radius: 7px;border-bottom-left-radius: 7px;border: 1px solid black;}";
+	int productionItemId = gameUnitProduction->GetGameUnitId() - 1;
+	ProductionItems[productionItemId]->setValue(gameUnitProduction->GetProductionProgress());
+//	ProductionItems[productionItemId]->setStyleSheet(safe);
+	ProductionItems[productionItemId]->setTextVisible(true);
+	ProductionItemGroups[productionItemId]->setStyleSheet("background-color:cyan;");
 }
 
 void GameCitySettingsDialog::InitProductionItems()
@@ -48,13 +53,41 @@ void GameCitySettingsDialog::InitProductionItems()
 	ProductionItems.push_back(ui.progressBarProgressSubmarine);
 	ProductionItems.push_back(ui.progressBarProgressTransport);
 	ProductionItems.push_back(ui.progressBarProgressEfficieny);
+
+	ProductionItemGroups.push_back(ui.groupBoxInfantry);
+	ProductionItemGroups.push_back(ui.groupBoxTank);
+	ProductionItemGroups.push_back(ui.groupBoxArtillery);
+	ProductionItemGroups.push_back(ui.groupBoxFighter);
+	ProductionItemGroups.push_back(ui.groupBoxBomber);
+	ProductionItemGroups.push_back(ui.groupBoxDestroyer);
+	ProductionItemGroups.push_back(ui.groupBoxCruiser);
+	ProductionItemGroups.push_back(ui.groupBoxBattleShip);
+	ProductionItemGroups.push_back(ui.groupBoxCarrier);
+	ProductionItemGroups.push_back(ui.groupBoxSubmarine);
+	ProductionItemGroups.push_back(ui.groupBoxTransport);
+	ProductionItemGroups.push_back(ui.groupBoxEfficiency);
+
 }
 
 void GameCitySettingsDialog::ResetProductionItems()
 {
-	QVectorIterator<QProgressBar*> iterator(ProductionItems);
-	while (iterator.hasNext())
+//	QString danger = "QProgressBar::chunk {background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #FF0350,stop: 0.4999 #FF0020,stop: 0.5 #FF0019,stop: 1 #FF0000 );border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border: .px solid black;}";
+//	QString danger = "QProgressBar::chunk {background: green}";
+
+	QVectorIterator<QProgressBar*> iteratorProgressBar(ProductionItems);
+	while (iteratorProgressBar.hasNext())
 	{
-		iterator.next()->setValue(0);
+		QProgressBar* current = iteratorProgressBar.next();
+		current->setValue(0);
+		current->setTextVisible(false);
+//		iterator.next()->setStyleSheet(danger);
+	}
+
+	QVectorIterator<QGroupBox*> iteratorGroupBox(ProductionItemGroups);
+	while (iteratorGroupBox.hasNext())
+	{
+		QGroupBox* current = iteratorGroupBox.next();
+		current->setFlat(true);
+		current->setStyleSheet("background-color:lightGray;");
 	}
 }

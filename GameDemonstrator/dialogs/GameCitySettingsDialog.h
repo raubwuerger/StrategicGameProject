@@ -30,6 +30,7 @@ private:
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>	ProductionItems;
+	QVector<QGroupBox*>	ProductionItemGroups;
 };
 
 #endif // MAPCITYSETTINGSDIALOG_H
