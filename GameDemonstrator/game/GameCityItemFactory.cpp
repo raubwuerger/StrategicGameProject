@@ -130,13 +130,6 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 		return nullptr;
 	}
 
-	if (false == GameObjectController::GetInstance()->RegisterObject(newItem))
-	{
-		Q_ASSERT(newItem);
-		delete newItem;
-		return nullptr;
-	}
-
 	return newItem;
 }
 
