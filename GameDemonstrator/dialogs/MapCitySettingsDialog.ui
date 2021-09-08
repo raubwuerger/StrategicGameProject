@@ -60,7 +60,7 @@
      </size>
     </property>
     <property name="value">
-     <number>24</number>
+     <number>0</number>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -177,7 +177,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -196,7 +196,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -215,7 +215,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -234,7 +234,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -253,7 +253,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -272,7 +272,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -291,7 +291,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -310,7 +310,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -329,7 +329,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -348,7 +348,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -367,7 +367,7 @@
         </size>
        </property>
        <property name="value">
-        <number>24</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -398,7 +398,7 @@
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>25</y>
+     <y>130</y>
      <width>140</width>
      <height>28</height>
     </rect>
@@ -414,7 +414,7 @@
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>65</y>
+     <y>170</y>
      <width>140</width>
      <height>28</height>
     </rect>
@@ -428,19 +428,19 @@
     <rect>
      <x>40</x>
      <y>10</y>
-     <width>471</width>
+     <width>681</width>
      <height>91</height>
     </rect>
    </property>
    <property name="title">
-    <string>GroupBox</string>
+    <string>City infos</string>
    </property>
    <widget class="QLineEdit" name="lineEditName">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>180</x>
       <y>16</y>
-      <width>140</width>
+      <width>160</width>
       <height>28</height>
      </rect>
     </property>
@@ -448,9 +448,9 @@
    <widget class="QLineEdit" name="lineEditEfficiency">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>180</x>
       <y>56</y>
-      <width>140</width>
+      <width>160</width>
       <height>28</height>
      </rect>
     </property>
@@ -467,9 +467,9 @@
    <widget class="QLabel" name="labelName">
     <property name="geometry">
      <rect>
-      <x>9</x>
+      <x>39</x>
       <y>18</y>
-      <width>61</width>
+      <width>120</width>
       <height>20</height>
      </rect>
     </property>
@@ -483,9 +483,9 @@
    <widget class="QLabel" name="labelEfficiency">
     <property name="geometry">
      <rect>
-      <x>9</x>
+      <x>39</x>
       <y>58</y>
-      <width>61</width>
+      <width>120</width>
       <height>20</height>
      </rect>
     </property>
@@ -499,9 +499,9 @@
    <widget class="QLineEdit" name="lineEditSpecialization">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>510</x>
       <y>16</y>
-      <width>140</width>
+      <width>160</width>
       <height>28</height>
      </rect>
     </property>
@@ -512,9 +512,9 @@
    <widget class="QLabel" name="labelStrength">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>380</x>
       <y>58</y>
-      <width>100</width>
+      <width>120</width>
       <height>20</height>
      </rect>
     </property>
@@ -528,9 +528,9 @@
    <widget class="QLabel" name="labelSpecialization">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>380</x>
       <y>18</y>
-      <width>100</width>
+      <width>120</width>
       <height>20</height>
      </rect>
     </property>
@@ -544,9 +544,9 @@
    <widget class="QLineEdit" name="lineEditStrength">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>510</x>
       <y>56</y>
-      <width>140</width>
+      <width>160</width>
       <height>28</height>
      </rect>
     </property>
