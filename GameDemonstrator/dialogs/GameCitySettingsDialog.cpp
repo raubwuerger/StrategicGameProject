@@ -8,6 +8,7 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	ui.setupUi(this);
 	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);
 	connect(ui.pushButtonCancel, &QPushButton::click, this, &GameCitySettingsDialog::close);
+	InitProductionItems();
 }
 
 void GameCitySettingsDialog::SetName(const QString& name)
