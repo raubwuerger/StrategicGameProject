@@ -2,6 +2,7 @@
 #include "GameCityItem.h"
 #include "GameCityItemRuntimeData.h"
 #include "Model\ModelCityType.h"
+#include "GameUnitProduction.h"
 
 GameCityItem::GameCityItem(int id)
 	:	Id(id),
@@ -10,12 +11,15 @@ GameCityItem::GameCityItem(int id)
 		OwnerItemId(-1),
 		MapItemId(-1),
 		SpezializedUnitTypeId(-1),
-		RuntimeData(nullptr)
+		RuntimeData(nullptr),
+		UnitProduction(nullptr)
 {
+	UnitProduction = new GameUnitProduction(Id);
 }
 
 GameCityItem::~GameCityItem()
 {
+	delete UnitProduction;
 }
 
 const int GameCityItem::GetId() const
@@ -75,6 +79,8 @@ int GameCityItem::GetModelCityTypeId() const
 
 void GameCityItem::UpdateTurn() const
 {
+	ResetDefenceValue();
+	UpdateUnitProduction();
 	//TODO: Increase build unit step
 	//TODO: ...
 }
@@ -127,6 +133,31 @@ bool GameCityItem::InitRuntimeData()
 	RuntimeData->BaseStrength = CityType->GetDefenceValue();
 	RuntimeData->CurrentStrength = CityType->GetDefenceValue();
 	return true;
+}
+
+GameCityItemRuntimeData* GameCityItem::GetRuntimeData()
+{
+	return RuntimeData;
+}
+
+void GameCityItem::ResetDefenceValue() const
+{
+	RuntimeData->CurrentStrength = RuntimeData->BaseStrength;
+}
+
+void GameCityItem::UpdateUnitProduction(const GameUnitProduction& unitProduction)
+{
+	UnitProduction->SetGameUnitId(unitProduction.GetGameUnitId());
+}
+
+void GameCityItem::UpdateUnitProduction() const
+{
+	int productionProgress = CityType->GetBaseProductionPoints();
+	if (UnitProduction->GetGameUnitId() == this->SpezializedUnitTypeId)
+	{
+		productionProgress += CityType->GetBaseProductionPoints();
+	}
+	UnitProduction->UpdateProductionProgress(productionProgress);
 }
 
 bool GameCityItem::operator<(const GameCityItem& rhs) const

@@ -13,6 +13,7 @@
 #include "GameCityItem.h"
 #include "GameCityItemRuntimeData.h"
 #include "model/ModelCityType.h"
+#include "gameController/GameObjectController.h"
 
 GameCityItemFactory::GameCityItemFactory()
 	: DefaultCityName("City")
@@ -124,6 +125,14 @@ GameCityItem* GameCityItemFactory::Create(const GameCityParameterObject obj)
 
 	if (false == GameCityItemRepository::GetInstance()->RegisterItem(newItem))
 	{
+		Q_ASSERT(newItem);
+		delete newItem;
+		return nullptr;
+	}
+
+	if (false == GameObjectController::GetInstance()->RegisterObject(newItem))
+	{
+		Q_ASSERT(newItem);
 		delete newItem;
 		return nullptr;
 	}

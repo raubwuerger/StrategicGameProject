@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_MapCitySettingsDialog.h"
 
+class GameUnitProduction;
 
 class GameCitySettingsDialog : public QDialog
 {
@@ -20,9 +21,15 @@ public:
 	/** */
 	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
 	/** */
-//	void SetProductionProgress( int progress,  )
+	void SetProductionProgress(const GameUnitProduction* gameUnitProduction);
+private:
+	/** */
+	void InitProductionItems();
+	/** */
+	void ResetProductionItems();
 private:
 	Ui::CityEditDialog ui;
+	QVector<QProgressBar*>	ProductionItems;
 };
 
 #endif // MAPCITYSETTINGSDIALOG_H

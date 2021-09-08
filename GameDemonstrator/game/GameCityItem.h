@@ -7,6 +7,7 @@ class GameMapItem;
 class GameOwnerItem;
 class ModelCityType;
 class GameCityItemRuntimeData;
+class GameUnitProduction;
 
 /** Game unit tile */
 class GameCityItem : public GameObject
@@ -61,8 +62,14 @@ public:
 	/** */
 	bool InitRuntimeData();
 	/** */
-	GameCityItemRuntimeData* GetRuntimeData() { return RuntimeData; }
-
+	GameCityItemRuntimeData* GetRuntimeData();
+	/** */
+	void UpdateUnitProduction(const GameUnitProduction& unitProduction);
+private:
+	/** */
+	void ResetDefenceValue() const;
+	/** */
+	void UpdateUnitProduction() const;
 private:
 	friend class GameCityItemFactory;
 	const int				Id;
@@ -74,7 +81,8 @@ private:
 	const GameMapItem*		MapItem;
 	QString					Name;
 	int						SpezializedUnitTypeId;
-	GameCityItemRuntimeData*RuntimeData;
+	mutable GameCityItemRuntimeData*RuntimeData;
+	mutable GameUnitProduction*		UnitProduction;
 };
 
 #endif // GAMECITYTYPE_H
