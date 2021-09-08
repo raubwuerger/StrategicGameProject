@@ -65,6 +65,8 @@ public:
 	GameCityItemRuntimeData* GetRuntimeData();
 	/** */
 	void UpdateUnitProduction(const GameUnitProduction& unitProduction);
+	/** */
+	const GameUnitProduction* GetUnitProduction() const;
 private:
 	/** */
 	void ResetDefenceValue() const;

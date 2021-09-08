@@ -130,6 +130,7 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 	GameCitySettingsDialogObject->SetEfficiency(QString::number(gameCity->GetCurrentEfficiency()));
 	GameCitySettingsDialogObject->SetStrength(QString::number(gameCity->GetCurrentStrength()));
 	GameCitySettingsDialogObject->SetSpecialization(GetUnitType(gameCity->GetSpezializedUnitTypeId()));
+	GameCitySettingsDialogObject->SetProductionProgress(gameCity->GetUnitProduction());
 	GameCitySettingsDialogObject->exec();
 }
 

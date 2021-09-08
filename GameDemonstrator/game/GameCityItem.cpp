@@ -160,6 +160,11 @@ void GameCityItem::UpdateUnitProduction() const
 	UnitProduction->UpdateProductionProgress(productionProgress);
 }
 
+const GameUnitProduction* GameCityItem::GetUnitProduction() const
+{
+	return UnitProduction;
+}
+
 bool GameCityItem::operator<(const GameCityItem& rhs) const
 {
 	return Id < rhs.Id;
