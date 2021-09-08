@@ -5280,7 +5280,7 @@
             <Strength>10</Strength>
 			<UnitProduction>
 				<UnitTypeID>4</UnitTypeID>
-				<UnitProductionProgress>100</UnitProductionProgress>
+				<UnitProductionProgress>90</UnitProductionProgress>
 			</UnitProduction>
         </City>
         <City>
@@ -5294,7 +5294,7 @@
             <Strength>10</Strength>
 			<UnitProduction>
 				<UnitTypeID>5</UnitTypeID>
-				<UnitProductionProgress>100</UnitProductionProgress>
+				<UnitProductionProgress>80</UnitProductionProgress>
 			</UnitProduction>
         </City>
         <City>
@@ -5308,7 +5308,7 @@
             <Strength>10</Strength>
 			<UnitProduction>
 				<UnitTypeID>1</UnitTypeID>
-				<UnitProductionProgress>100</UnitProductionProgress>
+				<UnitProductionProgress>70</UnitProductionProgress>
 			</UnitProduction>
         </City>
         <City>
@@ -5336,7 +5336,7 @@
             <Strength>10</Strength>
 			<UnitProduction>
 				<UnitTypeID>1</UnitTypeID>
-				<UnitProductionProgress>100</UnitProductionProgress>
+				<UnitProductionProgress>90</UnitProductionProgress>
 			</UnitProduction>
         </City>
         <City>

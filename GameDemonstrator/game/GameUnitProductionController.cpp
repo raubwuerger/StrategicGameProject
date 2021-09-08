@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GameUnitProductionRepository.h"
+#include "GameUnitProductionController.h"
 #include "LogInterface.h"
 #include "GameUnitProduction.h"
 #include "GameUnitItem.h"
@@ -9,20 +9,20 @@
 #include "GameCityItem.h"
 #include "Model\ModelUnitType.h"
 
-GameUnitProductionRepository* GameUnitProductionRepository::Instance = nullptr;
+GameUnitProductionController* GameUnitProductionController::Instance = nullptr;
 
-GameUnitProductionRepository* GameUnitProductionRepository::GetInstance()
+GameUnitProductionController* GameUnitProductionController::GetInstance()
 {
 	if ( nullptr != Instance )
 	{
 		return Instance;
 	}
 
-	Instance = new GameUnitProductionRepository();
+	Instance = new GameUnitProductionController();
 	return Instance;
 }
 
-bool GameUnitProductionRepository::RegisterGameUnitProduction(const GameUnitProduction* gameUnitProduction)
+bool GameUnitProductionController::RegisterGameUnitProduction(const GameUnitProduction* gameUnitProduction)
 {
 	Q_ASSERT(gameUnitProduction);
 	if (nullptr == gameUnitProduction)
@@ -35,18 +35,18 @@ bool GameUnitProductionRepository::RegisterGameUnitProduction(const GameUnitProd
 	return false;
 }
 
-bool GameUnitProductionRepository::Init()
+bool GameUnitProductionController::Init()
 {
 	return true;
 }
 
-void GameUnitProductionRepository::Release()
+void GameUnitProductionController::Release()
 {
 	delete Instance;
 	Instance = nullptr;
 }
 
-void GameUnitProductionRepository::UpdateTurn()
+void GameUnitProductionController::UpdateTurn()
 {
 	QMapIterator<int, const GameUnitProduction*> iterator(CityProductions);
 	while (iterator.hasNext())
@@ -55,12 +55,12 @@ void GameUnitProductionRepository::UpdateTurn()
 	}
 }
 
-GameUnitProductionRepository::GameUnitProductionRepository()
+GameUnitProductionController::GameUnitProductionController()
 {
 
 }
 
-void GameUnitProductionRepository::CreateGameUnit( const GameUnitProduction* gameUnitProduction )
+void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gameUnitProduction )
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitProduction->GetGameCityId());
 	if (nullptr == gameUnitItem)

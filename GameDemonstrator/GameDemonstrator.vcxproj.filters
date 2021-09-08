@@ -731,14 +731,14 @@
     <ClCompile Include="game\GameUnitProduction.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameUnitProductionRepository.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GameInfoDialogController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameInfoDialogController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitProductionController.cpp">
+      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1024,14 +1024,14 @@
     <ClInclude Include="game\GameUnitProduction.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameUnitProductionRepository.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h">
       <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitProductionController.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

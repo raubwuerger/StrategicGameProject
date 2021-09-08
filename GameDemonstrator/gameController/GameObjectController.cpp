@@ -2,7 +2,7 @@
 #include "GameObjectController.h"
 #include "Game\GameObject.h"
 #include "game\GameCityItem.h"
-#include "game\GameUnitProductionRepository.h"
+#include "game\GameUnitProductionController.h"
 
 GameObjectController::GameObjectController()
 {
@@ -46,7 +46,7 @@ bool GameObjectController::RegisterObject(const GameObject* object)
 
 	if (true == CheckIfGameObjectIsOfTypeGameCity(object))
 	{
-		GameUnitProductionRepository::GetInstance()->RegisterGameUnitProduction(reinterpret_cast<const GameCityItem*>(object)->GetUnitProduction());
+		GameUnitProductionController::GetInstance()->RegisterGameUnitProduction(reinterpret_cast<const GameCityItem*>(object)->GetUnitProduction());
 	}
 	
 	GameObjects.insert(object->UID,object);
@@ -84,5 +84,5 @@ void GameObjectController::SlotDoUpdateTurn()
 		iterator.next().value()->UpdateTurn();
 	}
 
-	GameUnitProductionRepository::GetInstance()->UpdateTurn();
+	GameUnitProductionController::GetInstance()->UpdateTurn();
 }

@@ -256,7 +256,7 @@
     <ClCompile Include="game\GameCityItemFactory.cpp" />
     <ClCompile Include="game\GameCityItemRepository.cpp" />
     <ClCompile Include="game\GameCityItemRuntimeData.cpp" />
-    <ClCompile Include="game\GameUnitProductionRepository.cpp" />
+    <ClCompile Include="game\GameUnitProductionController.cpp" />
     <ClCompile Include="game\GameConfig.cpp" />
     <ClCompile Include="game\GameDataFactory.cpp" />
     <ClCompile Include="game\GameMapItemFactory.cpp" />
@@ -1124,7 +1124,7 @@
     <ClInclude Include="game\GameCityItemFactory.h" />
     <ClInclude Include="game\GameCityItemRepository.h" />
     <ClInclude Include="game\GameCityItemRuntimeData.h" />
-    <ClInclude Include="game\GameUnitProductionRepository.h" />
+    <ClInclude Include="game\GameUnitProductionController.h" />
     <ClInclude Include="game\GameConfig.h" />
     <ClInclude Include="game\GameDataFactory.h" />
     <ClInclude Include="game\GameObject.h" />

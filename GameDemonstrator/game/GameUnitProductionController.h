@@ -5,11 +5,11 @@
 
 class GameUnitProduction;
 
-class GameUnitProductionRepository : public BaseRepository
+class GameUnitProductionController : public BaseRepository
 {
 public:
 	/** */
-	static GameUnitProductionRepository* GetInstance();
+	static GameUnitProductionController* GetInstance();
 	/** */
 	bool RegisterGameUnitProduction(const GameUnitProduction* gameUnitProduction);
 	/** */
@@ -20,12 +20,12 @@ public:
 	void UpdateTurn();
 private:
 	/** */
-	GameUnitProductionRepository();
+	GameUnitProductionController();
 	/** */
 	void CreateGameUnit(const GameUnitProduction* gameUnitProduction);
 private:
 	QMap<int, const GameUnitProduction*>	CityProductions;
-	static GameUnitProductionRepository* Instance;
+	static GameUnitProductionController* Instance;
 };
 
 #endif // GAMECITYPRODUCTIONREPOSITORY_H
