@@ -46,6 +46,8 @@ private:
 	bool SaveCityData( QXmlStreamWriter& xmlWriter );
 	/** */
 	bool SaveCitytItem( QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem );
+	/** */
+	bool WriteCityProduction( QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem );
 public:
 	/** */
 	bool LoadGame( const QString& saveGameName );

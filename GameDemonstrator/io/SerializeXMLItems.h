@@ -55,6 +55,9 @@ public:
 	static const QString CITIES_EFFICIENCY;
 	static const QString CITIES_SPEZIALIZEDUNITTYPEID;
 	static const QString CITIES_STRENGTH;
+	static const QString CITIES_UNITPRODUCTION;
+	static const QString CITIES_UNITPRODUCTIONID;
+	static const QString CITIES_UNITPRODUCTIONPROGRESS;
 
 };
 

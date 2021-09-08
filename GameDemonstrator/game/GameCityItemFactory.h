@@ -6,6 +6,7 @@ class GameCityItem;
 class GameOwnerItem;
 class ModelCityType;
 class GameMapItem;
+class GameUnitProduction;
 
 struct GameCityParameterObject
 {
@@ -49,6 +50,8 @@ private:
 	bool CreateItems(const QDomNode& city);
 	/** */
 	GameCityItem* CreateItemFromXML(const QDomNode& city);
+	/** */
+	bool ParseUnitProduction(const QDomNode& domNode, GameUnitProduction* gameUnitProduction);
 	/** */
 	int CreateId(const GameCityParameterObject obj);
 	/** */

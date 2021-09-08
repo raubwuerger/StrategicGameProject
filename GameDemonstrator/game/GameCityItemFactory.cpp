@@ -4,8 +4,8 @@
 #include "LogInterface.h"
 #include "DomValueExtractor.h"
 #include "io\SerializeXMLItems.h"
-#include "game\GameOwnerItemRepository.h"
-#include "game\GameOwnerItem.h"
+#include "GameOwnerItemRepository.h"
+#include "GameOwnerItem.h"
 #include "model\ModelCityTypeRepository.h"
 #include "GameMapItemRepository.h"
 #include "GameMapItem.h"
@@ -14,6 +14,8 @@
 #include "GameCityItemRuntimeData.h"
 #include "model/ModelCityType.h"
 #include "gameController/GameObjectController.h"
+#include "DomNodeFinder.h"
+#include "GameUnitProduction.h"
 
 GameCityItemFactory::GameCityItemFactory()
 	: DefaultCityName("City")
@@ -191,11 +193,11 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 
 	bool allElementsExtracted = true;
 	int id = -1;
-	DomValueExtractor domNodeListValueExtractor(node);
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_ID, id);
+	DomValueExtractor extractor(node);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_ID, id);
 
 	int modelCityTypeId = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_MODELCITYTYPEID, modelCityTypeId);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_MODELCITYTYPEID, modelCityTypeId);
 
 	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
 	if (nullptr == modelCityType)
@@ -205,7 +207,7 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	}
 
 	int mapItemId = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_GAMEMAPITEMID, mapItemId);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_GAMEMAPITEMID, mapItemId);
 
 	const GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapItemId);
 	if (nullptr == gameMapItem)
@@ -215,7 +217,7 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	}
 
 	int ownerTypeId = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_OWNERTYPEID, ownerTypeId);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_OWNERTYPEID, ownerTypeId);
 
 	const GameOwnerItem* gameOwnerItem = GameOwnerItemRepository::GetInstance()->GetItemById(ownerTypeId);
 	if (nullptr == gameOwnerItem)
@@ -225,16 +227,21 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	}
 
 	QString name;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_NAME, name);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_NAME, name);
 
 	int efficiency = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_EFFICIENCY, efficiency);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_EFFICIENCY, efficiency);
 
 	int spezializedUnitTypeId = -1;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, spezializedUnitTypeId);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, spezializedUnitTypeId);
 
 	int strength = 0;
-	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::CITIES_STRENGTH, strength);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_STRENGTH, strength);
+
+	GameUnitProduction gameUnitProduction(id);
+	DomNodeFinder find(node);
+	allElementsExtracted &= ParseUnitProduction(find.FindDomeNodeByName(SerializeXMLItems::CITIES_UNITPRODUCTION), &gameUnitProduction);
+
 
 	if (false == allElementsExtracted)
 	{
@@ -258,8 +265,40 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	gameCityItem->GetRuntimeData()->BaseEfficiency = GetBaseEfficency(modelCityTypeId);
 	gameCityItem->GetRuntimeData()->CurrentStrength = strength;
 	gameCityItem->GetRuntimeData()->BaseStrength = GetBaseStrength(modelCityTypeId);
+	gameCityItem->SetGameUnitProduction(gameUnitProduction);
 	gameCityItem->Name = name;
 	gameCityItem->SpezializedUnitTypeId = spezializedUnitTypeId;
 
 	return gameCityItem;
+}
+
+bool GameCityItemFactory::ParseUnitProduction(const QDomNode& domNode, GameUnitProduction* gameUnitProduction)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	bool allElementsExtracted = true;
+	int unitProductionId = NOT_INITIALIZED_INT;
+	int unitProductionProgress = NOT_INITIALIZED_INT;
+
+	DomValueExtractor extractor(domNode);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_UNITPRODUCTIONID, unitProductionId);
+	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_UNITPRODUCTIONPROGRESS, unitProductionProgress);
+
+	if (false == allElementsExtracted)
+	{
+		return false;
+	}
+
+	gameUnitProduction->SetGameUnitId(unitProductionId);
+	gameUnitProduction->SetProductionProgress(unitProductionProgress);
+	return true;
 }

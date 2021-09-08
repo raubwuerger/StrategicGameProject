@@ -5236,6 +5236,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>1</UnitTypeID>
+				<UnitProductionProgress>50</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>2</ID>
@@ -5246,6 +5250,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>1</UnitTypeID>
+				<UnitProductionProgress>40</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>3</ID>
@@ -5256,6 +5264,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>2</UnitTypeID>
+				<UnitProductionProgress>30</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>4</ID>
@@ -5266,6 +5278,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>4</UnitTypeID>
+				<UnitProductionProgress>100</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>6</ID>
@@ -5276,6 +5292,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>5</UnitTypeID>
+				<UnitProductionProgress>100</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>7</ID>
@@ -5286,6 +5306,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>1</UnitTypeID>
+				<UnitProductionProgress>100</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>8</ID>
@@ -5296,6 +5320,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>8</UnitTypeID>
+				<UnitProductionProgress>50</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>9</ID>
@@ -5306,6 +5334,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>1</UnitTypeID>
+				<UnitProductionProgress>100</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>10</ID>
@@ -5316,6 +5348,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>7</UnitTypeID>
+				<UnitProductionProgress>10</UnitProductionProgress>
+			</UnitProduction>
         </City>
         <City>
             <ID>11</ID>
@@ -5326,6 +5362,10 @@
             <Efficiency>100</Efficiency>
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
+			<UnitProduction>
+				<UnitTypeID>11</UnitTypeID>
+				<UnitProductionProgress>20</UnitProductionProgress>
+			</UnitProduction>
         </City>
     </Cities>
 </Savegame>

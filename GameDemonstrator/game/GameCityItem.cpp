@@ -165,6 +165,12 @@ const GameUnitProduction* GameCityItem::GetUnitProduction() const
 	return UnitProduction;
 }
 
+void GameCityItem::SetGameUnitProduction(const GameUnitProduction& unitProduction)
+{
+	UnitProduction->SetGameUnitId(unitProduction.GetGameUnitId());
+	UnitProduction->SetProductionProgress(unitProduction.GetProductionProgress());
+}
+
 bool GameCityItem::operator<(const GameCityItem& rhs) const
 {
 	return Id < rhs.Id;

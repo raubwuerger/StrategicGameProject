@@ -24,6 +24,7 @@
 #include "DomNodeListFinder.h"
 #include "game/GameConfig.h"
 #include "game/GameDataFactory.h"
+#include "game/GameUnitProduction.h"
 
 
 //==============================================================================
@@ -281,7 +282,18 @@ bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_EFFICIENCY, QString::number(gameCityItem->GetCurrentEfficiency()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, QString::number(gameCityItem->GetSpezializedUnitTypeId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_STRENGTH, QString::number(gameCityItem->GetCurrentStrength()));
-		xmlWriter.writeEndElement();
+		WriteCityProduction(xmlWriter, gameCityItem);
+	xmlWriter.writeEndElement();
+	return true;
+}
+
+//==============================================================================
+bool SerializeXML::WriteCityProduction(QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem)
+{
+	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_UNITPRODUCTION);
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_UNITPRODUCTIONID, QString::number(gameCityItem->GetUnitProduction()->GetGameUnitId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_UNITPRODUCTIONPROGRESS, QString::number(gameCityItem->GetUnitProduction()->GetProductionProgress()));
+	xmlWriter.writeEndElement();
 	return true;
 }
 

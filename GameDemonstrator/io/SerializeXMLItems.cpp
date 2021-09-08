@@ -51,3 +51,7 @@ const QString SerializeXMLItems::CITIES_OWNERTYPEID = "OwnerTypeId";
 const QString SerializeXMLItems::CITIES_EFFICIENCY = "Efficiency";
 const QString SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID = "SpezializedUnitTypeId";
 const QString SerializeXMLItems::CITIES_STRENGTH = "Strength";
+const QString SerializeXMLItems::CITIES_UNITPRODUCTION = "UnitProduction";
+const QString SerializeXMLItems::CITIES_UNITPRODUCTIONID = "UnitTypeID";
+const QString SerializeXMLItems::CITIES_UNITPRODUCTIONPROGRESS = "UnitProductionProgress";
+
