@@ -32,6 +32,8 @@ private:
 	void SetDefaultGameValues();
 	/** */
 	void InitSignalConnections();
+	/** */
+	void InitCommandPlaceGameUnitOnMap();
 private:
 	friend class GameDemonstrator;
 	static GameUnitController*	GameControllerObject;

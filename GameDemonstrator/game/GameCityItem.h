@@ -69,6 +69,8 @@ public:
 	const GameUnitProduction* GetUnitProduction() const;
 	/** */
 	void SetGameUnitProduction(const GameUnitProduction& unitProduction);
+	/** */
+	void ClearGameUnitProduction() const;
 private:
 	/** */
 	void ResetDefenceValue() const;

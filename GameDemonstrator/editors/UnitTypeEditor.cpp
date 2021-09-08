@@ -78,6 +78,7 @@ void UnitTypeEditor::SlotAddUnit(int mapHexItemId)
 #include "game/GameUnitItem.h"
 #include "controller/GameUnitMovementController.h"
 #include "map/MapHexItemRepository.h"
+#include "command/CommandPlaceGameUnitOnMap.h"
 void UnitTypeEditor::CreateUnit()
 {
 	if (false == IsUnitTypeEditorInitialzedForCreatingUnit())
@@ -90,6 +91,11 @@ void UnitTypeEditor::CreateUnit()
 	gameUnitParameterObject.ModelUnitTypeObject = ActiveModelUnitType;
 	gameUnitParameterObject.GameOwnerItemId = ActiveGameOwnerItemId;
 
+	if (false == TerrainAccessTester::Accessable(ActiveModelUnitType, ActiveGameMapItemId))
+	{
+		return;
+	}
+
 	GameUnitItemFactory gameUnitItemFactory;
 	GameUnitItem* created = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);
 
@@ -99,17 +105,7 @@ void UnitTypeEditor::CreateUnit()
 		return;
 	}
 
-	if (false == TerrainAccessTester::Accessable(ActiveModelUnitType, ActiveGameMapItemId))
-	{
-		return;
-	}
-
-	MapUnitItemFactory mapUnitItemFactory;
-	if (false == mapUnitItemFactory.Create(MapViewInstance, created))
-	{
-		return;
-	}
-	jha::GetLog()->Log_DEBUG(tr("MapUnitItem (Id=%1) successfully created on HexItem (Id=%2)!").arg(QString::number(created->GetId())).arg(QString::number(ActiveGameMapItemId)));
+	CommandPlaceGameUnitOnMap::PlaceGameUnit(created, ActiveGameMapItemId);
 }
 
 void UnitTypeEditor::SlotDeleteUnitFromGameUnitId(int gameUnitId)

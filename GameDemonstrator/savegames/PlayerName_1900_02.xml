@@ -5336,7 +5336,7 @@
             <Strength>10</Strength>
 			<UnitProduction>
 				<UnitTypeID>1</UnitTypeID>
-				<UnitProductionProgress>90</UnitProductionProgress>
+				<UnitProductionProgress>0</UnitProductionProgress>
 			</UnitProduction>
         </City>
         <City>

@@ -171,6 +171,11 @@ void GameCityItem::SetGameUnitProduction(const GameUnitProduction& unitProductio
 	UnitProduction->SetProductionProgress(unitProduction.GetProductionProgress());
 }
 
+void GameCityItem::ClearGameUnitProduction() const
+{
+	UnitProduction->ClearProductionProgress();
+}
+
 bool GameCityItem::operator<(const GameCityItem& rhs) const
 {
 	return Id < rhs.Id;

@@ -13,6 +13,7 @@
 #include "game\GameConfig.h"
 #include "GameObjectController.h"
 #include "dialogs\GameTurnDialog.h"
+#include "command\CommandPlaceGameUnitOnMap.h"
 
 GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
@@ -30,6 +31,7 @@ GameFactory::GameFactory()
 	InitGameController();
 	InitGameModeController();
 	InitSignalConnections();
+	InitCommandPlaceGameUnitOnMap();
 }
 
 void GameFactory::InitGameController()
@@ -85,6 +87,11 @@ void GameFactory::InitSignalConnections()
 {
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject, &GameInfoDialogController::SlotShowTurnInfoDialog);
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnObjects, GameObjectController::GetInstance(), &GameObjectController::SlotDoUpdateTurn);
+}
+
+void GameFactory::InitCommandPlaceGameUnitOnMap()
+{
+	CommandPlaceGameUnitOnMap::MapViewObject = MapViewObject;
 }
 
 bool GameFactory::Create()

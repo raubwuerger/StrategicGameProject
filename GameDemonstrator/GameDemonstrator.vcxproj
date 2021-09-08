@@ -172,6 +172,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="BaseRepository.cpp" />
     <ClCompile Include="command\CommandBasic.cpp" />
+    <ClCompile Include="command\CommandPlaceGameUnitOnMap.cpp" />
     <ClCompile Include="command\CommandProduceUnit.cpp" />
     <ClCompile Include="ConfigurationLoader.cpp" />
     <ClCompile Include="Connectors\ConnectorLoadGame.cpp" />
@@ -871,6 +872,7 @@
     </CustomBuild>
     <ClInclude Include="BaseRepository.h" />
     <ClInclude Include="command\CommandBasic.h" />
+    <ClInclude Include="command\CommandPlaceGameUnitOnMap.h" />
     <ClInclude Include="command\CommandProduceUnit.h" />
     <ClInclude Include="ConfigurationLoader.h" />
     <CustomBuild Include="Connectors\ConnectorLoadGame.h">

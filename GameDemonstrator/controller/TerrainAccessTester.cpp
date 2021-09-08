@@ -9,76 +9,55 @@
 
 bool TerrainAccessTester::Accessable(const ModelUnitType* modelUnitType, const int gameMapItemId)
 {
-	if (nullptr == modelUnitType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelUnitType);
 
 	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
+	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelTerrainType);
 
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
 bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const MapHexItem* mapHexItem)
 {
-	if (nullptr == gameUnitItem)
-	{
-		return false;
-	}
-
-	if (nullptr == mapHexItem)
-	{
-		return false;
-	}
+	Q_ASSERT(gameUnitItem);
+	Q_ASSERT(mapHexItem);
 
 	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
-	if (nullptr == modelUnitType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelUnitType);
 
 	const GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapHexItem->GetGameMapItemId());
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
+	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelTerrainType);
 
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
 bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const ModelTerrainType* modelTerrainType)
 {
-	if (nullptr == gameUnitItem)
-	{
-		return false;
-	}
-
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
+	Q_ASSERT(gameUnitItem);
+	Q_ASSERT(modelTerrainType);
 
 	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
-	if (nullptr == modelUnitType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelUnitType);
+
+	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
+}
+
+bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const GameMapItem* gameMapItem)
+{
+	Q_ASSERT(gameUnitItem);
+	Q_ASSERT(gameMapItem);
+
+	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
+	Q_ASSERT(modelUnitType);
+
+	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
+	Q_ASSERT(modelTerrainType);
 
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
@@ -87,37 +66,13 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Mod
 #include "model/ModelCityType.h"
 bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const int gameMapItemId)
 {
-	if (nullptr == modelCityType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelCityType);
 
 	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
-	if (nullptr == gameMapItem)
-	{
-		return false;
-	}
+	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
-	if (nullptr == modelTerrainType)
-	{
-		return false;
-	}
+	Q_ASSERT(modelTerrainType);
 
 	return modelCityType->IsPlaceableOnTerrainType(modelTerrainType->GetId());
-}
-
-bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const ModelCityType* modelCityType)
-{
-	if (nullptr == gameUnitItem)
-	{
-		return false;
-	}
-
-	if (nullptr == modelCityType)
-	{
-		return false;
-	}
-
-	return gameUnitItem->CanOccupieCity();
 }

@@ -8,6 +8,8 @@
 #include "GameCityItemRepository.h"
 #include "GameCityItem.h"
 #include "Model\ModelUnitType.h"
+#include "Map\MapUnitItemFactory.h"
+#include "command\CommandPlaceGameUnitOnMap.h"
 
 GameUnitProductionController* GameUnitProductionController::Instance = nullptr;
 
@@ -77,6 +79,11 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 
 	const GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetGameCityItemById(gameUnitProduction->GetGameCityId());
 
+	if (true == IsGameUnitOnMapItem(gameCityItem->GetGameMapItemId()))
+	{
+		return;
+	}
+
 	GameUnitParameterObject gameUnitParameterObject;
 	gameUnitParameterObject.ModelUnitTypeObject = gameUnitItem->GetModelUnitType();
 	gameUnitParameterObject.GameMapItemObject = gameCityItem->GetGameMapItem();
@@ -84,5 +91,19 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 
 	GameUnitItemFactory gameUnitItemFactory;
 	const GameUnitItem* produced = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);
-	
+	if (nullptr == produced)
+	{
+		return;
+	}
+
+	if (false == CommandPlaceGameUnitOnMap::PlaceGameUnit(produced, gameCityItem->GetGameMapItem()))
+	{
+		//TODO: Logausgabe
+	}
+	gameCityItem->ClearGameUnitProduction();
+}
+
+bool GameUnitProductionController::IsGameUnitOnMapItem(int gameMapId) const
+{
+	return nullptr != GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapId);
 }

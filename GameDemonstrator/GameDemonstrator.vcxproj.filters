@@ -740,6 +740,9 @@
     <ClCompile Include="game\GameUnitProductionController.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="command\CommandPlaceGameUnitOnMap.cpp">
+      <Filter>Header Dateien\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1032,6 +1035,9 @@
     </ClInclude>
     <ClInclude Include="game\GameUnitProductionController.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="command\CommandPlaceGameUnitOnMap.h">
+      <Filter>Header Dateien\Command</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

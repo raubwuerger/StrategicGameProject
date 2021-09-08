@@ -23,6 +23,8 @@ private:
 	GameUnitProductionController();
 	/** */
 	void CreateGameUnit(const GameUnitProduction* gameUnitProduction);
+	/** */
+	bool IsGameUnitOnMapItem(int gameMapId) const;
 private:
 	QMap<int, const GameUnitProduction*>	CityProductions;
 	static GameUnitProductionController* Instance;
