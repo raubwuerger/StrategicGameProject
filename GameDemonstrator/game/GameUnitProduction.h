@@ -7,27 +7,29 @@ public:
 	/** */
 	GameUnitProduction( int gameCityItemId );
 	/** */
+	GameUnitProduction(const GameUnitProduction& rhs);
+	/** */
 	int GetGameCityId() const;
 	/** */
-	void SetGameUnitId(int gameUnitId);
-	/** */
-	void CancelGameUnitProduction();
+	void SetGameUnitId(int gameUnitId) const;
 	/** */
 	int GetGameUnitId() const;
 	/** */
-	void UpdateProductionProgress(int updateValue);
+	void UpdateProductionProgress(int updateValue) const;
 	/** */
-	void ClearProductionProgress();
+	void ClearProductionProgress() const;
 	/** */
 	int GetProductionProgress() const;
 	/** */
-	void SetProductionProgress(int progress);
+	void SetProductionProgress(int progress) const;
 	/** */
 	bool IsGameUnitInProduction() const;
+	/** */
+	QString toString() const;
 private:
-	int GameCityId;
-	int GameUnitId;			//TODO: 9999 == Efficiency
-	int	ProductionProgress;
+	int			GameCityId;
+	mutable int	GameUnitId;			//TODO: 9999 == Efficiency
+	mutable int	ProductionProgress;
 };
 
 #endif // GAMEUNITPRODUCTION_H 

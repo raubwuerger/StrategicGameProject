@@ -743,15 +743,6 @@
     <ClCompile Include="command\CommandPlaceGameUnitOnMap.cpp">
       <Filter>Source Dateien\Command</Filter>
     </ClCompile>
-    <ClCompile Include="controller\CityUnitProductionController.cpp">
-      <Filter>Source Dateien\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CityUnitProductionController.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CityUnitProductionController.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1039,14 +1030,14 @@
     <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h">
-      <Filter>Generierte Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameUnitProductionController.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="command\CommandPlaceGameUnitOnMap.h">
       <Filter>Header Dateien\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GameCitySettingsDialog.h">
+      <Filter>Header Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1212,17 +1203,14 @@
     <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien</Filter>
     </CustomBuild>
-    <CustomBuild Include="dialogs\MapCitySettingsDialog.ui">
-      <Filter>Form Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
     <CustomBuild Include="dialogs\GameCitySettingsDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
-    <CustomBuild Include="controller\CityUnitProductionController.h">
-      <Filter>Header Dateien\Controller</Filter>
+    <CustomBuild Include="dialogs\GameCitySettingsDialog.ui">
+      <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

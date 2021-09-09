@@ -23,7 +23,7 @@ public:
 	/** */
 	void SetGameUnitProduction(const GameUnitProduction* gameUnitProduction);
 	/** */
-	GameUnitProduction* GetGameUnitProduction() const;
+	GameUnitProduction* GetChangedGameUnitProduction() const;
 	/** */
 	bool GetHasProductionChanged() const { return HasProductionChanged; }
 signals:

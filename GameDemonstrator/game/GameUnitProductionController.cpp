@@ -34,7 +34,46 @@ bool GameUnitProductionController::RegisterGameUnitProduction(const GameUnitProd
 
 	CityProductions.insert(gameUnitProduction->GetGameCityId(), gameUnitProduction);
 
-	return false;
+	return true;
+}
+
+bool GameUnitProductionController::UpdateGameUnitProduction(const GameUnitProduction& gameUnitProduction)
+{
+	Q_ASSERT(&gameUnitProduction);
+
+	if (false == CityProductions.contains(gameUnitProduction.GetGameCityId()))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitProduction not registered! %1").arg(gameUnitProduction.toString()));
+		return false;
+	}
+	
+	const GameUnitProduction* toUpdate = CityProductions[gameUnitProduction.GetGameCityId()];
+	toUpdate->SetGameUnitId(gameUnitProduction.GetGameUnitId());
+	toUpdate->SetProductionProgress(gameUnitProduction.GetProductionProgress());
+	return true;
+}
+
+const GameUnitProduction* GameUnitProductionController::CreateDefaultGameUnitProduction(int cityId)
+{
+	if (cityId <= 0)
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitProduction not allowed for city id <=0!"));
+		return nullptr;
+	}
+
+	if (true == CityProductions.contains(cityId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitProduction city id=%1 alreads exists!").arg(QString::number(cityId)));
+		return nullptr;
+	}
+
+	GameUnitProduction* gameUnitProduction = new GameUnitProduction(cityId);
+	gameUnitProduction->SetGameUnitId(GAME_UNIT_ID_EFFICIENCY);
+	gameUnitProduction->SetProductionProgress(0);
+
+	CityProductions.insert(cityId, gameUnitProduction);
+
+	return gameUnitProduction;
 }
 
 bool GameUnitProductionController::Init()
@@ -100,7 +139,7 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 	{
 		//TODO: Logausgabe
 	}
-	gameCityItem->ClearGameUnitProduction();
+	gameUnitProduction->ClearProductionProgress();
 }
 
 bool GameUnitProductionController::IsGameUnitOnMapItem(int gameMapId) const

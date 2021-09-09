@@ -51,7 +51,7 @@ private:
 	/** */
 	GameCityItem* CreateItemFromXML(const QDomNode& city);
 	/** */
-	bool ParseUnitProduction(const QDomNode& domNode, GameUnitProduction* gameUnitProduction);
+	GameUnitProduction* CreateGameUnitProduction(const QDomNode& domNode, int gameCityId);
 	/** */
 	int CreateId(const GameCityParameterObject obj);
 	/** */

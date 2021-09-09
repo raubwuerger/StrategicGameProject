@@ -19,6 +19,7 @@
 #include "dialogs\GameCitySettingsDialog.h"
 #include "game\GameCityItem.h"
 #include "game\GameUnitProduction.h"
+#include "game\GameUnitProductionController.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),
@@ -145,7 +146,19 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 	GameCitySettingsDialogObject->SetStrength(QString::number(gameCity->GetCurrentStrength()));
 	GameCitySettingsDialogObject->SetSpecialization(GetUnitType(gameCity->GetSpezializedUnitTypeId()));
 	GameCitySettingsDialogObject->SetGameUnitProduction(gameCity->GetUnitProduction());
-	GameCitySettingsDialogObject->exec();
+	if (GameCitySettingsDialogObject->exec() == QDialog::Rejected)
+	{
+		return;
+	}
+	if (false == GameCitySettingsDialogObject->GetHasProductionChanged())
+	{
+		return;
+	}
+
+	if (false == GameUnitProductionController::GetInstance()->UpdateGameUnitProduction(*GameCitySettingsDialogObject->GetChangedGameUnitProduction()))
+	{
+		Q_ASSERT(false);
+	}
 }
 
 QString GameInfoDialogController::GetUnitType(int id)

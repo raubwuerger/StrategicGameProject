@@ -14,7 +14,6 @@ GameCityItem::GameCityItem(int id)
 		RuntimeData(nullptr),
 		UnitProduction(nullptr)
 {
-	UnitProduction = new GameUnitProduction(Id);
 }
 
 GameCityItem::~GameCityItem()
@@ -145,11 +144,6 @@ void GameCityItem::ResetDefenceValue() const
 	RuntimeData->CurrentStrength = RuntimeData->BaseStrength;
 }
 
-void GameCityItem::UpdateUnitProduction(const GameUnitProduction& unitProduction)
-{
-	UnitProduction->SetGameUnitId(unitProduction.GetGameUnitId());
-}
-
 void GameCityItem::UpdateUnitProduction() const
 {
 	int productionProgress = CityType->GetBaseProductionPoints();
@@ -165,15 +159,10 @@ const GameUnitProduction* GameCityItem::GetUnitProduction() const
 	return UnitProduction;
 }
 
-void GameCityItem::SetGameUnitProduction(const GameUnitProduction& unitProduction)
+void GameCityItem::SetGameUnitProduction(const GameUnitProduction* unitProduction)
 {
-	UnitProduction->SetGameUnitId(unitProduction.GetGameUnitId());
-	UnitProduction->SetProductionProgress(unitProduction.GetProductionProgress());
-}
-
-void GameCityItem::ClearGameUnitProduction() const
-{
-	UnitProduction->ClearProductionProgress();
+	Q_ASSERT(unitProduction);
+	UnitProduction = unitProduction;
 }
 
 bool GameCityItem::operator<(const GameCityItem& rhs) const

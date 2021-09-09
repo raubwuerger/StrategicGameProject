@@ -44,11 +44,6 @@ bool GameObjectController::RegisterObject(const GameObject* object)
 		return false;
 	}
 
-	if (true == CheckIfGameObjectIsOfTypeGameCity(object))
-	{
-		GameUnitProductionController::GetInstance()->RegisterGameUnitProduction(reinterpret_cast<const GameCityItem*>(object)->GetUnitProduction());
-	}
-	
 	GameObjects.insert(object->UID,object);
 	return true;
 }

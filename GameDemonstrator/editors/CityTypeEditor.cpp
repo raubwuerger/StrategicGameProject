@@ -8,6 +8,7 @@
 #include "controller\TerrainAccessTester.h"
 #include "game\GameCityItemRepository.h"
 #include "game\GameCityItem.h"
+#include "game\GameUnitProductionController.h"
 
 CityTypeEditor::CityTypeEditor(QObject *parent)
 	: BaseEditor(parent),
@@ -63,6 +64,7 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	obj.GameMapItemId = mapItemId;
 	obj.ModelCityTypeObject = ActiveModelCityType;
 	obj.GameOwnerItemId = OwnerTypeId;
+
 	GameCityItemFactory gameFactory;
 	GameCityItem* created = gameFactory.Create(obj);
 	if (nullptr == created)
@@ -70,12 +72,14 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
-	if (false == TerrainAccessTester::Accessable(ActiveModelCityType, mapItemId))
+	const GameUnitProduction* gameUnitProduction = GameUnitProductionController::GetInstance()->CreateDefaultGameUnitProduction(created->GetId());
+	if (nullptr == gameUnitProduction)
 	{
-		GameCityItem* toDelete = GameCityItemRepository::GetInstance()->RemoveCityItemById(created->GetId());
-		delete toDelete;
+		Q_ASSERT(false);
 		return;
 	}
+
+	created->SetGameUnitProduction(gameUnitProduction);
 
 	MapCityItemFactory mapFactory;
 	mapFactory.Create(MapViewInstance, created);

@@ -14,7 +14,6 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	InitProductionItems();
 	InitConnections();
 	InitDialog();
-	ChangedGameUnitProduction = new GameUnitProduction(NOT_INITIALIZED_INT);
 }
 
 
@@ -54,6 +53,7 @@ void GameCitySettingsDialog::SetName(const QString& name)
 void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gameUnitProduction)
 {
 	OriginalGameUnitProduction = gameUnitProduction;
+	ChangedGameUnitProduction = new GameUnitProduction(gameUnitProduction->GetGameCityId());
 	SetProductionProgress(OriginalGameUnitProduction);
 }
 
@@ -104,7 +104,7 @@ void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
 	}
 }
 
-GameUnitProduction* GameCitySettingsDialog::GetGameUnitProduction() const
+GameUnitProduction* GameCitySettingsDialog::GetChangedGameUnitProduction() const
 {
 	return ChangedGameUnitProduction;
 }

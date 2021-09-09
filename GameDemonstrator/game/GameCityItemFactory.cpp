@@ -16,6 +16,7 @@
 #include "gameController/GameObjectController.h"
 #include "DomNodeFinder.h"
 #include "GameUnitProduction.h"
+#include "GameUnitProductionController.h"
 
 GameCityItemFactory::GameCityItemFactory()
 	: DefaultCityName("City")
@@ -238,11 +239,6 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	int strength = 0;
 	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_STRENGTH, strength);
 
-	GameUnitProduction gameUnitProduction(id);
-	DomNodeFinder find(node);
-	allElementsExtracted &= ParseUnitProduction(find.FindDomeNodeByName(SerializeXMLItems::CITIES_UNITPRODUCTION), &gameUnitProduction);
-
-
 	if (false == allElementsExtracted)
 	{
 		Q_ASSERT(allElementsExtracted);
@@ -261,6 +257,9 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 		return nullptr;
 	}
 
+	DomNodeFinder find(node);
+	GameUnitProduction* gameUnitProduction = CreateGameUnitProduction(find.FindDomeNodeByName(SerializeXMLItems::CITIES_UNITPRODUCTION), id);
+
 	gameCityItem->GetRuntimeData()->CurrentEfficiency = efficiency;
 	gameCityItem->GetRuntimeData()->BaseEfficiency = GetBaseEfficency(modelCityTypeId);
 	gameCityItem->GetRuntimeData()->CurrentStrength = strength;
@@ -272,17 +271,17 @@ GameCityItem* GameCityItemFactory::CreateItemFromXML(const QDomNode& node)
 	return gameCityItem;
 }
 
-bool GameCityItemFactory::ParseUnitProduction(const QDomNode& domNode, GameUnitProduction* gameUnitProduction)
+GameUnitProduction* GameCityItemFactory::CreateGameUnitProduction(const QDomNode& domNode, int gameCityId)
 {
 	if (true == domNode.isNull())
 	{
-		return false;
+		return nullptr;
 	}
 
 	QDomNodeList childs = domNode.childNodes();
 	if (true == childs.isEmpty())
 	{
-		return false;
+		return nullptr;
 	}
 
 	bool allElementsExtracted = true;
@@ -295,10 +294,16 @@ bool GameCityItemFactory::ParseUnitProduction(const QDomNode& domNode, GameUnitP
 
 	if (false == allElementsExtracted)
 	{
-		return false;
+		return nullptr;
 	}
 
+	GameUnitProduction* gameUnitProduction = new GameUnitProduction(gameCityId);
 	gameUnitProduction->SetGameUnitId(unitProductionId);
 	gameUnitProduction->SetProductionProgress(unitProductionProgress);
-	return true;
+
+	if (false == GameUnitProductionController::GetInstance()->RegisterGameUnitProduction(gameUnitProduction))
+	{
+		//TODO: Was soll hier geschehen???
+	}
+	return gameUnitProduction;
 }

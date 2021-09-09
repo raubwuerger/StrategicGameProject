@@ -6,6 +6,7 @@
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelUnitType.h"
+#include "model/ModelCityTypeRepository.h"
 
 bool TerrainAccessTester::Accessable(const ModelUnitType* modelUnitType, const int gameMapItemId)
 {
@@ -66,6 +67,20 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Gam
 #include "model/ModelCityType.h"
 bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const int gameMapItemId)
 {
+	Q_ASSERT(modelCityType);
+
+	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	Q_ASSERT(gameMapItem);
+
+	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
+	Q_ASSERT(modelTerrainType);
+
+	return modelCityType->IsPlaceableOnTerrainType(modelTerrainType->GetId());
+}
+
+bool TerrainAccessTester::Accessable(const int modelCityTypeId, const int gameMapItemId)
+{
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
 	Q_ASSERT(modelCityType);
 
 	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);

@@ -204,7 +204,7 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 	if (true == unitItemNodeList.isEmpty())
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("%1: QDomNodeList has no child elements").arg(units.nodeName()));
-		return false;
+		return true;
 	}
 
 	GameUnitItemRepository::GetInstance()->Init();

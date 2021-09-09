@@ -13,6 +13,10 @@ public:
 	/** */
 	bool RegisterGameUnitProduction(const GameUnitProduction* gameUnitProduction);
 	/** */
+	bool UpdateGameUnitProduction(const GameUnitProduction& gameUnitProduction);
+	/** */
+	const GameUnitProduction* CreateDefaultGameUnitProduction(int cityId);
+	/** */
 	bool Init() override;
 	/** */
 	void Release() override;
@@ -27,7 +31,7 @@ private:
 	bool IsGameUnitOnMapItem(int gameMapId) const;
 private:
 	QMap<int, const GameUnitProduction*>	CityProductions;
-	static GameUnitProductionController* Instance;
+	static GameUnitProductionController*	Instance;
 };
 
 #endif // GAMECITYPRODUCTIONREPOSITORY_H

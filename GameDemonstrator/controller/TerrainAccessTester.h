@@ -21,6 +21,8 @@ public:
 	static bool Accessable(const GameUnitItem* gameUnitItem, const ModelTerrainType* modelTerrainType);
 	/** */
 	static bool Accessable(const ModelCityType* modelCityType, const int gameMapItemId);
+	/** */
+	static bool Accessable(const int modelCityTypeId, const int gameMapItemId);
 };
 
 #endif // TERRAINACCESSTESTER_H

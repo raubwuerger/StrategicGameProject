@@ -64,13 +64,9 @@ public:
 	/** */
 	GameCityItemRuntimeData* GetRuntimeData();
 	/** */
-	void UpdateUnitProduction(const GameUnitProduction& unitProduction);
-	/** */
 	const GameUnitProduction* GetUnitProduction() const;
 	/** */
-	void SetGameUnitProduction(const GameUnitProduction& unitProduction);
-	/** */
-	void ClearGameUnitProduction() const;
+	void SetGameUnitProduction(const GameUnitProduction* unitProduction);
 private:
 	/** */
 	void ResetDefenceValue() const;
@@ -88,7 +84,7 @@ private:
 	QString					Name;
 	int						SpezializedUnitTypeId;
 	mutable GameCityItemRuntimeData*RuntimeData;
-	mutable GameUnitProduction*		UnitProduction;
+	const GameUnitProduction*	UnitProduction;
 };
 
 #endif // GAMECITYTYPE_H
