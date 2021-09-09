@@ -1467,7 +1467,7 @@
     <ClInclude Include="GeneratedFiles\ui_GameTurnDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_HexItemInfoDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_GameUnitInfoDialog.h" />
-    <ClInclude Include="GeneratedFiles\ui_MapCitySettingsDialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_GameCitySettingsDialog.h" />
     <ClInclude Include="RepositoryCleaner.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -1639,7 +1639,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="dialogs\MapCitySettingsDialog.ui">
+    <CustomBuild Include="dialogs\GameCitySettingsDialog.ui">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>

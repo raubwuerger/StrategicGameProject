@@ -1,8 +1,8 @@
-#ifndef MAPCITYSETTINGSDIALOG_H
-#define MAPCITYSETTINGSDIALOG_H
+#ifndef GAMECITYSETTINGSDIALOG_H
+#define GAMECITYSETTINGSDIALOG_H
 
 #include <QWidget>
-#include "ui_MapCitySettingsDialog.h"
+#include "ui_GameCitySettingsDialog.h"
 
 class GameUnitProduction;
 
@@ -63,4 +63,4 @@ private:
 	QVector<QGroupBox*>		ProductionItemGroups;
 };
 
-#endif // MAPCITYSETTINGSDIALOG_H
+#endif // GAMECITYSETTINGSDIALOG_H
