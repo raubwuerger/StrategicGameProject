@@ -61,7 +61,6 @@ private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>	ProductionItems;
 	QVector<QGroupBox*>		ProductionItemGroups;
-	QMap<QPushButton*, int>	ProductionChange;
 };
 
 #endif // MAPCITYSETTINGSDIALOG_H

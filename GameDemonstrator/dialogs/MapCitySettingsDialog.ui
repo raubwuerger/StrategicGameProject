@@ -469,7 +469,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBoxBattleShip">
+   <widget class="QGroupBox" name="groupBoxBattleship">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -509,7 +509,7 @@
       <set>Qt::AlignJustify|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButtonProduceBattleshitp">
+    <widget class="QPushButton" name="pushButtonProduceBattleship">
      <property name="geometry">
       <rect>
        <x>2</x>

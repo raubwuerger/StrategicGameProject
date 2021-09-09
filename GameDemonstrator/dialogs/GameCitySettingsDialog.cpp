@@ -26,7 +26,7 @@ void GameCitySettingsDialog::InitConnections()
 	connect(ui.pushButtonProduceBomber, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBomber);
 	connect(ui.pushButtonProduceDestroyer, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedDestroyer);
 	connect(ui.pushButtonProduceCruiser, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCruiser);
-	connect(ui.pushButtonProduceBattleshitp, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBattleship);
+	connect(ui.pushButtonProduceBattleship, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBattleship);
 	connect(ui.pushButtonProduceCarrier, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCarrier);
 	connect(ui.pushButtonProduceSubmarine, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedSubmarine);
 	connect(ui.pushButtonProduceTransport, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTransport);
@@ -145,23 +145,11 @@ void GameCitySettingsDialog::InitProductionItems()
 	ProductionItemGroups.push_back(ui.groupBoxBomber);
 	ProductionItemGroups.push_back(ui.groupBoxDestroyer);
 	ProductionItemGroups.push_back(ui.groupBoxCruiser);
-	ProductionItemGroups.push_back(ui.groupBoxBattleShip);
+	ProductionItemGroups.push_back(ui.groupBoxBattleship);
 	ProductionItemGroups.push_back(ui.groupBoxCarrier);
 	ProductionItemGroups.push_back(ui.groupBoxSubmarine);
 	ProductionItemGroups.push_back(ui.groupBoxTransport);
 	ProductionItemGroups.push_back(ui.groupBoxEfficiency);
-
-	ProductionChange.insert(ui.pushButtonProduceInfantry, 1);
-	ProductionChange.insert(ui.pushButtonProduceTank, 2);
-	ProductionChange.insert(ui.pushButtonProduceArtillery, 3);
-	ProductionChange.insert(ui.pushButtonProduceFighter, 4);
-	ProductionChange.insert(ui.pushButtonProduceBomber, 5);
-	ProductionChange.insert(ui.pushButtonProduceDestroyer, 6);
-	ProductionChange.insert(ui.pushButtonProduceCruiser, 7);
-	ProductionChange.insert(ui.pushButtonProduceBattleshitp, 8);
-	ProductionChange.insert(ui.pushButtonProduceCarrier, 9);
-	ProductionChange.insert(ui.pushButtonProduceSubmarine, 10);
-	ProductionChange.insert(ui.pushButtonProduceTransport, 11);
 }
 
 void GameCitySettingsDialog::ResetProductionItems()
