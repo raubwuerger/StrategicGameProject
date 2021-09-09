@@ -111,7 +111,10 @@ GameUnitProduction* GameCitySettingsDialog::GetGameUnitProduction() const
 
 void GameCitySettingsDialog::SlotButtonPressedEfficiency()
 {
-	HasProductionChanged = true;
+	int idEfficiency = GAME_UNIT_ID_EFFICIENCY;
+	ChangedGameUnitProduction->SetGameUnitId(idEfficiency);
+	SetProductionHasChanged(idEfficiency);
+	SetGameUnitProduction(idEfficiency);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedInfantry()

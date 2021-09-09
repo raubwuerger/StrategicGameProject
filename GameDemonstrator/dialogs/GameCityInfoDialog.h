@@ -25,6 +25,10 @@ public:
 	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
 	/** */
 	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	/** */
+	void SetProductionProgress(int productionPorgress) { ui.progressBarProduction->setValue(productionPorgress); }
+	/** */
+	void SetProductionText( const QString& productionText) { ui.progressBarProduction->setFormat(productionText); }
 private:
 	Ui::GameCityInfoDialog ui;
 };
