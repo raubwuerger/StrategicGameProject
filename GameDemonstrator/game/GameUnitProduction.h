@@ -26,7 +26,7 @@ public:
 	bool IsGameUnitInProduction() const;
 private:
 	int GameCityId;
-	int GameUnitId;
+	int GameUnitId;			//TODO: 9999 == Efficiency
 	int	ProductionProgress;
 };
 

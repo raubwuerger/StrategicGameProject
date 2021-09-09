@@ -5293,7 +5293,7 @@
             <SpezializedUnitTypeId>1</SpezializedUnitTypeId>
             <Strength>10</Strength>
 			<UnitProduction>
-				<UnitTypeID>5</UnitTypeID>
+				<UnitTypeID>9999</UnitTypeID>
 				<UnitProductionProgress>80</UnitProductionProgress>
 			</UnitProduction>
         </City>

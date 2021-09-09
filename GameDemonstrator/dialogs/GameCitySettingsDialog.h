@@ -21,11 +21,17 @@ public:
 	/** */
 	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
 	/** */
-	void SetProductionProgress(const GameUnitProduction* gameUnitProduction);
+	void SetGameUnitProduction(const GameUnitProduction* gameUnitProduction);
+	/** */
+	GameUnitProduction* GetGameUnitProduction() const;
+	/** */
+	bool GetHasProductionChanged() const { return HasProductionChanged; }
 signals:
 	/** */
 	void SignalUnitProductionChanged(int unitTypeId);
 public slots:
+	/** */
+	void SlotButtonPressedEfficiency();
 	/** */
 	void SlotButtonPressedInfantry();
 	/** */
@@ -57,10 +63,23 @@ private:
 	void InitConnections();
 	/** */
 	void InitDialog();
+	/** */
+	void SetProductionHasChanged(int unitTypeId);
+	/** */
+	void SetGameUnitProduction(int unitTypeId);
+	/** */
+	void SetProductionProgress(const GameUnitProduction* gameUnitProduction);
+	/** */
+	int GetOriginalUnitTypeId() const;
+	/** */
+	int CreateProductionItemId(const GameUnitProduction* gameUnitProduction) const;
 private:
 	Ui::CityEditDialog ui;
-	QVector<QProgressBar*>	ProductionItems;
-	QVector<QGroupBox*>		ProductionItemGroups;
+	QVector<QProgressBar*>		ProductionItems;
+	QVector<QGroupBox*>			ProductionItemGroups;
+	const GameUnitProduction*	OriginalGameUnitProduction;
+	GameUnitProduction*			ChangedGameUnitProduction;
+	bool						HasProductionChanged;
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H

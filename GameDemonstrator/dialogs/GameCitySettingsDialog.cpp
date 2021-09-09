@@ -3,7 +3,10 @@
 #include "game/GameUnitProduction.h"
 
 GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
-	: QDialog(parent)
+	: QDialog(parent),
+	ChangedGameUnitProduction(nullptr),
+	HasProductionChanged(NOT_INITIALIZED_BOOL),
+	OriginalGameUnitProduction(nullptr)
 {
 	ui.setupUi(this);
 	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);
@@ -11,6 +14,7 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	InitProductionItems();
 	InitConnections();
 	InitDialog();
+	ChangedGameUnitProduction = new GameUnitProduction(NOT_INITIALIZED_INT);
 }
 
 
@@ -18,6 +22,8 @@ void GameCitySettingsDialog::InitConnections()
 {
 	connect(ui.pushButtonOk, &QPushButton::clicked, this, &QDialog::accept);
 	connect(ui.pushButtonCancel, &QPushButton::clicked, this, &QDialog::reject);
+
+	connect(ui.pushButtonProduceEfficiency, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedEfficiency);
 
 	connect(ui.pushButtonProduceInfantry, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedInfantry);
 	connect(ui.pushButtonProduceTank, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTank);
@@ -45,6 +51,17 @@ void GameCitySettingsDialog::SetName(const QString& name)
 	ui.lineEditName->setText(name);
 }
 
+void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gameUnitProduction)
+{
+	OriginalGameUnitProduction = gameUnitProduction;
+	SetProductionProgress(OriginalGameUnitProduction);
+}
+
+void GameCitySettingsDialog::SetProductionHasChanged(int unitTypeId)
+{
+	HasProductionChanged = unitTypeId != GetOriginalUnitTypeId();
+}
+
 void GameCitySettingsDialog::SetProductionProgress(const GameUnitProduction* gameUnitProduction)
 {
 	ResetProductionItems();
@@ -55,76 +72,139 @@ void GameCitySettingsDialog::SetProductionProgress(const GameUnitProduction* gam
 		return;
 	}
 
-	if (gameUnitProduction->GetGameUnitId() >= ProductionItems.size())
-	{
-		ProductionItems.last()->setValue(gameUnitProduction->GetProductionProgress());
-		return;
-	}
-	QString safe = "QProgressBar::chunk {background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #78d,stop: 0.4999 #46a,stop: 0.5 #45a,stop: 1 #238 );border-bottom-right-radius: 7px;border-bottom-left-radius: 7px;border: 1px solid black;}";
-	int productionItemId = gameUnitProduction->GetGameUnitId() - 1;
+	int productionItemId = CreateProductionItemId(gameUnitProduction);
 	ProductionItems[productionItemId]->setValue(gameUnitProduction->GetProductionProgress());
-//	ProductionItems[productionItemId]->setStyleSheet(safe);
 	ProductionItems[productionItemId]->setTextVisible(true);
 	ProductionItemGroups[productionItemId]->setStyleSheet("background-color:cyan;");
 }
 
+int GameCitySettingsDialog::GetOriginalUnitTypeId() const
+{
+	return OriginalGameUnitProduction->GetGameUnitId();
+}
+
+int GameCitySettingsDialog::CreateProductionItemId(const GameUnitProduction* gameUnitProduction) const
+{
+	if (gameUnitProduction->GetGameUnitId() == GAME_UNIT_ID_EFFICIENCY)
+	{
+		return 0;
+	}
+	return gameUnitProduction->GetGameUnitId();
+}
+
+void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
+{
+	if (unitTypeId == GetOriginalUnitTypeId())
+	{
+		this->SetProductionProgress(OriginalGameUnitProduction);
+	}
+	else
+	{
+		this->SetProductionProgress(ChangedGameUnitProduction);
+	}
+}
+
+GameUnitProduction* GameCitySettingsDialog::GetGameUnitProduction() const
+{
+	return ChangedGameUnitProduction;
+}
+
+void GameCitySettingsDialog::SlotButtonPressedEfficiency()
+{
+	HasProductionChanged = true;
+}
+
 void GameCitySettingsDialog::SlotButtonPressedInfantry()
 {
-	emit SignalUnitProductionChanged(1);
+	int gameUnitIdInfantry = 1;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdInfantry);
+	SetProductionHasChanged(gameUnitIdInfantry);
+	SetGameUnitProduction(gameUnitIdInfantry);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTank()
 {
-	emit SignalUnitProductionChanged(2);
+	int gameUnitIdTank = 2;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdTank);
+	SetProductionHasChanged(gameUnitIdTank);
+	SetGameUnitProduction(gameUnitIdTank);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedArtillery()
 {
-	emit SignalUnitProductionChanged(3);
+	int gameUnitIdArtillery = 3;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdArtillery);
+	SetProductionHasChanged(gameUnitIdArtillery);
+	SetGameUnitProduction(gameUnitIdArtillery);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedFighter()
 {
-	emit SignalUnitProductionChanged(4);
+	int gameUnitIdFighter = 4;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdFighter);
+	SetProductionHasChanged(gameUnitIdFighter);
+	SetGameUnitProduction(gameUnitIdFighter);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBomber()
 {
-	emit SignalUnitProductionChanged(5);
+	int gameUnitIdBomber = 5;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdBomber);
+	SetProductionHasChanged(gameUnitIdBomber);
+	SetGameUnitProduction(gameUnitIdBomber);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedDestroyer()
 {
-	emit SignalUnitProductionChanged(6);
+	int gameUnitIdDestroyer = 6;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdDestroyer);
+	SetProductionHasChanged(gameUnitIdDestroyer);
+	SetGameUnitProduction(gameUnitIdDestroyer);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCruiser()
 {
-	emit SignalUnitProductionChanged(7);
+	int gameUnitIdCruiser = 7;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdCruiser);
+	SetProductionHasChanged(gameUnitIdCruiser);
+	SetGameUnitProduction(gameUnitIdCruiser);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBattleship()
 {
-	emit SignalUnitProductionChanged(8);
+	int gameUnitIdBattleship = 8;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdBattleship);
+	SetProductionHasChanged(gameUnitIdBattleship);
+	SetGameUnitProduction(gameUnitIdBattleship);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCarrier()
 {
-	emit SignalUnitProductionChanged(9);
+	int gameUnitIdCarrier = 9;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdCarrier);
+	SetProductionHasChanged(gameUnitIdCarrier);
+	SetGameUnitProduction(gameUnitIdCarrier);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedSubmarine()
 {
-	emit SignalUnitProductionChanged(10);
+	int gameUnitIdSubmarine = 10;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdSubmarine);
+	SetProductionHasChanged(gameUnitIdSubmarine);
+	SetGameUnitProduction(gameUnitIdSubmarine);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTransport()
 {
-	emit SignalUnitProductionChanged(11);
+	int gameUnitIdTransport = 11;
+	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdTransport);
+	SetProductionHasChanged(gameUnitIdTransport);
+	SetGameUnitProduction(gameUnitIdTransport);
 }
 
 void GameCitySettingsDialog::InitProductionItems()
 {
+	ProductionItems.push_back(ui.progressBarProgressEfficieny);
 	ProductionItems.push_back(ui.progressBarProgressInfantry);
 	ProductionItems.push_back(ui.progressBarProgressTank);
 	ProductionItems.push_back(ui.progressBarProgressArtillery);
@@ -136,8 +216,8 @@ void GameCitySettingsDialog::InitProductionItems()
 	ProductionItems.push_back(ui.progressBarProgressCarrier);
 	ProductionItems.push_back(ui.progressBarProgressSubmarine);
 	ProductionItems.push_back(ui.progressBarProgressTransport);
-	ProductionItems.push_back(ui.progressBarProgressEfficieny);
 
+	ProductionItemGroups.push_back(ui.groupBoxEfficiency);
 	ProductionItemGroups.push_back(ui.groupBoxInfantry);
 	ProductionItemGroups.push_back(ui.groupBoxTank);
 	ProductionItemGroups.push_back(ui.groupBoxArtillery);
@@ -149,7 +229,6 @@ void GameCitySettingsDialog::InitProductionItems()
 	ProductionItemGroups.push_back(ui.groupBoxCarrier);
 	ProductionItemGroups.push_back(ui.groupBoxSubmarine);
 	ProductionItemGroups.push_back(ui.groupBoxTransport);
-	ProductionItemGroups.push_back(ui.groupBoxEfficiency);
 }
 
 void GameCitySettingsDialog::ResetProductionItems()
