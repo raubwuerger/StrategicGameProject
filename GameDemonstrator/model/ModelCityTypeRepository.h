@@ -4,13 +4,11 @@
 #include "BaseRepository.h"
 class ModelCityType;
 
-class ModelCityTypeRepository : public BaseRepository
+class ModelCityTypeRepository
 {
 public:
 	/** */
 	static ModelCityTypeRepository* GetInstance();
-	/** */
-	bool Init() override;
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
 	bool RegisterType( ModelCityType *type  );
 	/** */
@@ -25,8 +23,6 @@ public:
 	const ModelCityType* GetDefaultType() const;
 	/** Set m_DefaultTerrainType */
 	void SetDefaultType( const ModelCityType* val);
-	/** */
-	virtual void Release();
 private:
 	/** */
 	ModelCityTypeRepository();

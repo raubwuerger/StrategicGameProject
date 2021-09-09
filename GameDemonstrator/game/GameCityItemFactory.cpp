@@ -84,6 +84,7 @@ int GameCityItemFactory::GetBaseStrength(int cityId) const
 
 bool GameCityItemFactory::Create(const QDomNode city)
 {
+	GameCityItemRepository::GetInstance()->Init();
 	return CreateItems(city);
 }
 
@@ -166,8 +167,6 @@ bool GameCityItemFactory::CreateItems(const QDomNode& city)
 		jha::GetLog()->Log_WARNING(QObject::tr("%1: QDomNodeList has no child elements").arg(city.nodeName()));
 		return false;
 	}
-
-	GameCityItemRepository::GetInstance()->Init();
 
 	for (int nodeIndex = 0; nodeIndex < itemNodeList.count(); nodeIndex++)
 	{

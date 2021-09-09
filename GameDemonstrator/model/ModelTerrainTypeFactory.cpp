@@ -25,8 +25,6 @@ bool ModelTerrainTypeFactory::Create()
 		return false;
 	}
 
-	ModelTerrainTypeRepository::GetInstance()->Init();
-
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for( int i=0; i <terrainTypeNodes.count(); i++ )
 	{

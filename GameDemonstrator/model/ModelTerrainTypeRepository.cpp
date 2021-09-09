@@ -16,12 +16,6 @@ ModelTerrainTypeRepository* ModelTerrainTypeRepository::GetInstance()
 	return Instance;
 }
 
-bool ModelTerrainTypeRepository::Init()
-{
-	TerrainTypes.clear();
-	return true;
-}
-
 ModelTerrainTypeRepository::ModelTerrainTypeRepository()
 	: DefaultTerrainType(nullptr)
 {
@@ -90,11 +84,4 @@ const ModelTerrainType* ModelTerrainTypeRepository::GetDefaultTerrainType() cons
 void ModelTerrainTypeRepository::SetDefaultTerrainType( const ModelTerrainType* val )
 {
 	DefaultTerrainType = val;
-}
-
-
-void ModelTerrainTypeRepository::Release()
-{
-	delete Instance;
-	Instance = nullptr;
 }

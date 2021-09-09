@@ -43,14 +43,3 @@ void ActionRepository::AddAction( QAction* action )
 {
 	Actions.push_back( action );
 }
-
-void ActionRepository::Release()
-{
-	delete Instance;
-	Instance = nullptr;
-}
-
-bool ActionRepository::Init()
-{
-	return true;
-}

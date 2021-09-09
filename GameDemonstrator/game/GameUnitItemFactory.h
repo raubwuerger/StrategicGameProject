@@ -45,7 +45,7 @@ public:
 	/** */
 	GameUnitItem* UpdateGameUnitItem(const GameUnitParameterObject obj);
 	/** */
-	bool CreateGameUnitItemsFromSaveGame( const QDomNode unitItemElements );
+	bool Create( const QDomNode unitItemElements );
 private:
 	/** */
 	bool Validate(const GameUnitParameterObject& obj) const;

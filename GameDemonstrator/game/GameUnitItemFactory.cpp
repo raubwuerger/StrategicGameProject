@@ -144,8 +144,9 @@ QString GameUnitItemFactory::CreateName(const ModelUnitType* modelUnitType) cons
 	return modelUnitType->GetName();
 }
 
-bool GameUnitItemFactory::CreateGameUnitItemsFromSaveGame(const QDomNode unitItemElements)
+bool GameUnitItemFactory::Create(const QDomNode unitItemElements)
 {
+	GameUnitItemRepository::GetInstance()->Init();
 	return CreateUnitItems(unitItemElements);
 }
 
@@ -206,8 +207,6 @@ bool GameUnitItemFactory::CreateUnitItems(const QDomNode& units)
 		jha::GetLog()->Log_WARNING(QObject::tr("%1: QDomNodeList has no child elements").arg(units.nodeName()));
 		return true;
 	}
-
-	GameUnitItemRepository::GetInstance()->Init();
 
 	for (int nodeIndex = 0; nodeIndex < unitItemNodeList.count(); nodeIndex++)
 	{

@@ -11,7 +11,7 @@ public:
 	/** */
 	bool Create();
 	/** */
-	bool CreateItemsFromSaveGame(const QDomNode node);
+	bool Create(const QDomNode node);
 private:
 	/** */
 	GameOwnerItem* CreateItemFromXML(const QDomNode& node);

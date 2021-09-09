@@ -4,7 +4,7 @@
 #include <QObject>
 #include "BaseRepository.h"
 
-class ActionRepository : public QObject, BaseRepository
+class ActionRepository : public QObject
 {
 	Q_OBJECT
 
@@ -15,10 +15,6 @@ public:
 	static ActionRepository* GetInstance();
 	/** */
 	void AddAction( QAction* action );
-	/** */
-	void Release();
-	/** */
-	bool Init() override;
 private:
 	/** */
 	ActionRepository(QObject *parent);

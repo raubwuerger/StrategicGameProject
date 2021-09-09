@@ -5,15 +5,11 @@
 
 class ModelUnitType;
 
-class ModelUnitTypeRepository : public BaseRepository
+class ModelUnitTypeRepository
 {
 public:
 	/** */
 	static ModelUnitTypeRepository* GetInstance();
-	/** */
-	bool Init() override;
-	/** */
-	void Release() override;
 	/** */
 	bool RegisterModelUnitType(const ModelUnitType* modelUnit);
 	/** */

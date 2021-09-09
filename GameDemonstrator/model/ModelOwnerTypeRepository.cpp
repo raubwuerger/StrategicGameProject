@@ -16,12 +16,6 @@ ModelOwnerTypeRepository* ModelOwnerTypeRepository::GetInstance()
 	return Instance;
 }
 
-bool ModelOwnerTypeRepository::Init()
-{
-	OwnerTypes.clear();
-	return true;
-}
-
 ModelOwnerTypeRepository::ModelOwnerTypeRepository()
 	: DefaultOwnerType(nullptr)
 {
@@ -89,10 +83,4 @@ const ModelOwnerType* ModelOwnerTypeRepository::GetDefaultOwnerType() const
 void ModelOwnerTypeRepository::SetDefaultOwnerType( const ModelOwnerType* val )
 {
 	DefaultOwnerType = val;
-}
-
-void ModelOwnerTypeRepository::Release()
-{
-	delete Instance;
-	Instance = nullptr;
 }

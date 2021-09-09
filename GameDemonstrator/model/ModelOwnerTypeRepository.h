@@ -4,13 +4,11 @@
 #include "BaseRepository.h"
 class ModelOwnerType;
 
-class ModelOwnerTypeRepository : public BaseRepository
+class ModelOwnerTypeRepository
 {
 public:
 	/** */
 	static ModelOwnerTypeRepository* GetInstance();
-	/** */
-	bool Init() override;
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
 	bool RegisterOwnerType( ModelOwnerType *ownerType  );
 	/** */
@@ -25,8 +23,6 @@ public:
 	const ModelOwnerType* GetDefaultOwnerType() const;
 	/** Set m_DefaultTerrainType */
 	void SetDefaultOwnerType( const ModelOwnerType* val);
-	/** */
-	void Release() override;
 private:
 	/** */
 	ModelOwnerTypeRepository();

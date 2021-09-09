@@ -17,6 +17,7 @@
 #include "map\MapView.h"
 #include "GameInfoDialogController.h"
 #include "GameTurnController.h"
+#include "RepositoryCleaner.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
@@ -170,6 +171,8 @@ bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 	{
 		return false;
 	}
+
+	RepositoryCleaner::GetInstance()->ReleaseAll();
 
 	GameConfig::CurrentSaveGameName = savegameName;
 

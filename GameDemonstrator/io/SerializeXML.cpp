@@ -362,7 +362,7 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 	}
 
 	GameOwnerItemFactory factory;
-	bool successful = factory.CreateItemsFromSaveGame(domNode);
+	bool successful = factory.Create(domNode);
 	if (false == successful)
 	{
 		return false;
@@ -386,7 +386,7 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 		return false;
 	}
 	GameMapItemFactory gameMapItemFactory;
-	return gameMapItemFactory.CreateFromSaveGame(domNode);
+	return gameMapItemFactory.Create(domNode);
 }
 
 //==============================================================================
@@ -397,7 +397,7 @@ bool SerializeXML::LoadUnitData(const QDomNode& domNode)
 		return false;
 	}
 	GameUnitItemFactory gameUnitItemFactory;
-	return gameUnitItemFactory.CreateGameUnitItemsFromSaveGame(domNode);
+	return gameUnitItemFactory.Create(domNode);
 }
 
 //==============================================================================

@@ -39,7 +39,7 @@ public:
 	/** Creates Map */
 	bool Create();
 	/** Creates Map */
-	bool CreateFromSaveGame(const QDomNode mapElements);
+	bool Create(const QDomNode mapElements);
 private:
 	/** */
 	bool Validate(const GameMapParameterObject& obj) const;

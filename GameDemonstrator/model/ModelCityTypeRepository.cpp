@@ -16,12 +16,6 @@ ModelCityTypeRepository* ModelCityTypeRepository::GetInstance()
 	return Instance;
 }
 
-bool ModelCityTypeRepository::Init()
-{
-	Types.clear();
-	return true;
-}
-
 ModelCityTypeRepository::ModelCityTypeRepository()
 	: DefaultType(nullptr)
 {
@@ -89,10 +83,4 @@ const ModelCityType* ModelCityTypeRepository::GetDefaultType() const
 void ModelCityTypeRepository::SetDefaultType( const ModelCityType* val )
 {
 	DefaultType = val;
-}
-
-void ModelCityTypeRepository::Release()
-{
-	delete Instance;
-	Instance = nullptr;
 }

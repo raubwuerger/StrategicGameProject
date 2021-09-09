@@ -25,8 +25,9 @@ bool GameMapItemFactory::Create()
 	return gameMapItemCreatorSimple.CreateMap();
 }
 
-bool GameMapItemFactory::CreateFromSaveGame(const QDomNode mapElements)
+bool GameMapItemFactory::Create(const QDomNode mapElements)
 {
+	GameMapItemRepository::GetInstance()->Init();
 	DomNodeFinder domNodeFinder(mapElements);
 
 	if (false == InitializeMap(domNodeFinder.FindDomeNodeByName(SerializeXMLItems::MAP_SETTINGS)))
@@ -103,7 +104,6 @@ bool GameMapItemFactory::CreateGameMapItems(const QDomNode& mapItems)
 		gameMap->append(row);
 	}
 
-	GameMapItemRepository::GetInstance()->Init();
 	GameMapItemRepository::GetInstance()->SetGameMapItems(gameMap);
 	return true;
 }

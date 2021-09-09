@@ -32,16 +32,15 @@ GameOwnerItem* GameOwnerItemFactory::CreateItem(const ModelOwnerType* model)
 	return item;
 }
 
-bool GameOwnerItemFactory::CreateItemsFromSaveGame(const QDomNode node)
+bool GameOwnerItemFactory::Create(const QDomNode node)
 {
+	GameOwnerItemRepository::GetInstance()->Init();
 	QDomNodeList nodes = node.childNodes();
 	if (true == nodes.isEmpty())
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("%1: QDomNodeList has no child elements").arg(node.nodeName()));
 		return false;
 	}
-
-	GameOwnerItemRepository::GetInstance()->Init();
 
 	for (int nodeIndex = 0; nodeIndex < nodes.count(); nodeIndex++)
 	{

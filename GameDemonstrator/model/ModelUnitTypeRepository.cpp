@@ -16,18 +16,6 @@ ModelUnitTypeRepository* ModelUnitTypeRepository::GetInstance()
 	return Instance;
 }
 
-bool ModelUnitTypeRepository::Init()
-{
-	Repository.clear();
-	return true;
-}
-
-void ModelUnitTypeRepository::Release()
-{
-	delete Instance;
-	Instance = nullptr;
-}
-
 bool ModelUnitTypeRepository::RegisterModelUnitType(const ModelUnitType* modelUnit)
 {
 	if (nullptr == modelUnit)

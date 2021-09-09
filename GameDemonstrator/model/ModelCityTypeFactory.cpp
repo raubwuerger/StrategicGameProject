@@ -28,8 +28,6 @@ bool ModelCityTypeFactory::Create()
 		return false;
 	}
 
-	ModelCityTypeRepository::GetInstance()->Init();
-
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{

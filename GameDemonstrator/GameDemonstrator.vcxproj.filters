@@ -1037,7 +1037,7 @@
       <Filter>Header Dateien\Command</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_GameCitySettingsDialog.h">
-      <Filter>Header Dateien</Filter>
+      <Filter>Generierte Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

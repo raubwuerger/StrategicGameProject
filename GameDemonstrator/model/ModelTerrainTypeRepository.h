@@ -4,13 +4,11 @@
 #include "BaseRepository.h"
 class ModelTerrainType;
 
-class ModelTerrainTypeRepository : public BaseRepository
+class ModelTerrainTypeRepository
 {
 public:
 	/** */
 	static ModelTerrainTypeRepository* GetInstance();
-	/** */
-	bool Init() override;
 	/** If no TerrainTypes are registered, the first will be set as DefaultTerrainType */
 	bool RegisterTerrainType( ModelTerrainType *terrainType  );
 	/** */
@@ -25,8 +23,6 @@ public:
 	const ModelTerrainType* GetDefaultTerrainType() const;
 	/** Set m_DefaultTerrainType */
 	void SetDefaultTerrainType( const ModelTerrainType* val);
-	/** */
-	void Release();
 private:
 	/** */
 	ModelTerrainTypeRepository();
