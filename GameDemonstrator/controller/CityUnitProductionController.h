@@ -1,7 +1,7 @@
 #ifndef CITYGAMEUNITPRODUCTIONCONTROLLER_H
 #define CITYGAMEUNITPRODUCTIONCONTROLLER_H
 
-class ControllerCityGameUnitProduction : public QObject
+class CityUnitProductionController : public QObject
 {
 	Q_OBJECT
 public:

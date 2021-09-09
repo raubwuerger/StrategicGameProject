@@ -9,7 +9,7 @@ class GameUnitItem;
 class GameDemonstrator;
 class GameCityItem;
 class GameCitySettingsDialog;
-class ControllerCityGameUnitProduction;
+class CityUnitProductionController;
 
 /** Controlls and connects all game info dialogs */
 class GameInfoDialogController : public QObject
@@ -73,7 +73,7 @@ private:
 	GameUnitInfoDialog*		GameUnitInfoDialogObject;
 	GameCityInfoDialog*		GameCityInfoDialogObject;
 	GameCitySettingsDialog*	GameCitySettingsDialogObject;
-	ControllerCityGameUnitProduction*	ControllerCityGameUnitProductionObject;
+	CityUnitProductionController*	ControllerCityGameUnitProductionObject;
 	QColor					LightRed;
 	QColor					LightYellow;
 	QColor					LightGreen;

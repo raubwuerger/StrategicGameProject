@@ -18,7 +18,7 @@
 #include "game\GameConfig.h"
 #include "dialogs\GameCitySettingsDialog.h"
 #include "game\GameCityItem.h"
-#include "controller\ControllerCityGameUnitProduction.h"
+#include "controller\CityUnitProductionController.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),
@@ -194,12 +194,12 @@ void GameInfoDialogController::CreateGameCitySettingsDialog()
 
 void GameInfoDialogController::CreateGameCityConnections()
 {
-	connect(GameCitySettingsDialogObject, &GameCitySettingsDialog::SignalUnitProductionChanged, ControllerCityGameUnitProductionObject, &ControllerCityGameUnitProduction::SlotProduceUnit);
+	connect(GameCitySettingsDialogObject, &GameCitySettingsDialog::SignalUnitProductionChanged, ControllerCityGameUnitProductionObject, &CityUnitProductionController::SlotProduceUnit);
 }
 
 void GameInfoDialogController::CreateControllerCityGameUnitProduction()
 {
-	ControllerCityGameUnitProductionObject = new ControllerCityGameUnitProduction;
+	ControllerCityGameUnitProductionObject = new CityUnitProductionController;
 }
 
 QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* gameUnit) const
