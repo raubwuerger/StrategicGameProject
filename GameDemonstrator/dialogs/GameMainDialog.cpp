@@ -6,6 +6,7 @@ GameMainDialog::GameMainDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+	InitDialog();
 }
 
 void GameMainDialog::Init(GameDemonstrator* gameDemonstrator)
@@ -16,4 +17,9 @@ void GameMainDialog::Init(GameDemonstrator* gameDemonstrator)
 	QObject::connect(ui.StartEditor, &QPushButton::clicked, this, &QDialog::accept);
 	QObject::connect(ui.CreateGame, &QPushButton::clicked, this, &QDialog::accept);
 	QObject::connect(ui.LoadGame, &QPushButton::clicked, this, &QDialog::accept);
+}
+
+void GameMainDialog::InitDialog()
+{
+	setWindowFlags(Qt::SplashScreen);
 }

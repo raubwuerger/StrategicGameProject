@@ -16,6 +16,9 @@ public:
 public:
 	Ui::GameMainDialog ui;
 private:
+	/** */
+	void InitDialog();
+private:
 	GameDemonstrator* GameDemonstratorObject;
 };
 

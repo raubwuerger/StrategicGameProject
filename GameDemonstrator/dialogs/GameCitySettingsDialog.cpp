@@ -9,6 +9,23 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);
 	connect(ui.pushButtonCancel, &QPushButton::click, this, &GameCitySettingsDialog::close);
 	InitProductionItems();
+	InitConnections();
+	InitDialog();
+}
+
+
+void GameCitySettingsDialog::InitConnections()
+{
+	connect(ui.pushButtonOk, &QPushButton::clicked, this, &QDialog::accept);
+	connect(ui.pushButtonCancel, &QPushButton::clicked, this, &QDialog::reject);
+}
+
+void GameCitySettingsDialog::InitDialog()
+{
+	setWindowFlags(Qt::FramelessWindowHint);
+	ui.lineEditEfficiency->setStyleSheet("QLineEdit { background: rgb(211, 211, 211); }");
+	ui.lineEditSpecialization->setStyleSheet("QLineEdit { background: rgb(211, 211, 211); }");
+	ui.lineEditStrength->setStyleSheet("QLineEdit { background: rgb(211, 211, 211); }");
 }
 
 void GameCitySettingsDialog::SetName(const QString& name)

@@ -27,6 +27,10 @@ private:
 	void InitProductionItems();
 	/** */
 	void ResetProductionItems();
+	/** */
+	void InitConnections();
+	/** */
+	void InitDialog();
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>	ProductionItems;
