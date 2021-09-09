@@ -741,7 +741,16 @@
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="command\CommandPlaceGameUnitOnMap.cpp">
-      <Filter>Header Dateien\Command</Filter>
+      <Filter>Source Dateien\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="controller\ControllerCityGameUnitProduction.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ControllerCityGameUnitProduction.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ControllerCityGameUnitProduction.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1211,6 +1220,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\GameCitySettingsDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="controller\ControllerCityGameUnitProduction.h">
+      <Filter>Header Dateien\Controller</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

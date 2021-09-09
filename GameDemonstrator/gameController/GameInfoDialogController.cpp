@@ -18,6 +18,7 @@
 #include "game\GameConfig.h"
 #include "dialogs\GameCitySettingsDialog.h"
 #include "game\GameCityItem.h"
+#include "controller\ControllerCityGameUnitProduction.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),
@@ -25,7 +26,8 @@ GameInfoDialogController::GameInfoDialogController()
 	GameUnitInfoDialogObject(nullptr),
 	GameCityInfoDialogObject(nullptr),
 	GameCitySettingsDialogObject(nullptr),
-	GameDemonstratorObject(nullptr)
+	GameDemonstratorObject(nullptr),
+	ControllerCityGameUnitProductionObject(nullptr)
 {
 	LightRed = QColor(255, 51, 51);
 	LightYellow = QColor(255, 255, 224);
@@ -46,12 +48,14 @@ void GameInfoDialogController::Init()
 	CreateGameCityInfoDialog();
 	CreateGameUnitInfoDialog();
 	CreateGameCitySettingsDialog();
+	CreateControllerCityGameUnitProduction();
+	CreateGameCityConnections();
 
-	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameInfoDialogController::SlotShowGameUnitInfo);
-	QObject::connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameInfoDialogController::SlotShowGameUnitInfo);
+	connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameInfoDialogController::SlotShowGameUnitInfo);
+	connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameInfoDialogController::SlotShowGameUnitInfo);
 
-	QObject::connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, this, &GameInfoDialogController::SlotShowGameCityInfo);
-	QObject::connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemDoubleClick, this, &GameInfoDialogController::SlotShowGameCitySettingsDialog);
+	connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemEntered, this, &GameInfoDialogController::SlotShowGameCityInfo);
+	connect(MapViewObject->ConnectorMapCityItemInstance, &ConnectorMapCityItem::SignalCityItemDoubleClick, this, &GameInfoDialogController::SlotShowGameCitySettingsDialog);
 
 }
 
@@ -186,6 +190,16 @@ void GameInfoDialogController::CreateGameCitySettingsDialog()
 {
 	GameCitySettingsDialogObject = new GameCitySettingsDialog();
 	GameCitySettingsDialogObject->hide();
+}
+
+void GameInfoDialogController::CreateGameCityConnections()
+{
+	connect(GameCitySettingsDialogObject, &GameCitySettingsDialog::SignalUnitProductionChanged, ControllerCityGameUnitProductionObject, &ControllerCityGameUnitProduction::SlotProduceUnit);
+}
+
+void GameInfoDialogController::CreateControllerCityGameUnitProduction()
+{
+	ControllerCityGameUnitProductionObject = new ControllerCityGameUnitProduction;
 }
 
 QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* gameUnit) const

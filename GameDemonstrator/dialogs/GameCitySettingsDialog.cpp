@@ -18,6 +18,18 @@ void GameCitySettingsDialog::InitConnections()
 {
 	connect(ui.pushButtonOk, &QPushButton::clicked, this, &QDialog::accept);
 	connect(ui.pushButtonCancel, &QPushButton::clicked, this, &QDialog::reject);
+
+	connect(ui.pushButtonProduceInfantry, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedInfantry);
+	connect(ui.pushButtonProduceTank, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTank);
+	connect(ui.pushButtonProduceArtillery, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedArtillery);
+	connect(ui.pushButtonProduceFighter, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedFighter);
+	connect(ui.pushButtonProduceBomber, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBomber);
+	connect(ui.pushButtonProduceDestroyer, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedDestroyer);
+	connect(ui.pushButtonProduceCruiser, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCruiser);
+	connect(ui.pushButtonProduceBattleshitp, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBattleship);
+	connect(ui.pushButtonProduceCarrier, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCarrier);
+	connect(ui.pushButtonProduceSubmarine, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedSubmarine);
+	connect(ui.pushButtonProduceTransport, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTransport);
 }
 
 void GameCitySettingsDialog::InitDialog()
@@ -56,6 +68,61 @@ void GameCitySettingsDialog::SetProductionProgress(const GameUnitProduction* gam
 	ProductionItemGroups[productionItemId]->setStyleSheet("background-color:cyan;");
 }
 
+void GameCitySettingsDialog::SlotButtonPressedInfantry()
+{
+	emit SignalUnitProductionChanged(1);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedTank()
+{
+	emit SignalUnitProductionChanged(2);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedArtillery()
+{
+	emit SignalUnitProductionChanged(3);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedFighter()
+{
+	emit SignalUnitProductionChanged(4);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedBomber()
+{
+	emit SignalUnitProductionChanged(5);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedDestroyer()
+{
+	emit SignalUnitProductionChanged(6);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedCruiser()
+{
+	emit SignalUnitProductionChanged(7);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedBattleship()
+{
+	emit SignalUnitProductionChanged(8);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedCarrier()
+{
+	emit SignalUnitProductionChanged(9);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedSubmarine()
+{
+	emit SignalUnitProductionChanged(10);
+}
+
+void GameCitySettingsDialog::SlotButtonPressedTransport()
+{
+	emit SignalUnitProductionChanged(11);
+}
+
 void GameCitySettingsDialog::InitProductionItems()
 {
 	ProductionItems.push_back(ui.progressBarProgressInfantry);
@@ -84,6 +151,17 @@ void GameCitySettingsDialog::InitProductionItems()
 	ProductionItemGroups.push_back(ui.groupBoxTransport);
 	ProductionItemGroups.push_back(ui.groupBoxEfficiency);
 
+	ProductionChange.insert(ui.pushButtonProduceInfantry, 1);
+	ProductionChange.insert(ui.pushButtonProduceTank, 2);
+	ProductionChange.insert(ui.pushButtonProduceArtillery, 3);
+	ProductionChange.insert(ui.pushButtonProduceFighter, 4);
+	ProductionChange.insert(ui.pushButtonProduceBomber, 5);
+	ProductionChange.insert(ui.pushButtonProduceDestroyer, 6);
+	ProductionChange.insert(ui.pushButtonProduceCruiser, 7);
+	ProductionChange.insert(ui.pushButtonProduceBattleshitp, 8);
+	ProductionChange.insert(ui.pushButtonProduceCarrier, 9);
+	ProductionChange.insert(ui.pushButtonProduceSubmarine, 10);
+	ProductionChange.insert(ui.pushButtonProduceTransport, 11);
 }
 
 void GameCitySettingsDialog::ResetProductionItems()

@@ -9,6 +9,7 @@ class GameUnitItem;
 class GameDemonstrator;
 class GameCityItem;
 class GameCitySettingsDialog;
+class ControllerCityGameUnitProduction;
 
 /** Controlls and connects all game info dialogs */
 class GameInfoDialogController : public QObject
@@ -44,6 +45,10 @@ private:
 	/** */
 	void CreateGameCitySettingsDialog();
 	/** */
+	void CreateGameCityConnections();
+	/** */
+	void CreateControllerCityGameUnitProduction();
+	/** */
 	QString CreateUnitMovementPoints(const GameUnitItem* gameUnit) const;
 	/** */
 	QColor CreateMovementColor(const GameUnitItem* gameUnit) const;
@@ -68,6 +73,7 @@ private:
 	GameUnitInfoDialog*		GameUnitInfoDialogObject;
 	GameCityInfoDialog*		GameCityInfoDialogObject;
 	GameCitySettingsDialog*	GameCitySettingsDialogObject;
+	ControllerCityGameUnitProduction*	ControllerCityGameUnitProductionObject;
 	QColor					LightRed;
 	QColor					LightYellow;
 	QColor					LightGreen;

@@ -22,6 +22,32 @@ public:
 	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
 	/** */
 	void SetProductionProgress(const GameUnitProduction* gameUnitProduction);
+signals:
+	/** */
+	void SignalUnitProductionChanged(int unitTypeId);
+public slots:
+	/** */
+	void SlotButtonPressedInfantry();
+	/** */
+	void SlotButtonPressedTank();
+	/** */
+	void SlotButtonPressedArtillery();
+	/** */
+	void SlotButtonPressedFighter();
+	/** */
+	void SlotButtonPressedBomber();
+	/** */
+	void SlotButtonPressedDestroyer();
+	/** */
+	void SlotButtonPressedCruiser();
+	/** */
+	void SlotButtonPressedBattleship();
+	/** */
+	void SlotButtonPressedCarrier();
+	/** */
+	void SlotButtonPressedSubmarine();
+	/** */
+	void SlotButtonPressedTransport();
 private:
 	/** */
 	void InitProductionItems();
@@ -34,7 +60,8 @@ private:
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>	ProductionItems;
-	QVector<QGroupBox*>	ProductionItemGroups;
+	QVector<QGroupBox*>		ProductionItemGroups;
+	QMap<QPushButton*, int>	ProductionChange;
 };
 
 #endif // MAPCITYSETTINGSDIALOG_H
