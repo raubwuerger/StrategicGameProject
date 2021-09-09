@@ -19,6 +19,7 @@
 #include "dialogs\GameCitySettingsDialog.h"
 #include "game\GameCityItem.h"
 #include "controller\CityUnitProductionController.h"
+#include "game\GameUnitProduction.h"
 
 GameInfoDialogController::GameInfoDialogController()
 	: MapViewObject(nullptr),
@@ -113,6 +114,19 @@ void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 	GameCityInfoDialogObject->SetEfficiency( CreateCityEfficiency(gameCity));
 	GameCityInfoDialogObject->SetSpecialization(GetSpecializedUnitName(gameCity));
 	GameCityInfoDialogObject->SetStrength(CreateCityStrength(gameCity));
+	GameCityInfoDialogObject->SetProductionProgress(gameCity->GetUnitProduction()->GetProductionProgress());
+	GameCityInfoDialogObject->SetProductionText(GetProducedUnitName(gameCity->GetUnitProduction()->GetGameUnitId()));
+}
+
+QString GameInfoDialogController::GetProducedUnitName(int gameUnitId) const
+{
+	if (gameUnitId == GAME_UNIT_ID_EFFICIENCY)
+	{
+		return GAME_UNIT_STRING_EFFICIENCY;
+	}
+
+	GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	return gameUnitItem->GetModelUnitType()->GetName();
 }
 
 void GameInfoDialogController::SlotShowTurnInfoDialog()

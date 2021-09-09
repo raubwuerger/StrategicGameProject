@@ -64,6 +64,8 @@ private:
 	QString GetSpecializedUnitName(const GameCityItem* gameCity);
 	/** */
 	QString GetUnitType(int id);
+	/** */
+	QString GetProducedUnitName(int gameUnitId) const;
 private:
 	friend class GameFactory;
 	QVector<QDockWidget*>	DockWidgets;
