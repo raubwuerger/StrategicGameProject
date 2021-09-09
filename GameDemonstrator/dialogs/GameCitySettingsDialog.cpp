@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "GameCitySettingsDialog.h"
 #include "game/GameUnitProduction.h"
+#include "model/ModelUnitTypeRepository.h"
+#include "model/ModelUnitType.h"
+#include "model/ModelCityTypeRepository.h"
+#include "model/ModelCityType.h"
+
+static int EFFICIENCY_ID = 0;
 
 GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	: QDialog(parent),
@@ -55,6 +61,7 @@ void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gam
 	OriginalGameUnitProduction = gameUnitProduction;
 	ChangedGameUnitProduction = new GameUnitProduction(gameUnitProduction->GetGameCityId());
 	SetProductionProgress(OriginalGameUnitProduction);
+	ShowProductionItem(CreateProductionItemId(gameUnitProduction));
 }
 
 void GameCitySettingsDialog::SetProductionHasChanged(int unitTypeId)
@@ -87,9 +94,39 @@ int GameCitySettingsDialog::CreateProductionItemId(const GameUnitProduction* gam
 {
 	if (gameUnitProduction->GetGameUnitId() == GAME_UNIT_ID_EFFICIENCY)
 	{
-		return 0;
+		return EFFICIENCY_ID;
 	}
 	return gameUnitProduction->GetGameUnitId();
+}
+
+void GameCitySettingsDialog::ShowProductionItem(int unitTypeId)
+{
+	QString imagePath;
+	if (unitTypeId == GAME_UNIT_ID_EFFICIENCY)
+	{
+		imagePath = GetImagePathFromCityItem();
+	}
+	else
+	{
+		imagePath = GetImagePathFromUnitItem(unitTypeId);
+	}
+	QIcon untitIcon(imagePath);
+	ui.pushButtonUnitImage->setIcon(untitIcon);
+	ui.pushButtonUnitImage->setIconSize(QSize(64, 64));
+}
+
+const QString& GameCitySettingsDialog::GetImagePathFromUnitItem(int unitTypeId)
+{
+	const ModelUnitType* type = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
+	Q_ASSERT(type);
+	return type->GetPictureName();
+}
+
+const QString& GameCitySettingsDialog::GetImagePathFromCityItem()
+{
+	const ModelCityType* type = ModelCityTypeRepository::GetInstance()->GetTypeById(1);
+	Q_ASSERT(type);
+	return type->GetPictureName();
 }
 
 void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
@@ -115,6 +152,7 @@ void GameCitySettingsDialog::SlotButtonPressedEfficiency()
 	ChangedGameUnitProduction->SetGameUnitId(idEfficiency);
 	SetProductionHasChanged(idEfficiency);
 	SetGameUnitProduction(idEfficiency);
+	ShowProductionItem(idEfficiency);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedInfantry()
@@ -123,6 +161,7 @@ void GameCitySettingsDialog::SlotButtonPressedInfantry()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdInfantry);
 	SetProductionHasChanged(gameUnitIdInfantry);
 	SetGameUnitProduction(gameUnitIdInfantry);
+	ShowProductionItem(gameUnitIdInfantry);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTank()
@@ -131,6 +170,7 @@ void GameCitySettingsDialog::SlotButtonPressedTank()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdTank);
 	SetProductionHasChanged(gameUnitIdTank);
 	SetGameUnitProduction(gameUnitIdTank);
+	ShowProductionItem(gameUnitIdTank);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedArtillery()
@@ -139,6 +179,7 @@ void GameCitySettingsDialog::SlotButtonPressedArtillery()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdArtillery);
 	SetProductionHasChanged(gameUnitIdArtillery);
 	SetGameUnitProduction(gameUnitIdArtillery);
+	ShowProductionItem(gameUnitIdArtillery);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedFighter()
@@ -147,6 +188,7 @@ void GameCitySettingsDialog::SlotButtonPressedFighter()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdFighter);
 	SetProductionHasChanged(gameUnitIdFighter);
 	SetGameUnitProduction(gameUnitIdFighter);
+	ShowProductionItem(gameUnitIdFighter);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBomber()
@@ -155,6 +197,7 @@ void GameCitySettingsDialog::SlotButtonPressedBomber()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdBomber);
 	SetProductionHasChanged(gameUnitIdBomber);
 	SetGameUnitProduction(gameUnitIdBomber);
+	ShowProductionItem(gameUnitIdBomber);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedDestroyer()
@@ -163,6 +206,7 @@ void GameCitySettingsDialog::SlotButtonPressedDestroyer()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdDestroyer);
 	SetProductionHasChanged(gameUnitIdDestroyer);
 	SetGameUnitProduction(gameUnitIdDestroyer);
+	ShowProductionItem(gameUnitIdDestroyer);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCruiser()
@@ -171,6 +215,7 @@ void GameCitySettingsDialog::SlotButtonPressedCruiser()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdCruiser);
 	SetProductionHasChanged(gameUnitIdCruiser);
 	SetGameUnitProduction(gameUnitIdCruiser);
+	ShowProductionItem(gameUnitIdCruiser);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBattleship()
@@ -179,6 +224,7 @@ void GameCitySettingsDialog::SlotButtonPressedBattleship()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdBattleship);
 	SetProductionHasChanged(gameUnitIdBattleship);
 	SetGameUnitProduction(gameUnitIdBattleship);
+	ShowProductionItem(gameUnitIdBattleship);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCarrier()
@@ -187,6 +233,7 @@ void GameCitySettingsDialog::SlotButtonPressedCarrier()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdCarrier);
 	SetProductionHasChanged(gameUnitIdCarrier);
 	SetGameUnitProduction(gameUnitIdCarrier);
+	ShowProductionItem(gameUnitIdCarrier);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedSubmarine()
@@ -195,6 +242,7 @@ void GameCitySettingsDialog::SlotButtonPressedSubmarine()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdSubmarine);
 	SetProductionHasChanged(gameUnitIdSubmarine);
 	SetGameUnitProduction(gameUnitIdSubmarine);
+	ShowProductionItem(gameUnitIdSubmarine);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTransport()
@@ -203,6 +251,7 @@ void GameCitySettingsDialog::SlotButtonPressedTransport()
 	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdTransport);
 	SetProductionHasChanged(gameUnitIdTransport);
 	SetGameUnitProduction(gameUnitIdTransport);
+	ShowProductionItem(gameUnitIdTransport);
 }
 
 void GameCitySettingsDialog::InitProductionItems()

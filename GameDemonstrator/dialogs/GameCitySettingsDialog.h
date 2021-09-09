@@ -73,6 +73,12 @@ private:
 	int GetOriginalUnitTypeId() const;
 	/** */
 	int CreateProductionItemId(const GameUnitProduction* gameUnitProduction) const;
+	/** */
+	void ShowProductionItem(int unitTypeId);
+	/** */
+	const QString& GetImagePathFromUnitItem(int unitTypeId);
+	/** */
+	const QString& GetImagePathFromCityItem();
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>		ProductionItems;
