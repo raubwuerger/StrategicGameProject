@@ -18,7 +18,6 @@
 #include "game\GameConfig.h"
 #include "dialogs\GameCitySettingsDialog.h"
 #include "game\GameCityItem.h"
-#include "controller\CityUnitProductionController.h"
 #include "game\GameUnitProduction.h"
 
 GameInfoDialogController::GameInfoDialogController()
@@ -27,8 +26,7 @@ GameInfoDialogController::GameInfoDialogController()
 	GameUnitInfoDialogObject(nullptr),
 	GameCityInfoDialogObject(nullptr),
 	GameCitySettingsDialogObject(nullptr),
-	GameDemonstratorObject(nullptr),
-	ControllerCityGameUnitProductionObject(nullptr)
+	GameDemonstratorObject(nullptr)
 {
 	LightRed = QColor(255, 51, 51);
 	LightYellow = QColor(255, 255, 224);
@@ -49,8 +47,6 @@ void GameInfoDialogController::Init()
 	CreateGameCityInfoDialog();
 	CreateGameUnitInfoDialog();
 	CreateGameCitySettingsDialog();
-	CreateControllerCityGameUnitProduction();
-	CreateGameCityConnections();
 
 	connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameInfoDialogController::SlotShowGameUnitInfo);
 	connect(MapViewObject->ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemEntered, this, &GameInfoDialogController::SlotShowGameUnitInfo);
@@ -204,16 +200,6 @@ void GameInfoDialogController::CreateGameCitySettingsDialog()
 {
 	GameCitySettingsDialogObject = new GameCitySettingsDialog();
 	GameCitySettingsDialogObject->hide();
-}
-
-void GameInfoDialogController::CreateGameCityConnections()
-{
-	connect(GameCitySettingsDialogObject, &GameCitySettingsDialog::SignalUnitProductionChanged, ControllerCityGameUnitProductionObject, &CityUnitProductionController::SlotProduceUnit);
-}
-
-void GameInfoDialogController::CreateControllerCityGameUnitProduction()
-{
-	ControllerCityGameUnitProductionObject = new CityUnitProductionController;
 }
 
 QString GameInfoDialogController::CreateUnitMovementPoints(const GameUnitItem* gameUnit) const
