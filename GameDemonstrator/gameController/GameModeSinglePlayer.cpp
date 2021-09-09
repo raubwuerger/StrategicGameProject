@@ -90,6 +90,7 @@ void GameModeSinglePlayer::CreateMenuEntries()
 	QIcon next(QPixmap(".//Resources//media_end.ico"));
 	QAction* nextTurnAction = new QAction(next, tr("&Next turn"), this);
 	nextTurnAction->setStatusTip(tr("Next turn"));
+	nextTurnAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
 	connect(nextTurnAction, &QAction::triggered, GameTurnControllerObject, &GameTurnController::SlotStartNextTurn, Qt::QueuedConnection);
 	GameMenu->addAction(nextTurnAction);
 	ActionRepository::GetInstance()->AddAction(nextTurnAction);
