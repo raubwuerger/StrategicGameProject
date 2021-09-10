@@ -857,7 +857,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>Statistiks</string>
+    <string>Statistics</string>
    </property>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">

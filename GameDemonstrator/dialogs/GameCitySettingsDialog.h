@@ -102,6 +102,7 @@ private:
 	bool						ProductionChanged;
 	bool						NameHasChanged;
 	QString						OriginalName;
+private:
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H

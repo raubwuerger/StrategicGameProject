@@ -108,6 +108,12 @@
     <Filter Include="Source Dateien\Command">
       <UniqueIdentifier>{76e50098-4d9e-4236-9aac-b16fb505e112}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\GUI">
+      <UniqueIdentifier>{420fd803-71be-485b-ae22-9cf4de984d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\GUI">
+      <UniqueIdentifier>{04e7a22d-c080-4707-8a82-98f5a868fd06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

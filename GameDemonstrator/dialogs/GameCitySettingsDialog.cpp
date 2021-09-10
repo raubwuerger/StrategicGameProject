@@ -150,103 +150,76 @@ void GameCitySettingsDialog::CreateUnitStatsWidget()
 {
 	ShowProductionItem(1,ui.gridLayoutUnitStats);
 	int rowIndex = 0;
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Name:"), ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Unit type:"), ++rowIndex, 0, 1, 2);
 	QLineEdit* lineEditName = new QLineEdit("Infantry");
 	lineEditName->setEnabled(false);
-	ui.gridLayoutUnitStats->addWidget(lineEditName, rowIndex, 1);
+	ui.gridLayoutUnitStats->addWidget(lineEditName, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Strength:"), ++rowIndex, 0);
-	QLineEdit* lineEditStrength = new QLineEdit();
-	lineEditStrength->setEnabled(false);
-	ui.gridLayoutUnitStats->addWidget(lineEditStrength, rowIndex, 1);
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Production costs:"), rowIndex, 2);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Production costs:"), ++rowIndex, 0, 1, 2);
 	QLineEdit* lineEditCost = new QLineEdit();
 	lineEditCost->setEnabled(false);
-	ui.gridLayoutUnitStats->addWidget(lineEditCost, rowIndex, 3);
+	ui.gridLayoutUnitStats->addWidget(lineEditCost, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Range:"), ++rowIndex, 0);
-	QLineEdit* lineEditRange = new QLineEdit();
-	lineEditRange->setEnabled(false);
-	ui.gridLayoutUnitStats->addWidget(lineEditRange, rowIndex, 1);
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Movement points:"), rowIndex, 2);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Movement points:"), ++rowIndex, 0, 1, 2);
 	QLineEdit* lineEditMovement = new QLineEdit();
 	lineEditMovement->setEnabled(false);
-	ui.gridLayoutUnitStats->addWidget(lineEditMovement, rowIndex, 3);
+	ui.gridLayoutUnitStats->addWidget(lineEditMovement, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Occupy city:"), ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Strength:"), ++rowIndex, 0, 1, 2);
+	QLineEdit* lineEditStrength = new QLineEdit();
+	lineEditStrength->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(lineEditStrength, rowIndex, 2, 1, 2);
+
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Range:"), ++rowIndex, 0, 1, 2);
+	QLineEdit* lineEditRange = new QLineEdit();
+	lineEditRange->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(lineEditRange, rowIndex, 2, 1, 2);
+
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Occupy city:"), ++rowIndex, 0, 1, 2);
 	QCheckBox* occupyCity = new QCheckBox("");
 	occupyCity->setEnabled(false);
 	occupyCity->setCheckState(Qt::Checked);
-	ui.gridLayoutUnitStats->addWidget(occupyCity, rowIndex, 1);
+	ui.gridLayoutUnitStats->addWidget(occupyCity, rowIndex, 2);
 
-	ui.gridLayoutUnitStats->addWidget(new QLabel("Counterattack:"), rowIndex, 2);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Counterattack:"), ++rowIndex, 0, 1, 2);
 	QCheckBox* counterAttack = new QCheckBox("");
 	counterAttack->setCheckState(Qt::Checked);
 	counterAttack->setEnabled(false);
-	ui.gridLayoutUnitStats->addWidget(counterAttack, rowIndex, 3);
+	ui.gridLayoutUnitStats->addWidget(counterAttack, rowIndex, 2);
 
 	QLabel* labelTerrainType1 = new QLabel("Plains:");
 	QCheckBox* terrainType1 = new QCheckBox();
 	terrainType1->setChecked(true);
 	terrainType1->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(labelTerrainType1, ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(terrainType1, rowIndex, 2);
 
 	QLabel* labelTerrainType2 = new QLabel("Woods:");
 	QCheckBox* terrainType2 = new QCheckBox();
 	terrainType2->setChecked(true);
 	terrainType2->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(labelTerrainType2, ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(terrainType2, rowIndex, 2);
 
 	QLabel* labelTerrainType3 = new QLabel("Ocean:");
 	QCheckBox* terrainType3 = new QCheckBox();
 	terrainType3->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(labelTerrainType3, ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(terrainType3, rowIndex, 2);
 
 	QLabel* labelTerrainType4 = new QLabel("Hills:");
 	QCheckBox* terrainType4 = new QCheckBox();
 	terrainType4->setChecked(true);
 	terrainType4->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(labelTerrainType4, ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(terrainType4, rowIndex, 2);
 
 	QLabel* labelTerrainType5 = new QLabel("Mountains:");
 	QCheckBox* terrainType5 = new QCheckBox();
 	terrainType5->setChecked(true);
 	terrainType5->setEnabled(false);
-
-	QLabel* labelTerrainType6 = new QLabel("Mountains 1:");
-	QCheckBox* terrainType6 = new QCheckBox();
-	terrainType6->setChecked(true);
-	terrainType6->setEnabled(false);
-
-	QLabel* labelTerrainType7 = new QLabel("Mountains 2:");
-	QCheckBox* terrainType7 = new QCheckBox();
-	terrainType7->setChecked(true);
-	terrainType7->setEnabled(false);
-
-	QLabel* labelTerrainType8 = new QLabel("Mountains 3:");
-	QCheckBox* terrainType8 = new QCheckBox();
-	terrainType8->setChecked(true);
-	terrainType8->setEnabled(false);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType1, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType1, rowIndex, 1);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType2, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType2, rowIndex, 1);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType3, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType3, rowIndex, 1);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType4, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType4, rowIndex, 1);
-
 	ui.gridLayoutUnitStats->addWidget(labelTerrainType5, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType5, rowIndex, 1);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType6, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType6, rowIndex, 1);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType7, ++rowIndex, 0);
-	ui.gridLayoutUnitStats->addWidget(terrainType7, rowIndex, 1);
-
-	ui.gridLayoutUnitStats->addWidget(labelTerrainType8, ++rowIndex, 0, 2, 0 );
-	ui.gridLayoutUnitStats->addWidget(terrainType8, rowIndex, 1, 2, 0 );
+	ui.gridLayoutUnitStats->addWidget(terrainType5, rowIndex, 2);
 }
 
 void GameCitySettingsDialog::ShowProductionItem(int unitTypeId, QGridLayout* layout)
