@@ -109,6 +109,7 @@ private:
 	bool						NameHasChanged;
 	QString						OriginalName;
 private:
+	QGroupBox*					GroupBoxUnitStatistics;
 	QGridLayout*				GridLayoutUnitStatistics;
 	QLabel*						LabelUnitImage;
 	QLabel*						LabelUnitType;

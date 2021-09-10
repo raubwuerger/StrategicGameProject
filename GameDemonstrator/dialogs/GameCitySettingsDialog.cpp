@@ -183,6 +183,9 @@ void GameCitySettingsDialog::ClearModelUnitTypeStatsWidget()
 
 void GameCitySettingsDialog::CreateModelUnitTypeStatsWidget()
 {
+	GroupBoxUnitStatistics = new QGroupBox("Unit statistics", this);
+	GroupBoxUnitStatistics->setFixedSize(356, 561);
+	GroupBoxUnitStatistics->move(380, 120);
 	GridLayoutUnitStatistics = new QGridLayout;
 	LabelUnitImage = new QLabel();
 	QPixmap unitPixmap;
@@ -240,7 +243,7 @@ void GameCitySettingsDialog::CreateModelUnitTypeStatsWidget()
 	GridLayoutUnitStatistics->addWidget(LabelCounterattack, ++rowIndex, 0, 1, 2);
 	GridLayoutUnitStatistics->addWidget(CheckBoxUnitGetCounterAttack, rowIndex, 2);
 
-	ui.groupBoxProductionStats->setLayout(GridLayoutUnitStatistics);
+	GroupBoxUnitStatistics->setLayout(GridLayoutUnitStatistics);
 }
 
 void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
