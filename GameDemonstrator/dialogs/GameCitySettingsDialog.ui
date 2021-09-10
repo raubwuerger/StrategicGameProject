@@ -857,19 +857,8 @@
     </rect>
    </property>
    <property name="title">
-    <string>Statistiks</string>
+    <string>Statistics</string>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>23</y>
-      <width>341</width>
-      <height>531</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayoutUnitStats"/>
-   </widget>
   </widget>
  </widget>
  <resources/>

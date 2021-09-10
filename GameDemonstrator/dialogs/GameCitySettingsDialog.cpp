@@ -183,6 +183,7 @@ void GameCitySettingsDialog::ClearModelUnitTypeStatsWidget()
 
 void GameCitySettingsDialog::CreateModelUnitTypeStatsWidget()
 {
+	GridLayoutUnitStatistics = new QGridLayout;
 	LabelUnitImage = new QLabel();
 	QPixmap unitPixmap;
 	LabelUnitImage->setPixmap(unitPixmap);
@@ -216,28 +217,30 @@ void GameCitySettingsDialog::CreateModelUnitTypeStatsWidget()
 	CheckBoxUnitGetCounterAttack->setEnabled(false);
 
 	int rowIndex = 0;
-	ui.gridLayoutUnitStats->addWidget(LabelUnitImage, 0, 0);
+	GridLayoutUnitStatistics->addWidget(LabelUnitImage, 0, 0);
 
-	ui.gridLayoutUnitStats->addWidget(LabelUnitType, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(LineEditUnitType, rowIndex, 2, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LabelUnitType, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LineEditUnitType, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(LabelProductionCost, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(LineEditUnitProductionCost, rowIndex, 2, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LabelProductionCost, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LineEditUnitProductionCost, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(LabelMovementPoints, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(LineEditUnitMovementPoints, rowIndex, 2, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LabelMovementPoints, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LineEditUnitMovementPoints, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(LabelStrength, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(LineEditUnitStrength, rowIndex, 2, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LabelStrength, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LineEditUnitStrength, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(LabelRange, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(LineEditUnitRange, rowIndex, 2, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LabelRange, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(LineEditUnitRange, rowIndex, 2, 1, 2);
 
-	ui.gridLayoutUnitStats->addWidget(LabelOccupyCity, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(CheckBoxUnitOccupyCity, rowIndex, 2);
+	GridLayoutUnitStatistics->addWidget(LabelOccupyCity, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(CheckBoxUnitOccupyCity, rowIndex, 2);
 
-	ui.gridLayoutUnitStats->addWidget(LabelCounterattack, ++rowIndex, 0, 1, 2);
-	ui.gridLayoutUnitStats->addWidget(CheckBoxUnitGetCounterAttack, rowIndex, 2);
+	GridLayoutUnitStatistics->addWidget(LabelCounterattack, ++rowIndex, 0, 1, 2);
+	GridLayoutUnitStatistics->addWidget(CheckBoxUnitGetCounterAttack, rowIndex, 2);
+
+	ui.groupBoxProductionStats->setLayout(GridLayoutUnitStatistics);
 }
 
 void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)

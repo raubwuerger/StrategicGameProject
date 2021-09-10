@@ -109,6 +109,7 @@ private:
 	bool						NameHasChanged;
 	QString						OriginalName;
 private:
+	QGridLayout*				GridLayoutUnitStatistics;
 	QLabel*						LabelUnitImage;
 	QLabel*						LabelUnitType;
 	QLineEdit*					LineEditUnitType;
