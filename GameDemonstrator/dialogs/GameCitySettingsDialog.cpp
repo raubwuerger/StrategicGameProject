@@ -22,6 +22,7 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	InitProductionItems();
 	InitConnections();
 	InitDialog();
+	CreateUnitStatsWidget();
 }
 
 
@@ -126,6 +127,23 @@ void GameCitySettingsDialog::ShowProductionItem(int unitTypeId)
 	ui.pushButtonUnitImage->setIconSize(QSize(64, 64));
 }
 
+void GameCitySettingsDialog::ShowProductionItem(int unitTypeId, QGridLayout* layout)
+{
+	QString imagePath;
+	if (unitTypeId == GAME_UNIT_ID_EFFICIENCY || unitTypeId == EFFICIENCY_ID)
+	{
+		imagePath = GetImagePathFromCityItem();
+	}
+	else
+	{
+		imagePath = GetImagePathFromUnitItem(unitTypeId);
+	}
+	QLabel* unitLabel = new QLabel();
+	QPixmap unitPixmap(imagePath);
+	unitLabel->setPixmap(unitPixmap);
+	layout->addWidget(unitLabel, 0, 0, 1, 1);
+}
+
 const QString& GameCitySettingsDialog::GetImagePathFromUnitItem(int unitTypeId)
 {
 	const ModelUnitType* type = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
@@ -143,6 +161,36 @@ const QString& GameCitySettingsDialog::GetImagePathFromCityItem()
 void GameCitySettingsDialog::SetNameHasChanged()
 {
 	NameHasChanged = ui.lineEditName->text() != OriginalName;
+}
+
+void GameCitySettingsDialog::CreateUnitStatsWidget()
+{
+	ShowProductionItem(1,ui.gridLayoutUnitStats);
+	int rowIndex = 1;
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Name:"), ++rowIndex, 0);
+	QLineEdit* lineEditName = new QLineEdit("Infantry");
+	lineEditName->setEnabled(false);
+	ui.gridLayoutUnitStats->addWidget(lineEditName, rowIndex, 1);
+
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Strength:"), ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(new QLineEdit("20"), rowIndex, 1);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Production costs:"), rowIndex, 2);
+	ui.gridLayoutUnitStats->addWidget(new QLineEdit("100"), rowIndex, 3);
+
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Range:"), ++rowIndex, 0);
+	ui.gridLayoutUnitStats->addWidget(new QLineEdit("1"), rowIndex, 1);
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Movement points:"), rowIndex, 2);
+	ui.gridLayoutUnitStats->addWidget(new QLineEdit("1"), rowIndex, 3);
+
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Occupy city:"), ++rowIndex, 0);
+	QCheckBox* occupyCity = new QCheckBox("");
+	occupyCity->setCheckState(Qt::Checked);
+	ui.gridLayoutUnitStats->addWidget(occupyCity, rowIndex, 1);
+
+	ui.gridLayoutUnitStats->addWidget(new QLabel("Counterattack:"), rowIndex, 2);
+	QCheckBox* counterAttack = new QCheckBox("");
+	counterAttack->setCheckState(Qt::Checked);
+	ui.gridLayoutUnitStats->addWidget(counterAttack, rowIndex, 3);
 }
 
 void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)

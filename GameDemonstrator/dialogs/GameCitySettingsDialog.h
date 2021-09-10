@@ -84,11 +84,15 @@ private:
 	/** */
 	void ShowProductionItem(int unitTypeId);
 	/** */
+	void ShowProductionItem(int unitTypeId, QGridLayout* layout);
+	/** */
 	const QString& GetImagePathFromUnitItem(int unitTypeId);
 	/** */
 	const QString& GetImagePathFromCityItem();
 	/** */
 	void SetNameHasChanged();
+	/** */
+	void CreateUnitStatsWidget();
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>		ProductionItems;
