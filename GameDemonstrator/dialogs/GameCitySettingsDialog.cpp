@@ -22,7 +22,7 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	InitProductionItems();
 	InitConnections();
 	InitDialog();
-	CreateUnitStatsWidget();
+	CreateModelUnitTypeStatsWidget();
 }
 
 
@@ -73,7 +73,7 @@ void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gam
 	OriginalGameUnitProduction = gameUnitProduction;
 	ChangedGameUnitProduction = new GameUnitProduction(gameUnitProduction->GetGameCityId());
 	SetProductionProgress(OriginalGameUnitProduction);
-	ShowProductionItem(CreateProductionItemId(gameUnitProduction));
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(gameUnitProduction->GetGameUnitId()));
 }
 
 void GameCitySettingsDialog::SetProductionHasChanged(int unitTypeId)
@@ -127,14 +127,14 @@ void GameCitySettingsDialog::ShowProductionItem(int unitTypeId)
 	ui.pushButtonUnitImage->setIconSize(QSize(64, 64));
 }
 
-const QString& GameCitySettingsDialog::GetImagePathFromUnitItem(int unitTypeId)
+const QString& GameCitySettingsDialog::GetImagePathFromUnitItem(int unitTypeId) const
 {
 	const ModelUnitType* type = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
 	Q_ASSERT(type);
 	return type->GetPictureName();
 }
 
-const QString& GameCitySettingsDialog::GetImagePathFromCityItem()
+const QString& GameCitySettingsDialog::GetImagePathFromCityItem() const
 {
 	const ModelCityType* type = ModelCityTypeRepository::GetInstance()->GetTypeById(1);
 	Q_ASSERT(type);
@@ -146,13 +146,43 @@ void GameCitySettingsDialog::SetNameHasChanged()
 	NameHasChanged = ui.lineEditName->text() != OriginalName;
 }
 
-void GameCitySettingsDialog::CreateUnitStatsWidget()
+#include "game\GameUnitItemRepository.h"
+#include "game\GameUnitItem.h"
+const ModelUnitType* GameCitySettingsDialog::GetModelUnitTypeFromGameUnitId(int gameUnitId) const
 {
-	QLabel* unitLabel = new QLabel();
-	QPixmap unitPixmap;
-	unitLabel->setPixmap(unitPixmap);
+	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	if (nullptr == gameUnitItem)
+	{
+		Q_ASSERT(gameUnitItem);
+		return nullptr;
+	}
+
+	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
+	Q_ASSERT(modelUnitType);
+	return modelUnitType;
+}
+
+QString GameCitySettingsDialog::GetImagePathFromItemId(int unitTypeId) const
+{
+	if (unitTypeId == GAME_UNIT_ID_EFFICIENCY || unitTypeId == EFFICIENCY_ID)
+	{
+		return GetImagePathFromCityItem();
+	}
+
+	return GetImagePathFromUnitItem(unitTypeId);
+}
+
+void GameCitySettingsDialog::FillModelUnitTypeStatsWidget(const ModelUnitType* modelUnitType)
+{
+	LabelUnitImage->setPixmap(QPixmap(GetImagePathFromItemId(modelUnitType->GetId())));
+}
+
+void GameCitySettingsDialog::CreateModelUnitTypeStatsWidget()
+{
 
 	LabelUnitImage = new QLabel();
+	QPixmap unitPixmap;
+	LabelUnitImage->setPixmap(unitPixmap);
 
 	LabelUnitType = new QLabel("Unit type:");
 	lineEditName = new QLineEdit();
@@ -238,106 +268,106 @@ void GameCitySettingsDialog::SlotButtonPressedEfficiency()
 	ChangedGameUnitProduction->SetGameUnitId(idEfficiency);
 	SetProductionHasChanged(idEfficiency);
 	SetGameUnitProduction(idEfficiency);
-	ShowProductionItem(idEfficiency);
+//	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(idEfficiency));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedInfantry()
 {
-	int gameUnitIdInfantry = 1;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdInfantry);
-	SetProductionHasChanged(gameUnitIdInfantry);
-	SetGameUnitProduction(gameUnitIdInfantry);
-	ShowProductionItem(gameUnitIdInfantry);
+	int unitTypeId = 1;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTank()
 {
-	int gameUnitIdTank = 2;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdTank);
-	SetProductionHasChanged(gameUnitIdTank);
-	SetGameUnitProduction(gameUnitIdTank);
-	ShowProductionItem(gameUnitIdTank);
+	int unitTypeId = 2;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedArtillery()
 {
-	int gameUnitIdArtillery = 3;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdArtillery);
-	SetProductionHasChanged(gameUnitIdArtillery);
-	SetGameUnitProduction(gameUnitIdArtillery);
-	ShowProductionItem(gameUnitIdArtillery);
+	int unitTypeId = 3;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedFighter()
 {
-	int gameUnitIdFighter = 4;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdFighter);
-	SetProductionHasChanged(gameUnitIdFighter);
-	SetGameUnitProduction(gameUnitIdFighter);
-	ShowProductionItem(gameUnitIdFighter);
+	int unitTypeId = 4;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBomber()
 {
-	int gameUnitIdBomber = 5;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdBomber);
-	SetProductionHasChanged(gameUnitIdBomber);
-	SetGameUnitProduction(gameUnitIdBomber);
-	ShowProductionItem(gameUnitIdBomber);
+	int unitTypeId = 5;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedDestroyer()
 {
-	int gameUnitIdDestroyer = 6;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdDestroyer);
-	SetProductionHasChanged(gameUnitIdDestroyer);
-	SetGameUnitProduction(gameUnitIdDestroyer);
-	ShowProductionItem(gameUnitIdDestroyer);
+	int unitTypeId = 6;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCruiser()
 {
-	int gameUnitIdCruiser = 7;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdCruiser);
-	SetProductionHasChanged(gameUnitIdCruiser);
-	SetGameUnitProduction(gameUnitIdCruiser);
-	ShowProductionItem(gameUnitIdCruiser);
+	int unitTypeId = 7;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBattleship()
 {
-	int gameUnitIdBattleship = 8;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdBattleship);
-	SetProductionHasChanged(gameUnitIdBattleship);
-	SetGameUnitProduction(gameUnitIdBattleship);
-	ShowProductionItem(gameUnitIdBattleship);
+	int unitTypeId = 8;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCarrier()
 {
-	int gameUnitIdCarrier = 9;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdCarrier);
-	SetProductionHasChanged(gameUnitIdCarrier);
-	SetGameUnitProduction(gameUnitIdCarrier);
-	ShowProductionItem(gameUnitIdCarrier);
+	int unitTypeId = 9;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedSubmarine()
 {
-	int gameUnitIdSubmarine = 10;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdSubmarine);
-	SetProductionHasChanged(gameUnitIdSubmarine);
-	SetGameUnitProduction(gameUnitIdSubmarine);
-	ShowProductionItem(gameUnitIdSubmarine);
+	int unitTypeId = 10;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTransport()
 {
-	int gameUnitIdTransport = 11;
-	ChangedGameUnitProduction->SetGameUnitId(gameUnitIdTransport);
-	SetProductionHasChanged(gameUnitIdTransport);
-	SetGameUnitProduction(gameUnitIdTransport);
-	ShowProductionItem(gameUnitIdTransport);
+	int unitTypeId = 11;
+	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
+	SetProductionHasChanged(unitTypeId);
+	SetGameUnitProduction(unitTypeId);
+	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotNameEdited(const QString & text)

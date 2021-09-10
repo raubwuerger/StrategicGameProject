@@ -5,6 +5,7 @@
 #include "ui_GameCitySettingsDialog.h"
 
 class GameUnitProduction;
+class ModelUnitType;
 
 class GameCitySettingsDialog : public QDialog
 {
@@ -86,13 +87,20 @@ private:
 	/** */
 	void ShowProductionItem(int unitTypeId, QGridLayout* layout);
 	/** */
-	const QString& GetImagePathFromUnitItem(int unitTypeId);
+	const QString& GetImagePathFromUnitItem(int unitTypeId) const;
 	/** */
-	const QString& GetImagePathFromCityItem();
+	const QString& GetImagePathFromCityItem() const;
 	/** */
 	void SetNameHasChanged();
+private:
 	/** */
-	void CreateUnitStatsWidget();
+	const ModelUnitType* GetModelUnitTypeFromGameUnitId(int gameUnitId) const;
+	/** */
+	QString GetImagePathFromItemId(int itemId) const;
+	/** */
+	void FillModelUnitTypeStatsWidget(const ModelUnitType* modelUnitType);
+	/** */
+	void CreateModelUnitTypeStatsWidget();
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>		ProductionItems;
