@@ -5,7 +5,7 @@ class GameObject;
 
 #include "BaseRepository.h"
 
-class GameObjectController : public QObject, BaseRepository
+class GameObjectController : public QObject
 {
 	Q_OBJECT
 public:
@@ -16,9 +16,9 @@ public:
 	/** */
 	bool UnregisterObject(const GameObject* object);
 	/** */
-	bool Init() override;
+	bool Init();
 	/** */
-	void Release() override;
+	void Release();
 public slots:
 	/** */
 	void SlotDoUpdateTurn();

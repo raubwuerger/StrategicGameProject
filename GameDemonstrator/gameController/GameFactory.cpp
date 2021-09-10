@@ -94,8 +94,11 @@ void GameFactory::InitSignalConnections()
 	{
 		return;
 	}
-	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject, &GameInfoDialogController::SlotShowTurnInfoDialog);
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnObjects, GameObjectController::GetInstance(), &GameObjectController::SlotDoUpdateTurn);
+	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject, &GameInfoDialogController::SlotShowTurnInfoDialog);
+
+//	GameObjectController::GetInstance()->SlotDoUpdateTurn();
+
 	ConnectionsInitialized = true;
 }
 

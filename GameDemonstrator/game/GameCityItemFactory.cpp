@@ -13,7 +13,6 @@
 #include "GameCityItem.h"
 #include "GameCityItemRuntimeData.h"
 #include "model/ModelCityType.h"
-#include "gameController/GameObjectController.h"
 #include "DomNodeFinder.h"
 #include "GameUnitProduction.h"
 #include "GameUnitProductionController.h"

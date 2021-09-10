@@ -4,6 +4,19 @@
 #include "game\GameCityItem.h"
 #include "game\GameUnitProductionController.h"
 
+GameObjectController*	GameObjectController::Instance = nullptr;
+
+GameObjectController* GameObjectController::GetInstance()
+{
+	if (nullptr != Instance)
+	{
+		return Instance;
+	}
+
+	Instance = new GameObjectController();
+	return Instance;
+}
+
 GameObjectController::GameObjectController()
 {
 
@@ -21,19 +34,6 @@ bool GameObjectController::CheckIfGameObjectIsOfTypeGameCity(const GameObject* o
 		return false;
 	}
 	return true;
-}
-
-GameObjectController*	GameObjectController::Instance = nullptr;
-
-GameObjectController* GameObjectController::GetInstance()
-{
-	if (nullptr != Instance)
-	{
-		return Instance;
-	}
-
-	Instance = new GameObjectController();
-	return Instance;
 }
 
 bool GameObjectController::RegisterObject(const GameObject* object)
