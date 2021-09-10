@@ -103,6 +103,21 @@ private:
 	bool						NameHasChanged;
 	QString						OriginalName;
 private:
+	QLabel*						LabelUnitImage;
+	QLabel*						LabelUnitType;
+	QLineEdit*					lineEditName;
+	QLabel*						LabelProductionCost;
+	QLineEdit*					lineEditCost;
+	QLabel*						LabelMovementPoints;
+	QLineEdit*					lineEditMovement;
+	QLabel*						LabelStrength;
+	QLineEdit*					lineEditStrength;
+	QLabel*						LabelRange;
+	QLineEdit*					lineEditRange;
+	QLabel*						LabelOccupyCity;
+	QCheckBox*					occupyCity;
+	QLabel*						LabelCounterattack;
+	QCheckBox*					counterAttack;
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H
