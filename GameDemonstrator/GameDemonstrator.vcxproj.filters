@@ -749,6 +749,15 @@
     <ClCompile Include="command\CommandPlaceGameUnitOnMap.cpp">
       <Filter>Source Dateien\Command</Filter>
     </ClCompile>
+    <ClCompile Include="gui\ModelUnitTypeStatistics.cpp">
+      <Filter>Source Dateien\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ModelUnitTypeStatistics.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ModelUnitTypeStatistics.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1217,6 +1226,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\GameCitySettingsDialog.ui">
       <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gui\ModelUnitTypeStatistics.h">
+      <Filter>Header Dateien\GUI</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

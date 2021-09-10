@@ -6,6 +6,7 @@
 
 class GameUnitProduction;
 class ModelUnitType;
+class ModelUnitTypeStatistics;
 
 class GameCitySettingsDialog : public QDialog
 {
@@ -93,12 +94,6 @@ private:
 private:
 	/** */
 	const ModelUnitType* GetModelUnitTypeFromGameUnitId(int gameUnitId) const;
-	/** */
-	void FillModelUnitTypeStatsWidget(const ModelUnitType* modelUnitType);
-	/** */
-	void ClearModelUnitTypeStatsWidget();
-	/** */
-	void CreateModelUnitTypeStatsWidget();
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>		ProductionItems;
@@ -108,24 +103,7 @@ private:
 	bool						ProductionChanged;
 	bool						NameHasChanged;
 	QString						OriginalName;
-private:
-	QGroupBox*					GroupBoxUnitStatistics;
-	QGridLayout*				GridLayoutUnitStatistics;
-	QLabel*						LabelUnitImage;
-	QLabel*						LabelUnitType;
-	QLineEdit*					LineEditUnitType;
-	QLabel*						LabelProductionCost;
-	QLineEdit*					LineEditUnitProductionCost;
-	QLabel*						LabelMovementPoints;
-	QLineEdit*					LineEditUnitMovementPoints;
-	QLabel*						LabelStrength;
-	QLineEdit*					LineEditUnitStrength;
-	QLabel*						LabelRange;
-	QLineEdit*					LineEditUnitRange;
-	QLabel*						LabelOccupyCity;
-	QCheckBox*					CheckBoxUnitOccupyCity;
-	QLabel*						LabelCounterattack;
-	QCheckBox*					CheckBoxUnitGetCounterAttack;
+	ModelUnitTypeStatistics*	ModelUnitTypeStatisticsObject;
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H

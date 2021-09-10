@@ -5,6 +5,9 @@
 #include "model/ModelUnitType.h"
 #include "model/ModelCityTypeRepository.h"
 #include "model/ModelCityType.h"
+#include "gui/ModelUnitTypeStatistics.h"
+#include "game\GameUnitItemRepository.h"
+#include "game\GameUnitItem.h"
 
 static int EFFICIENCY_ID = 0;
 
@@ -14,7 +17,8 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	ProductionChanged(NOT_INITIALIZED_BOOL),
 	OriginalGameUnitProduction(nullptr),
 	NameHasChanged(NOT_INITIALIZED_BOOL),
-	OriginalName(NOT_INITIALIZED_STRING)
+	OriginalName(NOT_INITIALIZED_STRING),
+	ModelUnitTypeStatisticsObject(nullptr)
 {
 	ui.setupUi(this);
 	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);
@@ -22,7 +26,9 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	InitProductionItems();
 	InitConnections();
 	InitDialog();
-	CreateModelUnitTypeStatsWidget();
+	ModelUnitTypeStatisticsObject = new ModelUnitTypeStatistics(this);
+	ModelUnitTypeStatisticsObject->move(380, 120);
+	ModelUnitTypeStatisticsObject->show();
 }
 
 
@@ -73,7 +79,7 @@ void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gam
 	OriginalGameUnitProduction = gameUnitProduction;
 	ChangedGameUnitProduction = new GameUnitProduction(gameUnitProduction->GetGameCityId());
 	SetProductionProgress(OriginalGameUnitProduction);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(gameUnitProduction->GetGameUnitId()));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(gameUnitProduction->GetGameUnitId()));
 }
 
 void GameCitySettingsDialog::SetProductionHasChanged(int unitTypeId)
@@ -133,14 +139,12 @@ void GameCitySettingsDialog::SetNameHasChanged()
 
 void GameCitySettingsDialog::SetEfficiencyIcon()
 {
-	ClearModelUnitTypeStatsWidget();
-	LabelUnitImage->setPixmap(QPixmap(GetImagePathFromCityItem()));
-	LineEditUnitProductionCost->setText(QString::number(100)); //TODO: Sollte ein property von ModelCityItem sein!
-	LineEditUnitStrength->setText(QString::number(10));	//TODO: Sollte ein property von ModelCityItem sein!
+	ModelUnitTypeStatisticsObject->Clear();
+	ModelUnitTypeStatisticsObject->LabelUnitImage->setPixmap(QPixmap(GetImagePathFromCityItem()));
+	ModelUnitTypeStatisticsObject->LineEditUnitProductionCost->setText(QString::number(100)); //TODO: Sollte ein property von ModelCityItem sein!
+	ModelUnitTypeStatisticsObject->LineEditUnitStrength->setText(QString::number(10));	//TODO: Sollte ein property von ModelCityItem sein!
 }
 
-#include "game\GameUnitItemRepository.h"
-#include "game\GameUnitItem.h"
 const ModelUnitType* GameCitySettingsDialog::GetModelUnitTypeFromGameUnitId(int gameUnitId) const
 {
 	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
@@ -153,97 +157,6 @@ const ModelUnitType* GameCitySettingsDialog::GetModelUnitTypeFromGameUnitId(int 
 	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
 	Q_ASSERT(modelUnitType);
 	return modelUnitType;
-}
-
-void GameCitySettingsDialog::FillModelUnitTypeStatsWidget(const ModelUnitType* modelUnitType)
-{
-	Q_ASSERT(modelUnitType);
-	LabelUnitImage->setPixmap(QPixmap(modelUnitType->GetPictureName()));
-	LineEditUnitType->setText(modelUnitType->GetName());
-	LineEditUnitProductionCost->setText(QString::number(modelUnitType->GetProductionCost()));
-	LineEditUnitMovementPoints->setText(QString::number(modelUnitType->GetMovementPoints()));
-	LineEditUnitStrength->setText(QString::number(modelUnitType->GetStrength()));
-	LineEditUnitRange->setText(QString::number(modelUnitType->GetRange()));
-	CheckBoxUnitOccupyCity->setCheckState(modelUnitType->GetCanOccupieCity() ? Qt::Checked : Qt::Unchecked);
-	CheckBoxUnitGetCounterAttack->setCheckState(modelUnitType->GetReceiveCounterattack() ? Qt::Checked : Qt::Unchecked);
-}
-
-void GameCitySettingsDialog::ClearModelUnitTypeStatsWidget()
-{
-	QString clear("---");
-	LabelUnitImage->setPixmap(QPixmap());
-	LineEditUnitType->setText(clear);
-	LineEditUnitProductionCost->setText(clear);
-	LineEditUnitMovementPoints->setText(clear);
-	LineEditUnitStrength->setText(clear);
-	LineEditUnitRange->setText(clear);
-	CheckBoxUnitOccupyCity->setCheckState(Qt::Unchecked);
-	CheckBoxUnitGetCounterAttack->setCheckState(Qt::Unchecked);
-}
-
-void GameCitySettingsDialog::CreateModelUnitTypeStatsWidget()
-{
-	GroupBoxUnitStatistics = new QGroupBox("Unit statistics", this);
-	GroupBoxUnitStatistics->setFixedSize(356, 561);
-	GroupBoxUnitStatistics->move(380, 120);
-	GridLayoutUnitStatistics = new QGridLayout;
-	LabelUnitImage = new QLabel();
-	QPixmap unitPixmap;
-	LabelUnitImage->setPixmap(unitPixmap);
-
-	LabelUnitType = new QLabel("Unit type:");
-	LineEditUnitType = new QLineEdit();
-	LineEditUnitType->setEnabled(false);
-
-	LabelProductionCost = new QLabel("Production cost:");
-	LineEditUnitProductionCost = new QLineEdit();
-	LineEditUnitProductionCost->setEnabled(false);
-
-	LabelMovementPoints = new QLabel("Movement points:");
-	LineEditUnitMovementPoints = new QLineEdit();
-	LineEditUnitMovementPoints->setEnabled(false);
-
-	LabelStrength = new QLabel("Strength:");
-	LineEditUnitStrength = new QLineEdit();
-	LineEditUnitStrength->setEnabled(false);
-
-	LabelRange = new QLabel("Range:");
-	LineEditUnitRange = new QLineEdit();
-	LineEditUnitRange->setEnabled(false);
-
-	LabelOccupyCity = new QLabel("Occupy city:");
-	CheckBoxUnitOccupyCity = new QCheckBox();
-	CheckBoxUnitOccupyCity->setEnabled(false);
-
-	LabelCounterattack = new QLabel("Counterattack:");
-	CheckBoxUnitGetCounterAttack = new QCheckBox();
-	CheckBoxUnitGetCounterAttack->setEnabled(false);
-
-	int rowIndex = 0;
-	GridLayoutUnitStatistics->addWidget(LabelUnitImage, 0, 0);
-
-	GridLayoutUnitStatistics->addWidget(LabelUnitType, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(LineEditUnitType, rowIndex, 2, 1, 2);
-
-	GridLayoutUnitStatistics->addWidget(LabelProductionCost, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(LineEditUnitProductionCost, rowIndex, 2, 1, 2);
-
-	GridLayoutUnitStatistics->addWidget(LabelMovementPoints, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(LineEditUnitMovementPoints, rowIndex, 2, 1, 2);
-
-	GridLayoutUnitStatistics->addWidget(LabelStrength, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(LineEditUnitStrength, rowIndex, 2, 1, 2);
-
-	GridLayoutUnitStatistics->addWidget(LabelRange, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(LineEditUnitRange, rowIndex, 2, 1, 2);
-
-	GridLayoutUnitStatistics->addWidget(LabelOccupyCity, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(CheckBoxUnitOccupyCity, rowIndex, 2);
-
-	GridLayoutUnitStatistics->addWidget(LabelCounterattack, ++rowIndex, 0, 1, 2);
-	GridLayoutUnitStatistics->addWidget(CheckBoxUnitGetCounterAttack, rowIndex, 2);
-
-	GroupBoxUnitStatistics->setLayout(GridLayoutUnitStatistics);
 }
 
 void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
@@ -275,7 +188,7 @@ void GameCitySettingsDialog::SlotButtonPressedEfficiency()
 	ChangedGameUnitProduction->SetGameUnitId(idEfficiency);
 	SetProductionHasChanged(idEfficiency);
 	SetGameUnitProduction(idEfficiency);
-	ClearModelUnitTypeStatsWidget();
+	ModelUnitTypeStatisticsObject->Clear();
 	SetEfficiencyIcon();
 }
 
@@ -285,7 +198,7 @@ void GameCitySettingsDialog::SlotButtonPressedInfantry()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTank()
@@ -294,7 +207,7 @@ void GameCitySettingsDialog::SlotButtonPressedTank()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedArtillery()
@@ -303,7 +216,7 @@ void GameCitySettingsDialog::SlotButtonPressedArtillery()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedFighter()
@@ -312,7 +225,7 @@ void GameCitySettingsDialog::SlotButtonPressedFighter()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBomber()
@@ -321,7 +234,7 @@ void GameCitySettingsDialog::SlotButtonPressedBomber()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedDestroyer()
@@ -330,7 +243,7 @@ void GameCitySettingsDialog::SlotButtonPressedDestroyer()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCruiser()
@@ -339,7 +252,7 @@ void GameCitySettingsDialog::SlotButtonPressedCruiser()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedBattleship()
@@ -348,7 +261,7 @@ void GameCitySettingsDialog::SlotButtonPressedBattleship()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedCarrier()
@@ -357,7 +270,7 @@ void GameCitySettingsDialog::SlotButtonPressedCarrier()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedSubmarine()
@@ -366,7 +279,7 @@ void GameCitySettingsDialog::SlotButtonPressedSubmarine()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotButtonPressedTransport()
@@ -375,7 +288,7 @@ void GameCitySettingsDialog::SlotButtonPressedTransport()
 	ChangedGameUnitProduction->SetGameUnitId(unitTypeId);
 	SetProductionHasChanged(unitTypeId);
 	SetGameUnitProduction(unitTypeId);
-	FillModelUnitTypeStatsWidget(GetModelUnitTypeFromGameUnitId(unitTypeId));
+	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(unitTypeId));
 }
 
 void GameCitySettingsDialog::SlotNameEdited(const QString & text)
@@ -414,16 +327,12 @@ void GameCitySettingsDialog::InitProductionItems()
 
 void GameCitySettingsDialog::ResetProductionItems()
 {
-//	QString danger = "QProgressBar::chunk {background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #FF0350,stop: 0.4999 #FF0020,stop: 0.5 #FF0019,stop: 1 #FF0000 );border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border: .px solid black;}";
-//	QString danger = "QProgressBar::chunk {background: green}";
-
 	QVectorIterator<QProgressBar*> iteratorProgressBar(ProductionItems);
 	while (iteratorProgressBar.hasNext())
 	{
 		QProgressBar* current = iteratorProgressBar.next();
 		current->setValue(0);
 		current->setTextVisible(false);
-//		iterator.next()->setStyleSheet(danger);
 	}
 
 	QVectorIterator<QGroupBox*> iteratorGroupBox(ProductionItemGroups);
