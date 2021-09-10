@@ -19,6 +19,7 @@ GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
 GameDemonstrator*	GameFactory::GameDemonstratorObject = nullptr;
 GameTurnController* GameFactory::GameTurnControllerObject = nullptr;
+bool				GameFactory::ConnectionsInitialized = NOT_INITIALIZED_BOOL;
 
 MapView*			GameFactory::MapViewObject = nullptr;
 GameMainDialog*		GameFactory::GameMainDialogObject = nullptr;
@@ -74,6 +75,10 @@ void GameFactory::InitGameInfoDialogController()
 
 void GameFactory::InitGameTurnController()
 {
+	if (nullptr != GameTurnControllerObject)
+	{
+		return;
+	}
 	GameTurnControllerObject = new GameTurnController();
 }
 
@@ -85,12 +90,21 @@ void GameFactory::SetDefaultGameValues()
 
 void GameFactory::InitSignalConnections()
 {
+	if (true == ConnectionsInitialized)
+	{
+		return;
+	}
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject, &GameInfoDialogController::SlotShowTurnInfoDialog);
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnObjects, GameObjectController::GetInstance(), &GameObjectController::SlotDoUpdateTurn);
+	ConnectionsInitialized = true;
 }
 
 void GameFactory::InitCommandPlaceGameUnitOnMap()
 {
+	if (nullptr != CommandPlaceGameUnitOnMap::MapViewObject)
+	{
+		return;
+	}
 	CommandPlaceGameUnitOnMap::MapViewObject = MapViewObject;
 }
 

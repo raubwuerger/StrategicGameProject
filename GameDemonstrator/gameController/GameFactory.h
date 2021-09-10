@@ -44,6 +44,7 @@ private:
 	static GameDemonstrator*	GameDemonstratorObject;
 	static MapView*				MapViewObject;
 	static GameMainDialog*		GameMainDialogObject;
+	static bool					ConnectionsInitialized;
 };
 
 #endif // GAMEFACTORY_H

@@ -10,6 +10,6 @@ GameTurnController::GameTurnController()
 void GameTurnController::SlotStartNextTurn()
 {
 	GameConfig::CurrentTurn++;
-	emit SignalUpdateTurnDialog();
 	emit SignalUpdateTurnObjects();
+	emit SignalUpdateTurnDialog();
 }
