@@ -150,10 +150,18 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 	{
 		return;
 	}
+
+	if (true == GameCitySettingsDialogObject->GetHaseNameChanged())
+	{
+		QString newName = GameCitySettingsDialogObject->GetName();
+		const_cast<GameCityItem*>(gameCity)->SetName(newName);
+	}
+
 	if (false == GameCitySettingsDialogObject->GetHasProductionChanged())
 	{
 		return;
 	}
+
 
 	if (false == GameUnitProductionController::GetInstance()->UpdateGameUnitProduction(*GameCitySettingsDialogObject->GetChangedGameUnitProduction()))
 	{

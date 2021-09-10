@@ -15,6 +15,8 @@ public:
 	/** */
 	void SetName(const QString& name);
 	/** */
+	const QString GetName() const;
+	/** */
 	void SetEfficiency(const QString& efficiency) { ui.lineEditEfficiency->setText(efficiency); }
 	/** */
 	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
@@ -25,11 +27,15 @@ public:
 	/** */
 	GameUnitProduction* GetChangedGameUnitProduction() const;
 	/** */
-	bool GetHasProductionChanged() const { return HasProductionChanged; }
+	bool GetHasProductionChanged() const { return ProductionChanged; }
+	/** */
+	bool GetHaseNameChanged() const { return NameHasChanged; }
 signals:
 	/** */
 	void SignalUnitProductionChanged(int unitTypeId);
 public slots:
+	/** */
+	virtual void accept();
 	/** */
 	void SlotButtonPressedEfficiency();
 	/** */
@@ -54,6 +60,8 @@ public slots:
 	void SlotButtonPressedSubmarine();
 	/** */
 	void SlotButtonPressedTransport();
+	/** */
+	void SlotNameEdited(const QString & text);
 private:
 	/** */
 	void InitProductionItems();
@@ -79,13 +87,17 @@ private:
 	const QString& GetImagePathFromUnitItem(int unitTypeId);
 	/** */
 	const QString& GetImagePathFromCityItem();
+	/** */
+	void SetNameHasChanged();
 private:
 	Ui::CityEditDialog ui;
 	QVector<QProgressBar*>		ProductionItems;
 	QVector<QGroupBox*>			ProductionItemGroups;
 	const GameUnitProduction*	OriginalGameUnitProduction;
 	GameUnitProduction*			ChangedGameUnitProduction;
-	bool						HasProductionChanged;
+	bool						ProductionChanged;
+	bool						NameHasChanged;
+	QString						OriginalName;
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H

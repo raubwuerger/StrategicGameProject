@@ -11,8 +11,10 @@ static int EFFICIENCY_ID = 0;
 GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	: QDialog(parent),
 	ChangedGameUnitProduction(nullptr),
-	HasProductionChanged(NOT_INITIALIZED_BOOL),
-	OriginalGameUnitProduction(nullptr)
+	ProductionChanged(NOT_INITIALIZED_BOOL),
+	OriginalGameUnitProduction(nullptr),
+	NameHasChanged(NOT_INITIALIZED_BOOL),
+	OriginalName(NOT_INITIALIZED_STRING)
 {
 	ui.setupUi(this);
 	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);
@@ -41,6 +43,8 @@ void GameCitySettingsDialog::InitConnections()
 	connect(ui.pushButtonProduceCarrier, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCarrier);
 	connect(ui.pushButtonProduceSubmarine, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedSubmarine);
 	connect(ui.pushButtonProduceTransport, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTransport);
+
+	connect(ui.lineEditName, &QLineEdit::textEdited, this, &GameCitySettingsDialog::SlotNameEdited);
 }
 
 void GameCitySettingsDialog::InitDialog()
@@ -53,11 +57,18 @@ void GameCitySettingsDialog::InitDialog()
 
 void GameCitySettingsDialog::SetName(const QString& name)
 {
+	OriginalName = name;
 	ui.lineEditName->setText(name);
+}
+
+const QString GameCitySettingsDialog::GetName() const
+{
+	return ui.lineEditName->text();
 }
 
 void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gameUnitProduction)
 {
+	NameHasChanged = false;
 	OriginalGameUnitProduction = gameUnitProduction;
 	ChangedGameUnitProduction = new GameUnitProduction(gameUnitProduction->GetGameCityId());
 	SetProductionProgress(OriginalGameUnitProduction);
@@ -66,7 +77,7 @@ void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gam
 
 void GameCitySettingsDialog::SetProductionHasChanged(int unitTypeId)
 {
-	HasProductionChanged = unitTypeId != GetOriginalUnitTypeId();
+	ProductionChanged = unitTypeId != GetOriginalUnitTypeId();
 }
 
 void GameCitySettingsDialog::SetProductionProgress(const GameUnitProduction* gameUnitProduction)
@@ -102,7 +113,7 @@ int GameCitySettingsDialog::CreateProductionItemId(const GameUnitProduction* gam
 void GameCitySettingsDialog::ShowProductionItem(int unitTypeId)
 {
 	QString imagePath;
-	if (unitTypeId == GAME_UNIT_ID_EFFICIENCY)
+	if (unitTypeId == GAME_UNIT_ID_EFFICIENCY || unitTypeId == EFFICIENCY_ID)
 	{
 		imagePath = GetImagePathFromCityItem();
 	}
@@ -129,6 +140,11 @@ const QString& GameCitySettingsDialog::GetImagePathFromCityItem()
 	return type->GetPictureName();
 }
 
+void GameCitySettingsDialog::SetNameHasChanged()
+{
+	NameHasChanged = ui.lineEditName->text() != OriginalName;
+}
+
 void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
 {
 	if (unitTypeId == GetOriginalUnitTypeId())
@@ -144,6 +160,12 @@ void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
 GameUnitProduction* GameCitySettingsDialog::GetChangedGameUnitProduction() const
 {
 	return ChangedGameUnitProduction;
+}
+
+void GameCitySettingsDialog::accept()
+{
+	SetNameHasChanged();
+	this->done(1);
 }
 
 void GameCitySettingsDialog::SlotButtonPressedEfficiency()
@@ -252,6 +274,11 @@ void GameCitySettingsDialog::SlotButtonPressedTransport()
 	SetProductionHasChanged(gameUnitIdTransport);
 	SetGameUnitProduction(gameUnitIdTransport);
 	ShowProductionItem(gameUnitIdTransport);
+}
+
+void GameCitySettingsDialog::SlotNameEdited(const QString & text)
+{
+	NameHasChanged = true;
 }
 
 void GameCitySettingsDialog::InitProductionItems()
