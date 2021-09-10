@@ -857,7 +857,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>Statistics</string>
+    <string>Statistiks</string>
    </property>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
@@ -870,25 +870,6 @@
     </property>
     <layout class="QGridLayout" name="gridLayoutUnitStats"/>
    </widget>
-  </widget>
-  <widget class="QPushButton" name="pushButtonUnitImage">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>680</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>64</width>
-     <height>64</height>
-    </size>
-   </property>
   </widget>
  </widget>
  <resources/>

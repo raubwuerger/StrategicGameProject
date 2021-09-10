@@ -30,6 +30,10 @@ public:
 	int GetMovementPoints() const { return MovementPoints; }
 	/** */
 	int GetProductionCost() const { return ProductionCost; }
+	/** */
+	int GetRange() const { return Range; }
+	/** */
+	bool GetReceiveCounterattack() const { return ReceiveCounterattack; }
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
@@ -45,7 +49,7 @@ private:
 	QVector<int>	AttackableUnitTypes;
 	QVector<int>	RecognisableUnitTypes;
 	bool			CanOccupieCity;
-	bool			GetCounterattack;
+	bool			ReceiveCounterattack;
 	int				ProductionCost;
 };
 

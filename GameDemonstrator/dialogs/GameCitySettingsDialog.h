@@ -83,22 +83,20 @@ private:
 	/** */
 	int CreateProductionItemId(const GameUnitProduction* gameUnitProduction) const;
 	/** */
-	void ShowProductionItem(int unitTypeId);
-	/** */
-	void ShowProductionItem(int unitTypeId, QGridLayout* layout);
-	/** */
 	const QString& GetImagePathFromUnitItem(int unitTypeId) const;
 	/** */
 	const QString& GetImagePathFromCityItem() const;
 	/** */
 	void SetNameHasChanged();
+	/** */
+	void SetEfficiencyIcon();
 private:
 	/** */
 	const ModelUnitType* GetModelUnitTypeFromGameUnitId(int gameUnitId) const;
 	/** */
-	QString GetImagePathFromItemId(int itemId) const;
-	/** */
 	void FillModelUnitTypeStatsWidget(const ModelUnitType* modelUnitType);
+	/** */
+	void ClearModelUnitTypeStatsWidget();
 	/** */
 	void CreateModelUnitTypeStatsWidget();
 private:
@@ -113,19 +111,19 @@ private:
 private:
 	QLabel*						LabelUnitImage;
 	QLabel*						LabelUnitType;
-	QLineEdit*					lineEditName;
+	QLineEdit*					LineEditUnitType;
 	QLabel*						LabelProductionCost;
-	QLineEdit*					lineEditCost;
+	QLineEdit*					LineEditUnitProductionCost;
 	QLabel*						LabelMovementPoints;
-	QLineEdit*					lineEditMovement;
+	QLineEdit*					LineEditUnitMovementPoints;
 	QLabel*						LabelStrength;
-	QLineEdit*					lineEditStrength;
+	QLineEdit*					LineEditUnitStrength;
 	QLabel*						LabelRange;
-	QLineEdit*					lineEditRange;
+	QLineEdit*					LineEditUnitRange;
 	QLabel*						LabelOccupyCity;
-	QCheckBox*					occupyCity;
+	QCheckBox*					CheckBoxUnitOccupyCity;
 	QLabel*						LabelCounterattack;
-	QCheckBox*					counterAttack;
+	QCheckBox*					CheckBoxUnitGetCounterAttack;
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H
