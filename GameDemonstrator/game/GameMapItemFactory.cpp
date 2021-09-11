@@ -9,7 +9,7 @@
 #include "io\SerializeXMLItems.h"
 #include "game\GameConfig.h"
 #include "LogInterface.h"
-#include "mapCreator\GameMapItemCreatorSimple.h"
+#include "mapCreator\GameMapCreatorSimple.h"
 
 GameMapItemFactory::GameMapItemFactory()
 {
@@ -21,7 +21,7 @@ GameMapItemFactory::~GameMapItemFactory()
 
 bool GameMapItemFactory::Create()
 {
-	GameMapItemCreatorSimple gameMapItemCreatorSimple;
+	GameMapCreatorSimple gameMapItemCreatorSimple;
 	return gameMapItemCreatorSimple.CreateMap();
 }
 

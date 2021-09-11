@@ -614,7 +614,7 @@
     <ClCompile Include="gui\ModelUnitTypeStatistics.cpp" />
     <ClCompile Include="helper\ColorCreatorPercentage.cpp" />
     <ClCompile Include="helper\TextColorAdjuster.cpp" />
-    <ClCompile Include="mapCreator\GameMapItemCreatorSimple.cpp" />
+    <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
     <ClCompile Include="io\SerializeBinary.cpp" />
@@ -1199,8 +1199,8 @@
     </CustomBuild>
     <ClInclude Include="helper\ColorCreatorPercentage.h" />
     <ClInclude Include="helper\TextColorAdjuster.h" />
-    <ClInclude Include="mapCreator\GameMapItemCreatorSimple.h" />
-    <ClInclude Include="mapCreator\IGameMapItemCreator.h" />
+    <ClInclude Include="mapCreator\GameMapCreatorSimple.h" />
+    <ClInclude Include="mapCreator\IGameMapCreator.h" />
     <ClInclude Include="MapHexItemHexagonData.h" />
     <CustomBuild Include="map\MapGraphicsScene.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

@@ -782,7 +782,7 @@
     <ClCompile Include="helper\TextColorAdjuster.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="mapCreator\GameMapItemCreatorSimple.cpp">
+    <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp">
       <Filter>Source Dateien\MapCreator</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1084,10 +1084,10 @@
     <ClInclude Include="helper\TextColorAdjuster.h">
       <Filter>Header Dateien\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="mapCreator\GameMapItemCreatorSimple.h">
+    <ClInclude Include="mapCreator\IGameMapCreator.h">
       <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
-    <ClInclude Include="mapCreator\IGameMapItemCreator.h">
+    <ClInclude Include="mapCreator\GameMapCreatorSimple.h">
       <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
   </ItemGroup>
