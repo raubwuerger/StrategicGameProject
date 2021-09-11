@@ -197,6 +197,11 @@ void GameInfoDialogController::SlotShowGameItemSettinsDialog(int gameItemId)
 	{
 		return;
 	}
+
+	if (true == GameUnitSettingsDialogObject->GetNameChanged())
+	{
+		gameUnit->SetName(GameUnitSettingsDialogObject->GetName());
+	}
 }
 
 QString GameInfoDialogController::GetUnitType(int id)

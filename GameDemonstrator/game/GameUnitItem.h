@@ -29,7 +29,7 @@ public:
 	/** */
 	const QString& GetName() const;
 	/** */
-	void SetName( const QString& name);
+	void SetName( const QString& name) const;
 	/** */
 	int GetModelUnitTypeId() const;
 	/** */
@@ -73,7 +73,7 @@ private:
 	const ModelUnitType*	UnitType;
 	const GameOwnerItem*	OwnerItem;
 	const GameMapItem*		MapItem;
-	QString					Name;
+	mutable QString			Name;
 	GameUnitItemRuntimeData*RuntimeData;
 };
 

@@ -46,7 +46,7 @@ const QString& GameUnitItem::GetName() const
 	return Name;
 }
 
-void GameUnitItem::SetName(const QString& name)
+void GameUnitItem::SetName(const QString& name) const
 {
 	Name = name;
 }
