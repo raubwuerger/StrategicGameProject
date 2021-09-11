@@ -120,6 +120,12 @@
     <Filter Include="Source Dateien\Helper">
       <UniqueIdentifier>{f38aaf24-2ce0-4bf4-a6d0-b106f1c82bab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Dateien\MapCreator">
+      <UniqueIdentifier>{2c4c6466-ad1c-4baa-9514-812dad475730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Dateien\MapCreator">
+      <UniqueIdentifier>{13e4eac8-f219-4a9c-8231-bb9de0f00001}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -611,9 +617,6 @@
     <ClCompile Include="gameController\GameFactory.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
-    <ClCompile Include="io\GameMapItemCreatorSimple.cpp">
-      <Filter>Source Dateien\IO</Filter>
-    </ClCompile>
     <ClCompile Include="gameController\GameModeController.cpp">
       <Filter>Source Dateien\GameController</Filter>
     </ClCompile>
@@ -778,6 +781,9 @@
     </ClCompile>
     <ClCompile Include="helper\TextColorAdjuster.cpp">
       <Filter>Source Dateien\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="mapCreator\GameMapItemCreatorSimple.cpp">
+      <Filter>Source Dateien\MapCreator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1021,12 +1027,6 @@
     <ClInclude Include="gameController\GameFactory.h">
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
-    <ClInclude Include="io\GameMapItemCreatorSimple.h">
-      <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
-    <ClInclude Include="io\IGameMapItemCreator.h">
-      <Filter>Header Dateien\IO</Filter>
-    </ClInclude>
     <ClInclude Include="game\GameUnitItemRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
@@ -1083,6 +1083,12 @@
     </ClInclude>
     <ClInclude Include="helper\TextColorAdjuster.h">
       <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\GameMapItemCreatorSimple.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\IGameMapItemCreator.h">
+      <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
