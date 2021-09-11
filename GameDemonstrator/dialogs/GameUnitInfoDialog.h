@@ -29,9 +29,6 @@ public:
 	/** */
 	void SetOwnerColor(const QColor& color);
 private:
-	/** */
-	QColor GetAdjustedTextColor(const QColor& color);
-private:
 	Ui::GameUnitInfoDialog ui;
 };
 

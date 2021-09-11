@@ -776,6 +776,9 @@
     <ClCompile Include="helper\ColorCreatorPercentage.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="helper\TextColorAdjuster.cpp">
+      <Filter>Source Dateien\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1077,6 +1080,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_GameUnitSettingsDialog.h">
       <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\TextColorAdjuster.h">
+      <Filter>Header Dateien\Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

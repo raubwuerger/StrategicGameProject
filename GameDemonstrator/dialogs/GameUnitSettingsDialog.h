@@ -34,9 +34,6 @@ public:
 	/** */
 	void SetModelUnitType(const ModelUnitType* modelUnitType);
 private:
-	/** */
-	QColor GetAdjustedTextColor(const QColor& color);
-private:
 	Ui::GameUnitSettingsDialog	ui;
 	QString						OriginalName;
 	ModelUnitTypeStatistics*	ModelUnitTypeStatisticsObject;

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameUnitSettingsDialog.h"
 #include "gui/ModelUnitTypeStatistics.h"
+#include "helper/TextColorAdjuster.h"
 
 GameUnitSettingsDialog::GameUnitSettingsDialog(QWidget *parent /*= 0*/)
 	: QDialog(parent),
@@ -34,7 +35,7 @@ void GameUnitSettingsDialog::SetStrengthColor(const QColor& color)
 {
 	QPalette palette;
 	palette.setColor(QPalette::Base, color);
-	palette.setColor(QPalette::Text, GetAdjustedTextColor(color));
+	palette.setColor(QPalette::Text, TextColorAdjuster::GetAdjustedTextColor(color));
 	ui.lineEditStrength->setPalette(palette);
 }
 
@@ -47,7 +48,7 @@ void GameUnitSettingsDialog::SetMovementPointsColor(const QColor& color)
 {
 	QPalette palette;
 	palette.setColor(QPalette::Base, color);
-	palette.setColor(QPalette::Text, GetAdjustedTextColor(color));
+	palette.setColor(QPalette::Text, TextColorAdjuster::GetAdjustedTextColor(color));
 	ui.lineEditMovementPoints->setPalette(palette);
 }
 
@@ -60,7 +61,7 @@ void GameUnitSettingsDialog::SetOwnerColor(const QColor& color)
 {
 	QPalette palette;
 	palette.setColor(QPalette::Base, color);
-	palette.setColor(QPalette::Text, GetAdjustedTextColor(color));
+	palette.setColor(QPalette::Text, TextColorAdjuster::GetAdjustedTextColor(color));
 	ui.lineEditOwner->setPalette(palette);
 }
 
@@ -77,13 +78,4 @@ QString GameUnitSettingsDialog::GetName() const
 void GameUnitSettingsDialog::SetModelUnitType(const ModelUnitType* modelUnitType)
 {
 	ModelUnitTypeStatisticsObject->Fill(modelUnitType);
-}
-
-QColor GameUnitSettingsDialog::GetAdjustedTextColor(const QColor& color)
-{
-	if (color == Qt::blue || color == Qt::green || color == Qt::darkGreen)
-	{
-		return Qt::white;
-	}
-	return Qt::black;
 }
