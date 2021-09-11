@@ -95,7 +95,7 @@ private:
 	/** */
 	const ModelUnitType* GetModelUnitTypeFromGameUnitId(int gameUnitId) const;
 private:
-	Ui::CityEditDialog ui;
+	Ui::CityEditDialog			ui;
 	QVector<QProgressBar*>		ProductionItems;
 	QVector<QGroupBox*>			ProductionItemGroups;
 	const GameUnitProduction*	OriginalGameUnitProduction;

@@ -21,8 +21,6 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	ModelUnitTypeStatisticsObject(nullptr)
 {
 	ui.setupUi(this);
-	connect(ui.pushButtonOk, &QPushButton::click, this, &GameCitySettingsDialog::close);
-	connect(ui.pushButtonCancel, &QPushButton::click, this, &GameCitySettingsDialog::close);
 	InitProductionItems();
 	InitConnections();
 	InitDialog();
@@ -76,10 +74,18 @@ const QString GameCitySettingsDialog::GetName() const
 void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gameUnitProduction)
 {
 	NameHasChanged = false;
+	ProductionChanged = false;
 	OriginalGameUnitProduction = gameUnitProduction;
 	ChangedGameUnitProduction = new GameUnitProduction(gameUnitProduction->GetGameCityId());
 	SetProductionProgress(OriginalGameUnitProduction);
-	ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(gameUnitProduction->GetGameUnitId()));
+	if (GAME_UNIT_ID_EFFICIENCY == gameUnitProduction->GetGameUnitId())
+	{
+		SetEfficiencyIcon();
+	}
+	else
+	{
+		ModelUnitTypeStatisticsObject->Fill(GetModelUnitTypeFromGameUnitId(gameUnitProduction->GetGameUnitId()));
+	}
 }
 
 void GameCitySettingsDialog::SetProductionHasChanged(int unitTypeId)
