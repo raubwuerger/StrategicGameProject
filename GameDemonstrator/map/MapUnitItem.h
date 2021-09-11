@@ -45,6 +45,9 @@ public:
 	void ShowOriginal();
 	/** */
 	void EmitSignalUnitItemEntered();
+protected:
+	/** */
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 private:
 	/** */
 	void CreatRect();

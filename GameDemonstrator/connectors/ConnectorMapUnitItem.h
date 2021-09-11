@@ -16,6 +16,8 @@ signals :
 	void SignalUnitItemPressedRightButton(int gameUnitId);
 	/** */
 	void SignalUnitItemReleased(int gameUnitId);
+	/** */
+	void SignalUnitItemDoubleClick(int gameUnitId);
 };
 
 #endif // CONNECTORMAPUNITITEM_H

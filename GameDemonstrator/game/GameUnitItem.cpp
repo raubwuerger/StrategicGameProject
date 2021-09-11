@@ -135,6 +135,29 @@ bool GameUnitItem::InitRuntimeData()
 	return true;
 }
 
+GameUnitItemRuntimeData* GameUnitItem::GetRuntimeData()
+{
+	return RuntimeData;
+}
+
+QString GameUnitItem::CreatStrengthString() const
+{
+	QString currentStrength;
+	currentStrength += QString::number(GetCurrentStrength());
+	currentStrength += " / ";
+	currentStrength += QString::number(GetBaseStrength());
+	return currentStrength;
+}
+
+QString GameUnitItem::CreateMovementPointsString() const
+{
+	QString movementPoints;
+	movementPoints += QString::number(GetCurrentMovementPoints());
+	movementPoints += " / ";
+	movementPoints += QString::number(GetBaseMovementPoints());
+	return movementPoints;
+}
+
 bool GameUnitItem::CanOccupieCity() const
 {
 	return UnitType->GetCanOccupieCity();

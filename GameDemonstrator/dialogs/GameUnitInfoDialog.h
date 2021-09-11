@@ -11,21 +11,21 @@ public:
 	/** */
 	GameUnitInfoDialog(QWidget *parent = 0);
 	/** */
-	void SetId(const QString& id) { ui.lineEditId->setText(id); }
+	void SetId(const QString& id);
 	/** */
-	void SetName(const QString& name) { ui.lineEditName->setText(name); }
+	void SetName(const QString& name);
 	/** */
-	void SetType(const QString& type) { ui.lineEditType->setText(type); }
+	void SetType(const QString& type);
 	/** */
-	void SetMovement(const QString& movement) { ui.lineEditTypeMovement->setText(movement); }
+	void SetMovementPoints(const QString& movement);
 	/** */
-	void SetMovementColor(const QColor& color);
+	void SetMovementPointsColor(const QColor& color);
 	/** */
-	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	void SetStrength(const QString& strength);
 	/** */
 	void SetStrengthColor(const QColor& color);
 	/** */
-	void SetOwner(const QString& owner) { ui.lineEditOwner->setText(owner); }
+	void SetOwner(const QString& owner);
 	/** */
 	void SetOwnerColor(const QColor& color);
 private:

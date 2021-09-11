@@ -45,6 +45,11 @@ void MapUnitItem::EmitSignalUnitItemEntered()
 	}
 }
 
+void MapUnitItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+	emit EventConnector->SignalUnitItemDoubleClick(GameUnitId);
+}
+
 void MapUnitItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 {
 	if (EventConnector != nullptr)

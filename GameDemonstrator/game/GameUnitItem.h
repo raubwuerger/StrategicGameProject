@@ -59,7 +59,11 @@ public:
 	/** */
 	bool InitRuntimeData();
 	/** */
-	GameUnitItemRuntimeData* GetRuntimeData() { return RuntimeData; }
+	GameUnitItemRuntimeData* GetRuntimeData();
+	/** */
+	QString CreatStrengthString() const;
+	/** */
+	QString CreateMovementPointsString() const;
 private:
 	friend class GameUnitItemFactory;
 	const int				Id;
