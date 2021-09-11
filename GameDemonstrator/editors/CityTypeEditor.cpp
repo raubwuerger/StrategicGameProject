@@ -55,15 +55,15 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
-	if ( true == GameCityRepository::GetInstance()->IsCityOnGameMapItemId(mapItemId))
+	if ( true == GameCityRepository::GetInstance()->IsCityOnGameMapTileId(mapItemId))
 	{
 		return;
 	}
 
 	GameCityParameterObject obj;
-	obj.GameMapItemId = mapItemId;
+	obj.GameMapTileId = mapItemId;
 	obj.ModelCityTypeObject = ActiveModelCityType;
-	obj.GameOwnerItemId = OwnerTypeId;
+	obj.GameOwnerId = OwnerTypeId;
 
 	GameCityFactory gameFactory;
 	GameCity* created = gameFactory.Create(obj);
@@ -96,7 +96,7 @@ void CityTypeEditor::SlotDeleteCity(int mapItemId)
 		return;
 	}
 
-	GameCity* gameCityItem = GameCityRepository::GetInstance()->RemoveCityItemByGameMapItemId(mapItemId);
+	GameCity* gameCityItem = GameCityRepository::GetInstance()->RemoveByGameMapTileId(mapItemId);
 	if (nullptr == gameCityItem)
 	{
 		return;
@@ -118,7 +118,7 @@ void CityTypeEditor::SlotDeleteCity(int mapItemId)
 #include "game/GameMapTile.h"
 int CityTypeEditor::GetModelTerrainType(int mapId)
 {
-	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(mapId);
+	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetById(mapId);
 	if (nullptr == gameMapItem)
 	{
 		return NOT_INITIALIZED_INT;

@@ -105,8 +105,8 @@ void GameUnitController::SlotGameUnitSelectedEditorMode(int gameUnitId)
 
 bool GameUnitController::IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const
 {
-	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
+	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetById(mapUnitItem->GetGameUnitId());
 	Q_ASSERT(gameUnitItem);
 
-	return GameConfig::Player->operator==(*gameUnitItem->GetGameOwnerItem());
+	return GameConfig::Player->operator==(*gameUnitItem->GetGameOwner());
 }

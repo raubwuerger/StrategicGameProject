@@ -138,7 +138,7 @@ bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
-	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetItemById(owner));
+	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetById(owner));
 	GameConfig::DifficultyLevel = difficulty;
 	GameConfig::PlayerCount = (opponents + 1);
 

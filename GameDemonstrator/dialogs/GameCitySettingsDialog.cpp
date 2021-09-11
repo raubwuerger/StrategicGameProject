@@ -153,7 +153,7 @@ void GameCitySettingsDialog::SetEfficiencyIcon()
 
 const ModelUnitType* GameCitySettingsDialog::GetModelUnitTypeFromGameUnitId(int gameUnitId) const
 {
-	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetById(gameUnitId);
 	if (nullptr == gameUnitItem)
 	{
 		Q_ASSERT(gameUnitItem);

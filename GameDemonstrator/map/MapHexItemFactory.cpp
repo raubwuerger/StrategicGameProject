@@ -23,7 +23,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	mapView->Create();
 	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
-	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapTiles();
 	if (nullptr == gameMap)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("GameMapRepository contains no items!"));

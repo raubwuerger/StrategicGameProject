@@ -31,5 +31,5 @@ bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnit* gameUnitItem, cons
 
 bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnit* gameUnitItem, int gameMapItemId)
 {
-	return PlaceGameUnit(gameUnitItem, GameMapTileRepository::GetInstance()->GetGameMapItemById(gameMapItemId));
+	return PlaceGameUnit(gameUnitItem, GameMapTileRepository::GetInstance()->GetById(gameMapItemId));
 }

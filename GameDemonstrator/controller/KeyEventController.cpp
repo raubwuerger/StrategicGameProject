@@ -59,7 +59,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 		return false;
 	}
 
-	GameUnit* sourceUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
+	GameUnit* sourceUnitItem = GameUnitRepository::GetInstance()->GetById(mapUnitItem->GetGameUnitId());
 	if (nullptr == sourceUnitItem)
 	{
 		return false;
@@ -72,9 +72,9 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	}
 	
 	GameUnitParameterObject gameUnitParameterObject;
-	gameUnitParameterObject.GameUnitItemObject = sourceUnitItem;
-	gameUnitParameterObject.GameOwnerItemObject = sourceUnitItem->GetGameOwnerItem();
-	gameUnitParameterObject.GameMapItemId = destMapHexItem->GetGameMapItemId();
+	gameUnitParameterObject.GameUnitObject = sourceUnitItem;
+	gameUnitParameterObject.GameOwnerObject = sourceUnitItem->GetGameOwner();
+	gameUnitParameterObject.GameMapTileId = destMapHexItem->GetGameMapItemId();
 	gameUnitParameterObject.ModelUnitTypeObject = sourceUnitItem->GetModelUnitType();
 	
 	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
@@ -82,13 +82,13 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	mapUnitItem->SetMapHexItemId(destMapHexItem->GetGameMapItemId());
 
 	GameUnitFactory gameUnitItemFactory;
-	GameUnit* movedGameUnitItem = gameUnitItemFactory.UpdateGameUnitItem(gameUnitParameterObject);
+	GameUnit* movedGameUnitItem = gameUnitItemFactory.UpdateGameUnit(gameUnitParameterObject);
 
 	const QPointF& sourceCenterPoint = sourceMapHexItem->GetCenterPoint();
 	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
 	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);
 	mapUnitItem->moveBy(offsetCenterPoint.x(), offsetCenterPoint.y());
-	GameUnitRepository::GetInstance()->UpdateGameUnitItemsOnGameMapItem(movedGameUnitItem, sourceMapHexItem->GetGameMapItemId());
+	GameUnitRepository::GetInstance()->UpdateGameUnitOnGameMapTile(movedGameUnitItem, sourceMapHexItem->GetGameMapItemId());
 	return movedGameUnitItem->Move();
 }
 

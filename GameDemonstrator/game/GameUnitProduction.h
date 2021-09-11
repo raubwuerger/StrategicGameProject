@@ -5,7 +5,7 @@ class GameUnitProduction
 {
 public:
 	/** */
-	GameUnitProduction( int gameCityItemId );
+	GameUnitProduction( int gameCityId );
 	/** */
 	GameUnitProduction(const GameUnitProduction& rhs);
 	/** */

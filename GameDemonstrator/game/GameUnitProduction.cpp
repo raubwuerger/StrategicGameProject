@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "GameUnitProduction.h"
 
-GameUnitProduction::GameUnitProduction(int gameCityItemId) 
-	: GameCityId(gameCityItemId),
+GameUnitProduction::GameUnitProduction(int gameCityId) 
+	: GameCityId(gameCityId),
 	GameUnitId(NOT_INITIALIZED_INT),
 	ProductionProgress(NOT_INITIALIZED_INT)
 {

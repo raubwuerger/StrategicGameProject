@@ -103,46 +103,46 @@ GameUnitProductionController::GameUnitProductionController()
 
 void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gameUnitProduction )
 {
-	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameUnitProduction->GetGameCityId());
-	if (nullptr == gameUnitItem)
+	const GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetById(gameUnitProduction->GetGameCityId());
+	if (nullptr == gameUnit)
 	{
 		Q_ASSERT(nullptr);
 		return;
 	}
 
-	int unitProductionCost = gameUnitItem->GetModelUnitType()->GetProductionCost();
+	int unitProductionCost = gameUnit->GetModelUnitType()->GetProductionCost();
 	if (gameUnitProduction->GetProductionProgress() < unitProductionCost)
 	{
 		return;
 	}
 
-	const GameCity* gameCityItem = GameCityRepository::GetInstance()->GetGameCityItemById(gameUnitProduction->GetGameCityId());
+	const GameCity* gameCity = GameCityRepository::GetInstance()->GetById(gameUnitProduction->GetGameCityId());
 
-	if (true == IsGameUnitOnMapItem(gameCityItem->GetGameMapTileId()))
+	if (true == IsGameUnitOnMapTile(gameCity->GetGameMapTileId()))
 	{
 		return;
 	}
 
 	GameUnitParameterObject gameUnitParameterObject;
-	gameUnitParameterObject.ModelUnitTypeObject = gameUnitItem->GetModelUnitType();
-	gameUnitParameterObject.GameMapItemObject = gameCityItem->GetGameMapTile();
-	gameUnitParameterObject.GameOwnerItemObject = gameCityItem->GetGameOwner();
+	gameUnitParameterObject.ModelUnitTypeObject = gameUnit->GetModelUnitType();
+	gameUnitParameterObject.GameMapTileObject = gameCity->GetGameMapTile();
+	gameUnitParameterObject.GameOwnerObject = gameCity->GetGameOwner();
 
-	GameUnitFactory gameUnitItemFactory;
-	const GameUnit* produced = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);
+	GameUnitFactory gameUnitFactory;
+	const GameUnit* produced = gameUnitFactory.CreateGameUnit(gameUnitParameterObject);
 	if (nullptr == produced)
 	{
 		return;
 	}
 
-	if (false == CommandPlaceGameUnitOnMap::PlaceGameUnit(produced, gameCityItem->GetGameMapTile()))
+	if (false == CommandPlaceGameUnitOnMap::PlaceGameUnit(produced, gameCity->GetGameMapTile()))
 	{
 		//TODO: Logausgabe
 	}
 	gameUnitProduction->ClearProductionProgress();
 }
 
-bool GameUnitProductionController::IsGameUnitOnMapItem(int gameMapId) const
+bool GameUnitProductionController::IsGameUnitOnMapTile(int gameMapId) const
 {
-	return nullptr != GameUnitRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapId);
+	return nullptr != GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapId);
 }

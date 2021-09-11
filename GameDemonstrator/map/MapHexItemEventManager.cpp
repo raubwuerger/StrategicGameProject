@@ -42,7 +42,7 @@ void MapHexItemEventManager::SlotUpdateMapItemInfo(int gameMapItemId)
 	QString mapHexItemId(DEFAULT_ENTRY);
 	QString mapHexItemTerrainName(DEFAULT_ENTRY);
 
-	const GameMapTile* modelMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	const GameMapTile* modelMapItem = GameMapTileRepository::GetInstance()->GetById(gameMapItemId);
 	if (nullptr != modelMapItem)
 	{
 		mapHexItemId = QString::number(modelMapItem->GetId());
@@ -73,13 +73,13 @@ void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 	QString mapHexItemId(DEFAULT_ENTRY);
 	QString mapUnitItemOwnerName(DEFAULT_ENTRY);
 
-	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(mapUnitItemId);
+	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetById(mapUnitItemId);
 	if (nullptr != gameUnitItem)
 	{
 		mapUnitItemName = gameUnitItem->GetName();
 		mapUnitItemType = gameUnitItem->GetModelUnitType()->GetName();
-		mapHexItemId = QString::number(gameUnitItem->GetGameMapItemId());
-		mapUnitItemOwnerName = gameUnitItem->GetGameOwnerItem()->GetName();
+		mapHexItemId = QString::number(gameUnitItem->GetGameTileId());
+		mapUnitItemOwnerName = gameUnitItem->GetGameOwner()->GetName();
 	}
 
 	UnitTypeInfoDialog->SetId(mapUnitItem);
@@ -105,7 +105,7 @@ void MapHexItemEventManager::SlotUpdateMapCityItemInfo(int mapCityItemId)
 	QString mapHexItemId(DEFAULT_ENTRY);
 	QString cityOwner(DEFAULT_ENTRY);
 
-	const GameCity* item = GameCityRepository::GetInstance()->GetGameCityItemById(mapCityItemId);
+	const GameCity* item = GameCityRepository::GetInstance()->GetById(mapCityItemId);
 	if (nullptr != item)
 	{
 		cityItemName = item->GetName();

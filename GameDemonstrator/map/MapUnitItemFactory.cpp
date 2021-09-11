@@ -36,7 +36,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 	while (gameUnit != GameUnitRepository::GetInstance()->GetLastIterator())
 	{
 		GameUnit *gameItemUnit = gameUnit.value();
-		int mapItemId = gameItemUnit->GetGameMapItemId();
+		int mapItemId = gameItemUnit->GetGameTileId();
 		const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
 		if (nullptr == mapHexItem)
 		{
@@ -49,7 +49,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 		newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 		newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 		newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
-		newMapUnitItem->Color = gameItemUnit->GetGameOwnerItem()->GetColor();
+		newMapUnitItem->Color = gameItemUnit->GetGameOwner()->GetColor();
 		if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))
 		{
 			return false;
@@ -74,7 +74,7 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnit* gameItemUnit)
 		return false;
 	}
 
-	int mapItemId = gameItemUnit->GetGameMapItemId();
+	int mapItemId = gameItemUnit->GetGameTileId();
 	const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
 	if (nullptr == mapHexItem)
 	{
@@ -87,7 +87,7 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnit* gameItemUnit)
 	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
 	newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
 	newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
-	newMapUnitItem->Color = gameItemUnit->GetGameOwnerItem()->GetColor();
+	newMapUnitItem->Color = gameItemUnit->GetGameOwner()->GetColor();
 	if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))
 	{
 		return false;
