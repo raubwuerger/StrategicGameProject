@@ -614,6 +614,7 @@
     <ClCompile Include="gui\ModelUnitTypeStatistics.cpp" />
     <ClCompile Include="helper\ColorCreatorPercentage.cpp" />
     <ClCompile Include="helper\TextColorAdjuster.cpp" />
+    <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
@@ -1199,6 +1200,7 @@
     </CustomBuild>
     <ClInclude Include="helper\ColorCreatorPercentage.h" />
     <ClInclude Include="helper\TextColorAdjuster.h" />
+    <ClInclude Include="mapCreator\GameMapCreatorHeightMap.h" />
     <ClInclude Include="mapCreator\GameMapCreatorSimple.h" />
     <ClInclude Include="mapCreator\IGameMapCreator.h" />
     <ClInclude Include="MapHexItemHexagonData.h" />

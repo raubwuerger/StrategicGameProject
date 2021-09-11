@@ -12,9 +12,8 @@ public:
 	/** */
 	virtual bool CreateMap();
 private:
-	GameMapTile* CreateGameMapItem( unsigned int row, unsigned int col );
-private:
-	int MapItemId;
+	/** */
+	GameMapTile* CreateGameMapTile( unsigned int row, unsigned int col );
 };
 
 #endif // GAMEMAPCREATORSIMPLE_H

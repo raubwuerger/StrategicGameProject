@@ -1,6 +1,8 @@
 #ifndef IGAMEMAPCREATOR
 #define IGAMEMAPCREATOR
 
+static int MapTileId = 0;
+
 class IGameMapCreator
 {
 public:

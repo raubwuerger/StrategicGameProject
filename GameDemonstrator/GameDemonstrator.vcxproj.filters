@@ -785,6 +785,9 @@
     <ClCompile Include="game\GameUnitRuntimeData.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp">
+      <Filter>Source Dateien\MapCreator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1089,6 +1092,9 @@
     </ClInclude>
     <ClInclude Include="game\GameUnitRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\GameMapCreatorHeightMap.h">
+      <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

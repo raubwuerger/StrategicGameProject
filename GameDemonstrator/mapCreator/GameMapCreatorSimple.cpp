@@ -9,14 +9,13 @@
 #include "game/GameConfig.h"
 
 GameMapCreatorSimple::GameMapCreatorSimple()
-	: MapItemId(0)
 {
 
 }
 
 bool GameMapCreatorSimple::CreateMap()
 {
-	MapItemId = 0;
+	MapTileId = 0;
 	unsigned int cols = GameConfig::MapCols;
 	unsigned int rows = GameConfig::MapRows;
 
@@ -28,7 +27,7 @@ bool GameMapCreatorSimple::CreateMap()
 		tempRow.reserve(cols);
 		for( unsigned int currentCol = 0; currentCol < cols; currentCol++ )
 		{
-			tempRow.append( CreateGameMapItem(currentRow,currentCol) );
+			tempRow.append( CreateGameMapTile(currentRow,currentCol) );
 		}
 		simpleMap->append(tempRow);
 	}
@@ -38,13 +37,13 @@ bool GameMapCreatorSimple::CreateMap()
 	return true;
 }
 
-GameMapTile* GameMapCreatorSimple::CreateGameMapItem( unsigned int row, unsigned int col )
+GameMapTile* GameMapCreatorSimple::CreateGameMapTile( unsigned int row, unsigned int col )
 {
-	GameMapTile* modelMapItem = new GameMapTile(row,col,++MapItemId);
+	GameMapTile* gameMapTile = new GameMapTile(row, col, ++MapTileId);
 	const ModelTerrainType* defaultModelTerrainType = ModelTerrainTypeRepository::GetInstance()->GetDefaultTerrainType();
 	Q_ASSERT(defaultModelTerrainType);
-	modelMapItem->SetModelTerrainType(defaultModelTerrainType);
-	modelMapItem->SetModelTerrainTypeId(defaultModelTerrainType->GetId());
-	return modelMapItem;
+	gameMapTile->SetModelTerrainType(defaultModelTerrainType);
+	gameMapTile->SetModelTerrainTypeId(defaultModelTerrainType->GetId());
+	return gameMapTile;
 }
 
