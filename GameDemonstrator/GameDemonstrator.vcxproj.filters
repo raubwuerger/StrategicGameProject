@@ -758,6 +758,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ModelUnitTypeStatistics.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="dialogs\GameUnitSettingsDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameUnitSettingsDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GameUnitSettingsDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1229,6 +1238,9 @@
     </CustomBuild>
     <CustomBuild Include="gui\ModelUnitTypeStatistics.h">
       <Filter>Header Dateien\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameUnitSettingsDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

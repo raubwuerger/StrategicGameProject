@@ -117,12 +117,17 @@ void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 
 QString GameInfoDialogController::GetProducedUnitName(int gameUnitId) const
 {
-	if (gameUnitId == GAME_UNIT_ID_EFFICIENCY)
+	if (gameUnitId == GAME_UNIT_ID_EFFICIENCY )
 	{
 		return GAME_UNIT_STRING_EFFICIENCY;
 	}
 
 	GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	if (nullptr == gameUnitItem)
+	{
+		Q_ASSERT(gameUnitItem);
+		return "???";
+	}
 	return gameUnitItem->GetModelUnitType()->GetName();
 }
 
