@@ -9,6 +9,7 @@ class GameUnitItem;
 class GameDemonstrator;
 class GameCityItem;
 class GameCitySettingsDialog;
+class GameUnitSettingsDialog;
 
 /** Controlls and connects all game info dialogs */
 class GameInfoDialogController : public QObject
@@ -34,6 +35,8 @@ public slots:
 	void SlotShowTurnInfoDialog();
 	/** */
 	void SlotShowGameCitySettingsDialog(int gameCityId);
+	/** */
+	void SlotShowGameItemSettinsDialog(int gameItemId);
 private:
 	/** */
 	void CreateGameTurnInfoDialog();
@@ -44,11 +47,7 @@ private:
 	/** */
 	void CreateGameCitySettingsDialog();
 	/** */
-	QString CreateUnitMovementPoints(const GameUnitItem* gameUnit) const;
-	/** */
 	QColor CreateMovementColor(const GameUnitItem* gameUnit) const;
-	/** */
-	QString CreateUnitStrength(const GameUnitItem* gameUnit) const;
 	/** */
 	QColor CreateStrengthColor(const GameUnitItem* gameUnit) const;
 	/** */
@@ -61,6 +60,8 @@ private:
 	QString GetUnitType(int id);
 	/** */
 	QString GetProducedUnitName(int gameUnitId) const;
+	/** */
+	void CreateGameUnitSettingsDialog();
 private:
 	friend class GameFactory;
 	QVector<QDockWidget*>	DockWidgets;
@@ -70,9 +71,7 @@ private:
 	GameUnitInfoDialog*		GameUnitInfoDialogObject;
 	GameCityInfoDialog*		GameCityInfoDialogObject;
 	GameCitySettingsDialog*	GameCitySettingsDialogObject;
-	QColor					LightRed;
-	QColor					LightYellow;
-	QColor					LightGreen;
+	GameUnitSettingsDialog*	GameUnitSettingsDialogObject;
 };
 
 #endif // GAMEINFODIALOGCONTROLLER_H

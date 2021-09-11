@@ -114,6 +114,12 @@
     <Filter Include="Source Dateien\GUI">
       <UniqueIdentifier>{04e7a22d-c080-4707-8a82-98f5a868fd06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Helper">
+      <UniqueIdentifier>{5fd552dc-85d1-4bd3-a422-02eda62b313a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Helper">
+      <UniqueIdentifier>{f38aaf24-2ce0-4bf4-a6d0-b106f1c82bab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -767,6 +773,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameUnitSettingsDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="helper\ColorCreatorPercentage.cpp">
+      <Filter>Source Dateien\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1063,6 +1072,12 @@
     <ClInclude Include="GeneratedFiles\ui_GameCitySettingsDialog.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="helper\ColorCreatorPercentage.h">
+      <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GameUnitSettingsDialog.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1241,6 +1256,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\GameUnitSettingsDialog.h">
       <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\GameUnitSettingsDialog.ui">
+      <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
