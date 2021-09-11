@@ -1,7 +1,7 @@
 #ifndef MAPVIEWUNITITEMFACTORY_H
 #define MAPVIEWUNITITEMFACTORY_H
 
-class GameUnitItem;
+class GameUnit;
 class MapView;
 
 /** Creates game map representation */
@@ -15,14 +15,14 @@ public:
 	/** */
 	bool Create(MapView* mapView);
 	/** */
-	bool Create(MapView* mapView, const GameUnitItem* gameItemUnit);
+	bool Create(MapView* mapView, const GameUnit* gameItemUnit);
 	/** */
 	bool DeleteUnit(MapView* mapView, int unitItemId);
 private:
 	/** */
 	const QPointF AdjustTopLeftPosition(const QPointF& topLeftPosition);
 	/** */
-	const QImage* GetImage(const GameUnitItem* gameUnitItem);
+	const QImage* GetImage(const GameUnit* gameUnitItem);
 private:
 	int		DefaultBorderWidth;
 	int		DefaultBorderWidthSelected;

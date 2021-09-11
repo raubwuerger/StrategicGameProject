@@ -1,7 +1,7 @@
 #ifndef MAPHEXITEMFACTORY_H
 #define MAPHEXITEMFACTORY_H
 
-class GameMapItem;
+class GameMapTile;
 class MapView;
 
 class MapHexItemFactory
@@ -13,7 +13,7 @@ private:
 	/** */
 	bool CreateTopLeftPosition(int col, int row, QPointF &topLeftPosition);
 	/** */
-	const QImage* GetImage(const GameMapItem* modelMapItem);
+	const QImage* GetImage(const GameMapTile* modelMapItem);
 };
 
 #endif // MAPHEXITEMFACTORY_H

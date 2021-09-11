@@ -5,7 +5,7 @@
 #include "game/GameConfig.h"
 #include "DomValueExtractor.h"
 #include "io\SerializeXMLItems.h"
-#include "GameOwnerItemRepository.h"
+#include "GameOwnerRepository.h"
 #include "DomNodeListValueExtractor.h"
 
 

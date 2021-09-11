@@ -4,8 +4,8 @@
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelTerrainTypeRepository.h"
-#include "game/GameMapItemRepository.h"
-#include "game/GameMapItem.h"
+#include "game/GameMapTileRepository.h"
+#include "game/GameMapTile.h"
 #include "controller/EditorController.h"
 #include "LogInterface.h"
 
@@ -43,8 +43,8 @@ void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
 }
 
-#include "game/GameUnitItemRepository.h"
-#include "game/GameUnitItem.h"
+#include "game/GameUnitRepository.h"
+#include "game/GameUnit.h"
 #include "controller/TerrainAccessTester.h"
 void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 {
@@ -71,7 +71,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 	}
 	item->SetTerrainImage( ActiveTerrainType->GetImage() );
 
-	GameMapItem *gameMapItemToUpdate = GameMapItemRepository::GetInstance()->GetGameMapItemById(item->GetGameMapItemId());
+	GameMapTile *gameMapItemToUpdate = GameMapTileRepository::GetInstance()->GetGameMapItemById(item->GetGameMapItemId());
 	if (nullptr == gameMapItemToUpdate)
 	{
 		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(item->GetGameMapItemId())));
@@ -83,7 +83,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 
 bool TerrainTypeEditor::IsTerrainTypeValid(int gameMapItemId) const
 {
-	const GameUnitItem* gameUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
+	const GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetGameUnitItemByGameMapItemId(gameMapItemId);
 	if (nullptr == gameUnit)
 	{
 		return true; //No GameUnit is on MapItem

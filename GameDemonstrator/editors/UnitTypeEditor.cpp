@@ -2,8 +2,8 @@
 #include "UnitTypeEditor.h"
 #include "model/ModelUnitTypeRepository.h"
 #include "model/ModelUnitType.h"
-#include "game/GameUnitItemRepository.h"
-#include "game/GameUnitItemFactory.h"
+#include "game/GameUnitRepository.h"
+#include "game/GameUnitFactory.h"
 #include "map/MapUnitItemFactory.h"
 #include "map/MapView.h"
 #include "map/MapUnitItem.h"
@@ -75,7 +75,7 @@ void UnitTypeEditor::SlotAddUnit(int mapHexItemId)
 	CreateUnit();
 }
 
-#include "game/GameUnitItem.h"
+#include "game/GameUnit.h"
 #include "controller/GameUnitMovementController.h"
 #include "map/MapHexItemRepository.h"
 #include "command/CommandPlaceGameUnitOnMap.h"
@@ -96,8 +96,8 @@ void UnitTypeEditor::CreateUnit()
 		return;
 	}
 
-	GameUnitItemFactory gameUnitItemFactory;
-	GameUnitItem* created = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);
+	GameUnitFactory gameUnitItemFactory;
+	GameUnit* created = gameUnitItemFactory.CreateGameUnitItem(gameUnitParameterObject);
 
 	if (nullptr == created)
 	{
@@ -115,7 +115,7 @@ void UnitTypeEditor::SlotDeleteUnitFromGameUnitId(int gameUnitId)
 		return;
 	}
 
-	GameUnitItem* gameUnitItemToDelete = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	GameUnit* gameUnitItemToDelete = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
 	if (nullptr == gameUnitItemToDelete)
 	{
 		return;
@@ -132,7 +132,7 @@ void UnitTypeEditor::DeleteUnit( int gameMapItemId )
 		return;
 	}
 
-	GameUnitItem* gameUnitItemToDelete = GameUnitItemRepository::GetInstance()->RemoveGameUnitItemByGameMapItemId(gameMapItemId);
+	GameUnit* gameUnitItemToDelete = GameUnitRepository::GetInstance()->RemoveGameUnitItemByGameMapItemId(gameMapItemId);
 	if (nullptr == gameUnitItemToDelete)
 	{
 		jha::GetLog()->Log_FATAL(tr("No GameUnitItem registered for GameMapItemId %1!").arg(QString::number(gameMapItemId)));
@@ -162,7 +162,7 @@ void UnitTypeEditor::DeleteUnit( int gameMapItemId )
 
 bool UnitTypeEditor::HasMapHexItemUnits() const
 {
-	return GameUnitItemRepository::GetInstance()->IsGameUnitItemOnGameMapItem(ActiveGameMapItemId);
+	return GameUnitRepository::GetInstance()->IsGameUnitItemOnGameMapItem(ActiveGameMapItemId);
 }
 
 bool UnitTypeEditor::IsSelectedGameMapItemInitialized() const

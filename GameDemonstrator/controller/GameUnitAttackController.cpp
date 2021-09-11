@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "GameUnitAttackController.h"
-#include "game/GameUnitItem.h"
+#include "game/GameUnit.h"
 #include "model/ModelUnitType.h"
 
-bool GameUnitAttackController::IsUnitAttackable(const GameUnitItem* attacker, const GameUnitItem* defender)
+bool GameUnitAttackController::IsUnitAttackable(const GameUnit* attacker, const GameUnit* defender)
 {
 	if (nullptr == attacker)
 	{
@@ -34,7 +34,7 @@ bool GameUnitAttackController::IsUnitAttackable(const GameUnitItem* attacker, co
 	return modelAttacker->IsUnitTypeAttackable(modelDefender->GetId());
 }
 
-bool GameUnitAttackController::AttackUnit(const GameUnitItem* attacker, const GameUnitItem* defender)
+bool GameUnitAttackController::AttackUnit(const GameUnit* attacker, const GameUnit* defender)
 {
 	if (nullptr == attacker)
 	{
@@ -68,11 +68,11 @@ bool GameUnitAttackController::AttackUnit(const GameUnitItem* attacker, const Ga
 	}
 
 	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
-	const_cast<GameUnitItem*>(attacker)->Move();
+	const_cast<GameUnit*>(attacker)->Move();
 	return true;
 }
 
-bool GameUnitAttackController::AttackCity(const GameUnitItem* attacker, const GameCity* defender)
+bool GameUnitAttackController::AttackCity(const GameUnit* attacker, const GameCity* defender)
 {
 	if (nullptr == attacker)
 	{
@@ -99,11 +99,11 @@ bool GameUnitAttackController::AttackCity(const GameUnitItem* attacker, const Ga
 	}
 
 	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
-	const_cast<GameUnitItem*>(attacker)->Move();
+	const_cast<GameUnit*>(attacker)->Move();
 	return true;
 }
 
-bool GameUnitAttackController::IsCityOccupiable(const GameUnitItem* attacker)
+bool GameUnitAttackController::IsCityOccupiable(const GameUnit* attacker)
 {
 	if (nullptr == attacker)
 	{

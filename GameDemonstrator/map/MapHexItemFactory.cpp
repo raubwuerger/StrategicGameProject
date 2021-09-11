@@ -2,8 +2,8 @@
 #include "MapHexItemFactory.h"
 #include "MapHexItemHexagonData.h"
 #include "model/ModelTerrainType.h"
-#include "game/GameMapItem.h"
-#include "game/GameMapItemRepository.h"
+#include "game/GameMapTile.h"
+#include "game/GameMapTileRepository.h"
 #include "LogInterface.h"
 #include "MapHexItem.h"
 #include "MapHexItemRepository.h"
@@ -23,7 +23,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	mapView->Create();
 	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
-	const QVector< QVector<GameMapItem*> >* gameMap = GameMapItemRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapItems();
 	if (nullptr == gameMap)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("GameMapRepository contains no items!"));
@@ -35,11 +35,11 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	for (int currentRow = 0; currentRow < rows; currentRow++)
 	{
 		QVector<MapHexItem*> mapHexItemRow;
-		QVector<GameMapItem*> row = gameMap->at(currentRow);
+		QVector<GameMapTile*> row = gameMap->at(currentRow);
 		int cols = row.size();
 		for (int currentCol = 0; currentCol < cols; currentCol++)
 		{
-			GameMapItem* gameMapItem = row.at(currentCol);
+			GameMapTile* gameMapItem = row.at(currentCol);
 			QPointF topLeftPosition;
 			CreateTopLeftPosition(currentRow, currentCol, topLeftPosition);
 			MapHexItem *mapItem = new MapHexItem(hexagonTemplate, topLeftPosition);
@@ -85,7 +85,7 @@ bool MapHexItemFactory::CreateTopLeftPosition(int row, int col, QPointF &topLeft
 
 }
 
-const QImage* MapHexItemFactory::GetImage(const GameMapItem* modelMapItem)
+const QImage* MapHexItemFactory::GetImage(const GameMapTile* modelMapItem)
 {
 	const ModelTerrainType* modelTerrainType = modelMapItem->GetTerrainType();
 	if (nullptr == modelTerrainType)

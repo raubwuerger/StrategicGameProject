@@ -2,14 +2,14 @@
 #include "MapUnitItemFactory.h"
 #include "MapUnitItem.h"
 #include "LogInterface.h"
-#include "game\GameUnitItemRepository.h"
-#include "game\GameUnitItem.h"
+#include "game\GameUnitRepository.h"
+#include "game\GameUnit.h"
 #include "MapUnitItemRepository.h"
 #include "MapHexItemRepository.h"
 #include "MapHexItem.h"
 #include "MapView.h"
 #include "model\ModelUnitType.h"
-#include "game\GameOwnerItem.h"
+#include "game\GameOwner.h"
 
 MapUnitItemFactory::MapUnitItemFactory()
 	: DefaultBorderWidth(2),
@@ -32,10 +32,10 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 
 	MapUnitItemRepository::GetInstance()->Init();
 	
-	QMap<int, GameUnitItem*>::const_iterator gameUnit = GameUnitItemRepository::GetInstance()->GetFirstIterator();
-	while (gameUnit != GameUnitItemRepository::GetInstance()->GetLastIterator())
+	QMap<int, GameUnit*>::const_iterator gameUnit = GameUnitRepository::GetInstance()->GetFirstIterator();
+	while (gameUnit != GameUnitRepository::GetInstance()->GetLastIterator())
 	{
-		GameUnitItem *gameItemUnit = gameUnit.value();
+		GameUnit *gameItemUnit = gameUnit.value();
 		int mapItemId = gameItemUnit->GetGameMapItemId();
 		const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapItemId);
 		if (nullptr == mapHexItem)
@@ -60,7 +60,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 	return true;
 }
 
-bool MapUnitItemFactory::Create(MapView* mapView, const GameUnitItem* gameItemUnit)
+bool MapUnitItemFactory::Create(MapView* mapView, const GameUnit* gameItemUnit)
 {
 	if (nullptr == mapView)
 	{
@@ -107,7 +107,7 @@ const QPointF MapUnitItemFactory::AdjustTopLeftPosition(const QPointF& topLeftPo
 	return adjustedPosition -= QPointF(-16.0, -20.0); //TODO: http://wanderfalke/redmine/issues/4
 }
 
-const QImage* MapUnitItemFactory::GetImage(const GameUnitItem* gameUnitItem)
+const QImage* MapUnitItemFactory::GetImage(const GameUnit* gameUnitItem)
 {
 	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
 	if (nullptr == modelUnitType)

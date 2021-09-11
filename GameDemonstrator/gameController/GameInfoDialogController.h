@@ -5,7 +5,7 @@ class MapView;
 class GameTurnDialog;
 class GameUnitInfoDialog;
 class GameCityInfoDialog;
-class GameUnitItem;
+class GameUnit;
 class GameDemonstrator;
 class GameCity;
 class GameCitySettingsDialog;
@@ -47,9 +47,9 @@ private:
 	/** */
 	void CreateGameCitySettingsDialog();
 	/** */
-	QColor CreateMovementColor(const GameUnitItem* gameUnit) const;
+	QColor CreateMovementColor(const GameUnit* gameUnit) const;
 	/** */
-	QColor CreateStrengthColor(const GameUnitItem* gameUnit) const;
+	QColor CreateStrengthColor(const GameUnit* gameUnit) const;
 	/** */
 	QString CreateCityEfficiency(const GameCity* gameCity) const;
 	/** */

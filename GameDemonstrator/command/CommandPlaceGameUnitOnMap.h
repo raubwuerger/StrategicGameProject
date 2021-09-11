@@ -1,17 +1,17 @@
 #ifndef COMMANDPLACEGAMEUNITONMAP_H
 #define COMMANDPLACEGAMEUNITONMAP_H
 
-class GameUnitItem;
+class GameUnit;
 class MapView;
-class GameMapItem;
+class GameMapTile;
 
 class CommandPlaceGameUnitOnMap
 {
 public:
 	/** */
-	static bool PlaceGameUnit(const GameUnitItem* gameUnitItem, const GameMapItem* gameMapItem);
+	static bool PlaceGameUnit(const GameUnit* gameUnitItem, const GameMapTile* gameMapItem);
 	/** */
-	static bool PlaceGameUnit(const GameUnitItem* gameUnitItem, int gameMapItemId);
+	static bool PlaceGameUnit(const GameUnit* gameUnitItem, int gameMapItemId);
 private:
 	friend class GameFactory;
 	static MapView*	MapViewObject;

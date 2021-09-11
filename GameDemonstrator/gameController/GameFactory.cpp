@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "GameFactory.h"
-#include "game\GameMapItemFactory.h"
+#include "game\GameMapTileFactory.h"
 #include "io\SerializerFactory.h"
 #include "io\SerializerGame.h"
 #include "GameUnitController.h"
 #include "GameModeController.h"
 #include "GameInfoDialogController.h"
 #include "GameTurnController.h"
-#include "game\GameOwnerItemFactory.h"
-#include "game\GameOwnerItemRepository.h"
-#include "game\GameUnitItemFactory.h"
+#include "game\GameOwnerFactory.h"
+#include "game\GameOwnerRepository.h"
+#include "game\GameUnitFactory.h"
 #include "game\GameConfig.h"
 #include "GameObjectController.h"
 #include "dialogs\GameTurnDialog.h"
@@ -84,7 +84,7 @@ void GameFactory::InitGameTurnController()
 
 void GameFactory::SetDefaultGameValues()
 {
-	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetDefaultOwnerType());
+	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetDefaultOwnerType());
 	GameConfig::CurrentTurn = 1;
 }
 
@@ -113,19 +113,19 @@ void GameFactory::InitCommandPlaceGameUnitOnMap()
 
 bool GameFactory::Create()
 {
-	GameMapItemFactory factory;
+	GameMapTileFactory factory;
 	if (false == factory.Create())
 	{
 		return false;
 	}
 
-	GameOwnerItemFactory ownerFactory;
+	GameOwnerFactory ownerFactory;
 	if (false == ownerFactory.Create())
 	{
 		return false;
 	}
 
-	GameUnitItemFactory unitFactory;
+	GameUnitFactory unitFactory;
 	if (false == unitFactory.Init())
 	{
 		return false;

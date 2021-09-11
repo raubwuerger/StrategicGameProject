@@ -1,7 +1,7 @@
 #ifndef MODELMAPREPOSITORY_H
 #define MODELMAPREPOSITORY_H
 
-class GameMapItemRepository;
+class GameMapTileRepository;
 
 
 /** Creates all Models */

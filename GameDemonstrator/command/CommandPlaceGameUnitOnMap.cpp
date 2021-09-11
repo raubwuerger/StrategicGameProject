@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "CommandPlaceGameUnitOnMap.h"
-#include "game\GameUnitItemRepository.h"
-#include "game\GameMapItem.h"
+#include "game\GameUnitRepository.h"
+#include "game\GameMapTile.h"
 #include "controller\TerrainAccessTester.h"
 #include "map\MapUnitItemFactory.h"
-#include "game\GameMapItemRepository.h"
+#include "game\GameMapTileRepository.h"
 
 MapView*	CommandPlaceGameUnitOnMap::MapViewObject = nullptr;
 
-bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnitItem* gameUnitItem, const GameMapItem* gameMapItem)
+bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnit* gameUnitItem, const GameMapTile* gameMapItem)
 {
 	Q_ASSERT(gameUnitItem);
 	Q_ASSERT(gameMapItem);
@@ -29,7 +29,7 @@ bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnitItem* gameUnitItem, 
 	return true;
 }
 
-bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnitItem* gameUnitItem, int gameMapItemId)
+bool CommandPlaceGameUnitOnMap::PlaceGameUnit(const GameUnit* gameUnitItem, int gameMapItemId)
 {
-	return PlaceGameUnit(gameUnitItem, GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId));
+	return PlaceGameUnit(gameUnitItem, GameMapTileRepository::GetInstance()->GetGameMapItemById(gameMapItemId));
 }

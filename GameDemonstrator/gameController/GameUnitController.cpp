@@ -6,9 +6,9 @@
 #include "connectors/ConnectorMapUnitItem.h"
 #include "game\gameconfig.h"
 #include "model/ModelOwnerTypeRepository.h"
-#include "game/GameOwnerItem.h"
-#include "game/GameUnitItemRepository.h"
-#include "game/GameUnitItem.h"
+#include "game/GameOwner.h"
+#include "game/GameUnitRepository.h"
+#include "game/GameUnit.h"
 
 GameUnitController::GameUnitController()
 	: Selected(nullptr)
@@ -44,7 +44,7 @@ void GameUnitController::Disconnect()
 bool GameUnitController::InitGame()
 {
 	Selected = nullptr;
-	GameOwnerItem* ownerType = GameConfig::Player;
+	GameOwner* ownerType = GameConfig::Player;
 	if (nullptr == ownerType)
 	{
 		return false;
@@ -105,7 +105,7 @@ void GameUnitController::SlotGameUnitSelectedEditorMode(int gameUnitId)
 
 bool GameUnitController::IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const
 {
-	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
+	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 	Q_ASSERT(gameUnitItem);
 
 	return GameConfig::Player->operator==(*gameUnitItem->GetGameOwnerItem());

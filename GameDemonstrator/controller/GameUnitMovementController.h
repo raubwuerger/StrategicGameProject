@@ -3,16 +3,16 @@
 
 class MapUnitItem;
 class MapHexItem;
-class GameUnitItem;
+class GameUnit;
 class ModelUnitType;
 class ModelTerrainType;
-class GameOwnerItem;
+class GameOwner;
 class GameCity;
 
 class GameUnitMovementController
 {
 public:
-	GameUnitMovementController(const GameUnitItem *activeGameUnitItem);
+	GameUnitMovementController(const GameUnit *activeGameUnitItem);
 	/** */
 	bool CanUnitMoveToDestination(int sourceGameUnitItemId, const MapHexItem* destination ) const;
 private:
@@ -23,16 +23,16 @@ private:
 	/** */
 	bool IsEnemyCityOnDestinationMapTile(int gameMapItemId) const;
 	/** */
-	const GameUnitItem* GetEnemyGameUnit(int gameMapItemId) const;
+	const GameUnit* GetEnemyGameUnit(int gameMapItemId) const;
 	/** */
-	const GameOwnerItem* GetCurrentMapTileOwner();
+	const GameOwner* GetCurrentMapTileOwner();
 	/** */
-	bool AttackCity(const GameUnitItem* gameUnitItem, const GameCity* gameCityItem) const;
+	bool AttackCity(const GameUnit* gameUnitItem, const GameCity* gameCityItem) const;
 	/** */
-	bool EmitMapUnitItemMoved(const GameUnitItem* gameUnitItem) const;
+	bool EmitMapUnitItemMoved(const GameUnit* gameUnitItem) const;
 private:
-	const GameUnitItem*		ActiveGameUnitItem;
-	const GameOwnerItem*	CurrentMapTileOwner;
+	const GameUnit*		ActiveGameUnitItem;
+	const GameOwner*	CurrentMapTileOwner;
 };
 
 #endif // MAPITEMMAPUNITMOVEMENTCONTROLLER_H

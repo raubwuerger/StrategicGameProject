@@ -3,7 +3,7 @@
 #include "MapCityItem.h"
 #include "LogInterface.h"
 #include "game/GameCity.h"
-#include "game/GameOwnerItem.h"
+#include "game/GameOwner.h"
 #include "map/MapView.h"
 
 MapCityItemRepository*	MapCityItemRepository::Instance = nullptr;
@@ -110,7 +110,7 @@ bool MapCityItemRepository::UpdateMapCityItemOwner(const GameCity* gameCityItem)
 	Q_ASSERT(MapViewInstance);
 	MapCityItem* toUpdate = MapCityItems[gameCityItem->GetId()];
 
-	toUpdate->SetOwnerColor(gameCityItem->GetGameOwnerItem()->GetColor());
+	toUpdate->SetOwnerColor(gameCityItem->GetGameOwner()->GetColor());
 	MapViewInstance->UpdateCity(toUpdate);
 	return true;
 }

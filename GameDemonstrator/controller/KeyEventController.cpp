@@ -47,9 +47,9 @@ void KeyEventController::HandleKeyPressEvent(MapUnitItem* mapUnitItem, QKeyEvent
 	}
 }
 
-#include "game/GameUnitItemRepository.h"
-#include "game/GameUnitItemFactory.h"
-#include "game/GameUnitItem.h"
+#include "game/GameUnitRepository.h"
+#include "game/GameUnitFactory.h"
+#include "game/GameUnit.h"
 bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* mapUnitItem) const
 {
 	GameMapMoveInfo gameMapMoveInfo(mapUnitItem);
@@ -59,7 +59,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 		return false;
 	}
 
-	GameUnitItem* sourceUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
+	GameUnit* sourceUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(mapUnitItem->GetGameUnitId());
 	if (nullptr == sourceUnitItem)
 	{
 		return false;
@@ -81,14 +81,14 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 
 	mapUnitItem->SetMapHexItemId(destMapHexItem->GetGameMapItemId());
 
-	GameUnitItemFactory gameUnitItemFactory;
-	GameUnitItem* movedGameUnitItem = gameUnitItemFactory.UpdateGameUnitItem(gameUnitParameterObject);
+	GameUnitFactory gameUnitItemFactory;
+	GameUnit* movedGameUnitItem = gameUnitItemFactory.UpdateGameUnitItem(gameUnitParameterObject);
 
 	const QPointF& sourceCenterPoint = sourceMapHexItem->GetCenterPoint();
 	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
 	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);
 	mapUnitItem->moveBy(offsetCenterPoint.x(), offsetCenterPoint.y());
-	GameUnitItemRepository::GetInstance()->UpdateGameUnitItemsOnGameMapItem(movedGameUnitItem, sourceMapHexItem->GetGameMapItemId());
+	GameUnitRepository::GetInstance()->UpdateGameUnitItemsOnGameMapItem(movedGameUnitItem, sourceMapHexItem->GetGameMapItemId());
 	return movedGameUnitItem->Move();
 }
 

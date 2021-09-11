@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "TerrainAccessTester.h"
-#include "game/GameUnitItem.h"
-#include "game/GameMapItem.h"
-#include "game/GameMapItemRepository.h"
+#include "game/GameUnit.h"
+#include "game/GameMapTile.h"
+#include "game/GameMapTileRepository.h"
 #include "map/MapHexItem.h"
 #include "model/ModelTerrainType.h"
 #include "model/ModelUnitType.h"
@@ -12,7 +12,7 @@ bool TerrainAccessTester::Accessable(const ModelUnitType* modelUnitType, const i
 {
 	Q_ASSERT(modelUnitType);
 
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
 	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
@@ -21,7 +21,7 @@ bool TerrainAccessTester::Accessable(const ModelUnitType* modelUnitType, const i
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
-bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const MapHexItem* mapHexItem)
+bool TerrainAccessTester::Accessable(const GameUnit* gameUnitItem, const MapHexItem* mapHexItem)
 {
 	Q_ASSERT(gameUnitItem);
 	Q_ASSERT(mapHexItem);
@@ -29,7 +29,7 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Map
 	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
 	Q_ASSERT(modelUnitType);
 
-	const GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapHexItem->GetGameMapItemId());
+	const GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(mapHexItem->GetGameMapItemId());
 	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
@@ -38,7 +38,7 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Map
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
-bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const ModelTerrainType* modelTerrainType)
+bool TerrainAccessTester::Accessable(const GameUnit* gameUnitItem, const ModelTerrainType* modelTerrainType)
 {
 	Q_ASSERT(gameUnitItem);
 	Q_ASSERT(modelTerrainType);
@@ -49,7 +49,7 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Mod
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
-bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const GameMapItem* gameMapItem)
+bool TerrainAccessTester::Accessable(const GameUnit* gameUnitItem, const GameMapTile* gameMapItem)
 {
 	Q_ASSERT(gameUnitItem);
 	Q_ASSERT(gameMapItem);
@@ -69,7 +69,7 @@ bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const i
 {
 	Q_ASSERT(modelCityType);
 
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
 	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();
@@ -83,7 +83,7 @@ bool TerrainAccessTester::Accessable(const int modelCityTypeId, const int gameMa
 	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
 	Q_ASSERT(modelCityType);
 
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
+	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(gameMapItemId);
 	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();

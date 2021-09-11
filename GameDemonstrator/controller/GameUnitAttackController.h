@@ -1,20 +1,20 @@
 #ifndef GAMEUNITATTACKCONTROLLER_H
 #define GAMEUNITATTACKCONTROLLER_H
 
-class GameUnitItem;
+class GameUnit;
 class GameCity;
 
 class GameUnitAttackController
 {
 public:
 	/** */
-	static bool IsUnitAttackable(const GameUnitItem* attacker, const GameUnitItem* defender);
+	static bool IsUnitAttackable(const GameUnit* attacker, const GameUnit* defender);
 	/** If attack was successful true will be returned, otherwise false */
-	static bool AttackUnit(const GameUnitItem* attacker, const GameUnitItem* defender);
+	static bool AttackUnit(const GameUnit* attacker, const GameUnit* defender);
 	/** */
-	static bool IsCityOccupiable(const GameUnitItem* attacker);
+	static bool IsCityOccupiable(const GameUnit* attacker);
 	/** If attack was successful true will be returned, otherwise false */
-	static bool AttackCity(const GameUnitItem* attacker, const GameCity* defender);
+	static bool AttackCity(const GameUnit* attacker, const GameCity* defender);
 private:
 	/** */
 };

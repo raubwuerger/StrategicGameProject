@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "MapCityItemFactory.h"
 #include "MapHexItemHexagonData.h"
-#include "game/GameMapItem.h"
-#include "game/GameMapItemRepository.h"
+#include "game/GameMapTile.h"
+#include "game/GameMapTileRepository.h"
 #include "game/GameCityRepository.h"
 #include "game/GameCity.h"
 #include "LogInterface.h"
@@ -12,7 +12,7 @@
 #include "MapHexItem.h"
 #include "MapView.h"
 #include "model\ModelCityType.h"
-#include "game\GameOwnerItem.h"
+#include "game\GameOwner.h"
 
 bool MapCityItemFactory::Create(MapView* mapView)
 {
@@ -24,7 +24,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 
 	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 
-	const QVector< QVector<GameMapItem*> >* gameMap = GameMapItemRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapItems();
 	if (nullptr == gameMap)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("GameMapRepository contains no items!"));
@@ -37,7 +37,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 	while (gameCityIterator != GameCityRepository::GetInstance()->GetLastIterator())
 	{
 		const GameCity* gameCityItem = *gameCityIterator;
-		int gameMapId = gameCityItem->GetGameMapItemId();
+		int gameMapId = gameCityItem->GetGameMapTileId();
 		const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapId);
 		if (nullptr == mapHexItem)
 		{
@@ -49,7 +49,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		mapItem->SetGameMapItemId(gameMapId);
 		mapItem->SetTerrainImage(GetImage(gameCityItem));
 		mapItem->MapCityItemId = gameCityItem->GetId();
-		mapItem->Color = gameCityItem->GetGameOwnerItem()->GetColor();
+		mapItem->Color = gameCityItem->GetGameOwner()->GetColor();
 
 		mapView->AddCity(mapItem);
 		mapCityItems.insert(gameCityItem->GetId(), mapItem);
@@ -75,7 +75,7 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCity* gameCityItem)
 		return false;
 	}
 
-	int gameMapId = gameCityItem->GetGameMapItemId();
+	int gameMapId = gameCityItem->GetGameMapTileId();
 	const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapId);
 	if (nullptr == mapHexItem)
 	{
@@ -88,7 +88,7 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCity* gameCityItem)
 	mapItem->SetGameMapItemId(gameMapId);
 	mapItem->SetTerrainImage(GetImage(gameCityItem));
 	mapItem->MapCityItemId = gameCityItem->GetId();
-	mapItem->Color = gameCityItem->GetGameOwnerItem()->GetColor();
+	mapItem->Color = gameCityItem->GetGameOwner()->GetColor();
 
 	mapView->AddCity(mapItem);
 	return MapCityItemRepository::GetInstance()->Register(mapItem);

@@ -2,8 +2,8 @@
 #define TERRAINACCESSTESTER_H
 
 class ModelUnitType;
-class GameUnitItem;
-class GameMapItem;
+class GameUnit;
+class GameMapTile;
 class MapHexItem;
 class ModelTerrainType;
 class ModelCityType;
@@ -14,11 +14,11 @@ public:
 	/** */
 	static bool Accessable(const ModelUnitType* modelUnitType, const int gameMapItemId);
 	/** */
-	static bool Accessable(const GameUnitItem* gameUnitItem, const MapHexItem* mapHexItem);
+	static bool Accessable(const GameUnit* gameUnitItem, const MapHexItem* mapHexItem);
 	/** */
-	static bool Accessable(const GameUnitItem* gameUnitItem, const GameMapItem* gameMapItem);
+	static bool Accessable(const GameUnit* gameUnitItem, const GameMapTile* gameMapItem);
 	/** */
-	static bool Accessable(const GameUnitItem* gameUnitItem, const ModelTerrainType* modelTerrainType);
+	static bool Accessable(const GameUnit* gameUnitItem, const ModelTerrainType* modelTerrainType);
 	/** */
 	static bool Accessable(const ModelCityType* modelCityType, const int gameMapItemId);
 	/** */

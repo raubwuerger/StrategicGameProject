@@ -1,7 +1,7 @@
 #ifndef GAMECONFIG_H
 #define GAMECONFIG_H
 
-class GameOwnerItem;
+class GameOwner;
 
 class GameConfig
 {
@@ -13,7 +13,7 @@ public:
 	static int				PlayerId;
 	static int				PlayerCount;
 	static int				CurrentTurn;
-	static GameOwnerItem*	Player;
+	static GameOwner*	Player;
 	static int				DifficultyLevel;
 	static QString			MapType;
 	static int				MapRows;

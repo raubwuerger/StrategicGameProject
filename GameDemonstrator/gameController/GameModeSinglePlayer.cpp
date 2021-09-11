@@ -13,7 +13,7 @@
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
 #include "map\MapCityItemFactory.h"
-#include "game\GameOwnerItemRepository.h"
+#include "game\GameOwnerRepository.h"
 #include "map\MapView.h"
 #include "GameInfoDialogController.h"
 #include "GameTurnController.h"
@@ -138,7 +138,7 @@ bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
 
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
-	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetItemById(owner));
+	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetItemById(owner));
 	GameConfig::DifficultyLevel = difficulty;
 	GameConfig::PlayerCount = (opponents + 1);
 

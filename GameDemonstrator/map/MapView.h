@@ -11,7 +11,7 @@ class MapHexItemEventManager;
 class ModelTerrainType;
 class MapHexItemHexagonData;
 class MapUnitItem;
-class GameMapItem;
+class GameMapTile;
 class MapHexItem;
 class KeyEventController;
 class MapCityItem;

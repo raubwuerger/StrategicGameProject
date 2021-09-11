@@ -3,12 +3,12 @@
 
 #include "ISerializeGameInterface.h"
 #include <QXmlStreamWriter>
-class GameMapItem;
+class GameMapTile;
 class QDomNode;
 class QDomNodeList;
-class GameUnitItem;
+class GameUnit;
 class GameCity;
-class GameOwnerItem;
+class GameOwner;
 
 class SerializeXML : public ISerializeGameInterface
 {
@@ -29,7 +29,7 @@ private:
 	/** */
 	bool SavePlayerData( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool SavePlayer(QXmlStreamWriter& xmlWriter, const GameOwnerItem* item);
+	bool SavePlayer(QXmlStreamWriter& xmlWriter, const GameOwner* item);
 	/** */
 	bool SaveMapData( QXmlStreamWriter& xmlWriter );
 	/** */
@@ -37,11 +37,11 @@ private:
 	/** */
 	bool SaveMapItems( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const GameMapItem* modelMapItem );
+	bool SaveMapItem( QXmlStreamWriter& xmlWriter, const GameMapTile* modelMapItem );
 	/** */
 	bool SaveUnitData( QXmlStreamWriter& xmlWriter );
 	/** */
-	bool SaveUnitItem( QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitDItem );
+	bool SaveUnitItem( QXmlStreamWriter& xmlWriter, const GameUnit* gameUnitDItem );
 	/** */
 	bool SaveCityData( QXmlStreamWriter& xmlWriter );
 	/** */

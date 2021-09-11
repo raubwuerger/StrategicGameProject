@@ -4,11 +4,11 @@
 #include "dialogs\GameUnitInfoDialog.h"
 #include "dialogs\GameCityInfoDialog.h"
 #include "GameDemonstrator.h"
-#include "game\GameUnitItem.h"
-#include "game\GameUnitItemRepository.h"
+#include "game\GameUnit.h"
+#include "game\GameUnitRepository.h"
 #include "game\GameCity.h"
 #include "game\GameCityRepository.h"
-#include "game\GameOwnerItem.h"
+#include "game\GameOwner.h"
 #include "model\ModelUnitType.h"
 #include "model\ModelUnitTypeRepository.h"
 #include "model\ModelUnitType.h"
@@ -78,7 +78,7 @@ void GameInfoDialogController::HideDockWidgets()
 
 void GameInfoDialogController::SlotShowGameUnitInfo(int gameUnitId)
 {
-	GameUnitItem* gameUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
 	if (nullptr == gameUnit)
 	{
 		Q_ASSERT(gameUnit);
@@ -107,8 +107,8 @@ void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 
 	GameCityInfoDialogObject->SetId(QString::number(gameCity->GetId()));
 	GameCityInfoDialogObject->SetName(gameCity->GetName());
-	GameCityInfoDialogObject->SetOwner(gameCity->GetGameOwnerItem()->GetName());
-	GameCityInfoDialogObject->SetOwnerColor(gameCity->GetGameOwnerItem()->GetColor());
+	GameCityInfoDialogObject->SetOwner(gameCity->GetGameOwner()->GetName());
+	GameCityInfoDialogObject->SetOwnerColor(gameCity->GetGameOwner()->GetColor());
 	GameCityInfoDialogObject->SetEfficiency( CreateCityEfficiency(gameCity));
 	GameCityInfoDialogObject->SetSpecialization(GetSpecializedUnitName(gameCity));
 	GameCityInfoDialogObject->SetStrength(CreateCityStrength(gameCity));
@@ -123,7 +123,7 @@ QString GameInfoDialogController::GetProducedUnitName(int gameUnitId) const
 		return GAME_UNIT_STRING_EFFICIENCY;
 	}
 
-	GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
 	if (nullptr == gameUnitItem)
 	{
 		Q_ASSERT(gameUnitItem);
@@ -177,7 +177,7 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 
 void GameInfoDialogController::SlotShowGameItemSettinsDialog(int gameItemId)
 {
-	const GameUnitItem* gameUnit = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameItemId);
+	const GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameItemId);
 	if (nullptr == gameUnit)
 	{
 		Q_ASSERT(gameUnit);
@@ -264,12 +264,12 @@ void GameInfoDialogController::CreateGameUnitSettingsDialog()
 	GameUnitSettingsDialogObject->hide();
 }
 
-QColor GameInfoDialogController::CreateMovementColor(const GameUnitItem* gameUnit) const
+QColor GameInfoDialogController::CreateMovementColor(const GameUnit* gameUnit) const
 {
 	return ColorCreatorPercentage::Create(static_cast<double>(gameUnit->GetCurrentMovementPoints()) / static_cast<double>(gameUnit->GetBaseMovementPoints()));
 }
 
-QColor GameInfoDialogController::CreateStrengthColor(const GameUnitItem* gameUnit) const
+QColor GameInfoDialogController::CreateStrengthColor(const GameUnit* gameUnit) const
 {
 	return ColorCreatorPercentage::Create(static_cast<double>(gameUnit->GetCurrentStrength()) / static_cast<double>(gameUnit->GetBaseStrength()));
 }

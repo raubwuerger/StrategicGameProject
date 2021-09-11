@@ -3,18 +3,18 @@
 #include "LogInterface.h"
 #include <QtXML>
 #include "SerializeXMLItems.h"
-#include "game/GameMapItemRepository.h"
-#include "game/GameMapItemFactory.h"
-#include "game/GameMapItem.h"
-#include "game/GameUnitItemRepository.h"
-#include "game/GameUnitItemFactory.h"
-#include "game/GameUnitItem.h"
+#include "game/GameMapTileRepository.h"
+#include "game/GameMapTileFactory.h"
+#include "game/GameMapTile.h"
+#include "game/GameUnitRepository.h"
+#include "game/GameUnitFactory.h"
+#include "game/GameUnit.h"
 #include "game/GameCityRepository.h"
 #include "game/GameCityFactory.h"
 #include "game/GameCity.h"
-#include "game/GameOwnerItem.h"
-#include "game/GameOwnerItemFactory.h"
-#include "game/GameOwnerItemRepository.h"
+#include "game/GameOwner.h"
+#include "game/GameOwnerFactory.h"
+#include "game/GameOwnerRepository.h"
 #include "model/ModelUnitType.h"
 #include "model/ModelOwnerType.h"
 #include "model/ModelOwnerTypeRepository.h"
@@ -123,8 +123,8 @@ bool SerializeXML::SaveGameData( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::PLAYERS );
-	QMap<int, GameOwnerItem*>::const_iterator iterator = GameOwnerItemRepository::GetInstance()->GetFirstIterator();
-	while (iterator != GameOwnerItemRepository::GetInstance()->GetLastIterator())
+	QMap<int, GameOwner*>::const_iterator iterator = GameOwnerRepository::GetInstance()->GetFirstIterator();
+	while (iterator != GameOwnerRepository::GetInstance()->GetLastIterator())
 	{
 		SavePlayer(xmlWriter, iterator.value());
 		iterator++;
@@ -134,7 +134,7 @@ bool SerializeXML::SavePlayerData( QXmlStreamWriter& xmlWriter )
 }
 
 //==============================================================================
-bool SerializeXML::SavePlayer(QXmlStreamWriter& xmlWriter, const GameOwnerItem* item)
+bool SerializeXML::SavePlayer(QXmlStreamWriter& xmlWriter, const GameOwner* item)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::PLAYERS_PLAYER);
 		xmlWriter.writeTextElement(SerializeXMLItems::PLAYER_ID, QString::number(item->GetId()));
@@ -168,8 +168,8 @@ bool SerializeXML::SaveMapData( QXmlStreamWriter& xmlWriter )
 bool SerializeXML::SaveMapSettings(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAP_SETTINGS );
-		xmlWriter.writeTextElement( SerializeXMLItems::MAP_SETTINGS_ROWS, QString::number(GameMapItemRepository::GetInstance()->GetRows()) );
-		xmlWriter.writeTextElement( SerializeXMLItems::MAP_SETTINGS_COLS, QString::number(GameMapItemRepository::GetInstance()->GetCols()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_SETTINGS_ROWS, QString::number(GameMapTileRepository::GetInstance()->GetRows()) );
+		xmlWriter.writeTextElement( SerializeXMLItems::MAP_SETTINGS_COLS, QString::number(GameMapTileRepository::GetInstance()->GetCols()) );
 	xmlWriter.writeEndElement();
 	return true;
 }
@@ -179,7 +179,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAP_MAPITEMS );
 
-	const QVector< QVector<GameMapItem*> >* modelMap = GameMapItemRepository::GetInstance()->GetMapItems();
+	const QVector< QVector<GameMapTile*> >* modelMap = GameMapTileRepository::GetInstance()->GetMapItems();
 	if( nullptr == modelMap )
 	{
 		jha::GetLog()->Log_WARNING( QObject::tr("No GameMap present!") );
@@ -190,7 +190,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 	int rows = modelMap->size();
 	for( int currentRow = 0; currentRow < rows; currentRow++ )
 	{
-		QVector<GameMapItem*> row = modelMap->at(currentRow);
+		QVector<GameMapTile*> row = modelMap->at(currentRow);
 		int cols = row.size();
 		for( int currentCol = 0; currentCol < cols; currentCol++ )
 		{
@@ -206,7 +206,7 @@ bool SerializeXML::SaveMapItems(QXmlStreamWriter& xmlWriter)
 }
 
 //==============================================================================
-bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const GameMapItem* modelMapItem)
+bool SerializeXML::SaveMapItem(QXmlStreamWriter& xmlWriter, const GameMapTile* modelMapItem)
 {
 	xmlWriter.writeStartElement( SerializeXMLItems::MAP_MAPITEM );
 		xmlWriter.writeTextElement( SerializeXMLItems::MAP_ID, QString::number(modelMapItem->GetId()) );
@@ -222,8 +222,8 @@ bool SerializeXML::SaveUnitData(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::UNITS);
 	
-	QMap<int, GameUnitItem*>::const_iterator gameUnitItems = GameUnitItemRepository::GetInstance()->GetFirstIterator();
-	while (gameUnitItems != GameUnitItemRepository::GetInstance()->GetLastIterator())
+	QMap<int, GameUnit*>::const_iterator gameUnitItems = GameUnitRepository::GetInstance()->GetFirstIterator();
+	while (gameUnitItems != GameUnitRepository::GetInstance()->GetLastIterator())
 	{
 		if (false == SaveUnitItem(xmlWriter,gameUnitItems.value()))
 		{
@@ -237,7 +237,7 @@ bool SerializeXML::SaveUnitData(QXmlStreamWriter& xmlWriter)
 }
 
 //==============================================================================
-bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnitItem* gameUnitItem)
+bool SerializeXML::SaveUnitItem(QXmlStreamWriter& xmlWriter, const GameUnit* gameUnitItem)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::UNITS_UNIT);
 		xmlWriter.writeTextElement(SerializeXMLItems::UNITS_ID, QString::number(gameUnitItem->GetId()));
@@ -276,8 +276,8 @@ bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCity* ga
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_CITY);
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_ID, QString::number(gameCityItem->GetId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_MODELCITYTYPEID, QString::number(gameCityItem->GetModelCityTypeId()));
-		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_OWNERTYPEID, QString::number(gameCityItem->GetGameOwnerItemId()));
-		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_GAMEMAPITEMID, QString::number(gameCityItem->GetGameMapItemId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_OWNERTYPEID, QString::number(gameCityItem->GetGameOwnerId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_GAMEMAPITEMID, QString::number(gameCityItem->GetGameMapTileId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_NAME, gameCityItem->GetName());
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_EFFICIENCY, QString::number(gameCityItem->GetCurrentEfficiency()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_SPEZIALIZEDUNITTYPEID, QString::number(gameCityItem->GetSpezializedUnitTypeId()));
@@ -361,20 +361,20 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 		return false;
 	}
 
-	GameOwnerItemFactory factory;
+	GameOwnerFactory factory;
 	bool successful = factory.Create(domNode);
 	if (false == successful)
 	{
 		return false;
 	}
 
-	const GameOwnerItem* human = GameOwnerItemRepository::GetInstance()->GetHuman();
+	const GameOwner* human = GameOwnerRepository::GetInstance()->GetHuman();
 	if (nullptr == human)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("No human player defined in save game!"));
 		return false;
 	}
-	GameConfig::Player = const_cast<GameOwnerItem*>(human);
+	GameConfig::Player = const_cast<GameOwner*>(human);
 	return true;
 }
 
@@ -385,7 +385,7 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 	{
 		return false;
 	}
-	GameMapItemFactory gameMapItemFactory;
+	GameMapTileFactory gameMapItemFactory;
 	return gameMapItemFactory.Create(domNode);
 }
 
@@ -396,7 +396,7 @@ bool SerializeXML::LoadUnitData(const QDomNode& domNode)
 	{
 		return false;
 	}
-	GameUnitItemFactory gameUnitItemFactory;
+	GameUnitFactory gameUnitItemFactory;
 	return gameUnitItemFactory.Create(domNode);
 }
 
@@ -414,6 +414,6 @@ bool SerializeXML::LoadCityData(const QDomNode& domNode)
 //==============================================================================
 bool SerializeXML::UpdateGameConfig()
 {
-	GameConfig::Player = const_cast<GameOwnerItem*>(GameOwnerItemRepository::GetInstance()->GetItemById(GameConfig::PlayerId));
+	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetItemById(GameConfig::PlayerId));
 	return GameConfig::Player != nullptr;
 }

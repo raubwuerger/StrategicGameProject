@@ -114,11 +114,11 @@ void CityTypeEditor::SlotDeleteCity(int mapItemId)
 }
 
 #include "model/ModelTerrainType.h"
-#include "game/GameMapItemRepository.h"
-#include "game/GameMapItem.h"
+#include "game/GameMapTileRepository.h"
+#include "game/GameMapTile.h"
 int CityTypeEditor::GetModelTerrainType(int mapId)
 {
-	GameMapItem* gameMapItem = GameMapItemRepository::GetInstance()->GetGameMapItemById(mapId);
+	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetGameMapItemById(mapId);
 	if (nullptr == gameMapItem)
 	{
 		return NOT_INITIALIZED_INT;

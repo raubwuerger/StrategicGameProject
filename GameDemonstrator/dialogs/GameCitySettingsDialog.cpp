@@ -6,8 +6,8 @@
 #include "model/ModelCityTypeRepository.h"
 #include "model/ModelCityType.h"
 #include "gui/ModelUnitTypeStatistics.h"
-#include "game\GameUnitItemRepository.h"
-#include "game\GameUnitItem.h"
+#include "game\GameUnitRepository.h"
+#include "game\GameUnit.h"
 
 static int EFFICIENCY_ID = 0;
 
@@ -153,7 +153,7 @@ void GameCitySettingsDialog::SetEfficiencyIcon()
 
 const ModelUnitType* GameCitySettingsDialog::GetModelUnitTypeFromGameUnitId(int gameUnitId) const
 {
-	const GameUnitItem* gameUnitItem = GameUnitItemRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
+	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetGameUnitItemById(gameUnitId);
 	if (nullptr == gameUnitItem)
 	{
 		Q_ASSERT(gameUnitItem);

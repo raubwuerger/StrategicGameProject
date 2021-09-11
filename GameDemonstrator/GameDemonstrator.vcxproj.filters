@@ -422,18 +422,6 @@
     <ClCompile Include="editors\UnitTypeIdSelector.cpp">
       <Filter>Source Dateien\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameMapItem.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameUnitItem.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameUnitItemFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameUnitItemRepository.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\StandardLibQt\DomNodeListFinder.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
@@ -457,12 +445,6 @@
     </ClCompile>
     <ClCompile Include="MapHexItemHexagonData.cpp">
       <Filter>Source Dateien\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMapItemRepository.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameMapItemFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="map\MapHexItemEventManager.cpp">
       <Filter>Source Dateien\Map</Filter>
@@ -617,9 +599,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameModeController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameUnitItemRuntimeData.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Connectors\ConnectorLoadGame.cpp">
       <Filter>Source Dateien\Connectors</Filter>
     </ClCompile>
@@ -688,15 +667,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GameTurnController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameOwnerItem.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameOwnerItemFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameOwnerItemRepository.cpp">
-      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="gameController\GameObjectController.cpp">
       <Filter>Source Dateien\GameController</Filter>
@@ -783,6 +753,36 @@
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="game\GameCityRuntimeData.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapTile.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapTileFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameMapTileRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameOwner.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameOwnerFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameOwnerRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnit.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitRuntimeData.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -913,18 +913,6 @@
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameMapItem.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameUnitItem.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameUnitItemFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameUnitItemRepository.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\StandardLibQt\DomNodeListFinder.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
@@ -939,12 +927,6 @@
     </ClInclude>
     <ClInclude Include="MapHexItemHexagonData.h">
       <Filter>Header Dateien\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapItemRepository.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameMapItemFactory.h">
-      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="controller\KeyEventController.h">
       <Filter>Header Dateien\Controller</Filter>
@@ -1018,20 +1000,8 @@
     <ClInclude Include="gameController\GameFactory.h">
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameUnitItemRuntimeData.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h">
       <Filter>Header Dateien\test</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameOwnerItem.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameOwnerItemFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameOwnerItemRepository.h">
-      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameDataFactory.h">
       <Filter>Header Dateien\Game</Filter>
@@ -1088,6 +1058,36 @@
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="game\GameCityRuntimeData.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapTile.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapTileFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameMapTileRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameOwner.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameOwnerFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameOwnerRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnit.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
