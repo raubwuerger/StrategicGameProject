@@ -38,7 +38,6 @@ void ModelUnitTypeStatistics::Create()
 {
 	GroupBoxUnitStatistics = new QGroupBox("Unit statistics", this);
 	GroupBoxUnitStatistics->setFixedSize(356, 561);
-//	GroupBoxUnitStatistics->move(380, 120);
 	GridLayoutUnitStatistics = new QGridLayout;
 	LabelUnitImage = new QLabel();
 	QPixmap unitPixmap;
