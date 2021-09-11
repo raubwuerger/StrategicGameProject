@@ -2,7 +2,7 @@
 #define GAMEUNITATTACKCONTROLLER_H
 
 class GameUnitItem;
-class GameCityItem;
+class GameCity;
 
 class GameUnitAttackController
 {
@@ -14,7 +14,7 @@ public:
 	/** */
 	static bool IsCityOccupiable(const GameUnitItem* attacker);
 	/** If attack was successful true will be returned, otherwise false */
-	static bool AttackCity(const GameUnitItem* attacker, const GameCityItem* defender);
+	static bool AttackCity(const GameUnitItem* attacker, const GameCity* defender);
 private:
 	/** */
 };

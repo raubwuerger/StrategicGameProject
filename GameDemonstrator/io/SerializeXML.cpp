@@ -9,9 +9,9 @@
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItemFactory.h"
 #include "game/GameUnitItem.h"
-#include "game/GameCityItemRepository.h"
-#include "game/GameCityItemFactory.h"
-#include "game/GameCityItem.h"
+#include "game/GameCityRepository.h"
+#include "game/GameCityFactory.h"
+#include "game/GameCity.h"
 #include "game/GameOwnerItem.h"
 #include "game/GameOwnerItemFactory.h"
 #include "game/GameOwnerItemRepository.h"
@@ -256,8 +256,8 @@ bool SerializeXML::SaveCityData(QXmlStreamWriter& xmlWriter)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES);
 
-	QMap<int, GameCityItem*>::const_iterator gameCityItems = GameCityItemRepository::GetInstance()->GetFirstIterator();
-	while (gameCityItems != GameCityItemRepository::GetInstance()->GetLastIterator())
+	QMap<int, GameCity*>::const_iterator gameCityItems = GameCityRepository::GetInstance()->GetFirstIterator();
+	while (gameCityItems != GameCityRepository::GetInstance()->GetLastIterator())
 	{
 		if (false == SaveCitytItem(xmlWriter, gameCityItems.value()))
 		{
@@ -271,7 +271,7 @@ bool SerializeXML::SaveCityData(QXmlStreamWriter& xmlWriter)
 }
 
 //==============================================================================
-bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem)
+bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCity* gameCityItem)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_CITY);
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_ID, QString::number(gameCityItem->GetId()));
@@ -288,7 +288,7 @@ bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCityItem
 }
 
 //==============================================================================
-bool SerializeXML::WriteCityProduction(QXmlStreamWriter& xmlWriter, const GameCityItem* gameCityItem)
+bool SerializeXML::WriteCityProduction(QXmlStreamWriter& xmlWriter, const GameCity* gameCityItem)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_UNITPRODUCTION);
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_UNITPRODUCTIONID, QString::number(gameCityItem->GetUnitProduction()->GetGameUnitId()));
@@ -407,7 +407,7 @@ bool SerializeXML::LoadCityData(const QDomNode& domNode)
 	{
 		return false;
 	}
-	GameCityItemFactory factory;
+	GameCityFactory factory;
 	return factory.Create(domNode);
 }
 

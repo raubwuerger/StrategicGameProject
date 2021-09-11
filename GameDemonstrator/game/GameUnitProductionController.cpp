@@ -5,8 +5,8 @@
 #include "GameUnitItem.h"
 #include "GameUnitItemFactory.h"
 #include "GameUnitItemRepository.h"
-#include "GameCityItemRepository.h"
-#include "GameCityItem.h"
+#include "GameCityRepository.h"
+#include "GameCity.h"
 #include "Model\ModelUnitType.h"
 #include "Map\MapUnitItemFactory.h"
 #include "command\CommandPlaceGameUnitOnMap.h"
@@ -116,7 +116,7 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 		return;
 	}
 
-	const GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetGameCityItemById(gameUnitProduction->GetGameCityId());
+	const GameCity* gameCityItem = GameCityRepository::GetInstance()->GetGameCityItemById(gameUnitProduction->GetGameCityId());
 
 	if (true == IsGameUnitOnMapItem(gameCityItem->GetGameMapItemId()))
 	{

@@ -7,7 +7,7 @@ class GameUnitInfoDialog;
 class GameCityInfoDialog;
 class GameUnitItem;
 class GameDemonstrator;
-class GameCityItem;
+class GameCity;
 class GameCitySettingsDialog;
 class GameUnitSettingsDialog;
 
@@ -51,11 +51,11 @@ private:
 	/** */
 	QColor CreateStrengthColor(const GameUnitItem* gameUnit) const;
 	/** */
-	QString CreateCityEfficiency(const GameCityItem* gameCity) const;
+	QString CreateCityEfficiency(const GameCity* gameCity) const;
 	/** */
-	QString CreateCityStrength(const GameCityItem* gameCity)  const;
+	QString CreateCityStrength(const GameCity* gameCity)  const;
 	/** */
-	QString GetSpecializedUnitName(const GameCityItem* gameCity);
+	QString GetSpecializedUnitName(const GameCity* gameCity);
 	/** */
 	QString GetUnitType(int id);
 	/** */

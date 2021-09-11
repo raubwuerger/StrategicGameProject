@@ -72,7 +72,7 @@ bool GameUnitAttackController::AttackUnit(const GameUnitItem* attacker, const Ga
 	return true;
 }
 
-bool GameUnitAttackController::AttackCity(const GameUnitItem* attacker, const GameCityItem* defender)
+bool GameUnitAttackController::AttackCity(const GameUnitItem* attacker, const GameCity* defender)
 {
 	if (nullptr == attacker)
 	{

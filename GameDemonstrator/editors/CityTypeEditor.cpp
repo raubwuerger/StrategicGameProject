@@ -3,11 +3,11 @@
 #include "model\ModelCityTypeRepository.h"
 #include "model\ModelCityType.h"
 #include "controller\EditorController.h"
-#include "game\GameCityItemFactory.h"
+#include "game\GameCityFactory.h"
 #include "map\MapCityItemFactory.h"
 #include "controller\TerrainAccessTester.h"
-#include "game\GameCityItemRepository.h"
-#include "game\GameCityItem.h"
+#include "game\GameCityRepository.h"
+#include "game\GameCity.h"
 #include "game\GameUnitProductionController.h"
 
 CityTypeEditor::CityTypeEditor(QObject *parent)
@@ -55,7 +55,7 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
-	if ( true == GameCityItemRepository::GetInstance()->IsCityOnGameMapItemId(mapItemId))
+	if ( true == GameCityRepository::GetInstance()->IsCityOnGameMapItemId(mapItemId))
 	{
 		return;
 	}
@@ -65,8 +65,8 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	obj.ModelCityTypeObject = ActiveModelCityType;
 	obj.GameOwnerItemId = OwnerTypeId;
 
-	GameCityItemFactory gameFactory;
-	GameCityItem* created = gameFactory.Create(obj);
+	GameCityFactory gameFactory;
+	GameCity* created = gameFactory.Create(obj);
 	if (nullptr == created)
 	{
 		return;
@@ -85,8 +85,8 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	mapFactory.Create(MapViewInstance, created);
 }
 
-#include "game/GameCityItemRepository.h"
-#include "game/GameCityItem.h"
+#include "game/GameCityRepository.h"
+#include "game/GameCity.h"
 #include "map/MapCityItemRepository.h"
 #include "map/MapView.h"
 void CityTypeEditor::SlotDeleteCity(int mapItemId)
@@ -96,7 +96,7 @@ void CityTypeEditor::SlotDeleteCity(int mapItemId)
 		return;
 	}
 
-	GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->RemoveCityItemByGameMapItemId(mapItemId);
+	GameCity* gameCityItem = GameCityRepository::GetInstance()->RemoveCityItemByGameMapItemId(mapItemId);
 	if (nullptr == gameCityItem)
 	{
 		return;

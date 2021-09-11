@@ -6,8 +6,8 @@
 #include "GameDemonstrator.h"
 #include "game\GameUnitItem.h"
 #include "game\GameUnitItemRepository.h"
-#include "game\GameCityItem.h"
-#include "game\GameCityItemRepository.h"
+#include "game\GameCity.h"
+#include "game\GameCityRepository.h"
 #include "game\GameOwnerItem.h"
 #include "model\ModelUnitType.h"
 #include "model\ModelUnitTypeRepository.h"
@@ -17,7 +17,7 @@
 #include "connectors\ConnectorMapCityItem.h"
 #include "game\GameConfig.h"
 #include "dialogs\GameCitySettingsDialog.h"
-#include "game\GameCityItem.h"
+#include "game\GameCity.h"
 #include "game\GameUnitProduction.h"
 #include "game\GameUnitProductionController.h"
 #include "dialogs\GameUnitSettingsDialog.h"
@@ -98,7 +98,7 @@ void GameInfoDialogController::SlotShowGameUnitInfo(int gameUnitId)
 
 void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 {
-	GameCityItem* gameCity = GameCityItemRepository::GetInstance()->GetGameCityItemById(gameCityId);
+	GameCity* gameCity = GameCityRepository::GetInstance()->GetGameCityItemById(gameCityId);
 	if (nullptr == gameCity)
 	{
 		Q_ASSERT(gameCity);
@@ -141,7 +141,7 @@ void GameInfoDialogController::SlotShowTurnInfoDialog()
 
 void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 {
-	const GameCityItem* gameCity = GameCityItemRepository::GetInstance()->GetGameCityItemById(gameCityId);
+	const GameCity* gameCity = GameCityRepository::GetInstance()->GetGameCityItemById(gameCityId);
 	if (nullptr == gameCity)
 	{
 		Q_ASSERT(gameCity);
@@ -160,7 +160,7 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 	if (true == GameCitySettingsDialogObject->GetHaseNameChanged())
 	{
 		QString newName = GameCitySettingsDialogObject->GetName();
-		const_cast<GameCityItem*>(gameCity)->SetName(newName);
+		const_cast<GameCity*>(gameCity)->SetName(newName);
 	}
 
 	if (false == GameCitySettingsDialogObject->GetHasProductionChanged())
@@ -274,7 +274,7 @@ QColor GameInfoDialogController::CreateStrengthColor(const GameUnitItem* gameUni
 	return ColorCreatorPercentage::Create(static_cast<double>(gameUnit->GetCurrentStrength()) / static_cast<double>(gameUnit->GetBaseStrength()));
 }
 
-QString GameInfoDialogController::CreateCityEfficiency(const GameCityItem* gameCity) const
+QString GameInfoDialogController::CreateCityEfficiency(const GameCity* gameCity) const
 {
 	QString efficiency;
 	efficiency += QString::number(gameCity->GetCurrentEfficiency());
@@ -283,7 +283,7 @@ QString GameInfoDialogController::CreateCityEfficiency(const GameCityItem* gameC
 	return efficiency;
 }
 
-QString GameInfoDialogController::CreateCityStrength(const GameCityItem* gameCity) const
+QString GameInfoDialogController::CreateCityStrength(const GameCity* gameCity) const
 {
 	QString currentStrength;
 	currentStrength += QString::number(gameCity->GetCurrentStrength());
@@ -292,7 +292,7 @@ QString GameInfoDialogController::CreateCityStrength(const GameCityItem* gameCit
 	return currentStrength;
 }
 
-QString GameInfoDialogController::GetSpecializedUnitName(const GameCityItem* gameCity)
+QString GameInfoDialogController::GetSpecializedUnitName(const GameCity* gameCity)
 {
 	QString notSpecialized("Not specialized!");
 	if (NOT_INITIALIZED_INT == gameCity->GetSpezializedUnitTypeId())

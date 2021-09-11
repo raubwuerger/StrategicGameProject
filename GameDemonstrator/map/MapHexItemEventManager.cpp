@@ -90,8 +90,8 @@ void MapHexItemEventManager::SlotUpdateMapUnitItemInfo(int mapUnitItemId)
 }
 
 #include "dialogs/CityTypeInfoDialog.h"
-#include "game/GameCityItemRepository.h"
-#include "game/GameCityItem.h"
+#include "game/GameCityRepository.h"
+#include "game/GameCity.h"
 void MapHexItemEventManager::SlotUpdateMapCityItemInfo(int mapCityItemId)
 {
 	if (nullptr == CityTypeInfoDialog)
@@ -105,7 +105,7 @@ void MapHexItemEventManager::SlotUpdateMapCityItemInfo(int mapCityItemId)
 	QString mapHexItemId(DEFAULT_ENTRY);
 	QString cityOwner(DEFAULT_ENTRY);
 
-	const GameCityItem* item = GameCityItemRepository::GetInstance()->GetGameCityItemById(mapCityItemId);
+	const GameCity* item = GameCityRepository::GetInstance()->GetGameCityItemById(mapCityItemId);
 	if (nullptr != item)
 	{
 		cityItemName = item->GetName();

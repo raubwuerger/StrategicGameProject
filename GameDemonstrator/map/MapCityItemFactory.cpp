@@ -3,8 +3,8 @@
 #include "MapHexItemHexagonData.h"
 #include "game/GameMapItem.h"
 #include "game/GameMapItemRepository.h"
-#include "game/GameCityItemRepository.h"
-#include "game/GameCityItem.h"
+#include "game/GameCityRepository.h"
+#include "game/GameCity.h"
 #include "LogInterface.h"
 #include "MapCityItem.h"
 #include "MapCityItemRepository.h"
@@ -33,10 +33,10 @@ bool MapCityItemFactory::Create(MapView* mapView)
 
 	MapCityItemRepository::GetInstance()->Init();
 	QMap<int, MapCityItem*> mapCityItems;
-	QMap<int, GameCityItem*>::const_iterator gameCityIterator = GameCityItemRepository::GetInstance()->GetFirstIterator();
-	while (gameCityIterator != GameCityItemRepository::GetInstance()->GetLastIterator())
+	QMap<int, GameCity*>::const_iterator gameCityIterator = GameCityRepository::GetInstance()->GetFirstIterator();
+	while (gameCityIterator != GameCityRepository::GetInstance()->GetLastIterator())
 	{
-		const GameCityItem* gameCityItem = *gameCityIterator;
+		const GameCity* gameCityItem = *gameCityIterator;
 		int gameMapId = gameCityItem->GetGameMapItemId();
 		const MapHexItem* mapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(gameMapId);
 		if (nullptr == mapHexItem)
@@ -61,7 +61,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 	return true;
 }
 
-bool MapCityItemFactory::Create(MapView* mapView, const GameCityItem* gameCityItem)
+bool MapCityItemFactory::Create(MapView* mapView, const GameCity* gameCityItem)
 {
 	if (nullptr == mapView)
 	{
@@ -94,7 +94,7 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCityItem* gameCityIt
 	return MapCityItemRepository::GetInstance()->Register(mapItem);
 }
 
-const QImage* MapCityItemFactory::GetImage(const GameCityItem* gameCityItem)
+const QImage* MapCityItemFactory::GetImage(const GameCity* gameCityItem)
 {
 	const ModelCityType* modelCityType = gameCityItem->GetCityModelType();
 	if (nullptr == modelCityType)

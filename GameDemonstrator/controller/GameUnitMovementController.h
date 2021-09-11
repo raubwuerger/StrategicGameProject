@@ -7,7 +7,7 @@ class GameUnitItem;
 class ModelUnitType;
 class ModelTerrainType;
 class GameOwnerItem;
-class GameCityItem;
+class GameCity;
 
 class GameUnitMovementController
 {
@@ -27,7 +27,7 @@ private:
 	/** */
 	const GameOwnerItem* GetCurrentMapTileOwner();
 	/** */
-	bool AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const;
+	bool AttackCity(const GameUnitItem* gameUnitItem, const GameCity* gameCityItem) const;
 	/** */
 	bool EmitMapUnitItemMoved(const GameUnitItem* gameUnitItem) const;
 private:

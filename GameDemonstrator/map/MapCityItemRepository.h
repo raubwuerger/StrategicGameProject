@@ -4,7 +4,7 @@
 #include "BaseRepository.h"
 
 class MapCityItem;
-class GameCityItem;
+class GameCity;
 class MapView;
 
 class MapCityItemRepository : public BaseRepository
@@ -31,7 +31,7 @@ public:
 	/** */
 	MapCityItem* RemoveById(int mapCityItemId);
 	/** */
-	bool UpdateMapCityItemOwner(const GameCityItem* gameCityItem);
+	bool UpdateMapCityItemOwner(const GameCity* gameCityItem);
 private:
 	/** */
 	MapCityItemRepository();

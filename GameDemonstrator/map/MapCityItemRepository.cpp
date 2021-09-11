@@ -2,7 +2,7 @@
 #include "MapCityItemRepository.h"
 #include "MapCityItem.h"
 #include "LogInterface.h"
-#include "game/GameCityItem.h"
+#include "game/GameCity.h"
 #include "game/GameOwnerItem.h"
 #include "map/MapView.h"
 
@@ -99,7 +99,7 @@ MapCityItem* MapCityItemRepository::RemoveById(int mapCityItemId)
 	return MapCityItems.take(mapCityItemId);
 }
 
-bool MapCityItemRepository::UpdateMapCityItemOwner(const GameCityItem* gameCityItem)
+bool MapCityItemRepository::UpdateMapCityItemOwner(const GameCity* gameCityItem)
 {
 	if (false == MapCityItems.contains(gameCityItem->GetId()))
 	{

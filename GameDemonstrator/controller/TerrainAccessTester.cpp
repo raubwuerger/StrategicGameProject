@@ -63,7 +63,7 @@ bool TerrainAccessTester::Accessable(const GameUnitItem* gameUnitItem, const Gam
 	return modelUnitType->IsTerrainTypeAccessible(modelTerrainType->GetId());
 }
 
-#include "game/GameCityItem.h"
+#include "game/GameCity.h"
 #include "model/ModelCityType.h"
 bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const int gameMapItemId)
 {

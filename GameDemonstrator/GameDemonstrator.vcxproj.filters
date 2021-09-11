@@ -536,15 +536,6 @@
     <ClCompile Include="model\ModelCityType.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="game\GameCityItem.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameCityItemRepository.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameCityItemFactory.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
     <ClCompile Include="map\MapCityItem.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
@@ -627,9 +618,6 @@
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="game\GameUnitItemRuntimeData.cpp">
-      <Filter>Source Dateien\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="game\GameCityItemRuntimeData.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
     <ClCompile Include="Connectors\ConnectorLoadGame.cpp">
@@ -784,6 +772,18 @@
     </ClCompile>
     <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp">
       <Filter>Source Dateien\MapCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCity.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCityFactory.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCityRepository.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameCityRuntimeData.cpp">
+      <Filter>Source Dateien\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -982,15 +982,6 @@
     <ClInclude Include="model\ModelCityType.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="game\GameCityItem.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameCityItemRepository.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameCityItemFactory.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
     <ClInclude Include="map\MapCityItem.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
@@ -1028,9 +1019,6 @@
       <Filter>Header Dateien\GameController</Filter>
     </ClInclude>
     <ClInclude Include="game\GameUnitItemRuntimeData.h">
-      <Filter>Header Dateien\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="game\GameCityItemRuntimeData.h">
       <Filter>Header Dateien\Game</Filter>
     </ClInclude>
     <ClInclude Include="GameDemonstrator_TEST\sources\xml\XMLParseTestLItems.h">
@@ -1089,6 +1077,18 @@
     </ClInclude>
     <ClInclude Include="mapCreator\GameMapCreatorSimple.h">
       <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCity.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityFactory.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityRepository.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameCityRuntimeData.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

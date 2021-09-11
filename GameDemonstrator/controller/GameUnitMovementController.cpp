@@ -7,8 +7,8 @@
 #include "game/GameUnitItemRepository.h"
 #include "game/GameUnitItem.h"
 #include "game/GameUnitItemRepository.h"
-#include "game/GameCityItemRepository.h"
-#include "game/GameCityItem.h"
+#include "game/GameCityRepository.h"
+#include "game/GameCity.h"
 #include "map/MapHexItemRepository.h"
 #include "map/MapUnitItem.h"
 #include "map/MapHexItem.h"
@@ -78,10 +78,10 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 		{
 			return true;
 		}
-		GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId());
-		if (true == GameUnitAttackController::AttackCity(playerUnit, GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId())))
+		GameCity* gameCityItem = GameCityRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId());
+		if (true == GameUnitAttackController::AttackCity(playerUnit, GameCityRepository::GetInstance()->GetCityItemByGameMapItemId(destination->GetGameMapItemId())))
 		{
-			GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetGameOwnerItem());
+			GameCityRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetGameOwnerItem());
 			MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);
 			playerUnit->Move();
 			EmitMapUnitItemMoved(playerUnit);
@@ -123,7 +123,7 @@ bool GameUnitMovementController::IsEnemyOnDestinationMapTile(int gameMapItemId) 
 
 bool GameUnitMovementController::IsEnemyCityOnDestinationMapTile(int gameMapItemId) const
 {
-	GameCityItem* gameCityItem = GameCityItemRepository::GetInstance()->GetCityItemByGameMapItemId(gameMapItemId);
+	GameCity* gameCityItem = GameCityRepository::GetInstance()->GetCityItemByGameMapItemId(gameMapItemId);
 	if (nullptr == gameCityItem)
 	{
 		return false;
@@ -149,7 +149,7 @@ const GameOwnerItem* GameUnitMovementController::GetCurrentMapTileOwner()
 	return ActiveGameUnitItem->GetGameOwnerItem();
 }
 
-bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, const GameCityItem* gameCityItem) const
+bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, const GameCity* gameCityItem) const
 {
 	if (false == GameUnitAttackController::IsCityOccupiable(gameUnitItem))
 	{
@@ -163,7 +163,7 @@ bool GameUnitMovementController::AttackCity(const GameUnitItem* gameUnitItem, co
 
 	if (gameUnitItem->GetModelOwnerTypeId() != gameCityItem->GetGameOwnerItemId())
 	{
-		GameCityItemRepository::GetInstance()->ChangeOwner(gameCityItem, gameUnitItem->GetGameOwnerItem());
+		GameCityRepository::GetInstance()->ChangeOwner(gameCityItem, gameUnitItem->GetGameOwnerItem());
 	}
 
 	return MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);

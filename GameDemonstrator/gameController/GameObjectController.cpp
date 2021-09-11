@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameObjectController.h"
 #include "Game\GameObject.h"
-#include "game\GameCityItem.h"
+#include "game\GameCity.h"
 #include "game\GameUnitProductionController.h"
 
 GameObjectController*	GameObjectController::Instance = nullptr;
