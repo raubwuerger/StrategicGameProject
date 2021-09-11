@@ -13,9 +13,6 @@ GameUnitSettingsDialog::GameUnitSettingsDialog(QWidget *parent /*= 0*/)
 	connect(ui.pushButtonCancel, &QPushButton::clicked, this, &QDialog::reject);
 
 	setWindowFlags(Qt::FramelessWindowHint);
-	ui.lineEditOwner->setStyleSheet("QLineEdit { background: rgb(211, 211, 211); }");
-	ui.lineEditMovementPoints->setStyleSheet("QLineEdit { background: rgb(211, 211, 211); }");
-	ui.lineEditStrength->setStyleSheet("QLineEdit { background: rgb(211, 211, 211); }");
 
 	ModelUnitTypeStatisticsObject = new ModelUnitTypeStatistics(this);
 	ModelUnitTypeStatisticsObject->move(20, 210);

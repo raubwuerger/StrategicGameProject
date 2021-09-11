@@ -186,8 +186,11 @@ void GameInfoDialogController::SlotShowGameItemSettinsDialog(int gameItemId)
 
 	GameUnitSettingsDialogObject->SetName(gameUnit->GetName());
 	GameUnitSettingsDialogObject->SetStrength(gameUnit->CreatStrengthString());
+	GameUnitSettingsDialogObject->SetStrengthColor(CreateStrengthColor(gameUnit));
 	GameUnitSettingsDialogObject->SetMovementPoints(gameUnit->CreateMovementPointsString());
+	GameUnitSettingsDialogObject->SetMovementPointsColor(CreateMovementColor(gameUnit));
 	GameUnitSettingsDialogObject->SetOwner(gameUnit->GetGameOwnerItem()->GetName());
+	GameUnitSettingsDialogObject->SetOwnerColor(gameUnit->GetGameOwnerItem()->GetColor());
 	GameUnitSettingsDialogObject->SetModelUnitType(gameUnit->GetModelUnitType());
 
 	if (GameUnitSettingsDialogObject->exec() == QDialog::Rejected)
