@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include ".\noise\noise.h"
 #include "noiseutils.h"
 
@@ -15,7 +17,33 @@ void tutorial2()
 	std::cout << value << std::endl;
 }
 
+void PrintHeightMap(utils::NoiseMap& heightMap)
+{
+	int width = heightMap.GetWidth();
+	int height = heightMap.GetHeight();
+	std::vector< std::vector<float> > heightMapVector;
+	for (int currentWidth = 0; currentWidth < width; currentWidth++)
+	{
+		std::vector<float> row;
+		for (int currentHeight = 0; currentHeight < height; currentHeight++)
+		{
+			row.push_back(heightMap.GetValue(currentWidth,currentHeight));
+		}
+		heightMapVector.push_back(row);
+	}
+
+	std::ofstream heightMapFile("heigtMap.txt");
+	for (std::vector< std::vector<float> >::size_type vectorIndex = 0; vectorIndex < heightMapVector.size(); vectorIndex++)
+	{
+		std::vector<float> row = heightMapVector[vectorIndex];
+		std::ostream_iterator<float> output_iterator(heightMapFile, "; ");
+		std::copy(row.begin(), row.end(), output_iterator);
+		heightMapFile << "\n";
+	}
+}
+
 void tutorial3()
+
 {
 	module::Perlin myModule;
 	utils::NoiseMap heightMap;
@@ -25,6 +53,8 @@ void tutorial3()
 	heightMapBuilder.SetDestSize(256, 256);
 	heightMapBuilder.SetBounds(6.0, 10.0, 1.0, 5.0);
 	heightMapBuilder.Build();
+
+	PrintHeightMap(heightMap);
 
 	utils::RendererImage renderer;
 	utils::Image image;
@@ -46,7 +76,7 @@ void tutorial3()
 
 	utils::WriterBMP writer;
 	writer.SetSourceImage(image);
-	writer.SetDestFilename(".\\tutorial3.bmp");
+	writer.SetDestFilename("tutorial3.bmp");
 	writer.WriteDestFile();
 }
 
@@ -84,7 +114,7 @@ void tutorial4()
 
 	utils::WriterBMP writer;
 	writer.SetSourceImage(image);
-	writer.SetDestFilename(".\\tutorial4.bmp");
+	writer.SetDestFilename("tutorial4.bmp");
 	writer.WriteDestFile();
 }
 
@@ -135,7 +165,7 @@ void tutorial5()
 
 	utils::WriterBMP writer;
 	writer.SetSourceImage(image);
-	writer.SetDestFilename(".\\tutorial5.bmp");
+	writer.SetDestFilename("tutorial5.bmp");
 	writer.WriteDestFile();
 }
 
