@@ -788,6 +788,18 @@
     <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp">
       <Filter>Source Dateien\MapCreator</Filter>
     </ClCompile>
+    <ClCompile Include="dialogs\MapCreatorHeightMapDialog.cpp">
+      <Filter>Header Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MapCreatorHeightMapDialog.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MapCreatorHeightMapDialog.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="command\CommandCreateNewGame.cpp">
+      <Filter>Header Dateien\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1096,6 +1108,9 @@
     <ClInclude Include="mapCreator\GameMapCreatorHeightMap.h">
       <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
+    <ClInclude Include="command\CommandCreateNewGame.h">
+      <Filter>Header Dateien\Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1276,6 +1291,12 @@
       <Filter>Header Dateien\Dialogs</Filter>
     </CustomBuild>
     <CustomBuild Include="dialogs\GameUnitSettingsDialog.ui">
+      <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\MapCreatorHeightMapDialog.h">
+      <Filter>Header Dateien\Dialogs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\MapCreatorHeightMapDialog.ui">
       <Filter>Form Dateien</Filter>
     </CustomBuild>
   </ItemGroup>

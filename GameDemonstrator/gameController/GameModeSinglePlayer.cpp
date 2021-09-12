@@ -18,6 +18,7 @@
 #include "GameInfoDialogController.h"
 #include "GameTurnController.h"
 #include "RepositoryCleaner.h"
+#include "command\CommandCreateNewGame.h"
 
 //=================================================================================================
 GameModeSinglePlayer::GameModeSinglePlayer(GameDemonstrator* gameDemonstrator)
@@ -115,49 +116,10 @@ void GameModeSinglePlayer::LoadSaveGame()
 }
 
 //=================================================================================================
-bool GameModeSinglePlayer::ShowCreateNewGameDialog()
-{
-	CreateNewGameDialog* dialog = new CreateNewGameDialog();
-	if (QDialog::Accepted == dialog->exec())
-	{
-		GetGameCreationData(dialog);
-		return true;
-	}
-	return false;
-}
-
-//=================================================================================================
-bool GameModeSinglePlayer::GetGameCreationData(CreateNewGameDialog* dialog)
-{
-	int rows = dialog->GetTilesRows();
-	int cols = dialog->GetTilesCols();
-
-	int owner = dialog->GetOwnerTypeId();
-	int opponents = dialog->GetOpponentCount();
-	int difficulty = dialog->GetDifficultyLevel();
-
-	GameConfig::MapRows = rows;
-	GameConfig::MapCols = cols;
-	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetById(owner));
-	GameConfig::DifficultyLevel = difficulty;
-	GameConfig::PlayerCount = (opponents + 1);
-
-	GameFactory gameFactory;
-	gameFactory.Create();
-
-	MapHexItemFactory mapHexItemFactory;
-	mapHexItemFactory.Create(MapViewObject);
-
-	MapUnitItemFactory mapUnitItemFactory;
-	mapUnitItemFactory.Create(MapViewObject);
-
-	return false;
-}
-
-//=================================================================================================
 void GameModeSinglePlayer::CreateNewGame()
 {
-	if (false == ShowCreateNewGameDialog())
+	CommandCreateNewGame commandCreateNewGame;
+	if (false == commandCreateNewGame.Create(MapViewObject) )
 	{
 		GameDemonstratorObject->ShowGameMainDialog();
 		return;
@@ -166,7 +128,7 @@ void GameModeSinglePlayer::CreateNewGame()
 //=================================================================================================
 bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 {
-	savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./savegames", tr("Savegame files (*.xml )"));
+	savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./save games", tr("Save game files (*.xml )"));
 	if (true == savegameName.isNull())
 	{
 		return false;

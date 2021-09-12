@@ -33,10 +33,6 @@ private:
 	/** */
 	void CreateGameMenu();
 	/** */
-	bool ShowCreateNewGameDialog();
-	/** */
-	bool GetGameCreationData(CreateNewGameDialog* dialog);
-	/** */
 	bool LoadGame( QString& savegameName);
 	/** */
 	void HideMenu();
