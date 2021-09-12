@@ -48,3 +48,8 @@ int CreateNewGameDialog::GetDifficultyLevel() const
 {
 	return ui.comboDifficulty->currentIndex();
 }
+
+QString CreateNewGameDialog::GetMapType() const
+{
+	return ui.comboMapType->currentText();
+}

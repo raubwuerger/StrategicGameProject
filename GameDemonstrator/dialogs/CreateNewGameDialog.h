@@ -26,6 +26,8 @@ public:
 	int GetOpponentCount() const;
 	/** */
 	int GetDifficultyLevel() const;
+	/** */
+	QString GetMapType() const;
 private:
 	Ui::CreateNewMapDialog ui;
 };

@@ -28,12 +28,14 @@ void CommandCreateNewGame::GetGameCreationData(const CreateNewGameDialog* dialog
 	int owner = dialog->GetOwnerTypeId();
 	int opponents = dialog->GetOpponentCount();
 	int difficulty = dialog->GetDifficultyLevel();
+	QString mapType = dialog->GetMapType();
 
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
 	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetById(owner));
 	GameConfig::DifficultyLevel = difficulty;
 	GameConfig::PlayerCount = (opponents + 1);
+	GameConfig::MapType = mapType;
 }
 
 bool CommandCreateNewGame::CreateNewGame(MapView* mapView)

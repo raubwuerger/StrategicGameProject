@@ -10,6 +10,8 @@
 #include "game\GameConfig.h"
 #include "LogInterface.h"
 #include "mapCreator\GameMapCreatorSimple.h"
+#include "mapCreator\GameMapCreatorHeightMap.h"
+#include "GameConfig.h"
 
 GameMapTileFactory::GameMapTileFactory()
 {
@@ -19,10 +21,20 @@ GameMapTileFactory::~GameMapTileFactory()
 {
 }
 
+//TODO: Revise concept -> XML map creation- MapTypes.xml
 bool GameMapTileFactory::Create()
 {
-	GameMapCreatorSimple gameMapTileCreatorSimple;
-	return gameMapTileCreatorSimple.CreateMap();
+	if (GameConfig::MapType == "Flat")
+	{
+		GameMapCreatorSimple mapCreator;
+		return mapCreator.CreateMap();
+	}
+	if (GameConfig::MapType == "HeightMap")
+	{
+		GameMapCreatorHeightMap mapCreator;
+		return mapCreator.CreateMap();
+	}
+	return false;
 }
 
 bool GameMapTileFactory::Create(const QDomNode mapElements)

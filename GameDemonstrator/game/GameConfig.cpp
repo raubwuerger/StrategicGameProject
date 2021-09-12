@@ -10,7 +10,7 @@ int				GameConfig::CurrentTurn = NOT_INITIALIZED_INT;
 int				GameConfig::DifficultyLevel = NOT_INITIALIZED_INT;
 int				GameConfig::PlayerCount = NOT_INITIALIZED_INT;
 QString			GameConfig::MapType = NOT_INITIALIZED_STRING;
-GameOwner*	GameConfig::Player = nullptr;
+GameOwner*		GameConfig::Player = nullptr;
 int				GameConfig::MapRows = 3;
 int				GameConfig::MapCols = 3;
 
