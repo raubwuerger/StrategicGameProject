@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_MapCreatorHeightMapDialog.h"
+#include "mapCreator\GameMapCreatorHeightMapData.h"
 
 class MapCreatorHeightMapDialog : public QWidget
 {
@@ -10,6 +11,14 @@ class MapCreatorHeightMapDialog : public QWidget
 public:
 	/** */
 	MapCreatorHeightMapDialog(QWidget *parent = 0);
+signals:
+	/** */
+	void SignalGameMapCreationData(GameMapCreatorHeightMapData creationData);
+private:
+	/** */
+	void UpdateAndSendCreationData();
+	/** */
+	void InitCreationData();
 private:
 	Ui::MapCreatorHeightMapDialog ui;
 };

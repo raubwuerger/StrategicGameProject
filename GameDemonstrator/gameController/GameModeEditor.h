@@ -11,6 +11,7 @@ class HexItemInfoDialog;
 class UnitTypeInfoDialog;
 class CityTypeInfoDialog;
 class EditorToolbox;
+class MapCreatorHeightMapDialog;
 
 /** @stereotype Strategie*/
 class GameModeEditor : public GameMode
@@ -39,6 +40,8 @@ private:
 	/** */
 	void CreateCityTypeInfoDialog();
 	/** */
+	void CreateMapCreatorHeightMap();
+	/** */
 	void HideMenu();
 	/** */
 	void ShowMenu();
@@ -51,9 +54,8 @@ private:
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
 	UnitTypeInfoDialog*			UnitTypeInfoDialogInstance;
 	CityTypeInfoDialog*			CityTypeInfoDialogInstance;
+	MapCreatorHeightMapDialog*	MapCreatorHeightMapDialogObject;
 	QMenu*						EditorMenu;
-	QSize						DockWidgetMinimumSize;
-	QSize						DockWidgetMaximumSize;
 	QVector<QDockWidget*>		DockWidgets;
 	const QString				MenuTitle;
 };

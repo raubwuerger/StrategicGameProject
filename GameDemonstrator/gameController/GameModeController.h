@@ -9,6 +9,7 @@ class GameInfoDialogController;
 class MapView;
 class GameTurnController;
 class GameModeSinglePlayer;
+class ConnectorHeightMap;
 
 /** Handles the differen GameModes */
 class GameModeController : public QObject
@@ -52,6 +53,7 @@ private:
 	GameMode*			CurrentGameMode;
 	GameMode*			GameModeEditorObject;
 	GameModeSinglePlayer*	GameModeSinglePlayerObject;
+	ConnectorHeightMap*		ConnectorHeightMapObject;
 	static QMenu*		GameModeChangeMenu;
 };
 

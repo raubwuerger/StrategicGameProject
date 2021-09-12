@@ -779,9 +779,6 @@
     <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp">
       <Filter>Source Dateien\MapCreator</Filter>
     </ClCompile>
-    <ClCompile Include="dialogs\MapCreatorHeightMapDialog.cpp">
-      <Filter>Header Dateien\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MapCreatorHeightMapDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -790,6 +787,21 @@
     </ClCompile>
     <ClCompile Include="command\CommandCreateNewGame.cpp">
       <Filter>Header Dateien\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\MapCreatorHeightMapDialog.cpp">
+      <Filter>Source Dateien\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="connectors\ConnectorHeightMap.cpp">
+      <Filter>Header Dateien\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorHeightMap.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorHeightMap.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="helper\StringToNumberConverter.cpp">
+      <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1102,6 +1114,12 @@
     <ClInclude Include="command\CommandCreateNewGame.h">
       <Filter>Header Dateien\Command</Filter>
     </ClInclude>
+    <ClInclude Include="mapCreator\GameMapCreatorHeightMapData.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\StringToNumberConverter.h">
+      <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1286,6 +1304,9 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="connectors\ConnectorHeightMap.h">
+      <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

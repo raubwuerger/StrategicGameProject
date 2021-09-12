@@ -1,8 +1,18 @@
 #include "stdafx.h"
 #include "GameMapCreatorHeightMap.h"
 
+GameMapCreatorHeightMap::GameMapCreatorHeightMap()
+{
+
+}
+
+void GameMapCreatorHeightMap::SetMapCreationData(GameMapCreatorHeightMapData mapCreationData)
+{
+	MapCreationData = mapCreationData;
+}
+
 bool GameMapCreatorHeightMap::CreateMap()
 {
 	MapTileId = 0;
-	throw std::logic_error("The method or operation is not implemented.");
+	return false;
 }

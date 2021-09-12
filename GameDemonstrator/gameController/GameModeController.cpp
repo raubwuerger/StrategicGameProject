@@ -8,13 +8,15 @@
 #include "map/MapView.h"
 #include "dialogs/GameMainDialog.h"
 #include "GameUnitController.h"
+#include "connectors/ConnectorHeightMap.h"
 
 QMenu*		GameModeController::GameModeChangeMenu = nullptr;
 
 GameModeController::GameModeController()
 	: MapViewObject(nullptr),
 	GameControllerObject(nullptr),
-	GameInfoDialogControllerObject(nullptr)
+	GameInfoDialogControllerObject(nullptr),
+	ConnectorHeightMapObject(nullptr)
 {
 
 }
@@ -54,7 +56,6 @@ void GameModeController::CreateGameModes(GameDemonstrator* gameDemonstrator)
 	{
 		return;
 	}
-
 
 	GameModeSinglePlayerObject = new GameModeSinglePlayer(gameDemonstrator);
 	GameModeSinglePlayerObject->MapViewObject = MapViewObject;

@@ -22,7 +22,7 @@ EditorToolbox::EditorToolbox(QWidget *parent)
 	TerrainTypeEditorInstance(nullptr),
 	UnitTypeEditorInstance(nullptr),
 	OwnerTypeEditorInstance(nullptr),
-	MinimumEditWidth(130),
+	MinimumEditWidth(260),
 	EditorControllerInstance(nullptr)
 {
 }
