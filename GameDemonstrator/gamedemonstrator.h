@@ -7,7 +7,6 @@
 class ActionRepository;
 class MapView;
 class GameMainDialog;
-class ConnectorCreateGame;
 class ConnectorLoadGame;
 class ConnectorSaveGame;
 
@@ -42,7 +41,6 @@ private:
 	ActionRepository*			ActionRepository;
 	jha::LoggingTableWidget*	DockWidgetLogging;
 	MapView*					MapViewInstance;
-	ConnectorCreateGame*		ConnectorCreateGameObject;
 	ConnectorLoadGame*			ConnectorLoadGameObject;
 	ConnectorSaveGame*			ConnectorSaveGameObject;
 	Ui::GameDemonstratorClass	ui;

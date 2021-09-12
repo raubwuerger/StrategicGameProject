@@ -15,7 +15,6 @@
 #include "model/ModelProgramFactory.h"
 #include "model/ModelProgramSettings.h"
 #include "connectors/ConnectorMapHexItem.h"
-#include "connectors/ConnectorCreateGame.h"
 #include "connectors/ConnectorLoadGame.h"
 #include "connectors/ConnectorSaveGame.h"
 #include "editors/TerrainTypeEditor.h"
@@ -30,7 +29,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	FileMenu(nullptr),
 	ViewMenu(nullptr),
 	InfoMenu(nullptr),
-	ConnectorCreateGameObject(nullptr),
 	ConnectorLoadGameObject(nullptr),
 	ConnectorSaveGameObject(nullptr),
 	GameMainDialogObject(nullptr)
@@ -71,9 +69,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	GameMainDialogObject = new GameMainDialog(this);
 	GameMainDialogObject->Init(this);
 
-	ConnectorCreateGameObject = new ConnectorCreateGame;
-	ConnectorCreateGameObject->MapViewObject = MapViewInstance;
-
 	ConnectorLoadGameObject = new ConnectorLoadGame;
 	ConnectorLoadGameObject->MapViewObject = MapViewInstance;
 	ConnectorLoadGameObject->GameDemonstratorObject = this;
@@ -108,12 +103,6 @@ void GameDemonstrator::InitGameFactory()
 
 void GameDemonstrator::CreateMenuFile()
 {
-	QIcon create(":GameDemonstrator/Resources/gear_run.ico");
-	QAction* createAction = new QAction(create,tr("&Create"), this);
-	createAction->setStatusTip(tr("Create new game"));
-	ActionRepository::GetInstance()->AddAction(createAction);
-	connect(createAction, &QAction::triggered, ConnectorCreateGameObject, &ConnectorCreateGame::SlotCreateNewGame, Qt::QueuedConnection);
-
 	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
 	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
 	loadGameAction->setStatusTip(tr("Load current game"));
@@ -133,7 +122,6 @@ void GameDemonstrator::CreateMenuFile()
 	connect(exitAction, &QAction::triggered, this, &GameDemonstrator::close);
 	ActionRepository::GetInstance()->AddAction(exitAction);
 
-	FileMenu->addAction( createAction );
 	FileMenu->addAction( loadGameAction );
 	FileMenu->addAction( saveGameAction );
 	FileMenu->addSeparator();

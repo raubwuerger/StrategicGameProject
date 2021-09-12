@@ -608,15 +608,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorLoadGame.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="connectors\ConnectorCreateGame.cpp">
-      <Filter>Source Dateien\Connectors</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ConnectorCreateGame.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ConnectorCreateGame.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Connectors\ConnectorSaveGame.cpp">
       <Filter>Source Dateien\Connectors</Filter>
     </ClCompile>
@@ -1233,9 +1224,6 @@
     <CustomBuild Include="Connectors\ConnectorLoadGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
-    <CustomBuild Include="connectors\ConnectorCreateGame.h">
-      <Filter>Header Dateien\Connectors</Filter>
-    </CustomBuild>
     <CustomBuild Include="Connectors\ConnectorSaveGame.h">
       <Filter>Header Dateien\Connectors</Filter>
     </CustomBuild>
@@ -1259,9 +1247,6 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameTurnController.h">
       <Filter>Header Dateien\GameController</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gameController\GameInfoDialogController.h">
-      <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameObjectController.h">
       <Filter>Header Dateien\GameController</Filter>
@@ -1298,6 +1283,9 @@
     </CustomBuild>
     <CustomBuild Include="dialogs\MapCreatorHeightMapDialog.ui">
       <Filter>Form Dateien</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

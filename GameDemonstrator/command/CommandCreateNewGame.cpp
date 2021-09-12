@@ -6,6 +6,7 @@
 #include "gameController\GameFactory.h"
 #include "map\MapHexItemFactory.h"
 #include "map\MapUnitItemFactory.h"
+#include "map\MapCityItemFactory.h"
 
 bool CommandCreateNewGame::Create(MapView* mapView)
 {
@@ -50,5 +51,11 @@ bool CommandCreateNewGame::CreateNewGame(MapView* mapView)
 	}
 
 	MapUnitItemFactory mapUnitItemFactory;
-	return mapUnitItemFactory.Create(mapView);
+	if (false == mapUnitItemFactory.Create(mapView))
+	{
+		return false;
+	}
+
+	MapCityItemFactory mapCityItemFactory;
+	return mapCityItemFactory.Create(mapView);
 }
