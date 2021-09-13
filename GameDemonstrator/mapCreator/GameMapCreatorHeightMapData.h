@@ -17,17 +17,3 @@ struct GameMapCreatorHeightMapData
 };
 
 #endif // GAMEMAPCREATORHEIGHTMAPDATA_H
-
-/*
-int		MapSizeX = NOT_INITIALIZED_INT;
-int		MapSizeY = NOT_INITIALIZED_INT;
-
-double LowerXBound = NOT_INITIALIZED_DOUBLE;
-double UpperXBound = NOT_INITIALIZED_DOUBLE;
-double LowerZBound = NOT_INITIALIZED_DOUBLE;
-double UpperZBound = NOT_INITIALIZED_DOUBLE;
-
-int		OctaveCount = NOT_INITIALIZED_INT;
-double	Frequency = NOT_INITIALIZED_DOUBLE;
-double	Persistence = NOT_INITIALIZED_DOUBLE;
-*/

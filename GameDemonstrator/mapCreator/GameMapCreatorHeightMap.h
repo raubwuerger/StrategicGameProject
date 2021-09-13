@@ -17,6 +17,8 @@ public:
 private:
 	/** */
 	bool GenerateHeightMap();
+	/** */
+	void GenerateDefaultMapCreationData();
 private:
 	GameMapCreatorHeightMapData MapCreationData;
 };
