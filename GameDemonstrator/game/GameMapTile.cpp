@@ -52,6 +52,11 @@ void GameMapTile::SetModelTerrainType(const ModelTerrainType* modelTerrainType)
 	TerrainTypeObject = modelTerrainType;
 }
 
+void GameMapTile::SetModelTerrainTypeId(int id)
+{
+	ModelTerrainTypeId = id;
+}
+
 int GameMapTile::GetModelTerrainTypeId() const
 {
 	return ModelTerrainTypeId;

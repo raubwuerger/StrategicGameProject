@@ -32,7 +32,7 @@ public:
 	/** */
 	void SetModelTerrainType(const ModelTerrainType* modelTerrainType);
 	/** */
-	void SetModelTerrainTypeId(int id) { ModelTerrainTypeId = id; }
+	void SetModelTerrainTypeId(int id);
 private:
 	friend class GameMapTileFactory;
 	const int		Row;
