@@ -23,9 +23,41 @@ bool CreateHeightMapVector(utils::NoiseMap& heightMap, std::vector< std::vector<
 bool HeightMapGenerator::GenerateHeightMap(const GameMapCreatorHeightMapData& mapCreationData, std::vector< std::vector<float> >& heightMapVector)
 {
 	module::Perlin myModule;
-	myModule.SetOctaveCount(mapCreationData.OctaveCount);
-	myModule.SetFrequency(mapCreationData.Frequency);
-	myModule.SetPersistence(mapCreationData.Persistence);
+	
+	bool useOctaveCount = mapCreationData.OctaveCount <= 0 ? false : true;
+	if (true == useOctaveCount)
+	{ 
+		int octaveCount = mapCreationData.OctaveCount;
+		if (octaveCount < 1)
+		{
+			octaveCount = 1;
+		}
+		if (octaveCount >= noise::module::PERLIN_MAX_OCTAVE)
+		{
+			octaveCount = noise::module::PERLIN_MAX_OCTAVE;
+		}
+
+		myModule.SetOctaveCount(octaveCount);
+	}
+
+	bool useFrequency = mapCreationData.Frequency <= 0 ? false : true;
+	if (true == useFrequency)
+	{ 
+		myModule.SetFrequency(mapCreationData.Frequency);
+	}
+
+	bool usePersistence = mapCreationData.Persistence <= 0 ? false : true;
+	if (true == usePersistence)
+	{
+		double persistence = mapCreationData.Persistence;
+		if (persistence > 1)
+		{
+			persistence = 1.0;
+		}
+		myModule.SetPersistence(persistence);
+
+	}
+
 	utils::NoiseMap heightMap;
 	utils::NoiseMapBuilderPlane heightMapBuilder;
 	heightMapBuilder.SetSourceModule(myModule);
