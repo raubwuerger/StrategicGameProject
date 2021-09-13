@@ -3,6 +3,7 @@
 #include "game\GameMapTile.h"
 #include "game\GameMapTileRepository.h"
 #include "helper\HeightMapGenerator.h"
+#include "helper\MapToVectorSorter.h"
 #include "model\ModelTerrainTypeRepository.h"
 
 
@@ -60,6 +61,9 @@ bool GameMapCreatorHeightMap::CreateGameMapTiles(std::vector< std::vector<float>
 	{
 		return false; //TODO: no items!!!
 	}
+
+	std::vector<float> sorted = MapToVectorSorter::TransformAndSort(heightMapVector);
+
 
 	int rows = heightMapVector.size();
 	int cols = heightMapVector[0].size();

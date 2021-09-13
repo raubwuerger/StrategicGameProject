@@ -638,6 +638,7 @@
     <ClCompile Include="gui\ModelUnitTypeStatistics.cpp" />
     <ClCompile Include="helper\ColorCreatorPercentage.cpp" />
     <ClCompile Include="helper\HeightMapGenerator.cpp" />
+    <ClCompile Include="helper\MapToVectorSorter.cpp" />
     <ClCompile Include="helper\StringToNumberConverter.cpp" />
     <ClCompile Include="helper\TextColorAdjuster.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp" />
@@ -1264,6 +1265,7 @@
     </CustomBuild>
     <ClInclude Include="helper\ColorCreatorPercentage.h" />
     <ClInclude Include="helper\HeightMapGenerator.h" />
+    <ClInclude Include="helper\MapToVectorSorter.h" />
     <ClInclude Include="helper\StringToNumberConverter.h" />
     <ClInclude Include="helper\TextColorAdjuster.h" />
     <ClInclude Include="mapCreator\GameMapCreatorHeightMap.h" />
