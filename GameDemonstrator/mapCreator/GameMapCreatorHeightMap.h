@@ -15,6 +15,9 @@ public:
 	/** */
 	bool CreateMap() override;
 private:
+	/** */
+	bool GenerateHeightMap();
+private:
 	GameMapCreatorHeightMapData MapCreationData;
 };
 
