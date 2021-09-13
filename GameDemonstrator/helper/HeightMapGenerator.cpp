@@ -8,12 +8,12 @@ bool CreateHeightMapVector(utils::NoiseMap& heightMap, std::vector< std::vector<
 {
 	int width = heightMap.GetWidth();
 	int height = heightMap.GetHeight();
-	for (int currentWidth = 0; currentWidth < width; currentWidth++)
+	for (int currentHeight = 0; currentHeight < height; currentHeight++)
 	{
 		std::vector<float> row;
-		for (int currentHeight = 0; currentHeight < height; currentHeight++)
+		for (int currentWidth = 0; currentWidth < width; currentWidth++)
 		{
-			row.push_back(heightMap.GetValue(currentWidth, currentHeight));
+			row.push_back(heightMap.GetValue(currentHeight, currentWidth));
 		}
 		heightMapVector.push_back(row);
 	}
