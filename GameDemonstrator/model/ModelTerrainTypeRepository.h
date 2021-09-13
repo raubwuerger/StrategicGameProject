@@ -12,7 +12,7 @@ public:
 	/** If no TerrainTypes are registered, the first will be set as DefaultTerrainType */
 	bool RegisterTerrainType( ModelTerrainType *terrainType  );
 	/** */
-	ModelTerrainType* FindTerrainTypeById( int id );
+	ModelTerrainType* GetById( int id );
 	/** */
 	int GetCount() const;
 	/** */

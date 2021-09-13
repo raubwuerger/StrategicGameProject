@@ -40,7 +40,7 @@ void TerrainTypeEditor::SlotDeactivated()
 
 void TerrainTypeEditor::SlotActivateTerrainType( int terrainTypeId )
 {
-	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById( terrainTypeId );
+	ActiveTerrainType = ModelTerrainTypeRepository::GetInstance()->GetById( terrainTypeId );
 }
 
 #include "game/GameUnitRepository.h"

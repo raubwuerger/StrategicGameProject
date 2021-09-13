@@ -51,7 +51,7 @@ bool ModelTerrainTypeRepository::RegisterTerrainType( ModelTerrainType *terrainT
 	return true;
 }
 
-ModelTerrainType* ModelTerrainTypeRepository::FindTerrainTypeById( int id )
+ModelTerrainType* ModelTerrainTypeRepository::GetById( int id )
 {
 	QMap<int,ModelTerrainType*>::iterator exists = TerrainTypes.find( id );
 	if( exists == TerrainTypes.end() )

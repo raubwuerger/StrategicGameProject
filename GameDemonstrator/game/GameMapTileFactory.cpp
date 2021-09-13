@@ -150,7 +150,7 @@ GameMapTile* GameMapTileFactory::CreateGameMapTile(const QDomNode& node)
 	}
 
 	GameMapTile *newModelMapTile = new GameMapTile(currentRow, currentCol, currentId);
-	newModelMapTile->SetModelTerrainType(ModelTerrainTypeRepository::GetInstance()->FindTerrainTypeById(currentTerrainTyp));
+	newModelMapTile->SetModelTerrainType(ModelTerrainTypeRepository::GetInstance()->GetById(currentTerrainTyp));
 	newModelMapTile->ModelTerrainTypeId = currentTerrainTyp;
 	return newModelMapTile;
 }
