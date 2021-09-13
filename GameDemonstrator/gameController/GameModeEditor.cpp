@@ -11,6 +11,7 @@
 #include "map\MapHexItemEventManager.h"
 #include "GameDemonstrator.h"
 #include "editors\EditorToolbox.h"
+#include "command\CommandCreateHeightMap.h"
 
 //=================================================================================================
 GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
@@ -37,6 +38,7 @@ bool GameModeEditor::DoInit()
 
 	HideDockWidgets();
 	HideMenu();
+	InitConnections();
 	return true;
 }
 
@@ -61,6 +63,19 @@ void GameModeEditor::ShowDockWidgets()
 	{
 		dockWidgets.next()->show();
 	}
+}
+
+//=================================================================================================
+void GameModeEditor::InitConnections()
+{
+	connect(MapCreatorHeightMapDialogObject, &MapCreatorHeightMapDialog::SignalGameMapCreationData, this, &GameModeEditor::SlotReceiveCreationDataHeightMap);
+}
+
+//=================================================================================================
+void GameModeEditor::SlotReceiveCreationDataHeightMap(GameMapCreatorHeightMapData creationData)
+{
+	CommandCreateHeightMap createHeightMap;
+	createHeightMap.CreateHeightMap(creationData, MapViewObject);
 }
 
 //=================================================================================================

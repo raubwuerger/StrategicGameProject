@@ -791,9 +791,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MapCreatorHeightMapDialog.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="command\CommandCreateNewGame.cpp">
-      <Filter>Header Dateien\Command</Filter>
-    </ClCompile>
     <ClCompile Include="dialogs\MapCreatorHeightMapDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
@@ -811,6 +808,21 @@
     </ClCompile>
     <ClCompile Include="..\libnoise\noiseutils.cpp">
       <Filter>Source Dateien\libNoise</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CommandCreateHeightMap.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CommandCreateHeightMap.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="command\CommandCreateHeightMap.cpp">
+      <Filter>Source Dateien\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\CommandCreateNewGame.cpp">
+      <Filter>Source Dateien\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="helper\HeightMapGenerator.cpp">
+      <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1132,6 +1144,9 @@
     <ClInclude Include="..\libnoise\noiseutils.h">
       <Filter>Header Dateien\libNoise</Filter>
     </ClInclude>
+    <ClInclude Include="helper\HeightMapGenerator.h">
+      <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1319,6 +1334,9 @@
     </CustomBuild>
     <CustomBuild Include="connectors\ConnectorHeightMap.h">
       <Filter>Header Dateien\Connectors</Filter>
+    </CustomBuild>
+    <CustomBuild Include="command\CommandCreateHeightMap.h">
+      <Filter>Header Dateien\Command</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

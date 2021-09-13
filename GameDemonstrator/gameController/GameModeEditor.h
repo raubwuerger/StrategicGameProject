@@ -5,6 +5,7 @@
 #define GAMEMODEEDITOR_H
 
 #include "GameMode.h"
+#include "mapCreator/GameMapCreatorHeightMapData.h"
 
 class GameDemonstrator;
 class HexItemInfoDialog;
@@ -49,6 +50,10 @@ private:
 	void HideDockWidgets();
 	/** */
 	void ShowDockWidgets();
+	/** */
+	void InitConnections();
+	/** */
+	void SlotReceiveCreationDataHeightMap(GameMapCreatorHeightMapData creationData);
 private:
 	EditorToolbox*				EditorToolboxInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;
