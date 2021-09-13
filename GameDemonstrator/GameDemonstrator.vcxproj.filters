@@ -126,6 +126,12 @@
     <Filter Include="Header Dateien\MapCreator">
       <UniqueIdentifier>{13e4eac8-f219-4a9c-8231-bb9de0f00001}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Dateien\libNoise">
+      <UniqueIdentifier>{32ccc279-a1c6-4a11-845f-e8f1f5321340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Dateien\libNoise">
+      <UniqueIdentifier>{ab406376-5c70-4099-9bd9-9a3413183e1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -803,6 +809,9 @@
     <ClCompile Include="helper\StringToNumberConverter.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="..\libnoise\noiseutils.cpp">
+      <Filter>Source Dateien\libNoise</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1119,6 +1128,9 @@
     </ClInclude>
     <ClInclude Include="helper\StringToNumberConverter.h">
       <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libnoise\noiseutils.h">
+      <Filter>Header Dateien\libNoise</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
