@@ -13,6 +13,6 @@ std::vector<float> MapToVectorSorter::TransformAndSort(std::vector< std::vector<
 			unsortedVector.push_back(map[rowIndex][colIndex]);
 		}
 	}
-	std::sort(unsortedVector.begin(), unsortedVector.begin(), std::greater<float>());
+	std::sort(unsortedVector.begin(), unsortedVector.end(), std::less<float>());
 	return unsortedVector;
 }
