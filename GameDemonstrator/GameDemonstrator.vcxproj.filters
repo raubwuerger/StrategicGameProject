@@ -827,6 +827,9 @@
     <ClCompile Include="helper\MapToVectorSorter.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="helper\HeightMapPercentageSplitter.cpp">
+      <Filter>Header Dateien\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1151,6 +1154,9 @@
       <Filter>Header Dateien\Helper</Filter>
     </ClInclude>
     <ClInclude Include="helper\MapToVectorSorter.h">
+      <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\HeightMapPercentageSplitter.h">
       <Filter>Header Dateien\Helper</Filter>
     </ClInclude>
   </ItemGroup>
