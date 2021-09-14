@@ -632,9 +632,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameUnitController.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GameDemonstrator_TEST\sources\xml\XMLParseTestItems.cpp">
-      <Filter>Source Dateien\test</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameUnitInfoDialog.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>

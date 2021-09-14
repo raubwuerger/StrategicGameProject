@@ -347,7 +347,6 @@
     <ClCompile Include="gameController\GameModeEditor.cpp" />
     <ClCompile Include="gameController\GameModeSinglePlayer.cpp" />
     <ClCompile Include="gamedemonstrator.cpp" />
-    <ClCompile Include="GameDemonstrator_TEST\sources\xml\XMLParseTestItems.cpp" />
     <ClCompile Include="game\GameCity.cpp" />
     <ClCompile Include="game\GameCityFactory.cpp" />
     <ClCompile Include="game\GameCityRepository.cpp" />

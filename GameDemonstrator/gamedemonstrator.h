@@ -32,7 +32,6 @@ private:
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
 	void InitLoggingFramwork();
-	void DoSomeTests();
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;
