@@ -26,10 +26,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="unittest1.cpp">
+    <ClCompile Include="DomElementFinder_BOOLEAN_TEST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DomElementFinder_BOOLEAN_TEST.cpp">
+    <ClCompile Include="HeightMapPercentageSplitter_TEST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
