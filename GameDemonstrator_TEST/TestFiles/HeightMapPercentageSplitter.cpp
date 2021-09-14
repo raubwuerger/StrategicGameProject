@@ -33,19 +33,43 @@ bool HeightMapPercentageSplitter::RegisterPercentageValue(int percentage)
 
 std::map<int, std::vector<float> > HeightMapPercentageSplitter::CalculatePercentageValue(std::vector<float> values)
 {
+	if (true == PercentageValues.empty())
+	{
+		return std::map<int, std::vector<float> >();
+	}
+
+	if (PercentageValues.size() >= values.size())
+	{
+		return std::map<int, std::vector<float> >();
+	}
+
 	std::sort(values.begin(), values.end(), std::less<float>());
 	std::sort(PercentageValues.begin(), PercentageValues.end(), std::less<int>());
 
-	int valueCount = values.size();
+	float percentValue = 100.0;
+	float onePercentOfValues = static_cast<float>(values.size()) / percentValue;
 
 	std::map<int, std::vector<float> > splitterMap;
-	int lastPercentageValue = 0;
-	std::vector<int>::iterator percentageIterator = PercentageValues.begin();
-	while (percentageIterator != PercentageValues.end())
+	unsigned int lastIndex = 0;
+	for (std::vector<int>::iterator it = std::begin(PercentageValues); it != std::end(PercentageValues); ++it)
 	{
-		std::vector<float> sub(&values[lastPercentageValue], &values[*percentageIterator]);
-		splitterMap.insert(std::make_pair(*percentageIterator, sub));
+		float curentIndex = *it * onePercentOfValues;
+		std::vector<float> sub(&values[lastIndex], &values[static_cast<int>(curentIndex)]);
+		splitterMap.insert(std::make_pair(*it, sub));
+		lastIndex = static_cast<int>(curentIndex);
 	}
+
+
+
+	if (lastIndex < values.size())
+	{
+		unsigned int vectorSize = values.size();
+		std::vector<float> sub(&values[lastIndex], &values[--vectorSize]);
+		sub.push_back(values[vectorSize]);
+		int lastIndexOfValue = *(PercentageValues.end() - 1);
+		splitterMap.insert(std::make_pair(++lastIndexOfValue, sub));
+	}
+
 	return splitterMap;
 }
 
