@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "DomElementFinder.h"
-#include <QString>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
