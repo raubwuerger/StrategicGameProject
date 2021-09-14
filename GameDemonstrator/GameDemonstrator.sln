@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameDemonstrator", "GameDemonstrator.vcxproj", "{846D21BC-EA63-4A7D-BC1A-324ECF201E79}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameDemonstrator_TEST", "GameDemonstrator_TEST\GameDemonstrator_TEST.vcxproj", "{4C458C9C-C379-49E0-A63F-7CB098385ADD}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibNoise", "..\libnoise\LibNoise.vcxproj", "{344F60C4-21BE-4762-A355-D7A9EEF304B5}"
 EndProject
 Global
@@ -46,22 +44,6 @@ Global
 		{846D21BC-EA63-4A7D-BC1A-324ECF201E79}.Release|Win32.Build.0 = Release|Win32
 		{846D21BC-EA63-4A7D-BC1A-324ECF201E79}.Release|x64.ActiveCfg = Release|x64
 		{846D21BC-EA63-4A7D-BC1A-324ECF201E79}.Release|x64.Build.0 = Release|x64
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Debug|Win32.Build.0 = Debug|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Debug|x64.ActiveCfg = Debug|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.GameDemonstrator_TEST|Any CPU.ActiveCfg = GameDemonstrator_TEST|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.GameDemonstrator_TEST|Mixed Platforms.ActiveCfg = GameDemonstrator_TEST|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.GameDemonstrator_TEST|Win32.ActiveCfg = GameDemonstrator_TEST|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.GameDemonstrator_TEST|x64.ActiveCfg = GameDemonstrator_TEST|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Release|Any CPU.ActiveCfg = Release|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Release|Win32.ActiveCfg = Release|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Release|Win32.Build.0 = Release|Win32
-		{4C458C9C-C379-49E0-A63F-7CB098385ADD}.Release|x64.ActiveCfg = Release|Win32
 		{344F60C4-21BE-4762-A355-D7A9EEF304B5}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{344F60C4-21BE-4762-A355-D7A9EEF304B5}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{344F60C4-21BE-4762-A355-D7A9EEF304B5}.Debug|Mixed Platforms.Build.0 = Debug|Win32
