@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "HeightMapPercentageSplitter.h"
 #include <map>
 #include <algorithm>
