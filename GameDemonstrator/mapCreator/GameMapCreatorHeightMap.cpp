@@ -5,11 +5,14 @@
 #include "helper\HeightMapGenerator.h"
 #include "helper\MapToVectorSorter.h"
 #include "model\ModelTerrainTypeRepository.h"
+#include "helper\HeightMapPercentageSplitter.h"
+#include "helper\MapToVectorSorter.h"
 
 
 GameMapCreatorHeightMap::GameMapCreatorHeightMap()
 {
 	GenerateDefaultMapCreationData();
+	DefaultInitHeightValueUpperBorders();
 }
 
 void GameMapCreatorHeightMap::GenerateDefaultMapCreationData()
@@ -98,21 +101,64 @@ GameMapTile* GameMapCreatorHeightMap::CreateGameMapTile(unsigned int row, unsign
 
 const ModelTerrainType* GameMapCreatorHeightMap::GetModelTerrainType(float value) const
 {
-	if (value <= -0.2500)
+	if (value <= HeightValueUpperBorderOcean)
 	{
 		return ModelTerrainTypeRepository::GetInstance()->GetById(3); //Ocean
 	}
-	if (value <= 0.0000 && value > -0.2500)
+	if (value <= HeightValueUpperBorderPlain && value > HeightValueUpperBorderOcean)
 	{
 		return ModelTerrainTypeRepository::GetInstance()->GetById(1); //Plain
 	}
-	if (value <= 0.0625 && value > 0.0000)
+	if (value <= HeightValueUpperBorderWood && value > HeightValueUpperBorderPlain)
 	{
 		return ModelTerrainTypeRepository::GetInstance()->GetById(2); //wood
 	}
-	if (value <= 0.1250 && value > 0.0625)
+	if (value <= HeightValueUpperBorderHill && value > HeightValueUpperBorderWood)
 	{
 		return ModelTerrainTypeRepository::GetInstance()->GetById(4); //hill
 	}
 	return ModelTerrainTypeRepository::GetInstance()->GetById(5); //mountain
+}
+
+void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vector<float> >& heightMapVector)
+{
+	int percentageOcean = 40;	//40% Ocean
+	int percentagePlain = 70;	//30% Plain
+	int percentageWood = 88;	//18% Wood
+	int percentageHill = 95;	//7% Hill
+								// 5% Mountain
+//Ergibt sich aus 100% - percentageHill;
+//	int percentageOcean = 100;
+
+	HeightMapPercentageSplitter heightMapPercentageSplitter;
+	heightMapPercentageSplitter.RegisterPercentageValue(percentageOcean);
+	heightMapPercentageSplitter.RegisterPercentageValue(percentagePlain);
+	heightMapPercentageSplitter.RegisterPercentageValue(percentageWood);
+	heightMapPercentageSplitter.RegisterPercentageValue(percentageHill);
+
+	std::map<int, std::vector<float> > heightMapPercentageValues = heightMapPercentageSplitter.CalculatePercentageValue(MapToVectorSorter::TransformAndSort(heightMapVector));
+	if (heightMapPercentageValues.size() != 5)
+	{
+		return;
+	}
+
+	SetPercentageValue(heightMapPercentageValues[0], HeightValueUpperBorderOcean);
+	SetPercentageValue(heightMapPercentageValues[1], HeightValueUpperBorderPlain);
+	SetPercentageValue(heightMapPercentageValues[2], HeightValueUpperBorderWood);
+	SetPercentageValue(heightMapPercentageValues[3], HeightValueUpperBorderHill);
+	SetPercentageValue(heightMapPercentageValues[4], HeightValueUpperBorderMountain);
+}
+
+void GameMapCreatorHeightMap::DefaultInitHeightValueUpperBorders()
+{
+	HeightValueUpperBorderOcean = -0.2500;
+	HeightValueUpperBorderPlain = 0.0000;
+	HeightValueUpperBorderWood = 0.0625;
+	HeightValueUpperBorderHill = 0.1250;
+	HeightValueUpperBorderMountain = 5.000;
+}
+
+void GameMapCreatorHeightMap::SetPercentageValue(const std::vector<float>& values, float& upperPercentageValue)
+{
+
 }

@@ -825,7 +825,7 @@
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
     <ClCompile Include="helper\HeightMapPercentageSplitter.cpp">
-      <Filter>Header Dateien\Helper</Filter>
+      <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
