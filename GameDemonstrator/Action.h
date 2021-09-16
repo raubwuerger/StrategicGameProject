@@ -19,4 +19,4 @@ public slots:
 	virtual void hovered();
 };
 
-#endif
+#endif // ACTION_H
