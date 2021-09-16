@@ -49,6 +49,9 @@ bool GameMapCreatorHeightMap::CreateMap()
 		return false;
 	}
 
+	std::vector< std::vector<float> > temp(heightMapVector);
+	InitHeightValueUpperBorders(temp);
+
 	return CreateGameMapTiles(heightMapVector);
 }
 
@@ -65,11 +68,8 @@ bool GameMapCreatorHeightMap::CreateGameMapTiles(std::vector< std::vector<float>
 		return false; //TODO: no items!!!
 	}
 
-	std::vector<float> sorted = MapToVectorSorter::TransformAndSort(heightMapVector);
-
-
-	int rows = heightMapVector.size();
-	int cols = heightMapVector[0].size();
+	int cols = heightMapVector.size();
+	int rows = heightMapVector[0].size();
 
 	QVector< QVector<GameMapTile*> >* gameMap = new QVector< QVector<GameMapTile*> >();
 	gameMap->reserve(rows);
@@ -81,7 +81,7 @@ bool GameMapCreatorHeightMap::CreateGameMapTiles(std::vector< std::vector<float>
 		for (unsigned int currentCol = 0; currentCol < cols; currentCol++)
 		{
 			GameMapTile* gameMapTile = CreateGameMapTile(currentRow, currentCol);
-			const ModelTerrainType* modelTerrainType = GetModelTerrainType(heightMapVector[currentRow][currentCol]);
+			const ModelTerrainType* modelTerrainType = GetModelTerrainType(heightMapVector[currentCol][currentRow]); //HeightMap is flipped
 			gameMapTile->SetModelTerrainType(modelTerrainType);
 			tempRow.append(gameMapTile);
 		}
@@ -142,11 +142,15 @@ void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vect
 		return;
 	}
 
-	SetPercentageValue(heightMapPercentageValues[0], HeightValueUpperBorderOcean);
-	SetPercentageValue(heightMapPercentageValues[1], HeightValueUpperBorderPlain);
-	SetPercentageValue(heightMapPercentageValues[2], HeightValueUpperBorderWood);
-	SetPercentageValue(heightMapPercentageValues[3], HeightValueUpperBorderHill);
-	SetPercentageValue(heightMapPercentageValues[4], HeightValueUpperBorderMountain);
+	/*
+	std::map<int, std::vector<float> >::const_iterator iterator = heightMapPercentageValues.begin();
+
+	SetPercentageValue((*iterator++).second, HeightValueUpperBorderOcean);
+	SetPercentageValue((*iterator++).second, HeightValueUpperBorderPlain);
+	SetPercentageValue((*iterator++).second, HeightValueUpperBorderWood);
+	SetPercentageValue((*iterator++).second, HeightValueUpperBorderHill);
+	SetPercentageValue((*iterator).second, HeightValueUpperBorderMountain);
+	*/
 }
 
 void GameMapCreatorHeightMap::DefaultInitHeightValueUpperBorders()
@@ -160,5 +164,6 @@ void GameMapCreatorHeightMap::DefaultInitHeightValueUpperBorders()
 
 void GameMapCreatorHeightMap::SetPercentageValue(const std::vector<float>& values, float& upperPercentageValue)
 {
-
+	int lastIndex = values.size();
+	upperPercentageValue = values[--lastIndex];
 }

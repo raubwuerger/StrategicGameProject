@@ -59,8 +59,6 @@ std::map<int, std::vector<float> > HeightMapPercentageSplitter::CalculatePercent
 		lastIndex = static_cast<int>(curentIndex);
 	}
 
-
-
 	if (lastIndex < values.size())
 	{
 		unsigned int vectorSize = values.size();
