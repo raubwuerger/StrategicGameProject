@@ -848,6 +848,26 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditSpecialization</tabstop>
+  <tabstop>lineEditEfficiency</tabstop>
+  <tabstop>lineEditStrength</tabstop>
+  <tabstop>pushButtonProduceEfficiency</tabstop>
+  <tabstop>pushButtonProduceInfantry</tabstop>
+  <tabstop>pushButtonProduceTank</tabstop>
+  <tabstop>pushButtonProduceArtillery</tabstop>
+  <tabstop>pushButtonProduceFighter</tabstop>
+  <tabstop>pushButtonProduceBomber</tabstop>
+  <tabstop>pushButtonProduceDestroyer</tabstop>
+  <tabstop>pushButtonProduceCruiser</tabstop>
+  <tabstop>pushButtonProduceBattleship</tabstop>
+  <tabstop>pushButtonProduceCarrier</tabstop>
+  <tabstop>pushButtonProduceSubmarine</tabstop>
+  <tabstop>pushButtonProduceTransport</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

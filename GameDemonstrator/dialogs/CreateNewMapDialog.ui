@@ -235,6 +235,16 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lineEditTilesCols</tabstop>
+  <tabstop>lineEditTilesRows</tabstop>
+  <tabstop>comboBoxChoosePlayer</tabstop>
+  <tabstop>comboBoxOpponentCount</tabstop>
+  <tabstop>comboDifficulty</tabstop>
+  <tabstop>comboMapType</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

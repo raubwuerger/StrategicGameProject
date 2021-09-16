@@ -79,6 +79,10 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lineEditTurn</tabstop>
+  <tabstop>lineEditOwner</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

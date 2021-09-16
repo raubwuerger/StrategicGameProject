@@ -78,6 +78,12 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>CreateGame</tabstop>
+  <tabstop>LoadGame</tabstop>
+  <tabstop>StartEditor</tabstop>
+  <tabstop>Close</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

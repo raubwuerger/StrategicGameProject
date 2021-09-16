@@ -214,6 +214,14 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditId</tabstop>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditOwner</tabstop>
+  <tabstop>lineEditEfficiency</tabstop>
+  <tabstop>lineEditSpecialization</tabstop>
+  <tabstop>lineEditStrength</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

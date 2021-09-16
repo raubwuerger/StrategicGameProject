@@ -181,6 +181,14 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditStrength</tabstop>
+  <tabstop>lineEditMovementPoints</tabstop>
+  <tabstop>lineEditOwner</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

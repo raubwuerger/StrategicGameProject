@@ -209,6 +209,18 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEdiMapSizeX</tabstop>
+  <tabstop>lineEdiMapSizeY</tabstop>
+  <tabstop>lineEditXBoundLower</tabstop>
+  <tabstop>lineEditXBoundUpper</tabstop>
+  <tabstop>lineEditZBoundLower</tabstop>
+  <tabstop>lineEditZBoundUpper</tabstop>
+  <tabstop>lineEditOctaveCount</tabstop>
+  <tabstop>lineEditFrequency</tabstop>
+  <tabstop>lineEditPersistence</tabstop>
+  <tabstop>pushButtonCreate</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

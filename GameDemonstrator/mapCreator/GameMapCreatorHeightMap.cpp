@@ -50,8 +50,6 @@ bool GameMapCreatorHeightMap::CreateMap()
 		return false;
 	}
 
-	StdMapPrinter::PrintMap(heightMapVector);
-
 	std::vector< std::vector<float> > temp(heightMapVector);
 	InitHeightValueUpperBorders(temp);
 
