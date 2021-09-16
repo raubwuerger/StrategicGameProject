@@ -7,6 +7,7 @@
 #include "model\ModelTerrainTypeRepository.h"
 #include "helper\HeightMapPercentageSplitter.h"
 #include "helper\MapToVectorSorter.h"
+#include "helper\StdMapPrinter.h"
 
 
 GameMapCreatorHeightMap::GameMapCreatorHeightMap()
@@ -48,6 +49,8 @@ bool GameMapCreatorHeightMap::CreateMap()
 	{
 		return false;
 	}
+
+	StdMapPrinter::PrintMap(heightMapVector);
 
 	std::vector< std::vector<float> > temp(heightMapVector);
 	InitHeightValueUpperBorders(temp);
@@ -123,10 +126,10 @@ const ModelTerrainType* GameMapCreatorHeightMap::GetModelTerrainType(float value
 void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vector<float> >& heightMapVector)
 {
 	int percentageOcean = 40;	//40% Ocean
-	int percentagePlain = 70;	//30% Plain
-	int percentageWood = 88;	//18% Wood
-	int percentageHill = 95;	//7% Hill
-								// 5% Mountain
+	int percentagePlain = 75;	//35% Plain
+	int percentageWood = 90;	//15% Wood
+	int percentageHill = 97;	//7% Hill
+								// 3% Mountain
 //Ergibt sich aus 100% - percentageHill;
 //	int percentageOcean = 100;
 
@@ -142,7 +145,6 @@ void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vect
 		return;
 	}
 
-	/*
 	std::map<int, std::vector<float> >::const_iterator iterator = heightMapPercentageValues.begin();
 
 	SetPercentageValue((*iterator++).second, HeightValueUpperBorderOcean);
@@ -150,7 +152,7 @@ void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vect
 	SetPercentageValue((*iterator++).second, HeightValueUpperBorderWood);
 	SetPercentageValue((*iterator++).second, HeightValueUpperBorderHill);
 	SetPercentageValue((*iterator).second, HeightValueUpperBorderMountain);
-	*/
+
 }
 
 void GameMapCreatorHeightMap::DefaultInitHeightValueUpperBorders()
