@@ -115,6 +115,30 @@ bool MapView::UpdateCity(MapCityItem *mapCityItem)
 	return true;
 }
 
+const qreal ZOOM_MAX = 3.0;
+const qreal ZOOM_MIN = 0.2;
+const qreal ZOOM_FACTOR = 1.6;
+
+void MapView::SlotZoomIn()
+{
+	QTransform currentTransformValue = this->transform();
+	if (currentTransformValue.m11() >= ZOOM_MAX)
+	{
+		return;
+	}
+	scale(ZOOM_FACTOR, ZOOM_FACTOR);
+}
+
+void MapView::SlotZoomOut()
+{
+	QTransform currentTransformValue = this->transform();
+	if (currentTransformValue.m11() <= ZOOM_MIN)
+	{
+		return;
+	}
+	scale(1.0 / ZOOM_FACTOR, 1.0 / ZOOM_FACTOR);
+}
+
 void MapView::InitMapEventManager()
 {
 	connect(ConnectorMapHexItemInstance, &ConnectorMapHexItem::SignalHexItemEntered, MapEventManagerInstance, &MapHexItemEventManager::SlotUpdateMapItemInfo);
@@ -155,9 +179,6 @@ void MapView::wheelEvent(QWheelEvent *event)
 
 void MapView::DoZoom(QWheelEvent *event)
 {
-	const qreal ZOOM_MAX = 3.0;
-	const qreal ZOOM_MIN = 0.2;
-	const qreal ZOOM_FACTOR = 1.6;
 	QTransform currentTransformValue = this->transform();
 	int y = event->angleDelta().y();
 	if (event->angleDelta().y() > 0) //Vergrößern

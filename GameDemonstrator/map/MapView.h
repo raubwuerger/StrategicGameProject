@@ -39,6 +39,11 @@ public:
 	bool RemoveCity(MapCityItem *mapCityItem);
 	/** */
 	bool UpdateCity(MapCityItem *mapCityItem);
+	public slots:
+	/** */
+	void SlotZoomIn();
+	/** */
+	void SlotZoomOut();
 protected:
 	/** */
 	virtual void wheelEvent( QWheelEvent *event );
