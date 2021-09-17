@@ -25,6 +25,7 @@ MapView::MapView(QWidget *parent)
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	Scene = new MapGraphicsScene(this);
 	KeyEventControllerInstance = new KeyEventController;
+	OriginalTransformValue = this->transform();
 }
 
 MapView::~MapView()
@@ -137,6 +138,11 @@ void MapView::SlotZoomOut()
 		return;
 	}
 	scale(1.0 / ZOOM_FACTOR, 1.0 / ZOOM_FACTOR);
+}
+
+void MapView::SlotZoomOriginal()
+{
+	this->setTransform(OriginalTransformValue);
 }
 
 void MapView::InitMapEventManager()

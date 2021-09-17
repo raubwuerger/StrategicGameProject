@@ -102,29 +102,73 @@ void GameDemonstrator::InitGameFactory()
 
 void GameDemonstrator::CreateMenuFile()
 {
-	QIcon load(":GameDemonstrator/Resources/folder_document.ico");
-	QAction* loadGameAction = new QAction(load,tr("&Load"), this);
-	loadGameAction->setStatusTip(tr("Load current game"));
-	ActionRepository::GetInstance()->AddAction( loadGameAction );
-	connect(loadGameAction, &QAction::triggered, ConnectorLoadGameObject, &ConnectorLoadGame::SlotLoadGame, Qt::QueuedConnection);
+	QAction* loadGameAction = nullptr;
+	{
+		QIcon load(":GameDemonstrator/Resources/folder_document.ico");
+		loadGameAction = new QAction(load, tr("&Load"), this);
+		loadGameAction->setStatusTip(tr("Load current game"));
+		ActionRepository::GetInstance()->AddAction(loadGameAction);
+		connect(loadGameAction, &QAction::triggered, ConnectorLoadGameObject, &ConnectorLoadGame::SlotLoadGame, Qt::QueuedConnection);
+	}
 
-	QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
-	Action* saveGameAction = new Action(save,tr("&Save"), this);
-	saveGameAction->setStatusTip(tr("Save current game"));
-	ActionRepository::GetInstance()->AddAction(saveGameAction);
-	connect(saveGameAction, &QAction::triggered, ConnectorSaveGameObject, &ConnectorSaveGame::SlotSaveGame, Qt::QueuedConnection);
+	Action* saveGameAction = nullptr;
+	{
+		QIcon save(":GameDemonstrator/Resources/floppy_disk_blue.ico");
+		saveGameAction = new Action(save, tr("&Save"), this);
+		saveGameAction->setStatusTip(tr("Save current game"));
+		ActionRepository::GetInstance()->AddAction(saveGameAction);
+		connect(saveGameAction, &QAction::triggered, ConnectorSaveGameObject, &ConnectorSaveGame::SlotSaveGame, Qt::QueuedConnection);
+	}
+	//		QIcon icon(".\\Resources\\sign_forbidden.ico");
 
-	QIcon exit(":GameDemonstrator/Resources/exit.ico");
-	QAction* exitAction = new QAction(exit,tr("E&xit"), this);
-	exitAction->setShortcuts(QKeySequence::Quit);
-	exitAction->setStatusTip(tr("Quit application"));
-	connect(exitAction, &QAction::triggered, this, &GameDemonstrator::close);
-	ActionRepository::GetInstance()->AddAction(exitAction);
+	Action* zoomInAction = nullptr;
+	{
+		QIcon zoomIn(".\\Resources\\zoom_in.ico");
+		zoomInAction = new Action(zoomIn, tr("Zoom in"), this);
+		zoomInAction->setStatusTip(tr("Zoom in"));
+		zoomInAction->setShortcut(Qt::Key_Plus);
+		ActionRepository::GetInstance()->AddAction(zoomInAction);
+		connect(zoomInAction, &QAction::triggered, MapViewInstance, &MapView::SlotZoomIn, Qt::QueuedConnection);
+	}
+
+	Action* zoomOutAction = nullptr;
+	{
+		QIcon zoomOut(".\\Resources\\zoom_in.ico");
+		zoomOutAction = new Action(zoomOut, tr("Zoom out"), this);
+		zoomOutAction->setStatusTip(tr("Zoom out"));
+		zoomOutAction->setShortcut(Qt::Key_Minus);
+		ActionRepository::GetInstance()->AddAction(zoomOutAction);
+		connect(zoomOutAction, &QAction::triggered, MapViewInstance, &MapView::SlotZoomOut, Qt::QueuedConnection);
+	}
+
+	Action* zoomOriginalAction = nullptr;
+	{
+		QIcon zoomOriginal(".\\Resources\\view_1_1.ico");
+		zoomOriginalAction = new Action(zoomOriginal, tr("Zoom original"), this);
+		zoomOriginalAction->setStatusTip(tr("Zoom original"));
+		zoomOriginalAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
+		ActionRepository::GetInstance()->AddAction(zoomOriginalAction);
+		connect(zoomOriginalAction, &QAction::triggered, MapViewInstance, &MapView::SlotZoomOriginal, Qt::QueuedConnection);
+	}
+
+	QAction* exitAction = nullptr;
+	{
+		QIcon exit(":GameDemonstrator/Resources/exit.ico");
+		exitAction = new QAction(exit, tr("E&xit"), this);
+		exitAction->setShortcuts(QKeySequence::Quit);
+		exitAction->setStatusTip(tr("Quit application"));
+		connect(exitAction, &QAction::triggered, this, &GameDemonstrator::close);
+		ActionRepository::GetInstance()->AddAction(exitAction);
+	}
 
 	FileMenu->addAction( loadGameAction );
 	FileMenu->addAction( saveGameAction );
 	FileMenu->addSeparator();
-	FileMenu->addAction( exitAction );
+	FileMenu->addAction(zoomInAction);
+	FileMenu->addAction(zoomOutAction);
+	FileMenu->addAction(zoomOriginalAction);
+	FileMenu->addSeparator();
+	FileMenu->addAction(exitAction);
 }
 
 void GameDemonstrator::CreateMenuAbout()

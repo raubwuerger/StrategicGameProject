@@ -39,11 +39,13 @@ public:
 	bool RemoveCity(MapCityItem *mapCityItem);
 	/** */
 	bool UpdateCity(MapCityItem *mapCityItem);
-	public slots:
+public slots:
 	/** */
 	void SlotZoomIn();
 	/** */
 	void SlotZoomOut();
+	/** */
+	void SlotZoomOriginal();
 protected:
 	/** */
 	virtual void wheelEvent( QWheelEvent *event );
@@ -66,6 +68,7 @@ public:
 	MapHexItemEventManager*		MapEventManagerInstance;	
 private:
 	KeyEventController*	KeyEventControllerInstance;
+	QTransform			OriginalTransformValue;
 };
 
 #endif // CMAPVIEW_H
