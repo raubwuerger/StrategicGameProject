@@ -128,7 +128,7 @@ void GameModeSinglePlayer::CreateNewGame()
 //=================================================================================================
 bool GameModeSinglePlayer::LoadGame(QString& savegameName)
 {
-	savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./save games", tr("Save game files (*.xml )"));
+	savegameName = QFileDialog::getOpenFileName(GameDemonstratorObject, tr("Open Save Game"), "./savegames", tr("Save game files (*.xml )"));
 	if (true == savegameName.isNull())
 	{
 		return false;
