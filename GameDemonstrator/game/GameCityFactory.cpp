@@ -26,6 +26,88 @@ GameCityFactory::~GameCityFactory()
 {
 }
 
+bool GameCityFactory::Create()
+{
+	return GameOwnerRepository::GetInstance()->Init();
+}
+
+GameCity* GameCityFactory::Create(const GameCityParameterObject obj)
+{
+	if (false == Validate(obj))
+	{
+		return nullptr;
+	}
+
+	const ModelCityType* cityType = GetModelCityType(obj);
+	if (nullptr == cityType)
+	{
+		return nullptr;
+	}
+
+	const GameMapTile* gameMapTile = GetGameMapTile(obj);
+	if (nullptr == gameMapTile)
+	{
+		return nullptr;
+	}
+
+	const GameOwner* gameOwner = GetGameOwner(obj);
+	if (nullptr == gameOwner)
+	{
+		return nullptr;
+	}
+
+	GameCity *newGameCity = new GameCity(CreateId(obj));
+
+	newGameCity->CityTypeId = cityType->GetId();
+	newGameCity->CityType = cityType;
+
+	newGameCity->GameOwnerId = gameOwner->GetId();
+	newGameCity->GameOwnerObject = gameOwner;
+
+	newGameCity->GameMapTileId = gameMapTile->GetId();
+	newGameCity->GameMapTileObject = gameMapTile;
+
+	newGameCity->Name = CreateCityName(newGameCity->GetId());
+	newGameCity->InitRuntimeData();
+
+	if (false == GameCityRepository::GetInstance()->Register(newGameCity))
+	{
+		Q_ASSERT(newGameCity);
+		delete newGameCity;
+		return nullptr;
+	}
+
+	return newGameCity;
+}
+
+bool GameCityFactory::Create(const QDomNode city)
+{
+	GameCityRepository::GetInstance()->Init();
+	return CreateGameCities(city);
+}
+
+bool GameCityFactory::Validate(const GameCityParameterObject obj)
+{
+	if (-1 == obj.ModelCityTypeId && nullptr == obj.ModelCityTypeObject)
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelCityTypeId or ModelCityTypeObject are invalid!"));
+		return false;
+	}
+
+	if (-1 == obj.GameOwnerId && nullptr == obj.GameOwnerObject)
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelOwnerTypeId or ModelOwnerTypeObject are invalid!"));
+		return false;
+	}
+
+	if (-1 == obj.GameMapTileId && nullptr == obj.GameMapTileObject)
+	{
+		jha::GetLog()->Log_MESSAGE(QObject::tr("GameMapId or GameMapObject are invalid!"));
+		return false;
+	}
+	return true;
+}
+
 int GameCityFactory::CreateId(const GameCityParameterObject obj)
 {
 	if (-1 != obj.Id)
@@ -79,83 +161,6 @@ int GameCityFactory::GetBaseStrength(int cityId) const
 	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityId);
 	Q_ASSERT(modelCityType);
 	return modelCityType->GetDefenceValue();
-}
-
-bool GameCityFactory::Create(const QDomNode city)
-{
-	GameCityRepository::GetInstance()->Init();
-	return CreateGameCities(city);
-}
-
-GameCity* GameCityFactory::Create(const GameCityParameterObject obj)
-{
-	if (false == Validate(obj))
-	{
-		return nullptr;
-	}
-
-	const ModelCityType* cityType = GetModelCityType(obj);
-	if (nullptr == cityType)
-	{
-		return nullptr;
-	}
-
-	const GameMapTile* gameMapTile = GetGameMapTile(obj);
-	if (nullptr == gameMapTile)
-	{
-		return nullptr;
-	}
-
-	const GameOwner* gameOwner = GetGameOwner(obj);
-	if (nullptr == gameOwner)
-	{
-		return nullptr;
-	}
-
-	GameCity *newGameCity = new GameCity(CreateId(obj));
-
-	newGameCity->CityTypeId = cityType->GetId();
-	newGameCity->CityType = cityType;
-
-	newGameCity->GameOwnerId = gameOwner->GetId();
-	newGameCity->GameOwnerObject = gameOwner;
-
-	newGameCity->GameMapTileId = gameMapTile->GetId();
-	newGameCity->GameMapTileObject = gameMapTile;
-
-	newGameCity->Name = CreateCityName(newGameCity->GetId());
-	newGameCity->InitRuntimeData();
-
-	if (false == GameCityRepository::GetInstance()->Register(newGameCity))
-	{
-		Q_ASSERT(newGameCity);
-		delete newGameCity;
-		return nullptr;
-	}
-
-	return newGameCity;
-}
-
-bool GameCityFactory::Validate(const GameCityParameterObject obj)
-{
-	if (-1 == obj.ModelCityTypeId && nullptr == obj.ModelCityTypeObject)
-	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelCityTypeId or ModelCityTypeObject are invalid!"));
-		return false;
-	}
-
-	if (-1 == obj.GameOwnerId && nullptr == obj.GameOwnerObject)
-	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("ModelOwnerTypeId or ModelOwnerTypeObject are invalid!"));
-		return false;
-	}
-
-	if (-1 == obj.GameMapTileId && nullptr == obj.GameMapTileObject)
-	{
-		jha::GetLog()->Log_MESSAGE(QObject::tr("GameMapId or GameMapObject are invalid!"));
-		return false;
-	}
-	return true;
 }
 
 bool GameCityFactory::CreateGameCities(const QDomNode& city)

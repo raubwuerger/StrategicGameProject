@@ -40,6 +40,8 @@ public:
 	/** */
 	~GameCityFactory();
 	/** */
+	bool Create();
+	/** */
 	GameCity* Create(const GameCityParameterObject gameCityParameterObject);
 	/** */
 	bool Create( const QDomNode node );
