@@ -54,6 +54,8 @@ private:
 	void InitConnections();
 	/** */
 	void SlotReceiveCreationDataHeightMap(GameMapCreatorHeightMapData creationData);
+	/** */
+	void InitNecessaryGameMechanics();
 private:
 	EditorToolbox*				EditorToolboxInstance;
 	HexItemInfoDialog*			HexItemInfoDialogInstance;

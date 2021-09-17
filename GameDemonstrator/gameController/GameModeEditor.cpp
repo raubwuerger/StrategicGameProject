@@ -12,6 +12,7 @@
 #include "GameDemonstrator.h"
 #include "editors\EditorToolbox.h"
 #include "command\CommandCreateHeightMap.h"
+#include "game\GameOwnerFactory.h"
 
 //=================================================================================================
 GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
@@ -39,6 +40,7 @@ bool GameModeEditor::DoInit()
 	HideDockWidgets();
 	HideMenu();
 	InitConnections();
+	InitNecessaryGameMechanics();
 	return true;
 }
 
@@ -76,6 +78,13 @@ void GameModeEditor::SlotReceiveCreationDataHeightMap(GameMapCreatorHeightMapDat
 {
 	CommandCreateHeightMap createHeightMap;
 	createHeightMap.CreateHeightMap(creationData, MapViewObject);
+}
+
+//=================================================================================================
+void GameModeEditor::InitNecessaryGameMechanics()
+{
+	GameOwnerFactory ownerFactory;
+	ownerFactory.Create();
 }
 
 //=================================================================================================
