@@ -128,13 +128,13 @@ void MapView::InitMapEventManager()
 double MapView::CalcMapWidthInPixel() const
 {
 	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
-	return hexagondata.Width + ( (GameMapTileRepository::GetInstance()->GetCols() - 1 ) * hexagondata.Side );
+	return hexagondata.Width + ((GameMapTileRepository::GetInstance()->GetCols() - 1) * (hexagondata.Side + GLOBAL_HEXAGON_OFFSET) );
 }
 
 double MapView::CalcMapHeightInPixel() const
 {
 	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
-	return (hexagondata.Height * GameMapTileRepository::GetInstance()->GetRows()) + ( hexagondata.Height / 2.0 );
+	return ((hexagondata.Height + GLOBAL_HEXAGON_OFFSET) * GameMapTileRepository::GetInstance()->GetRows()) + (hexagondata.Height / 2.0);
 }
 
 void MapView::wheelEvent(QWheelEvent *event)
