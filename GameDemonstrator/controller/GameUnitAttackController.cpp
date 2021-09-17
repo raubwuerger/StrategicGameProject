@@ -67,6 +67,8 @@ bool GameUnitAttackController::AttackUnit(const GameUnit* attacker, const GameUn
 		return false;
 	}
 
+	attacker->GetCurrentStrength();
+
 	//TODO: Hier muss das Kampfergebnis berechnet und zurückgegeben werden. Aktuell wird jeder Kampf gewonnen!
 	const_cast<GameUnit*>(attacker)->Move();
 	return true;

@@ -39,7 +39,7 @@ public:
 	/** */
 	~GameUnitFactory();
 	/** */
-	bool Init();
+	bool Create();
 	/** */
 	GameUnit* CreateGameUnit(const GameUnitParameterObject obj);
 	/** */

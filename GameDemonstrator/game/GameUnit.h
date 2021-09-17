@@ -74,7 +74,7 @@ private:
 	const GameOwner*		GameOwnerObject;
 	const GameMapTile*		GameMapTileObject;
 	mutable QString			Name;
-	GameUnitRuntimeData*RuntimeData;
+	GameUnitRuntimeData*	RuntimeData;
 };
 
 #endif // GAMEUNITTYPE_H

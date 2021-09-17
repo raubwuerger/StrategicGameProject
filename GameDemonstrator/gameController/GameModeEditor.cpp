@@ -13,6 +13,7 @@
 #include "editors\EditorToolbox.h"
 #include "command\CommandCreateHeightMap.h"
 #include "game\GameOwnerFactory.h"
+#include "game\GameMapTileFactory.h"
 
 //=================================================================================================
 GameModeEditor::GameModeEditor(GameDemonstrator* gameDemonstrator)
@@ -85,6 +86,9 @@ void GameModeEditor::InitNecessaryGameMechanics()
 {
 	GameOwnerFactory ownerFactory;
 	ownerFactory.Create();
+
+	GameMapTileFactory mapTileFactory;
+	mapTileFactory.Create();
 }
 
 //=================================================================================================

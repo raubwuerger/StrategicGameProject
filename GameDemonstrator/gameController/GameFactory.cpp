@@ -14,6 +14,7 @@
 #include "GameObjectController.h"
 #include "dialogs\GameTurnDialog.h"
 #include "command\CommandPlaceGameUnitOnMap.h"
+#include "game\GameCityFactory.h"
 
 GameUnitController* GameFactory::GameControllerObject = nullptr;
 GameModeController*	GameFactory::GameModeControllerObject = nullptr;
@@ -126,7 +127,13 @@ bool GameFactory::Create()
 	}
 
 	GameUnitFactory unitFactory;
-	if (false == unitFactory.Init())
+	if (false == unitFactory.Create())
+	{
+		return false;
+	}
+
+	GameCityFactory cityFactory;
+	if (false == unitFactory.Create())
 	{
 		return false;
 	}

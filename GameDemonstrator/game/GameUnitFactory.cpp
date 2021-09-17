@@ -22,8 +22,9 @@ GameUnitFactory::~GameUnitFactory()
 {
 }
 
-bool GameUnitFactory::Init()
+bool GameUnitFactory::Create()
 {
+	//TODO: Abhängig von den Startbedingungen. Einheiten anzahl
 	return GameUnitRepository::GetInstance()->Init();
 }
 
