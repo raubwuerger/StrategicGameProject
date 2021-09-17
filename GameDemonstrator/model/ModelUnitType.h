@@ -34,6 +34,8 @@ public:
 	int GetRange() const { return Range; }
 	/** */
 	bool GetReceiveCounterattack() const { return ReceiveCounterattack; }
+	/** */
+	QString GetTerrainDomain() const { return TerrainDomain; }
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
@@ -51,6 +53,7 @@ private:
 	bool			CanOccupieCity;
 	bool			ReceiveCounterattack;
 	int				ProductionCost;
+	QString			TerrainDomain;
 };
 
 #endif

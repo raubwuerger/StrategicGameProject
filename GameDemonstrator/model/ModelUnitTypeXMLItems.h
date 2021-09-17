@@ -28,6 +28,7 @@ public:
 	const static QString SUBELEMENT_CANOCCUPIECITY;
 	const static QString SUBELEMENT_GETCOUNTERATTACK;
 	const static QString SUBELEMENT_PRODUCTIONCOST;
+	const static QString SUBELEMENT_TERRAINDOMAIN;
 };
 
 

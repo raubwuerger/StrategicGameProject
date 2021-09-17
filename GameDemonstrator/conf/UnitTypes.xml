@@ -50,6 +50,7 @@
 		<CanOccupieCity>1</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Land</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -100,6 +101,7 @@
 		<CanOccupieCity>1</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Land</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -147,6 +149,7 @@
 		<CanOccupieCity>1</CanOccupieCity>
 		<GetCounterattack>0</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Land</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -200,6 +203,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Air</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -252,6 +256,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Air</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -302,6 +307,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Air</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -352,6 +358,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Sea</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -401,6 +408,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Sea</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -447,6 +455,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Sea</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -494,6 +503,7 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Sea</TerrainDomain>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -534,5 +544,6 @@
 		<CanOccupieCity>0</CanOccupieCity>
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
+		<TerrainDomain>Sea</TerrainDomain>
 	</UnitType>
 </UnitTypes>

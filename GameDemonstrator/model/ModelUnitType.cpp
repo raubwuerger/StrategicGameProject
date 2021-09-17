@@ -11,7 +11,8 @@ ModelUnitType::ModelUnitType(int id)
 	MovementPoints(NOT_INITIALIZED_INT),
 	CanOccupieCity(NOT_INITIALIZED_BOOL),
 	ReceiveCounterattack(NOT_INITIALIZED_BOOL),
-	ProductionCost(NOT_INITIALIZED_INT)
+	ProductionCost(NOT_INITIALIZED_INT),
+	TerrainDomain(NOT_INITIALIZED_STRING)
 {
 }
 

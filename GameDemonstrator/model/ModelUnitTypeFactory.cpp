@@ -61,6 +61,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY, newType->CanOccupieCity);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK, newType->ReceiveCounterattack);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_PRODUCTIONCOST, newType->ProductionCost);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_TERRAINDOMAIN, newType->TerrainDomain);
 
 	DomNodeFinder find(node);
 	allElementsExtracted &= ParseAttackValues(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_ATTACKVALUES), newType->AttackValues);

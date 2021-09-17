@@ -24,6 +24,7 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_RECOGNISABLE_UNITTYPE = "Recogni
 const QString ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY = "CanOccupieCity";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK = "GetCounterattack";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_PRODUCTIONCOST = "ProductionCost";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINDOMAIN = "TerrainDomain";
 
 
 
