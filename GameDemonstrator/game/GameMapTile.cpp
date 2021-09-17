@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameMapTile.h"
+#include "model\ModelTerrainType.h"
 
 GameMapTile::GameMapTile( int row, int col, int id )
 	: 	Row(row),
@@ -50,6 +51,7 @@ void GameMapTile::SetModelTerrainType(const ModelTerrainType* modelTerrainType)
 {
 	Q_ASSERT(modelTerrainType);
 	TerrainTypeObject = modelTerrainType;
+	ModelTerrainTypeId = modelTerrainType->GetId();
 }
 
 void GameMapTile::SetModelTerrainTypeId(int id)
