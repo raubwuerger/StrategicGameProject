@@ -830,6 +830,15 @@
     <ClCompile Include="helper\StdMapPrinter.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="mapCreator\MapCreatorFactoryAbstract.cpp">
+      <Filter>Source Dateien\MapCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="mapCreator\MapCreatorFactoryHeightMap.cpp">
+      <Filter>Source Dateien\MapCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="mapCreator\MapCreatorFactorySimple.cpp">
+      <Filter>Source Dateien\MapCreator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1161,6 +1170,15 @@
     </ClInclude>
     <ClInclude Include="helper\StdMapPrinter.h">
       <Filter>Header Dateien\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\MapCreatorFactoryAbstract.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\MapCreatorFactoryHeightMap.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\MapCreatorFactorySimple.h">
+      <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

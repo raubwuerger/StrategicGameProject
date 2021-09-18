@@ -1,0 +1,9 @@
+#ifndef MAPCREATORFACTORYSIMPLE_H
+#define MAPCREATORFACTORYSIMPLE_H
+
+class MapCreatorFactorySimple
+{
+
+};
+
+#endif // MAPCREATORFACTORYSIMPLE_H

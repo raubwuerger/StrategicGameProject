@@ -820,6 +820,9 @@
     <ClCompile Include="helper\TextColorAdjuster.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp" />
+    <ClCompile Include="mapCreator\MapCreatorFactoryAbstract.cpp" />
+    <ClCompile Include="mapCreator\MapCreatorFactoryHeightMap.cpp" />
+    <ClCompile Include="mapCreator\MapCreatorFactorySimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
     <ClCompile Include="io\SerializeBinary.cpp" />
@@ -1685,6 +1688,9 @@
     <ClInclude Include="mapCreator\GameMapCreatorHeightMapData.h" />
     <ClInclude Include="mapCreator\GameMapCreatorSimple.h" />
     <ClInclude Include="mapCreator\IGameMapCreator.h" />
+    <ClInclude Include="mapCreator\MapCreatorFactoryAbstract.h" />
+    <ClInclude Include="mapCreator\MapCreatorFactoryHeightMap.h" />
+    <ClInclude Include="mapCreator\MapCreatorFactorySimple.h" />
     <ClInclude Include="MapHexItemHexagonData.h" />
     <CustomBuild Include="map\MapGraphicsScene.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
