@@ -7,7 +7,7 @@ public:
 	/** */
 	ModelMapTypeInterface(int id);
 	/** */
-	const int GetId() const { return Id; }
+	const int GetId() const;
 private:
 	const int Id;
 };
