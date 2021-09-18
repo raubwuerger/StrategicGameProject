@@ -1,7 +1,7 @@
 #ifndef MAPCREATORFACTORYSIMPLE_H
 #define MAPCREATORFACTORYSIMPLE_H
 
-class MapCreatorFactorySimple
+class ModelMapTypeCreatorFactorySimple
 {
 
 };

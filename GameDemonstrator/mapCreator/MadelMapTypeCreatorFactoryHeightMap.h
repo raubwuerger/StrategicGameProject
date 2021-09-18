@@ -1,7 +1,7 @@
 #ifndef MAPCREATORFACTORYHEIGHTMAP_H
 #define MAPCREATORFACTORYHEIGHTMAP_H
 
-class MapCreatorFactoryHeightMap
+class MadelMapTypeCreatorFactoryHeightMap
 {
 
 };
