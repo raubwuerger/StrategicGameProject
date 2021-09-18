@@ -830,14 +830,17 @@
     <ClCompile Include="helper\StdMapPrinter.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="mapCreator\MapCreatorFactoryAbstract.cpp">
-      <Filter>Source Dateien\MapCreator</Filter>
+    <ClCompile Include="model\MadelMapTypeCreatorFactoryHeightMap.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="mapCreator\MapCreatorFactoryHeightMap.cpp">
-      <Filter>Source Dateien\MapCreator</Filter>
+    <ClCompile Include="model\ModelMapTypeCreatorFactoryAbstract.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
-    <ClCompile Include="mapCreator\MapCreatorFactorySimple.cpp">
-      <Filter>Source Dateien\MapCreator</Filter>
+    <ClCompile Include="model\ModelMapTypeCreatorFactorySimple.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapTypeInterface.cpp">
+      <Filter>Source Dateien\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1171,14 +1174,17 @@
     <ClInclude Include="helper\StdMapPrinter.h">
       <Filter>Header Dateien\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="mapCreator\MapCreatorFactoryAbstract.h">
-      <Filter>Header Dateien\MapCreator</Filter>
+    <ClInclude Include="model\MadelMapTypeCreatorFactoryHeightMap.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="mapCreator\MapCreatorFactoryHeightMap.h">
-      <Filter>Header Dateien\MapCreator</Filter>
+    <ClInclude Include="model\ModelMapTypeCreatorFactoryAbstract.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
-    <ClInclude Include="mapCreator\MapCreatorFactorySimple.h">
-      <Filter>Header Dateien\MapCreator</Filter>
+    <ClInclude Include="model\ModelMapTypeCreatorFactorySimple.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapTypeInterface.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

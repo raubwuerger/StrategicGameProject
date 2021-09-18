@@ -820,9 +820,6 @@
     <ClCompile Include="helper\TextColorAdjuster.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp" />
-    <ClCompile Include="mapCreator\MapCreatorFactoryAbstract.cpp" />
-    <ClCompile Include="mapCreator\MapCreatorFactoryHeightMap.cpp" />
-    <ClCompile Include="mapCreator\MapCreatorFactorySimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
     <ClCompile Include="io\ConfigFileLoader.cpp" />
     <ClCompile Include="io\SerializeBinary.cpp" />
@@ -844,11 +841,15 @@
     <ClCompile Include="map\MapUnitItemRepository.cpp" />
     <ClCompile Include="map\MapView.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
+    <ClCompile Include="model\MadelMapTypeCreatorFactoryHeightMap.cpp" />
     <ClCompile Include="model\ModelCityType.cpp" />
     <ClCompile Include="model\ModelCityTypeFactory.cpp" />
     <ClCompile Include="model\ModelCityTypeRepository.cpp" />
     <ClCompile Include="model\ModelCityTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelConfigurationHeaderXMLItems.cpp" />
+    <ClCompile Include="model\ModelMapTypeCreatorFactoryAbstract.cpp" />
+    <ClCompile Include="model\ModelMapTypeCreatorFactorySimple.cpp" />
+    <ClCompile Include="model\ModelMapTypeInterface.cpp" />
     <ClCompile Include="model\ModelProgramSettings.cpp" />
     <ClCompile Include="model\ModelProgramSettingsXMLItems.cpp" />
     <ClCompile Include="model\ModelOwnerType.cpp" />
@@ -1688,9 +1689,6 @@
     <ClInclude Include="mapCreator\GameMapCreatorHeightMapData.h" />
     <ClInclude Include="mapCreator\GameMapCreatorSimple.h" />
     <ClInclude Include="mapCreator\IGameMapCreator.h" />
-    <ClInclude Include="mapCreator\MapCreatorFactoryAbstract.h" />
-    <ClInclude Include="mapCreator\MapCreatorFactoryHeightMap.h" />
-    <ClInclude Include="mapCreator\MapCreatorFactorySimple.h" />
     <ClInclude Include="MapHexItemHexagonData.h" />
     <CustomBuild Include="map\MapGraphicsScene.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -1848,11 +1846,15 @@
     </CustomBuild>
     <ClInclude Include="map\MapUnitItemFactory.h" />
     <ClInclude Include="map\MapUnitItemRepository.h" />
+    <ClInclude Include="model\MadelMapTypeCreatorFactoryHeightMap.h" />
     <ClInclude Include="model\ModelCityType.h" />
     <ClInclude Include="model\ModelCityTypeFactory.h" />
     <ClInclude Include="model\ModelCityTypeRepository.h" />
     <ClInclude Include="model\ModelCityTypeXMLItems.h" />
     <ClInclude Include="model\ModelConfigurationHeaderXMLItems.h" />
+    <ClInclude Include="model\ModelMapTypeCreatorFactoryAbstract.h" />
+    <ClInclude Include="model\ModelMapTypeCreatorFactorySimple.h" />
+    <ClInclude Include="model\ModelMapTypeInterface.h" />
     <ClInclude Include="model\ModelProgramSettings.h" />
     <ClInclude Include="model\ModelProgramSettingsXMLItems.h" />
     <ClInclude Include="model\ModelOwnerType.h" />
