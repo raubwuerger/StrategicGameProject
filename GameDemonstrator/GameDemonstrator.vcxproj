@@ -847,9 +847,11 @@
     <ClCompile Include="model\ModelCityTypeRepository.cpp" />
     <ClCompile Include="model\ModelCityTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelConfigurationHeaderXMLItems.cpp" />
+    <ClCompile Include="model\ModelMapType.cpp" />
     <ClCompile Include="model\ModelMapTypeCreatorFactoryAbstract.cpp" />
     <ClCompile Include="model\ModelMapTypeCreatorFactorySimple.cpp" />
     <ClCompile Include="model\ModelMapTypeInterface.cpp" />
+    <ClCompile Include="model\ModelMapTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelProgramSettings.cpp" />
     <ClCompile Include="model\ModelProgramSettingsXMLItems.cpp" />
     <ClCompile Include="model\ModelOwnerType.cpp" />
@@ -1852,9 +1854,11 @@
     <ClInclude Include="model\ModelCityTypeRepository.h" />
     <ClInclude Include="model\ModelCityTypeXMLItems.h" />
     <ClInclude Include="model\ModelConfigurationHeaderXMLItems.h" />
+    <ClInclude Include="model\ModelMapType.h" />
     <ClInclude Include="model\ModelMapTypeCreatorFactoryAbstract.h" />
     <ClInclude Include="model\ModelMapTypeCreatorFactorySimple.h" />
     <ClInclude Include="model\ModelMapTypeInterface.h" />
+    <ClInclude Include="model\ModelMapTypeXMLItems.h" />
     <ClInclude Include="model\ModelProgramSettings.h" />
     <ClInclude Include="model\ModelProgramSettingsXMLItems.h" />
     <ClInclude Include="model\ModelOwnerType.h" />

@@ -123,8 +123,8 @@ const ModelTerrainType* GameMapCreatorHeightMap::GetModelTerrainType(float value
 
 void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vector<float> >& heightMapVector)
 {
-	int percentageOcean = 40;	//40% Ocean
-	int percentagePlain = 75;	//35% Plain
+	int percentageOcean = 50;	//40% Ocean
+	int percentagePlain = 80;	//35% Plain
 	int percentageWood = 90;	//15% Wood
 	int percentageHill = 97;	//7% Hill
 								// 3% Mountain

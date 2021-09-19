@@ -842,6 +842,12 @@
     <ClCompile Include="model\ModelMapTypeInterface.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelMapType.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\ModelMapTypeXMLItems.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1184,6 +1190,12 @@
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
     <ClInclude Include="model\ModelMapTypeInterface.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapType.h">
+      <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelMapTypeXMLItems.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>

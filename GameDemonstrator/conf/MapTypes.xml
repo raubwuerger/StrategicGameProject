@@ -3,51 +3,55 @@
 	<MapType>
 		<Id>1</Id>
 		<Name>SimpleMap</Name>
-		<DefaulTerrainTypeId>1</DefaulTerrainTypeId>
+		<Parameters>
+			<DefaulTerrainTypeId>1</DefaulTerrainTypeId>
+		</Parameters>
 	</MapType>
 	<MapType>
 		<Id>2</Id>
 		<Name>HeightMap</Name>
-		<ParametersHeightMap>
-			<MapSizeX>120</MapSizeX>
-			<MapSizeY>120</MapSizeY>
+		<Parameters>
+			<ParametersHeightMap>
+				<MapSizeX>120</MapSizeX>
+				<MapSizeY>120</MapSizeY>
 
-			<LowerXBound>6.0</LowerXBound>
-			<UpperXBound>10.0</UpperXBound>
-			<LowerZBound>1.0</LowerZBound>
-			<UpperZBound>5.0</UpperZBound>
+				<LowerXBound>6.0</LowerXBound>
+				<UpperXBound>10.0</UpperXBound>
+				<LowerZBound>1.0</LowerZBound>
+				<UpperZBound>5.0</UpperZBound>
 
-			<OctaveCount>6</OctaveCount>
-			<Frequency>2.0</Frequency>
-			<Persistance>0.5</Persistance>
-		</ParametersHeightMap>
-		<!-- From lower height value to upper height value -->
-		<TerrainTypeProcents>
-			<TerrainTypeProcent>
-				<!-- Ocean -->
-				<TerrainTypeId>3</TerrainTypeId>
-				<TerrainTypeProcent>45</TerrainTypeProcent>
-			</TerrainTypeProcent>
-			<TerrainTypeProcent>
-				<!-- Plains -->
-				<TerrainTypeId>1</TerrainTypeId>
-				<TerrainTypeProcent>33</TerrainTypeProcent>
-			</TerrainTypeProcent>
-			<TerrainTypeProcent>
-				<!-- Woods -->
-				<TerrainTypeId>2</TerrainTypeId>
-				<TerrainTypeProcent>14</TerrainTypeProcent>
-			</TerrainTypeProcent>
-			<TerrainTypeProcent>
-				<!-- Hills -->
-				<TerrainTypeId>4</TerrainTypeId>
-				<TerrainTypeProcent>6</TerrainTypeProcent>
-			</TerrainTypeProcent>
-			<TerrainTypeProcent>
-				<!-- Mountains -->
-				<TerrainTypeId>5</TerrainTypeId>
-				<TerrainTypeProcent>2</TerrainTypeProcent>
-			</TerrainTypeProcent>
-		</TerrainTypeProcents>
+				<OctaveCount>6</OctaveCount>
+				<Frequency>2.0</Frequency>
+				<Persistance>0.5</Persistance>
+			</ParametersHeightMap>
+			<!-- From lower height value to upper height value -->
+			<TerrainTypeProcents>
+				<TerrainTypeProcent>
+					<!-- Ocean -->
+					<TerrainTypeId>3</TerrainTypeId>
+					<TerrainTypeProcent>45</TerrainTypeProcent>
+				</TerrainTypeProcent>
+				<TerrainTypeProcent>
+					<!-- Plains -->
+					<TerrainTypeId>1</TerrainTypeId>
+					<TerrainTypeProcent>33</TerrainTypeProcent>
+				</TerrainTypeProcent>
+				<TerrainTypeProcent>
+					<!-- Woods -->
+					<TerrainTypeId>2</TerrainTypeId>
+					<TerrainTypeProcent>14</TerrainTypeProcent>
+				</TerrainTypeProcent>
+				<TerrainTypeProcent>
+					<!-- Hills -->
+					<TerrainTypeId>4</TerrainTypeId>
+					<TerrainTypeProcent>6</TerrainTypeProcent>
+				</TerrainTypeProcent>
+				<TerrainTypeProcent>
+					<!-- Mountains -->
+					<TerrainTypeId>5</TerrainTypeId>
+					<TerrainTypeProcent>2</TerrainTypeProcent>
+				</TerrainTypeProcent>
+			</TerrainTypeProcents>
+		</Parameters>
 	</MapType>
 </MapTypes>
