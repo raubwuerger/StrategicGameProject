@@ -3,7 +3,7 @@
 #include "ActionRepository.h"
 #include "Action.h"
 #include "LogFactory.h"
-#include "ConfigurationLoader.h"
+#include "io\ConfigurationLoader.h"
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
 #include "map/MapView.h"

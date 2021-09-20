@@ -554,9 +554,6 @@
     <ClCompile Include="dialogs\CityTypeInfoDialog.cpp">
       <Filter>Source Dateien\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigurationLoader.cpp">
-      <Filter>Source Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="BaseRepository.cpp">
       <Filter>Header Dateien</Filter>
     </ClCompile>
@@ -851,6 +848,9 @@
     <ClCompile Include="model\ModelMapTypeRepository.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="io\ConfigurationLoader.cpp">
+      <Filter>Source Dateien\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1042,9 +1042,6 @@
     <ClInclude Include="..\StandardLibQt\ImageLoader.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigurationLoader.h">
-      <Filter>Header Dateien</Filter>
-    </ClInclude>
     <ClInclude Include="BaseRepository.h">
       <Filter>Header Dateien</Filter>
     </ClInclude>
@@ -1203,6 +1200,9 @@
     </ClInclude>
     <ClInclude Include="model\ModelMapTypeRepository.h">
       <Filter>Header Dateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="io\ConfigurationLoader.h">
+      <Filter>Header Dateien\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

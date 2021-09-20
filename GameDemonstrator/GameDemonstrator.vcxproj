@@ -251,7 +251,6 @@
     <ClCompile Include="command\CommandCreateNewGame.cpp" />
     <ClCompile Include="command\CommandPlaceGameUnitOnMap.cpp" />
     <ClCompile Include="command\CommandProduceUnit.cpp" />
-    <ClCompile Include="ConfigurationLoader.cpp" />
     <ClCompile Include="connectors\ConnectorHeightMap.cpp" />
     <ClCompile Include="Connectors\ConnectorLoadGame.cpp" />
     <ClCompile Include="connectors\ConnectorMapCityItem.cpp" />
@@ -818,6 +817,7 @@
     <ClCompile Include="helper\StdMapPrinter.cpp" />
     <ClCompile Include="helper\StringToNumberConverter.cpp" />
     <ClCompile Include="helper\TextColorAdjuster.cpp" />
+    <ClCompile Include="io\ConfigurationLoader.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorHeightMap.cpp" />
     <ClCompile Include="mapCreator\GameMapCreatorSimple.cpp" />
     <ClCompile Include="MapHexItemHexagonData.cpp" />
@@ -1206,7 +1206,6 @@
     <ClInclude Include="command\CommandCreateNewGame.h" />
     <ClInclude Include="command\CommandPlaceGameUnitOnMap.h" />
     <ClInclude Include="command\CommandProduceUnit.h" />
-    <ClInclude Include="ConfigurationLoader.h" />
     <CustomBuild Include="Connectors\ConnectorLoadGame.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='GameDemonstrator_TEST|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -1688,6 +1687,7 @@
     <ClInclude Include="helper\StdMapPrinter.h" />
     <ClInclude Include="helper\StringToNumberConverter.h" />
     <ClInclude Include="helper\TextColorAdjuster.h" />
+    <ClInclude Include="io\ConfigurationLoader.h" />
     <ClInclude Include="mapCreator\GameMapCreatorHeightMap.h" />
     <ClInclude Include="mapCreator\GameMapCreatorHeightMapData.h" />
     <ClInclude Include="mapCreator\GameMapCreatorSimple.h" />
