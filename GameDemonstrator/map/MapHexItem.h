@@ -36,7 +36,7 @@ public:
 	/** */
 	void SetGameMapItemId( int gameMapItemId );
 	/** */
-	int GetGameMapItemId() const;
+	int GetId() const;
 	/** */
 	const QPointF& GetTopLeftPoint() const;
 	/** */

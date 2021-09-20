@@ -71,10 +71,10 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 	}
 	item->SetTerrainImage( ActiveTerrainType->GetImage() );
 
-	GameMapTile *gameMapItemToUpdate = GameMapTileRepository::GetInstance()->GetById(item->GetGameMapItemId());
+	GameMapTile *gameMapItemToUpdate = GameMapTileRepository::GetInstance()->GetById(item->GetId());
 	if (nullptr == gameMapItemToUpdate)
 	{
-		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(item->GetGameMapItemId())));
+		jha::GetLog()->Log_DEBUG(tr("ModelMapItem with Id=%1 not found!").arg(QString::number(item->GetId())));
 		return;
 	}
 

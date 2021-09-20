@@ -36,6 +36,16 @@ public:
 	bool GetReceiveCounterattack() const { return ReceiveCounterattack; }
 	/** */
 	QString GetTerrainDomain() const { return TerrainDomain; }
+	/** */
+	int GetTransportCapacityUnitsLand() const;
+	/** */
+	int GetTransportCapacityUnitsAir() const;
+	/** */
+	int GetTransportCapacityUnitsSea() const;
+	/** */
+	int GetTransportCapacityByTerrainDomain(const QString& terrainDomain) const;
+	/** Stupid. Gets first transport capacity greater one */
+	int GetTransportCapacityStupid() const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;

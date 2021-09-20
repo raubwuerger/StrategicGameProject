@@ -201,7 +201,7 @@ void MapHexItem::SetGameMapItemId(int modelMapItemId)
 	CreateMapHexItemInfoString();
 }
 
-int MapHexItem::GetGameMapItemId() const
+int MapHexItem::GetId() const
 {
 	return GameMapItemId;
 }

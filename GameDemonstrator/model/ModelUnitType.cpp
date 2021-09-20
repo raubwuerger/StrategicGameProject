@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ModelUnitType.h"
+#include "ModelUnitTypeXMLItems.h"
 
 ModelUnitType::ModelUnitType(int id)
 	:Id(id),
@@ -59,4 +60,54 @@ bool ModelUnitType::IsUnitTypeAttackable(int modelUnitTypeId) const
 bool ModelUnitType::GetCanOccupieCity() const
 {
 	return CanOccupieCity;
+}
+
+int ModelUnitType::GetTransportCapacityUnitsLand() const
+{
+	return TransportCapacity[0];
+}
+
+int ModelUnitType::GetTransportCapacityUnitsAir() const
+{
+	return TransportCapacity[1];
+}
+
+int ModelUnitType::GetTransportCapacityUnitsSea() const
+{
+	return TransportCapacity[2];
+}
+
+int ModelUnitType::GetTransportCapacityByTerrainDomain(const QString& terrainDomain) const
+{
+	if (terrainDomain == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
+	{
+		return GetTransportCapacityUnitsLand();
+	}
+
+	if (terrainDomain == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
+	{
+		return GetTransportCapacityUnitsAir();
+	}
+
+	if (terrainDomain == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
+	{
+		return GetTransportCapacityUnitsSea();
+	}
+
+	Q_ASSERT(false);
+	return NOT_INITIALIZED_INT;
+}
+
+int ModelUnitType::GetTransportCapacityStupid() const
+{
+	for (int i = 0; i < TransportCapacity.size();i++)
+	{
+		int transportCapacity = TransportCapacity[i];
+		if ( 0 >= transportCapacity)
+		{
+			continue;
+		}
+		return transportCapacity;
+	}
+	return NOT_INITIALIZED_INT;
 }

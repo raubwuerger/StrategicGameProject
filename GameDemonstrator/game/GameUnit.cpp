@@ -132,6 +132,7 @@ bool GameUnit::InitRuntimeData()
 	RuntimeData->CurrentStrength = UnitType->GetStrength();
 	RuntimeData->BaseMovementPoints = UnitType->GetMovementPoints();
 	RuntimeData->CurrentMovementPoints = UnitType->GetMovementPoints();
+	RuntimeData->TransportCapacity = UnitType->GetTransportCapacityStupid();
 	return true;
 }
 

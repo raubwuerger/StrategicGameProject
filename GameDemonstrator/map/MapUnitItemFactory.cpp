@@ -47,7 +47,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 		newMapUnitItem->BorderWidth = DefaultBorderWidth;
 		newMapUnitItem->BorderWidthSelected = DefaultBorderWidthSelected;
 		newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
-		newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
+		newMapUnitItem->SetMapHexItemId(mapHexItem->GetId());
 		newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
 		newMapUnitItem->Color = gameItemUnit->GetGameOwner()->GetColor();
 		if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))
@@ -85,7 +85,7 @@ bool MapUnitItemFactory::Create(MapView* mapView, const GameUnit* gameItemUnit)
 	newMapUnitItem->BorderWidth = DefaultBorderWidth;
 	newMapUnitItem->BorderWidthSelected = DefaultBorderWidthSelected;
 	newMapUnitItem->SetGameUnitId(gameItemUnit->GetId());
-	newMapUnitItem->SetMapHexItemId(mapHexItem->GetGameMapItemId());
+	newMapUnitItem->SetMapHexItemId(mapHexItem->GetId());
 	newMapUnitItem->SetUnitItemImage(GetImage(gameItemUnit));
 	newMapUnitItem->Color = gameItemUnit->GetGameOwner()->GetColor();
 	if (false == MapUnitItemRepository::GetInstance()->Register(newMapUnitItem))

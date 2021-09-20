@@ -29,7 +29,7 @@ bool TerrainAccessTester::Accessable(const GameUnit* gameUnitItem, const MapHexI
 	const ModelUnitType* modelUnitType = gameUnitItem->GetModelUnitType();
 	Q_ASSERT(modelUnitType);
 
-	const GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetById(mapHexItem->GetGameMapItemId());
+	const GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetById(mapHexItem->GetId());
 	Q_ASSERT(gameMapItem);
 
 	const ModelTerrainType* modelTerrainType = gameMapItem->GetTerrainType();

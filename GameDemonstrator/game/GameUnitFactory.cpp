@@ -303,6 +303,7 @@ GameUnit* GameUnitFactory::CreateUnitFromXML(const QDomNode& unitNode)
 	created->SetName(unitName);
 	created->GetRuntimeData()->CurrentStrength = currentStrength.toInt();
 	created->GetRuntimeData()->CurrentMovementPoints = currentMovementPoints.toInt();
+//	created->GetRuntimeData()->TransportCapacity = 
 	return created;
 }
 

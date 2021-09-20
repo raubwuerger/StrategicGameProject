@@ -16,6 +16,7 @@
 #include "map/MapCityItemRepository.h"
 #include "controller/TerrainAccessTester.h"
 #include "controller/GameUnitAttackController.h"
+#include "controller/GameUnitTransportController.h"
 #include "LogInterface.h"
 
 GameUnitMovementController::GameUnitMovementController(const GameUnit *activeGameUnitItem)
@@ -36,19 +37,25 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 		return false;
 	}
 
+	GameUnitTransportController gameUnitTransportController(playerUnit);
+	if (true == gameUnitTransportController.TransportUnit(destination))
+	{
+		return false;
+	}
+
+	if (true == IsOwnUnitOnDestinationMapTile(destination->GetId()))
+	{
+		return false;
+	}
+
 	if (false == TerrainAccessTester::Accessable(playerUnit, destination))
 	{
 		return false;
 	}
 
-	if (true == IsOwnUnitOnDestinationMapTile(destination->GetGameMapItemId()))
+	if (true == IsEnemyOnDestinationMapTile(destination->GetId()))
 	{
-		return false;
-	}
-
-	if (true == IsEnemyOnDestinationMapTile(destination->GetGameMapItemId()))
-	{
-		const GameUnit* enemyUnit = GetEnemyGameUnit(destination->GetGameMapItemId());
+		const GameUnit* enemyUnit = GetEnemyGameUnit(destination->GetId());
 		if (true == GameUnitAttackController::AttackUnit(playerUnit,enemyUnit))
 		{
 			enemyUnit = GameUnitRepository::GetInstance()->RemoveGameUnit(enemyUnit);
@@ -56,7 +63,7 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 			playerUnit->Move();
 			EmitMapUnitItemMoved(playerUnit);
 			delete MapUnitItemRepository::GetInstance()->Remove(enemyUnit->GetId());
-			if (true == IsEnemyCityOnDestinationMapTile(destination->GetGameMapItemId()) && true == GameUnitAttackController::IsCityOccupiable(playerUnit))
+			if (true == IsEnemyCityOnDestinationMapTile(destination->GetId()) && true == GameUnitAttackController::IsCityOccupiable(playerUnit))
 			{
 				return false;
 			}
@@ -72,14 +79,14 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 		}
 	}
 
-	if (true == IsEnemyCityOnDestinationMapTile(destination->GetGameMapItemId()))
+	if (true == IsEnemyCityOnDestinationMapTile(destination->GetId()))
 	{
 		if (false == GameUnitAttackController::IsCityOccupiable(playerUnit) )
 		{
 			return true;
 		}
-		GameCity* gameCityItem = GameCityRepository::GetInstance()->GetGameCityByGameMapTileId(destination->GetGameMapItemId());
-		if (true == GameUnitAttackController::AttackCity(playerUnit, GameCityRepository::GetInstance()->GetGameCityByGameMapTileId(destination->GetGameMapItemId())))
+		GameCity* gameCityItem = GameCityRepository::GetInstance()->GetGameCityByGameMapTileId(destination->GetId());
+		if (true == GameUnitAttackController::AttackCity(playerUnit, GameCityRepository::GetInstance()->GetGameCityByGameMapTileId(destination->GetId())))
 		{
 			GameCityRepository::GetInstance()->ChangeOwner(gameCityItem, playerUnit->GetGameOwner());
 			MapCityItemRepository::GetInstance()->UpdateMapCityItemOwner(gameCityItem);

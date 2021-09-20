@@ -851,6 +851,9 @@
     <ClCompile Include="io\ConfigurationLoader.cpp">
       <Filter>Source Dateien\IO</Filter>
     </ClCompile>
+    <ClCompile Include="controller\GameUnitTransportController.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1203,6 +1206,9 @@
     </ClInclude>
     <ClInclude Include="io\ConfigurationLoader.h">
       <Filter>Header Dateien\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\GameUnitTransportController.h">
+      <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

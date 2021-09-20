@@ -110,7 +110,7 @@ void MapHexItemRepository::CreateMapHexItemsById()
 		int cols = currentRow.size();
 		for (int colIndex = 0; colIndex < cols; colIndex++)
 		{
-			MapHexItemsById.insert(currentRow.at(colIndex)->GetGameMapItemId(), currentRow.at(colIndex));
+			MapHexItemsById.insert(currentRow.at(colIndex)->GetId(), currentRow.at(colIndex));
 		}
 	}
 }
