@@ -26,9 +26,8 @@ private:
 	/** */
 	~ModelUnitTypeRepository();
 private:
-	/** */
-	QMap<int, const ModelUnitType*>	Repository;
 	static ModelUnitTypeRepository* Instance;
+	QMap<int, const ModelUnitType*>	Repository;
 };
 
 #endif

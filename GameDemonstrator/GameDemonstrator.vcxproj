@@ -851,6 +851,7 @@
     <ClCompile Include="model\ModelMapTypeCreatorFactoryAbstract.cpp" />
     <ClCompile Include="model\ModelMapTypeCreatorFactorySimple.cpp" />
     <ClCompile Include="model\ModelMapTypeInterface.cpp" />
+    <ClCompile Include="model\ModelMapTypeRepository.cpp" />
     <ClCompile Include="model\ModelMapTypeXMLItems.cpp" />
     <ClCompile Include="model\ModelProgramSettings.cpp" />
     <ClCompile Include="model\ModelProgramSettingsXMLItems.cpp" />
@@ -1858,6 +1859,7 @@
     <ClInclude Include="model\ModelMapTypeCreatorFactoryAbstract.h" />
     <ClInclude Include="model\ModelMapTypeCreatorFactorySimple.h" />
     <ClInclude Include="model\ModelMapTypeInterface.h" />
+    <ClInclude Include="model\ModelMapTypeRepository.h" />
     <ClInclude Include="model\ModelMapTypeXMLItems.h" />
     <ClInclude Include="model\ModelProgramSettings.h" />
     <ClInclude Include="model\ModelProgramSettingsXMLItems.h" />
