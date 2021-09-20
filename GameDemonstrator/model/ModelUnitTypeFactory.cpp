@@ -134,120 +134,44 @@ bool ModelUnitTypeFactory::ParseTerrainTypes(const QDomNode& domNode, QVector<in
 	return !terrainTypes.isEmpty();
 }
 
-bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& domNode, QVector<int>& attackValues)
+bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& node, QVector<int>& attackValues)
 {
-	if (true == domNode.isNull())
+	if (true == node.isNull())
 	{
 		return false;
 	}
 
-	QDomNodeList childs = domNode.childNodes();
-	if (true == childs.isEmpty())
-	{
-		return false;
-	}
+	attackValues.push_back(0);
+	attackValues.push_back(0);
+	attackValues.push_back(0);
 
-	int childCount = childs.count();
+	bool allElementsExtracted = true;
+	DomValueExtractor extractor(node);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND, attackValues[0]);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR, attackValues[1]);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA, attackValues[2]);
 
-	for (int index = 0; index < childs.count(); index++)
-	{
-		QDomNode node = childs.at(index);
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int land = element.text().toInt();
-			attackValues.push_back(land);
-			continue;
-		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int air = element.text().toInt();
-			attackValues.push_back(air);
-			continue;
-		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int sea = element.text().toInt();
-			attackValues.push_back(sea);
-			continue;
-		}
-	}
-	return !attackValues.isEmpty();
+	return allElementsExtracted;
 }
 
-bool ModelUnitTypeFactory::ParseDefenseValues(const QDomNode& domNode, QVector<int>& defenseValues)
+bool ModelUnitTypeFactory::ParseDefenseValues(const QDomNode& node, QVector<int>& defenseValues)
 {
-	if (true == domNode.isNull())
+	if (true == node.isNull())
 	{
 		return false;
 	}
 
-	QDomNodeList childs = domNode.childNodes();
-	if (true == childs.isEmpty())
-	{
-		return false;
-	}
+	defenseValues.push_back(0);
+	defenseValues.push_back(0);
+	defenseValues.push_back(0);
 
-	int childCount = childs.count();
+	bool allElementsExtracted = true;
+	DomValueExtractor extractor(node);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND, defenseValues[0]);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR, defenseValues[1]);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA, defenseValues[2]);
 
-	for (int index = 0; index < childs.count(); index++)
-	{
-		QDomNode node = childs.at(index);
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int land = element.text().toInt();
-			defenseValues.push_back(land);
-			continue;
-		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int air = element.text().toInt();
-			defenseValues.push_back(air);
-			continue;
-		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int sea = element.text().toInt();
-			defenseValues.push_back(sea);
-			continue;
-		}
-	}
-	return !defenseValues.isEmpty();
+	return allElementsExtracted;
 }
 
 bool ModelUnitTypeFactory::ParseAttackableUnitTypes(const QDomNode& domNode, QVector<int>& attackableUnitTypes)
@@ -318,61 +242,28 @@ bool ModelUnitTypeFactory::ParseRecognisableUnitTypes(const QDomNode& domNode, Q
 	return !recognisableUnitTypes.isEmpty();
 }
 
-bool ModelUnitTypeFactory::ParseTransportCapacity(const QDomNode& domNode, QVector<int>& transportCapacity)
+bool ModelUnitTypeFactory::ParseTransportCapacity(const QDomNode& node, QVector<int>& transportCapacity)
 {
-	if (true == domNode.isNull())
+	if (true == node.isNull())
 	{
 		return false;
 	}
 
-	QDomNodeList childs = domNode.childNodes();
-	if (true == childs.isEmpty())
+	if (true == node.isNull())
 	{
 		return false;
 	}
 
-	int childCount = childs.count();
+	transportCapacity.push_back(0);
+	transportCapacity.push_back(0);
+	transportCapacity.push_back(0);
 
-	for (int index = 0; index < childs.count(); index++)
-	{
-		QDomNode node = childs.at(index);
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
+	bool allElementsExtracted = true;
+	DomValueExtractor extractor(node);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND, transportCapacity[0]);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR, transportCapacity[1]);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA, transportCapacity[2]);
 
-			QDomElement element = node.toElement();
-			int land = element.text().toInt();
-			transportCapacity.push_back(land);
-			continue;
-		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int air = element.text().toInt();
-			transportCapacity.push_back(air);
-			continue;
-		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
-		{
-			if (false == node.isElement())
-			{
-				continue;
-			}
-
-			QDomElement element = node.toElement();
-			int sea = element.text().toInt();
-			transportCapacity.push_back(sea);
-			continue;
-		}
-	}
-	return !transportCapacity.isEmpty();
+	return allElementsExtracted;
 }
 
