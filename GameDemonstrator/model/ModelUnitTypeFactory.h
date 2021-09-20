@@ -28,6 +28,8 @@ private:
 	bool ParseAttackableUnitTypes(const QDomNode& domNode, QVector<int>& attackableUnitTypes);
 	/** */
 	bool ParseRecognisableUnitTypes(const QDomNode& domNode, QVector<int>& recognisableUnitTypes);
+	/** */
+	bool ParseTransportCapacity(const QDomNode& domNode, QVector<int>& transportCapacity);
 };
 
 #endif

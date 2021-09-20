@@ -69,6 +69,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	allElementsExtracted &= ParseTerrainTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES), newType->AccessibleTerrainTypes);
 	allElementsExtracted &= ParseAttackableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES), newType->AttackableUnitTypes);
 	allElementsExtracted &= ParseRecognisableUnitTypes(find.FindDomeNodeByName(ModelUnitTypeXMLItems::NODE_RECOGNISABLE_UNITTYPES), newType->RecognisableUnitTypes);
+	allElementsExtracted &= ParseTransportCapacity(find.FindDomeNodeByName(ModelUnitTypeXMLItems::SUBELEMENT_TRANSPORTCAPACITY), newType->TransportCapacity);
 
 	if (false == allElementsExtracted)
 	{
@@ -151,7 +152,7 @@ bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& domNode, QVector<in
 	for (int index = 0; index < childs.count(); index++)
 	{
 		QDomNode node = childs.at(index);
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_LAND)
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
 		{
 			if (false == node.isElement())
 			{
@@ -163,7 +164,7 @@ bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& domNode, QVector<in
 			attackValues.push_back(land);
 			continue;
 		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_AIR)
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
 		{
 			if (false == node.isElement())
 			{
@@ -175,7 +176,7 @@ bool ModelUnitTypeFactory::ParseAttackValues(const QDomNode& domNode, QVector<in
 			attackValues.push_back(air);
 			continue;
 		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_SEA)
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
 		{
 			if (false == node.isElement())
 			{
@@ -209,7 +210,7 @@ bool ModelUnitTypeFactory::ParseDefenseValues(const QDomNode& domNode, QVector<i
 	for (int index = 0; index < childs.count(); index++)
 	{
 		QDomNode node = childs.at(index);
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_LAND)
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
 		{
 			if (false == node.isElement())
 			{
@@ -221,7 +222,7 @@ bool ModelUnitTypeFactory::ParseDefenseValues(const QDomNode& domNode, QVector<i
 			defenseValues.push_back(land);
 			continue;
 		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_AIR)
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
 		{
 			if (false == node.isElement())
 			{
@@ -233,7 +234,7 @@ bool ModelUnitTypeFactory::ParseDefenseValues(const QDomNode& domNode, QVector<i
 			defenseValues.push_back(air);
 			continue;
 		}
-		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_SEA)
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
 		{
 			if (false == node.isElement())
 			{
@@ -315,5 +316,63 @@ bool ModelUnitTypeFactory::ParseRecognisableUnitTypes(const QDomNode& domNode, Q
 		recognisableUnitTypes.push_back(element.text().toInt());
 	}
 	return !recognisableUnitTypes.isEmpty();
+}
+
+bool ModelUnitTypeFactory::ParseTransportCapacity(const QDomNode& domNode, QVector<int>& transportCapacity)
+{
+	if (true == domNode.isNull())
+	{
+		return false;
+	}
+
+	QDomNodeList childs = domNode.childNodes();
+	if (true == childs.isEmpty())
+	{
+		return false;
+	}
+
+	int childCount = childs.count();
+
+	for (int index = 0; index < childs.count(); index++)
+	{
+		QDomNode node = childs.at(index);
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int land = element.text().toInt();
+			transportCapacity.push_back(land);
+			continue;
+		}
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int air = element.text().toInt();
+			transportCapacity.push_back(air);
+			continue;
+		}
+		if (node.nodeName() == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
+		{
+			if (false == node.isElement())
+			{
+				continue;
+			}
+
+			QDomElement element = node.toElement();
+			int sea = element.text().toInt();
+			transportCapacity.push_back(sea);
+			continue;
+		}
+	}
+	return !transportCapacity.isEmpty();
 }
 

@@ -51,6 +51,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Land</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -102,6 +107,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Land</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -150,6 +160,11 @@
 		<GetCounterattack>0</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Land</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -204,6 +219,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Air</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -257,6 +277,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Air</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -308,6 +333,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Air</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -359,6 +389,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Sea</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -409,6 +444,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Sea</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -456,6 +496,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Sea</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>4</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -504,6 +549,11 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Sea</TerrainDomain>
+		<TransportCapacity>
+			<Land>0</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -545,5 +595,10 @@
 		<GetCounterattack>1</GetCounterattack>
 		<ProductionCost>100</ProductionCost>
 		<TerrainDomain>Sea</TerrainDomain>
+		<TransportCapacity>
+			<Land>2</Land>
+			<Air>0</Air>
+			<Sea>0</Sea>
+		</TransportCapacity>
 	</UnitType>
 </UnitTypes>

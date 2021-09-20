@@ -10,9 +10,9 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_PICTURENAME = "PictureName";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH = "Strength";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_ATTACKVALUES = "AttackValues";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_DEFENCEVALUES = "DefenseValues";
-const QString ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_LAND = "Land";
-const QString ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_AIR = "Air";
-const QString ModelUnitTypeXMLItems::SUBELEMENT_COMBAT_SEA = "Sea";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND = "Land";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR = "Air";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA = "Sea";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_RANGE = "Range";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTS = "MovementPoints";
 const QString ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES = "AccessibleTerrainTypes";
@@ -25,6 +25,7 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY = "CanOccupieCity
 const QString ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK = "GetCounterattack";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_PRODUCTIONCOST = "ProductionCost";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINDOMAIN = "TerrainDomain";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_TRANSPORTCAPACITY = "TransportCapacity";
 
 
 

@@ -50,6 +50,7 @@ private:
 	QVector<int>	AccessibleTerrainTypes;
 	QVector<int>	AttackableUnitTypes;
 	QVector<int>	RecognisableUnitTypes;
+	QVector<int>	TransportCapacity;
 	bool			CanOccupieCity;
 	bool			ReceiveCounterattack;
 	int				ProductionCost;
