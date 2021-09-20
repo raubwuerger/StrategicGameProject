@@ -171,7 +171,7 @@ bool GameUnitMovementController::AttackCity(const GameUnit* gameUnitItem, const 
 
 bool GameUnitMovementController::EmitMapUnitItemMoved(const GameUnit* gameUnitItem) const
 {
-	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetMapUnitItem(gameUnitItem->GetId());
+	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetById(gameUnitItem->GetId());
 	if (nullptr == mapUnitItem)
 	{
 		return false;

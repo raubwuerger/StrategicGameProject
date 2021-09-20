@@ -8,7 +8,7 @@ class MapCityItemFactory
 {
 public:
 	/** */
-	bool Create( MapView* mapView );
+	bool Create(MapView* mapView);
 	/** */
 	bool Create(MapView* mapView, const GameCity* gameCityItem);
 private:

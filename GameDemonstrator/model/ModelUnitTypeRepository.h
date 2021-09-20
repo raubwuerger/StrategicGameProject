@@ -11,7 +11,7 @@ public:
 	/** */
 	static ModelUnitTypeRepository* GetInstance();
 	/** */
-	bool RegisterModelUnitType(const ModelUnitType* modelUnit);
+	bool Register(const ModelUnitType* modelUnit);
 	/** */
 	int GetCount() const;
 	/** */
@@ -19,7 +19,7 @@ public:
 	/** */
 	QMap<int, const ModelUnitType*>::const_iterator GetLastIterator() const;
 	/** */
-	const ModelUnitType* GetModelUnitTypeById( int modelUnitTypeId ) const;
+	const ModelUnitType* GetById( int modelUnitTypeId ) const;
 private:
 	/** */
 	ModelUnitTypeRepository();

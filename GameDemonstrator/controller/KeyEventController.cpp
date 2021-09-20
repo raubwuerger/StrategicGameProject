@@ -77,7 +77,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	gameUnitParameterObject.GameMapTileId = destMapHexItem->GetGameMapItemId();
 	gameUnitParameterObject.ModelUnitTypeObject = sourceUnitItem->GetModelUnitType();
 	
-	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(mapUnitItem->GetMapHexItemId());
+	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetById(mapUnitItem->GetMapHexItemId());
 
 	mapUnitItem->SetMapHexItemId(destMapHexItem->GetGameMapItemId());
 

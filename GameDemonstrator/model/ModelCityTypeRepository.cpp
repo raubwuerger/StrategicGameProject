@@ -26,7 +26,7 @@ ModelCityTypeRepository::~ModelCityTypeRepository()
 	Types.clear();
 }
 
-bool ModelCityTypeRepository::RegisterType( ModelCityType *type )
+bool ModelCityTypeRepository::Register( ModelCityType *type )
 {
 	if( type == nullptr )
 	{
@@ -50,7 +50,7 @@ bool ModelCityTypeRepository::RegisterType( ModelCityType *type )
 	return true;
 }
 
-const ModelCityType* ModelCityTypeRepository::GetTypeById( int id ) const
+const ModelCityType* ModelCityTypeRepository::GetById( int id ) const
 {
 	QMap<int,const ModelCityType*>::const_iterator exists = Types.find( id );
 	if( exists == Types.end() )

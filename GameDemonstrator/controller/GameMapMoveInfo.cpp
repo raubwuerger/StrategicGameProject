@@ -40,7 +40,7 @@ const MapHexItem* GameMapMoveInfo::GetDestinationInfo(int movementDirection) con
 		return nullptr;
 	}
 
-	SourceMapHexItem = MapHexItemRepository::GetInstance()->GetMapHexItemById(SourceMapUnitItem->GetMapHexItemId());
+	SourceMapHexItem = MapHexItemRepository::GetInstance()->GetById(SourceMapUnitItem->GetMapHexItemId());
 	if (nullptr == SourceMapHexItem)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("MapHexItem with id=%1 not found!").arg(QString::number(SourceMapUnitItem->GetMapHexItemId())));

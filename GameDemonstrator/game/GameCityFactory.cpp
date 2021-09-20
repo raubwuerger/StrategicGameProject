@@ -123,7 +123,7 @@ const ModelCityType* GameCityFactory::GetModelCityType(const GameCityParameterOb
 	{
 		return obj.ModelCityTypeObject;
 	}
-	return ModelCityTypeRepository::GetInstance()->GetTypeById(obj.ModelCityTypeId);
+	return ModelCityTypeRepository::GetInstance()->GetById(obj.ModelCityTypeId);
 }
 
 const GameOwner* GameCityFactory::GetGameOwner(const GameCityParameterObject obj) const
@@ -151,14 +151,14 @@ QString GameCityFactory::CreateCityName(int cityId) const
 
 int GameCityFactory::GetBaseEfficency(int cityId) const
 {
-	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityId);
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetById(cityId);
 	Q_ASSERT(modelCityType);
 	return modelCityType->GetEfficiency();
 }
 
 int GameCityFactory::GetBaseStrength(int cityId) const
 {
-	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(cityId);
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetById(cityId);
 	Q_ASSERT(modelCityType);
 	return modelCityType->GetDefenceValue();
 }
@@ -203,7 +203,7 @@ GameCity* GameCityFactory::CreateGameCityFromXML(const QDomNode& node)
 	int modelCityTypeId = -1;
 	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_MODELCITYTYPEID, modelCityTypeId);
 
-	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetById(modelCityTypeId);
 	if (nullptr == modelCityType)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameCity with id=%1: ModelCityType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(modelCityTypeId)));

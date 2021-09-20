@@ -20,7 +20,7 @@ public:
 	/** */
 	void Release() override;
 	/** */
-	MapUnitItem* GetMapUnitItem(int id);
+	MapUnitItem* GetById(int id);
 private:
 	/** */
 	MapUnitItemRepository();

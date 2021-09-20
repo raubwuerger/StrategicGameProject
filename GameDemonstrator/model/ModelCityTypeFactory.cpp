@@ -31,7 +31,7 @@ bool ModelCityTypeFactory::Create()
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{
-		ModelCityTypeRepository::GetInstance()->RegisterType(CreateFromXML(terrainTypeNodes.at(i)));
+		ModelCityTypeRepository::GetInstance()->Register(CreateFromXML(terrainTypeNodes.at(i)));
 	}
 	jha::GetLog()->Log("ModelCityTypes registered: " + QString::number(ModelCityTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 

@@ -92,7 +92,7 @@ GameOwner* GameOwnerFactory::CreateFromXML(const QDomNode& node)
 	newGameOwner->IsHuman = isHuman;
 	newGameOwner->ModelOwnerTypeId = ownerTypeId;
 	newGameOwner->Name = name;
-	newGameOwner->ModelOwnerTypeObject = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
+	newGameOwner->ModelOwnerTypeObject = ModelOwnerTypeRepository::GetInstance()->GetById(ownerTypeId);
 
 	Q_ASSERT(newGameOwner->ModelOwnerTypeObject);
 	return newGameOwner;

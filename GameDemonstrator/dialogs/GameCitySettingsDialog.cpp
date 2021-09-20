@@ -126,14 +126,14 @@ int GameCitySettingsDialog::CreateProductionItemId(const GameUnitProduction* gam
 
 const QString& GameCitySettingsDialog::GetImagePathFromUnitItem(int unitTypeId) const
 {
-	const ModelUnitType* type = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
+	const ModelUnitType* type = ModelUnitTypeRepository::GetInstance()->GetById(unitTypeId);
 	Q_ASSERT(type);
 	return type->GetPictureName();
 }
 
 const QString& GameCitySettingsDialog::GetImagePathFromCityItem() const
 {
-	const ModelCityType* type = ModelCityTypeRepository::GetInstance()->GetTypeById(1);
+	const ModelCityType* type = ModelCityTypeRepository::GetInstance()->GetById(1);
 	Q_ASSERT(type);
 	return type->GetPictureName();
 }

@@ -33,5 +33,5 @@ void OwnerTypeEditor::SlotActivated()
 
 void OwnerTypeEditor::SlotActiveOwnerTypeId(int ownerTypeId)
 {
-	ActiveModelOwnerType = ModelOwnerTypeRepository::GetInstance()->GetOwnerTypeById(ownerTypeId);
+	ActiveModelOwnerType = ModelOwnerTypeRepository::GetInstance()->GetById(ownerTypeId);
 }

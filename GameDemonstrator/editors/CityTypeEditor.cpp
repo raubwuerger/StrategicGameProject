@@ -35,7 +35,7 @@ void CityTypeEditor::SlotActivated()
 
 void CityTypeEditor::SlotActiveCityTypeId(int CityTypeId)
 {
-	ActiveModelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(CityTypeId);
+	ActiveModelCityType = ModelCityTypeRepository::GetInstance()->GetById(CityTypeId);
 }
 
 void CityTypeEditor::SlotActiveOwnerTypeId(int ownerTypeId)

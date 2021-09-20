@@ -68,7 +68,7 @@ void MapCityItemRepository::SetMapCityItems(QMap<int, MapCityItem*> mapCityItems
 	MapCityItems = mapCityItems;
 }
 
-const MapCityItem* MapCityItemRepository::GetMapCityItemById(int mapCityItemId) const
+const MapCityItem* MapCityItemRepository::GetById(int mapCityItemId) const
 {
 	if (false == MapCityItems.contains(mapCityItemId))
 	{
@@ -78,7 +78,7 @@ const MapCityItem* MapCityItemRepository::GetMapCityItemById(int mapCityItemId) 
 	return MapCityItems[mapCityItemId];
 }
 
-MapCityItem* MapCityItemRepository::GetMapCityItemByIdNonConst(int mapCityItemId) const
+MapCityItem* MapCityItemRepository::GetByIdNonConst(int mapCityItemId) const
 {
 	if (false == MapCityItems.contains(mapCityItemId))
 	{

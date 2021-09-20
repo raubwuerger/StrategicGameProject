@@ -179,7 +179,7 @@ const ModelUnitType* GameUnitFactory::GetModelUnitType(const GameUnitParameterOb
 	{
 		return obj.ModelUnitTypeObject;
 	}
-	return ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(obj.ModelUnitTypeId);
+	return ModelUnitTypeRepository::GetInstance()->GetById(obj.ModelUnitTypeId);
 }
 
 const GameMapTile* GameUnitFactory::GetGameMapTile(const GameUnitParameterObject& obj) const
@@ -242,7 +242,7 @@ GameUnit* GameUnitFactory::CreateUnitFromXML(const QDomNode& unitNode)
 	int unitTypeId = -1;
 	allElementsExtracted &= domNodeListValueExtractor.ExtractValue(SerializeXMLItems::UNITS_UNITTYPEID, unitTypeId);
 
-	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
+	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(unitTypeId);
 	if (nullptr == modelUnitType)
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unable to create GameUnit with id=%1: ModelUnitType with id=%2 not registered!").arg(QString::number(id)).arg(QString::number(unitTypeId)));

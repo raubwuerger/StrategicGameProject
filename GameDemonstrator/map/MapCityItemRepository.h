@@ -25,9 +25,9 @@ public:
 	/** */
 	void SetMapCityItems(QMap<int, MapCityItem*> mapCityItems);
 	/** */
-	const MapCityItem* GetMapCityItemById(int mapCityItemId) const;
+	const MapCityItem* GetById(int mapCityItemId) const;
 	/** */
-	MapCityItem* GetMapCityItemByIdNonConst(int mapCityItemId) const;
+	MapCityItem* GetByIdNonConst(int mapCityItemId) const;
 	/** */
 	MapCityItem* RemoveById(int mapCityItemId);
 	/** */

@@ -63,7 +63,7 @@ void MapUnitItemRepository::Release()
 	MapUnitItems.clear();
 }
 
-MapUnitItem* MapUnitItemRepository::GetMapUnitItem(int id)
+MapUnitItem* MapUnitItemRepository::GetById(int id)
 {
 	if (false == MapUnitItems.contains(id))
 	{

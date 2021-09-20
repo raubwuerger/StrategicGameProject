@@ -206,7 +206,7 @@ void GameInfoDialogController::SlotShowGameItemSettinsDialog(int gameItemId)
 
 QString GameInfoDialogController::GetUnitType(int id)
 {
-	const ModelUnitType* unitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(id);
+	const ModelUnitType* unitType = ModelUnitTypeRepository::GetInstance()->GetById(id);
 	if (nullptr == unitType)
 	{
 		Q_ASSERT(unitType);
@@ -299,7 +299,7 @@ QString GameInfoDialogController::GetSpecializedUnitName(const GameCity* gameCit
 	{
 		return notSpecialized;
 	}
-	const ModelUnitType* specialized = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(gameCity->GetSpezializedUnitTypeId());
+	const ModelUnitType* specialized = ModelUnitTypeRepository::GetInstance()->GetById(gameCity->GetSpezializedUnitTypeId());
 	if (nullptr == specialized)
 	{
 		return notSpecialized;

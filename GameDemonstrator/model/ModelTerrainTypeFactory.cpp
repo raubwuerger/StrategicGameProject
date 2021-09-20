@@ -28,7 +28,7 @@ bool ModelTerrainTypeFactory::Create()
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for( int i=0; i <terrainTypeNodes.count(); i++ )
 	{
-		ModelTerrainTypeRepository::GetInstance()->RegisterTerrainType( CreateFromXML( terrainTypeNodes.at(i) ) );
+		ModelTerrainTypeRepository::GetInstance()->Register( CreateFromXML( terrainTypeNodes.at(i) ) );
 	}
 	jha::GetLog()->Log("ModelTerrainTypes registered: " +QString::number(ModelTerrainTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 

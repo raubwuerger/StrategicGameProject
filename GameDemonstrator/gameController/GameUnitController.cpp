@@ -54,7 +54,7 @@ bool GameUnitController::InitGame()
 
 void GameUnitController::SlotGameUnitSelected(int gameUnitId)
 {
-	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetMapUnitItem(gameUnitId);
+	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetById(gameUnitId);
 	if (nullptr == mapUnitItem)
 	{
 		return;
@@ -76,7 +76,7 @@ void GameUnitController::SlotGameUnitSelected(int gameUnitId)
 
 void GameUnitController::SlotGameUnitUnselected(int gameUnitId)
 {
-	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetMapUnitItem(gameUnitId);
+	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetById(gameUnitId);
 	if (nullptr == mapUnitItem)
 	{
 		return;
@@ -88,7 +88,7 @@ void GameUnitController::SlotGameUnitUnselected(int gameUnitId)
 
 void GameUnitController::SlotGameUnitSelectedEditorMode(int gameUnitId)
 {
-	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetMapUnitItem(gameUnitId);
+	MapUnitItem* mapUnitItem = MapUnitItemRepository::GetInstance()->GetById(gameUnitId);
 	if (nullptr == mapUnitItem)
 	{
 		return;

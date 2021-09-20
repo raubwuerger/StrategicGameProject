@@ -80,7 +80,7 @@ bool TerrainAccessTester::Accessable(const ModelCityType* modelCityType, const i
 
 bool TerrainAccessTester::Accessable(const int modelCityTypeId, const int gameMapItemId)
 {
-	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetTypeById(modelCityTypeId);
+	const ModelCityType* modelCityType = ModelCityTypeRepository::GetInstance()->GetById(modelCityTypeId);
 	Q_ASSERT(modelCityType);
 
 	GameMapTile* gameMapItem = GameMapTileRepository::GetInstance()->GetById(gameMapItemId);

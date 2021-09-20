@@ -10,9 +10,9 @@ public:
 	/** */
 	static ModelCityTypeRepository* GetInstance();
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
-	bool RegisterType( ModelCityType *type  );
+	bool Register( ModelCityType *type  );
 	/** */
-	const ModelCityType* GetTypeById( int id ) const;
+	const ModelCityType* GetById( int id ) const;
 	/** */
 	int GetCount() const;
 	/** */

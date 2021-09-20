@@ -10,9 +10,9 @@ public:
 	/** */
 	static ModelOwnerTypeRepository* GetInstance();
 	/** If no OwnerTypes are registered, the first will be set as DefaultOwnerType */
-	bool RegisterOwnerType( ModelOwnerType *ownerType  );
+	bool Register( ModelOwnerType *ownerType  );
 	/** */
-	const ModelOwnerType* GetOwnerTypeById( int id ) const;
+	const ModelOwnerType* GetById( int id ) const;
 	/** */
 	int GetCount() const;
 	/** */

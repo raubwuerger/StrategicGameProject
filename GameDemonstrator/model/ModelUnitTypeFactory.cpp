@@ -32,7 +32,7 @@ bool ModelUnitTypeFactory::Create()
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{
-		ModelUnitTypeRepository::GetInstance()->RegisterModelUnitType(CreateFromXML(terrainTypeNodes.at(i)));
+		ModelUnitTypeRepository::GetInstance()->Register(CreateFromXML(terrainTypeNodes.at(i)));
 	}
 	jha::GetLog()->Log("ModelUnitTypes registered: " + QString::number(ModelUnitTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 

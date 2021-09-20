@@ -16,7 +16,7 @@ ModelUnitTypeRepository* ModelUnitTypeRepository::GetInstance()
 	return Instance;
 }
 
-bool ModelUnitTypeRepository::RegisterModelUnitType(const ModelUnitType* modelUnit)
+bool ModelUnitTypeRepository::Register(const ModelUnitType* modelUnit)
 {
 	if (nullptr == modelUnit)
 	{
@@ -47,7 +47,7 @@ QMap<int, const ModelUnitType*>::const_iterator ModelUnitTypeRepository::GetLast
 	return Repository.cend();
 }
 
-const ModelUnitType* ModelUnitTypeRepository::GetModelUnitTypeById(int modelUnitTypeId) const
+const ModelUnitType* ModelUnitTypeRepository::GetById(int modelUnitTypeId) const
 {
 	QMap<int, const ModelUnitType*>::const_iterator itemFound = Repository.constFind(modelUnitTypeId);
 	if (Repository.cend() == itemFound)

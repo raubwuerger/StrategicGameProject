@@ -39,7 +39,7 @@ void MapHexItemRepository::SetMapHexItems(QVector< QVector<MapHexItem*> > mapHex
 	CreateMapHexItemsById();
 }
 
-const MapHexItem* MapHexItemRepository::GetMapHexItemById(int mapHexItemId) const
+const MapHexItem* MapHexItemRepository::GetById(int mapHexItemId) const
 {
 	if (false == MapHexItemsById.contains(mapHexItemId))
 	{
@@ -49,7 +49,7 @@ const MapHexItem* MapHexItemRepository::GetMapHexItemById(int mapHexItemId) cons
 	return MapHexItemsById[mapHexItemId];
 }
 
-MapHexItem* MapHexItemRepository::GetMapHexItemByIdNonConst(int mapHexItemId) const
+MapHexItem* MapHexItemRepository::GetByIdNonConst(int mapHexItemId) const
 {
 	if (false == MapHexItemsById.contains(mapHexItemId))
 	{

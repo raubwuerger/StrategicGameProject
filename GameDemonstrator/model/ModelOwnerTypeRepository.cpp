@@ -26,7 +26,7 @@ ModelOwnerTypeRepository::~ModelOwnerTypeRepository()
 	OwnerTypes.clear();
 }
 
-bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
+bool ModelOwnerTypeRepository::Register( ModelOwnerType *ownerType )
 {
 	if( ownerType == nullptr )
 	{
@@ -50,7 +50,7 @@ bool ModelOwnerTypeRepository::RegisterOwnerType( ModelOwnerType *ownerType )
 	return true;
 }
 
-const ModelOwnerType* ModelOwnerTypeRepository::GetOwnerTypeById( int id ) const
+const ModelOwnerType* ModelOwnerTypeRepository::GetById( int id ) const
 {
 	QMap<int,const ModelOwnerType*>::const_iterator exists = OwnerTypes.find( id );
 	if( exists == OwnerTypes.end() )

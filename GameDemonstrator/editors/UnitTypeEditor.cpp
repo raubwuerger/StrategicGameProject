@@ -47,7 +47,7 @@ void UnitTypeEditor::SlotDeactivated()
 
 void UnitTypeEditor::SlotActiveUnitTypeId(int unitTypeId)
 {
-	ActiveModelUnitType = ModelUnitTypeRepository::GetInstance()->GetModelUnitTypeById(unitTypeId);
+	ActiveModelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(unitTypeId);
 }
 
 void UnitTypeEditor::SlotActiveOwnerTypeId(int ownerTypeId)

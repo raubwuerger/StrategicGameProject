@@ -30,7 +30,7 @@ bool ModelOwnerTypeFactory::Create()
 	QDomNodeList terrainTypeNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < terrainTypeNodes.count(); i++)
 	{
-		ModelOwnerTypeRepository::GetInstance()->RegisterOwnerType(CreateFromXML(terrainTypeNodes.at(i)));
+		ModelOwnerTypeRepository::GetInstance()->Register(CreateFromXML(terrainTypeNodes.at(i)));
 	}
 	jha::GetLog()->Log("ModelOwnerTypes registered: " + QString::number(ModelOwnerTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 

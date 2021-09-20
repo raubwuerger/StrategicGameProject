@@ -26,7 +26,7 @@ ModelTerrainTypeRepository::~ModelTerrainTypeRepository()
 	TerrainTypes.clear();
 }
 
-bool ModelTerrainTypeRepository::RegisterTerrainType( ModelTerrainType *terrainType )
+bool ModelTerrainTypeRepository::Register( ModelTerrainType *terrainType )
 {
 	if( terrainType == nullptr )
 	{
