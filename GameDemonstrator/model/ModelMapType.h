@@ -13,8 +13,7 @@ public:
 private:
 	friend class ModelMapTypeCreatorFactoryAbstract;
 	const int		Id;
-	const QString	Name;
-//	QVector<>
+	QString			Name;
 };
 
 #endif // MODELMAPTYPE_H

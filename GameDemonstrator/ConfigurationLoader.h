@@ -15,6 +15,8 @@ private:
 	bool LoadUnitTypes();
 	/** */
 	bool LoadCityTypes();
+	/** */
+	bool LoadMapTypes();
 };
 
 #endif // CONFIGURATIONLOADER_H
