@@ -1,5 +1,6 @@
 #ifndef ACTION_H
 #define ACTION_H
+
 #include <qaction>
 
 class Action : public QAction
