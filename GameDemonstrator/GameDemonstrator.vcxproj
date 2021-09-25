@@ -830,6 +830,8 @@
     <ClCompile Include="io\SerializeXML.cpp" />
     <ClCompile Include="io\SerializeXMLItems.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map\HexagonFactory.cpp" />
+    <ClCompile Include="map\HexagonItem.cpp" />
     <ClCompile Include="map\MapCityItem.cpp" />
     <ClCompile Include="map\MapCityItemFactory.cpp" />
     <ClCompile Include="map\MapCityItemRepository.cpp" />
@@ -1819,6 +1821,8 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
     </CustomBuild>
+    <ClInclude Include="map\HexagonFactory.h" />
+    <ClInclude Include="map\HexagonItem.h" />
     <ClInclude Include="map\MapCityItem.h" />
     <ClInclude Include="map\MapCityItemFactory.h" />
     <ClInclude Include="map\MapCityItemRepository.h" />

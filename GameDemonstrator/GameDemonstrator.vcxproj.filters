@@ -863,6 +863,12 @@
     <ClCompile Include="experimental\ExperimentalClass.cpp">
       <Filter>Source Dateien\Experimental</Filter>
     </ClCompile>
+    <ClCompile Include="map\HexagonItem.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\HexagonFactory.cpp">
+      <Filter>Source Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1221,6 +1227,12 @@
     </ClInclude>
     <ClInclude Include="experimental\ExperimentalClass.h">
       <Filter>Header Dateien\Experimental</Filter>
+    </ClInclude>
+    <ClInclude Include="map\HexagonItem.h">
+      <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\HexagonFactory.h">
+      <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
