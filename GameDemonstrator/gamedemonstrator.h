@@ -43,6 +43,8 @@ private:
 	ConnectorLoadGame*			ConnectorLoadGameObject;
 	ConnectorSaveGame*			ConnectorSaveGameObject;
 	Ui::GameDemonstratorClass	ui;
+private:
+	void DoSomeExperiments();
 };
 
 #endif // GAMEDEMONSTRATOR_H

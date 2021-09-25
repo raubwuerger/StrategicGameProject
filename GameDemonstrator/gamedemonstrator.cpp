@@ -35,6 +35,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	DoSomeExperiments();
+
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
 	InfoMenu = menuBar()->addMenu(tr("&Info"));
@@ -215,4 +217,11 @@ void GameDemonstrator::InitLoggingFramwork()
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
+}
+
+#include "experimental/ExperimentalClass.h"
+void GameDemonstrator::DoSomeExperiments()
+{
+	ExperimentalClass exp;
+	exp.DoExperimental();
 }

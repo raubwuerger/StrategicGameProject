@@ -132,6 +132,12 @@
     <Filter Include="Header Dateien\libNoise">
       <UniqueIdentifier>{ab406376-5c70-4099-9bd9-9a3413183e1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Dateien\Experimental">
+      <UniqueIdentifier>{1bf51fa3-eab7-4008-93b8-27bea1b551d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien\Experimental">
+      <UniqueIdentifier>{52a62050-39cb-4c69-b79a-d439df994bb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -854,6 +860,9 @@
     <ClCompile Include="controller\GameUnitTransportController.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="experimental\ExperimentalClass.cpp">
+      <Filter>Source Dateien\Experimental</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1209,6 +1218,9 @@
     </ClInclude>
     <ClInclude Include="controller\GameUnitTransportController.h">
       <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="experimental\ExperimentalClass.h">
+      <Filter>Header Dateien\Experimental</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
