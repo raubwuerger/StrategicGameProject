@@ -42,7 +42,6 @@ MapHexItem::MapHexItem(const QPointF& topLeft, const QPolygonF& hexagon)
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 	setCacheMode(QGraphicsItem::ItemCoordinateCache);
 	setZValue(1);
-
 }
 
 MapHexItem::~MapHexItem()
@@ -55,7 +54,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 	//TODO: Die Werte sind für alle Punkte immer gleich. Ausprobieren ob einmal berechnen reicht!
 	if( TerrainImage != nullptr )
 	{
-		painter->drawImage(this->boundingRect().topLeft(), *TerrainImage);
+		painter->drawImage(BoundingRect.topLeft(), *TerrainImage);
 	}
 
 	ShowTextOnItem(painter);
@@ -74,13 +73,13 @@ void MapHexItem::ShowTextOnItem(QPainter *painter)
 		return;
 	}
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = this->boundingRect();
-	textBoundingRect.setWidth(textBoundingRect.width() * 0.6);
-	textBoundingRect.setHeight(textBoundingRect.height() * 0.6);
+	QRectF textBoundingRect = BoundingRect;
+	textBoundingRect.setWidth(BoundingRect.width() * 0.6);
+	textBoundingRect.setHeight(BoundingRect.height() * 0.6);
 
 	QPointF centerPosText(CenterPoint);
-	centerPosText.setX(this->boundingRect().x() + ((this->boundingRect().width() - textBoundingRect.width()) / 2.0));
-	centerPosText.setY(this->boundingRect().y() + ((this->boundingRect().height() - textBoundingRect.height()) / 2.0));
+	centerPosText.setX(BoundingRect.x() + ((BoundingRect.width() - textBoundingRect.width()) / 2.0));
+	centerPosText.setY(BoundingRect.y() + ((BoundingRect.height() - textBoundingRect.height()) / 2.0));
 
 	textBoundingRect.moveTopLeft(centerPosText);
 

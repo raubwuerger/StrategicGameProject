@@ -161,9 +161,10 @@ double MapView::CalcMapWidthInPixel() const
 	//TODO: These values are fixed for the game!!!
 	//TODO: Refactor!!!
 	double SideLength = 48.0;
+	double Side = SideLength * 3.0 / 2.0;
 	double Width_ToBeReplaced = 2.0 * SideLength;
 
-	return Width_ToBeReplaced + ((GameMapTileRepository::GetInstance()->GetCols() - 1) * (SideLength + GLOBAL_HEXAGON_OFFSET));
+	return Width_ToBeReplaced + ((GameMapTileRepository::GetInstance()->GetCols() - 1) * (Side + GLOBAL_HEXAGON_OFFSET));
 }
 
 double MapView::CalcMapHeightInPixel() const

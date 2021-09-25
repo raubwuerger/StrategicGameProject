@@ -23,7 +23,8 @@ QPolygonF HexagonFactory::CreateFlatToppedHexagon(double sizeLength) const
 	QPolygonF	hexPointsFlatTopped;
 	for (int index = 0; index < HEXAGON_POINT_COUNT; index++)
 	{
-		hexPointsFlatTopped << CreateFlatToppedHexagonCorner(HEXAGON_CENTER_POINT, HEXAGON_DISTANCE_CENTER_CORNER, index);
+		QPointF shifted(48.0, 41.569219381653042); //TODO: Why this???
+		hexPointsFlatTopped << CreateFlatToppedHexagonCorner(shifted, HEXAGON_DISTANCE_CENTER_CORNER, index);
 	}
 	return hexPointsFlatTopped;
 }
