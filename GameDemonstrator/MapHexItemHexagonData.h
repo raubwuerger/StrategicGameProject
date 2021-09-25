@@ -11,7 +11,11 @@ public:
 	MapHexItemHexagonData( double sideLength );
 	/** */
 	void MovePosition( const QPointF& topLeft );
-public:
+	/** */
+	const QPolygonF& GetHexPoints() const { return HexPoints; }
+	/** */
+	const QRectF&	GetBoundingRect() const { return BoundingRect; }
+private:
 	static const double DEFAULT_HEXE_SIZE;
 	static const double WIDTH_SIDE_MULTIPLICATOR;
 	static const double ZERO;
@@ -30,12 +34,14 @@ private:
 	/** */
 	void calcHexPointsOrigin();
 public:
-	double		SideLength;
 	double		Width;
 	double		Height;
 	double		Side;
+private:
+	friend class ExperimentalClass;
 	QRectF		BoundingRect;
 	QPolygonF	HexPoints;
+	double		SideLength;
 };
 
 #endif // HEXAGONDATA_H

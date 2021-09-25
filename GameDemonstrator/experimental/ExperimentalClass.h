@@ -4,7 +4,7 @@
 class ExperimentalClass
 {
 public:
-	void DoExperimental();
+	void DoExperimental() const;
 };
 
 #endif // EXPERIMENTALCLASS_H

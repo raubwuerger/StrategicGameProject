@@ -34,17 +34,17 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 	//TODO: Die Werte sind für alle Punkte immer gleich. Ausprobieren ob einmal berechnen reicht!
 	if( TerrainImage != nullptr )
 	{
-		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
+		painter->drawImage( HexData.GetBoundingRect().topLeft(), *TerrainImage );
 	}
 
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = HexData.BoundingRect;
+	QRectF textBoundingRect = HexData.GetBoundingRect();
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
 	textBoundingRect.setHeight( textBoundingRect.height() * 0.4 );
 	
 	QPointF centerPosText( CenterPoint );
-	centerPosText.setX( HexData.BoundingRect.x() + ((HexData.BoundingRect.width() - textBoundingRect.width()) / 2.0) );
-	centerPosText.setY( HexData.BoundingRect.y() + ((HexData.BoundingRect.height() - textBoundingRect.height()) / 2.0) );
+	centerPosText.setX(HexData.GetBoundingRect().x() + ((HexData.GetBoundingRect().width() - textBoundingRect.width()) / 2.0));
+	centerPosText.setY(HexData.GetBoundingRect().y() + ((HexData.GetBoundingRect().height() - textBoundingRect.height()) / 2.0));
 
 	textBoundingRect.moveTopLeft( centerPosText );
 	
@@ -54,7 +54,7 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 
 	painter->setRenderHint(QPainter::Antialiasing);
 	QPainterPath path;
-	path.addPolygon(HexData.HexPoints);
+	path.addPolygon(HexData.GetHexPoints());
 	QPen pen(Color, 4);
 	painter->setPen(pen);
 	painter->drawPath(path);
@@ -67,12 +67,12 @@ void MapCityItem::SetOwnerColor(const QColor ownerColor)
 
 QRectF MapCityItem::boundingRect() const
 {
-	return HexData.BoundingRect;
+	return HexData.GetBoundingRect();
 }
 
 void MapCityItem::CreateHexPolygon(const MapHexItemHexagonData &data)
 {
-	setPolygon(data.HexPoints);
+	setPolygon(data.GetHexPoints());
 	setFlags(QGraphicsItem::ItemIsFocusable);
 }
 

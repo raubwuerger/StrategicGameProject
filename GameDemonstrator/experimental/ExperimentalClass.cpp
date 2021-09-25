@@ -32,7 +32,7 @@ float CalculateHexSideLength(const QPolygonF& hexPoints, int startingPoint)
 	return length.length();
 }
 
-void ExperimentalClass::DoExperimental()
+void ExperimentalClass::DoExperimental() const
 {
 	QPointF center(0,0);
 	double distanceCenterCorner = 48.0;
@@ -65,7 +65,7 @@ void ExperimentalClass::DoExperimental()
 	MapHexItemHexagonData mapHexItemHexagonData(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 	for (int index = 0; index < 6; index++)
 	{
-		HexPointsHexagonDataSideLength << CalculateHexSideLength(mapHexItemHexagonData.HexPoints, index);
+		HexPointsHexagonDataSideLength << CalculateHexSideLength(mapHexItemHexagonData.GetHexPoints(), index);
 	}
 
 	int waitForBreakPoint = 0;

@@ -13,6 +13,7 @@
 #include "MapView.h"
 #include "model\ModelCityType.h"
 #include "game\GameOwner.h"
+#include "HexagonFactory.h"
 
 bool MapCityItemFactory::Create(MapView* mapView)
 {
@@ -22,7 +23,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		return false;
 	}
 
-	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 
 	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapTiles();
 	if (nullptr == gameMap)
@@ -82,7 +83,7 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCity* gameCityItem)
 		return false;
 	}
 
-	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 	QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
 	MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
 	mapItem->SetGameMapItemId(gameMapId);

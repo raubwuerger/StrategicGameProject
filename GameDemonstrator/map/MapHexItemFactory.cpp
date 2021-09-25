@@ -8,6 +8,7 @@
 #include "MapHexItem.h"
 #include "MapHexItemRepository.h"
 #include "MapView.h"
+#include "HexagonFactory.h"
 
 bool MapHexItemFactory::Create(MapView* mapView)
 {
@@ -21,7 +22,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	}
 
 	mapView->Create();
-	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 
 	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapTiles();
 	if (nullptr == gameMap)
@@ -61,7 +62,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 
 bool MapHexItemFactory::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 {
-	MapHexItemHexagonData hexagonTemplate(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 
 	double startX = 0.0;
 	double offsetX = hexagonTemplate.Side + GLOBAL_HEXAGON_OFFSET;

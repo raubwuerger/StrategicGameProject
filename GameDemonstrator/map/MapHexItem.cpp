@@ -43,7 +43,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 	//TODO: Die Werte sind für alle Punkte immer gleich. Ausprobieren ob einmal berechnen reicht!
 	if( TerrainImage != nullptr )
 	{
-		painter->drawImage( HexData.BoundingRect.topLeft(), *TerrainImage );
+		painter->drawImage(HexData.GetBoundingRect().topLeft(), *TerrainImage);
 	}
 
 	ShowTextOnItem(painter);
@@ -62,13 +62,13 @@ void MapHexItem::ShowTextOnItem(QPainter *painter)
 		return;
 	}
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = HexData.BoundingRect;
+	QRectF textBoundingRect = HexData.GetBoundingRect();
 	textBoundingRect.setWidth(textBoundingRect.width() * 0.6);
 	textBoundingRect.setHeight(textBoundingRect.height() * 0.6);
 
 	QPointF centerPosText(CenterPoint);
-	centerPosText.setX(HexData.BoundingRect.x() + ((HexData.BoundingRect.width() - textBoundingRect.width()) / 2.0));
-	centerPosText.setY(HexData.BoundingRect.y() + ((HexData.BoundingRect.height() - textBoundingRect.height()) / 2.0));
+	centerPosText.setX(HexData.GetBoundingRect().x() + ((HexData.GetBoundingRect().width() - textBoundingRect.width()) / 2.0));
+	centerPosText.setY(HexData.GetBoundingRect().y() + ((HexData.GetBoundingRect().height() - textBoundingRect.height()) / 2.0));
 
 	textBoundingRect.moveTopLeft(centerPosText);
 
@@ -92,12 +92,12 @@ int MapHexItem::GetRow() const
 
 QRectF MapHexItem::boundingRect() const
 {
-	return HexData.BoundingRect;
+	return HexData.GetBoundingRect();
 }
 
 void MapHexItem::CreateHexPolygon( const MapHexItemHexagonData &data )
 {
-	setPolygon(data.HexPoints);
+	setPolygon(data.GetHexPoints());
 	setFlags(QGraphicsItem::ItemIsFocusable);
 }
 

@@ -13,6 +13,7 @@
 #include "controller/KeyEventController.h"
 #include "MapCityItem.h"
 #include "connectors/ConnectorMapCityItem.h"
+#include "HexagonFactory.h"
 
 ConnectorMapHexItem*	MapView::ConnectorMapHexItemInstance = new ConnectorMapHexItem;
 ConnectorMapUnitItem*	MapView::ConnectorMapUnitItemInstance = new ConnectorMapUnitItem;
@@ -157,13 +158,13 @@ void MapView::InitMapEventManager()
 
 double MapView::CalcMapWidthInPixel() const
 {
-	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagondata(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 	return hexagondata.Width + ((GameMapTileRepository::GetInstance()->GetCols() - 1) * (hexagondata.Side + GLOBAL_HEXAGON_OFFSET) );
 }
 
 double MapView::CalcMapHeightInPixel() const
 {
-	MapHexItemHexagonData hexagondata(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	MapHexItemHexagonData hexagondata(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 	return ((hexagondata.Height + GLOBAL_HEXAGON_OFFSET) * GameMapTileRepository::GetInstance()->GetRows()) + (hexagondata.Height / 2.0);
 }
 

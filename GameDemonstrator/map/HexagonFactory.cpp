@@ -3,7 +3,7 @@
 #include "HexagonItem.h"
 
 static const int HEXAGON_POINT_COUNT = 6;
-static const double HEXAGON_DISTANCE_CENTER_CORNER = 48.0;
+const double HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER = 48.0;
 static const QPointF HEXAGON_CENTER_POINT(0.0,0.0);
 
 HexagonItem* HexagonFactory::CreateFlatTopped()

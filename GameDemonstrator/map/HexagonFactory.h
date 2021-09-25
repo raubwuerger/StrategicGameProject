@@ -10,6 +10,8 @@ public:
 	HexagonItem* CreateFlatTopped();
 	/** */
 	HexagonItem* CreatePointyTopped();
+public:
+	static const double HEXAGON_DISTANCE_CENTER_CORNER;
 private:
 	/** */
 	QPolygonF CreateFlatToppedHexagon(double sizeLength) const;
