@@ -1,7 +1,6 @@
 #ifndef MAPCITYITEM_H
 #define MAPCITYITEM_H
 
-#include "MapHexItemHexagonData.h"
 class ConnectorMapCityItem;
 
 //================================================================================
@@ -10,7 +9,7 @@ class MapCityItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapCityItem( const MapHexItemHexagonData& data, const QPointF& topLeft );
+	MapCityItem(const QPointF& topLeft, const QPolygonF& hexagon);
 	/** */
 	~MapCityItem();
 	/** */
@@ -44,7 +43,7 @@ protected:
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 private:
 	/** */
-	void CreateHexPolygon(const MapHexItemHexagonData &data);
+	void CreateHexPolygon();
 	/** */
 	void ShowSelected();
 	/** */
@@ -53,9 +52,10 @@ private:
 	void CreateMapCityItemInfoString();
 private:
 	friend class MapCityItemFactory;
-	MapHexItemHexagonData	HexData;
+	QPolygonF				Hexagon;
 	QPointF					CenterPoint;
 	QPointF					TopLeftPoint;
+	QRectF					BoundingRect;
 	ConnectorMapCityItem*	EventItem;
 	mutable const QImage*	TerrainImage;
 	int						GameMapItemId;

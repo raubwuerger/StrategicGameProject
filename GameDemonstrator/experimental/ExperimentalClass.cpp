@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "ExperimentalClass.h"
 #include <Qt>
-#include "MapHexItemHexagonData.h"
 
 QPointF CreateFlatHexCorner(QPointF center, double size, unsigned int index)
 {
@@ -60,13 +59,13 @@ void ExperimentalClass::DoExperimental() const
 		HexPointsPointyToppedSideLength << CalculateHexSideLength(HexPointsPointyTopped, index);
 	}
 
-
+	/*
 	QVector<double> HexPointsHexagonDataSideLength;
 	MapHexItemHexagonData mapHexItemHexagonData(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
 	for (int index = 0; index < 6; index++)
 	{
 		HexPointsHexagonDataSideLength << CalculateHexSideLength(mapHexItemHexagonData.GetHexPoints(), index);
 	}
-
+	*/
 	int waitForBreakPoint = 0;
 }

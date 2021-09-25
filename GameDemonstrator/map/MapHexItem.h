@@ -1,7 +1,6 @@
 #ifndef MAPVIEWHEXITEM_H
 #define MAPVIEWHEXITEM_H
 
-#include "MapHexItemHexagonData.h"
 class ConnectorMapHexItem;
 
 //================================================================================
@@ -10,7 +9,7 @@ class MapHexItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapHexItem( const MapHexItemHexagonData& data, const QPointF& topLeft );
+	MapHexItem(const QPointF& topLeft, const QPolygonF& hexagon);
 	/** */
 	~MapHexItem();
 	/** */
@@ -55,7 +54,7 @@ public:
 	void SetShowHexBorder(bool show) { DrawHexBorder = show; }
 private:
 	/** */
-	void CreateHexPolygon( const MapHexItemHexagonData &data );
+	void CreateHexPolygon();
 	/** */
 	void ShowSelected();
 	/** */
@@ -65,12 +64,13 @@ private:
 	/** */
 	void ShowTextOnItem(QPainter *painter);
 private:
-	int Row;
-	int Col;
-	MapHexItemHexagonData	HexData;
+	int						Row;
+	int						Col;
+	QPolygonF				Hexagon;
 	QPointF					CenterPoint;
 	QPointF					TopLeftPoint;
 	ConnectorMapHexItem*	EventItem;
+	QRectF					BoundingRect;
 	QString					MapHexItemInfoString;
 	mutable const QImage*	TerrainImage;
 	int						GameMapItemId;

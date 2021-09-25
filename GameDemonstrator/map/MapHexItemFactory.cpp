@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "MapHexItemFactory.h"
-#include "MapHexItemHexagonData.h"
 #include "model/ModelTerrainType.h"
 #include "game/GameMapTile.h"
 #include "game/GameMapTileRepository.h"
@@ -12,6 +11,9 @@
 
 bool MapHexItemFactory::Create(MapView* mapView)
 {
+	HexagonFactory hexagonFactory;
+	QPolygonF polygon = hexagonFactory.CreateFlatToppedHexagon();
+
 	bool showText = true;
 	bool showHexBorder = true;
 
@@ -22,7 +24,6 @@ bool MapHexItemFactory::Create(MapView* mapView)
 	}
 
 	mapView->Create();
-	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 
 	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapTiles();
 	if (nullptr == gameMap)
@@ -43,7 +44,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 			GameMapTile* gameMapItem = row.at(currentCol);
 			QPointF topLeftPosition;
 			CreateTopLeftPosition(currentRow, currentCol, topLeftPosition);
-			MapHexItem *mapItem = new MapHexItem(hexagonTemplate, topLeftPosition);
+			MapHexItem *mapItem = new MapHexItem(topLeftPosition, polygon);
 			mapItem->SetRowAndCol(currentRow, currentCol);
 			mapItem->SetGameMapItemId(gameMapItem->GetId());
 			mapItem->SetTerrainImage(GetImage(gameMapItem));
@@ -62,15 +63,20 @@ bool MapHexItemFactory::Create(MapView* mapView)
 
 bool MapHexItemFactory::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 {
-	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
+	//TODO: These values are fixed for the game!!!
+	//TODO: Refactor!!!
+	double SideLength = 48.0;
+	double Side_ToBeReplaced = 3.0 / 2.0 * SideLength;
 
 	double startX = 0.0;
-	double offsetX = hexagonTemplate.Side + GLOBAL_HEXAGON_OFFSET;
+	double offsetX = Side_ToBeReplaced + GLOBAL_HEXAGON_OFFSET;
 
+	//TODO: Refactor!!!
+	double Height_ToBeReplaced = sqrt(3) * SideLength;
 	double startY = 0.0;
-	double offsetY = hexagonTemplate.Height + GLOBAL_HEXAGON_OFFSET;
+	double offsetY = Height_ToBeReplaced + GLOBAL_HEXAGON_OFFSET;
 
-	double offsetYEvenCol = hexagonTemplate.Height / 2.0;
+	double offsetYEvenCol = Height_ToBeReplaced / 2.0;
 	double cordX = startX + col * offsetX;
 	double cordY = startY + row * offsetY;
 	if ((col % 2) == 1)

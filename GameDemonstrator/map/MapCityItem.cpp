@@ -1,23 +1,32 @@
 #include "stdafx.h"
 #include "MapCityItem.h"
-#include "MapHexItemHexagonData.h"
 #include "connectors/ConnectorMapCityItem.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapCityItem::MapCityItem( const MapHexItemHexagonData& data, const QPointF& topLeft )
-	: HexData(data),
-	TopLeftPoint(topLeft),
+MapCityItem::MapCityItem(const QPointF& topLeft, const QPolygonF& hexagon)
+	: TopLeftPoint(topLeft),
 	EventItem(nullptr),
 	TerrainImage(nullptr),
-	GameMapItemId(-1)
+	GameMapItemId(-1),
+	Hexagon(hexagon)
 {
-	this->HexData.MovePosition(topLeft);
-	this->CenterPoint.rx() = topLeft.x() + (data.Width / 2.0);
-	this->CenterPoint.ry() = topLeft.y() + (data.Height / 2.0);
+	//TODO: These values are fixed for the game!!!
+	//TODO: Refactor!!!
+	double SideLength = 48.0;
+	double Height_ToBeReplaced = sqrt(3) * SideLength;
+	double Width_ToBeReplaced = 2.0 * SideLength;
+
+	BoundingRect = QRectF(QPointF(-Width_ToBeReplaced, -Height_ToBeReplaced), QSizeF(Width_ToBeReplaced, Height_ToBeReplaced));
+
+	BoundingRect.moveTopLeft(topLeft);
+	Hexagon.translate(topLeft);
+
+	this->CenterPoint.rx() = topLeft.x() + (Width_ToBeReplaced / 2.0);
+	this->CenterPoint.ry() = topLeft.y() + (Height_ToBeReplaced / 2.0);
 	
-	CreateHexPolygon(this->HexData);
+	CreateHexPolygon();
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 	setCacheMode(QGraphicsItem::ItemCoordinateCache);
@@ -34,17 +43,17 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 	//TODO: Die Werte sind für alle Punkte immer gleich. Ausprobieren ob einmal berechnen reicht!
 	if( TerrainImage != nullptr )
 	{
-		painter->drawImage( HexData.GetBoundingRect().topLeft(), *TerrainImage );
+		painter->drawImage(this->boundingRect().topLeft(), *TerrainImage);
 	}
 
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = HexData.GetBoundingRect();
+	QRectF textBoundingRect = this->boundingRect();
 	textBoundingRect.setWidth( textBoundingRect.width() * 0.6 );
 	textBoundingRect.setHeight( textBoundingRect.height() * 0.4 );
 	
 	QPointF centerPosText( CenterPoint );
-	centerPosText.setX(HexData.GetBoundingRect().x() + ((HexData.GetBoundingRect().width() - textBoundingRect.width()) / 2.0));
-	centerPosText.setY(HexData.GetBoundingRect().y() + ((HexData.GetBoundingRect().height() - textBoundingRect.height()) / 2.0));
+	centerPosText.setX(this->boundingRect().x() + ((this->boundingRect().width() - textBoundingRect.width()) / 2.0));
+	centerPosText.setY(this->boundingRect().y() + ((this->boundingRect().height() - textBoundingRect.height()) / 2.0));
 
 	textBoundingRect.moveTopLeft( centerPosText );
 	
@@ -54,7 +63,7 @@ void MapCityItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *opti
 
 	painter->setRenderHint(QPainter::Antialiasing);
 	QPainterPath path;
-	path.addPolygon(HexData.GetHexPoints());
+	path.addPolygon(Hexagon);
 	QPen pen(Color, 4);
 	painter->setPen(pen);
 	painter->drawPath(path);
@@ -67,12 +76,12 @@ void MapCityItem::SetOwnerColor(const QColor ownerColor)
 
 QRectF MapCityItem::boundingRect() const
 {
-	return HexData.GetBoundingRect();
+	return BoundingRect;
 }
 
-void MapCityItem::CreateHexPolygon(const MapHexItemHexagonData &data)
+void MapCityItem::CreateHexPolygon()
 {
-	setPolygon(data.GetHexPoints());
+	setPolygon(Hexagon);
 	setFlags(QGraphicsItem::ItemIsFocusable);
 }
 

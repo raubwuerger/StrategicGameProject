@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "MapHexItem.h"
-#include "MapHexItemHexagonData.h"
 #include "connectors/ConnectorMapHexItem.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapHexItem::MapHexItem( const MapHexItemHexagonData& data, const QPointF& topLeft )
-	: HexData(data),
-	TopLeftPoint(topLeft),
+MapHexItem::MapHexItem(const QPointF& topLeft, const QPolygonF& hexagon)
+	: TopLeftPoint(topLeft),
 	Col(-1),
 	Row(-1),
 	EventItem(nullptr),
@@ -19,18 +17,32 @@ MapHexItem::MapHexItem( const MapHexItemHexagonData& data, const QPointF& topLef
 	ShowCoordinates(false),
 	ShowTextBorder(false),
 	ShowText(true), 
-	DrawHexBorder(true)
+	DrawHexBorder(true),
+	Hexagon(hexagon)
 
 {
-	this->HexData.MovePosition(topLeft);
-	this->CenterPoint.rx() = topLeft.x() + (data.Width / 2.0);
-	this->CenterPoint.ry() = topLeft.y() + (data.Height / 2.0);
-	
-	CreateHexPolygon(this->HexData);
+	//TODO: These values are fixed for the game!!!
+	//TODO: Refactor!!!
+
+	double SideLength = 48.0;
+	double Height_ToBeReplaced = sqrt(3) * SideLength;
+	double Width_ToBeReplaced = 2.0 * SideLength;
+
+	BoundingRect = QRectF(QPointF(-Width_ToBeReplaced, -Height_ToBeReplaced), QSizeF(Width_ToBeReplaced, Height_ToBeReplaced));
+
+	BoundingRect.moveTopLeft(topLeft);
+	Hexagon.translate(topLeft);
+
+
+	this->CenterPoint.rx() = topLeft.x() + (Width_ToBeReplaced / 2.0);
+	this->CenterPoint.ry() = topLeft.y() + (Height_ToBeReplaced / 2.0);
+
+	CreateHexPolygon();
 	setAcceptHoverEvents(true);
 	setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton );
 	setCacheMode(QGraphicsItem::ItemCoordinateCache);
 	setZValue(1);
+
 }
 
 MapHexItem::~MapHexItem()
@@ -43,7 +55,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 	//TODO: Die Werte sind für alle Punkte immer gleich. Ausprobieren ob einmal berechnen reicht!
 	if( TerrainImage != nullptr )
 	{
-		painter->drawImage(HexData.GetBoundingRect().topLeft(), *TerrainImage);
+		painter->drawImage(this->boundingRect().topLeft(), *TerrainImage);
 	}
 
 	ShowTextOnItem(painter);
@@ -62,13 +74,13 @@ void MapHexItem::ShowTextOnItem(QPainter *painter)
 		return;
 	}
 	//TODO: Bei Gelegenkeit in eigene Funktion auslagern und nicht permanent ausführen lassen
-	QRectF textBoundingRect = HexData.GetBoundingRect();
+	QRectF textBoundingRect = this->boundingRect();
 	textBoundingRect.setWidth(textBoundingRect.width() * 0.6);
 	textBoundingRect.setHeight(textBoundingRect.height() * 0.6);
 
 	QPointF centerPosText(CenterPoint);
-	centerPosText.setX(HexData.GetBoundingRect().x() + ((HexData.GetBoundingRect().width() - textBoundingRect.width()) / 2.0));
-	centerPosText.setY(HexData.GetBoundingRect().y() + ((HexData.GetBoundingRect().height() - textBoundingRect.height()) / 2.0));
+	centerPosText.setX(this->boundingRect().x() + ((this->boundingRect().width() - textBoundingRect.width()) / 2.0));
+	centerPosText.setY(this->boundingRect().y() + ((this->boundingRect().height() - textBoundingRect.height()) / 2.0));
 
 	textBoundingRect.moveTopLeft(centerPosText);
 
@@ -92,12 +104,12 @@ int MapHexItem::GetRow() const
 
 QRectF MapHexItem::boundingRect() const
 {
-	return HexData.GetBoundingRect();
+	return BoundingRect;
 }
 
-void MapHexItem::CreateHexPolygon( const MapHexItemHexagonData &data )
+void MapHexItem::CreateHexPolygon()
 {
-	setPolygon(data.GetHexPoints());
+	setPolygon(Hexagon);
 	setFlags(QGraphicsItem::ItemIsFocusable);
 }
 

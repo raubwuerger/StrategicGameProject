@@ -10,15 +10,15 @@ public:
 	HexagonItem* CreateFlatTopped();
 	/** */
 	HexagonItem* CreatePointyTopped();
+	/** */
+	QPolygonF CreateFlatToppedHexagon(double sizeLength = 48.0) const;
+	/** */
+	QPolygonF CreatePointyToppedHexagon(double sizeLength = 48.0) const;
 public:
 	static const double HEXAGON_DISTANCE_CENTER_CORNER;
 private:
 	/** */
-	QPolygonF CreateFlatToppedHexagon(double sizeLength) const;
-	/** */
 	QPointF CreateFlatToppedHexagonCorner(const QPointF& center, double size, unsigned int index) const;
-	/** */
-	QPolygonF CreatePointyToppedHexagon(double sizeLength) const;
 	/** */
 	QPointF CreatePointyToppedHexagonCorner(const QPointF& center, double size, unsigned int index) const;
 };

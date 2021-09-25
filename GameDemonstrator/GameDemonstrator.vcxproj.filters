@@ -455,9 +455,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ConnectorMapUnitItem.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="MapHexItemHexagonData.cpp">
-      <Filter>Source Dateien\Map</Filter>
-    </ClCompile>
     <ClCompile Include="map\MapHexItemEventManager.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
@@ -1007,9 +1004,6 @@
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
     <ClInclude Include="map\MapUnitItemRepository.h">
-      <Filter>Header Dateien\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="MapHexItemHexagonData.h">
       <Filter>Header Dateien\Map</Filter>
     </ClInclude>
     <ClInclude Include="controller\KeyEventController.h">

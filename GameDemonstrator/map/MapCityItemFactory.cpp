@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "MapCityItemFactory.h"
-#include "MapHexItemHexagonData.h"
 #include "game/GameMapTile.h"
 #include "game/GameMapTileRepository.h"
 #include "game/GameCityRepository.h"
@@ -17,13 +16,13 @@
 
 bool MapCityItemFactory::Create(MapView* mapView)
 {
+	HexagonFactory hexagonFactory;
+	QPolygonF polygon = hexagonFactory.CreateFlatToppedHexagon();
 	if (nullptr == mapView)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
 		return false;
 	}
-
-	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
 
 	const QVector< QVector<GameMapTile*> >* gameMap = GameMapTileRepository::GetInstance()->GetMapTiles();
 	if (nullptr == gameMap)
@@ -46,7 +45,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		}
 
 		QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
-		MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
+		MapCityItem *mapItem = new MapCityItem(topLeftPosition, polygon);
 		mapItem->SetGameMapItemId(gameMapId);
 		mapItem->SetTerrainImage(GetImage(gameCityItem));
 		mapItem->MapCityItemId = gameCityItem->GetId();
@@ -83,9 +82,11 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCity* gameCityItem)
 		return false;
 	}
 
-	MapHexItemHexagonData hexagonTemplate(HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER);
+	HexagonFactory hexagonFactory;
+	QPolygonF polygon = hexagonFactory.CreateFlatToppedHexagon();
+
 	QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
-	MapCityItem *mapItem = new MapCityItem(hexagonTemplate, topLeftPosition);
+	MapCityItem *mapItem = new MapCityItem(topLeftPosition, polygon);
 	mapItem->SetGameMapItemId(gameMapId);
 	mapItem->SetTerrainImage(GetImage(gameCityItem));
 	mapItem->MapCityItemId = gameCityItem->GetId();
