@@ -1,39 +1,71 @@
 #include "stdafx.h"
 #include "ExperimentalClass.h"
 #include <Qt>
+#include "MapHexItemHexagonData.h"
 
-QPointF flat_hex_corner(QPointF center, int size, unsigned int index)
+QPointF CreateFlatHexCorner(QPointF center, double size, unsigned int index)
 {
-	float angle_deg = 60 * index;
-	float angle_rad = float(M_PI) / 180 * angle_deg;
+	double angle_deg = 60 * index;
+	double angle_rad = double(M_PI) / 180 * angle_deg;
 	qreal x = center.x() +size * cos(angle_rad);
 	qreal y = center.y() +size * sin(angle_rad);
 	return QPointF(x, y);
 }
 
-QPointF pointy_hex_corner(QPointF center, int size, unsigned int index)
+QPointF CreatePointyHexCorner(QPointF center, double size, unsigned int index)
 {
-	float angle_deg = 60 * index - 30;
-	float angle_rad = float(M_PI) / 180 * angle_deg;
+	double angle_deg = 60 * index - 30;
+	double angle_rad = double(M_PI) / 180 * angle_deg;
 	qreal x = center.x() + size * cos(angle_rad);
 	qreal y = center.y() + size * sin(angle_rad);
 	return QPointF(x, y);
 }
 
+float CalculateHexSideLength(const QPolygonF& hexPoints, int startingPoint)
+{
+	int destinationPoint = startingPoint + 1;
+	if (destinationPoint >= hexPoints.size())
+	{
+		destinationPoint = 0;
+	}
+	QLineF length(hexPoints.at(startingPoint), hexPoints.at(destinationPoint));
+	return length.length();
+}
+
 void ExperimentalClass::DoExperimental()
 {
 	QPointF center(0,0);
-	int distanceCenterCorner = 1;
+	double distanceCenterCorner = 48.0;
 	QPolygonF	HexPointsFlatTopped;
 	for (int index = 0; index < 6; index++)
 	{
-		HexPointsFlatTopped << flat_hex_corner(center,distanceCenterCorner,index);
+		HexPointsFlatTopped << CreateFlatHexCorner(center,distanceCenterCorner,index);
 	}
 
 	QPolygonF	HexPointsPointyTopped;
 	for (int index = 0; index < 6; index++)
 	{
-		HexPointsPointyTopped << pointy_hex_corner(center, distanceCenterCorner, index);
+		HexPointsPointyTopped << CreatePointyHexCorner(center, distanceCenterCorner, index);
+	}
+
+	QVector<double> HexPointsFlatToppedSideLength;
+	for (int index = 0; index < 6; index++)
+	{
+		HexPointsFlatToppedSideLength << CalculateHexSideLength(HexPointsFlatTopped, index);
+	}
+
+	QVector<double> HexPointsPointyToppedSideLength;
+	for (int index = 0; index < 6; index++)
+	{
+		HexPointsPointyToppedSideLength << CalculateHexSideLength(HexPointsPointyTopped, index);
+	}
+
+
+	QVector<double> HexPointsHexagonDataSideLength;
+	MapHexItemHexagonData mapHexItemHexagonData(MapHexItemHexagonData::DEFAULT_HEXE_SIZE);
+	for (int index = 0; index < 6; index++)
+	{
+		HexPointsHexagonDataSideLength << CalculateHexSideLength(mapHexItemHexagonData.HexPoints, index);
 	}
 
 	int waitForBreakPoint = 0;
