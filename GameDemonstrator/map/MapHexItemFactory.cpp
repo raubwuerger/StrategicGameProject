@@ -64,16 +64,18 @@ bool MapHexItemFactory::Create(MapView* mapView)
 
 bool MapHexItemFactory::CreateTopLeftPosition(int row, int col, QPointF &topLeftPosition)
 {
+	HexagonFactory hexagonFactory;
+	HexagonItem* polygon = hexagonFactory.CreateFlatTopped();
+
 	//TODO: These values are fixed for the game!!!
 	//TODO: Refactor!!!
-	double SideLength = 48.0;
-	double Side_ToBeReplaced = 3.0 / 2.0 * SideLength;
+	double Side_ToBeReplaced = 3.0 / 2.0 * polygon->GetSideLength();
 
 	double startX = 0.0;
 	double offsetX = Side_ToBeReplaced + GLOBAL_HEXAGON_OFFSET;
 
 	//TODO: Refactor!!!
-	double Height_ToBeReplaced = sqrt(3) * SideLength;
+	double Height_ToBeReplaced = SQUARE_ROOT_THREE * polygon->GetSideLength();
 	double startY = 0.0;
 	double offsetY = Height_ToBeReplaced + GLOBAL_HEXAGON_OFFSET;
 

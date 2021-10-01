@@ -172,7 +172,7 @@ double MapView::CalcMapHeightInPixel() const
 	//TODO: These values are fixed for the game!!!
 	//TODO: Refactor!!!
 	double SideLength = 48.0;
-	double Height_ToBeReplaced = sqrt(3) * SideLength;
+	double Height_ToBeReplaced = SQUARE_ROOT_THREE * SideLength;
 
 	return ((Height_ToBeReplaced + GLOBAL_HEXAGON_OFFSET) * GameMapTileRepository::GetInstance()->GetRows()) + (Height_ToBeReplaced / 2.0);
 }
