@@ -12,23 +12,23 @@ public:
 	/** */
 	GameCityInfoDialog(QWidget *parent = 0);
 	/** */
-	void SetId(const QString& id) { ui.lineEditId->setText(id);  }
+	void SetId(const QString& id);
 	/** */
-	void SetName(const QString& name) { ui.lineEditName->setText(name); }
+	void SetName(const QString& name);
 	/** */
-	void SetOwner(const QString& owner) { ui.lineEditOwner->setText(owner); }
+	void SetOwner(const QString& owner);
 	/** */
 	void SetOwnerColor( QColor ownerColor);
 	/** */
-	void SetEfficiency(const QString& efficiency) { ui.lineEditEfficiency->setText(efficiency); }
+	void SetEfficiency(const QString& efficiency);
 	/** */
-	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
+	void SetSpecialization(const QString& specialization);
 	/** */
-	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	void SetStrength(const QString& strength);
 	/** */
-	void SetProductionProgress(int productionPorgress) { ui.progressBarProduction->setValue(productionPorgress); }
+	void SetProductionProgress(int productionPorgress);
 	/** */
-	void SetProductionText( const QString& productionText) { ui.progressBarProduction->setFormat(productionText); }
+	void SetProductionText( const QString& productionText);
 private:
 	Ui::GameCityInfoDialog ui;
 };
