@@ -4,11 +4,15 @@
 
 static const int HEXAGON_POINT_COUNT = 6;
 const double HexagonFactory::HEXAGON_DISTANCE_CENTER_CORNER = 48.0;
-static const QPointF HEXAGON_CENTER_POINT(0.0,0.0);
+static const QPointF HEXAGON_CENTER_POINT(48.0, 41.569219381653042); //TODO: Why this???
 
 HexagonItem* HexagonFactory::CreateFlatTopped()
 {
 	HexagonItem* hexagonItem = new HexagonItem(CreateFlatToppedHexagon(HEXAGON_DISTANCE_CENTER_CORNER));
+	hexagonItem->SideLength = HEXAGON_DISTANCE_CENTER_CORNER;
+	hexagonItem->BoundingRectHeight = sqrt(3) * HEXAGON_DISTANCE_CENTER_CORNER;
+	hexagonItem->BoundingRectWidth = 2.0 * HEXAGON_DISTANCE_CENTER_CORNER;
+	hexagonItem->BoundingRect = QRectF(QPointF(-hexagonItem->GetBoundingRectWidth(), -hexagonItem->GetBoundingRectHeight()), QSizeF(hexagonItem->GetBoundingRectWidth(), hexagonItem->GetBoundingRectHeight()));
 	return hexagonItem;
 }
 
@@ -23,18 +27,17 @@ QPolygonF HexagonFactory::CreateFlatToppedHexagon(double sizeLength) const
 	QPolygonF	hexPointsFlatTopped;
 	for (int index = 0; index < HEXAGON_POINT_COUNT; index++)
 	{
-		QPointF shifted(48.0, 41.569219381653042); //TODO: Why this???
-		hexPointsFlatTopped << CreateFlatToppedHexagonCorner(shifted, HEXAGON_DISTANCE_CENTER_CORNER, index);
+		hexPointsFlatTopped << CreateFlatToppedHexagonCorner(HEXAGON_DISTANCE_CENTER_CORNER, index);
 	}
 	return hexPointsFlatTopped;
 }
 
-QPointF HexagonFactory::CreateFlatToppedHexagonCorner(const QPointF& center, double distanceCenterCorner, unsigned int index) const
+QPointF HexagonFactory::CreateFlatToppedHexagonCorner(double distanceCenterCorner, unsigned int index) const
 {
 	double angle_deg = 60 * index;
 	double angle_rad = double(M_PI) / 180 * angle_deg;
-	qreal x = center.x() + distanceCenterCorner * cos(angle_rad);
-	qreal y = center.y() + distanceCenterCorner * sin(angle_rad);
+	qreal x = HEXAGON_CENTER_POINT.x() + distanceCenterCorner * cos(angle_rad);
+	qreal y = HEXAGON_CENTER_POINT.y() + distanceCenterCorner * sin(angle_rad);
 	return QPointF(x, y);
 }
 
@@ -43,16 +46,16 @@ QPolygonF HexagonFactory::CreatePointyToppedHexagon(double sizeLength) const
 	QPolygonF	hexPointsFlatTopped;
 	for (int index = 0; index < HEXAGON_POINT_COUNT; index++)
 	{
-		hexPointsFlatTopped << CreateFlatToppedHexagonCorner(HEXAGON_CENTER_POINT, HEXAGON_DISTANCE_CENTER_CORNER, index);
+		hexPointsFlatTopped << CreateFlatToppedHexagonCorner(HEXAGON_DISTANCE_CENTER_CORNER, index);
 	}
 	return hexPointsFlatTopped;
 }
 
-QPointF HexagonFactory::CreatePointyToppedHexagonCorner(const QPointF& center, double distanceCenterCorner, unsigned int index) const
+QPointF HexagonFactory::CreatePointyToppedHexagonCorner(double distanceCenterCorner, unsigned int index) const
 {
 	double angle_deg = 60 * index - 30;
 	double angle_rad = double(M_PI) / 180 * angle_deg;
-	qreal x = center.x() + distanceCenterCorner * cos(angle_rad);
-	qreal y = center.y() + distanceCenterCorner * sin(angle_rad);
+	qreal x = HEXAGON_CENTER_POINT.x() + distanceCenterCorner * cos(angle_rad);
+	qreal y = HEXAGON_CENTER_POINT.y() + distanceCenterCorner * sin(angle_rad);
 	return QPointF(x, y);
 }

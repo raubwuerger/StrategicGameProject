@@ -2,6 +2,7 @@
 #define MAPVIEWHEXITEM_H
 
 class ConnectorMapHexItem;
+class HexagonItem;
 
 //================================================================================
 /** Repräsentiert Kartenteil auf Bildschirm */
@@ -9,7 +10,7 @@ class MapHexItem : public QGraphicsPolygonItem
 {
 public:
 	/** */
-	MapHexItem(const QPointF& topLeft, const QPolygonF& hexagon);
+	MapHexItem(const QPointF& topLeft, const HexagonItem& hexagon);
 	/** */
 	~MapHexItem();
 	/** */

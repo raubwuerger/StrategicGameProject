@@ -13,11 +13,12 @@
 #include "model\ModelCityType.h"
 #include "game\GameOwner.h"
 #include "HexagonFactory.h"
+#include "HexagonItem.h"
 
 bool MapCityItemFactory::Create(MapView* mapView)
 {
 	HexagonFactory hexagonFactory;
-	QPolygonF polygon = hexagonFactory.CreateFlatToppedHexagon();
+	HexagonItem* polygon = hexagonFactory.CreateFlatTopped();
 	if (nullptr == mapView)
 	{
 		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
@@ -45,7 +46,7 @@ bool MapCityItemFactory::Create(MapView* mapView)
 		}
 
 		QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
-		MapCityItem *mapItem = new MapCityItem(topLeftPosition, polygon);
+		MapCityItem *mapItem = new MapCityItem(topLeftPosition, *polygon);
 		mapItem->SetGameMapItemId(gameMapId);
 		mapItem->SetTerrainImage(GetImage(gameCityItem));
 		mapItem->MapCityItemId = gameCityItem->GetId();
@@ -83,10 +84,10 @@ bool MapCityItemFactory::Create(MapView* mapView, const GameCity* gameCityItem)
 	}
 
 	HexagonFactory hexagonFactory;
-	QPolygonF polygon = hexagonFactory.CreateFlatToppedHexagon();
+	HexagonItem* polygon = hexagonFactory.CreateFlatTopped();
 
 	QPointF topLeftPosition = mapHexItem->GetTopLeftPoint();
-	MapCityItem *mapItem = new MapCityItem(topLeftPosition, polygon);
+	MapCityItem *mapItem = new MapCityItem(topLeftPosition, *polygon);
 	mapItem->SetGameMapItemId(gameMapId);
 	mapItem->SetTerrainImage(GetImage(gameCityItem));
 	mapItem->MapCityItemId = gameCityItem->GetId();

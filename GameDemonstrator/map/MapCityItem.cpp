@@ -1,30 +1,25 @@
 #include "stdafx.h"
 #include "MapCityItem.h"
 #include "connectors/ConnectorMapCityItem.h"
+#include "HexagonItem.h"
 
 /************************************************************************/
 /* MapViewHexItem                                                       */
 /************************************************************************/
-MapCityItem::MapCityItem(const QPointF& topLeft, const QPolygonF& hexagon)
+MapCityItem::MapCityItem(const QPointF& topLeft, const HexagonItem& hexagonItem)
 	: TopLeftPoint(topLeft),
 	EventItem(nullptr),
 	TerrainImage(nullptr),
 	GameMapItemId(-1),
-	Hexagon(hexagon)
+	Hexagon(hexagonItem.GetHexagon())
 {
-	//TODO: These values are fixed for the game!!!
-	//TODO: Refactor!!!
-	double SideLength = 48.0;
-	double Height_ToBeReplaced = sqrt(3) * SideLength;
-	double Width_ToBeReplaced = 2.0 * SideLength;
-
-	BoundingRect = QRectF(QPointF(-Width_ToBeReplaced, -Height_ToBeReplaced), QSizeF(Width_ToBeReplaced, Height_ToBeReplaced));
+	BoundingRect = QRectF(QPointF(-hexagonItem.GetBoundingRectWidth(), -hexagonItem.GetBoundingRectHeight()), QSizeF(hexagonItem.GetBoundingRectWidth(), hexagonItem.GetBoundingRectHeight()));
 
 	BoundingRect.moveTopLeft(topLeft);
 	Hexagon.translate(topLeft);
 
-	this->CenterPoint.rx() = topLeft.x() + (Width_ToBeReplaced / 2.0);
-	this->CenterPoint.ry() = topLeft.y() + (Height_ToBeReplaced / 2.0);
+	this->CenterPoint.rx() = topLeft.x() + (hexagonItem.GetBoundingRectWidth() / 2.0);
+	this->CenterPoint.ry() = topLeft.y() + (hexagonItem.GetBoundingRectHeight() / 2.0);
 	
 	CreateHexPolygon();
 	setAcceptHoverEvents(true);

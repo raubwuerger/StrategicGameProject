@@ -8,11 +8,12 @@
 #include "MapHexItemRepository.h"
 #include "MapView.h"
 #include "HexagonFactory.h"
+#include "HexagonItem.h"
 
 bool MapHexItemFactory::Create(MapView* mapView)
 {
 	HexagonFactory hexagonFactory;
-	QPolygonF polygon = hexagonFactory.CreateFlatToppedHexagon();
+	HexagonItem* polygon = hexagonFactory.CreateFlatTopped();
 
 	bool showText = true;
 	bool showHexBorder = true;
@@ -44,7 +45,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 			GameMapTile* gameMapItem = row.at(currentCol);
 			QPointF topLeftPosition;
 			CreateTopLeftPosition(currentRow, currentCol, topLeftPosition);
-			MapHexItem *mapItem = new MapHexItem(topLeftPosition, polygon);
+			MapHexItem *mapItem = new MapHexItem(topLeftPosition, *polygon);
 			mapItem->SetRowAndCol(currentRow, currentCol);
 			mapItem->SetGameMapItemId(gameMapItem->GetId());
 			mapItem->SetTerrainImage(GetImage(gameMapItem));
