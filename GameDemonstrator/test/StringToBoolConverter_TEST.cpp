@@ -9,6 +9,16 @@ void StringToBoolConverter_TEST::Test()
 	int INVALID_2 = 2;
 	int INVALID_neg1 = -1;
 
+	QString VALID_TRUE = "trUe";
+	QString VALID_OK = "OK";
+	QString VALID_FALSE = "FaLSe";
+	QString VALID_NOK = "nok";
+
+	QString INVALID_NULL;
+	QString INVALID_EMPTY = "";
+	QString INVALID_TOLONG = "Falses";
+	QString INVALID_TOSHORT = "n";
+
 	bool booleanValue;
 
 	StringToBoolConverter Converter;
@@ -42,4 +52,43 @@ void StringToBoolConverter_TEST::Test()
 		Q_ASSERT(false);
 	}
 	
+	if (false == Converter.Convert(VALID_TRUE, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (false == Converter.Convert(VALID_OK, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (false == Converter.Convert(VALID_FALSE, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (false == Converter.Convert(VALID_NOK, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (true == Converter.Convert(INVALID_NULL, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (true == Converter.Convert(INVALID_EMPTY, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (true == Converter.Convert(INVALID_TOLONG, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
+
+	if (true == Converter.Convert(INVALID_TOSHORT, &booleanValue))
+	{
+		Q_ASSERT(false);
+	}
 }
