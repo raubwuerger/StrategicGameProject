@@ -207,7 +207,7 @@
     </rect>
    </property>
    <property name="value">
-    <number>24</number>
+    <number></number>
    </property>
    <property name="alignment">
     <set>Qt::AlignJustify|Qt::AlignVCenter</set>

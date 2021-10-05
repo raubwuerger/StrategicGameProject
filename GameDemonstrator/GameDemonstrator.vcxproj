@@ -257,6 +257,7 @@
     <ClCompile Include="connectors\ConnectorMapCityItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapHexItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapUnitItem.cpp" />
+    <ClCompile Include="mapCreator\GameCityCreatorSimple.cpp" />
     <ClCompile Include="test\DoUnitTest.cpp" />
     <ClCompile Include="test\StringToBoolConverter_TEST.cpp" />
     <CustomBuild Include="connectors\ConnectorMapCityItem.h">
@@ -896,6 +897,8 @@
     <ClInclude Include="..\StandardLibQt\ImageLoader.h" />
     <ClInclude Include="..\StandardLibQt\StringToBoolConverter.h" />
     <ClInclude Include="Action.h" />
+    <ClInclude Include="mapCreator\GameCityCreatorSimple.h" />
+    <ClInclude Include="mapCreator\GameCityCreatorInterface.h" />
     <ClInclude Include="test\DoUnitTest.h" />
     <ClInclude Include="test\StringToBoolConverter_TEST.h" />
     <CustomBuild Include="dialogs\CreateNewGameDialog.h">

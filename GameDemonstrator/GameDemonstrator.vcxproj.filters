@@ -875,6 +875,9 @@
     <ClCompile Include="test\StringToBoolConverter_TEST.cpp">
       <Filter>Source Dateien\test</Filter>
     </ClCompile>
+    <ClCompile Include="mapCreator\GameCityCreatorSimple.cpp">
+      <Filter>Source Dateien\MapCreator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1245,6 +1248,12 @@
     </ClInclude>
     <ClInclude Include="test\StringToBoolConverter_TEST.h">
       <Filter>Header Dateien\test</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\GameCityCreatorInterface.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\GameCityCreatorSimple.h">
+      <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

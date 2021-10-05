@@ -35,8 +35,9 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 {
 	ui.setupUi(this);
 
+
 //	DoSomeExperiments();
-	DoUnitTests();
+//	DoUnitTests();
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
