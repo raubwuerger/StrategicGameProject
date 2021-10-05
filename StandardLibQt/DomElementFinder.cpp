@@ -2,6 +2,7 @@
 #include "DomElementFinder.h"
 #include <QDomNode>
 #include "LogInterface.h"
+#include "StringToBoolConverter.h"
 
 /************************************************************************/
 /* CDomElementFinder                                                    */
@@ -57,7 +58,8 @@ bool DomElementFinder::TryFindElement(const QString& elementName, bool& value) c
 	}
 
 	bool boolValue;
-	if (false == IsTextBoolean(element.text(), &boolValue))
+	StringToBoolConverter stringToBoolConverter;
+	if (false == stringToBoolConverter.Convert(element.text(), &boolValue))
 	{
 		return false;
 	}
@@ -75,26 +77,4 @@ bool DomElementFinder::ExtractElement( const QString& elementName, QDomElement& 
 		return false;
 	}
 	return true;
-}
-
-bool DomElementFinder::IsTextBoolean(const QString& text, bool* value) const
-{
-	bool conversionOk;
-	int intValue = text.toInt(&conversionOk);
-	if (false == conversionOk)
-	{
-		//TODO: Here should be checked for string "true", "false", "io", "nio"
-		return false;
-	}
-	if ( intValue == 0 )
-	{
-		*value = false;
-		return true;
-	}
-	if (intValue == 1)
-	{
-		*value = true;
-		return true;
-	}
-	return false;
 }
