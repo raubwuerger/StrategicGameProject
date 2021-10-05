@@ -244,6 +244,7 @@
     <ClCompile Include="..\StandardLibQt\LogManager.cpp" />
     <ClCompile Include="..\StandardLibQt\LogManagerThread.cpp" />
     <ClCompile Include="..\StandardLibQt\LogMessage.cpp" />
+    <ClCompile Include="..\StandardLibQt\StringToBoolConverter.cpp" />
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="BaseRepository.cpp" />
     <ClCompile Include="command\CommandBasic.cpp" />
@@ -256,6 +257,8 @@
     <ClCompile Include="connectors\ConnectorMapCityItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapHexItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapUnitItem.cpp" />
+    <ClCompile Include="test\DoUnitTest.cpp" />
+    <ClCompile Include="test\StringToBoolConverter_TEST.cpp" />
     <CustomBuild Include="connectors\ConnectorMapCityItem.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='GameDemonstrator_TEST|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -891,7 +894,10 @@
     <ClInclude Include="..\StandardLibQt\DomNodeListValueExtractor.h" />
     <ClInclude Include="..\StandardLibQt\DomValueExtractor.h" />
     <ClInclude Include="..\StandardLibQt\ImageLoader.h" />
+    <ClInclude Include="..\StandardLibQt\StringToBoolConverter.h" />
     <ClInclude Include="Action.h" />
+    <ClInclude Include="test\DoUnitTest.h" />
+    <ClInclude Include="test\StringToBoolConverter_TEST.h" />
     <CustomBuild Include="dialogs\CreateNewGameDialog.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='GameDemonstrator_TEST|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

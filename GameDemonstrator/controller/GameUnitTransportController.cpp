@@ -7,38 +7,46 @@
 #include "model\ModelUnitType.h"
 
 GameUnitTransportController::GameUnitTransportController(GameUnit* playerUnit)
-	: GameUnitObject(playerUnit)
+	: UnitToTransport(playerUnit),
+	TransporterUnit(nullptr)
 {
 
 }
 
-bool GameUnitTransportController::TransportUnit(const MapHexItem* destination) const
+bool GameUnitTransportController::TransportUnit(const MapHexItem* destination)
 {
 	Q_ASSERT(destination);
+	if (false == UnitToTransport->HasMovementPointsLeft())
+	{
+		return false;
+	}
+	
 	if (false == CanBeTransported(destination))
 	{
 		return false;
 	}
+
+	EmbarkUnit();
 	return true;
 }
 
 bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination) const
 {
 	Q_ASSERT(destination);
-	GameUnit* transporterUnit = GetOwnUnitOnDestinationMapTile(destination->GetId());
-	if (nullptr == transporterUnit)
+	TransporterUnit = GetOwnUnitOnDestinationMapTile(destination->GetId());
+	if (nullptr == TransporterUnit)
 	{
 		return false;
 	}
 	
-	const ModelUnitType* transporterModel = transporterUnit->GetModelUnitType();
-	const ModelUnitType* transportedModel = GameUnitObject->GetModelUnitType();
+	const ModelUnitType* transporterModel = TransporterUnit->GetModelUnitType();
+	const ModelUnitType* transportedModel = UnitToTransport->GetModelUnitType();
 	if (false == transporterModel->GetTransportCapacityByTerrainDomain(transportedModel->GetTerrainDomain()))
 	{
 		return false;
 	}
 
-	int freeTransportCapacity = GetFreeTransportCapacity(transporterUnit);
+	int freeTransportCapacity = GetFreeTransportCapacity(TransporterUnit);
 	if (0 >= freeTransportCapacity)
 	{
 		return false;
@@ -56,6 +64,11 @@ int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) co
 	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnitIds.size();
 }
 
+void GameUnitTransportController::EmbarkUnit()
+{
+
+}
+
 GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMapItemId) const
 {
 	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapItemId);
@@ -64,7 +77,7 @@ GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMa
 		return nullptr;
 	}
 
-	if (gameUnitItem->GetModelOwnerTypeId() != GameUnitObject->GetModelOwnerTypeId())
+	if (gameUnitItem->GetModelOwnerTypeId() != UnitToTransport->GetModelOwnerTypeId())
 	{
 		return nullptr;
 	}

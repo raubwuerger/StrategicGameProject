@@ -866,6 +866,15 @@
     <ClCompile Include="map\HexagonFactory.cpp">
       <Filter>Source Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\StandardLibQt\StringToBoolConverter.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="test\DoUnitTest.cpp">
+      <Filter>Source Dateien\test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\StringToBoolConverter_TEST.cpp">
+      <Filter>Source Dateien\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1227,6 +1236,15 @@
     </ClInclude>
     <ClInclude Include="map\HexagonFactory.h">
       <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\StringToBoolConverter.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="test\DoUnitTest.h">
+      <Filter>Header Dateien\test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\StringToBoolConverter_TEST.h">
+      <Filter>Header Dateien\test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

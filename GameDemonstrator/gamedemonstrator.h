@@ -45,6 +45,8 @@ private:
 	Ui::GameDemonstratorClass	ui;
 private:
 	void DoSomeExperiments();
+	/** */
+	void DoUnitTests();
 };
 
 #endif // GAMEDEMONSTRATOR_H

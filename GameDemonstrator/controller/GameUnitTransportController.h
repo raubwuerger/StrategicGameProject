@@ -9,8 +9,8 @@ class GameUnitTransportController
 public:
 	/** */
 	GameUnitTransportController(GameUnit* playerUnit);
-	/** */
-	bool TransportUnit(const MapHexItem* destination) const;
+	/** true == Unit is transported, false == unable to transport unit */
+	bool TransportUnit(const MapHexItem* destination);
 private:
 	/** */
 	GameUnit* GetOwnUnitOnDestinationMapTile(int gameMapItemId) const;
@@ -19,9 +19,11 @@ private:
 	/** */
 	int GetFreeTransportCapacity(GameUnit* gameUnit) const;
 	/** */
+	void EmbarkUnit();
 	//TODO: CanUnitEmbark, CanUnitDisembark
 private:
-	GameUnit* GameUnitObject;
+	GameUnit*			UnitToTransport;
+	mutable GameUnit*	TransporterUnit;
 };
 
 #endif // GAMEUNITTRANSPORTCONTROLLER_H

@@ -84,6 +84,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	GameUnitFactory gameUnitItemFactory;
 	GameUnit* movedGameUnitItem = gameUnitItemFactory.UpdateGameUnit(gameUnitParameterObject);
 
+	//TODO: Kann man auch anders Lösen, indem man gleich den CenterPoint des Ziel-Kartenteils nimmt
 	const QPointF& sourceCenterPoint = sourceMapHexItem->GetCenterPoint();
 	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
 	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);

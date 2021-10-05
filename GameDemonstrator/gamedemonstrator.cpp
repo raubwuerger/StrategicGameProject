@@ -35,7 +35,8 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	DoSomeExperiments();
+//	DoSomeExperiments();
+	DoUnitTests();
 
 	FileMenu = menuBar()->addMenu(tr("&File"));
 	ViewMenu = menuBar()->addMenu(tr("&View"));
@@ -224,4 +225,11 @@ void GameDemonstrator::DoSomeExperiments()
 {
 	ExperimentalClass exp;
 	exp.DoExperimental();
+}
+
+#include "test/DoUnitTest.h"
+void GameDemonstrator::DoUnitTests()
+{
+	DoUnitTest unitTest;
+	unitTest.DoTests();
 }
