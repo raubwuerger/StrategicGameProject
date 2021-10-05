@@ -56,6 +56,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>true</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>2</Id>
@@ -112,6 +113,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>true</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>3</Id>
@@ -165,6 +167,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>true</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>4</Id>
@@ -224,6 +227,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>true</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>5</Id>
@@ -282,6 +286,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>true</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>6</Id>
@@ -338,6 +343,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>false</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>7</Id>
@@ -394,6 +400,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>false</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>8</Id>
@@ -449,6 +456,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>false</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>9</Id>
@@ -501,6 +509,7 @@
 			<Air>4</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>false</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>10</Id>
@@ -554,6 +563,7 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>false</CanUnitBeTransported>
 	</UnitType>
 	<UnitType>
 		<Id>11</Id>
@@ -600,5 +610,6 @@
 			<Air>0</Air>
 			<Sea>0</Sea>
 		</TransportCapacity>
+		<CanUnitBeTransported>false</CanUnitBeTransported>
 	</UnitType>
 </UnitTypes>

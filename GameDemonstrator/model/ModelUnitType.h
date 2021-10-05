@@ -46,6 +46,8 @@ public:
 	int GetTransportCapacityByTerrainDomain(const QString& terrainDomain) const;
 	/** Stupid. Gets first transport capacity greater one */
 	int GetTransportCapacityStupid() const;
+	/** */
+	bool GetCanUnitBeTransported() const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
@@ -65,6 +67,7 @@ private:
 	bool			ReceiveCounterattack;
 	int				ProductionCost;
 	QString			TerrainDomain;
+	bool			CanUnitBeTransported;
 };
 
 #endif

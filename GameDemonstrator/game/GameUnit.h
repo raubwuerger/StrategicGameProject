@@ -57,6 +57,8 @@ public:
 	/** */
 	int GetBaseMovementPoints() const;
 	/** */
+	bool HasMovementPointsLeft() const;
+	/** */
 	bool InitRuntimeData();
 	/** */
 	GameUnitRuntimeData* GetRuntimeData();

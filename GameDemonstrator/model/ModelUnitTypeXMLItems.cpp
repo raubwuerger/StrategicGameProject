@@ -26,6 +26,7 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK = "GetCounterat
 const QString ModelUnitTypeXMLItems::SUBELEMENT_PRODUCTIONCOST = "ProductionCost";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINDOMAIN = "TerrainDomain";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TRANSPORTCAPACITY = "TransportCapacity";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_CAN_UNIT_BE_TRANSPORTED = "CanUnitBeTransported";
 
 
 

@@ -30,6 +30,7 @@ public:
 	const static QString SUBELEMENT_PRODUCTIONCOST;
 	const static QString SUBELEMENT_TERRAINDOMAIN;
 	const static QString SUBELEMENT_TRANSPORTCAPACITY;
+	const static QString SUBELEMENT_CAN_UNIT_BE_TRANSPORTED;
 };
 
 

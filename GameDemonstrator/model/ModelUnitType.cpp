@@ -13,7 +13,8 @@ ModelUnitType::ModelUnitType(int id)
 	CanOccupieCity(NOT_INITIALIZED_BOOL),
 	ReceiveCounterattack(NOT_INITIALIZED_BOOL),
 	ProductionCost(NOT_INITIALIZED_INT),
-	TerrainDomain(NOT_INITIALIZED_STRING)
+	TerrainDomain(NOT_INITIALIZED_STRING),
+	CanUnitBeTransported(NOT_INITIALIZED_BOOL)
 {
 }
 
@@ -110,4 +111,9 @@ int ModelUnitType::GetTransportCapacityStupid() const
 		return transportCapacity;
 	}
 	return NOT_INITIALIZED_INT;
+}
+
+bool ModelUnitType::GetCanUnitBeTransported() const
+{
+	return CanUnitBeTransported;
 }
