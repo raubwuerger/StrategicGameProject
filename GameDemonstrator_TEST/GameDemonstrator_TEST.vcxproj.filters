@@ -38,5 +38,8 @@
     <ClCompile Include="TestFiles\HeightMapPercentageSplitter.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="StringToBoolConverter_TEST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
