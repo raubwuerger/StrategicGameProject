@@ -89,6 +89,11 @@ int GameCity::GetSpezializedUnitTypeId() const
 	return SpezializedUnitTypeId;
 }
 
+bool GameCity::HasSpezializedUnitType() const
+{
+	return SpezializedUnitTypeId != NOT_INITIALIZED_INT;
+}
+
 bool GameCity::Move() const
 {
 	return false; // Nothing to do
@@ -147,7 +152,7 @@ void GameCity::ResetDefenceValue() const
 void GameCity::UpdateUnitProduction() const
 {
 	int productionProgress = CityType->GetBaseProductionPoints();
-	if (UnitProduction->GetGameUnitId() == this->SpezializedUnitTypeId)
+	if (UnitProduction->GetModelTypeId() == this->SpezializedUnitTypeId)
 	{
 		productionProgress += CityType->GetBaseProductionPoints();
 	}

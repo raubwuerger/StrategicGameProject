@@ -3,7 +3,7 @@
 
 GameUnitProduction::GameUnitProduction(int gameCityId) 
 	: GameCityId(gameCityId),
-	GameUnitId(NOT_INITIALIZED_INT),
+	ModelUnitTypeId(NOT_INITIALIZED_INT),
 	ProductionProgress(NOT_INITIALIZED_INT)
 {
 
@@ -12,7 +12,7 @@ GameUnitProduction::GameUnitProduction(int gameCityId)
 GameUnitProduction::GameUnitProduction(const GameUnitProduction& rhs)
 {
 	GameCityId = rhs.GameCityId;
-	GameUnitId = rhs.GameUnitId;
+	ModelUnitTypeId = rhs.ModelUnitTypeId;
 	ProductionProgress = rhs.ProductionProgress;
 }
 
@@ -21,18 +21,18 @@ int GameUnitProduction::GetGameCityId() const
 	return GameCityId;
 }
 
-void GameUnitProduction::SetGameUnitId(int gameUnitId) const
+void GameUnitProduction::SetModelTypeId(int modelTypeId) const
 {
-	if (GameUnitId != gameUnitId)
+	if (ModelUnitTypeId != modelTypeId)
 	{
 		ClearProductionProgress();
 	}
-	GameUnitId = gameUnitId;
+	ModelUnitTypeId = modelTypeId;
 }
 
-int GameUnitProduction::GetGameUnitId() const
+int GameUnitProduction::GetModelTypeId() const
 {
-	return GameUnitId;
+	return ModelUnitTypeId;
 }
 
 void GameUnitProduction::UpdateProductionProgress(int updateValue) const
@@ -57,7 +57,7 @@ void GameUnitProduction::SetProductionProgress(int progress) const
 
 bool GameUnitProduction::IsGameUnitInProduction() const
 {
-	return GameUnitId != NOT_INITIALIZED_INT;
+	return ModelUnitTypeId != NOT_INITIALIZED_INT;
 }
 
 QString GameUnitProduction::toString() const
@@ -66,6 +66,6 @@ QString GameUnitProduction::toString() const
 	toString += "GameCityId: ";
 	toString += QString::number(GameCityId);
 	toString += " GameUnitId: ";
-	toString += QString::number(GameUnitId);
+	toString += QString::number(ModelUnitTypeId);
 	return toString;
 }

@@ -44,6 +44,8 @@ public:
 	/** */
 	int GetSpezializedUnitTypeId() const;
 	/** */
+	bool HasSpezializedUnitType() const;
+	/** */
 	void UpdateTurn() const override;
 	/** */
 	bool Move() const override;

@@ -48,7 +48,7 @@ bool GameUnitProductionController::UpdateGameUnitProduction(const GameUnitProduc
 	}
 	
 	const GameUnitProduction* toUpdate = CityProductions[gameUnitProduction.GetGameCityId()];
-	toUpdate->SetGameUnitId(gameUnitProduction.GetGameUnitId());
+	toUpdate->SetModelTypeId(gameUnitProduction.GetModelTypeId());
 	toUpdate->SetProductionProgress(gameUnitProduction.GetProductionProgress());
 	return true;
 }
@@ -68,7 +68,7 @@ const GameUnitProduction* GameUnitProductionController::CreateDefaultGameUnitPro
 	}
 
 	GameUnitProduction* gameUnitProduction = new GameUnitProduction(cityId);
-	gameUnitProduction->SetGameUnitId(GAME_UNIT_ID_EFFICIENCY);
+	gameUnitProduction->SetModelTypeId(MODEL_UNIT_ID_EFFICIENCY);
 	gameUnitProduction->SetProductionProgress(0);
 
 	CityProductions.insert(cityId, gameUnitProduction);

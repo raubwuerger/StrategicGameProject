@@ -291,7 +291,7 @@ bool SerializeXML::SaveCitytItem(QXmlStreamWriter& xmlWriter, const GameCity* ga
 bool SerializeXML::WriteCityProduction(QXmlStreamWriter& xmlWriter, const GameCity* gameCityItem)
 {
 	xmlWriter.writeStartElement(SerializeXMLItems::CITIES_UNITPRODUCTION);
-		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_UNITPRODUCTIONID, QString::number(gameCityItem->GetUnitProduction()->GetGameUnitId()));
+		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_UNITPRODUCTIONID, QString::number(gameCityItem->GetUnitProduction()->GetModelTypeId()));
 		xmlWriter.writeTextElement(SerializeXMLItems::CITIES_UNITPRODUCTIONPROGRESS, QString::number(gameCityItem->GetUnitProduction()->GetProductionProgress()));
 	xmlWriter.writeEndElement();
 	return true;

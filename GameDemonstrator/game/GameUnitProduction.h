@@ -11,9 +11,9 @@ public:
 	/** */
 	int GetGameCityId() const;
 	/** */
-	void SetGameUnitId(int gameUnitId) const;
+	void SetModelTypeId(int modelTypeId) const;
 	/** */
-	int GetGameUnitId() const;
+	int GetModelTypeId() const;
 	/** */
 	void UpdateProductionProgress(int updateValue) const;
 	/** */
@@ -28,7 +28,7 @@ public:
 	QString toString() const;
 private:
 	int			GameCityId;
-	mutable int	GameUnitId;			//TODO: 9999 == Efficiency
+	mutable int	ModelUnitTypeId;			//TODO: 9999 == Efficiency
 	mutable int	ProductionProgress;
 };
 

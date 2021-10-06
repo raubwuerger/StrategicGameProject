@@ -1411,9 +1411,6 @@
       <Filter>Header Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
-      <Filter>Header Dateien</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
     <CustomBuild Include="dialogs\GameCitySettingsDialog.h">
@@ -1445,6 +1442,9 @@
     </CustomBuild>
     <CustomBuild Include="command\CommandCreateHeightMap.h">
       <Filter>Header Dateien\Command</Filter>
+    </CustomBuild>
+    <CustomBuild Include="gameController\GameInfoDialogController.h">
+      <Filter>Header Dateien\GameController</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
