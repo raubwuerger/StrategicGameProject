@@ -113,23 +113,23 @@ void GameInfoDialogController::SlotShowGameCityInfo(int gameCityId)
 	GameCityInfoDialogObject->SetSpecialization(GetSpecializedUnitName(gameCity));
 	GameCityInfoDialogObject->SetStrength(CreateCityStrength(gameCity));
 	GameCityInfoDialogObject->SetProductionProgress(gameCity->GetUnitProduction()->GetProductionProgress());
-	GameCityInfoDialogObject->SetProductionText(GetProducedUnitName(gameCity->GetUnitProduction()->GetGameUnitId()));
+	GameCityInfoDialogObject->SetProductionText(GetProducedUnitName(gameCity->GetUnitProduction()->GetModelTypeId()));
 }
 
-QString GameInfoDialogController::GetProducedUnitName(int gameUnitId) const
+QString GameInfoDialogController::GetProducedUnitName(int modelTypeId) const
 {
-	if (gameUnitId == GAME_UNIT_ID_EFFICIENCY )
+	if (modelTypeId == MODEL_UNIT_ID_EFFICIENCY )
 	{
 		return GAME_UNIT_STRING_EFFICIENCY;
 	}
 
-	GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetById(gameUnitId);
-	if (nullptr == gameUnitItem)
+	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(modelTypeId);
+	if (nullptr == modelUnitType)
 	{
-		Q_ASSERT(gameUnitItem);
+		Q_ASSERT(modelUnitType);
 		return "???";
 	}
-	return gameUnitItem->GetModelUnitType()->GetName();
+	return modelUnitType->GetName();
 }
 
 void GameInfoDialogController::SlotShowTurnInfoDialog()
@@ -150,7 +150,7 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 	GameCitySettingsDialogObject->SetName(gameCity->GetName());
 	GameCitySettingsDialogObject->SetEfficiency(QString::number(gameCity->GetCurrentEfficiency()));
 	GameCitySettingsDialogObject->SetStrength(QString::number(gameCity->GetCurrentStrength()));
-	GameCitySettingsDialogObject->SetSpecialization(GetUnitType(gameCity->GetSpezializedUnitTypeId()));
+	GameCitySettingsDialogObject->SetSpecialization(GetSpezializedUnitType(gameCity));
 	GameCitySettingsDialogObject->SetGameUnitProduction(gameCity->GetUnitProduction());
 	if (GameCitySettingsDialogObject->exec() == QDialog::Rejected)
 	{
@@ -204,9 +204,14 @@ void GameInfoDialogController::SlotShowGameItemSettinsDialog(int gameItemId)
 	}
 }
 
-QString GameInfoDialogController::GetUnitType(int id)
+QString GameInfoDialogController::GetSpezializedUnitType(const GameCity* gameCity)
 {
-	const ModelUnitType* unitType = ModelUnitTypeRepository::GetInstance()->GetById(id);
+	if (false == gameCity->HasSpezializedUnitType())
+	{
+		return "NA";
+	}
+
+	const ModelUnitType* unitType = ModelUnitTypeRepository::GetInstance()->GetById(gameCity->GetSpezializedUnitTypeId());
 	if (nullptr == unitType)
 	{
 		Q_ASSERT(unitType);

@@ -57,9 +57,9 @@ private:
 	/** */
 	QString GetSpecializedUnitName(const GameCity* gameCity);
 	/** */
-	QString GetUnitType(int id);
+	QString GetSpezializedUnitType(const GameCity* gameCity);
 	/** */
-	QString GetProducedUnitName(int gameUnitId) const;
+	QString GetProducedUnitName(int modelTypeId) const;
 	/** */
 	void CreateGameUnitSettingsDialog();
 private:

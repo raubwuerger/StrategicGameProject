@@ -93,7 +93,7 @@ private:
 	void SetEfficiencyIcon();
 private:
 	/** */
-	const ModelUnitType* GetModelUnitTypeFromGameUnitId(int gameUnitId) const;
+	const ModelUnitType* GetModelUnitType(int unitTypeId) const;
 private:
 	Ui::CityEditDialog			ui;
 	QVector<QProgressBar*>		ProductionItems;
