@@ -69,6 +69,9 @@ private:
 	int GetBaseEfficency(int cityId) const;
 	/** */
 	int GetBaseStrength(int cityId) const;
+	/** */
+	GameUnitProduction* CreateGameUnitProductionDefault(int gameCityId);
+
 private:
 	const QString	DefaultCityName;
 };

@@ -74,19 +74,39 @@ bool GameCityCreatorSimple::PlaceCities()
 {
 	//TODO: Mininmale Anzahl der Städte sollte sich nach der Anzahl der Spieler richten!
 	//TODO: Was ist zu tun wenn die minimale Anzahl der Städt größer als die zur Verfügung stehenden Felder ist -> Minimale Kartengröße erzwingen???
-
-	const int MAP_CITY_FACTOR = 20; //TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
-	const int PLAYER_COUNT = 4;		//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
-	const int CITY_EFFICIENCY_LOWER_BOUND = 80;		//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
-	const int CITY_EFFICIENCY_UPPER_BOUND = 120;	//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
-
-	std::vector<int> validMapTileIds = GetValidMapTileIds();
-	if (PLAYER_COUNT > validMapTileIds.size() )
+	std::vector<int> concreteMapTileIds = CreateConcreteMapTileIds();
+	if (true == concreteMapTileIds.empty())
 	{
+		Q_ASSERT(false);
 		return false;
 	}
 
-	int cityCount = validMapTileIds.size() / MAP_CITY_FACTOR;
+	GameCityFactory gameCityFactory;
+	for (int concreteMapTileIdIndex = 0; concreteMapTileIdIndex < concreteMapTileIds.size();concreteMapTileIdIndex++)
+	{
+		GameCityParameterObject* cityParameterObject = CreateGameCityObject(concreteMapTileIds[concreteMapTileIdIndex]);
+		GameCity* gameCity = gameCityFactory.Create(*cityParameterObject);
+		if (nullptr == gameCity)
+		{
+//			return false;
+		}
+	}
+
+	return true;
+}
+
+std::vector<int> GameCityCreatorSimple::CreateConcreteMapTileIds()
+{
+	const int MAP_CITY_FACTOR = 20; //TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+	const int PLAYER_COUNT = 4;		//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+	std::vector<int> validMapTileIds = GetValidMapTileIds();
+	if (PLAYER_COUNT > validMapTileIds.size())
+	{
+		return std::vector<int>();
+	}
+
+	int validMapTileCount = validMapTileIds.size();
+	int cityCount = validMapTileCount / MAP_CITY_FACTOR;
 	int cityCountTemp = cityCount / PLAYER_COUNT;
 	cityCount = cityCountTemp * PLAYER_COUNT;
 	if (PLAYER_COUNT > cityCount)
@@ -94,7 +114,12 @@ bool GameCityCreatorSimple::PlaceCities()
 		cityCount = PLAYER_COUNT;
 	}
 
-	return false;
+	std::vector<int> concreteMapTileIds;
+	for (int cityIndex = 0; cityIndex < validMapTileCount; cityIndex += MAP_CITY_FACTOR)
+	{
+		concreteMapTileIds.push_back(validMapTileIds[cityIndex]);
+	}
+	return concreteMapTileIds;
 }
 
 std::vector<int> GameCityCreatorSimple::GetValidMapTileIds()
@@ -118,7 +143,17 @@ std::vector<int> GameCityCreatorSimple::GetValidMapTileIds()
 	return validMapTileIds;
 }
 
-GameCityParameterObject* GameCityCreatorSimple::CreateGameCityObject()
+GameCityParameterObject* GameCityCreatorSimple::CreateGameCityObject( int gameMapId )
 {
+	const int CITY_EFFICIENCY_LOWER_BOUND = 80;		//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+	const int CITY_EFFICIENCY_UPPER_BOUND = 120;	//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+
+	static int CITY_ID = 0;
+	static const int DEFAULT_OWNER_TYPE_ID = 1;
+	static const int DEFAULT_CITY_TYPE_ID = 1;
+	TemporaryGameCityParameterObject->Id = ++CITY_ID;
+	TemporaryGameCityParameterObject->GameOwnerId = DEFAULT_OWNER_TYPE_ID;
+	TemporaryGameCityParameterObject->GameMapTileId = gameMapId;
+	TemporaryGameCityParameterObject->ModelCityTypeId = DEFAULT_CITY_TYPE_ID;
 	return TemporaryGameCityParameterObject;
 }

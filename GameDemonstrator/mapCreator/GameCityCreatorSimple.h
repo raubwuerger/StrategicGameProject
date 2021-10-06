@@ -21,9 +21,11 @@ private:
 	/** */
 	bool PlaceCities();
 	/** */
-	std::vector<int>	GetValidMapTileIds();
+	std::vector<int> GetValidMapTileIds();
 	/** */
-	GameCityParameterObject* CreateGameCityObject();
+	std::vector<int> CreateConcreteMapTileIds();
+	/** */
+	GameCityParameterObject* CreateGameCityObject( int gameMapId );
 private:
 	friend class GameCityFactory;
 	std::map<int,double>			ValidTerrainTypesProcent; //<ModelMapTileId,Percentage>

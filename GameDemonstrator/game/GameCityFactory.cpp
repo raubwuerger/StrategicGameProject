@@ -76,6 +76,7 @@ GameCity* GameCityFactory::Create(const GameCityParameterObject obj)
 
 	newGameCity->Name = CreateCityName(newGameCity->GetId());
 	newGameCity->InitRuntimeData();
+	newGameCity->SetGameUnitProduction(CreateGameUnitProductionDefault(newGameCity->GetId()));
 
 	if (false == GameCityRepository::GetInstance()->Register(newGameCity))
 	{
@@ -85,6 +86,20 @@ GameCity* GameCityFactory::Create(const GameCityParameterObject obj)
 	}
 
 	return newGameCity;
+}
+
+GameUnitProduction* GameCityFactory::CreateGameUnitProductionDefault(int gameCityId)
+{
+	static const int DEFAULT_GAME_UNIT_ID = 1; //Infantry
+	GameUnitProduction* gameUnitProduction = new GameUnitProduction(gameCityId);
+	gameUnitProduction->SetModelTypeId(DEFAULT_GAME_UNIT_ID);
+	gameUnitProduction->ClearProductionProgress();
+	if (false == GameUnitProductionController::GetInstance()->RegisterGameUnitProduction(gameUnitProduction))
+	{
+		//TODO: Was soll hier geschehen???
+	}
+
+	return gameUnitProduction;
 }
 
 bool GameCityFactory::Create(const QDomNode city)
@@ -308,7 +323,7 @@ GameUnitProduction* GameCityFactory::CreateGameUnitProduction(const QDomNode& do
 	}
 
 	GameUnitProduction* gameUnitProduction = new GameUnitProduction(gameCityId);
-	gameUnitProduction->SetGameUnitId(unitProductionId);
+	gameUnitProduction->SetModelTypeId(unitProductionId);
 	gameUnitProduction->SetProductionProgress(unitProductionProgress);
 
 	if (false == GameUnitProductionController::GetInstance()->RegisterGameUnitProduction(gameUnitProduction))
