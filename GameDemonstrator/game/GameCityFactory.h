@@ -41,6 +41,7 @@ public:
 	~GameCityFactory();
 	/** */
 	bool Create();
+	//TODO: Sollte kein GameCity-Objekt zurück geben. Wird aktuell vom Editor verwendet! 
 	/** */
 	GameCity* Create(const GameCityParameterObject gameCityParameterObject);
 	/** */

@@ -4,6 +4,13 @@
 #include "Game\GameMapTileRepository.h"
 #include "Game\GameMapTile.h"
 #include "Model\ModelTerrainTypeRepository.h"
+#include "Game\GameCityFactory.h"
+
+GameCityCreatorSimple::GameCityCreatorSimple()
+	: TemporaryGameCityParameterObject(nullptr)
+{
+	TemporaryGameCityParameterObject = new GameCityParameterObject();
+}
 
 bool GameCityCreatorSimple::Create()
 {
@@ -68,6 +75,30 @@ bool GameCityCreatorSimple::PlaceCities()
 	//TODO: Mininmale Anzahl der Städte sollte sich nach der Anzahl der Spieler richten!
 	//TODO: Was ist zu tun wenn die minimale Anzahl der Städt größer als die zur Verfügung stehenden Felder ist -> Minimale Kartengröße erzwingen???
 
+	const int MAP_CITY_FACTOR = 20; //TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+	const int PLAYER_COUNT = 4;		//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+	const int CITY_EFFICIENCY_LOWER_BOUND = 80;		//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+	const int CITY_EFFICIENCY_UPPER_BOUND = 120;	//TODO: Sollte über den Dialog "Neuse Spiel" eingestellt werden können
+
+	std::vector<int> validMapTileIds = GetValidMapTileIds();
+	if (PLAYER_COUNT > validMapTileIds.size() )
+	{
+		return false;
+	}
+
+	int cityCount = validMapTileIds.size() / MAP_CITY_FACTOR;
+	int cityCountTemp = cityCount / PLAYER_COUNT;
+	cityCount = cityCountTemp * PLAYER_COUNT;
+	if (PLAYER_COUNT > cityCount)
+	{
+		cityCount = PLAYER_COUNT;
+	}
+
+	return false;
+}
+
+std::vector<int> GameCityCreatorSimple::GetValidMapTileIds()
+{
 	//TODO: Aktuelle wird nur eine Geländeart unterschtützt!!!
 	std::map<int, double>::iterator validTerrainTypeIterator = ValidTerrainTypesProcent.begin();
 	int terrainTypeId = validTerrainTypeIterator->first;
@@ -77,9 +108,17 @@ bool GameCityCreatorSimple::PlaceCities()
 	auto equalRange = TerrainTypeTiles.equal_range(terrainTypeId);
 	auto first = equalRange.first;
 	auto last = equalRange.second;
+
+	std::vector<int> validMapTileIds;
+
 	for (auto it = first; it != last; it++)
 	{
-
+		validMapTileIds.push_back(it->second);
 	}
-	return false;
+	return validMapTileIds;
+}
+
+GameCityParameterObject* GameCityCreatorSimple::CreateGameCityObject()
+{
+	return TemporaryGameCityParameterObject;
 }
