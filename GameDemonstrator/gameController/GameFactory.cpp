@@ -126,13 +126,13 @@ bool GameFactory::Create()
 		return false;
 	}
 
-	GameUnitFactory unitFactory;
-	if (false == unitFactory.Create())
+	GameCityFactory cityFactory;
+	if (false == cityFactory.Create())
 	{
 		return false;
 	}
 
-	GameCityFactory cityFactory;
+	GameUnitFactory unitFactory;
 	if (false == unitFactory.Create())
 	{
 		return false;
