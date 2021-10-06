@@ -8,6 +8,7 @@
 #include "helper\HeightMapPercentageSplitter.h"
 #include "helper\MapToVectorSorter.h"
 #include "helper\StdMapPrinter.h"
+#include "game\GameConfig.h"
 
 
 GameMapCreatorHeightMap::GameMapCreatorHeightMap()
@@ -43,6 +44,9 @@ bool GameMapCreatorHeightMap::CreateMap(GameMapCreatorHeightMapData mapCreationD
 bool GameMapCreatorHeightMap::CreateMap()
 {
 	MapTileId = 0;
+
+	MapCreationData.MapSizeX = GameConfig::MapCols;
+	MapCreationData.MapSizeY = GameConfig::MapRows;
 
 	std::vector< std::vector<float> > heightMapVector;
 	if (false == GenerateHeightMap(heightMapVector))
