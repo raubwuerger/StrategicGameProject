@@ -86,9 +86,6 @@ void GameModeEditor::InitNecessaryGameMechanics()
 {
 	GameOwnerFactory ownerFactory;
 	ownerFactory.Create();
-
-	GameMapTileFactory mapTileFactory;
-	mapTileFactory.Create();
 }
 
 //=================================================================================================
