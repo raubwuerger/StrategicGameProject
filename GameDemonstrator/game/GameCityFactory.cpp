@@ -16,6 +16,7 @@
 #include "DomNodeFinder.h"
 #include "GameUnitProduction.h"
 #include "GameUnitProductionController.h"
+#include "mapCreator/GameCityCreatorSimple.h"
 
 GameCityFactory::GameCityFactory()
 	: DefaultCityName("City")
@@ -28,7 +29,13 @@ GameCityFactory::~GameCityFactory()
 
 bool GameCityFactory::Create()
 {
-	return GameOwnerRepository::GetInstance()->Init();
+	GameCityCreatorSimple gameCityCreatorSimple;
+	gameCityCreatorSimple.AddValidTerrainTypeProcent(std::pair<int, double>(1,1));
+	if (false == gameCityCreatorSimple.Create())
+	{
+		return false;
+	}
+	return true;
 }
 
 GameCity* GameCityFactory::Create(const GameCityParameterObject obj)
