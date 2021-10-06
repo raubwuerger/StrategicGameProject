@@ -5,7 +5,7 @@ class GameCityCreatorInterface
 {
 public:
 	/** */
-	virtual bool Create();
+	virtual bool Create() = 0;
 };
 
 #endif // GAMECITYCREATORINTERFACE_H

@@ -3,6 +3,7 @@
 
 #include "GameCityCreatorInterface.h"
 
+/** Plaziert die Städte nur auf einem Terraintypen */
 class GameCityCreatorSimple : public GameCityCreatorInterface
 {
 public:
@@ -10,10 +11,15 @@ public:
 	bool Create() override;
 private:
 	/** */
-	bool AddValidTerrainTypeProcent(std::map<int, int>	validTerrainTypeProcent);
+	bool AddValidTerrainTypeProcent(std::pair<int, double>	validTerrainTypeProcent);
+	/** */
+	bool CreateTerrainTypeTiles() const;
+	/** */
+	bool PlaceCities();
 private:
 	friend class GameCityFactory;
-	std::map<int,int>	ValidTerrainTypesProcent; // 
+	std::map<int,double>			ValidTerrainTypesProcent; //<ModelMapTileId,Percentage>
+	mutable std::multimap<int, int>	TerrainTypeTiles;	//<ModelMapTileId,GameMapId>
 };
 
 #endif // GAMECITYCREATOR_H
