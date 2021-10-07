@@ -4,6 +4,8 @@
 #include "GameCityCreatorInterface.h"
 
 class GameCityParameterObject;
+class GameCity;
+class GameMapTile;
 
 struct MapPoint
 {
@@ -76,6 +78,10 @@ private:
 	bool SetCityOwners();
 	/** */
 	std::map<int, MapRect> CreateMapQuarters();
+	/** */
+	bool CheckForFirstQuarter(const MapRect& quarter, const GameCity* gameCity);
+	/** */
+	const GameMapTile* GetGameMapTileByCityId(int cityId) const;
 private:
 	friend class GameCityFactory;
 	std::map<int,double>			ValidTerrainTypesProcent; //<ModelMapTileId,Percentage>

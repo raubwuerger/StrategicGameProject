@@ -3,6 +3,7 @@
 #include "LogInterface.h"
 #include "Game\GameMapTileRepository.h"
 #include "Game\GameMapTile.h"
+#include "Game\GameCity.h"
 #include "Game\GameCityFactory.h"
 #include "Game\GameCityRepository.h"
 #include "Game\GameConfig.h"
@@ -12,6 +13,17 @@ GameCityCreatorSimple::GameCityCreatorSimple()
 	: TemporaryGameCityParameterObject(nullptr)
 {
 	TemporaryGameCityParameterObject = new GameCityParameterObject();
+}
+
+bool GameCityCreatorSimple::AddValidTerrainTypeProcent(std::pair<int, double> validTerrainTypeProcent)
+{
+	if (0 != ValidTerrainTypesProcent.count(validTerrainTypeProcent.first))
+	{
+		jha::GetLog()->Log_INFO(QObject::tr("ValidTerrainTypesProcent pair already registered! [ModelMapTileId|Percentage]: %1|%2").arg(QString::number(validTerrainTypeProcent.first)).arg(QString::number(validTerrainTypeProcent.second)));
+		return false;
+	}
+	ValidTerrainTypesProcent.insert(validTerrainTypeProcent);
+	return true;
 }
 
 bool GameCityCreatorSimple::Create()
@@ -36,17 +48,6 @@ bool GameCityCreatorSimple::Create()
 	{
 		return false;
 	}
-	return true;
-}
-
-bool GameCityCreatorSimple::AddValidTerrainTypeProcent(std::pair<int, double> validTerrainTypeProcent)
-{
-	if (0 != ValidTerrainTypesProcent.count(validTerrainTypeProcent.first))
-	{
-		jha::GetLog()->Log_INFO(QObject::tr("ValidTerrainTypesProcent pair already registered! [ModelMapTileId|Percentage]: %1|%2").arg(QString::number(validTerrainTypeProcent.first)).arg(QString::number(validTerrainTypeProcent.second)));
-		return false;
-	}
-	ValidTerrainTypesProcent.insert(validTerrainTypeProcent);
 	return true;
 }
 
@@ -95,7 +96,8 @@ bool GameCityCreatorSimple::PlaceCities()
 		GameCity* gameCity = gameCityFactory.Create(*cityParameterObject);
 		if (nullptr == gameCity)
 		{
-//			return false;
+			Q_ASSERT(false);
+			return false;
 		}
 	}
 
@@ -167,7 +169,17 @@ GameCityParameterObject* GameCityCreatorSimple::CreateGameCityObject( int gameMa
 
 bool GameCityCreatorSimple::SetCityOwners()
 {
-	QMap<int, GameCity*>::const_iterator firstCity = GameCityRepository::GetInstance()->GetFirstIterator();
+	std::map<int, MapRect> mapQuarters = CreateMapQuarters();
+		
+	QMap<int, GameCity*>::const_iterator currentIterator = GameCityRepository::GetInstance()->GetFirstIterator();
+	while (currentIterator != GameCityRepository::GetInstance()->GetLastIterator())
+	{
+		if (false == CheckForFirstQuarter(mapQuarters[1], *(currentIterator)))
+		{
+
+		}
+		currentIterator++;
+	}
 	return false;
 }
 
@@ -200,11 +212,28 @@ std::map<int, MapRect> GameCityCreatorSimple::CreateMapQuarters()
 	GameConfig::MapCols;
 	std::map<int, MapRect> mapQuarters;
 
-	mapQuarters.insert( std::pair<int,MapRect>(0, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle) ) );
-
-//	mapQuarters.insert( std::pair<int, MapRect>(1, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle)) );
-//	mapQuarters.insert( std::pair<int, MapRect>(2, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle)) );
-//	mapQuarters.insert( std::pair<int, MapRect>(3, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle)) );
+	mapQuarters.insert( std::pair<int, MapRect>(0, MapRect(colLeft_rowTop, colMiddle_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle) ) );
+	mapQuarters.insert( std::pair<int, MapRect>(1, MapRect(colMiddle_rowTop, colRight_rowTop, colMiddle_rowMiddle, colRight_rowMiddle)) );
+	mapQuarters.insert( std::pair<int, MapRect>(2, MapRect(colLeft_rowMiddle, colMiddle_rowMiddle, colLeft_rowBottom, colMiddle_rowBottom)) );
+	mapQuarters.insert( std::pair<int, MapRect>(3, MapRect(colMiddle_rowMiddle, colRight_rowMiddle, colMiddle_rowBottom, colRight_rowBottom)) );
 
 	return mapQuarters;
+}
+
+bool GameCityCreatorSimple::CheckForFirstQuarter(const MapRect& quarter, const GameCity* gameCity)
+{
+	const GameMapTile* gameMapTile = GetGameMapTileByCityId(gameCity->GetGameMapTileId());
+	Q_ASSERT(gameMapTile);
+	
+	int gameCityCol = gameMapTile->GetCol();
+	int gameCityRow = gameMapTile->GetRow();
+
+	QRect rect(QPoint(quarter.TopLeft.Col, quarter.TopLeft.Row), QPoint(quarter.BottomRight.Col, quarter.BottomRight.Row));
+
+	return rect.contains(QPoint(gameCityCol, gameCityRow));
+}
+
+const GameMapTile* GameCityCreatorSimple::GetGameMapTileByCityId(int cityId) const
+{
+	return GameMapTileRepository::GetInstance()->GetById(cityId);
 }
