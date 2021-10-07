@@ -7,9 +7,10 @@
 #include "GameUnitRepository.h"
 #include "GameCityRepository.h"
 #include "GameCity.h"
-#include "Model\ModelUnitType.h"
 #include "Map\MapUnitItemFactory.h"
 #include "command\CommandPlaceGameUnitOnMap.h"
+#include "Model\ModelUnitTypeRepository.h"
+#include "Model\ModelUnitType.h"
 
 GameUnitProductionController* GameUnitProductionController::Instance = nullptr;
 
@@ -103,14 +104,14 @@ GameUnitProductionController::GameUnitProductionController()
 
 void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gameUnitProduction )
 {
-	const GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetById(gameUnitProduction->GetGameCityId());
-	if (nullptr == gameUnit)
+	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(gameUnitProduction->GetModelTypeId());
+	if (nullptr == modelUnitType)
 	{
 		Q_ASSERT(nullptr);
 		return;
 	}
 
-	int unitProductionCost = gameUnit->GetModelUnitType()->GetProductionCost();
+	int unitProductionCost = modelUnitType->GetProductionCost();
 	if (gameUnitProduction->GetProductionProgress() < unitProductionCost)
 	{
 		return;
@@ -124,7 +125,7 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 	}
 
 	GameUnitParameterObject gameUnitParameterObject;
-	gameUnitParameterObject.ModelUnitTypeObject = gameUnit->GetModelUnitType();
+	gameUnitParameterObject.ModelUnitTypeObject = modelUnitType;
 	gameUnitParameterObject.GameMapTileObject = gameCity->GetGameMapTile();
 	gameUnitParameterObject.GameOwnerObject = gameCity->GetGameOwner();
 
