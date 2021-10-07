@@ -24,8 +24,9 @@ void CommandCreateNewGame::GetGameCreationData(const CreateNewGameDialog* dialog
 {
 	int rows = dialog->GetTilesRows();
 	int cols = dialog->GetTilesCols();
+	const int OWNER_TYPE_ID_OFFSET = 2;
 
-	int owner = dialog->GetOwnerTypeId();
+	int owner = dialog->GetOwnerTypeId() + OWNER_TYPE_ID_OFFSET;
 	int opponents = dialog->GetOpponentCount();
 	int difficulty = dialog->GetDifficultyLevel();
 	QString mapType = dialog->GetMapType();
@@ -33,6 +34,7 @@ void CommandCreateNewGame::GetGameCreationData(const CreateNewGameDialog* dialog
 	GameConfig::MapRows = rows;
 	GameConfig::MapCols = cols;
 	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetById(owner));
+	GameConfig::PlayerId = owner;
 	GameConfig::DifficultyLevel = difficulty;
 	GameConfig::PlayerCount = (opponents + 1);
 	GameConfig::MapType = mapType;

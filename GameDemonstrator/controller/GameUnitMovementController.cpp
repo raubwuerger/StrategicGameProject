@@ -9,6 +9,7 @@
 #include "game/GameUnitRepository.h"
 #include "game/GameCityRepository.h"
 #include "game/GameCity.h"
+#include "game/GameConfig.h"
 #include "map/MapHexItemRepository.h"
 #include "map/MapUnitItem.h"
 #include "map/MapHexItem.h"
@@ -31,6 +32,10 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 {
 	Q_ASSERT(destination);
 	GameUnit* playerUnit = GameUnitRepository::GetInstance()->GetById(sourceGameUnitItemId);
+	if ( playerUnit->GetModelOwnerTypeId() != GameConfig::PlayerId )
+	{
+		return false;
+	}
 	Q_ASSERT(playerUnit);
 	if( false == playerUnit->CanMove() )
 	{
