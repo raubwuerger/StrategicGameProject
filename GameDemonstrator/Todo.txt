@@ -1,0 +1,2 @@
+2021-10-07:
+	-	Nur bei eigenen Städten soll die Produktion angepasst werden können!
