@@ -7,6 +7,7 @@
 #include "Game\GameCityFactory.h"
 #include "Game\GameCityRepository.h"
 #include "Game\GameConfig.h"
+#include "Game\GameOwnerRepository.h"
 #include "Model\ModelTerrainTypeRepository.h"
 
 GameCityCreatorSimple::GameCityCreatorSimple()
@@ -171,16 +172,55 @@ bool GameCityCreatorSimple::SetCityOwners()
 {
 	std::map<int, MapRect> mapQuarters = CreateMapQuarters();
 		
+	bool cityQuarter1 = false;
+	bool cityQuarter2 = false;
+	bool cityQuarter3 = false;
+	bool cityQuarter4 = false;
 	QMap<int, GameCity*>::const_iterator currentIterator = GameCityRepository::GetInstance()->GetFirstIterator();
 	while (currentIterator != GameCityRepository::GetInstance()->GetLastIterator())
 	{
-		if (false == CheckForFirstQuarter(mapQuarters[1], *(currentIterator)))
+		if (false == cityQuarter1)
 		{
+			cityQuarter1 = CheckForFirstQuarter(mapQuarters[0], *(currentIterator));
+			if (true == cityQuarter1)
+			{
+				GameCityRepository::GetInstance()->ChangeOwner(*(currentIterator), GameOwnerRepository::GetInstance()->GetById(2));
+				continue;
+			}
+		}
 
+		if (false == cityQuarter2 )
+		{
+			cityQuarter2 = CheckForFirstQuarter(mapQuarters[1], *(currentIterator));
+			if (true == cityQuarter2)
+			{
+				GameCityRepository::GetInstance()->ChangeOwner(*(currentIterator), GameOwnerRepository::GetInstance()->GetById(3));
+				continue;
+			}
+		}
+
+		if (false == cityQuarter3 )
+		{
+			cityQuarter3 = CheckForFirstQuarter(mapQuarters[2], *(currentIterator));
+			if (true == cityQuarter3)
+			{
+				GameCityRepository::GetInstance()->ChangeOwner(*(currentIterator), GameOwnerRepository::GetInstance()->GetById(4));
+				continue;
+			}
+		}
+
+		if (false == cityQuarter4 ) 
+		{
+			cityQuarter4 = CheckForFirstQuarter(mapQuarters[3], *(currentIterator));
+			if (true == cityQuarter4)
+			{
+				GameCityRepository::GetInstance()->ChangeOwner(*(currentIterator), GameOwnerRepository::GetInstance()->GetById(5));
+				continue;
+			}
 		}
 		currentIterator++;
 	}
-	return false;
+	return true;
 }
 
 
