@@ -2,6 +2,8 @@
 #include "ModelProgramFactory.h"
 #include "ModelProgramSettingsXMLItems.h"
 #include "ModelProgramSettings.h"
+#include "map\MapHexItemFactory.h"
+#include "map\MapHexItemSetting.h"
 #include "LogInterface.h"
 #include <QDomNode>
 #include "DomValueExtractor.h"
@@ -28,6 +30,8 @@ bool ModelProgramFactory::Create()
 	{
 		return false;
 	}
+
+	MapHexItemSetting MapHexItemSettingObject;
 
 	QDomNodeList programSettingsNodes = configFileLoader.GetQDomNodeList();
 	for (int i = 0; i < programSettingsNodes.count(); i++)
@@ -82,9 +86,42 @@ bool ModelProgramFactory::Create()
 			}
 			continue;
 		}
+
+		if (currentNodeName == ModelProgramSettingsXMLItems::NODE_MAPHEXITEMSETTINGS)
+		{
+			DomValueExtractor extractor(programSettingsNodes.at(i));
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SHOWID, MapHexItemSettingObject.ShowId))
+			{
+				return false;
+			}
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SHOWCOLANDROW, MapHexItemSettingObject.ShowColAndRow))
+			{
+				return false;
+			}
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SHOWCOORDINATES, MapHexItemSettingObject.ShowCoordinates))
+			{
+				return false;
+			}
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SHOWTEXTBORDER, MapHexItemSettingObject.ShowTextBorder))
+			{
+				return false;
+			}
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SHOWTEXT, MapHexItemSettingObject.ShowText))
+			{
+				return false;
+			}
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_DRAWHEXBORDER, MapHexItemSettingObject.DrawHexBorder))
+			{
+				return false;
+			}
+			continue;
+		}
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unknown node found! %1").arg(currentNodeName));
+
+
 	}
 
+	MapHexItemFactory::MapHexItemSettingObject = MapHexItemSettingObject;
 	return true;
 }
 

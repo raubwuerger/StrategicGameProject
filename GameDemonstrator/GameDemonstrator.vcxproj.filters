@@ -881,6 +881,9 @@
     <ClCompile Include="mapCreator\GameUnitCreatorSimple.cpp">
       <Filter>Header Dateien\MapCreator</Filter>
     </ClCompile>
+    <ClCompile Include="map\MapHexItemSetting.cpp">
+      <Filter>Header Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1263,6 +1266,9 @@
     </ClInclude>
     <ClInclude Include="mapCreator\GameUnitCreatorInterface.h">
       <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapHexItemSetting.h">
+      <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,14 @@ public:
 
 	static const QString	NODE_GRAPHICSETTINGS;
 	static const QString	SUBNODE_USEHIRESTERRAIN;
+
+	static const QString	NODE_MAPHEXITEMSETTINGS;
+	static const QString	SUBNODE_SHOWID;
+	static const QString	SUBNODE_SHOWCOLANDROW;
+	static const QString	SUBNODE_SHOWCOORDINATES;
+	static const QString	SUBNODE_SHOWTEXTBORDER;
+	static const QString	SUBNODE_SHOWTEXT;
+	static const QString	SUBNODE_DRAWHEXBORDER;
 };
 
 #endif //MODELPROGRAMSETTINGSXMLITEMS

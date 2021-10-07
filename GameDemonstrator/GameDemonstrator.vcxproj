@@ -259,6 +259,7 @@
     <ClCompile Include="connectors\ConnectorMapUnitItem.cpp" />
     <ClCompile Include="mapCreator\GameCityCreatorSimple.cpp" />
     <ClCompile Include="mapCreator\GameUnitCreatorSimple.cpp" />
+    <ClCompile Include="map\MapHexItemSetting.cpp" />
     <ClCompile Include="test\DoUnitTest.cpp" />
     <ClCompile Include="test\StringToBoolConverter_TEST.cpp" />
     <CustomBuild Include="connectors\ConnectorMapCityItem.h">
@@ -902,6 +903,7 @@
     <ClInclude Include="mapCreator\GameCityCreatorInterface.h" />
     <ClInclude Include="mapCreator\GameUnitCreatorInterface.h" />
     <ClInclude Include="mapCreator\GameUnitCreatorSimple.h" />
+    <ClInclude Include="map\MapHexItemSetting.h" />
     <ClInclude Include="test\DoUnitTest.h" />
     <ClInclude Include="test\StringToBoolConverter_TEST.h" />
     <CustomBuild Include="dialogs\CreateNewGameDialog.h">

@@ -14,4 +14,12 @@
 	<GraphicSettings>
 		<UseHiResTerrain>true</UseHiResTerrain>
 	</GraphicSettings>
+	<MapHexItemSettings>
+		<ShowId>false</ShowId>
+		<ShowRowAndCol>false</ShowRowAndCol>
+		<ShowCoordinates>false</ShowCoordinates>
+		<ShowTextBorder>false</ShowTextBorder>
+		<ShowText>false</ShowText>
+		<DrawHexBorder>false</DrawHexBorder>
+	</MapHexItemSettings>
 </GameDemonstrator>

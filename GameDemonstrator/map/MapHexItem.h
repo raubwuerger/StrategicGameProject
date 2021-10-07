@@ -4,6 +4,8 @@
 class ConnectorMapHexItem;
 class HexagonItem;
 
+#include "MapHexItemSetting.h"
+
 //================================================================================
 /** Repräsentiert Kartenteil auf Bildschirm */
 class MapHexItem : public QGraphicsPolygonItem
@@ -42,17 +44,7 @@ public:
 	/** */
 	const QPointF& GetCenterPoint() const;
 	/** */
-	void SetShowId(bool show) { ShowId = show;  }
-	/** */
-	void SetShowRowAndCol(bool show) { ShowRowAndCol = show; }
-	/** */
-	void SetShowCoordinates(bool show) { ShowCoordinates = show; }
-	/** */
-	void SetShowTextBorder(bool show) { ShowTextBorder = show; }
-	/** */
-	void SetShowText(bool show) { ShowText = show; }
-	/** */
-	void SetShowHexBorder(bool show) { DrawHexBorder = show; }
+	void SetMapHexItemSetting(MapHexItemSetting mapHexItemSetting);
 private:
 	/** */
 	void CreateHexPolygon();
@@ -75,12 +67,7 @@ private:
 	QString					MapHexItemInfoString;
 	mutable const QImage*	TerrainImage;
 	int						GameMapItemId;
-	bool					ShowId;
-	bool					ShowRowAndCol;
-	bool					ShowCoordinates;
-	bool					ShowTextBorder;
-	bool					ShowText;
-	bool					DrawHexBorder;
+	MapHexItemSetting		MapHexItemSettingObject;
 };
 
 #endif // MAPVIEWHEXITEM_H

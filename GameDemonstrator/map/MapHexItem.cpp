@@ -13,12 +13,6 @@ MapHexItem::MapHexItem(const QPointF& topLeft, const HexagonItem& hexagonItem)
 	EventItem(nullptr),
 	TerrainImage(nullptr),
 	GameMapItemId(-1),
-	ShowId(true),
-	ShowRowAndCol(true),
-	ShowCoordinates(false),
-	ShowTextBorder(false),
-	ShowText(true), 
-	DrawHexBorder(true),
 	Hexagon(hexagonItem.GetHexagon())
 
 {
@@ -53,7 +47,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 	ShowTextOnItem(painter);
 
-	if (false == DrawHexBorder)
+	if (false == MapHexItemSettingObject.DrawHexBorder)
 	{
 		return;
 	}
@@ -62,7 +56,7 @@ void MapHexItem::paint( QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 void MapHexItem::ShowTextOnItem(QPainter *painter)
 {
-	if (false == ShowText)
+	if (false == MapHexItemSettingObject.ShowText)
 	{
 		return;
 	}
@@ -84,7 +78,7 @@ void MapHexItem::ShowTextOnItem(QPainter *painter)
 	textOption.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	painter->setFont(font);
 	painter->drawText(textBoundingRect, MapHexItemInfoString, textOption);
-	if (true == ShowTextBorder)
+	if (true == MapHexItemSettingObject.ShowTextBorder)
 	{
 		painter->drawRect(textBoundingRect);
 	}
@@ -153,12 +147,12 @@ void MapHexItem::ShowOriginal()
 
 void MapHexItem::CreateMapHexItemInfoString()
 {
-	if (true == ShowRowAndCol)
+	if (true == MapHexItemSettingObject.ShowColAndRow)
 	{
 		MapHexItemInfoString = QString::number(GetRow()) + "|" + QString::number(GetCol());
 	}
 	
-	if (true == ShowId)
+	if (true == MapHexItemSettingObject.ShowId)
 	{
 		if (false == MapHexItemInfoString.isEmpty())
 		{
@@ -169,7 +163,7 @@ void MapHexItem::CreateMapHexItemInfoString()
 		MapHexItemInfoString += ")";
 	}
 
-	if (true == ShowCoordinates)
+	if (true == MapHexItemSettingObject.ShowCoordinates)
 	{
 		if (false == MapHexItemInfoString.isEmpty())
 		{
@@ -219,4 +213,9 @@ const QPointF& MapHexItem::GetTopLeftPoint() const
 const QPointF& MapHexItem::GetCenterPoint() const
 {
 	return CenterPoint;
+}
+
+void MapHexItem::SetMapHexItemSetting(MapHexItemSetting mapHexItemSetting)
+{
+	MapHexItemSettingObject = mapHexItemSetting;
 }

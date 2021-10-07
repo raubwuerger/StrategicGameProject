@@ -10,6 +10,8 @@
 #include "HexagonFactory.h"
 #include "HexagonItem.h"
 
+MapHexItemSetting	MapHexItemFactory::MapHexItemSettingObject;
+
 bool MapHexItemFactory::Create(MapView* mapView)
 {
 	HexagonFactory hexagonFactory;
@@ -49,8 +51,7 @@ bool MapHexItemFactory::Create(MapView* mapView)
 			mapItem->SetRowAndCol(currentRow, currentCol);
 			mapItem->SetGameMapItemId(gameMapItem->GetId());
 			mapItem->SetTerrainImage(GetImage(gameMapItem));
-			mapItem->SetShowText(showText);
-			mapItem->SetShowHexBorder(showHexBorder);
+			mapItem->SetMapHexItemSetting(MapHexItemSettingObject);
 			mapView->AddMapHexItem(mapItem);
 			mapHexItemRow.push_back(mapItem);
 		}

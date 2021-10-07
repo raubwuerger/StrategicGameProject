@@ -17,3 +17,12 @@ const QString	ModelProgramSettingsXMLItems::SUBNODE_COLS = "Cols";
 const QString	ModelProgramSettingsXMLItems::NODE_GRAPHICSETTINGS = "GraphicSettings";
 const QString	ModelProgramSettingsXMLItems::SUBNODE_USEHIRESTERRAIN = "UseHiResTerrain";
 
+const QString	ModelProgramSettingsXMLItems::NODE_MAPHEXITEMSETTINGS = "MapHexItemSettings";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_SHOWID = "ShowId";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_SHOWCOLANDROW = "ShowRowAndCol";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_SHOWCOORDINATES = "ShowCoordinates";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_SHOWTEXTBORDER = "ShowTextBorder";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_SHOWTEXT = "ShowText";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_DRAWHEXBORDER = "DrawHexBorder";
+
+

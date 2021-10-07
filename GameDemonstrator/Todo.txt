@@ -1,4 +1,5 @@
 2021-10-07:
 	+	Nur bei eigenen Städten soll die Produktion angepasst werden können!
-	-	Die Anzeige von MapTile Informationen (Id, pos|col, boarder, ...) sollte parametrierbar sein
+	+	Die Anzeige von MapTile Informationen (Id, pos|col, boarder, ...) sollte parametrierbar sein
 	-	Unschöne Überschneidungen der Png's beheben. Inklusive wenn ein HexItem markiert ist
+	-	MapHexItemInfoString sollte nicht von Klasse MapHexItem gebaut werden!
