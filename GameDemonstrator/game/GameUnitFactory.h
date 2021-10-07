@@ -41,9 +41,9 @@ public:
 	/** */
 	bool Create();
 	/** */
-	GameUnit* CreateGameUnit(const GameUnitParameterObject obj);
+	GameUnit* Create(const GameUnitParameterObject obj);
 	/** */
-	GameUnit* UpdateGameUnit(const GameUnitParameterObject obj);
+	GameUnit* Update(const GameUnitParameterObject obj);
 	/** */
 	bool Create( const QDomNode node );
 private:

@@ -129,7 +129,7 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 	gameUnitParameterObject.GameOwnerObject = gameCity->GetGameOwner();
 
 	GameUnitFactory gameUnitFactory;
-	const GameUnit* produced = gameUnitFactory.CreateGameUnit(gameUnitParameterObject);
+	const GameUnit* produced = gameUnitFactory.Create(gameUnitParameterObject);
 	if (nullptr == produced)
 	{
 		return;

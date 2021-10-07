@@ -16,6 +16,12 @@ GameCityCreatorSimple::GameCityCreatorSimple()
 	TemporaryGameCityParameterObject = new GameCityParameterObject();
 }
 
+GameCityCreatorSimple::~GameCityCreatorSimple()
+{
+	delete TemporaryGameCityParameterObject;
+	TemporaryGameCityParameterObject = nullptr;
+}
+
 bool GameCityCreatorSimple::AddValidTerrainTypeProcent(std::pair<int, double> validTerrainTypeProcent)
 {
 	if (0 != ValidTerrainTypesProcent.count(validTerrainTypeProcent.first))

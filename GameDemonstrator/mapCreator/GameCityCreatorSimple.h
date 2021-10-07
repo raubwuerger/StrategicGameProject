@@ -60,6 +60,8 @@ public:
 	/** */
 	GameCityCreatorSimple();
 	/** */
+	~GameCityCreatorSimple();
+	/** */
 	bool Create() override;
 private:
 	/** */

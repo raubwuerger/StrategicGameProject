@@ -97,7 +97,7 @@ void UnitTypeEditor::CreateUnit()
 	}
 
 	GameUnitFactory gameUnitItemFactory;
-	GameUnit* created = gameUnitItemFactory.CreateGameUnit(gameUnitParameterObject);
+	GameUnit* created = gameUnitItemFactory.Create(gameUnitParameterObject);
 
 	if (nullptr == created)
 	{

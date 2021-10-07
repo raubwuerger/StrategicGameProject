@@ -878,6 +878,9 @@
     <ClCompile Include="mapCreator\GameCityCreatorSimple.cpp">
       <Filter>Source Dateien\MapCreator</Filter>
     </ClCompile>
+    <ClCompile Include="mapCreator\GameUnitCreatorSimple.cpp">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1253,6 +1256,12 @@
       <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
     <ClInclude Include="mapCreator\GameCityCreatorSimple.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\GameUnitCreatorSimple.h">
+      <Filter>Header Dateien\MapCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="mapCreator\GameUnitCreatorInterface.h">
       <Filter>Header Dateien\MapCreator</Filter>
     </ClInclude>
   </ItemGroup>

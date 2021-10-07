@@ -13,6 +13,7 @@
 #include "GameUnit.h"
 #include "GameMapTile.h"
 #include "GameUnitRuntimeData.h"
+#include "mapCreator/GameUnitCreatorSimple.h"
 
 GameUnitFactory::GameUnitFactory()
 {
@@ -24,11 +25,12 @@ GameUnitFactory::~GameUnitFactory()
 
 bool GameUnitFactory::Create()
 {
-	//TODO: Abhängig von den Startbedingungen. Einheiten anzahl
-	return GameUnitRepository::GetInstance()->Init();
+	GameUnitRepository::GetInstance()->Init();
+	GameUnitCreatorSimple gameUnitCreatorSimple;
+	return gameUnitCreatorSimple.Create();
 }
 
-GameUnit* GameUnitFactory::CreateGameUnit(const GameUnitParameterObject obj)
+GameUnit* GameUnitFactory::Create(const GameUnitParameterObject obj)
 {
 	if (false == Validate(obj))
 	{
@@ -82,7 +84,7 @@ GameUnit* GameUnitFactory::CreateGameUnit(const GameUnitParameterObject obj)
 	return newGameUnit;
 }
 
-GameUnit* GameUnitFactory::UpdateGameUnit(const GameUnitParameterObject obj)
+GameUnit* GameUnitFactory::Update(const GameUnitParameterObject obj)
 {
 	if (nullptr == obj.GameUnitObject)
 	{
@@ -294,7 +296,7 @@ GameUnit* GameUnitFactory::CreateUnitFromXML(const QDomNode& unitNode)
 	obj.ModelUnitTypeObject = modelUnitType;
 	obj.Id = id;
 
-	GameUnit* created = CreateGameUnit(obj);
+	GameUnit* created = Create(obj);
 	if (nullptr == created)
 	{
 		return nullptr;
