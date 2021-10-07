@@ -58,6 +58,7 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_MOVEMENT_MODIFIER, newType->MovementModifier);
 	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_DEFENSE_MODIFIER, newType->DefenseModifier);
 	allElementsExtracted &= extractor.ExtractValue(ModelTerrainXMLItems::SUBELEMENT_ATTACK_MODIFIER, newType->AttackModifier);
+	CheckForHiResTerrain(newType->PictureName);
 
 	if( false == allElementsExtracted )
 	{
@@ -68,6 +69,29 @@ ModelTerrainType* ModelTerrainTypeFactory::CreateFromXML( const QDomNode& node )
 
 	allElementsExtracted &= AttacheImage(newType);
 	return newType;
+}
+
+#include "ModelProgramSettings.h"
+void ModelTerrainTypeFactory::CheckForHiResTerrain(QString& pictureName)
+{
+	if (false == ModelProgramSettings::UseHiResTerrain)
+	{
+		return;
+	}
+
+	//TODO: Hack, we assume the path is written like .\resources\terrain\xxx.xml
+	const QString HIRES_APPENDIX = "_HiRes";
+	const QString DOT = ".";
+	QStringList splittedString = pictureName.split('.');
+	
+	QString HiResString = DOT;
+	HiResString += splittedString.at(0);
+	HiResString += splittedString.at(1);
+	HiResString += HIRES_APPENDIX;
+	HiResString += DOT;
+	HiResString += splittedString.at(2);
+
+	pictureName = HiResString;
 }
 
 bool ModelTerrainTypeFactory::AttacheImage( ModelTerrainType* type )

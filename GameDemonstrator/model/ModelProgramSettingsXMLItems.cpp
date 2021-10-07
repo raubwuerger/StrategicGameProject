@@ -13,3 +13,7 @@ const QString	ModelProgramSettingsXMLItems::SUBNODE_SAVEGAMEPATH = "SaveGamePath
 const QString	ModelProgramSettingsXMLItems::NODE_DEBUGMAPSETTINGS = "DebugMapSettings";
 const QString	ModelProgramSettingsXMLItems::SUBNODE_ROWS = "Rows";
 const QString	ModelProgramSettingsXMLItems::SUBNODE_COLS = "Cols";
+
+const QString	ModelProgramSettingsXMLItems::NODE_GRAPHICSETTINGS = "GraphicSettings";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_USEHIRESTERRAIN = "UseHiResTerrain";
+

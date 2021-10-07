@@ -16,6 +16,9 @@ public:
 	static const QString	NODE_DEBUGMAPSETTINGS;
 	static const QString	SUBNODE_ROWS;
 	static const QString	SUBNODE_COLS;
+
+	static const QString	NODE_GRAPHICSETTINGS;
+	static const QString	SUBNODE_USEHIRESTERRAIN;
 };
 
 #endif //MODELPROGRAMSETTINGSXMLITEMS

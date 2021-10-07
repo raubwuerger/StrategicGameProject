@@ -72,13 +72,18 @@ bool ModelProgramFactory::Create()
 			continue;
 		}
 		
+		if (currentNodeName == ModelProgramSettingsXMLItems::NODE_GRAPHICSETTINGS)
+		{
+			DomValueExtractor extractor(programSettingsNodes.at(i));
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_USEHIRESTERRAIN, ModelProgramSettings::UseHiResTerrain))
+			{
+				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_USEHIRESTERRAIN));
+				return false;
+			}
+			continue;
+		}
 		jha::GetLog()->Log_DEBUG(QObject::tr("Unknown node found! %1").arg(currentNodeName));
 	}
-
-	QString globalLogLevel = ModelProgramSettings::GlobalLogLevel;
-	QString savegamePath = ModelProgramSettings::SaveGamePath;
-	int debugRows = ModelProgramSettings::DebugRows;
-	int debugCols = ModelProgramSettings::DebugCols;
 
 	return true;
 }

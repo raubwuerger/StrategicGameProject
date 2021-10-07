@@ -8,6 +8,7 @@ public:
 	static QString	SaveGamePath;
 	static int		DebugRows;
 	static int		DebugCols;
+	static bool		UseHiResTerrain;
 };
 
 #endif // MODELPROGRAMSETTINGS_H

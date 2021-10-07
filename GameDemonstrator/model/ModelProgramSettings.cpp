@@ -6,3 +6,5 @@ QString ModelProgramSettings::SaveGamePath = ".//savegames//";
 
 int ModelProgramSettings::DebugCols = 80;
 int ModelProgramSettings::DebugRows = 40;
+
+bool ModelProgramSettings::UseHiResTerrain = false;

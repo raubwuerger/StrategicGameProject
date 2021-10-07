@@ -19,6 +19,8 @@ private:
 	/** */
 	ModelTerrainType* CreateFromXML( const QDomNode& node );
 	/** */
+	void CheckForHiResTerrain(QString& pictureName);
+	/** */
 	bool AttacheImage( ModelTerrainType* type );
 };
 
