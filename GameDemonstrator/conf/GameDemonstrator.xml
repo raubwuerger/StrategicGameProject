@@ -11,4 +11,7 @@
 		<Rows>3</Rows>
 		<Cols>3</Cols>
 	</DebugMapSettings>
+	<GraphicSettings>
+		<UseHiResTerrain>true</UseHiResTerrain>
+	</GraphicSettings>
 </GameDemonstrator>
