@@ -3,8 +3,10 @@
 #include "LogInterface.h"
 #include "Game\GameMapTileRepository.h"
 #include "Game\GameMapTile.h"
-#include "Model\ModelTerrainTypeRepository.h"
 #include "Game\GameCityFactory.h"
+#include "Game\GameCityRepository.h"
+#include "Game\GameConfig.h"
+#include "Model\ModelTerrainTypeRepository.h"
 
 GameCityCreatorSimple::GameCityCreatorSimple()
 	: TemporaryGameCityParameterObject(nullptr)
@@ -26,6 +28,11 @@ bool GameCityCreatorSimple::Create()
 	}
 
 	if (false == PlaceCities())
+	{
+		return false;
+	}
+
+	if (false == SetCityOwners())
 	{
 		return false;
 	}
@@ -156,4 +163,48 @@ GameCityParameterObject* GameCityCreatorSimple::CreateGameCityObject( int gameMa
 	TemporaryGameCityParameterObject->GameMapTileId = gameMapId;
 	TemporaryGameCityParameterObject->ModelCityTypeId = DEFAULT_CITY_TYPE_ID;
 	return TemporaryGameCityParameterObject;
+}
+
+bool GameCityCreatorSimple::SetCityOwners()
+{
+	QMap<int, GameCity*>::const_iterator firstCity = GameCityRepository::GetInstance()->GetFirstIterator();
+	return false;
+}
+
+
+std::map<int, MapRect> GameCityCreatorSimple::CreateMapQuarters()
+{
+	static const int HALF = 2;
+	static const int OFFSET_ZERO = 1;
+
+	int colLeft = 0;
+	int colMiddle = GameConfig::MapCols / HALF - OFFSET_ZERO;
+	int colRight = GameConfig::MapCols - OFFSET_ZERO;
+
+	int rowTop = 0;
+	int rowMiddle = GameConfig::MapRows / HALF - OFFSET_ZERO;
+	int rowBottom = GameConfig::MapRows - OFFSET_ZERO;
+
+	MapPoint colLeft_rowTop(colLeft, rowTop);
+	MapPoint colMiddle_rowTop(colMiddle, rowTop);
+	MapPoint colRight_rowTop(colRight, rowTop);
+
+	MapPoint colLeft_rowMiddle(colLeft, rowMiddle);
+	MapPoint colMiddle_rowMiddle(colMiddle, rowMiddle);
+	MapPoint colRight_rowMiddle(colRight, rowMiddle);
+
+	MapPoint colLeft_rowBottom(colLeft, rowBottom);
+	MapPoint colMiddle_rowBottom(colMiddle, rowBottom);
+	MapPoint colRight_rowBottom(colRight, rowBottom);
+
+	GameConfig::MapCols;
+	std::map<int, MapRect> mapQuarters;
+
+	mapQuarters.insert( std::pair<int,MapRect>(0, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle) ) );
+
+//	mapQuarters.insert( std::pair<int, MapRect>(1, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle)) );
+//	mapQuarters.insert( std::pair<int, MapRect>(2, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle)) );
+//	mapQuarters.insert( std::pair<int, MapRect>(3, MapRect(colLeft_rowTop, colLeft_rowTop, colLeft_rowMiddle, colMiddle_rowMiddle)) );
+
+	return mapQuarters;
 }
