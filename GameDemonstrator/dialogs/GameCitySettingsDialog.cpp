@@ -71,6 +71,21 @@ const QString GameCitySettingsDialog::GetName() const
 	return ui.lineEditName->text();
 }
 
+void GameCitySettingsDialog::SetEfficiency(const QString& efficiency)
+{
+	ui.lineEditEfficiency->setText(efficiency);
+}
+
+void GameCitySettingsDialog::SetStrength(const QString& strength)
+{
+	ui.lineEditStrength->setText(strength);
+}
+
+void GameCitySettingsDialog::SetSpecialization(const QString& specialization)
+{
+	ui.lineEditSpecialization->setText(specialization);
+}
+
 void GameCitySettingsDialog::SetGameUnitProduction(const GameUnitProduction* gameUnitProduction)
 {
 	NameHasChanged = false;
@@ -173,6 +188,16 @@ void GameCitySettingsDialog::SetGameUnitProduction(int unitTypeId)
 GameUnitProduction* GameCitySettingsDialog::GetChangedGameUnitProduction() const
 {
 	return ChangedGameUnitProduction;
+}
+
+bool GameCitySettingsDialog::GetHasProductionChanged() const
+{
+	return ProductionChanged;
+}
+
+bool GameCitySettingsDialog::GetHaseNameChanged() const
+{
+	return NameHasChanged;
 }
 
 void GameCitySettingsDialog::accept()

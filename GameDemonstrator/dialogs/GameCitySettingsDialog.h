@@ -19,19 +19,19 @@ public:
 	/** */
 	const QString GetName() const;
 	/** */
-	void SetEfficiency(const QString& efficiency) { ui.lineEditEfficiency->setText(efficiency); }
+	void SetEfficiency(const QString& efficiency);
 	/** */
-	void SetStrength(const QString& strength) { ui.lineEditStrength->setText(strength); }
+	void SetStrength(const QString& strength);
 	/** */
-	void SetSpecialization(const QString& specialization) { ui.lineEditSpecialization->setText(specialization); }
+	void SetSpecialization(const QString& specialization);
 	/** */
 	void SetGameUnitProduction(const GameUnitProduction* gameUnitProduction);
 	/** */
 	GameUnitProduction* GetChangedGameUnitProduction() const;
 	/** */
-	bool GetHasProductionChanged() const { return ProductionChanged; }
+	bool GetHasProductionChanged() const;
 	/** */
-	bool GetHaseNameChanged() const { return NameHasChanged; }
+	bool GetHaseNameChanged() const;
 signals:
 	/** */
 	void SignalUnitProductionChanged(int unitTypeId);
