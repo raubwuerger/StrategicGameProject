@@ -19,8 +19,8 @@ GameMapCreatorHeightMap::GameMapCreatorHeightMap()
 
 void GameMapCreatorHeightMap::GenerateDefaultMapCreationData()
 {
-	MapCreationData.MapSizeX = 120;
-	MapCreationData.MapSizeY = 60;
+	MapCreationData.MapSizeX = 80;
+	MapCreationData.MapSizeY = 40;
 	MapCreationData.LowerXBound = 6.0;
 	MapCreationData.UpperXBound = 10.0;
 	MapCreationData.LowerZBound = 1.0;

@@ -39,8 +39,8 @@ void MapCreatorHeightMapDialog::UpdateAndSendCreationData()
 
 void MapCreatorHeightMapDialog::InitCreationData()
 {
-	ui.lineEdiMapSizeX->setText("120");
-	ui.lineEdiMapSizeY->setText("60");
+	ui.lineEdiMapSizeX->setText("80");
+	ui.lineEdiMapSizeY->setText("40");
 	ui.lineEditXBoundLower->setText("6.0");
 	ui.lineEditXBoundUpper->setText("10.0");
 	ui.lineEditZBoundLower->setText("1.0");

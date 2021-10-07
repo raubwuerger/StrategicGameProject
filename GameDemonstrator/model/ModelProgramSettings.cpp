@@ -4,5 +4,5 @@
 QString ModelProgramSettings::GlobalLogLevel = "DEBUG";
 QString ModelProgramSettings::SaveGamePath = ".//savegames//";
 
-int ModelProgramSettings::DebugRows = 60;
-int ModelProgramSettings::DebugCols = 120;
+int ModelProgramSettings::DebugCols = 80;
+int ModelProgramSettings::DebugRows = 40;
