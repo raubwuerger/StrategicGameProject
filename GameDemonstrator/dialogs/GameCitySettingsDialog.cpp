@@ -18,7 +18,8 @@ GameCitySettingsDialog::GameCitySettingsDialog(QWidget *parent /*= 0*/)
 	OriginalGameUnitProduction(nullptr),
 	NameHasChanged(NOT_INITIALIZED_BOOL),
 	OriginalName(NOT_INITIALIZED_STRING),
-	ModelUnitTypeStatisticsObject(nullptr)
+	ModelUnitTypeStatisticsObject(nullptr),
+	HasOceanAccess(false)
 {
 	ui.setupUi(this);
 	InitProductionItems();
@@ -42,13 +43,25 @@ void GameCitySettingsDialog::InitConnections()
 	connect(ui.pushButtonProduceArtillery, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedArtillery);
 	connect(ui.pushButtonProduceFighter, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedFighter);
 	connect(ui.pushButtonProduceBomber, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBomber);
-	connect(ui.pushButtonProduceDestroyer, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedDestroyer);
-	connect(ui.pushButtonProduceCruiser, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCruiser);
-	connect(ui.pushButtonProduceBattleship, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBattleship);
-	connect(ui.pushButtonProduceCarrier, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCarrier);
-	connect(ui.pushButtonProduceSubmarine, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedSubmarine);
-	connect(ui.pushButtonProduceTransport, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTransport);
 
+	if ( true == HasOceanAccess )
+	{
+		connect(ui.pushButtonProduceDestroyer, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedDestroyer);
+		connect(ui.pushButtonProduceCruiser, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCruiser);
+		connect(ui.pushButtonProduceBattleship, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedBattleship);
+		connect(ui.pushButtonProduceCarrier, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedCarrier);
+		connect(ui.pushButtonProduceSubmarine, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedSubmarine);
+		connect(ui.pushButtonProduceTransport, &QPushButton::clicked, this, &GameCitySettingsDialog::SlotButtonPressedTransport);
+	}
+	else
+	{
+		ui.pushButtonProduceDestroyer->setEnabled(false);
+		ui.pushButtonProduceCruiser->setEnabled(false);
+		ui.pushButtonProduceBattleship->setEnabled(false);
+		ui.pushButtonProduceCarrier->setEnabled(false);
+		ui.pushButtonProduceSubmarine->setEnabled(false);
+		ui.pushButtonProduceTransport->setEnabled(false);
+	}
 	connect(ui.lineEditName, &QLineEdit::textEdited, this, &GameCitySettingsDialog::SlotNameEdited);
 }
 
@@ -137,7 +150,6 @@ int GameCitySettingsDialog::CreateProductionItemId(const GameUnitProduction* gam
 	}
 	return gameUnitProduction->GetModelTypeId();
 }
-
 
 const QString& GameCitySettingsDialog::GetImagePathFromUnitItem(int unitTypeId) const
 {

@@ -104,6 +104,7 @@ private:
 	bool						NameHasChanged;
 	QString						OriginalName;
 	ModelUnitTypeStatistics*	ModelUnitTypeStatisticsObject;
+	bool						HasOceanAccess;
 };
 
 #endif // GAMECITYSETTINGSDIALOG_H
