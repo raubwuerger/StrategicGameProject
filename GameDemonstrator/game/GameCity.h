@@ -69,6 +69,10 @@ public:
 	const GameUnitProduction* GetUnitProduction() const;
 	/** */
 	void SetGameUnitProduction(const GameUnitProduction* unitProduction);
+	/**/
+	bool GetHasOceanAccess() const;
+	/** */
+	void SetHasOceanAccess(bool hasAccess);
 private:
 	/** */
 	void ResetDefenceValue() const;
@@ -87,6 +91,7 @@ private:
 	int						SpezializedUnitTypeId;
 	mutable GameCityRuntimeData*RuntimeData;
 	const GameUnitProduction*	UnitProduction;
+	bool					HasOceanAccess;
 };
 
 #endif // GAMECITYTYPE_H

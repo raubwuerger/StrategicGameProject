@@ -149,7 +149,7 @@ void MapHexItem::CreateMapHexItemInfoString()
 {
 	if (true == MapHexItemSettingObject.ShowColAndRow)
 	{
-		MapHexItemInfoString = QString::number(GetRow()) + "|" + QString::number(GetCol());
+		MapHexItemInfoString = QString::number(GetCol()) + "|" + QString::number(GetRow());
 	}
 	
 	if (true == MapHexItemSettingObject.ShowId)

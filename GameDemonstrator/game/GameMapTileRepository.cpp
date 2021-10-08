@@ -149,3 +149,35 @@ GameMapTile* GameMapTileRepository::GetById(unsigned int id)
 	}
 	return gameMapTile;
 }
+
+const GameMapTile* GameMapTileRepository::GetByColAndRow(int col, int row)
+{
+	if (col < 0)
+	{
+		jha::GetLog()->Log_INFO(QObject::tr("Column mustn't be lesser the 0!"));
+		return nullptr;
+	}
+	if (row < 0)
+	{
+		jha::GetLog()->Log_INFO(QObject::tr("Row mustn't be lesser the 0!"));
+		return nullptr;
+	}
+
+	int rowCount = GameMapTiles->size();
+	if (row >= rowCount)
+	{
+		jha::GetLog()->Log_INFO(QObject::tr("Row is to great!!"));
+		return nullptr;
+	}
+
+	const QVector<GameMapTile*>& concreteRow = GameMapTiles->at(row);
+
+	int colCount = concreteRow.size();
+	if (col >= colCount)
+	{
+		jha::GetLog()->Log_INFO(QObject::tr("Column is to great!!"));
+		return nullptr;
+	}
+
+	return concreteRow.at(col);
+}

@@ -31,6 +31,8 @@ public:
 	bool UpdateGameMapTile(const GameMapTile* gameMapTile);
 	/** */
 	GameMapTile* GetById( unsigned int id );
+	/** */
+	const GameMapTile* GetByColAndRow(int col, int row);
 private:
 	/** */
 	GameMapTileRepository();

@@ -8,11 +8,12 @@ GameCity::GameCity(int id)
 	:	Id(id),
 		GameOwnerObject(nullptr),
 		GameMapTileObject(nullptr),
-		GameOwnerId(-1),
-		GameMapTileId(-1),
-		SpezializedUnitTypeId(-1),
+		GameOwnerId(NOT_INITIALIZED_INT),
+		GameMapTileId(NOT_INITIALIZED_INT),
+		SpezializedUnitTypeId(NOT_INITIALIZED_INT),
 		RuntimeData(nullptr),
-		UnitProduction(nullptr)
+		UnitProduction(nullptr),
+		HasOceanAccess(NOT_INITIALIZED_BOOL)
 {
 }
 
@@ -168,6 +169,16 @@ void GameCity::SetGameUnitProduction(const GameUnitProduction* unitProduction)
 {
 	Q_ASSERT(unitProduction);
 	UnitProduction = unitProduction;
+}
+
+bool GameCity::GetHasOceanAccess() const
+{
+	return HasOceanAccess;
+}
+
+void GameCity::SetHasOceanAccess(bool hasAccess)
+{
+	HasOceanAccess = hasAccess;
 }
 
 bool GameCity::operator<(const GameCity& rhs) const

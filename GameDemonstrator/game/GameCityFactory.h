@@ -71,7 +71,10 @@ private:
 	int GetBaseStrength(int cityId) const;
 	/** */
 	GameUnitProduction* CreateGameUnitProductionDefault(int gameCityId);
-
+	/** */
+	bool CalculateHasOceanAccess(const GameCity* gameCity);
+	/** */
+	bool IsGameMapTileOfTerrainTypeId( const GameMapTile* gameMapTile, int terrainTypeId ) const;
 private:
 	const QString	DefaultCityName;
 };

@@ -17,6 +17,7 @@
 #include "GameUnitProduction.h"
 #include "GameUnitProductionController.h"
 #include "mapCreator/GameCityCreatorSimple.h"
+#include "model/ModelTerrainType.h"
 
 GameCityFactory::GameCityFactory()
 	: DefaultCityName("City")
@@ -77,6 +78,7 @@ GameCity* GameCityFactory::Create(const GameCityParameterObject obj)
 	newGameCity->Name = CreateCityName(newGameCity->GetId());
 	newGameCity->InitRuntimeData();
 	newGameCity->SetGameUnitProduction(CreateGameUnitProductionDefault(newGameCity->GetId()));
+	newGameCity->HasOceanAccess = CalculateHasOceanAccess(newGameCity);
 
 	if (false == GameCityRepository::GetInstance()->Register(newGameCity))
 	{
@@ -100,6 +102,75 @@ GameUnitProduction* GameCityFactory::CreateGameUnitProductionDefault(int gameCit
 	}
 
 	return gameUnitProduction;
+}
+
+bool GameCityFactory::CalculateHasOceanAccess(const GameCity* gameCity)
+{
+	Q_ASSERT(gameCity);
+	const GameMapTile* mapTile = gameCity->GetGameMapTile();
+	Q_ASSERT(mapTile);
+
+	const int cityCol = mapTile->GetCol();
+	const int cityRow = mapTile->GetRow();
+
+	//TODO: Splitt into odd and even like ...
+
+	const GameMapTile* north = nullptr;
+	const GameMapTile* northEast = nullptr;
+	const GameMapTile* southEast = nullptr;
+	const GameMapTile* south = nullptr;
+	const GameMapTile* southWest = nullptr;
+	const GameMapTile* northWest = nullptr;
+
+	if (1 == (cityCol % 2)) //Odd cols
+	{
+		north = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol, cityRow - 1);
+		northEast = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol + 1, cityRow);
+		southEast = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol + 1, cityRow + 1);
+		south = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol, cityRow + 1);
+		southWest = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol - 1, cityRow + 1);
+		northWest = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol - 1, cityRow);
+	}
+	else // Even cols
+	{
+		north = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol, cityRow - 1);
+		northEast = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol + 1, cityRow - 1);
+		southEast = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol + 1, cityRow);
+		south = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol, cityRow + 1);
+		southWest = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol - 1, cityRow);
+		northWest = GameMapTileRepository::GetInstance()->GetByColAndRow(cityCol - 1, cityRow - 1);
+	}
+
+	std::vector<const GameMapTile*> directions;
+	directions.push_back(north);
+	directions.push_back(northEast);
+	directions.push_back(southEast);
+	directions.push_back(south);
+	directions.push_back(southWest);
+	directions.push_back(northWest);
+	
+	const int TERRAIN_TYPE_ID_OCEAN = 3;
+	for (int i = 0; i < directions.size();i++)
+	{
+		const GameMapTile* current = directions[i];
+		if (nullptr == current)
+		{
+			continue;
+		}
+		if (false == IsGameMapTileOfTerrainTypeId(current, TERRAIN_TYPE_ID_OCEAN))
+		{
+			continue;
+		}
+		return true;
+	}
+
+	return false;
+}
+
+bool GameCityFactory::IsGameMapTileOfTerrainTypeId(const GameMapTile* gameMapTile, int terrainTypeId) const
+{
+	const ModelTerrainType* modelTerrainType = gameMapTile->GetTerrainType();
+	return modelTerrainType->GetId() == terrainTypeId;
 }
 
 bool GameCityFactory::Create(const QDomNode city)
