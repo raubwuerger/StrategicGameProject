@@ -75,6 +75,7 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	const GameUnitProduction* gameUnitProduction = GameUnitProductionController::GetInstance()->CreateDefaultGameUnitProduction(created->GetId());
 	if (nullptr == gameUnitProduction)
 	{
+		DeleteCity(created);
 		Q_ASSERT(false);
 		return;
 	}
@@ -102,15 +103,7 @@ void CityTypeEditor::SlotDeleteCity(int mapItemId)
 		return;
 	}
 
-	MapCityItem*  mapCityItem = MapCityItemRepository::GetInstance()->RemoveById(gameCityItem->GetId());
-	if (nullptr == mapCityItem)
-	{
-		return;
-	}
-
-	MapViewInstance->RemoveCity(mapCityItem);
-	delete gameCityItem;
-	delete mapCityItem;
+	DeleteCity(gameCityItem);
 }
 
 #include "model/ModelTerrainType.h"
@@ -124,4 +117,19 @@ int CityTypeEditor::GetModelTerrainType(int mapId)
 		return NOT_INITIALIZED_INT;
 	}
 	return gameMapItem->GetModelTerrainTypeId();
+}
+
+void CityTypeEditor::DeleteCity(GameCity* gameCityItem)
+{
+	GameUnitProductionController::GetInstance()->RemoveGameUnitProduction(gameCityItem->GetId());
+
+	MapCityItem*  mapCityItem = MapCityItemRepository::GetInstance()->RemoveById(gameCityItem->GetId());
+	if (nullptr == mapCityItem)
+	{
+		return;
+	}
+
+	MapViewInstance->RemoveCity(mapCityItem);
+	delete gameCityItem;
+	delete mapCityItem;
 }

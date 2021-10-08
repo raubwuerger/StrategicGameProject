@@ -17,6 +17,8 @@ public:
 	/** */
 	const GameUnitProduction* CreateDefaultGameUnitProduction(int cityId);
 	/** */
+	void RemoveGameUnitProduction(int cityId);
+	/** */
 	bool Init() override;
 	/** */
 	void Release() override;

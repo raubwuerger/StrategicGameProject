@@ -5,6 +5,7 @@ class ModelCityType;
 class EditorController;
 class MapView;
 class ModelTerrainType;
+class GameCity;
 #include "BaseEditor.h"
 
 class CityTypeEditor : public BaseEditor
@@ -28,6 +29,8 @@ public slots:
 private:
 	/** */
 	int GetModelTerrainType(int mapId);
+	/** */
+	void DeleteCity(GameCity* gameCityItem);
 private:
 	friend class EditorToolbox;
 	const ModelCityType*	ActiveModelCityType;

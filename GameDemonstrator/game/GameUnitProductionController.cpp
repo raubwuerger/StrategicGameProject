@@ -77,6 +77,11 @@ const GameUnitProduction* GameUnitProductionController::CreateDefaultGameUnitPro
 	return gameUnitProduction;
 }
 
+void GameUnitProductionController::RemoveGameUnitProduction(int cityId)
+{
+	CityProductions.remove(cityId);
+}
+
 bool GameUnitProductionController::Init()
 {
 	return true;

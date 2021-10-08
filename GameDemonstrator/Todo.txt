@@ -11,3 +11,9 @@
 	+	Check if city has ocean access or not -> GameCityCreator
 	-	Found bug: Editormode, deleting city doesn't delete GameUnitProduction
 					-> Unable to create new city because GameUnitProduction already exists
+					-> Dadurch läßt sich das Problem nicht lösen.
+						Beim Löschen einer GameUnitProduction für eine Stadt (z.B. gameCityId = 11)
+						wird dieser Eintrag (11) gelöscht. 
+						Beim Neuanlegen einer Stadt wird die Id anhand der vorhandenen Einträge im
+						GameCityRepository erzeugt. D.h. Es wird eine gameCityId (nicht vorhanden)
+						erzeugt welche bereits vorhanden ist.
