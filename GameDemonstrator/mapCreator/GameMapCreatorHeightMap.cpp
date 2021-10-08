@@ -141,8 +141,11 @@ void GameMapCreatorHeightMap::InitHeightValueUpperBorders(std::vector< std::vect
 	heightMapPercentageSplitter.RegisterPercentageValue(percentageWood);
 	heightMapPercentageSplitter.RegisterPercentageValue(percentageHill);
 
+	const int percentageCounts = 4;
+	const int segments = percentageCounts + 1;
+
 	std::map<int, std::vector<float> > heightMapPercentageValues = heightMapPercentageSplitter.CalculatePercentageValue(MapToVectorSorter::TransformAndSort(heightMapVector));
-	if (heightMapPercentageValues.size() != 5)
+	if (heightMapPercentageValues.size() != segments)
 	{
 		return;
 	}
