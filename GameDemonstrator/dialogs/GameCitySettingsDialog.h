@@ -27,6 +27,8 @@ public:
 	/** */
 	void SetGameUnitProduction(const GameUnitProduction* gameUnitProduction);
 	/** */
+	void SetHasOceanAccess(bool hasOceanAccess);
+	/** */
 	GameUnitProduction* GetChangedGameUnitProduction() const;
 	/** */
 	bool GetHasProductionChanged() const;

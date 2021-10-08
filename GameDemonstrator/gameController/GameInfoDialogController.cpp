@@ -147,17 +147,18 @@ void GameInfoDialogController::SlotShowGameCitySettingsDialog(int gameCityId)
 		Q_ASSERT(gameCity);
 		return;
 	}
-
+	
 	if (GameConfig::PlayerId != gameCity->GetGameOwnerId())
 	{
 		return;
 	}
-
+	
 	GameCitySettingsDialogObject->SetName(gameCity->GetName());
 	GameCitySettingsDialogObject->SetEfficiency(QString::number(gameCity->GetCurrentEfficiency()));
 	GameCitySettingsDialogObject->SetStrength(QString::number(gameCity->GetCurrentStrength()));
 	GameCitySettingsDialogObject->SetSpecialization(GetSpezializedUnitType(gameCity));
 	GameCitySettingsDialogObject->SetGameUnitProduction(gameCity->GetUnitProduction());
+	GameCitySettingsDialogObject->SetHasOceanAccess(gameCity->GetHasOceanAccess());
 	if (GameCitySettingsDialogObject->exec() == QDialog::Rejected)
 	{
 		return;
