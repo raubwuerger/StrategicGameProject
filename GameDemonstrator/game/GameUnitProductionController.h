@@ -29,6 +29,8 @@ private:
 	void CreateGameUnit(const GameUnitProduction* gameUnitProduction);
 	/** */
 	bool IsGameUnitOnMapTile(int gameMapId) const;
+	/** */
+	bool IsCityNeutral(const GameUnitProduction* gameUnitProduction) const;
 private:
 	QMap<int, const GameUnitProduction*>	CityProductions;
 	static GameUnitProductionController*	Instance;

@@ -104,6 +104,11 @@ GameUnitProductionController::GameUnitProductionController()
 
 void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gameUnitProduction )
 {
+	if (true == IsCityNeutral(gameUnitProduction))
+	{
+		return;
+	}
+
 	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(gameUnitProduction->GetModelTypeId());
 	if (nullptr == modelUnitType)
 	{
@@ -146,4 +151,12 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 bool GameUnitProductionController::IsGameUnitOnMapTile(int gameMapId) const
 {
 	return nullptr != GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapId);
+}
+
+bool GameUnitProductionController::IsCityNeutral(const GameUnitProduction* gameUnitProduction) const
+{
+	const int CITY_OWNER_NEUTRAL = 1;
+	GameCity* gameCity = GameCityRepository::GetInstance()->GetById(gameUnitProduction->GetGameCityId());
+	Q_ASSERT(gameCity);
+	return gameCity->GetGameOwnerId() == CITY_OWNER_NEUTRAL;
 }

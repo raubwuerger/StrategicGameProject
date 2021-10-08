@@ -6,3 +6,5 @@
 2021-10-08:
 	+	LoggingPane sollte über Konfiguration ein/aus geschaltet werden können.
 	-	Found bug: Unit production isn't working anymore!
+	-	Set names for cities
+	+	Neutral cities shouldn't produce any units.
