@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CityNames>
 	<CityName>
-		<Name>Aalborg</Name>
-		<HasOceanAccess>true</HasOceanAccess>
-	</CityName>
-	<CityName>
 		<Name>Aachen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
@@ -21,6 +17,30 @@
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
+		<Name>München</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Köln</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Frankfurt am Main</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Stuttgart</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Düsseldorf</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Leipzig</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
 		<Name>London</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
@@ -34,6 +54,46 @@
 	</CityName>
 	<CityName>
 		<Name>Moskau</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>St. Petersburg</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Rostow</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Wolgograd</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Kaliningrad</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Tula</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Woronesh</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Krasnodar</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Saratow</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Astrachan</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Pjatigorsk</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
@@ -209,367 +269,375 @@
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Warschau</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Krakau</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Lodz</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Breslau</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Posen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Danzig</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Stettin</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Bromberg</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Lublin</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Kattowitz</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Graz</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Linz</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Innsbruck</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Zürich</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Genf</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Basel</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Prag</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Brünn</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Ostrau</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Pilsen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Reichenberg</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Turin</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Genua</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Bologna</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Florenz</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Catana</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Bari</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Budapest</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Debrezen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Segedin</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Belgrad</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Zagreb</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Skopje</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Vilnius</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Riga</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Tallinn</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Kopenhagen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Aarhus</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Odense</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Helsinki</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Tampere</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Turku</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Trondheim</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Stavanger</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Narvik</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Stockholm</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Göteborg</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Malmö</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Visby</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Amsterdam</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Rotterdam</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Den Haag</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Utrecht</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Eindhove</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Antwerpen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Gent</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Charleroi</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Lüttich</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Brüssels</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Bukarest</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Klausenburg</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Temeschburg</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Konstanza</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Craiova</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Kronstadt</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Ploesti</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Sofia</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Plowdiw</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Warna</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Burgas</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Athen</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Thessaloniki</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Patras</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Iraklion</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Luxemburg</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Dublin</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Cork</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Reykjavík</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Porto</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Vila Nova de Gaia</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Amadora</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Minsk</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Homyel´</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Mahilyow</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Vitsyebsk</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Brest</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Kiew</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Charkow</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Odessa</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Dnipro</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 	<CityName>
-		<Name>Aalborg</Name>
+		<Name>Donezk</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Lemberg</Name>
+		<HasOceanAccess>true</HasOceanAccess>
+	</CityName>
+	<CityName>
+		<Name>Saporischschja</Name>
 		<HasOceanAccess>true</HasOceanAccess>
 	</CityName>
 </CityNames>
