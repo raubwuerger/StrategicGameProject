@@ -221,7 +221,7 @@ void GameDemonstrator::InitLoggingFramwork()
 	jha::LogFactory::GetInstance()->RegisterLogger(new jha::LoggerTableWidget(DockWidgetLogging));
 	if (false == modelProgramFactory.GetConfig()->ShowLoggingPane)
 	{
-		DockWidgetLogging->hide();
+		dockWidget->hide();
 	}
 }
 

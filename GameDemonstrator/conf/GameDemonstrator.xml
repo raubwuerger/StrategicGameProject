@@ -17,10 +17,10 @@
 	</GraphicSettings>
 	<MapHexItemSettings>
 		<ShowId>false</ShowId>
-		<ShowRowAndCol>false</ShowRowAndCol>
+		<ShowRowAndCol>true</ShowRowAndCol>
 		<ShowCoordinates>false</ShowCoordinates>
 		<ShowTextBorder>false</ShowTextBorder>
-		<ShowText>false</ShowText>
+		<ShowText>true</ShowText>
 		<DrawHexBorder>false</DrawHexBorder>
 	</MapHexItemSettings>
 </GameDemonstrator>
