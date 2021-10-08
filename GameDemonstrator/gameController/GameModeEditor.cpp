@@ -74,9 +74,13 @@ void GameModeEditor::InitConnections()
 	connect(MapCreatorHeightMapDialogObject, &MapCreatorHeightMapDialog::SignalGameMapCreationData, this, &GameModeEditor::SlotReceiveCreationDataHeightMap);
 }
 
+#include "game\GameConfig.h"
 //=================================================================================================
 void GameModeEditor::SlotReceiveCreationDataHeightMap(GameMapCreatorHeightMapData creationData)
 {
+	//TODO: Hier einen anderen weg finden!!
+	GameConfig::MapCols = creationData.MapSizeX;
+	GameConfig::MapRows = creationData.MapSizeY;
 	CommandCreateHeightMap createHeightMap;
 	createHeightMap.CreateHeightMap(creationData, MapViewObject);
 }
