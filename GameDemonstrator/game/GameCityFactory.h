@@ -75,8 +75,11 @@ private:
 	bool CalculateHasOceanAccess(const GameCity* gameCity);
 	/** */
 	bool IsGameMapTileOfTerrainTypeId( const GameMapTile* gameMapTile, int terrainTypeId ) const;
+	/** */
+	void CreateCityNameList();
 private:
 	const QString	DefaultCityName;
+	static std::vector<std::string> CityNames;
 };
 
 #endif  //GAMECITYFACTORY_H

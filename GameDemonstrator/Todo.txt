@@ -5,7 +5,9 @@
 	-	MapHexItemInfoString sollte nicht von Klasse MapHexItem gebaut werden!
 2021-10-08:
 	+	LoggingPane sollte über Konfiguration ein/aus geschaltet werden können.
-	-	Found bug: Unit production isn't working anymore!
-	-	Set names for cities
+	-	Found bug: Unit production isn't working anymore! CHECK!!!
+	+	Set names for cities
 	+	Neutral cities shouldn't produce any units.
-	-	Check if city has ocean access or not -> GameCityCreator
+	+	Check if city has ocean access or not -> GameCityCreator
+	-	Found bug: Editormode, deleting city doesn't delete GameUnitProduction
+					-> Unable to create new city because GameUnitProduction already exists

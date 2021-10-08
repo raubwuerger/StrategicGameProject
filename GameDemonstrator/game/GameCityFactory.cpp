@@ -19,6 +19,9 @@
 #include "mapCreator/GameCityCreatorSimple.h"
 #include "model/ModelTerrainType.h"
 
+std::vector<std::string> GameCityFactory::CityNames;
+
+
 GameCityFactory::GameCityFactory()
 	: DefaultCityName("City")
 {
@@ -30,6 +33,7 @@ GameCityFactory::~GameCityFactory()
 
 bool GameCityFactory::Create()
 {
+	CreateCityNameList();
 	GameCityCreatorSimple gameCityCreatorSimple;
 	gameCityCreatorSimple.AddValidTerrainTypeProcent(std::pair<int, double>(1,1));
 	if (false == gameCityCreatorSimple.Create())
@@ -237,9 +241,24 @@ const GameMapTile* GameCityFactory::GetGameMapTile(const GameCityParameterObject
 	return GameMapTileRepository::GetInstance()->GetById(obj.GameMapTileId);
 }
 
+#include <random>
 QString GameCityFactory::CreateCityName(int cityId) const
 {
-	return DefaultCityName + " " + QString::number(cityId);
+	if (true == CityNames.empty() )
+	{
+		return DefaultCityName + "_" + QString::number(cityId);
+	}
+
+	int MIN = 0;
+	int MAX = CityNames.size();
+	std::random_device randomDevice;
+	std::default_random_engine defaultRandomEngine(randomDevice());
+	std::uniform_int_distribution<int> uniformDistributorINT(MIN, MAX);
+
+	int randomIndex = uniformDistributorINT(defaultRandomEngine);
+	QString name = CityNames[randomIndex].c_str();
+	CityNames.erase(CityNames.begin() + randomIndex);
+	return name;
 }
 
 int GameCityFactory::GetBaseEfficency(int cityId) const
@@ -402,4 +421,170 @@ GameUnitProduction* GameCityFactory::CreateGameUnitProduction(const QDomNode& do
 		//TODO: Was soll hier geschehen???
 	}
 	return gameUnitProduction;
+}
+
+void GameCityFactory::CreateCityNameList()
+{
+	CityNames = {
+		"Aachen",
+		"Berlin",
+		"Bochum",
+		"Hamburg",
+		"München",
+		"Köln",
+		"Frankfurt am Main",
+		"Stuttgart",
+		"Düsseldorf",
+		"Leipzig",
+		"London",
+		"Oslo",
+		"Bergen",
+		"Moskau",
+		"St. Petersburg",
+		"Rostow",
+		"Wolgograd",
+		"Kaliningrad",
+		"Tula",
+		"Woronesh",
+		"Krasnodar",
+		"Saratow",
+		"Astrachan",
+		"Pjatigorsk",
+		"Paris",
+		"Wien",
+		"Salzburg",
+		"Kufstein",
+		"Rom",
+		"Mailand",
+		"Neapel",
+		"Palermo",
+		"Turin",
+		"Madrid",
+		"Barcelona",
+		"Lissabon",
+		"Marseille",
+		"Lyon",
+		"Toulouse",
+		"Nizza",
+		"Nantes",
+		"Straßburg",
+		"Bordeaux",
+		"Lille",
+		"Rennes",
+		"Birmingham",
+		"Glasgow",
+		"Liverpool",
+		"Bristol",
+		"Manchaster",
+		"Sheffield",
+		"Leeds",
+		"Edinburgh",
+		"Leicester",
+		"Southhampton",
+		"Newcastle upon Tyne",
+		"Nottingham",
+		"Cardiff",
+		"Belfast",
+		"Valencia",
+		"Sevilla",
+		"Saragossa",
+		"Málaga",
+		"Murcia",
+		"Palma de Mallorca",
+		"Las Palmas de Gran Canaria",
+		"Bilbao",
+		"Warschau",
+		"Krakau",
+		"Lodz",
+		"Breslau",
+		"Posen",
+		"Danzig",
+		"Stettin",
+		"Bromberg",
+		"Lublin",
+		"Kattowitz",
+		"Graz",
+		"Linz",
+		"Innsbruck",
+		"Zürich",
+		"Genf",
+		"Basel",
+		"Prag",
+		"Brünn",
+		"Ostrau",
+		"Pilsen",
+		"Reichenberg",
+		"Turin",
+		"Genua",
+		"Bologna",
+		"Florenz",
+		"Catana",
+		"Bari",
+		"Budapest",
+		"Debrezen",
+		"Segedin",
+		"Belgrad",
+		"Zagreb",
+		"Skopje",
+		"Vilnius",
+		"Riga",
+		"Tallinn",
+		"Kopenhagen",
+		"Aarhus",
+		"Odense",
+		"Helsinki",
+		"Tampere",
+		"Turku",
+		"Trondheim",
+		"Stavanger",
+		"Narvik",
+		"Stockholm",
+		"Göteborg",
+		"Malmö",
+		"Visby",
+		"Amsterdam",
+		"Rotterdam",
+		"Den Haag",
+		"Utrecht",
+		"Eindhove",
+		"Antwerpen",
+		"Gent",
+		"Charleroi",
+		"Lüttich",
+		"Brüssels",
+		"Bukarest",
+		"Klausenburg",
+		"Temeschburg",
+		"Konstanza",
+		"Craiova",
+		"Kronstadt",
+		"Ploesti",
+		"Sofia",
+		"Plowdiw",
+		"Warna",
+		"Burgas",
+		"Athen",
+		"Thessaloniki",
+		"Patras",
+		"Iraklion",
+		"Luxemburg",
+		"Dublin",
+		"Cork",
+		"Reykjavík",
+		"Porto",
+		"Vila Nova de Gaia",
+		"Amadora",
+		"Minsk",
+		"Homyel´",
+		"Mahilyow",
+		"Vitsyebsk",
+		"Brest",
+		"Kiew",
+		"Charkow",
+		"Odessa",
+		"Dnipro",
+		"Donezk",
+		"Lemberg",
+		"Saporischschja"
+	};
 }
