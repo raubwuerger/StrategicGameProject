@@ -3,6 +3,7 @@
 	<Logging>
 		<!--ValidLogleves: None, Fatal, Error, Warning, Message, Info, Trace, Debug -->
 		<GlobalLogLevel>Info</GlobalLogLevel>
+		<ShowLoggingPane>false</ShowLoggingPane>
 	</Logging>
 	<SaveGame>
 		<SaveGamePath>./savegames/</SaveGamePath>

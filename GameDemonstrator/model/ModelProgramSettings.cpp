@@ -2,6 +2,9 @@
 #include "ModelProgramSettings.h"
 
 QString ModelProgramSettings::GlobalLogLevel = "DEBUG";
+
+bool ModelProgramSettings::ShowLoggingPane = true;
+
 QString ModelProgramSettings::SaveGamePath = ".//savegames//";
 
 int ModelProgramSettings::DebugCols = 80;

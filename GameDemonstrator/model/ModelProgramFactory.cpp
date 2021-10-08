@@ -45,6 +45,11 @@ bool ModelProgramFactory::Create()
 				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_GLOBALLOGLEVEL));
 				return false;
 			}
+			if (false == extractor.ExtractValue(ModelProgramSettingsXMLItems::SUBNODE_SHOWLOGGINGPANE, ModelProgramSettings::ShowLoggingPane))
+			{
+				jha::GetLog()->Log_WARNING(QObject::tr("File %1 contains no node %2.").arg(ModelProgramSettingsXMLItems::CONFIG_FILE_NAME).arg(ModelProgramSettingsXMLItems::SUBNODE_SHOWLOGGINGPANE));
+				return false;
+			}
 			continue;
 		}
 

@@ -3,3 +3,6 @@
 	+	Die Anzeige von MapTile Informationen (Id, pos|col, boarder, ...) sollte parametrierbar sein
 	-	Unschöne Überschneidungen der Png's beheben. Inklusive wenn ein HexItem markiert ist
 	-	MapHexItemInfoString sollte nicht von Klasse MapHexItem gebaut werden!
+2021-10-08:
+	+	LoggingPane sollte über Konfiguration ein/aus geschaltet werden können.
+	-	Found bug: Unit production isn't working anymore!

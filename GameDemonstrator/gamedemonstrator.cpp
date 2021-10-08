@@ -123,7 +123,6 @@ void GameDemonstrator::CreateMenuFile()
 		ActionRepository::GetInstance()->AddAction(saveGameAction);
 		connect(saveGameAction, &QAction::triggered, ConnectorSaveGameObject, &ConnectorSaveGame::SlotSaveGame, Qt::QueuedConnection);
 	}
-	//		QIcon icon(".\\Resources\\sign_forbidden.ico");
 
 	Action* zoomInAction = nullptr;
 	{
@@ -213,12 +212,17 @@ void GameDemonstrator::InitLoggingFramwork()
 	loggerFile->SetFilename( logfileName );
 
 	jha::LogFactory::GetInstance()->RegisterLogger( loggerFile );
-	jha::LogFactory::GetInstance()->RegisterLogger( new jha::LoggerTableWidget(DockWidgetLogging) );
 
 	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
+
+	jha::LogFactory::GetInstance()->RegisterLogger(new jha::LoggerTableWidget(DockWidgetLogging));
+	if (false == modelProgramFactory.GetConfig()->ShowLoggingPane)
+	{
+		DockWidgetLogging->hide();
+	}
 }
 
 #include "experimental/ExperimentalClass.h"
