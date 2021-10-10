@@ -73,6 +73,50 @@ MapUnitItem* MapUnitItemRepository::RemoveFromMap(int gameUnitItemId)
 	return removed;
 }
 
+MapUnitItem* MapUnitItemRepository::Hide(int gameUnitItemId)
+{
+	if (false == MapUnitItems.contains(gameUnitItemId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 does not exist!").arg(QString::number(gameUnitItemId)));
+		return nullptr;
+	}
+
+	MapUnitItem* mapUnitToHide = MapUnitItems[gameUnitItemId];
+
+	Q_ASSERT(MapViewInstance);
+	mapUnitToHide->hide();
+	return mapUnitToHide;
+}
+
+MapUnitItem* MapUnitItemRepository::Show(int gameUnitItemId)
+{
+	if (false == MapUnitItems.contains(gameUnitItemId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 does not exist!").arg(QString::number(gameUnitItemId)));
+		return nullptr;
+	}
+
+	MapUnitItem* mapUnitToHide = MapUnitItems[gameUnitItemId];
+
+	Q_ASSERT(MapViewInstance);
+	mapUnitToHide->show();
+	return mapUnitToHide;
+}
+
+bool MapUnitItemRepository::ShowOnMap(int gameUnitId)
+{
+	if (false == MapUnitItems.contains(gameUnitId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 does not exist!").arg(QString::number(gameUnitId)));
+		return nullptr;
+	}
+
+	MapUnitItem* show = MapUnitItems[gameUnitId];
+
+	Q_ASSERT(MapViewInstance);
+	return MapViewInstance->AddedMapUnit(show);
+}
+
 void MapUnitItemRepository::Release()
 {
 	MapUnitItems.clear();

@@ -9,6 +9,7 @@
 #include "game/GameOwner.h"
 #include "game/GameUnitRepository.h"
 #include "game/GameUnit.h"
+#include "game/GameUnitRuntimeData.h"
 
 GameUnitController::GameUnitController()
 	: Selected(nullptr)
@@ -25,6 +26,7 @@ void GameUnitController::ConnectSinglePlayer()
 	disconnect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameUnitController::SlotGameUnitSelectedEditorMode);
 	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedLeftButton, this, &GameUnitController::SlotGameUnitSelected);
 	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, this, &GameUnitController::SlotGameUnitUnselected);
+	connect(MapView::ConnectorMapUnitItemInstance, &ConnectorMapUnitItem::SignalUnitItemPressedRightButton, this, &GameUnitController::SlotShowEmbarkedUnit);
 }
 
 void GameUnitController::ConnectEditor()
@@ -84,6 +86,23 @@ void GameUnitController::SlotGameUnitUnselected(int gameUnitId)
 
 	mapUnitItem->ShowOriginal();
 	Selected = nullptr;
+}
+
+void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
+{
+	GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetById(gameUnitId);
+	if (nullptr == gameUnit)
+	{
+		Q_ASSERT(false);
+		return;
+	}
+
+	if (gameUnit->GetRuntimeData()->TransportedGameUnitIds.size() <= 0)
+	{
+		return;
+	}
+
+	bool successful = MapUnitItemRepository::GetInstance()->ShowOnMap(gameUnit->GetRuntimeData()->TransportedGameUnitIds[0]->GetId());
 }
 
 void GameUnitController::SlotGameUnitSelectedEditorMode(int gameUnitId)

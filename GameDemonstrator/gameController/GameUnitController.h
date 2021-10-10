@@ -27,6 +27,8 @@ public slots:
 	void SlotGameUnitUnselected(int gameUnitId);
 	/** */
 	void SlotGameUnitSelectedEditorMode(int gameUnitId);
+	/** */
+	void SlotShowEmbarkedUnit(int gameUnitId);
 private:
 	/** */
 	bool IsUnitOfItsOwn(const MapUnitItem* mapUnitItem) const;
