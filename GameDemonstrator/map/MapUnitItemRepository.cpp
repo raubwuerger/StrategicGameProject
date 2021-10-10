@@ -81,11 +81,11 @@ MapUnitItem* MapUnitItemRepository::Hide(int gameUnitItemId)
 		return nullptr;
 	}
 
-	MapUnitItem* mapUnitToHide = MapUnitItems[gameUnitItemId];
+	MapUnitItem* mapUnit = MapUnitItems[gameUnitItemId];
 
 	Q_ASSERT(MapViewInstance);
-	mapUnitToHide->hide();
-	return mapUnitToHide;
+	mapUnit->hide();
+	return mapUnit;
 }
 
 MapUnitItem* MapUnitItemRepository::Show(int gameUnitItemId)
@@ -96,14 +96,14 @@ MapUnitItem* MapUnitItemRepository::Show(int gameUnitItemId)
 		return nullptr;
 	}
 
-	MapUnitItem* mapUnitToHide = MapUnitItems[gameUnitItemId];
+	MapUnitItem* mapUnit = MapUnitItems[gameUnitItemId];
 
 	Q_ASSERT(MapViewInstance);
-	mapUnitToHide->show();
-	return mapUnitToHide;
+	mapUnit->show();
+	return mapUnit;
 }
 
-bool MapUnitItemRepository::ShowOnMap(int gameUnitId)
+bool MapUnitItemRepository::AddToMap(int gameUnitId)
 {
 	if (false == MapUnitItems.contains(gameUnitId))
 	{

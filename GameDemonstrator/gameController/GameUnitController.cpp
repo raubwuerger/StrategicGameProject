@@ -90,19 +90,28 @@ void GameUnitController::SlotGameUnitUnselected(int gameUnitId)
 
 void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
 {
-	GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetById(gameUnitId);
-	if (nullptr == gameUnit)
+	GameUnit* gameUnitClicked = GameUnitRepository::GetInstance()->GetById(gameUnitId);
+	if (nullptr == gameUnitClicked)
 	{
 		Q_ASSERT(false);
 		return;
 	}
 
-	if (gameUnit->GetRuntimeData()->TransportedGameUnitIds.size() <= 0)
+	if (gameUnitClicked->GetRuntimeData()->TransportedGameUnitIds.size() > 0)
 	{
+		GameUnit* embarkedUnit = gameUnitClicked->GetRuntimeData()->TransportedGameUnitIds[0];
+		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());
+		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitId);
 		return;
 	}
 
-	bool successful = MapUnitItemRepository::GetInstance()->ShowOnMap(gameUnit->GetRuntimeData()->TransportedGameUnitIds[0]->GetId());
+	if (true == gameUnitClicked->GetIsEmbarked() )
+	{
+		bool showed = MapUnitItemRepository::GetInstance()->Show(gameUnitClicked->GetIsEmbarkedOn()->GetId());
+		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitClicked->GetId());
+		return;
+	}
+	return;
 }
 
 void GameUnitController::SlotGameUnitSelectedEditorMode(int gameUnitId)

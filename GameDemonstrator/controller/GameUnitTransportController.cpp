@@ -68,7 +68,7 @@ int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) co
 bool GameUnitTransportController::EmbarkUnit()
 {
 	TransporterUnit->GetRuntimeData()->TransportedGameUnitIds.push_back(UnitToTransport);
-	MapUnitItem* mapUnitToTransport = MapUnitItemRepository::GetInstance()->RemoveFromMap(UnitToTransport->GetId());
+	MapUnitItem* mapUnitToTransport = MapUnitItemRepository::GetInstance()->Hide(UnitToTransport->GetId());
 	if (nullptr == mapUnitToTransport)
 	{
 		Q_ASSERT(false);
@@ -79,6 +79,9 @@ bool GameUnitTransportController::EmbarkUnit()
 	{
 		return false;
 	}
+
+	UnitToTransport->SetEmbarked(TransporterUnit);
+
 	return true;
 }
 

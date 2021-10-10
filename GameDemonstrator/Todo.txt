@@ -17,3 +17,7 @@
 						Beim Neuanlegen einer Stadt wird die Id anhand der vorhandenen Einträge im
 						GameCityRepository erzeugt. D.h. Es wird eine gameCityId (nicht vorhanden)
 						erzeugt welche bereits vorhanden ist.
+2021-10-10:
+	+	Implement Embark Unit (Land)
+	+	Implement switch between embarked unit and transporter unit. (Land) (Only one unit supported at the moment)
+	-	Implement concept for saving and loading transported units.  (Land)

@@ -8,10 +8,11 @@ GameUnit::GameUnit(int gameUnitId)
 		UnitType(nullptr),
 		GameOwnerObject(nullptr),
 		GameMapTileObject(nullptr),
-		UnitTypeId(-1),
-		GameOwnerId(-1),
-		MapTileId(-1),
-		RuntimeData(nullptr)
+		UnitTypeId(NOT_INITIALIZED_INT),
+		GameOwnerId(NOT_INITIALIZED_INT),
+		MapTileId(NOT_INITIALIZED_INT),
+		RuntimeData(nullptr),
+		IsEmbarkedOn(nullptr)
 {
 }
 
@@ -162,6 +163,26 @@ QString GameUnit::CreateMovementPointsString() const
 	movementPoints += " / ";
 	movementPoints += QString::number(GetBaseMovementPoints());
 	return movementPoints;
+}
+
+GameUnit* GameUnit::GetIsEmbarkedOn() const
+{
+	return IsEmbarkedOn;
+}
+
+bool GameUnit::GetIsEmbarked() const
+{
+	return IsEmbarkedOn != nullptr;
+}
+
+void GameUnit::SetEmbarked(GameUnit* embarkedOn)
+{
+	IsEmbarkedOn = embarkedOn;
+}
+
+void GameUnit::SetDismbarked()
+{
+	IsEmbarkedOn = nullptr;
 }
 
 bool GameUnit::CanOccupieCity() const

@@ -45,7 +45,7 @@ bool GameUnitMovementController::CanUnitMoveToDestination(int sourceGameUnitItem
 	GameUnitTransportController gameUnitTransportController(playerUnit);
 	if (true == gameUnitTransportController.TransportUnit(destination))
 	{
-		return false;
+		return true;
 	}
 
 	if (true == IsOwnUnitOnDestinationMapTile(destination->GetId()))

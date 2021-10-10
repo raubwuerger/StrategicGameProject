@@ -66,6 +66,14 @@ public:
 	QString CreatStrengthString() const;
 	/** */
 	QString CreateMovementPointsString() const;
+	/** */
+	GameUnit* GetIsEmbarkedOn() const;
+	/** */
+	bool GetIsEmbarked() const;
+	/** */
+	void SetEmbarked(GameUnit* embarkedOn);
+	/** */
+	void SetDismbarked();
 private:
 	friend class GameUnitFactory;
 	const int				Id;
@@ -77,6 +85,7 @@ private:
 	const GameMapTile*		GameMapTileObject;
 	mutable QString			Name;
 	GameUnitRuntimeData*	RuntimeData;
+	GameUnit*				IsEmbarkedOn;
 };
 
 #endif // GAMEUNITTYPE_H
