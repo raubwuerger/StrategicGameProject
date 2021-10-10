@@ -36,6 +36,8 @@ public:
 	GameUnit* RemoveGameUnit(const GameUnit* gameUnit);
 	/** */
 	bool UpdateGameUnitOnGameMapTile(const GameUnit* movedUnit, int oldMapId);
+	/** */
+	bool RemoveGameUnitFromMapTile(const GameUnit* gameUnit);
 private:
 	/** */
 	GameUnitRepository();

@@ -17,6 +17,8 @@ public:
 	bool Register(MapUnitItem* mapUnitItem);
 	/** Removes mapUnitItem from registry and from MapView */
 	MapUnitItem* Remove(int gameUnitItemId);
+	/** Removes mapUnitItem from registry and from MapView */
+	MapUnitItem* RemoveFromMap(int gameUnitItemId);
 	/** */
 	void Release() override;
 	/** */

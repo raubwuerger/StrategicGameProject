@@ -133,9 +133,9 @@ GameUnit* GameUnitRepository::RemoveGameUnitByGameMapTileId(int gameMapTileId)
 
 GameUnit* GameUnitRepository::RemoveGameUnit(const GameUnit* gameUnit)
 {
-	Q_ASSERT(gameUnit);
 	if (nullptr == gameUnit)
 	{
+		Q_ASSERT(gameUnit);
 		return nullptr;
 	}
 
@@ -164,6 +164,19 @@ bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* movedUnit, 
 	}
 	GameUnitsOnGameMapTile.take(oldMapId);
 	return UpdateGameUnitOnGameMapTile(movedUnit);
+}
+
+bool GameUnitRepository::RemoveGameUnitFromMapTile(const GameUnit* gameUnit)
+{
+	if (nullptr == gameUnit)
+	{
+		Q_ASSERT(gameUnit);
+		return nullptr;
+	}
+
+	Q_ASSERT(GameUnitsOnGameMapTile.contains(gameUnit->GetGameTileId()));
+	GameUnitsOnGameMapTile.remove(gameUnit->GetGameTileId());
+	return true;
 }
 
 int GameUnitRepository::GenerateUID(const GameUnit*gameUnit)

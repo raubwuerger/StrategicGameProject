@@ -1,6 +1,8 @@
 #ifndef GAMEUNITRUNTIMEDATA_H
 #define GAMEUNITRUNTIMEDATA_H
 
+class GameUnit;
+
 class GameUnitRuntimeData
 {
 public:
@@ -9,7 +11,7 @@ public:
 	int BaseMovementPoints;
 	int CurrentMovementPoints;
 	int TransportCapacity;
-	QVector<int>	TransportedGameUnitIds;
+	QVector<GameUnit*>	TransportedGameUnitIds;
 };
 
 #endif GAMEUNITRUNTIMEDATA_H

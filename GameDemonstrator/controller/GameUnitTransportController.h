@@ -3,6 +3,7 @@
 
 class GameUnit;
 class MapHexItem;
+class MapView;
 
 class GameUnitTransportController
 {
@@ -19,11 +20,12 @@ private:
 	/** */
 	int GetFreeTransportCapacity(GameUnit* gameUnit) const;
 	/** */
-	void EmbarkUnit();
+	bool EmbarkUnit();
 	//TODO: CanUnitEmbark, CanUnitDisembark
 private:
 	GameUnit*			UnitToTransport;
 	mutable GameUnit*	TransporterUnit;
+	MapView*			MapViewObject;
 };
 
 #endif // GAMEUNITTRANSPORTCONTROLLER_H

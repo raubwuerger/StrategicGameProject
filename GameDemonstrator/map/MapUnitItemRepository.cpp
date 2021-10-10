@@ -47,7 +47,7 @@ MapUnitItem* MapUnitItemRepository::Remove(int gameUnitItemId)
 {
 	if (false == MapUnitItems.contains(gameUnitItemId))
 	{
-		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 is not exists!").arg(QString::number(gameUnitItemId)));
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 does not exist!").arg(QString::number(gameUnitItemId)));
 		return nullptr;
 	}
 
@@ -56,6 +56,21 @@ MapUnitItem* MapUnitItemRepository::Remove(int gameUnitItemId)
 	Q_ASSERT(MapViewInstance);
 	MapViewInstance->RemoveMapUnit(deleted);
 	return deleted;
+}
+
+MapUnitItem* MapUnitItemRepository::RemoveFromMap(int gameUnitItemId)
+{
+	if (false == MapUnitItems.contains(gameUnitItemId))
+	{
+		jha::GetLog()->Log_DEBUG(QObject::tr("MapUnitItem with id %1 does not exist!").arg(QString::number(gameUnitItemId)));
+		return nullptr;
+	}
+
+	MapUnitItem* removed = MapUnitItems[gameUnitItemId];
+
+	Q_ASSERT(MapViewInstance);
+	MapViewInstance->RemoveMapUnit(removed);
+	return removed;
 }
 
 void MapUnitItemRepository::Release()

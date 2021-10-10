@@ -2,9 +2,11 @@
 #include "GameUnitTransportController.h"
 #include "game\GameUnit.h"
 #include "game\GameUnitRuntimeData.h"
-#include "map\MapHexItem.h"
 #include "game\GameUnitRepository.h"
+#include "game\GameCityRuntimeData.h"
 #include "model\ModelUnitType.h"
+#include "map\MapUnitItemRepository.h"
+#include "map\MapHexItem.h"
 
 GameUnitTransportController::GameUnitTransportController(GameUnit* playerUnit)
 	: UnitToTransport(playerUnit),
@@ -26,8 +28,7 @@ bool GameUnitTransportController::TransportUnit(const MapHexItem* destination)
 		return false;
 	}
 
-	EmbarkUnit();
-	return true;
+	return EmbarkUnit();
 }
 
 bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination) const
@@ -64,9 +65,21 @@ int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) co
 	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnitIds.size();
 }
 
-void GameUnitTransportController::EmbarkUnit()
+bool GameUnitTransportController::EmbarkUnit()
 {
+	TransporterUnit->GetRuntimeData()->TransportedGameUnitIds.push_back(UnitToTransport);
+	MapUnitItem* mapUnitToTransport = MapUnitItemRepository::GetInstance()->RemoveFromMap(UnitToTransport->GetId());
+	if (nullptr == mapUnitToTransport)
+	{
+		Q_ASSERT(false);
+		return false;
+	}
 
+	if (false == GameUnitRepository::GetInstance()->RemoveGameUnitFromMapTile(UnitToTransport))
+	{
+		return false;
+	}
+	return true;
 }
 
 GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMapItemId) const
