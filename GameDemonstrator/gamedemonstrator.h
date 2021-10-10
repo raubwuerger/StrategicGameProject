@@ -32,6 +32,10 @@ private:
 	void CreateMenuAbout();
 	void CreateMenuGameMode();
 	void InitLoggingFramwork();
+
+	void InitFileLogger();
+
+	void InitTableViewLogger(bool showLoggingPane);
 private:
 	QMenu	*FileMenu;
 	QMenu	*ViewMenu;

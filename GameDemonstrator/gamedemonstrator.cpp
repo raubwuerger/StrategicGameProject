@@ -191,35 +191,45 @@ void GameDemonstrator::CreateMenuAbout()
 #include "LoggerTableWidget.h"
 void GameDemonstrator::InitLoggingFramwork()
 {
-	QDockWidget *dockWidget = new QDockWidget(tr("Logging"), this);
-	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea );
-	DockWidgetLogging = new jha::LoggingTableWidget(0,0,dockWidget);
-
-	dockWidget->setWidget( DockWidgetLogging );
-	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
-	ViewMenu->addAction(dockWidget->toggleViewAction());
-
 	if( false == jha::LogFactory::GetInstance()->Init() )
 	{
-		//TODO: Fehlermeldung ausgeben!!!
+		Q_ASSERT(false);
 		return;
 	}
 
-	jha::LoggerFile* loggerFile = new jha::LoggerFile();
-	loggerFile->SetFilepath("./log");
-	QString logfileName( QCoreApplication::applicationName() );
-	logfileName += ".log";
-	loggerFile->SetFilename( logfileName );
+	InitFileLogger();
 
-	jha::LogFactory::GetInstance()->RegisterLogger( loggerFile );
-
-	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
+	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
+
+//	InitTableViewLogger(modelProgramFactory.GetConfig()->ShowLoggingPane);
+}
+
+void GameDemonstrator::InitFileLogger()
+{
+	jha::LoggerFile* loggerFile = new jha::LoggerFile();
+	loggerFile->SetFilepath("./log");
+	QString logfileName(QCoreApplication::applicationName());
+	logfileName += ".log";
+	loggerFile->SetFilename(logfileName);
+
+	jha::LogFactory::GetInstance()->RegisterLogger(loggerFile);
+}
+
+void GameDemonstrator::InitTableViewLogger(bool showLoggingPane)
+{
+	QDockWidget *dockWidget = new QDockWidget(tr("Logging"), this);
+	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
+	DockWidgetLogging = new jha::LoggingTableWidget(0, 0, dockWidget);
+
+	dockWidget->setWidget(DockWidgetLogging);
+	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
+	ViewMenu->addAction(dockWidget->toggleViewAction());
 
 	jha::LogFactory::GetInstance()->RegisterLogger(new jha::LoggerTableWidget(DockWidgetLogging));
-	if (false == modelProgramFactory.GetConfig()->ShowLoggingPane)
+	if (false == showLoggingPane)
 	{
 		dockWidget->hide();
 	}
