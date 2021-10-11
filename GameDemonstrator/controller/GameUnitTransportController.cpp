@@ -7,6 +7,8 @@
 #include "model\ModelUnitType.h"
 #include "map\MapUnitItemRepository.h"
 #include "map\MapHexItem.h"
+#include "GameUnitHelper.h"
+#include "TerrainAccessTester.h"
 
 GameUnitTransportController::GameUnitTransportController(GameUnit* playerUnit)
 	: UnitToTransport(playerUnit),
@@ -33,7 +35,35 @@ bool GameUnitTransportController::TransportUnit(const MapHexItem* destination)
 
 bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
 {
-	return false;
+	if (false == UnitToTransport->GetIsEmbarked())
+	{
+		return false;
+	}
+	
+	if (false == UnitToTransport->CanMove())
+	{
+		return false;
+	}
+
+	if (true == GameUnitHelper::IsOwnUnitOnDestinationMapTile(UnitToTransport,destination->GetId()))
+	{
+		return false;
+	}
+
+	if (true == GameUnitHelper::IsEnemyOnDestinationMapTile(UnitToTransport, destination->GetId()))
+	{
+		return false;
+	}
+
+	if (false == TerrainAccessTester::Accessable(UnitToTransport, destination))
+	{
+		return false;
+	}
+
+	TransporterUnit = UnitToTransport->GetIsEmbarkedOn();
+	Q_ASSERT(TransporterUnit);
+	MapUnitItemRepository::GetInstance()->Show(TransporterUnit->GetId());
+	return true;
 }
 
 bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination) const
