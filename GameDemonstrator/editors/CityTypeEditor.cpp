@@ -50,6 +50,7 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 		return;
 	}
 
+	Q_ASSERT(ActiveModelCityType);
 	if (false == ActiveModelCityType->IsPlaceableOnTerrainType(GetModelTerrainType(mapItemId)))
 	{
 		return;
@@ -71,16 +72,6 @@ void CityTypeEditor::SlotAddCity(int mapItemId)
 	{
 		return;
 	}
-
-	const GameUnitProduction* gameUnitProduction = GameUnitProductionController::GetInstance()->CreateDefaultGameUnitProduction(created->GetId());
-	if (nullptr == gameUnitProduction)
-	{
-		DeleteCity(created);
-		Q_ASSERT(false);
-		return;
-	}
-
-	created->SetGameUnitProduction(gameUnitProduction);
 
 	MapCityItemFactory mapFactory;
 	mapFactory.Create(MapViewInstance, created);
