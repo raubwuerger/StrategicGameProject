@@ -884,6 +884,9 @@
     <ClCompile Include="map\MapHexItemSetting.cpp">
       <Filter>Header Dateien\Map</Filter>
     </ClCompile>
+    <ClCompile Include="controller\GameUnitHelper.cpp">
+      <Filter>Source Dateien\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1269,6 +1272,9 @@
     </ClInclude>
     <ClInclude Include="map\MapHexItemSetting.h">
       <Filter>Header Dateien\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\GameUnitHelper.h">
+      <Filter>Header Dateien\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

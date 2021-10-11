@@ -24,3 +24,6 @@
 	-	Implement concept for saving and loading transported units.  (Land)
 
 2021-10-11:
+	-	Bug: Placing of sea units is not working. Can't be placed land (city) tiles.
+	-	Implement disembark of unit.
+	-	Implement switching between units on transport ship. At the moment only one unit can be changed.
