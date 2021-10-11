@@ -12,6 +12,8 @@ public:
 	GameUnitTransportController(GameUnit* playerUnit);
 	/** true == Unit is transported, false == unable to transport unit */
 	bool TransportUnit(const MapHexItem* destination);
+	/** */
+	bool DisembarkUnit(const MapHexItem* destination);
 private:
 	/** */
 	GameUnit* GetOwnUnitOnDestinationMapTile(int gameMapItemId) const;

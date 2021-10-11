@@ -31,6 +31,11 @@ bool GameUnitTransportController::TransportUnit(const MapHexItem* destination)
 	return EmbarkUnit();
 }
 
+bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
+{
+	return false;
+}
+
 bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination) const
 {
 	Q_ASSERT(destination);
