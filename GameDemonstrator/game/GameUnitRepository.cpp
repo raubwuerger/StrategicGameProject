@@ -160,7 +160,8 @@ bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* movedUnit, 
 {
 	if (false == GameUnitsOnGameMapTile.contains(oldMapId))
 	{
-		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitId %1 not registered at MapId %2!").arg(QString::number(movedUnit->GetId())).arg(QString::number(oldMapId)));
+		Q_ASSERT(false);
+		return false;
 	}
 	GameUnitsOnGameMapTile.take(oldMapId);
 	return UpdateGameUnitOnGameMapTile(movedUnit);

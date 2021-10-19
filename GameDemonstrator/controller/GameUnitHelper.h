@@ -10,7 +10,9 @@ public:
 	/** */
 	static bool IsEnemyOnDestinationMapTile(const GameUnit*	gameUnit, int gameMapItemId);
 	/** */
-	static bool IsOwnUnitOnDestinationMapTile(const GameUnit*	gameUnit, int gameMapItemId);
+	static bool IsOwnUnitOnDestinationMapTile(const GameUnit* gameUnit, int gameMapItemId);
+	/** */
+	static int GetMapHexItemId(const GameUnit* gameUnit);
 	/** */
 	static const GameUnit* GetEnemyGameUnit(int mapItemId);
 };

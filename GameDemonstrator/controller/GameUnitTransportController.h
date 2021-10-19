@@ -10,8 +10,8 @@ class GameUnitTransportController
 public:
 	/** */
 	GameUnitTransportController(GameUnit* playerUnit);
-	/** true == Unit is transported, false == unable to transport unit */
-	bool TransportUnit(const MapHexItem* destination);
+	/** true == Unit gets embarked, false == unable to embark unit */
+	bool EmbarkUnit(const MapHexItem* destination);
 	/** */
 	bool DisembarkUnit(const MapHexItem* destination);
 private:

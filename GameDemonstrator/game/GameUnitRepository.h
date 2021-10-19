@@ -53,7 +53,7 @@ private:
 	friend class GameUnitFactory;
 	static GameUnitRepository*	Instance;
 	QMap<int, GameUnit*>		GameUnits;
-	QMap<int, int>				GameUnitsOnGameMapTile;
+	QMap<int, int>				GameUnitsOnGameMapTile; //GameUnitId | GameMapId
 };
 
 #endif // GAMEUNITREPOSITORY_H

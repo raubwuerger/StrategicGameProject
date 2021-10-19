@@ -17,13 +17,9 @@ GameUnitTransportController::GameUnitTransportController(GameUnit* playerUnit)
 
 }
 
-bool GameUnitTransportController::TransportUnit(const MapHexItem* destination)
+bool GameUnitTransportController::EmbarkUnit(const MapHexItem* destination)
 {
 	Q_ASSERT(destination);
-	if (false == UnitToTransport->HasMovementPointsLeft())
-	{
-		return false;
-	}
 	
 	if (false == CanBeTransported(destination))
 	{
@@ -31,39 +27,6 @@ bool GameUnitTransportController::TransportUnit(const MapHexItem* destination)
 	}
 
 	return EmbarkUnit();
-}
-
-bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
-{
-	if (false == UnitToTransport->GetIsEmbarked())
-	{
-		return false;
-	}
-	
-	if (false == UnitToTransport->CanMove())
-	{
-		return false;
-	}
-
-	if (true == GameUnitHelper::IsOwnUnitOnDestinationMapTile(UnitToTransport,destination->GetId()))
-	{
-		return false;
-	}
-
-	if (true == GameUnitHelper::IsEnemyOnDestinationMapTile(UnitToTransport, destination->GetId()))
-	{
-		return false;
-	}
-
-	if (false == TerrainAccessTester::Accessable(UnitToTransport, destination))
-	{
-		return false;
-	}
-
-	TransporterUnit = UnitToTransport->GetIsEmbarkedOn();
-	Q_ASSERT(TransporterUnit);
-	MapUnitItemRepository::GetInstance()->Show(TransporterUnit->GetId());
-	return true;
 }
 
 bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination) const
@@ -74,7 +37,7 @@ bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination
 	{
 		return false;
 	}
-	
+
 	const ModelUnitType* transporterModel = TransporterUnit->GetModelUnitType();
 	const ModelUnitType* transportedModel = UnitToTransport->GetModelUnitType();
 	if (false == transporterModel->GetTransportCapacityByTerrainDomain(transportedModel->GetTerrainDomain()))
@@ -89,15 +52,6 @@ bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination
 	}
 
 	return true;
-}
-
-int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) const
-{
-	if (gameUnit->GetRuntimeData()->TransportCapacity == NOT_INITIALIZED_INT)
-	{
-		return 0;
-	}
-	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnitIds.size();
 }
 
 bool GameUnitTransportController::EmbarkUnit()
@@ -118,6 +72,49 @@ bool GameUnitTransportController::EmbarkUnit()
 	UnitToTransport->SetEmbarked(TransporterUnit);
 
 	return true;
+}
+
+bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
+{
+	if (false == UnitToTransport->CanMove())
+	{
+		return false;
+	}
+
+	if (false == UnitToTransport->GetIsEmbarked()) //No jump from one transporter to another
+	{
+		return false;
+	}
+	
+	if (true == GameUnitHelper::IsOwnUnitOnDestinationMapTile(UnitToTransport,destination->GetId()))
+	{
+		return false;
+	}
+
+	if (true == GameUnitHelper::IsEnemyOnDestinationMapTile(UnitToTransport, destination->GetId()))
+	{
+		return false;
+	}
+
+	if (false == TerrainAccessTester::Accessable(UnitToTransport, destination))
+	{
+		return false;
+	}
+
+	TransporterUnit = UnitToTransport->GetIsEmbarkedOn();
+	UnitToTransport->SetDismbarked();
+	Q_ASSERT(TransporterUnit);
+	MapUnitItemRepository::GetInstance()->Show(TransporterUnit->GetId());
+	return true;
+}
+
+int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) const
+{
+	if (gameUnit->GetRuntimeData()->TransportCapacity == NOT_INITIALIZED_INT)
+	{
+		return 0;
+	}
+	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnitIds.size();
 }
 
 GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMapItemId) const

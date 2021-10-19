@@ -126,11 +126,6 @@ int GameUnit::GetBaseMovementPoints() const
 	return RuntimeData->BaseMovementPoints;
 }
 
-bool GameUnit::HasMovementPointsLeft() const
-{
-	return 0 < GetCurrentMovementPoints();
-}
-
 bool GameUnit::InitRuntimeData()
 {
 	RuntimeData = new GameUnitRuntimeData();

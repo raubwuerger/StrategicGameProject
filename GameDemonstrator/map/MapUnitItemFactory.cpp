@@ -11,6 +11,8 @@
 #include "model\ModelUnitType.h"
 #include "game\GameOwner.h"
 
+QPointF MapUnitItemFactory::MAPHEXITEM_OFFSET = QPointF(-16.0, -20.0);
+
 MapUnitItemFactory::MapUnitItemFactory()
 	: DefaultBorderWidth(2),
 	DefaultBorderWidthSelected(4)
@@ -26,7 +28,7 @@ bool MapUnitItemFactory::Create( MapView* mapView )
 {
 	if (nullptr == mapView)
 	{
-		jha::GetLog()->Log_WARNING(QObject::tr("Handover parameter <mapView> must not be null!"));
+		Q_ASSERT(mapView);
 		return false;
 	}
 
@@ -104,7 +106,7 @@ bool MapUnitItemFactory::DeleteUnit(MapView* mapView, int unitItemId)
 const QPointF MapUnitItemFactory::AdjustTopLeftPosition(const QPointF& topLeftPosition)
 {
 	QPointF adjustedPosition(topLeftPosition);
-	return adjustedPosition -= QPointF(-16.0, -20.0); //TODO: http://wanderfalke/redmine/issues/4
+	return adjustedPosition -= MAPHEXITEM_OFFSET; //TODO: http://wanderfalke/redmine/issues/4
 }
 
 const QImage* MapUnitItemFactory::GetImage(const GameUnit* gameUnitItem)

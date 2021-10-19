@@ -23,6 +23,8 @@ private:
 	const QPointF AdjustTopLeftPosition(const QPointF& topLeftPosition);
 	/** */
 	const QImage* GetImage(const GameUnit* gameUnitItem);
+public:
+	static QPointF MAPHEXITEM_OFFSET;
 private:
 	int		DefaultBorderWidth;
 	int		DefaultBorderWidthSelected;

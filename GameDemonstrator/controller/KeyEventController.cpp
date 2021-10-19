@@ -66,31 +66,7 @@ bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* map
 	}
 
 	GameUnitMovementController mapItemMapUnitMovementController(sourceUnitItem);
-	if (false == mapItemMapUnitMovementController.CanUnitMoveToDestination(mapUnitItem->GetGameUnitId(), destMapHexItem))
-	{
-		return false;
-	}
-	
-	GameUnitParameterObject gameUnitParameterObject;
-	gameUnitParameterObject.GameUnitObject = sourceUnitItem;
-	gameUnitParameterObject.GameOwnerObject = sourceUnitItem->GetGameOwner();
-	gameUnitParameterObject.GameMapTileId = destMapHexItem->GetId();
-	gameUnitParameterObject.ModelUnitTypeObject = sourceUnitItem->GetModelUnitType();
-	
-	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetById(mapUnitItem->GetMapHexItemId());
-
-	mapUnitItem->SetMapHexItemId(destMapHexItem->GetId());
-
-	GameUnitFactory gameUnitItemFactory;
-	GameUnit* movedGameUnitItem = gameUnitItemFactory.Update(gameUnitParameterObject);
-
-	//TODO: Kann man auch anders Lösen, indem man gleich den CenterPoint des Ziel-Kartenteils nimmt
-	const QPointF& sourceCenterPoint = sourceMapHexItem->GetCenterPoint();
-	const QPointF& destCenterPoint = destMapHexItem->GetCenterPoint();
-	QPointF offsetCenterPoint(destCenterPoint - sourceCenterPoint);
-	mapUnitItem->moveBy(offsetCenterPoint.x(), offsetCenterPoint.y());
-	GameUnitRepository::GetInstance()->UpdateGameUnitOnGameMapTile(movedGameUnitItem, sourceMapHexItem->GetId());
-	return movedGameUnitItem->Move();
+	return mapItemMapUnitMovementController.Move(destMapHexItem);
 }
 
 void KeyEventController::HandleKeyReleaseEvent(MapUnitItem* mapUnitItem, QKeyEvent* keyEvent)

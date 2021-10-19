@@ -8,14 +8,19 @@ class ModelUnitType;
 class ModelTerrainType;
 class GameOwner;
 class GameCity;
+#include "game\GameUnitFactory.h"
 
 class GameUnitMovementController
 {
 public:
-	GameUnitMovementController(const GameUnit *activeGameUnitItem);
+	GameUnitMovementController( GameUnit *activeGameUnitItem);
 	/** */
-	bool CanUnitMoveToDestination(int sourceGameUnitItemId, const MapHexItem* destination ) const;
+	bool Move(const MapHexItem* destination );
 private:
+	/** */
+	bool CanUnitMove(int sourceGameUnitItemId, const MapHexItem* destination);
+	/** */
+	GameUnitParameterObject CreateUpdateGameUnit(const MapHexItem* destMapHexItem);
 	/** */
 	bool IsEnemyCityOnDestinationMapTile(int gameMapItemId) const;
 	/** */
@@ -23,7 +28,7 @@ private:
 	/** */
 	bool EmitMapUnitItemMoved(const GameUnit* gameUnitItem) const;
 private:
-	const GameUnit*		ActiveGameUnitItem;
+	GameUnit*		ActiveGameUnitItem;
 };
 
 #endif // MAPITEMMAPUNITMOVEMENTCONTROLLER_H
