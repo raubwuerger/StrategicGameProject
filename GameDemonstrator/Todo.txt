@@ -24,12 +24,15 @@
 	-	Implement concept for saving and loading transported units.  (Land)
 
 2021-10-11:
-	-	Bug: Placing of sea units is not working. Can't be placed land (city) tiles.
-	-	Implement disembark of unit.
+	-	Bug: Placing of sea units is not working. Can't be placed on land (city) tiles.
+	+	Implement disembark of unit.
 	-	Implement switching between units on transport ship. At the moment only one unit can be changed.
 	-	Bug: Embarked unit will not be moved with transport unit. Stays on the map tile on which it has been embarked.
 	-	Bug: New turn will not result in reset of unit movement points.???
 	+	Bug: If unit disembarks, transport unit will not be visible anymore.
 	-	Bug: If unit disembarks, the transport unit will be also removed from internal MapUnit-Map.
 			So if the next unit will embark, it's not possible because there is no unit on this map tile. 
-	-	Check: Remove disembarked unit from transport unit.
+	+	Check: Remove disembarked unit from transport unit.
+2021-10-19:
+	+	Bug:	If unit moves to transport unit, the units id will be removed from GameUnitsOnGameMapTile.
+				Then the function returns true, it will again try to remove from GameUnitsOnGameMapTile.
