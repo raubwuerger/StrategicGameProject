@@ -257,7 +257,6 @@
     <ClCompile Include="connectors\ConnectorMapCityItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapHexItem.cpp" />
     <ClCompile Include="connectors\ConnectorMapUnitItem.cpp" />
-    <ClCompile Include="controller\GameUnitHelper.cpp" />
     <ClCompile Include="game\GameUnitHelper.cpp" />
     <ClCompile Include="mapCreator\GameCityCreatorSimple.cpp" />
     <ClCompile Include="mapCreator\GameUnitCreatorSimple.cpp" />
@@ -901,7 +900,6 @@
     <ClInclude Include="..\StandardLibQt\ImageLoader.h" />
     <ClInclude Include="..\StandardLibQt\StringToBoolConverter.h" />
     <ClInclude Include="Action.h" />
-    <ClInclude Include="controller\GameUnitHelper.h" />
     <ClInclude Include="game\GameUnitHelper.h" />
     <ClInclude Include="mapCreator\GameCityCreatorSimple.h" />
     <ClInclude Include="mapCreator\GameCityCreatorInterface.h" />
