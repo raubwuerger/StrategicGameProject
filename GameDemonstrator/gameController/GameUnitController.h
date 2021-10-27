@@ -1,5 +1,5 @@
-#ifndef GAMECONTROLLER_H
-#define GAMECONTROLLER_H
+#ifndef GAMEUNITCONTROLLER_H
+#define GAMEUNITCONTROLLER_H
 
 class MapUnitItem;
 
@@ -37,4 +37,4 @@ private:
 	MapUnitItem*		Selected;
 };
 
-#endif // GAMECONTROLLER_H
+#endif // GAMEUNITCONTROLLER_H
