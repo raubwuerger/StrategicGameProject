@@ -49,7 +49,7 @@ GameUnitHelper::GameUnitHelper(GameUnit* gameUnit)
 
 bool GameUnitHelper::MoveToPosition(int mapId)
 {
-	Q_ASSERT(mapId < 0);
+	Q_ASSERT(mapId >= 0);
 	SetNewMapId(mapId);
 	Q_ASSERT(GameUnitObject->GameMapTileObject);
 

@@ -80,9 +80,6 @@ public:
 	/** */
 	GameUnit* GetTransportedUnitAt(int index);
 private:
-	/** */
-	void MoveTransportedUnits() const;
-private:
 	friend class			GameUnitFactory;
 	friend class			GameUnitHelper;
 	const int				Id;
