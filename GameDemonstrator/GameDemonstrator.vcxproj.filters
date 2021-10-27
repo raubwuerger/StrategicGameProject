@@ -887,6 +887,9 @@
     <ClCompile Include="controller\GameUnitHelper.cpp">
       <Filter>Source Dateien\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameUnitHelper.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1275,6 +1278,9 @@
     </ClInclude>
     <ClInclude Include="controller\GameUnitHelper.h">
       <Filter>Header Dateien\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitHelper.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

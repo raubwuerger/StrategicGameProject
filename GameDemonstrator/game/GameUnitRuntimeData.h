@@ -11,7 +11,7 @@ public:
 	int BaseMovementPoints;
 	int CurrentMovementPoints;
 	int TransportCapacity;
-	QVector<GameUnit*>	TransportedGameUnitIds;
+	QVector<GameUnit*>	TransportedGameUnits;
 };
 
 #endif GAMEUNITRUNTIMEDATA_H

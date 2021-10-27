@@ -19,7 +19,7 @@
 #include "TerrainAccessTester.h"
 #include "GameUnitAttackController.h"
 #include "GameUnitTransportController.h"
-#include "GameUnitHelper.h"
+#include "game/GameUnitHelper.h"
 #include "LogInterface.h"
 
 GameUnitMovementController::GameUnitMovementController( GameUnit *activeGameUnitItem)

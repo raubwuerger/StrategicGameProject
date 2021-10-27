@@ -97,9 +97,9 @@ void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
 		return;
 	}
 
-	if (gameUnitClicked->GetRuntimeData()->TransportedGameUnitIds.size() > 0)
+	if (gameUnitClicked->GetRuntimeData()->TransportedGameUnits.size() > 0)
 	{
-		GameUnit* embarkedUnit = gameUnitClicked->GetRuntimeData()->TransportedGameUnitIds[0];
+		GameUnit* embarkedUnit = gameUnitClicked->GetRuntimeData()->TransportedGameUnits[0];
 		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());
 		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitId);
 		return;

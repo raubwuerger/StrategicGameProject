@@ -7,7 +7,7 @@
 #include "model\ModelUnitType.h"
 #include "map\MapUnitItemRepository.h"
 #include "map\MapHexItem.h"
-#include "GameUnitHelper.h"
+#include "game\GameUnitHelper.h"
 #include "TerrainAccessTester.h"
 
 GameUnitTransportController::GameUnitTransportController(GameUnit* playerUnit)
@@ -56,7 +56,7 @@ bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination
 
 bool GameUnitTransportController::EmbarkUnit()
 {
-	TransporterUnit->GetRuntimeData()->TransportedGameUnitIds.push_back(UnitToTransport);
+	TransporterUnit->GetRuntimeData()->TransportedGameUnits.push_back(UnitToTransport);
 	MapUnitItem* mapUnitToTransport = MapUnitItemRepository::GetInstance()->Hide(UnitToTransport->GetId());
 	if (nullptr == mapUnitToTransport)
 	{
@@ -86,7 +86,7 @@ bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
 		return false;
 	}
 	
-	if (true == GameUnitHelper::IsOwnUnitOnDestinationMapTile(UnitToTransport,destination->GetId()))
+	if (true == GameUnitHelper::IsOwnUnitOnDestinationMapTile(UnitToTransport, destination->GetId()))
 	{
 		return false;
 	}
@@ -114,7 +114,7 @@ int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) co
 	{
 		return 0;
 	}
-	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnitIds.size();
+	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnits.size();
 }
 
 GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMapItemId) const

@@ -93,7 +93,27 @@ bool GameUnit::Move() const
 		return false;
 	}
 	RuntimeData->CurrentMovementPoints--;
+	MoveTransportedUnits();
 	return true;
+}
+
+void GameUnit::MoveTransportedUnits() const
+{
+	if (true == RuntimeData->TransportedGameUnits.isEmpty())
+	{
+		return;
+	}
+
+	int transportedUnitCount = RuntimeData->TransportedGameUnits.size();
+	for (int currentUnitIndex = 0; currentUnitIndex < transportedUnitCount; currentUnitIndex++)
+	{
+//		RuntimeData->TransportedGameUnitIds.at(currentUnitIndex)->
+	}
+	/*
+	Falscher Weg!!! Wenn die transportierte Einheit sich bewegen soll muss sie als sourceMapTile diejenige des Transportmittels nehmen.
+	Ist das überhaupt Umsetzbar?
+	Wenn die transportierte Einheit angewählt wird muss sie die aktuelle POSITION des Transportmittels gesetzt bekommen.
+	*/
 }
 
 void GameUnit::Attacks() const
@@ -178,6 +198,23 @@ void GameUnit::SetEmbarked(GameUnit* embarkedOn)
 void GameUnit::SetDismbarked()
 {
 	IsEmbarkedOn = nullptr;
+}
+
+bool GameUnit::GetIsTransporter() const
+{
+	return RuntimeData->TransportCapacity > 0;
+}
+
+int GameUnit::GetCountTransportedUnits() const
+{
+	return RuntimeData->TransportedGameUnits.size();
+}
+
+GameUnit* GameUnit::GetTransportedUnitAt(int index)
+{
+	Q_ASSERT(index > 0);
+	Q_ASSERT(index < GetCountTransportedUnits());
+	return RuntimeData->TransportedGameUnits[index];
 }
 
 bool GameUnit::CanOccupieCity() const

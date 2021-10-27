@@ -7,6 +7,7 @@ class ModelUnitType;
 class GameMapTile;
 class GameOwner;
 class GameUnitRuntimeData;
+class GameUnitHelper;
 
 /** Game unit tile */
 class GameUnit : public GameObject
@@ -72,8 +73,18 @@ public:
 	void SetEmbarked(GameUnit* embarkedOn);
 	/** */
 	void SetDismbarked();
+	/** */
+	bool GetIsTransporter() const;
+	/** */
+	int GetCountTransportedUnits() const;
+	/** */
+	GameUnit* GetTransportedUnitAt(int index);
 private:
-	friend class GameUnitFactory;
+	/** */
+	void MoveTransportedUnits() const;
+private:
+	friend class			GameUnitFactory;
+	friend class			GameUnitHelper;
 	const int				Id;
 	int						UnitTypeId;
 	int						GameOwnerId;
