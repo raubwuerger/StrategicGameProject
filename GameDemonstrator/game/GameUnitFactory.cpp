@@ -133,6 +133,56 @@ GameUnit* GameUnitFactory::Update(const GameUnitParameterObject obj)
 	return gameUnit;
 }
 
+GameUnit* GameUnitFactory::Update(const GameUnitParameterObject* obj)
+{
+	Q_ASSERT(obj);
+	if (nullptr == obj->GameUnitObject)
+	{
+		return nullptr;
+	}
+
+	GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetById(obj->GameUnitObject->GetId());
+	if (nullptr == gameUnit)
+	{
+		return nullptr;
+	}
+
+	const ModelUnitType* unitType = GetModelUnitType(*obj);
+	if (nullptr == unitType)
+	{
+		return nullptr;
+	}
+
+	const GameMapTile* gameMapTile = GetGameMapTile(*obj);
+	if (nullptr == gameMapTile)
+	{
+		return nullptr;
+	}
+
+	const GameOwner* gameOwner = GetGameOwner(*obj);
+	if (nullptr == gameOwner)
+	{
+		return nullptr;
+	}
+
+	const int NOT_ALLOWED_OWNER_TYPE = 1;
+	if (NOT_ALLOWED_OWNER_TYPE == gameOwner->GetId())
+	{
+		return nullptr;
+	}
+
+	gameUnit->UnitType = unitType;
+	gameUnit->UnitTypeId = unitType->GetId();
+
+	gameUnit->GameOwnerObject = gameOwner;
+	gameUnit->GameOwnerId = gameOwner->GetId();
+
+	gameUnit->GameMapTileObject = gameMapTile;
+	gameUnit->MapTileId = gameMapTile->GetId();
+
+	return gameUnit;
+}
+
 int GameUnitFactory::CreateId(const GameUnitParameterObject obj)
 {
 	if (-1 != obj.Id)

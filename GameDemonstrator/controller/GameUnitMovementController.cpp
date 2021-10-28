@@ -6,16 +6,14 @@
 #include "game/GameMapTile.h"
 #include "game/GameUnit.h"
 #include "game/GameUnitRepository.h"
-#include "game/GameUnitFactory.h"
 #include "game/GameCityRepository.h"
 #include "game/GameCity.h"
 #include "game/GameConfig.h"
-#include "map/MapHexItemRepository.h"
 #include "map/MapUnitItem.h"
 #include "map/MapHexItem.h"
 #include "map/MapUnitItemRepository.h"
 #include "map/MapCityItemRepository.h"
-#include "map/MapUnitItemFactory.h"
+#include "map/MapUnitHelper.h"
 #include "TerrainAccessTester.h"
 #include "GameUnitAttackController.h"
 #include "GameUnitTransportController.h"
@@ -35,19 +33,8 @@ bool GameUnitMovementController::Move( const MapHexItem* destMapHexItem)
 		return false;
 	}
 
-	const MapHexItem*  sourceMapHexItem = MapHexItemRepository::GetInstance()->GetById(GameUnitHelper::GetMapHexItemId(ActiveGameUnitItem));
-	Q_ASSERT(sourceMapHexItem);
-
-	MapUnitItem *mapUnitItem = MapUnitItemRepository::GetInstance()->GetById(ActiveGameUnitItem->GetId());
-	Q_ASSERT(mapUnitItem);
-	mapUnitItem->SetMapHexItemId(destMapHexItem->GetId());
-	mapUnitItem->SetMapHexItemId(destMapHexItem->GetId());
-	mapUnitItem->setPos(destMapHexItem->GetTopLeftPoint() - MapUnitItemFactory::MAPHEXITEM_OFFSET);
-
-	GameUnitFactory gameUnitItemFactory;
-	GameUnit* movedGameUnitItem = gameUnitItemFactory.Update(CreateUpdateGameUnit(destMapHexItem));
-	GameUnitRepository::GetInstance()->UpdateGameUnitOnGameMapTile(movedGameUnitItem, sourceMapHexItem->GetId());
-	return movedGameUnitItem->Move();
+	MapUnitHelper mapUnitHelper(ActiveGameUnitItem);
+	return mapUnitHelper.Move(destMapHexItem);
 }
 
 GameUnitParameterObject GameUnitMovementController::CreateUpdateGameUnit(const MapHexItem* destMapHexItem)

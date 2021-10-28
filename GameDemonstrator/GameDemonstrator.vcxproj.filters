@@ -887,6 +887,9 @@
     <ClCompile Include="game\GameUnitHelper.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="map\MapUnitHelper.cpp">
+      <Filter>Header Dateien\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1275,6 +1278,9 @@
     </ClInclude>
     <ClInclude Include="game\GameUnitHelper.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="map\MapUnitHelper.h">
+      <Filter>Header Dateien\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
