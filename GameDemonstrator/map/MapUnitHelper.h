@@ -18,7 +18,11 @@ private:
 	/** */
 	MapUnitHelper() {}
 	/** */
+	bool DoMove(const MapHexItem* destMapHexItem) {}
+	/** */
 	std::unique_ptr<GameUnitParameterObject> CreateUpdateGameUnit(const MapHexItem* destMapHexItem);
+	/** */
+	bool MoveTransportedUnits(const MapHexItem* destMapHexItem);
 private:
 	GameUnit*	GameUnitToMove;
 };

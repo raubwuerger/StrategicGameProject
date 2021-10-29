@@ -33,7 +33,18 @@ bool MapUnitHelper::Move(const MapHexItem* destMapHexItem)
 	GameUnitFactory gameUnitItemFactory;
 	GameUnit* movedGameUnitItem = gameUnitItemFactory.Update(*gameUnitParameterObject);
 	GameUnitRepository::GetInstance()->UpdateGameUnitOnGameMapTile(movedGameUnitItem, sourceMapHexItem->GetId());
-	return movedGameUnitItem->Move();
+
+	if (false == movedGameUnitItem->Move())
+	{
+		return false;
+	}
+
+	if (false == GameUnitToMove->GetIsTransporter())
+	{
+		return true;
+	}
+	
+	return MoveTransportedUnits(destMapHexItem);
 }
 
 std::unique_ptr<GameUnitParameterObject> MapUnitHelper::CreateUpdateGameUnit(const MapHexItem* destMapHexItem)
@@ -44,5 +55,19 @@ std::unique_ptr<GameUnitParameterObject> MapUnitHelper::CreateUpdateGameUnit(con
 	gameUnitParameterObject->GameMapTileId = destMapHexItem->GetId();
 	gameUnitParameterObject->ModelUnitTypeObject = GameUnitToMove->GetModelUnitType();
 	return gameUnitParameterObject;
+}
+
+bool MapUnitHelper::MoveTransportedUnits(const MapHexItem* destMapHexItem)
+{
+	int transportedUnitsCount = GameUnitToMove->GetCountTransportedUnits();
+	for (int index = 0; index < transportedUnitsCount; index++)
+	{
+		MapUnitHelper mapUnitHelper(GameUnitToMove->GetTransportedUnitAt(index));
+		if (false == mapUnitHelper.Move(destMapHexItem))
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
