@@ -27,7 +27,7 @@
 	-	Bug: Placing of sea units is not working. Can't be placed on land (city) tiles.
 	+	Implement disembark of unit.
 	-	Implement switching between units on transport ship. At the moment only one unit can be changed.
-	-	Bug: Embarked unit will not be moved with transport unit. Stays on the map tile on which it has been embarked.
+	+	Bug: Embarked unit will not be moved with transport unit. Stays on the map tile on which it has been embarked.
 	-	Bug: New turn will not result in reset of unit movement points.???
 	+	Bug: If unit disembarks, transport unit will not be visible anymore.
 	-	Bug: If unit disembarks, the transport unit will be also removed from internal MapUnit-Map.
@@ -36,3 +36,6 @@
 2021-10-19:
 	+	Bug:	If unit moves to transport unit, the units id will be removed from GameUnitsOnGameMapTile.
 				Then the function returns true, it will again try to remove from GameUnitsOnGameMapTile.
+2021-10-30:
+	-	Bug:	RightMouseClick on land unit want's to switch between Transporter and Transported unit.
+	+	Bug:	Loading a game doesn't clear GameObjects.

@@ -147,6 +147,10 @@ GameUnit* GameUnitRepository::RemoveGameUnit(const GameUnit* gameUnit)
 
 bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* gameUnit)
 {
+	if ( true == gameUnit->GetIsEmbarked() )
+	{
+		return true;
+	}
 	if (true == GameUnitsOnGameMapTile.contains(gameUnit->GetGameTileId()))
 	{
 		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitId %1 already registered at MapTileId %2!").arg(QString::number(gameUnit->GetId())).arg(QString::number(gameUnit->GetGameTileId())));
@@ -158,6 +162,10 @@ bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* gameUnit)
 
 bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* movedUnit, int oldMapId)
 {
+	if (true == movedUnit->GetIsEmbarked())
+	{
+		return true;
+	}
 	if (false == GameUnitsOnGameMapTile.contains(oldMapId))
 	{
 		Q_ASSERT(false);

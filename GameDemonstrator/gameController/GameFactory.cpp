@@ -98,8 +98,6 @@ void GameFactory::InitSignalConnections()
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnObjects, GameObjectController::GetInstance(), &GameObjectController::SlotDoUpdateTurn);
 	QObject::connect(GameTurnControllerObject, &GameTurnController::SignalUpdateTurnDialog, GameInfoDialogControllerObject, &GameInfoDialogController::SlotShowTurnInfoDialog);
 
-//	GameObjectController::GetInstance()->SlotDoUpdateTurn();
-
 	ConnectionsInitialized = true;
 }
 
@@ -114,6 +112,8 @@ void GameFactory::InitCommandPlaceGameUnitOnMap()
 
 bool GameFactory::Create()
 {
+	GameObjectController::GetInstance()->Init();
+
 	GameMapTileFactory factory;
 	if (false == factory.Create())
 	{
@@ -150,6 +150,8 @@ bool GameFactory::Create()
 
 bool GameFactory::CreateFromSavegame()
 {
+	GameObjectController::GetInstance()->Init();
+
 	bool gameLoaded = SerializerFactory().CreateInterface()->LoadGame();
 	if (false == gameLoaded)
 	{
