@@ -83,7 +83,7 @@ void TerrainTypeEditor::SlotChangeTerrainTypeHexItem(int gameMapItemId)
 
 bool TerrainTypeEditor::IsTerrainTypeValid(int gameMapItemId) const
 {
-	const GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapItemId);
+	const GameUnit* gameUnit = GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(gameMapItemId);
 	if (nullptr == gameUnit)
 	{
 		return true; //No GameUnit is on MapItem

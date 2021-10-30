@@ -25,13 +25,13 @@ public:
 	/** */
 	GameUnit* GetById(int id);
 	/** */
-	const GameUnit* GetByGameMapTileId(int gameMapTileId);
+	const GameUnit* GetFirstGameUnitByGameMapTileId(int gameMapTileId);
 	/** */
 	int CreateNewId() const;
 	/** */
 	bool IsGameUnitOnGameMapTile(int gameMapTileId) const;
 	/** */
-	GameUnit* RemoveGameUnitByGameMapTileId(int gameMapTileId);
+	QVector<GameUnit*> RemoveGameUnitByGameMapTileId(int gameMapTileId);
 	/** */
 	GameUnit* RemoveGameUnit(const GameUnit* gameUnit);
 	/** */
@@ -53,7 +53,7 @@ private:
 	friend class GameUnitFactory;
 	static GameUnitRepository*	Instance;
 	QMap<int, GameUnit*>		GameUnits;
-	QMap<int, int>				GameUnitsOnGameMapTile; //GameUnitId | GameMapId
+	QMultiMap<int, int>			GameUnitsOnGameMapTile; //GameUnitId | GameMapId
 };
 
 #endif // GAMEUNITREPOSITORY_H

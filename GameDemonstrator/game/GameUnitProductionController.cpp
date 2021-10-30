@@ -155,7 +155,7 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 
 bool GameUnitProductionController::IsGameUnitOnMapTile(int gameMapId) const
 {
-	return nullptr != GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapId);
+	return nullptr != GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(gameMapId);
 }
 
 bool GameUnitProductionController::IsCityNeutral(const GameUnitProduction* gameUnitProduction) const

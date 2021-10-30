@@ -28,9 +28,9 @@
 	+	Implement disembark of unit.
 	-	Implement switching between units on transport ship. At the moment only one unit can be changed.
 	+	Bug: Embarked unit will not be moved with transport unit. Stays on the map tile on which it has been embarked.
-	-	Bug: New turn will not result in reset of unit movement points.???
+	+	Bug: New turn will not result in reset of unit movement points.??? -> See 2021-10-30 Bug:	Loading a game doesn't clear GameObjects. 
 	+	Bug: If unit disembarks, transport unit will not be visible anymore.
-	-	Bug: If unit disembarks, the transport unit will be also removed from internal MapUnit-Map.
+	+	Bug: If unit disembarks, the transport unit will be also removed from internal MapUnit-Map.
 			So if the next unit will embark, it's not possible because there is no unit on this map tile. 
 	+	Check: Remove disembarked unit from transport unit.
 2021-10-19:
@@ -39,3 +39,4 @@
 2021-10-30:
 	-	Bug:	RightMouseClick on land unit want's to switch between Transporter and Transported unit.
 	+	Bug:	Loading a game doesn't clear GameObjects.
+	-	Bug:	UnitTypeEditor: Method DeleteUnit() only the first GameUnit will be deleted!

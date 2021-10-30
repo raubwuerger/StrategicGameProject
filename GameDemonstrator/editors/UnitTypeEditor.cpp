@@ -132,30 +132,32 @@ void UnitTypeEditor::DeleteUnit( int gameMapItemId )
 		return;
 	}
 
-	GameUnit* gameUnitItemToDelete = GameUnitRepository::GetInstance()->RemoveGameUnitByGameMapTileId(gameMapItemId);
-	if (nullptr == gameUnitItemToDelete)
+	QVector<GameUnit*> gameUnitsItemToDelete = GameUnitRepository::GetInstance()->RemoveGameUnitByGameMapTileId(gameMapItemId);
+	if (true == gameUnitsItemToDelete.isEmpty())
 	{
 		jha::GetLog()->Log_FATAL(tr("No GameUnitItem registered for GameMapItemId %1!").arg(QString::number(gameMapItemId)));
 		return;
 	}
 
-	MapUnitItem* mapUnitItemToDelete = MapUnitItemRepository::GetInstance()->Remove(gameUnitItemToDelete->GetId());
+	//TODO: Es wird nur der erste Eintrag gelöscht!!!
+	GameUnit* firstGameUnitItemToDelete = gameUnitsItemToDelete.at(0);
+	MapUnitItem* mapUnitItemToDelete = MapUnitItemRepository::GetInstance()->Remove(firstGameUnitItemToDelete->GetId());
 	if (nullptr == mapUnitItemToDelete)
 	{
-		delete gameUnitItemToDelete;
+		delete firstGameUnitItemToDelete;
 		jha::GetLog()->Log_FATAL(tr("No MapUnitItem registered for GameMapItemId %1!").arg(QString::number(gameMapItemId)));
 		return;
 	}
 
 	if (false == MapViewInstance->RemoveMapUnit(mapUnitItemToDelete))
 	{
-		delete gameUnitItemToDelete;
+		delete firstGameUnitItemToDelete;
 		delete mapUnitItemToDelete;
 		jha::GetLog()->Log_FATAL(tr("Unable to remove MapUnitItem from MapView with Id=%1!").arg(QString::number(mapUnitItemToDelete->GetGameUnitId())));
 		return;
 	}
 
-	delete gameUnitItemToDelete;
+	delete firstGameUnitItemToDelete;
 	delete mapUnitItemToDelete;
 	jha::GetLog()->Log_DEBUG(tr("MapUnitItem (Id=%1) successfully removed on HexItem (Id=%2)!").arg(QString::number(mapUnitItemToDelete->GetGameUnitId())).arg(QString::number(gameMapItemId)));
 }

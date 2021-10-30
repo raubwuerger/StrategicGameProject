@@ -90,16 +90,23 @@ GameUnit* GameUnitRepository::GetById(int id)
 	}
 
 	return GameUnits[id];
-
 }
 
-const GameUnit* GameUnitRepository::GetByGameMapTileId(int gameMapTileId)
+const GameUnit* GameUnitRepository::GetFirstGameUnitByGameMapTileId(int gameMapTileId)
 {
 	if (false == GameUnitsOnGameMapTile.contains(gameMapTileId))
 	{
 		return nullptr;
 	}
-	return GetById(GameUnitsOnGameMapTile[gameMapTileId]);
+
+	QMap<int, int>::iterator unitsOnMapTile = GameUnitsOnGameMapTile.find(gameMapTileId);
+	if (unitsOnMapTile == GameUnitsOnGameMapTile.end())
+	{
+		Q_ASSERT(false);
+		return nullptr;
+	}
+
+	return GetById(unitsOnMapTile.value());
 }
 
 int GameUnitRepository::CreateNewId() const
@@ -120,15 +127,20 @@ bool GameUnitRepository::IsGameUnitOnGameMapTile(int gameMapTileId) const
 	return GameUnitsOnGameMapTile.contains(gameMapTileId);
 }
 
-GameUnit* GameUnitRepository::RemoveGameUnitByGameMapTileId(int gameMapTileId)
+QVector<GameUnit*> GameUnitRepository::RemoveGameUnitByGameMapTileId(int gameMapTileId)
 {
+	QVector<GameUnit*> gameUnits;
 	if (false == GameUnitsOnGameMapTile.contains(gameMapTileId))
 	{
-		return nullptr;
+		return gameUnits;
 	}
 
-	int gemeUnitToDelete = GameUnitsOnGameMapTile[gameMapTileId];
-	return RemoveGameUnit(GameUnits[gemeUnitToDelete]);
+	QMap<int,int>::iterator unitsOnMapTile = GameUnitsOnGameMapTile.find(gameMapTileId);
+	while (unitsOnMapTile.key() == gameMapTileId)
+	{
+		gameUnits.push_back(RemoveGameUnit(GameUnits[unitsOnMapTile.value()]));
+	}
+	return gameUnits;
 }
 
 GameUnit* GameUnitRepository::RemoveGameUnit(const GameUnit* gameUnit)
@@ -147,15 +159,6 @@ GameUnit* GameUnitRepository::RemoveGameUnit(const GameUnit* gameUnit)
 
 bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* gameUnit)
 {
-	if ( true == gameUnit->GetIsEmbarked() )
-	{
-		return true;
-	}
-	if (true == GameUnitsOnGameMapTile.contains(gameUnit->GetGameTileId()))
-	{
-		jha::GetLog()->Log_DEBUG(QObject::tr("GameUnitId %1 already registered at MapTileId %2!").arg(QString::number(gameUnit->GetId())).arg(QString::number(gameUnit->GetGameTileId())));
-		return false;
-	}
 	GameUnitsOnGameMapTile.insert(gameUnit->GetGameTileId(), gameUnit->GetId());
 	return true;
 }
@@ -164,7 +167,8 @@ bool GameUnitRepository::UpdateGameUnitOnGameMapTile(const GameUnit* movedUnit, 
 {
 	if (true == movedUnit->GetIsEmbarked())
 	{
-		return true;
+		GameUnitsOnGameMapTile.take(oldMapId);
+		return UpdateGameUnitOnGameMapTile(movedUnit);
 	}
 	if (false == GameUnitsOnGameMapTile.contains(oldMapId))
 	{

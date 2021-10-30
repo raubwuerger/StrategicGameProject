@@ -10,7 +10,7 @@
 
 bool GameUnitHelper::IsEnemyOnDestinationMapTile(const GameUnit* gameUnitSource, int gameMapItemId)
 {
-	const GameUnit* gameUnitDestination = GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapItemId);
+	const GameUnit* gameUnitDestination = GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(gameMapItemId);
 	if (nullptr == gameUnitDestination)
 	{
 		return false;
@@ -20,7 +20,7 @@ bool GameUnitHelper::IsEnemyOnDestinationMapTile(const GameUnit* gameUnitSource,
 
 bool GameUnitHelper::IsOwnUnitOnDestinationMapTile(const GameUnit* gameUnitSource, int gameMapItemId)
 {
-	const GameUnit* gameUnitDestination = GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapItemId);
+	const GameUnit* gameUnitDestination = GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(gameMapItemId);
 	if (nullptr == gameUnitDestination)
 	{
 		return false;
@@ -37,7 +37,7 @@ int GameUnitHelper::GetMapHexItemId(const GameUnit* gameUnit)
 
 const GameUnit* GameUnitHelper::GetEnemyGameUnit(int mapItemId)
 {
-	return GameUnitRepository::GetInstance()->GetByGameMapTileId(mapItemId);
+	return GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(mapItemId);
 }
 
 GameUnitHelper::GameUnitHelper(GameUnit* gameUnit)

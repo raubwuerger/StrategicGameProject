@@ -119,7 +119,7 @@ int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) co
 
 GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMapItemId) const
 {
-	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetByGameMapTileId(gameMapItemId);
+	const GameUnit* gameUnitItem = GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(gameMapItemId);
 	if (nullptr == gameUnitItem)
 	{
 		return nullptr;
