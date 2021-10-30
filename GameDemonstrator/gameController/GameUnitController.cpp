@@ -100,14 +100,14 @@ void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
 	if (gameUnitClicked->GetRuntimeData()->TransportedGameUnits.size() > 0)
 	{
 		GameUnit* embarkedUnit = gameUnitClicked->GetRuntimeData()->TransportedGameUnits[0];
-		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());	//TODO: MapUnit will not be Updated
+		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());
 		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitId);
 		return;
 	}
 
 	if (true == gameUnitClicked->GetIsEmbarked() )
 	{
-		bool showed = MapUnitItemRepository::GetInstance()->Show(gameUnitClicked->GetIsEmbarkedOn()->GetId());	//TODO: MapUnit will not be Updated
+		bool showed = MapUnitItemRepository::GetInstance()->Show(gameUnitClicked->GetIsEmbarkedOn()->GetId());
 		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitClicked->GetId());
 		return;
 	}

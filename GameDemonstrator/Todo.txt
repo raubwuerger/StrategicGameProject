@@ -41,3 +41,5 @@
 	+	Bug:	Loading a game doesn't clear GameObjects.
 	-	Bug:	UnitTypeEditor: Method DeleteUnit() only the first GameUnit will be deleted!
 	+	Bug:	Units on transporters shouldn't loose movement points.
+	-	Bug:	Develop concept for air units regarding movement points. If they are not on an city or carrierer at turnend they should crash.
+				

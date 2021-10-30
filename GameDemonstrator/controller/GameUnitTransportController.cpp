@@ -63,12 +63,6 @@ bool GameUnitTransportController::EmbarkUnit()
 		Q_ASSERT(false);
 		return false;
 	}
-	/*
-	if (false == GameUnitRepository::GetInstance()->RemoveGameUnitFromMapTile(UnitToTransport))
-	{
-		return false;
-	}
-	*/
 	UnitToTransport->SetEmbarked(TransporterUnit);
 
 	return true;

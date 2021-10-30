@@ -44,7 +44,7 @@ public:
 	int GetTransportCapacityUnitsSea() const;
 	/** */
 	int GetTransportCapacityByTerrainDomain(const QString& terrainDomain) const;
-	/** Stupid. Gets first transport capacity greater one */
+	/** Stupid. Gets first transport capacity greater one. At the moment no problem because there are no transporter units which can load different domain type units! */
 	int GetTransportCapacityStupid() const;
 	/** */
 	bool GetCanUnitBeTransported() const;
