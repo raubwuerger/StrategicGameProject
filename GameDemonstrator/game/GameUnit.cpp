@@ -13,7 +13,8 @@ GameUnit::GameUnit(int gameUnitId)
 		GameOwnerId(NOT_INITIALIZED_INT),
 		MapTileId(NOT_INITIALIZED_INT),
 		RuntimeData(nullptr),
-		IsEmbarkedOn(nullptr)
+		IsEmbarkedOn(nullptr),
+		StartEmbarking(NOT_INITIALIZED_BOOL)
 {
 }
 
@@ -72,8 +73,6 @@ void GameUnit::UpdateTurn() const
 {
 	RuntimeData->CurrentMovementPoints = RuntimeData->BaseMovementPoints;
 	RuntimeData->CurrentStrength = RuntimeData->BaseStrength;
-	//TODO: Reset movement points
-	//TODO: Heal Unit
 	//TODO: ...
 }
 
@@ -89,6 +88,18 @@ bool GameUnit::CanMove() const
 
 bool GameUnit::Move() const
 {
+	if (true == GetIsEmbarked())
+	{
+		if (false == StartEmbarking )
+		{
+			RuntimeData->CurrentMovementPoints = 0;
+			StartEmbarking = true;
+		}
+		return true;
+	}
+
+	StartEmbarking = false;
+
 	if (false == CanMove())
 	{
 		return false;

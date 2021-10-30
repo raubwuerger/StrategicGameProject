@@ -92,6 +92,7 @@ private:
 	mutable QString			Name;
 	GameUnitRuntimeData*	RuntimeData;
 	GameUnit*				IsEmbarkedOn;
+	mutable bool			StartEmbarking;
 };
 
 #endif // GAMEUNITTYPE_H

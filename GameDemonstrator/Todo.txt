@@ -40,3 +40,4 @@
 	-	Bug:	RightMouseClick on land unit want's to switch between Transporter and Transported unit.
 	+	Bug:	Loading a game doesn't clear GameObjects.
 	-	Bug:	UnitTypeEditor: Method DeleteUnit() only the first GameUnit will be deleted!
+	+	Bug:	Units on transporters shouldn't loose movement points.
