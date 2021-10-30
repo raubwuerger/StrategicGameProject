@@ -15,7 +15,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>1</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
@@ -73,7 +73,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>2</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
@@ -130,7 +130,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>1</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
@@ -184,7 +184,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>5</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
@@ -244,7 +244,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>4</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
@@ -303,7 +303,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>4</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
@@ -360,7 +360,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>3</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
@@ -417,7 +417,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>2</Range>
+		<AttackRange>2</AttackRange>
 		<MovementPoints>3</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
@@ -473,7 +473,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>3</MovementPoints>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
@@ -526,7 +526,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>3</MovementPoints>
 		<SpottedBy>
 			<SpottedByTypeId></SpottedByTypeId>
@@ -580,7 +580,7 @@
 			<Air>5</Air>
 			<Sea>5</Sea>
 		</DefenseValues>
-		<Range>1</Range>
+		<AttackRange>1</AttackRange>
 		<MovementPoints>3</MovementPoints>
 		<TransportSpace>2</TransportSpace>
 		<AccessibleTerrainTypes>

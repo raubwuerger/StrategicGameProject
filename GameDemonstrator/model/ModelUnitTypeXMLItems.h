@@ -17,7 +17,7 @@ public:
 	const static QString SUBELEMENT_DOMAIN_LAND;
 	const static QString SUBELEMENT_DOMAIN_AIR;
 	const static QString SUBELEMENT_DOMAIN_SEA;
-	const static QString SUBELEMENT_RANGE;
+	const static QString SUBELEMENT_ATTACKRANGE;
 	const static QString SUBELEMENT_MOVEMENTPOINTS;
 	const static QString NODE_ACCESSIBLETERRAINTYPES;
 	const static QString SUBELEMENT_TERRAINTYPEID;
