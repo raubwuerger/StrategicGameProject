@@ -35,7 +35,6 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 {
 	ui.setupUi(this);
 
-
 //	DoSomeExperiments();
 //	DoUnitTests();
 

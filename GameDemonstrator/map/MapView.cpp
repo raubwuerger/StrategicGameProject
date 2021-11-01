@@ -23,6 +23,7 @@ ConnectorMapCityItem*	MapView::ConnectorMapCityItemInstance = new ConnectorMapCi
 MapView::MapView(QWidget *parent)
 	: QGraphicsView(parent)
 {
+	setBackgroundBrush(QBrush(Qt::lightGray));
 	setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 	Scene = new MapGraphicsScene(this);
 	KeyEventControllerInstance = new KeyEventController;
