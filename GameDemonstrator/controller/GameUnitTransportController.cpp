@@ -40,7 +40,7 @@ bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination
 
 	const ModelUnitType* transporterModel = TransporterUnit->GetModelUnitType();
 	const ModelUnitType* transportedModel = UnitToTransport->GetModelUnitType();
-	if (false == transporterModel->GetTransportCapacityByTerrainDomain(transportedModel->GetTerrainDomain()))
+	if (false == transporterModel->GetTransportCapacityByTerrainDomain(transportedModel->GetTerrainDomainName()))
 	{
 		return false;
 	}

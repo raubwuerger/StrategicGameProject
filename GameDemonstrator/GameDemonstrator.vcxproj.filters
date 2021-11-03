@@ -893,6 +893,9 @@
     <ClCompile Include="game\GameUnitAttackHelper.cpp">
       <Filter>Source Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="model\ModelTerrainDomain.cpp">
+      <Filter>Source Dateien\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1287,6 +1290,9 @@
     </ClInclude>
     <ClInclude Include="game\GameUnitAttackHelper.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="model\ModelTerrainDomain.h">
+      <Filter>Header Dateien\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

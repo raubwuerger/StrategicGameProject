@@ -17,6 +17,8 @@ private:
 	bool LoadCityTypes();
 	/** */
 	bool LoadMapTypes();
+	/** */
+	bool LoadModelTerrainDomains();
 };
 
 #endif // CONFIGURATIONLOADER_H

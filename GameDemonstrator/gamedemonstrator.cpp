@@ -52,7 +52,7 @@ GameDemonstrator::GameDemonstrator(QWidget *parent)
 	ConfigurationLoader configurationLoader;
 	if (false == configurationLoader.Load())
 	{
-
+		Q_ASSERT(false);
 	}
 
 	QHBoxLayout *layoutMain = new QHBoxLayout;

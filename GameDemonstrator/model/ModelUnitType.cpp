@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ModelUnitType.h"
 #include "ModelUnitTypeXMLItems.h"
+#include "ModelTerrainDomain.h"
 
 ModelUnitType::ModelUnitType(int id)
 	:Id(id),
@@ -62,6 +63,12 @@ bool ModelUnitType::IsUnitTypeAttackable(int modelUnitTypeId) const
 bool ModelUnitType::GetCanOccupieCity() const
 {
 	return CanOccupieCity;
+}
+
+int ModelUnitType::GetTerrainDomain() const
+{
+	ModelTerrainDomain modelTerrainDomain;
+	return  modelTerrainDomain.GetModelTerrainDomainByName(TerrainDomain.toStdString());
 }
 
 int ModelUnitType::GetTransportCapacityUnitsLand() const

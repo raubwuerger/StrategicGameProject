@@ -5,6 +5,7 @@
 #include "model/ModelUnitTypeFactory.h"
 #include "model/ModelCityTypeFactory.h"
 #include "model/ModelMapTypeCreatorFactoryAbstract.h"
+#include "model/ModelTerrainDomain.h"
 
 bool ConfigurationLoader::Load()
 {
@@ -24,6 +25,11 @@ bool ConfigurationLoader::Load()
 	}
 
 	if (false == LoadCityTypes())
+	{
+		return false;
+	}
+
+	if (false == LoadModelTerrainDomains())
 	{
 		return false;
 	}
@@ -59,5 +65,12 @@ bool ConfigurationLoader::LoadMapTypes()
 {
 	ModelMapTypeCreatorFactoryAbstract factory;
 	return factory.Create();
+}
+
+bool ConfigurationLoader::LoadModelTerrainDomains()
+{
+	ModelTerrainDomain modelTerrainDomain;
+	modelTerrainDomain.Init();
+	return true;
 }
 

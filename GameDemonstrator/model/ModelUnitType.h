@@ -1,13 +1,6 @@
 #ifndef MODELUNIT_H
 #define MODELUNIT_H
 
-enum class DomainTypes
-{
-	LAND = 0,
-	AIR	= 1,
-	SEA = 2
-};
-
 class ModelUnitType
 {
 public:
@@ -42,7 +35,9 @@ public:
 	/** */
 	bool GetReceiveCounterattack() const { return ReceiveCounterattack; }
 	/** */
-	QString GetTerrainDomain() const { return TerrainDomain; }
+	QString GetTerrainDomainName() const { return TerrainDomain; }
+	/** */
+	int GetTerrainDomain() const;
 	/** */
 	int GetTransportCapacityUnitsLand() const;
 	/** */
