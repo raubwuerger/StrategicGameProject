@@ -15,6 +15,7 @@ const QString ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR = "Air";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA = "Sea";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_ATTACKRANGE = "AttackRange";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTSPERTURN = "MovementPointsPerTurn";
+const QString ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTSOVERALL = "MovementPointsOverall";
 const QString ModelUnitTypeXMLItems::NODE_ACCESSIBLETERRAINTYPES = "AccessibleTerrainTypes";
 const QString ModelUnitTypeXMLItems::SUBELEMENT_TERRAINTYPEID = "TerrainTypeId";
 const QString ModelUnitTypeXMLItems::NODE_ATTACKABLE_UNITTYPES = "AttackableUnitTypes";

@@ -13,7 +13,7 @@
 		<Cols>3</Cols>
 	</DebugMapSettings>
 	<GraphicSettings>
-		<UseHiResTerrain>false</UseHiResTerrain>
+		<UseHiResTerrain>true</UseHiResTerrain>
 	</GraphicSettings>
 	<MapHexItemSettings>
 		<ShowId>false</ShowId>

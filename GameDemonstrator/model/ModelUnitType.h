@@ -27,7 +27,7 @@ public:
 	/** */
 	int GetStrength() const { return Strength; }
 	/** */
-	int GetMovementPoints() const { return MovementPoints; }
+	int GetMovementPoints() const { return MovementPointsPerTurn; }
 	/** */
 	int GetProductionCost() const { return ProductionCost; }
 	/** */
@@ -58,7 +58,8 @@ private:
 	QVector<int>	AttackValues;
 	QVector<int>	DefenseValues;
 	int				Range;
-	int				MovementPoints;
+	int				MovementPointsPerTurn;
+	int				MovementPointsOverall;
 	QVector<int>	AccessibleTerrainTypes;
 	QVector<int>	AttackableUnitTypes;
 	QVector<int>	RecognisableUnitTypes;

@@ -17,6 +17,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>1</MovementPointsPerTurn>
+		<MovementPointsOverall>1</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -75,6 +76,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>2</MovementPointsPerTurn>
+		<MovementPointsOverall>2</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -132,6 +134,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>1</MovementPointsPerTurn>
+		<MovementPointsOverall>1</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -186,6 +189,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>5</MovementPointsPerTurn>
+		<MovementPointsOverall>10</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -246,6 +250,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>4</MovementPointsPerTurn>
+		<MovementPointsOverall>12</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>1</TerrainTypeId>
 			<TerrainTypeId>2</TerrainTypeId>
@@ -305,6 +310,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>4</MovementPointsPerTurn>
+		<MovementPointsOverall>4</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
@@ -362,6 +368,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>3</MovementPointsPerTurn>
+		<MovementPointsOverall>3</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
@@ -419,6 +426,7 @@
 		</DefenseValues>
 		<AttackRange>2</AttackRange>
 		<MovementPointsPerTurn>3</MovementPointsPerTurn>
+		<MovementPointsOverall>3</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
@@ -475,6 +483,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>3</MovementPointsPerTurn>
+		<MovementPointsOverall>3</MovementPointsOverall>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>
 		</AccessibleTerrainTypes>
@@ -527,7 +536,8 @@
 			<Sea>5</Sea>
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
-		<MovementPointsPerTurn>3</MovementPointsPerTurn>
+		<MovementPointsPerTurn>4</MovementPointsPerTurn>
+		<MovementPointsOverall>4</MovementPointsOverall>
 		<SpottedBy>
 			<SpottedByTypeId></SpottedByTypeId>
 			<SpottedByTypeId></SpottedByTypeId>
@@ -582,6 +592,7 @@
 		</DefenseValues>
 		<AttackRange>1</AttackRange>
 		<MovementPointsPerTurn>3</MovementPointsPerTurn>
+		<MovementPointsOverall>3</MovementPointsOverall>
 		<TransportSpace>2</TransportSpace>
 		<AccessibleTerrainTypes>
 			<TerrainTypeId>3</TerrainTypeId>

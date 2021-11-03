@@ -56,7 +56,8 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_NAME, newType->Name);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_PICTURENAME, newType->PictureName);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_STRENGTH, newType->Strength);
-	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTSPERTURN, newType->MovementPoints);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTSPERTURN, newType->MovementPointsPerTurn);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_MOVEMENTPOINTSOVERALL, newType->MovementPointsOverall);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_ATTACKRANGE, newType->Range);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY, newType->CanOccupieCity);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK, newType->ReceiveCounterattack);
