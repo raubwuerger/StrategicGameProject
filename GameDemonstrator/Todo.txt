@@ -43,8 +43,11 @@
 	+	Bug:	Units on transporters shouldn't loose movement points.
 	-	Bug:	Develop concept for air units regarding movement points. If they are not on an city or carrierer at turnend they should crash.
 	+	Feature:	Rename ModelTypeModifier Range to AttackRange
-	-	Feature:	Rename ModelTypeModifier MovementPoints to MovementPointsTurn.
-	-	Feature:	Introduce new ModelTypeModifier MovementPointOverall
+	+	Feature:	Rename ModelTypeModifier MovementPoints to MovementPointsPerTurn.
+	+	Feature:	Introduce new ModelTypeModifier MovementPointsOverall
 					(For land and sea units the two values will be the same. MovementPointsTurn == MovementPointOverall)
 					Fighters have twize MovementPointOverall then MovementPointsTurn
 					Bombers have triple MovementPointOverall then MovementPointsTurn )
+2021-11-03:
+	-	Feature:	Movementconzept not coherent!
+	-	Feature:	Implement attack concept.

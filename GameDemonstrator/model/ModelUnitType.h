@@ -1,6 +1,13 @@
 #ifndef MODELUNIT_H
 #define MODELUNIT_H
 
+enum class DomainTypes
+{
+	LAND = 0,
+	AIR	= 1,
+	SEA = 2
+};
+
 class ModelUnitType
 {
 public:
