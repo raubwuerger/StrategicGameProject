@@ -13,6 +13,8 @@ public:
 private:
 	/** */
 	GameUnitAttackHelper() {}
+	/** */
+	int	GetDefensValue(GameUnit* defender);
 private:
 	GameUnit*	Attacker;
 };
