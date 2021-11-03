@@ -4,6 +4,7 @@
 QString ModelProgramSettings::GlobalLogLevel = "DEBUG";
 
 bool ModelProgramSettings::ShowLoggingPane = true;
+bool ModelProgramSettings::LoggingEnabled = "true";
 
 QString ModelProgramSettings::SaveGamePath = ".//savegames//";
 

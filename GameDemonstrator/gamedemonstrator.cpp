@@ -190,7 +190,7 @@ void GameDemonstrator::CreateMenuAbout()
 #include "LoggerTableWidget.h"
 void GameDemonstrator::InitLoggingFramwork()
 {
-	if( false == jha::LogFactory::GetInstance()->Init() )
+	if( false == jha::LogFactory::GetInstance()->Init(false) )
 	{
 		Q_ASSERT(false);
 		return;
@@ -201,6 +201,13 @@ void GameDemonstrator::InitLoggingFramwork()
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
+	if (false == modelProgramFactory.GetConfig()->LoggingEnabled)
+	{
+		return;
+	}
+
+	jha::LogFactory::GetInstance()->Enable();
+
 	//TODO: Darf erst hier initialisiert werden weil die GameDemonstratorFactory selbst das logging framework verwendet!
 
 //	InitTableViewLogger(modelProgramFactory.GetConfig()->ShowLoggingPane);

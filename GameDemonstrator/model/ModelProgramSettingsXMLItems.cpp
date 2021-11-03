@@ -7,6 +7,7 @@ const QString	ModelProgramSettingsXMLItems::ROOT_NAME = "GameDemonstrator";
 const QString	ModelProgramSettingsXMLItems::NODE_LOGGING = "Logging";
 const QString	ModelProgramSettingsXMLItems::SUBNODE_GLOBALLOGLEVEL = "GlobalLogLevel";
 const QString	ModelProgramSettingsXMLItems::SUBNODE_SHOWLOGGINGPANE = "ShowLoggingPane";
+const QString	ModelProgramSettingsXMLItems::SUBNODE_LOGGINGENABLED = "LoggingEnabled";
 
 const QString	ModelProgramSettingsXMLItems::NODE_SAVEGAME		= "SaveGame";
 const QString	ModelProgramSettingsXMLItems::SUBNODE_SAVEGAMEPATH = "SaveGamePath";

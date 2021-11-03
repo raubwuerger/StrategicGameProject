@@ -10,6 +10,7 @@ public:
 	static const QString	NODE_LOGGING;
 	static const QString	SUBNODE_GLOBALLOGLEVEL;
 	static const QString	SUBNODE_SHOWLOGGINGPANE;
+	static const QString	SUBNODE_LOGGINGENABLED;
 
 	static const QString	NODE_SAVEGAME;
 	static const QString	SUBNODE_SAVEGAMEPATH;

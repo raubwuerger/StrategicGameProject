@@ -52,3 +52,4 @@
 	-	Feature:	Movementconzept not coherent!
 	-	Feature:	Implement attack concept.
 	-	Incorrectnes:	GameUnitProductionController is wrong. Should be CityProductionController?! -> Efficiency
+	+	Feature:	Make logging disable.

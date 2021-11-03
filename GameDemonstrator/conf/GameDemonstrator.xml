@@ -2,6 +2,7 @@
 <GameDemonstrator>
 	<Logging>
 		<!--ValidLogleves: None, Fatal, Error, Warning, Message, Info, Trace, Debug -->
+		<LoggingEnabled>false</LoggingEnabled>
 		<GlobalLogLevel>Info</GlobalLogLevel>
 		<ShowLoggingPane>false</ShowLoggingPane>
 	</Logging>
