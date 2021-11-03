@@ -22,6 +22,8 @@ public:
 	void Start();
 /** */
 	void Stop();
+/** */
+	bool GetIsRunning() const { return m_Timer->isActive(); }
 public slots:
 /** */
 	void HasFinished();

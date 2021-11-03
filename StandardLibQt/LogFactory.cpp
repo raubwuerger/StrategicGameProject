@@ -40,7 +40,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	bool LogFactory::Init()
+	bool LogFactory::Init(bool startLogging)
 	{
 		if( LogManagerThread != nullptr )
 		{
@@ -64,7 +64,10 @@ namespace jha
 			return false;
 		}
 
-		LogManagerThread->Start();
+		if (true == startLogging)
+		{
+			LogManagerThread->Start();
+		}
 
 		return true;
 	}
@@ -94,6 +97,24 @@ namespace jha
 			return false;
 		}
 		return LogManager->RegisterLogger(logger);
+	}
+
+	//==============================================================================
+	void LogFactory::Enable()
+	{
+		LogManagerThread->Start();
+	}
+
+	//==============================================================================
+	void LogFactory::Disable()
+	{
+		LogManagerThread->Stop();
+	}
+
+	//==============================================================================
+	bool LogFactory::GetEnabled() const
+	{
+		return LogManagerThread->GetIsRunning();
 	}
 
 }
