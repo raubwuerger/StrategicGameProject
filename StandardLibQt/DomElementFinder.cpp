@@ -68,6 +68,18 @@ bool DomElementFinder::TryFindElement(const QString& elementName, bool& value) c
 	return true;
 }
 
+bool DomElementFinder::TryFindElement(const QString& elementName, double& value) const
+{
+	QDomElement element;
+	if (ExtractElement(elementName, element) == false)
+	{
+		return false;
+	}
+	value = element.text().toDouble();
+	jha::GetLog()->Log_DEBUG(QObject::tr("Element <%1> found with value: %2 ").arg(elementName).arg(QString::number(value)));
+	return true;
+}
+
 bool DomElementFinder::ExtractElement( const QString& elementName, QDomElement& element ) const
 {
 	element = DomNode.firstChildElement(elementName);

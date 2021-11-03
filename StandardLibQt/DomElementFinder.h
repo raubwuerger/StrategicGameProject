@@ -13,6 +13,8 @@ public:
 	/** */
 	bool TryFindElement( const QString& elementName, int& value ) const;
 	/** */
+	bool TryFindElement(const QString& elementName, double& value) const;
+	/** */
 	bool TryFindElement( const QString& elementName, QString& value ) const;
 	/** */
 	bool TryFindElement( const QString& elementName, QColor& value ) const;

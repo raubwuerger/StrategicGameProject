@@ -23,6 +23,8 @@ public:
 	bool ExtractValue( const QString& valueName, int& value );
 /** */
 	bool ExtractValue(const QString& valueName, bool& value);
+/** */
+	bool ExtractValue(const QString& valueName, double& value);
 private:
 /** */
 	bool ValidateInput( const QString& valueName );
