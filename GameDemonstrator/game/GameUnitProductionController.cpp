@@ -114,6 +114,8 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 		return;
 	}
 
+	//TODO: Check if ID == 9999 -> Efficiency increase!!!
+
 	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(gameUnitProduction->GetModelTypeId());
 	if (nullptr == modelUnitType)
 	{
