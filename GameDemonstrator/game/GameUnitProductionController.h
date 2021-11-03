@@ -33,6 +33,8 @@ private:
 	bool IsGameUnitOnMapTile(int gameMapId) const;
 	/** */
 	bool IsCityNeutral(const GameUnitProduction* gameUnitProduction) const;
+	/** */
+	void IncreaseCityEfficiency(const GameUnitProduction* gameUnitProduction);
 private:
 	QMap<int, const GameUnitProduction*>	CityProductions;
 	static GameUnitProductionController*	Instance;

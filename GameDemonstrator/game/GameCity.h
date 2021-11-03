@@ -73,6 +73,8 @@ public:
 	bool GetHasOceanAccess() const;
 	/** */
 	void SetHasOceanAccess(bool hasAccess);
+	/** */
+	void IncreaseEfficiency() const;
 private:
 	/** */
 	void ResetDefenceValue() const;
@@ -92,6 +94,7 @@ private:
 	mutable GameCityRuntimeData*RuntimeData;
 	const GameUnitProduction*	UnitProduction;
 	bool					HasOceanAccess;
+	const double			EFFICIENCY_INCREASE;	//TODO: Maybe later depends on owner traits.
 };
 
 #endif // GAMECITYTYPE_H

@@ -13,7 +13,8 @@ GameCity::GameCity(int id)
 		SpezializedUnitTypeId(NOT_INITIALIZED_INT),
 		RuntimeData(nullptr),
 		UnitProduction(nullptr),
-		HasOceanAccess(NOT_INITIALIZED_BOOL)
+		HasOceanAccess(NOT_INITIALIZED_BOOL),
+		EFFICIENCY_INCREASE(0.2)
 {
 }
 
@@ -152,6 +153,13 @@ void GameCity::ResetDefenceValue() const
 
 void GameCity::UpdateUnitProduction() const
 {
+
+	if (UnitProduction->GetModelTypeId() == MODEL_UNIT_ID_EFFICIENCY)	//TODO: Think about other concept for efficiency production
+	{
+		UnitProduction->SetProductionProgress(100);
+		return;
+	}
+
 	int productionProgress = CityType->GetBaseProductionPoints();
 	if (UnitProduction->GetModelTypeId() == this->SpezializedUnitTypeId)
 	{
@@ -179,6 +187,11 @@ bool GameCity::GetHasOceanAccess() const
 void GameCity::SetHasOceanAccess(bool hasAccess)
 {
 	HasOceanAccess = hasAccess;
+}
+
+void GameCity::IncreaseEfficiency() const
+{
+	RuntimeData->CurrentEfficiency += EFFICIENCY_INCREASE;
 }
 
 bool GameCity::operator<(const GameCity& rhs) const

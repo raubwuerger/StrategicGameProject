@@ -345,7 +345,7 @@ GameCity* GameCityFactory::CreateGameCityFromXML(const QDomNode& node)
 	QString name;
 	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_NAME, name);
 
-	int efficiency = -1;
+	double efficiency = -1;
 	allElementsExtracted &= extractor.ExtractValue(SerializeXMLItems::CITIES_EFFICIENCY, efficiency);
 
 	int spezializedUnitTypeId = -1;

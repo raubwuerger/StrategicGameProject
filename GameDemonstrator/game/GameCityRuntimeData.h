@@ -4,10 +4,10 @@
 class GameCityRuntimeData
 {
 public:
-	int		BaseStrength;
-	int		CurrentStrength;
-	int		BaseEfficiency;
-	int		CurrentEfficiency;
+	int			BaseStrength;
+	int			CurrentStrength;
+	int			BaseEfficiency;
+	double		CurrentEfficiency;
 };
 
 #endif // GAMECITYRUNTIMEDATA_H

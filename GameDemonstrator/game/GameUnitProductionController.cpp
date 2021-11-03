@@ -114,7 +114,11 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 		return;
 	}
 
-	//TODO: Check if ID == 9999 -> Efficiency increase!!!
+	if (gameUnitProduction->GetModelTypeId() == MODEL_UNIT_ID_EFFICIENCY)
+	{
+		IncreaseCityEfficiency(gameUnitProduction);
+		return;
+	}
 
 	const ModelUnitType* modelUnitType = ModelUnitTypeRepository::GetInstance()->GetById(gameUnitProduction->GetModelTypeId());
 	if (nullptr == modelUnitType)
@@ -153,6 +157,13 @@ void GameUnitProductionController::CreateGameUnit( const GameUnitProduction* gam
 		//TODO: Logausgabe
 	}
 	gameUnitProduction->ClearProductionProgress();
+}
+
+void GameUnitProductionController::IncreaseCityEfficiency(const GameUnitProduction* gameUnitProduction)
+{
+	const GameCity* gameCity = GameCityRepository::GetInstance()->GetById(gameUnitProduction->GetGameCityId());
+	Q_ASSERT(gameCity);
+	gameCity->IncreaseEfficiency();
 }
 
 bool GameUnitProductionController::IsGameUnitOnMapTile(int gameMapId) const

@@ -4,7 +4,7 @@
 GameUnitProduction::GameUnitProduction(int gameCityId) 
 	: GameCityId(gameCityId),
 	ModelUnitTypeId(NOT_INITIALIZED_INT),
-	ProductionProgress(NOT_INITIALIZED_INT)
+	ProductionProgress(NOT_INITIALIZED_DOUBLE)
 {
 
 }
@@ -45,12 +45,12 @@ void GameUnitProduction::ClearProductionProgress() const
 	ProductionProgress = 0;
 }
 
-int GameUnitProduction::GetProductionProgress() const
+double GameUnitProduction::GetProductionProgress() const
 {
 	return ProductionProgress;
 }
 
-void GameUnitProduction::SetProductionProgress(int progress) const
+void GameUnitProduction::SetProductionProgress(double progress) const
 {
 	ProductionProgress = progress;
 }

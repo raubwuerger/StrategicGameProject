@@ -19,9 +19,9 @@ public:
 	/** */
 	void ClearProductionProgress() const;
 	/** */
-	int GetProductionProgress() const;
+	double GetProductionProgress() const;
 	/** */
-	void SetProductionProgress(int progress) const;
+	void SetProductionProgress(double progress) const;
 	/** */
 	bool IsGameUnitInProduction() const;
 	/** */
@@ -29,7 +29,7 @@ public:
 private:
 	int			GameCityId;
 	mutable int	ModelUnitTypeId;			//TODO: 9999 == Efficiency
-	mutable int	ProductionProgress;
+	mutable double	ProductionProgress;
 };
 
 #endif // GAMEUNITPRODUCTION_H 
