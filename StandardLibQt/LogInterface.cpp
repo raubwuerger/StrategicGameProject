@@ -4,7 +4,7 @@
 #include "LogFactory.h"
 #include "LoggingWorker.h"
 #include "LogMessage.h"
-#include "LogManagerThread.h"
+#include "LoggingThread.h"
 #include <QTime>
 #include <iostream>
 

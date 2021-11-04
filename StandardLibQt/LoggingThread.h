@@ -8,14 +8,14 @@ namespace jha
 
 class LoggingWorker;
 
-class LogManagerThreadContainer : public QObject
+class LoggingThread : public QObject
 {
 	Q_OBJECT
 public:
 /** Constructor */
-	LogManagerThreadContainer( LoggingWorker *logManager );
+	LoggingThread( LoggingWorker *logManager );
 /** Destructor */
-	~LogManagerThreadContainer();
+	~LoggingThread();
 /** */
 	bool Init();
 /** */

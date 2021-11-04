@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "LogManagerThread.h"
+#include "LoggingThread.h"
 #include "LoggingWorker.h"
 
 namespace jha
 {
 
 	//==============================================================================
-	LogManagerThreadContainer::LogManagerThreadContainer( jha::LoggingWorker *logManager )
+	LoggingThread::LoggingThread( jha::LoggingWorker *logManager )
 		: LogManagerObject(logManager)
 	{
 		Timer = new QTimer(this);
@@ -15,7 +15,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	LogManagerThreadContainer::~LogManagerThreadContainer()
+	LoggingThread::~LoggingThread()
 	{
 		Timer->stop();
 		delete Timer;
@@ -24,19 +24,19 @@ namespace jha
 	}
 
 	//==============================================================================
-	bool LogManagerThreadContainer::Init()
+	bool LoggingThread::Init()
 	{
 		LogManagerObject->moveToThread(&WorkerThread);
 		connect(&WorkerThread, &QThread::finished, LogManagerObject, &QObject::deleteLater);
-		connect(LogManagerObject, &LoggingWorker::Finished, this, &LogManagerThreadContainer::HasFinished);
+		connect(LogManagerObject, &LoggingWorker::Finished, this, &LoggingThread::HasFinished);
 		WorkerThread.start(); //WorkerThread darf nicht gestartet werden ...
-		connect(Timer, &QTimer::timeout, this, &LogManagerThreadContainer::RequestStartFromTimer);
-		connect(this, &LogManagerThreadContainer::StartLogManager, LogManagerObject, &LoggingWorker::WorkMessages);
+		connect(Timer, &QTimer::timeout, this, &LoggingThread::RequestStartFromTimer);
+		connect(this, &LoggingThread::StartLogManager, LogManagerObject, &LoggingWorker::WorkMessages);
 		return true;
 	}
 
 	//==============================================================================
-	void LogManagerThreadContainer::RequestStartFromTimer()
+	void LoggingThread::RequestStartFromTimer()
 	{
 		if( LogManagerRunning == true )
 		{
@@ -48,24 +48,24 @@ namespace jha
 	}
 
 	//==============================================================================
-	void LogManagerThreadContainer::HasFinished()
+	void LoggingThread::HasFinished()
 	{
 		LogManagerRunning = false;
 	}
 
 	//==============================================================================
-	void LogManagerThreadContainer::Stop()
+	void LoggingThread::Stop()
 	{
 		Timer->stop();
 	}
 
-	bool LogManagerThreadContainer::GetIsRunning() const
+	bool LoggingThread::GetIsRunning() const
 	{
 		return Timer->isActive();
 	}
 
 	//==============================================================================
-	void LogManagerThreadContainer::Start()
+	void LoggingThread::Start()
 	{
 		Timer->start();
 	}

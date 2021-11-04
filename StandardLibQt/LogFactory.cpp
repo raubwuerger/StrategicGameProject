@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LogFactory.h"
 #include "LoggingWorker.h"
-#include "LogManagerThread.h"
+#include "LoggingThread.h"
 #include "LoggerCout.h"
 #include "LogInterface.h"
 #include <iostream>
@@ -11,7 +11,7 @@ namespace jha
 
 	LogFactory* LogFactory::Instance = nullptr;
 	LoggingWorker* LogFactory::LoggingWorkerObject = nullptr;
-	LogManagerThreadContainer* LogFactory::LogManagerThread = nullptr;
+	LoggingThread* LogFactory::LogManagerThread = nullptr;
 
 	//==============================================================================
 	LogFactory::LogFactory()
@@ -48,7 +48,7 @@ namespace jha
 		}
 
 		LoggingWorkerObject = new jha::LoggingWorker;
-		LogManagerThread = new LogManagerThreadContainer(LoggingWorkerObject);
+		LogManagerThread = new LoggingThread(LoggingWorkerObject);
 		if( false == LogManagerThread->Init() )
 		{
 			std::cout << "Error initializing LogManagerThread!" << endl;
