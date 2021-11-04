@@ -7,11 +7,14 @@ namespace jha
 {
 
 	//==============================================================================
-	LoggingWorker::LoggingWorker()
-		: LogMessageIndex(0),
+	LoggingWorker::LoggingWorker(QObject* parent)
+		: QObject(parent),
+		LogMessageIndex(0),
 		LogMessagesProcessing(nullptr),
 		LogMessagesReady(nullptr),
-		InitialLogmessage(nullptr)
+		InitialLogmessage(nullptr),
+		IsRunning(false),
+		IsStopping(false)
 	{
 		LogMessagesProcessing = new QVector<LogMessage*>;
 		LogMessagesReady = new QVector<LogMessage*>;
@@ -145,7 +148,15 @@ namespace jha
 	//==============================================================================
 	void LoggingWorker::WorkMessages()
 	{
+		if (false == IsRunning || true == IsStopping)
+		{
+			return;
+		}
+
 		ProcessMessages();
+
+		QMetaObject::invokeMethod(this, "WorkMessages", Qt::QueuedConnection);
+
 		emit Finished();
 	}
 
@@ -166,6 +177,23 @@ namespace jha
 		{
 			(*it)->SetLogLevel(logLevel);
 		}
+	}
+
+	//==============================================================================
+	void LoggingWorker::Start()
+	{
+		IsStopping = false;
+		IsRunning = true;
+		emit Started();
+		WorkMessages();
+	}
+
+	//==============================================================================
+	void LoggingWorker::Stop()
+	{
+		IsStopping = true;
+		IsRunning = false;
+		emit Stopped();
 	}
 
 }

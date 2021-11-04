@@ -15,23 +15,32 @@ class LoggingWorker : public QObject
 	Q_OBJECT
 public:
 /** Konstructor */
-	LoggingWorker();
+	explicit LoggingWorker( QObject* parent = nullptr );
 /** Destructor */
 	~LoggingWorker();
 public slots:
-/** Startet abarbeitung der aufgelaufenen Meldungen */
-	void WorkMessages();
 /** Registriert einen neuen Logger. Übernimmt Besitz! */
 	bool RegisterLogger( jha::Logger* logger );
 /** Fügt LogMessage ein */
 	void AddLogMessage( jha::LogMessage *logMessage );
 /** */
 	void SetGlobalLogLevel( jha::LogLevel logLevel );
+/** */
+	void Start();
+/** */
+	void Stop();
 signals:
+/** */
 	void Finished();
+/** */
+	void Stopped();
+/** */
+	void Started();
 protected:
 	friend class LogManagerThread;
-/** Verarbeitet Meldungen */
+	/** Startet abarbeitung der aufgelaufenen Meldungen */
+	void WorkMessages();
+	/** Verarbeitet Meldungen */
 	bool ProcessMessages();
 /** */
 	void ClearLogMessages();
@@ -53,6 +62,8 @@ private:
 	LogMessage*				InitialLogmessage;
 	unsigned long			LogMessageIndex;
 	mutable int				StartingDay;
+	volatile bool			IsRunning;
+	volatile bool			IsStopping;
 	QMutex Mutex;
 };
 

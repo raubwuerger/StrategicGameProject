@@ -51,6 +51,18 @@ namespace jha
 	}
 
 	//==============================================================================
+	void LogInterface::EnableLogging()
+	{
+		LoggingEnabled = true;
+	}
+
+	//==============================================================================
+	void LogInterface::DisableLogging()
+	{
+		LoggingEnabled = false;
+	}
+
+	//==============================================================================
 	bool LogInterface::Init()
 	{
 		if( nullptr == LoggingWorkerObject )
@@ -58,18 +70,28 @@ namespace jha
 			std::cout << "Internal error! LogManagerInstance is null!" << endl;
 			return false;
 		}
+		
 		if( LogCategoryVisitorObject == nullptr )
 		{
 			LogCategoryVisitorObject = new LogCategoryVisitor;
 			LogCategoryDefault().SetCategory( QCoreApplication::applicationName() );
 		}
-		connect( this, SIGNAL(PostLogMessage(jha::LogMessage *)), LoggingWorkerObject, SLOT(AddLogMessage( jha::LogMessage *)) );
+		
+		connect(this, &LogInterface::PostLogMessage, LoggingWorkerObject, &LoggingWorker::AddLogMessage);
+
+		CreateStartMessage();
+
+		return true;
+	}
+
+	//==============================================================================
+	void LogInterface::CreateStartMessage()
+	{
 		QString message("Starting ");
 		message += QCoreApplication::applicationName();
 		message += ", version=";
-		message += 	QCoreApplication::applicationVersion();
-		Log( message, jha::LOGLEVEL::LL_MESSAGE);
-		return true;
+		message += QCoreApplication::applicationVersion();
+		Log(message, jha::LOGLEVEL::LL_MESSAGE);
 	}
 
 	//==============================================================================
@@ -84,24 +106,29 @@ namespace jha
 
 	//==============================================================================
 	LogInterface::LogInterface()
+		: LoggingEnabled(true)
 	{
 	}
 
 	//==============================================================================
 	void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category )
 	{
-		LoggingWorkerObject->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
+		emit PostLogMessage(new jha::LogMessage(QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category));
 	}
 
 	//==============================================================================
 	void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const LogCategoryInterface& logCategory )
 	{
+		if (false == LoggingEnabled)
+		{
+			return;
+		}
 		QString category = "-";
 		if( LogCategoryVisitorObject != nullptr )
 		{
 			category = LogCategoryVisitorObject->GetCategory( &logCategory );
 		}
-		LoggingWorkerObject->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
+		emit PostLogMessage(new jha::LogMessage(QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category));
 	}
 
 	//==============================================================================

@@ -6,8 +6,9 @@ class LoggingWorker;
 class LoggingThread;
 class Logger;
 
-class LogFactory
+class LogFactory : public QObject
 {
+	Q_OBJECT
 public:
 /** */
 	static LogFactory* GetInstance();
@@ -18,14 +19,10 @@ public:
 /** Registriert einen neuen Logger. Übernimmt Besitz! */
 	bool RegisterLogger( jha::Logger* logger );
 /** */
-	void Enable();
-/** */
-	void Disable();
-/** */
 	bool GetEnabled() const;
 private:
 /** Default constructor */
-	LogFactory();
+	explicit LogFactory(QObject *parent = nullptr);
 /** Copy constructor */
 	LogFactory( const LogFactory& );
 private:

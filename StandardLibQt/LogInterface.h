@@ -96,6 +96,10 @@ public:
 public:
 /** */
 	static LogInterface* GetInstance();
+/** */
+	void EnableLogging();
+/** */
+	void DisableLogging();
 /** Nimmt eine Logmeldung auf */
 	void Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category );
 /** Nimmt eine Logmeldung auf */
@@ -139,6 +143,8 @@ private:
 	LogInterface& operator==( LogInterface&& rhs );
 /** */
 	LogLevel GetLogLevelFromName( const QString& logLevel ) const;
+/** */
+	void CreateStartMessage();
 signals:
 	void PostLogMessage( jha::LogMessage *logMessage );
 private:
@@ -146,6 +152,7 @@ private:
 	static LogInterface*		Instance;
 	static LoggingWorker*		LoggingWorkerObject;
 	static LogCategoryVisitor*	LogCategoryVisitorObject;
+	bool						LoggingEnabled;
 };
 
 LogInterface* GetLog();

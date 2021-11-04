@@ -8,35 +8,20 @@ namespace jha
 
 class LoggingWorker;
 
-class LoggingThread : public QObject
+class LoggingThread : public QThread
 {
 	Q_OBJECT
 public:
 /** Constructor */
-	LoggingThread( LoggingWorker *logManager );
-/** Destructor */
+	LoggingThread();
+	/** Destructor */
 	~LoggingThread();
 /** */
 	bool Init();
-/** */
-	void Start();
-/** */
-	void Stop();
-/** */
-	bool GetIsRunning() const;
-public slots:
-/** */
-	void HasFinished();
-/** */
-	void RequestStartFromTimer();
 signals:
-/** */
-	void StartLogManager();
+	void ProcessMessages();
 private:
-	LoggingWorker* LogManagerObject;
-	QThread		WorkerThread;
-	QTimer		*Timer;
-	bool		LogManagerRunning;
+	QTimer*			Timer;
 };
 
 }
