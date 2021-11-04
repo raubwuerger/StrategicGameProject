@@ -185,13 +185,8 @@ void GameDemonstrator::CreateMenuAbout()
 }
 
 #include "LogInterface.h"
-#include "LoggingTableWidget.h"
-#include "LoggerFile.h"
-#include "LoggerTableWidget.h"
 void GameDemonstrator::InitLoggingFramwork()
 {
-	InitFileLogger();
-
 	if (false == jha::LogFactory::GetInstance()->Init(false))
 	{
 		Q_ASSERT(false);
@@ -204,36 +199,6 @@ void GameDemonstrator::InitLoggingFramwork()
 	if (false == modelProgramFactory.GetConfig()->LoggingEnabled)
 	{
 		return;
-	}
-
-	jha::GetLog()->Log_INFO("Just a test log!");
-}
-
-void GameDemonstrator::InitFileLogger()
-{
-	jha::LoggerFile* loggerFile = new jha::LoggerFile();
-	loggerFile->SetFilepath("./log");
-	QString logfileName(QCoreApplication::applicationName());
-	logfileName += ".log";
-	loggerFile->SetFilename(logfileName);
-
-	jha::LogFactory::GetInstance()->RegisterLogger(loggerFile);
-}
-
-void GameDemonstrator::InitTableViewLogger(bool showLoggingPane)
-{
-	QDockWidget *dockWidget = new QDockWidget(tr("Logging"), this);
-	dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-	DockWidgetLogging = new jha::LoggingTableWidget(0, 0, dockWidget);
-
-	dockWidget->setWidget(DockWidgetLogging);
-	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
-	ViewMenu->addAction(dockWidget->toggleViewAction());
-
-	jha::LogFactory::GetInstance()->RegisterLogger(new jha::LoggerTableWidget(DockWidgetLogging));
-	if (false == showLoggingPane)
-	{
-		dockWidget->hide();
 	}
 }
 

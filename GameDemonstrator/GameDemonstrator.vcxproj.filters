@@ -916,6 +916,36 @@
     <ClCompile Include="GeneratedFiles\GameDemonstrator_TEST\moc_LogFactory.cpp">
       <Filter>Generierte Dateien\GameDemonstrator_TEST</Filter>
     </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogService.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogService.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogService.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\GameDemonstrator_TEST\moc_LogService.cpp">
+      <Filter>Generierte Dateien\GameDemonstrator_TEST</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogWorker.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogWorker.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogWorker.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\GameDemonstrator_TEST\moc_LogWorker.cpp">
+      <Filter>Generierte Dateien\GameDemonstrator_TEST</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogDeviceInterface.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LogDeviceFile.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1311,6 +1341,12 @@
     <ClInclude Include="model\ModelTerrainDomain.h">
       <Filter>Header Dateien\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LogDeviceInterface.h">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StandardLibQt\LogDeviceFile.h">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gamedemonstrator.h">
@@ -1504,6 +1540,12 @@
     </CustomBuild>
     <CustomBuild Include="..\StandardLibQt\LogFactory.h">
       <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LogService.h">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LogWorker.h">
+      <Filter>Source Dateien\StdLibQt</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
