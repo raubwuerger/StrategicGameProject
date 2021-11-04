@@ -2,7 +2,6 @@
 #include "gamedemonstrator.h"
 #include "ActionRepository.h"
 #include "Action.h"
-#include "LogFactory.h"
 #include "io\ConfigurationLoader.h"
 #include "dialogs/HexItemInfoDialog.h"
 #include "dialogs/UnitTypeInfoDialog.h"
@@ -187,12 +186,7 @@ void GameDemonstrator::CreateMenuAbout()
 #include "LogInterface.h"
 void GameDemonstrator::InitLoggingFramwork()
 {
-	if (false == jha::LogFactory::GetInstance()->Init(false))
-	{
-		Q_ASSERT(false);
-		return;
-	}
-
+	jha::GetLog(); //TODO: Should be initialized through factory!!
 	ModelProgramFactory modelProgramFactory;
 	modelProgramFactory.Create();
 	jha::GetLog()->SetGlobalLoglevel(modelProgramFactory.GetConfig()->GlobalLogLevel);
