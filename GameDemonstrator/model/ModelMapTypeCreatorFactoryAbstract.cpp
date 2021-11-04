@@ -22,7 +22,7 @@ bool ModelMapTypeCreatorFactoryAbstract::Create()
 	{
 		ModelMapTypeRepository::GetInstance()->Register(CreateFromXML(terrainTypeNodes.at(i)));
 	}
-	jha::GetLog()->Log("ModelUnitTypes registered: " + QString::number(ModelMapTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
+	jha::GetLog()->Log("ModelMapTypes registered: " + QString::number(ModelMapTypeRepository::GetInstance()->GetCount()), LEVEL::LL_MESSAGE);
 
 	return true;
 }
