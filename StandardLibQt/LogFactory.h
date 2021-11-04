@@ -31,7 +31,7 @@ private:
 private:
 	static LogFactory* Instance;
 	static LoggingWorker *LoggingWorkerObject;
-	static LoggingThread *LogManagerThread;
+	static LoggingThread *LoggingThreadObject;
 };
 
 }

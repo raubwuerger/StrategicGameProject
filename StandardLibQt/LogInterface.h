@@ -144,8 +144,8 @@ signals:
 private:
 	friend class LogFactory;
 	static LogInterface*		Instance;
-	static LoggingWorker*			LogManagerInstance;
-	static LogCategoryVisitor*	LogInterfaceVisitor;
+	static LoggingWorker*		LoggingWorkerObject;
+	static LogCategoryVisitor*	LogCategoryVisitorObject;
 };
 
 LogInterface* GetLog();

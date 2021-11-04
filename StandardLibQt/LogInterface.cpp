@@ -13,8 +13,8 @@ namespace jha
 
 	QString LogCategoryDefault::CATEGORY = QCoreApplication::applicationName();
 	LogInterface* LogInterface::Instance = nullptr;
-	LoggingWorker* LogInterface::LogManagerInstance = nullptr;
-	LogCategoryVisitor* jha::LogInterface::LogInterfaceVisitor = nullptr;
+	LoggingWorker* LogInterface::LoggingWorkerObject = nullptr;
+	LogCategoryVisitor* jha::LogInterface::LogCategoryVisitorObject = nullptr;
 
 	const LogLevel LogInterface::LOGLEVEL_NONE("None","n",Qt::cyan,LOGLEVEL::LL_NONE);
 	const LogLevel LogInterface::LOGLEVEL_FATAL("Fatal","f",Qt::magenta,LOGLEVEL::LL_FATAL);
@@ -53,17 +53,17 @@ namespace jha
 	//==============================================================================
 	bool LogInterface::Init()
 	{
-		if( nullptr == LogManagerInstance )
+		if( nullptr == LoggingWorkerObject )
 		{
 			std::cout << "Internal error! LogManagerInstance is null!" << endl;
 			return false;
 		}
-		if( LogInterfaceVisitor == nullptr )
+		if( LogCategoryVisitorObject == nullptr )
 		{
-			LogInterfaceVisitor = new LogCategoryVisitor;
+			LogCategoryVisitorObject = new LogCategoryVisitor;
 			LogCategoryDefault().SetCategory( QCoreApplication::applicationName() );
 		}
-		connect( this, SIGNAL(PostLogMessage(jha::LogMessage *)), LogManagerInstance, SLOT(AddLogMessage( jha::LogMessage *)) );
+		connect( this, SIGNAL(PostLogMessage(jha::LogMessage *)), LoggingWorkerObject, SLOT(AddLogMessage( jha::LogMessage *)) );
 		QString message("Starting ");
 		message += QCoreApplication::applicationName();
 		message += ", version=";
@@ -75,8 +75,8 @@ namespace jha
 	//==============================================================================
 	void LogInterface::Release()
 	{
-		delete LogInterfaceVisitor;
-		LogInterfaceVisitor = nullptr;
+		delete LogCategoryVisitorObject;
+		LogCategoryVisitorObject = nullptr;
 
 		delete Instance;
 		Instance = nullptr;
@@ -90,18 +90,18 @@ namespace jha
 	//==============================================================================
 	void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const QString& category )
 	{
-		LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
+		LoggingWorkerObject->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
 	}
 
 	//==============================================================================
 	void LogInterface::Log( const QString& message, jha::LOGLEVEL logLevel, const LogCategoryInterface& logCategory )
 	{
 		QString category = "-";
-		if( LogInterfaceVisitor != nullptr )
+		if( LogCategoryVisitorObject != nullptr )
 		{
-			category = LogInterfaceVisitor->GetCategory( &logCategory );
+			category = LogCategoryVisitorObject->GetCategory( &logCategory );
 		}
-		LogManagerInstance->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
+		LoggingWorkerObject->AddLogMessage( new jha::LogMessage( QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category ) );
 	}
 
 	//==============================================================================
@@ -161,13 +161,13 @@ namespace jha
 	//==============================================================================
 	void LogInterface::SetGlobalLoglevel( LogLevel logLevel )
 	{
-		LogManagerInstance->SetGlobalLogLevel(logLevel);
+		LoggingWorkerObject->SetGlobalLogLevel(logLevel);
 	}
 
 	//==============================================================================
 	void LogInterface::SetGlobalLoglevel( const QString& logLevel )
 	{
-		LogManagerInstance->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
+		LoggingWorkerObject->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
 	}
 
 	//==============================================================================

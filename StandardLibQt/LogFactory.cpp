@@ -11,7 +11,7 @@ namespace jha
 
 	LogFactory* LogFactory::Instance = nullptr;
 	LoggingWorker* LogFactory::LoggingWorkerObject = nullptr;
-	LoggingThread* LogFactory::LogManagerThread = nullptr;
+	LoggingThread* LogFactory::LoggingThreadObject = nullptr;
 
 	//==============================================================================
 	LogFactory::LogFactory()
@@ -42,14 +42,14 @@ namespace jha
 	//==============================================================================
 	bool LogFactory::Init(bool startLogging)
 	{
-		if( LogManagerThread != nullptr )
+		if( LoggingThreadObject != nullptr )
 		{
 			return true;
 		}
 
 		LoggingWorkerObject = new jha::LoggingWorker;
-		LogManagerThread = new LoggingThread(LoggingWorkerObject);
-		if( false == LogManagerThread->Init() )
+		LoggingThreadObject = new LoggingThread(LoggingWorkerObject);
+		if( false == LoggingThreadObject->Init() )
 		{
 			std::cout << "Error initializing LogManagerThread!" << endl;
 			return false;
@@ -57,7 +57,7 @@ namespace jha
 		LoggingWorkerObject->RegisterLogger( new LoggerCout );
 
 		LogInterface* logInterface = LogInterface().GetInstance();
-		logInterface->LogManagerInstance = LoggingWorkerObject;
+		logInterface->LoggingWorkerObject = LoggingWorkerObject;
 		if( false == logInterface->Init() )
 		{
 			std::cout << "Error initializing LogInterface!" << endl;
@@ -66,7 +66,7 @@ namespace jha
 
 		if (true == startLogging)
 		{
-			LogManagerThread->Start();
+			LoggingThreadObject->Start();
 		}
 
 		return true;
@@ -75,12 +75,12 @@ namespace jha
 	//==============================================================================
 	void LogFactory::Release()
 	{
-		if( LogManagerThread != nullptr )
+		if( LoggingThreadObject != nullptr )
 		{
-			LogManagerThread->Stop();
+			LoggingThreadObject->Stop();
 		}
-		delete LogManagerThread;
-		LogManagerThread = nullptr;
+		delete LoggingThreadObject;
+		LoggingThreadObject = nullptr;
 	
 		delete LoggingWorkerObject;
 		LoggingWorkerObject = nullptr;
@@ -102,19 +102,19 @@ namespace jha
 	//==============================================================================
 	void LogFactory::Enable()
 	{
-		LogManagerThread->Start();
+		LoggingThreadObject->Start();
 	}
 
 	//==============================================================================
 	void LogFactory::Disable()
 	{
-		LogManagerThread->Stop();
+		LoggingThreadObject->Stop();
 	}
 
 	//==============================================================================
 	bool LogFactory::GetEnabled() const
 	{
-		return LogManagerThread->GetIsRunning();
+		return LoggingThreadObject->GetIsRunning();
 	}
 
 }
