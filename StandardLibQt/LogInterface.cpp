@@ -7,13 +7,13 @@
 #include "LoggingThread.h"
 #include <QTime>
 #include <iostream>
+#include "LogService.h"
 
 namespace jha
 {
 
 	QString LogCategoryDefault::CATEGORY = QCoreApplication::applicationName();
 	LogInterface* LogInterface::Instance = nullptr;
-	LoggingWorker* LogInterface::LoggingWorkerObject = nullptr;
 	LogCategoryVisitor* jha::LogInterface::LogCategoryVisitorObject = nullptr;
 
 	const LogLevel LogInterface::LOGLEVEL_NONE("None","n",Qt::cyan,LOGLEVEL::LL_NONE);
@@ -65,7 +65,7 @@ namespace jha
 	//==============================================================================
 	bool LogInterface::Init()
 	{
-		if( nullptr == LoggingWorkerObject )
+		if (nullptr == LogServiceObject)
 		{
 			std::cout << "Internal error! LogManagerInstance is null!" << endl;
 			return false;
@@ -77,8 +77,6 @@ namespace jha
 			LogCategoryDefault().SetCategory( QCoreApplication::applicationName() );
 		}
 		
-		connect(this, &LogInterface::PostLogMessage, LoggingWorkerObject, &LoggingWorker::AddLogMessage);
-
 		CreateStartMessage();
 
 		return true;
@@ -106,8 +104,10 @@ namespace jha
 
 	//==============================================================================
 	LogInterface::LogInterface()
-		: LoggingEnabled(true)
+		: LoggingEnabled(true),
+		LogServiceObject(nullptr)
 	{
+		LogServiceObject = new LogService(nullptr);
 	}
 
 	//==============================================================================
@@ -128,7 +128,7 @@ namespace jha
 		{
 			category = LogCategoryVisitorObject->GetCategory( &logCategory );
 		}
-		emit PostLogMessage(new jha::LogMessage(QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category));
+		emit LogServiceObject->Signal_LogMessage(new jha::LogMessage(QTime::currentTime(), logLevelArray[static_cast<int>(logLevel)], message, category));
 	}
 
 	//==============================================================================
@@ -188,13 +188,13 @@ namespace jha
 	//==============================================================================
 	void LogInterface::SetGlobalLoglevel( LogLevel logLevel )
 	{
-		LoggingWorkerObject->SetGlobalLogLevel(logLevel);
+		//LoggingWorkerObject->SetGlobalLogLevel(logLevel);
 	}
 
 	//==============================================================================
 	void LogInterface::SetGlobalLoglevel( const QString& logLevel )
 	{
-		LoggingWorkerObject->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
+		//LoggingWorkerObject->SetGlobalLogLevel( GetLogLevelFromName(logLevel) );
 	}
 
 	//==============================================================================

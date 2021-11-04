@@ -1,6 +1,8 @@
 #pragma once
 #include <QString>
 
+class LogService;
+
 namespace jha
 {
 
@@ -150,8 +152,8 @@ signals:
 private:
 	friend class LogFactory;
 	static LogInterface*		Instance;
-	static LoggingWorker*		LoggingWorkerObject;
 	static LogCategoryVisitor*	LogCategoryVisitorObject;
+	LogService*					LogServiceObject;
 	bool						LoggingEnabled;
 };
 
