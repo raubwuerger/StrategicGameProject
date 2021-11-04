@@ -181,15 +181,6 @@
     <ClCompile Include="..\StandardLibQt\LogMessage.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_LoggingTableWidget.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_LoggingTableWidget.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="..\StandardLibQt\LoggingTableWidget.cpp">
-      <Filter>Source Dateien\StdLibQt</Filter>
-    </ClCompile>
     <ClCompile Include="ModelFactory.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
@@ -1296,9 +1287,6 @@
       <Filter>Resource Dateien</Filter>
     </CustomBuild>
     <CustomBuild Include="..\StandardLibQt\LogInterface.h">
-      <Filter>Header Dateien\StdLibQt</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
     <CustomBuild Include="model\ModelOwnerTypeFactory.h">
