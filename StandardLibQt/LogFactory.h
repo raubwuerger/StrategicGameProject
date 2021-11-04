@@ -2,7 +2,7 @@
 
 namespace jha
 {
-class LogManager;
+class LoggingWorker;
 class LogManagerThreadContainer;
 class Logger;
 
@@ -30,7 +30,7 @@ private:
 	LogFactory( const LogFactory& );
 private:
 	static LogFactory* Instance;
-	static LogManager *LogManager;
+	static LoggingWorker *LoggingWorkerObject;
 	static LogManagerThreadContainer *LogManagerThread;
 };
 

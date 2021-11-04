@@ -6,14 +6,14 @@
 namespace jha
 {
 
-class LogManager;
+class LoggingWorker;
 
 class LogManagerThreadContainer : public QObject
 {
 	Q_OBJECT
 public:
 /** Constructor */
-	LogManagerThreadContainer( LogManager *logManager );
+	LogManagerThreadContainer( LoggingWorker *logManager );
 /** Destructor */
 	~LogManagerThreadContainer();
 /** */
@@ -23,7 +23,7 @@ public:
 /** */
 	void Stop();
 /** */
-	bool GetIsRunning() const { return m_Timer->isActive(); }
+	bool GetIsRunning() const;
 public slots:
 /** */
 	void HasFinished();
@@ -33,9 +33,9 @@ signals:
 /** */
 	void StartLogManager();
 private:
-	LogManager	*LogManager;
+	LoggingWorker* LogManagerObject;
 	QThread		WorkerThread;
-	QTimer		*m_Timer;
+	QTimer		*Timer;
 	bool		LogManagerRunning;
 };
 

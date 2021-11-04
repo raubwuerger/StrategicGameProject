@@ -7,7 +7,7 @@ namespace jha
 class LogLevel;
 class Logger;
 class LogMessage;
-class LogManager;
+class LoggingWorker;
 
 class LogCategoryInterface
 {
@@ -144,7 +144,7 @@ signals:
 private:
 	friend class LogFactory;
 	static LogInterface*		Instance;
-	static LogManager*			LogManagerInstance;
+	static LoggingWorker*			LogManagerInstance;
 	static LogCategoryVisitor*	LogInterfaceVisitor;
 };
 

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "LogManager.h"
+#include "LoggingWorker.h"
 #include "LogMessage.h"
 #include "Logger.h"
 
@@ -7,7 +7,7 @@ namespace jha
 {
 
 	//==============================================================================
-	LogManager::LogManager()
+	LoggingWorker::LoggingWorker()
 		: LogMessageIndex(0),
 		LogMessagesProcessing(nullptr),
 		LogMessagesReady(nullptr),
@@ -19,7 +19,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	LogManager::~LogManager()
+	LoggingWorker::~LoggingWorker()
 	{
 		for( size_t i=0;i<Loggers.size();i++ )
 		{
@@ -37,7 +37,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	bool LogManager::RegisterLogger( jha::Logger* logger )
+	bool LoggingWorker::RegisterLogger( jha::Logger* logger )
 	{
 		if( logger == nullptr )
 		{
@@ -59,7 +59,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	bool LogManager::ProcessMessages()
+	bool LoggingWorker::ProcessMessages()
 	{
 		bool allMessagesProcessed = true;
 		if( CheckReinitLogger() == true )
@@ -84,7 +84,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	void LogManager::AddLogMessage( jha::LogMessage *logMessage )
+	void LoggingWorker::AddLogMessage( jha::LogMessage *logMessage )
 	{
 		QMutexLocker lock(&Mutex);
 		if( LogMessageIndex == 0 )
@@ -96,13 +96,13 @@ namespace jha
 	}
 
 	//==============================================================================
-	unsigned long LogManager::CreateLogMessageIndex()
+	unsigned long LoggingWorker::CreateLogMessageIndex()
 	{
 		return ++LogMessageIndex;
 	}
 
 	//==============================================================================
-	void LogManager::ClearLogMessages()
+	void LoggingWorker::ClearLogMessages()
 	{
 		for( size_t i=0;i<LogMessagesProcessing->size();i++ )
 		{
@@ -112,7 +112,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	void LogManager::FlipMessageVectors()
+	void LoggingWorker::FlipMessageVectors()
 	{
 		QMutexLocker lock(&Mutex);
 		QVector<LogMessage*> *temp = LogMessagesProcessing;
@@ -121,7 +121,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	bool LogManager::CheckReinitLogger() const
+	bool LoggingWorker::CheckReinitLogger() const
 	{
 		int currentDay = QDate::currentDate().day();
 		if( currentDay == StartingDay )
@@ -133,7 +133,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	void LogManager::ReinitLogger()
+	void LoggingWorker::ReinitLogger()
 	{
 		QVector<jha::Logger*>::iterator logger = Loggers.begin();
 		for( logger; logger != Loggers.end(); logger++ )
@@ -143,14 +143,14 @@ namespace jha
 	}
 
 	//==============================================================================
-	void LogManager::WorkMessages()
+	void LoggingWorker::WorkMessages()
 	{
 		ProcessMessages();
 		emit Finished();
 	}
 
 	//==============================================================================
-	void LogManager::InjectInitialLogMessage()
+	void LoggingWorker::InjectInitialLogMessage()
 	{
 		QString initialLogMessage( tr("#################### START LOGGING (%1) ####################").arg(QDate::currentDate().toString("yyyy-MM-dd")) );
 		InitialLogmessage = new LogMessage(QTime::currentTime(),LogInterface::LOGLEVEL_INIT,initialLogMessage,QCoreApplication::applicationName());
@@ -159,7 +159,7 @@ namespace jha
 	}
 
 	//==============================================================================
-	void LogManager::SetGlobalLogLevel( jha::LogLevel logLevel )
+	void LoggingWorker::SetGlobalLogLevel( jha::LogLevel logLevel )
 	{
 		QMutexLocker lock(&Mutex);
 		for(auto it = std::begin(Loggers); it != std::end(Loggers); ++it) 

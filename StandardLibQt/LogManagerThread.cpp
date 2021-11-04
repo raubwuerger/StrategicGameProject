@@ -1,24 +1,24 @@
 #include "stdafx.h"
 #include "LogManagerThread.h"
-#include "LogManager.h"
+#include "LoggingWorker.h"
 
 namespace jha
 {
 
 	//==============================================================================
-	LogManagerThreadContainer::LogManagerThreadContainer( jha::LogManager *logManager )
-		: LogManager(logManager)
+	LogManagerThreadContainer::LogManagerThreadContainer( jha::LoggingWorker *logManager )
+		: LogManagerObject(logManager)
 	{
-		m_Timer = new QTimer(this);
-		m_Timer->setInterval(50);
-		m_Timer->setTimerType(Qt::PreciseTimer);
+		Timer = new QTimer(this);
+		Timer->setInterval(50);
+		Timer->setTimerType(Qt::PreciseTimer);
 	}
 
 	//==============================================================================
 	LogManagerThreadContainer::~LogManagerThreadContainer()
 	{
-		m_Timer->stop();
-		delete m_Timer;
+		Timer->stop();
+		delete Timer;
 		WorkerThread.quit();
 		WorkerThread.wait();
 	}
@@ -26,12 +26,12 @@ namespace jha
 	//==============================================================================
 	bool LogManagerThreadContainer::Init()
 	{
-		LogManager->moveToThread(&WorkerThread);
-		connect(&WorkerThread, &QThread::finished, LogManager, &QObject::deleteLater);
-		connect(LogManager, &LogManager::Finished, this, &LogManagerThreadContainer::HasFinished);
-		WorkerThread.start();
-		connect(m_Timer, &QTimer::timeout, this, &LogManagerThreadContainer::RequestStartFromTimer);
-		connect(this,&LogManagerThreadContainer::StartLogManager, LogManager, &LogManager::WorkMessages);
+		LogManagerObject->moveToThread(&WorkerThread);
+		connect(&WorkerThread, &QThread::finished, LogManagerObject, &QObject::deleteLater);
+		connect(LogManagerObject, &LoggingWorker::Finished, this, &LogManagerThreadContainer::HasFinished);
+		WorkerThread.start(); //WorkerThread darf nicht gestartet werden ...
+		connect(Timer, &QTimer::timeout, this, &LogManagerThreadContainer::RequestStartFromTimer);
+		connect(this, &LogManagerThreadContainer::StartLogManager, LogManagerObject, &LoggingWorker::WorkMessages);
 		return true;
 	}
 
@@ -56,13 +56,18 @@ namespace jha
 	//==============================================================================
 	void LogManagerThreadContainer::Stop()
 	{
-		m_Timer->stop();
+		Timer->stop();
+	}
+
+	bool LogManagerThreadContainer::GetIsRunning() const
+	{
+		return Timer->isActive();
 	}
 
 	//==============================================================================
 	void LogManagerThreadContainer::Start()
 	{
-		m_Timer->start();
+		Timer->start();
 	}
 
 }

@@ -10,14 +10,14 @@ class LogMessage;
 class Logger;
 
 /** LogManager, Singleton */
-class LogManager : public QObject
+class LoggingWorker : public QObject
 {
 	Q_OBJECT
 public:
 /** Konstructor */
-	LogManager();
+	LoggingWorker();
 /** Destructor */
-	~LogManager();
+	~LoggingWorker();
 public slots:
 /** Startet abarbeitung der aufgelaufenen Meldungen */
 	void WorkMessages();

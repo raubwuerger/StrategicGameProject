@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "LogFactory.h"
-#include "LogManager.h"
+#include "LoggingWorker.h"
 #include "LogManagerThread.h"
 #include "LoggerCout.h"
 #include "LogInterface.h"
@@ -10,7 +10,7 @@ namespace jha
 {
 
 	LogFactory* LogFactory::Instance = nullptr;
-	LogManager* LogFactory::LogManager = nullptr;
+	LoggingWorker* LogFactory::LoggingWorkerObject = nullptr;
 	LogManagerThreadContainer* LogFactory::LogManagerThread = nullptr;
 
 	//==============================================================================
@@ -47,17 +47,17 @@ namespace jha
 			return true;
 		}
 
-		LogManager = new jha::LogManager;
-		LogManagerThread = new LogManagerThreadContainer(LogManager);
+		LoggingWorkerObject = new jha::LoggingWorker;
+		LogManagerThread = new LogManagerThreadContainer(LoggingWorkerObject);
 		if( false == LogManagerThread->Init() )
 		{
 			std::cout << "Error initializing LogManagerThread!" << endl;
 			return false;
 		}
-		LogManager->RegisterLogger( new LoggerCout );
+		LoggingWorkerObject->RegisterLogger( new LoggerCout );
 
 		LogInterface* logInterface = LogInterface().GetInstance();
-		logInterface->LogManagerInstance = LogManager;
+		logInterface->LogManagerInstance = LoggingWorkerObject;
 		if( false == logInterface->Init() )
 		{
 			std::cout << "Error initializing LogInterface!" << endl;
@@ -82,8 +82,8 @@ namespace jha
 		delete LogManagerThread;
 		LogManagerThread = nullptr;
 	
-		delete LogManager;
-		LogManager = nullptr;
+		delete LoggingWorkerObject;
+		LoggingWorkerObject = nullptr;
 
 		LogInterface().GetInstance()->Release();
 	}
@@ -91,12 +91,12 @@ namespace jha
 	//==============================================================================
 	bool LogFactory::RegisterLogger(jha::Logger* logger)
 	{
-		if( nullptr == LogManager )
+		if( nullptr == LoggingWorkerObject )
 		{
 			std::cout << "LogManager is null! Call LogFactory::Init()!" << endl;
 			return false;
 		}
-		return LogManager->RegisterLogger(logger);
+		return LoggingWorkerObject->RegisterLogger(logger);
 	}
 
 	//==============================================================================

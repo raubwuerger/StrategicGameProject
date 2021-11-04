@@ -2,7 +2,7 @@
 #include "LogInterface.h"
 #include "LogLevel.h"
 #include "LogFactory.h"
-#include "LogManager.h"
+#include "LoggingWorker.h"
 #include "LogMessage.h"
 #include "LogManagerThread.h"
 #include <QTime>
@@ -13,7 +13,7 @@ namespace jha
 
 	QString LogCategoryDefault::CATEGORY = QCoreApplication::applicationName();
 	LogInterface* LogInterface::Instance = nullptr;
-	LogManager* LogInterface::LogManagerInstance = nullptr;
+	LoggingWorker* LogInterface::LogManagerInstance = nullptr;
 	LogCategoryVisitor* jha::LogInterface::LogInterfaceVisitor = nullptr;
 
 	const LogLevel LogInterface::LOGLEVEL_NONE("None","n",Qt::cyan,LOGLEVEL::LL_NONE);
