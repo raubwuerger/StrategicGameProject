@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "LogInterface.h"
 #include "LogLevel.h"
-#include "LogFactory.h"
-#include "LoggingWorker.h"
 #include "LogMessage.h"
-#include "LoggingThread.h"
 #include <QTime>
 #include <iostream>
 #include "LogService.h"

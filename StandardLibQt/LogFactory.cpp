@@ -41,16 +41,16 @@ namespace jha
 	//==============================================================================
 	bool LogFactory::Init(bool startLogging)
 	{
-		LoggingWorkerObject->moveToThread(LoggingThreadObject);
+//		LoggingWorkerObject->moveToThread(LoggingThreadObject);
 
-		if( false == LoggingThreadObject->Init() )
-		{
-			std::cout << "Error initializing LogManagerThread!" << endl;
-			return false;
-		}
+		//		if( false == LoggingThreadObject->Init() )
+		//{
+		//std::cout << "Error initializing LogManagerThread!" << endl;
+		//	return false;
+		//}
 
 		LogInterface* logInterface = LogInterface().GetInstance();
-		logInterface->LoggingWorkerObject = LoggingWorkerObject;
+//		logInterface->LoggingWorkerObject = LoggingWorkerObject;
 		if( false == logInterface->Init() )
 		{
 			std::cout << "Error initializing LogInterface!" << endl;

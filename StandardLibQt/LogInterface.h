@@ -150,7 +150,6 @@ private:
 signals:
 	void PostLogMessage( jha::LogMessage *logMessage );
 private:
-	friend class LogFactory;
 	static LogInterface*		Instance;
 	static LogCategoryVisitor*	LogCategoryVisitorObject;
 	LogService*					LogServiceObject;
