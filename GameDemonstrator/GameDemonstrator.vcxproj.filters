@@ -138,6 +138,11 @@
     <Filter Include="Source Dateien\Experimental">
       <UniqueIdentifier>{52a62050-39cb-4c69-b79a-d439df994bb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generierte Dateien\GameDemonstrator_TEST">
+      <UniqueIdentifier>{3b5739c2-5679-47c1-a551-1dd2697e1f7a}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -170,18 +175,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_LogInterface.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_LogManager.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_LogManager.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_LogManagerThread.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_LogManagerThread.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="..\StandardLibQt\Command.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
@@ -204,12 +197,6 @@
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
     <ClCompile Include="..\StandardLibQt\LogLevel.cpp">
-      <Filter>Source Dateien\StdLibQt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\StandardLibQt\LogManager.cpp">
-      <Filter>Source Dateien\StdLibQt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\StandardLibQt\LogManagerThread.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
     <ClCompile Include="..\StandardLibQt\LogMessage.cpp">
@@ -896,6 +883,39 @@
     <ClCompile Include="model\ModelTerrainDomain.cpp">
       <Filter>Source Dateien\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LoggingWorker.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LoggingWorker.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LoggingWorker.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\GameDemonstrator_TEST\moc_LoggingWorker.cpp">
+      <Filter>Generierte Dateien\GameDemonstrator_TEST</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LoggingThread.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LoggingThread.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\GameDemonstrator_TEST\moc_LoggingThread.cpp">
+      <Filter>Generierte Dateien\GameDemonstrator_TEST</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StandardLibQt\LoggingThread.cpp">
+      <Filter>Source Dateien\StdLibQt</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LogFactory.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LogFactory.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\GameDemonstrator_TEST\moc_LogFactory.cpp">
+      <Filter>Generierte Dateien\GameDemonstrator_TEST</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -911,9 +931,6 @@
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\Command.h">
-      <Filter>Header Dateien\StdLibQt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\StandardLibQt\LogFactory.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\Logger.h">
@@ -1311,12 +1328,6 @@
     <CustomBuild Include="..\StandardLibQt\LogInterface.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\StandardLibQt\LogManager.h">
-      <Filter>Header Dateien\StdLibQt</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\StandardLibQt\LogManagerThread.h">
-      <Filter>Header Dateien\StdLibQt</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\StandardLibQt\LoggingTableWidget.h">
       <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
@@ -1484,6 +1495,15 @@
     </CustomBuild>
     <CustomBuild Include="gameController\GameInfoDialogController.h">
       <Filter>Header Dateien\GameController</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LoggingWorker.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LoggingThread.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\StandardLibQt\LogFactory.h">
+      <Filter>Header Dateien\StdLibQt</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
