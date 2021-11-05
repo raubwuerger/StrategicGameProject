@@ -16,11 +16,14 @@ GameCity::GameCity(int id)
 		HasOceanAccess(NOT_INITIALIZED_BOOL),
 		EFFICIENCY_INCREASE(0.2)
 {
+	RuntimeData = new GameCityRuntimeData;
+	UnitProduction = new GameUnitProduction(Id);
 }
 
 GameCity::~GameCity()
 {
 	delete UnitProduction;
+	delete RuntimeData;
 }
 
 const int GameCity::GetId() const

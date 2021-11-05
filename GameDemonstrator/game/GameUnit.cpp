@@ -16,6 +16,7 @@ GameUnit::GameUnit(int gameUnitId)
 		IsEmbarkedOn(nullptr),
 		StartEmbarking(NOT_INITIALIZED_BOOL)
 {
+	RuntimeData = new GameUnitRuntimeData;
 }
 
 GameUnit::~GameUnit()

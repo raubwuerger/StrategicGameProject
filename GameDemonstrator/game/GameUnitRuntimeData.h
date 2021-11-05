@@ -6,6 +6,9 @@ class GameUnit;
 class GameUnitRuntimeData
 {
 public:
+	/** */
+	GameUnitRuntimeData();
+public:
 	int	BaseStrength;
 	int CurrentStrength;
 	int BaseMovementPoints;

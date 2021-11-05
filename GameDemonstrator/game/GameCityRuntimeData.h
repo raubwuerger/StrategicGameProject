@@ -4,6 +4,9 @@
 class GameCityRuntimeData
 {
 public:
+	/** */
+	GameCityRuntimeData();
+public:
 	int			BaseStrength;
 	int			CurrentStrength;
 	int			BaseEfficiency;

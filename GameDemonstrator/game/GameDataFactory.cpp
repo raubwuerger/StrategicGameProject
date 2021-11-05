@@ -21,6 +21,7 @@ bool GameDataFactory::Create()
 
 bool GameDataFactory::CreateGameDataFromSaveGame(const QDomNode& node)
 {
+	jha::GetLog()->Log_INFO(QObject::tr("Loading game data ..."));
 	QDomNodeList nodes = node.childNodes();
 	if (true == nodes.isEmpty())
 	{
