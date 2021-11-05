@@ -356,6 +356,7 @@ bool SerializeXML::LoadGameData( const QDomNode& domNode )
 //==============================================================================
 bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 {
+	jha::GetLog()->Log_INFO(QObject::tr("Loading player data ..."));
 	if (true == domNode.isNull())
 	{
 		return false;
@@ -381,6 +382,7 @@ bool SerializeXML::LoadPlayerData( const QDomNode& domNode )
 //==============================================================================
 bool SerializeXML::LoadMapData( const QDomNode& domNode )
 {
+	jha::GetLog()->Log_INFO(QObject::tr("Loading map data ..."));
 	if (true == domNode.isNull())
 	{
 		return false;
@@ -392,6 +394,7 @@ bool SerializeXML::LoadMapData( const QDomNode& domNode )
 //==============================================================================
 bool SerializeXML::LoadUnitData(const QDomNode& domNode)
 {
+	jha::GetLog()->Log_INFO(QObject::tr("Loading unit data ..."));
 	if (true == domNode.isNull())
 	{
 		return false;
@@ -403,6 +406,7 @@ bool SerializeXML::LoadUnitData(const QDomNode& domNode)
 //==============================================================================
 bool SerializeXML::LoadCityData(const QDomNode& domNode)
 {
+	jha::GetLog()->Log_INFO(QObject::tr("Loading city data ..."));
 	if (true == domNode.isNull())
 	{
 		return false;
@@ -414,6 +418,7 @@ bool SerializeXML::LoadCityData(const QDomNode& domNode)
 //==============================================================================
 bool SerializeXML::UpdateGameConfig()
 {
+	jha::GetLog()->Log_INFO(QObject::tr("Updating game config data ..."));
 	GameConfig::Player = const_cast<GameOwner*>(GameOwnerRepository::GetInstance()->GetById(GameConfig::PlayerId));
 	return GameConfig::Player != nullptr;
 }
