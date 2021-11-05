@@ -10,6 +10,7 @@
 #include "game/GameUnitRepository.h"
 #include "game/GameUnit.h"
 #include "game/GameUnitRuntimeData.h"
+#include "game/GameUnitTransportContainer.h"
 
 GameUnitController::GameUnitController()
 	: Selected(nullptr)
@@ -97,9 +98,9 @@ void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
 		return;
 	}
 
-	if (gameUnitClicked->GetRuntimeData()->TransportedGameUnits.size() > 0)
+	if (gameUnitClicked->GetUnitTransportContainerNonConst()->GetCount() > 0)
 	{
-		GameUnit* embarkedUnit = gameUnitClicked->GetRuntimeData()->TransportedGameUnits[0];
+		GameUnit* embarkedUnit = gameUnitClicked->GetUnitTransportContainerNonConst()->GetAt(0);
 		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());
 		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitId);
 		return;

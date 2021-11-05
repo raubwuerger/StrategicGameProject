@@ -8,6 +8,7 @@ class GameMapTile;
 class GameOwner;
 class GameUnitRuntimeData;
 class GameUnitHelper;
+class GameUnitTransportContainer;
 
 /** Game unit tile */
 class GameUnit : public GameObject
@@ -78,6 +79,12 @@ public:
 	/** */
 	int GetCountTransportedUnits() const;
 	/** */
+	GameUnitTransportContainer* GetUnitTransportContainerNonConst();
+	/** */
+	bool SetGameUnitTransportContainer(GameUnitTransportContainer* transportContainer);
+	/** */
+	const QString& GetDomain() const;
+	/** */
 	GameUnit* GetTransportedUnitAt(int index);
 private:
 	friend class			GameUnitFactory;
@@ -93,6 +100,8 @@ private:
 	GameUnitRuntimeData*	RuntimeData;
 	GameUnit*				IsEmbarkedOn;
 	mutable bool			StartEmbarking;
+	bool					IsTransportUnit;
+	GameUnitTransportContainer*	UnitTransportContainer;
 };
 
 #endif // GAMEUNITTYPE_H

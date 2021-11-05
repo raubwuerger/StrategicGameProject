@@ -14,6 +14,8 @@
 #include "GameMapTile.h"
 #include "GameUnitRuntimeData.h"
 #include "mapCreator/GameUnitCreatorSimple.h"
+#include "GameUnitTransportContainerFactory.h"
+#include "GameUnitHelper.h"
 
 GameUnitFactory::GameUnitFactory()
 {
@@ -75,6 +77,12 @@ GameUnit* GameUnitFactory::Create(const GameUnitParameterObject obj)
 	newGameUnit->SetName(CreateName(unitType));
 	Q_ASSERT(newGameUnit->InitRuntimeData());
 
+	if (false == SetTransportCapacity(newGameUnit))
+	{
+		delete unitType;
+		return nullptr;
+	}
+
 	if (false == GameUnitRepository::GetInstance()->Register(newGameUnit))
 	{
 		delete unitType;
@@ -82,6 +90,21 @@ GameUnit* GameUnitFactory::Create(const GameUnitParameterObject obj)
 	}
 
 	return newGameUnit;
+}
+
+bool GameUnitFactory::SetTransportCapacity(GameUnit* gameUnit)
+{
+	if (false == GameUnitHelper::IsTransporter(gameUnit))
+	{
+		return true;
+	}
+
+	GameUnitTransportContainerFactory factory;
+	if (false == gameUnit->SetGameUnitTransportContainer(factory.Create(gameUnit)))
+	{
+		return false;
+	}
+	return true;
 }
 
 GameUnit* GameUnitFactory::Update(const GameUnitParameterObject obj)

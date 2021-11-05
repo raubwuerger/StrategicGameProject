@@ -65,6 +65,8 @@ private:
 	int CreateId( const GameUnitParameterObject obj);
 	/** */
 	QString CreateName(const ModelUnitType* modelUnitType) const;
+	/** */
+	bool SetTransportCapacity(GameUnit* gameUnit);
 };
 
 #endif  //GAMEUNITFACTORY_H

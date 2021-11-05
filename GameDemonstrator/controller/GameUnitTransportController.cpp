@@ -8,6 +8,7 @@
 #include "map\MapUnitItemRepository.h"
 #include "map\MapHexItem.h"
 #include "game\GameUnitHelper.h"
+#include "game\GameUnitTransportContainer.h"
 #include "TerrainAccessTester.h"
 
 GameUnitTransportController::GameUnitTransportController(GameUnit* playerUnit)
@@ -40,7 +41,7 @@ bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination
 
 	const ModelUnitType* transporterModel = TransporterUnit->GetModelUnitType();
 	const ModelUnitType* transportedModel = UnitToTransport->GetModelUnitType();
-	if (false == transporterModel->GetTransportCapacityByTerrainDomain(transportedModel->GetTerrainDomainName()))
+	if (0 >= transporterModel->GetTransportCapacityByTerrainDomain(transportedModel->GetTerrainDomainName()))
 	{
 		return false;
 	}
@@ -56,7 +57,7 @@ bool GameUnitTransportController::CanBeTransported(const MapHexItem* destination
 
 bool GameUnitTransportController::EmbarkUnit()
 {
-	TransporterUnit->GetRuntimeData()->TransportedGameUnits.push_back(UnitToTransport);
+	TransporterUnit->GetUnitTransportContainerNonConst()->EmbarkUnit(UnitToTransport);
 	MapUnitItem* mapUnitToTransport = MapUnitItemRepository::GetInstance()->Hide(UnitToTransport->GetId());
 	if (nullptr == mapUnitToTransport)
 	{
@@ -104,11 +105,7 @@ bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
 
 int GameUnitTransportController::GetFreeTransportCapacity(GameUnit* gameUnit) const
 {
-	if (gameUnit->GetRuntimeData()->TransportCapacity == NOT_INITIALIZED_INT)
-	{
-		return 0;
-	}
-	return gameUnit->GetRuntimeData()->TransportCapacity - gameUnit->GetRuntimeData()->TransportedGameUnits.size();
+	return gameUnit->GetUnitTransportContainerNonConst()->GetFreeCapacity();
 }
 
 GameUnit* GameUnitTransportController::GetOwnUnitOnDestinationMapTile(int gameMapItemId) const

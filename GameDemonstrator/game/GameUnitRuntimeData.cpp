@@ -5,8 +5,7 @@ GameUnitRuntimeData::GameUnitRuntimeData()
 	: BaseStrength(NOT_INITIALIZED_INT),
 	CurrentStrength(NOT_INITIALIZED_INT),
 	BaseMovementPoints(NOT_INITIALIZED_INT),
-	CurrentMovementPoints(NOT_INITIALIZED_INT),
-	TransportCapacity(NOT_INITIALIZED_INT)
+	CurrentMovementPoints(NOT_INITIALIZED_INT)
 {
 
 }

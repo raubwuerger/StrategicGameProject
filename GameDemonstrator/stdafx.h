@@ -11,3 +11,5 @@ static const QString	GAME_UNIT_STRING_EFFICIENCY = "Efficiency";
 
 static const double		GLOBAL_HEXAGON_OFFSET = 1.0;
 static const double		SQUARE_ROOT_THREE = 1.73205080757;
+
+static const QString	INVALID_TERRAIN_DOMAIN = "INVALID_TERRAIN_DOMAIN";

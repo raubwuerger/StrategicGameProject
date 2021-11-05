@@ -3,6 +3,7 @@
 #include "model/ModelUnitType.h"
 #include "GameUnitRuntimeData.h"
 #include "GameUnitHelper.h"
+#include "GameUnitTransportContainer.h"
 
 GameUnit::GameUnit(int gameUnitId)
 	: Id(gameUnitId),
@@ -14,15 +15,18 @@ GameUnit::GameUnit(int gameUnitId)
 		MapTileId(NOT_INITIALIZED_INT),
 		RuntimeData(nullptr),
 		IsEmbarkedOn(nullptr),
-		StartEmbarking(NOT_INITIALIZED_BOOL)
+		StartEmbarking(NOT_INITIALIZED_BOOL),
+		UnitTransportContainer(nullptr),
+		IsTransportUnit(NOT_INITIALIZED_BOOL)
 {
 	RuntimeData = new GameUnitRuntimeData;
+	UnitTransportContainer = new GameUnitTransportContainer;
 }
 
 GameUnit::~GameUnit()
 {
 	delete RuntimeData;
-	RuntimeData = nullptr;
+	delete UnitTransportContainer;
 }
 
 const ModelUnitType* GameUnit::GetModelUnitType() const
@@ -148,7 +152,6 @@ bool GameUnit::InitRuntimeData()
 	RuntimeData->CurrentStrength = UnitType->GetStrength();
 	RuntimeData->BaseMovementPoints = UnitType->GetMovementPoints();
 	RuntimeData->CurrentMovementPoints = UnitType->GetMovementPoints();
-	RuntimeData->TransportCapacity = UnitType->GetTransportCapacityStupid();
 	return true;
 }
 
@@ -197,19 +200,40 @@ void GameUnit::SetDismbarked()
 
 bool GameUnit::GetIsTransporter() const
 {
-	return RuntimeData->TransportCapacity > 0;
+	return IsTransportUnit;
 }
 
 int GameUnit::GetCountTransportedUnits() const
 {
-	return RuntimeData->TransportedGameUnits.size();
+	return UnitTransportContainer->GetCount();
+}
+
+GameUnitTransportContainer* GameUnit::GetUnitTransportContainerNonConst()
+{
+	return UnitTransportContainer;
+}
+
+bool GameUnit::SetGameUnitTransportContainer(GameUnitTransportContainer* transportContainer)
+{
+	if (nullptr == transportContainer)
+	{
+		Q_ASSERT(transportContainer);
+		return false;
+	}
+
+	delete UnitTransportContainer;
+	UnitTransportContainer = transportContainer;
+	return true;
+}
+
+const QString& GameUnit::GetDomain() const
+{
+	return UnitType->GetTerrainDomainName();
 }
 
 GameUnit* GameUnit::GetTransportedUnitAt(int index)
 {
-	Q_ASSERT(index >= 0);
-	Q_ASSERT(index < GetCountTransportedUnits());
-	return RuntimeData->TransportedGameUnits[index];
+	return UnitTransportContainer->GetAt(index);
 }
 
 bool GameUnit::CanOccupieCity() const

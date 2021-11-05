@@ -18,6 +18,8 @@ public:
 	static int GetMapHexItemId(const GameUnit* gameUnit);
 	/** */
 	static const GameUnit* GetEnemyGameUnit(int mapItemId);
+	/** */
+	static bool IsTransporter(const GameUnit* gameUnit);
 private:
 	/** Default Constructor forbidden */
 	GameUnitHelper() {}

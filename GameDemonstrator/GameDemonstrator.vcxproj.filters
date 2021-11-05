@@ -883,6 +883,12 @@
     <ClCompile Include="..\StandardLibQt\LogDeviceFile.cpp">
       <Filter>Source Dateien\StdLibQt</Filter>
     </ClCompile>
+    <ClCompile Include="game\GameUnitTransportContainer.cpp">
+      <Filter>Header Dateien\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\GameUnitTransportContainerFactory.cpp">
+      <Filter>Header Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1274,6 +1280,12 @@
     </ClInclude>
     <ClInclude Include="..\StandardLibQt\LogDeviceInterface.h">
       <Filter>Header Dateien\StdLibQt</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitTransportContainer.h">
+      <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\GameUnitTransportContainerFactory.h">
+      <Filter>Header Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

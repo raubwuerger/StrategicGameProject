@@ -56,3 +56,7 @@
 	-	Bug:		Logging: Not working. Is still logging ...
 2021-11-04:
 	-	Feature:	Revise logging system.
+2021-11-05:
+	+	Bug:		Examine why release version crashes. -> uninitialized pointers!
+	-	Feature:	Revivse transport system.
+	-	Bug:		Embarked unit shows up on old map position. Has something to do with moveing ...

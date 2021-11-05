@@ -7,6 +7,8 @@
 #include "map\MapUnitItemRepository.h"
 #include "map\MapUnitItem.h"
 
+#include "model\ModelUnitType.h"
+
 
 bool GameUnitHelper::IsEnemyOnDestinationMapTile(const GameUnit* gameUnitSource, int gameMapItemId)
 {
@@ -38,6 +40,14 @@ int GameUnitHelper::GetMapHexItemId(const GameUnit* gameUnit)
 const GameUnit* GameUnitHelper::GetEnemyGameUnit(int mapItemId)
 {
 	return GameUnitRepository::GetInstance()->GetFirstGameUnitByGameMapTileId(mapItemId);
+}
+
+bool GameUnitHelper::IsTransporter(const GameUnit* gameUnit)
+{
+	Q_ASSERT(gameUnit);
+	const ModelUnitType* unitType = gameUnit->GetModelUnitType();
+	Q_ASSERT(unitType);
+	return unitType->GetTransportCapacityStupid() > 0;
 }
 
 GameUnitHelper::GameUnitHelper(GameUnit* gameUnit)

@@ -13,8 +13,6 @@ public:
 	int CurrentStrength;
 	int BaseMovementPoints;
 	int CurrentMovementPoints;
-	int TransportCapacity;
-	QVector<GameUnit*>	TransportedGameUnits;
 };
 
 #endif GAMEUNITRUNTIMEDATA_H

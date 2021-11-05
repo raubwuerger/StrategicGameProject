@@ -255,6 +255,8 @@
     <ClCompile Include="connectors\ConnectorMapUnitItem.cpp" />
     <ClCompile Include="game\GameUnitAttackHelper.cpp" />
     <ClCompile Include="game\GameUnitHelper.cpp" />
+    <ClCompile Include="game\GameUnitTransportContainer.cpp" />
+    <ClCompile Include="game\GameUnitTransportContainerFactory.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_LogService.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameDemonstrator_TEST|Win32'">true</ExcludedFromBuild>
@@ -951,6 +953,8 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="game\GameUnitAttackHelper.h" />
     <ClInclude Include="game\GameUnitHelper.h" />
+    <ClInclude Include="game\GameUnitTransportContainer.h" />
+    <ClInclude Include="game\GameUnitTransportContainerFactory.h" />
     <ClInclude Include="mapCreator\GameCityCreatorSimple.h" />
     <ClInclude Include="mapCreator\GameCityCreatorInterface.h" />
     <ClInclude Include="mapCreator\GameUnitCreatorInterface.h" />

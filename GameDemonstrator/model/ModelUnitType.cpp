@@ -125,3 +125,29 @@ bool ModelUnitType::GetCanUnitBeTransported() const
 {
 	return CanUnitBeTransported;
 }
+
+QString ModelUnitType::GetTransportDomainStupid() const
+{
+	if (GetTransportCapacityUnitsLand() > 0)
+	{
+		return ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND;
+	}
+
+	if (GetTransportCapacityUnitsAir() > 0)
+	{
+		return ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR;
+	}
+
+	if (GetTransportCapacityUnitsSea() > 0)
+	{
+		return ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA;
+	}
+
+	Q_ASSERT(false);
+	return INVALID_TERRAIN_DOMAIN;
+}
+
+bool ModelUnitType::IsTransporter() const
+{
+	return GetTransportCapacityStupid() > 0;
+}

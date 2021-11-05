@@ -35,7 +35,7 @@ public:
 	/** */
 	bool GetReceiveCounterattack() const { return ReceiveCounterattack; }
 	/** */
-	QString GetTerrainDomainName() const { return TerrainDomain; }
+	const QString& GetTerrainDomainName() const { return TerrainDomain; }
 	/** */
 	int GetTerrainDomain() const;
 	/** */
@@ -50,6 +50,10 @@ public:
 	int GetTransportCapacityStupid() const;
 	/** */
 	bool GetCanUnitBeTransported() const;
+	/** Stupid. Gets first transport capacity domain greater one. At the moment no problem because there are no transporter units which can load different domain type units! */
+	QString GetTransportDomainStupid() const;
+	/** */
+	bool IsTransporter() const;
 private:
 	friend class ModelUnitTypeFactory;
 	const int		Id;
