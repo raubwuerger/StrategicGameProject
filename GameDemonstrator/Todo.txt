@@ -61,4 +61,4 @@
 	038 -	Feature:	Revivse transport system.
 	039 +	Bug:		Embarked unit shows up on old map position. Has something to do with moving ...
 2021-11-06:
-	040 -	
+	040 +	Bug:		If embarked unit disembarks it will not be removed from the GameUnitTransportController

@@ -71,16 +71,16 @@ bool GameUnitTransportController::EmbarkUnit()
 
 bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
 {
+	if (false == UnitToTransport->GetIsEmbarked()) //No jump from one transporter to another
+	{
+		return false;
+	}
+
 	if (false == UnitToTransport->CanMove())
 	{
 		return false;
 	}
 
-	if (false == UnitToTransport->GetIsEmbarked()) //No jump from one transporter to another
-	{
-		return false;
-	}
-	
 	if (true == GameUnitHelper::IsOwnUnitOnDestinationMapTile(UnitToTransport, destination->GetId()))
 	{
 		return false;
@@ -98,7 +98,7 @@ bool GameUnitTransportController::DisembarkUnit(const MapHexItem* destination)
 
 	TransporterUnit = UnitToTransport->GetIsEmbarkedOn();
 	UnitToTransport->SetDismbarked();
-	Q_ASSERT(TransporterUnit);
+	TransporterUnit->DisembarkUnit(UnitToTransport);
 	MapUnitItemRepository::GetInstance()->Show(TransporterUnit->GetId());
 	return true;
 }

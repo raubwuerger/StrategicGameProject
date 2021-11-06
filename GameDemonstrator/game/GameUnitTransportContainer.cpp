@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameUnitTransportContainer.h"
+#include "helper\GameUnitVectorHelper.h"
 
 GameUnitTransportContainer::GameUnitTransportContainer()
 	: Transporter(nullptr),
@@ -57,6 +58,12 @@ bool GameUnitTransportContainer::EmbarkUnit(GameUnit* toEmbark)
 	}
 	TransportedUnits.push_back(toEmbark);
 	return true;
+}
+
+bool GameUnitTransportContainer::DisembarkUnit(GameUnit* toDisembark)
+{
+	GameUnitVectorHelper helper(TransportedUnits);
+	return helper.Remove(toDisembark) == nullptr ? false : true;
 }
 
 bool GameUnitTransportContainer::GetFreeCapacity() const

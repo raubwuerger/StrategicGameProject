@@ -22,15 +22,22 @@ public:
 	/** */
 	bool EmbarkUnit(GameUnit* toEmbark);
 	/** */
+	bool DisembarkUnit(GameUnit* toDisembark);
+	/** */
 	bool GetFreeCapacity() const;
 	/** */
 	GameUnit* GetAt(int index);
+	/** */
+	GameUnit* GetSelectedUnit() { return nullptr; }
+	/** */
+	void SelectNextUnit() {}
 public:
 	friend class GameUnitTransportContainerFactory;
 	const GameUnit*		Transporter;
 	int					Capacity;
 	QString				Domain;
 	QVector<GameUnit*>	TransportedUnits;
+//	QList<GameUnit*>	
 };
 
 #endif // GAMEUNITTRANSPORTCONTAINER_H

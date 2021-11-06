@@ -889,6 +889,9 @@
     <ClCompile Include="game\GameUnitTransportContainerFactory.cpp">
       <Filter>Header Dateien\Game</Filter>
     </ClCompile>
+    <ClCompile Include="helper\GameUnitVectorHelper.cpp">
+      <Filter>Source Dateien\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1286,6 +1289,9 @@
     </ClInclude>
     <ClInclude Include="game\GameUnitTransportContainerFactory.h">
       <Filter>Header Dateien\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\GameUnitVectorHelper.h">
+      <Filter>Source Dateien\Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

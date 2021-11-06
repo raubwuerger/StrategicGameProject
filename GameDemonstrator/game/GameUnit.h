@@ -29,6 +29,8 @@ public:
 	/** */
 	bool operator < (const GameUnit& rhs) const;
 	/** */
+	bool operator == (const GameUnit& rhs) const;
+	/** */
 	const QString& GetName() const;
 	/** */
 	void SetName( const QString& name) const;
@@ -86,6 +88,8 @@ public:
 	const QString& GetDomain() const;
 	/** */
 	GameUnit* GetTransportedUnitAt(int index);
+	/** */
+	void DisembarkUnit( GameUnit* toDisembark);
 private:
 	friend class			GameUnitFactory;
 	friend class			GameUnitHelper;

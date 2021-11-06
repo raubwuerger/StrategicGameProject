@@ -293,6 +293,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameDemonstrator_TEST|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="helper\GameUnitVectorHelper.cpp" />
     <ClCompile Include="mapCreator\GameCityCreatorSimple.cpp" />
     <ClCompile Include="mapCreator\GameUnitCreatorSimple.cpp" />
     <ClCompile Include="map\MapHexItemSetting.cpp" />
@@ -955,6 +956,7 @@
     <ClInclude Include="game\GameUnitHelper.h" />
     <ClInclude Include="game\GameUnitTransportContainer.h" />
     <ClInclude Include="game\GameUnitTransportContainerFactory.h" />
+    <ClInclude Include="helper\GameUnitVectorHelper.h" />
     <ClInclude Include="mapCreator\GameCityCreatorSimple.h" />
     <ClInclude Include="mapCreator\GameCityCreatorInterface.h" />
     <ClInclude Include="mapCreator\GameUnitCreatorInterface.h" />

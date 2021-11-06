@@ -240,6 +240,11 @@ GameUnit* GameUnit::GetTransportedUnitAt(int index)
 	return UnitTransportContainer->GetAt(index);
 }
 
+void GameUnit::DisembarkUnit( GameUnit* toDisembark)
+{
+	UnitTransportContainer->DisembarkUnit(toDisembark);
+}
+
 bool GameUnit::CanOccupieCity() const
 {
 	return UnitType->GetCanOccupieCity();
@@ -248,4 +253,9 @@ bool GameUnit::CanOccupieCity() const
 bool GameUnit::operator<(const GameUnit& rhs) const
 {
 	return Id < rhs.Id;
+}
+
+bool GameUnit::operator==(const GameUnit& rhs) const
+{
+	return Id == rhs.Id;
 }
