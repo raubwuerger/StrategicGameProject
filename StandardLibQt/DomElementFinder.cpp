@@ -10,7 +10,7 @@
 DomElementFinder::DomElementFinder( const QDomNode& node ) 
 	: DomNode(node)
 {
-
+	jha::GetLog()->Log_DEBUG(QObject::tr("Analyzing QDomNode: localName=%1, nodeName=%2, namespaceURI=%3 ").arg(node.localName()).arg(node.nodeName()).arg(node.namespaceURI()));
 }
 
 bool DomElementFinder::TryFindElement( const QString& elementName, int& value ) const
