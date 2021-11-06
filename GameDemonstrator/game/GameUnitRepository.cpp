@@ -109,6 +109,33 @@ const GameUnit* GameUnitRepository::GetFirstGameUnitByGameMapTileId(int gameMapT
 	return GetById(unitsOnMapTile.value());
 }
 
+const GameUnit* GameUnitRepository::GetTransporterUnitByGameMapTileId(int gameMapTileId)
+{
+	if (false == GameUnitsOnGameMapTile.contains(gameMapTileId))
+	{
+		return nullptr;
+	}
+
+	QMap<int, int>::iterator unitsOnMapTile = GameUnitsOnGameMapTile.find(gameMapTileId);
+	if (unitsOnMapTile == GameUnitsOnGameMapTile.end())
+	{
+		Q_ASSERT(false);
+		return nullptr;
+	}
+
+	while (unitsOnMapTile != GameUnitsOnGameMapTile.end())
+	{
+		const GameUnit* isTransporter = GetById(unitsOnMapTile.value());
+		if (false == isTransporter->GetIsTransporter())
+		{
+			unitsOnMapTile++;
+			continue;
+		}
+		return isTransporter;
+	}
+	return nullptr;
+}
+
 int GameUnitRepository::CreateNewId() const
 {
 	if (true == GameUnits.isEmpty())

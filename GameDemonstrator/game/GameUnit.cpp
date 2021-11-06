@@ -200,7 +200,11 @@ void GameUnit::SetDismbarked()
 
 bool GameUnit::GetIsTransporter() const
 {
-	return IsTransportUnit;
+	if (nullptr == UnitTransportContainer)
+	{
+		return false;
+	}
+	return UnitTransportContainer->Capacity > 0;
 }
 
 int GameUnit::GetCountTransportedUnits() const

@@ -27,6 +27,8 @@ public:
 	/** */
 	const GameUnit* GetFirstGameUnitByGameMapTileId(int gameMapTileId);
 	/** */
+	const GameUnit* GetTransporterUnitByGameMapTileId(int gameMapTileId);
+	/** */
 	int CreateNewId() const;
 	/** */
 	bool IsGameUnitOnGameMapTile(int gameMapTileId) const;

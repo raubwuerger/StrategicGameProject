@@ -1,16 +1,16 @@
 2021-10-07:
-	+	Nur bei eigenen Städten soll die Produktion angepasst werden können!
-	+	Die Anzeige von MapTile Informationen (Id, pos|col, boarder, ...) sollte parametrierbar sein
-	-	Unschöne Überschneidungen der Png's beheben. Inklusive wenn ein HexItem markiert ist
-	-	MapHexItemInfoString sollte nicht von Klasse MapHexItem gebaut werden!
+	001 +	Nur bei eigenen Städten soll die Produktion angepasst werden können!
+	002 +	Die Anzeige von MapTile Informationen (Id, pos|col, boarder, ...) sollte parametrierbar sein
+	003 -	Unschöne Überschneidungen der Png's beheben. Inklusive wenn ein HexItem markiert ist
+	004 -	MapHexItemInfoString sollte nicht von Klasse MapHexItem gebaut werden!
 
 2021-10-08:
-	+	LoggingPane sollte über Konfiguration ein/aus geschaltet werden können.
-	-	Found bug: Unit production isn't working anymore! CHECK!!!
-	+	Set names for cities
-	+	Neutral cities shouldn't produce any units.
-	+	Check if city has ocean access or not -> GameCityCreator
-	-	Found bug: Editormode, deleting city doesn't delete GameUnitProduction
+	005 +	LoggingPane sollte über Konfiguration ein/aus geschaltet werden können.
+	006 -	Found bug: Unit production isn't working anymore! CHECK!!!
+	007 +	Set names for cities
+	008 +	Neutral cities shouldn't produce any units.
+	009 +	Check if city has ocean access or not -> GameCityCreator
+	010 -	Found bug: Editormode, deleting city doesn't delete GameUnitProduction
 					-> Unable to create new city because GameUnitProduction already exists
 					-> Dadurch läßt sich das Problem nicht lösen.
 						Beim Löschen einer GameUnitProduction für eine Stadt (z.B. gameCityId = 11)
@@ -19,44 +19,46 @@
 						GameCityRepository erzeugt. D.h. Es wird eine gameCityId (nicht vorhanden)
 						erzeugt welche bereits vorhanden ist.
 2021-10-10:
-	+	Implement Embark Unit (Land)
-	+	Implement switch between embarked unit and transporter unit. (Land) (Only one unit supported at the moment)
-	-	Implement concept for saving and loading transported units.  (Land)
+	011 +	Implement Embark Unit (Land)
+	012 +	Implement switch between embarked unit and transporter unit. (Land) (Only one unit supported at the moment)
+	013 -	Implement concept for saving and loading transported units.  (Land)
 
 2021-10-11:
-	-	Bug: Placing of sea units is not working. Can't be placed on land (city) tiles.
-	+	Implement disembark of unit.
-	-	Implement switching between units on transport ship. At the moment only one unit can be changed.
-	+	Bug: Embarked unit will not be moved with transport unit. Stays on the map tile on which it has been embarked.
-	+	Bug: New turn will not result in reset of unit movement points.??? -> See 2021-10-30 Bug:	Loading a game doesn't clear GameObjects. 
-	+	Bug: If unit disembarks, transport unit will not be visible anymore.
-	+	Bug: If unit disembarks, the transport unit will be also removed from internal MapUnit-Map.
+	014 -	Bug: Placing of sea units is not working. Can't be placed on land (city) tiles.
+	015 +	Implement disembark of unit.
+	016 -	Implement switching between units on transport ship. At the moment only one unit can be changed.
+	017 +	Bug: Embarked unit will not be moved with transport unit. Stays on the map tile on which it has been embarked.
+	018 +	Bug: New turn will not result in reset of unit movement points.??? -> See 2021-10-30 Bug:	Loading a game doesn't clear GameObjects. 
+	019 +	Bug: If unit disembarks, transport unit will not be visible anymore.
+	020 +	Bug: If unit disembarks, the transport unit will be also removed from internal MapUnit-Map.
 			So if the next unit will embark, it's not possible because there is no unit on this map tile. 
-	+	Check: Remove disembarked unit from transport unit.
+	021 +	Check: Remove disembarked unit from transport unit.
 2021-10-19:
-	+	Bug:	If unit moves to transport unit, the units id will be removed from GameUnitsOnGameMapTile.
+	022 +	Bug:	If unit moves to transport unit, the units id will be removed from GameUnitsOnGameMapTile.
 				Then the function returns true, it will again try to remove from GameUnitsOnGameMapTile.
 2021-10-30:
-	-	Bug:	RightMouseClick on land unit want's to switch between Transporter and Transported unit.
-	+	Bug:	Loading a game doesn't clear GameObjects.
-	-	Bug:	UnitTypeEditor: Method DeleteUnit() only the first GameUnit will be deleted!
-	+	Bug:	Units on transporters shouldn't loose movement points.
-	-	Bug:	Develop concept for air units regarding movement points. If they are not on an city or carrierer at turnend they should crash.
-	+	Feature:	Rename ModelTypeModifier Range to AttackRange
-	+	Feature:	Rename ModelTypeModifier MovementPoints to MovementPointsPerTurn.
-	+	Feature:	Introduce new ModelTypeModifier MovementPointsOverall
+	023 -	Bug:	RightMouseClick on land unit want's to switch between Transporter and Transported unit.
+	024 +	Bug:	Loading a game doesn't clear GameObjects.
+	025 -	Bug:	UnitTypeEditor: Method DeleteUnit() only the first GameUnit will be deleted!
+	026 +	Bug:	Units on transporters shouldn't loose movement points.
+	027 -	Bug:	Develop concept for air units regarding movement points. If they are not on an city or carrierer at turnend they should crash.
+	028 +	Feature:	Rename ModelTypeModifier Range to AttackRange
+	029 +	Feature:	Rename ModelTypeModifier MovementPoints to MovementPointsPerTurn.
+	030 +	Feature:	Introduce new ModelTypeModifier MovementPointsOverall
 					(For land and sea units the two values will be the same. MovementPointsTurn == MovementPointOverall)
 					Fighters have twize MovementPointOverall then MovementPointsTurn
 					Bombers have triple MovementPointOverall then MovementPointsTurn )
 2021-11-03:
-	-	Feature:	Movementconzept not coherent!
-	-	Feature:	Implement attack concept.
-	-	Incorrectnes:	GameUnitProductionController is wrong. Should be CityProductionController?! -> Efficiency
-	+	Feature:	Make logging disable.
-	-	Bug:		Logging: Not working. Is still logging ...
+	031 -	Feature:	Movementconzept not coherent!
+	032 -	Feature:	Implement attack concept.
+	033 -	Incorrectnes:	GameUnitProductionController is wrong. Should be CityProductionController?! -> Efficiency
+	034 +	Feature:	Make logging disable.
+	035 -	Bug:		Logging: Not working. Is still logging ...
 2021-11-04:
-	-	Feature:	Revise logging system.
+	036 -	Feature:	Revise logging system.
 2021-11-05:
-	+	Bug:		Examine why release version crashes. -> uninitialized pointers!
-	-	Feature:	Revivse transport system.
-	-	Bug:		Embarked unit shows up on old map position. Has something to do with moveing ...
+	037 +	Bug:		Examine why release version crashes. -> uninitialized pointers!
+	038 -	Feature:	Revivse transport system.
+	039 +	Bug:		Embarked unit shows up on old map position. Has something to do with moving ...
+2021-11-06:
+	040 -	
