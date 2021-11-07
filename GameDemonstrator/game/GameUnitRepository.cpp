@@ -123,15 +123,14 @@ const GameUnit* GameUnitRepository::GetTransporterUnitByGameMapTileId(int gameMa
 		return nullptr;
 	}
 
-	while (unitsOnMapTile != GameUnitsOnGameMapTile.end())
+	while (unitsOnMapTile != GameUnitsOnGameMapTile.end() && unitsOnMapTile.key() == gameMapTileId )
 	{
 		const GameUnit* isTransporter = GetById(unitsOnMapTile.value());
-		if (false == isTransporter->GetIsTransporter())
+		if (true == isTransporter->GetIsTransporter())
 		{
-			unitsOnMapTile++;
-			continue;
+			return isTransporter;
 		}
-		return isTransporter;
+		unitsOnMapTile++;
 	}
 	return nullptr;
 }

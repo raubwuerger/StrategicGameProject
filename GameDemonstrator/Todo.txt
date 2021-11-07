@@ -64,4 +64,4 @@
 	040 +	Bug:		If embarked unit disembarks it will not be removed from the GameUnitTransportController
 2021-11-07:
 	041	+	Feature:	Implement unit switching concept for transporters. (Not tested)
-	042	-	Bug:		#041 is not tested!
+	042	+	Bug:		#041 is not tested!

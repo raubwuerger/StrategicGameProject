@@ -18,6 +18,7 @@ GameUnitTransportContainer::GameUnitTransportContainer(const GameUnit* transport
 	Capacity(NOT_INITIALIZED_INT)
 {
 	Q_ASSERT(transporter);
+	GameUnitStackingHelperObject = new GameUnitStackingHelper;
 }
 
 bool GameUnitTransportContainer::GetIsValid() const

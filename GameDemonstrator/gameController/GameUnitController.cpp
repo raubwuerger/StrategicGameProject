@@ -91,28 +91,22 @@ void GameUnitController::SlotGameUnitUnselected(int gameUnitId)
 
 void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
 {
-	GameUnit* gameUnitClicked = GameUnitRepository::GetInstance()->GetById(gameUnitId);
-	if (nullptr == gameUnitClicked)
+	const GameUnit* gameUnitClicked = GameUnitRepository::GetInstance()->GetById(gameUnitId);
+	const GameUnit* transporter = GameUnitRepository::GetInstance()->GetTransporterUnitByGameMapTileId(gameUnitClicked->GetGameTileId());
+	if (nullptr == transporter)
 	{
-		Q_ASSERT(false);
 		return;
 	}
 
-	if (gameUnitClicked->GetUnitTransportContainerNonConst()->GetCount() > 0)
+	const GameUnit* selected = transporter->GetUnitTransportContainer()->SelectNextUnit();
+	QVector<const GameUnit*> notSelected = transporter->GetUnitTransportContainer()->GetNotSelectedUnits();
+
+	for (int index = 0; index < notSelected.size(); index++)
 	{
-		const GameUnit* embarkedUnit = gameUnitClicked->GetTransportedUnitAt(0);
-		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());
-		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitId);
-		return;
+		MapUnitItemRepository::GetInstance()->Hide(notSelected.at(index)->GetId());
 	}
 
-	if (true == gameUnitClicked->GetIsEmbarked() )
-	{
-		bool showed = MapUnitItemRepository::GetInstance()->Show(gameUnitClicked->GetIsEmbarkedOn()->GetId());
-		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitClicked->GetId());
-		return;
-	}
-	return;
+	MapUnitItemRepository::GetInstance()->Show(selected->GetId());
 }
 
 void GameUnitController::SlotGameUnitSelectedEditorMode(int gameUnitId)

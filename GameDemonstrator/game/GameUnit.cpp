@@ -217,6 +217,11 @@ GameUnitTransportContainer* GameUnit::GetUnitTransportContainerNonConst()
 	return UnitTransportContainer;
 }
 
+GameUnitTransportContainer* GameUnit::GetUnitTransportContainer() const
+{
+	return UnitTransportContainer;
+}
+
 bool GameUnit::SetGameUnitTransportContainer(GameUnitTransportContainer* transportContainer)
 {
 	if (nullptr == transportContainer)

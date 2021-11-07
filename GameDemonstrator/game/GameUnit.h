@@ -83,6 +83,8 @@ public:
 	/** */
 	GameUnitTransportContainer* GetUnitTransportContainerNonConst();
 	/** */
+	GameUnitTransportContainer* GetUnitTransportContainer() const;
+	/** */
 	bool SetGameUnitTransportContainer(GameUnitTransportContainer* transportContainer);
 	/** */
 	const QString& GetDomain() const;

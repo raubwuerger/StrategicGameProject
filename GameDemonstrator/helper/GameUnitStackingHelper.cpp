@@ -74,8 +74,7 @@ const GameUnit* GameUnitStackingHelper::Next()
 
 	if (selectedIndex < 0)
 	{
-		Q_ASSERT(nullptr);
-		Selected = nullptr;
+		Selected = GameUnits.at(0);
 		return Selected;
 	}
 
