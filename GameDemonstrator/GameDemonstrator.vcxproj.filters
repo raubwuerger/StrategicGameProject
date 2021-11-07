@@ -892,6 +892,9 @@
     <ClCompile Include="helper\GameUnitVectorHelper.cpp">
       <Filter>Source Dateien\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="helper\GameUnitStackingHelper.cpp">
+      <Filter>Source Dateien\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1292,6 +1295,9 @@
     </ClInclude>
     <ClInclude Include="helper\GameUnitVectorHelper.h">
       <Filter>Source Dateien\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\GameUnitStackingHelper.h">
+      <Filter>Source Dateien\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

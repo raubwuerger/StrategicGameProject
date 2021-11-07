@@ -2,19 +2,19 @@
 #include "GameUnitVectorHelper.h"
 #include "game\GameUnit.h"
 
-GameUnitVectorHelper::GameUnitVectorHelper(QVector<GameUnit*>& gameUnitVector)
+GameUnitVectorHelper::GameUnitVectorHelper(QVector<const GameUnit*>& gameUnitVector)
 	: GameUnitVector(gameUnitVector)
 {
 
 }
 
-GameUnit* GameUnitVectorHelper::FindGameUnit(const GameUnit* gameUnit) const
+const GameUnit* GameUnitVectorHelper::FindGameUnit(const GameUnit* gameUnit) const
 {
 	Q_ASSERT(gameUnit);
-	QVectorIterator<GameUnit*> iterator(GameUnitVector);
+	QVectorIterator<const GameUnit*> iterator(GameUnitVector);
 	while (iterator.hasNext())
 	{
-		GameUnit* currentGameUnit = iterator.next();
+		const GameUnit* currentGameUnit = iterator.next();
 		if (*currentGameUnit == *gameUnit)
 		{
 			return currentGameUnit;
@@ -27,10 +27,10 @@ int GameUnitVectorHelper::GetIndex(const GameUnit* gameUnit) const
 {
 	Q_ASSERT(gameUnit);
 	int index = 0;
-	QVectorIterator<GameUnit*> iterator(GameUnitVector);
+	QVectorIterator<const GameUnit*> iterator(GameUnitVector);
 	while (iterator.hasNext())
 	{
-		GameUnit* currentGameUnit = iterator.next();
+		const GameUnit* currentGameUnit = iterator.next();
 		if (*currentGameUnit == *gameUnit)
 		{
 			return index;
@@ -40,14 +40,14 @@ int GameUnitVectorHelper::GetIndex(const GameUnit* gameUnit) const
 	return NOT_INITIALIZED_INT;
 }
 
-GameUnit* GameUnitVectorHelper::Remove(const GameUnit* gameUnit)
+const GameUnit* GameUnitVectorHelper::Remove(const GameUnit* gameUnit)
 {
 	Q_ASSERT(gameUnit);
 	int index = 0;
-	QVectorIterator<GameUnit*> iterator(GameUnitVector);
+	QVectorIterator<const GameUnit*> iterator(GameUnitVector);
 	while (iterator.hasNext())
 	{
-		GameUnit* currentGameUnit = iterator.next();
+		const GameUnit* currentGameUnit = iterator.next();
 		if (*currentGameUnit == *gameUnit)
 		{
 			return GameUnitVector.takeAt(index);

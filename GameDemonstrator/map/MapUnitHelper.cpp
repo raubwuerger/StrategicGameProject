@@ -62,7 +62,8 @@ bool MapUnitHelper::MoveTransportedUnits(const MapHexItem* destMapHexItem)
 	int transportedUnitsCount = GameUnitToMove->GetCountTransportedUnits();
 	for (int index = 0; index < transportedUnitsCount; index++)
 	{
-		MapUnitHelper mapUnitHelper(GameUnitToMove->GetTransportedUnitAt(index));
+		//TODO: Is casting a good idea? Or should the move operation be mutable?
+		MapUnitHelper mapUnitHelper(const_cast<GameUnit*>(GameUnitToMove->GetTransportedUnitAt(index)));
 		if (false == mapUnitHelper.Move(destMapHexItem))
 		{
 			return false;

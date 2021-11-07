@@ -80,7 +80,8 @@ void GameUnitHelper::MoveTransportedUnits(int mapId)
 {
 	for (int i = 0; i < GameUnitObject->GetCountTransportedUnits(); i++)
 	{
-		GameUnitHelper tempGameUnitHelper(GameUnitObject->GetTransportedUnitAt(i));
+		//TODO: Is casting a good idea? Or should the move operation be mutable?
+		GameUnitHelper tempGameUnitHelper(const_cast<GameUnit*>(GameUnitObject->GetTransportedUnitAt(i)));
 		tempGameUnitHelper.MoveToPosition(mapId);
 	}
 }

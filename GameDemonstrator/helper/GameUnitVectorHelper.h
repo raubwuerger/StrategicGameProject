@@ -7,15 +7,15 @@ class GameUnitVectorHelper
 {
 public:
 	/** */
-	GameUnitVectorHelper(QVector<GameUnit*>& gameUnitVector);
+	GameUnitVectorHelper(QVector<const GameUnit*>& gameUnitVector);
 	/** */
-	GameUnit* FindGameUnit(const GameUnit* gameUnit) const;
+	const GameUnit* FindGameUnit(const GameUnit* gameUnit) const;
 	/** */
 	int GetIndex(const GameUnit* gameUnit) const;
 	/** */
-	GameUnit* Remove(const GameUnit* gameUnit);
+	const GameUnit* Remove(const GameUnit* gameUnit);
 private:
-	QVector<GameUnit*>&		GameUnitVector;
+	QVector<const GameUnit*>&		GameUnitVector;
 };
 
 #endif // GAMEUNITVECTORHELPER_H

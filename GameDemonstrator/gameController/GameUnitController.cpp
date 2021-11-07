@@ -100,7 +100,7 @@ void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)
 
 	if (gameUnitClicked->GetUnitTransportContainerNonConst()->GetCount() > 0)
 	{
-		GameUnit* embarkedUnit = gameUnitClicked->GetTransportedUnitAt(0);
+		const GameUnit* embarkedUnit = gameUnitClicked->GetTransportedUnitAt(0);
 		bool showed = MapUnitItemRepository::GetInstance()->Show(embarkedUnit->GetId());
 		bool hided = MapUnitItemRepository::GetInstance()->Hide(gameUnitId);
 		return;

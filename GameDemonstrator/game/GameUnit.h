@@ -87,7 +87,7 @@ public:
 	/** */
 	const QString& GetDomain() const;
 	/** */
-	GameUnit* GetTransportedUnitAt(int index);
+	const GameUnit* GetTransportedUnitAt(int index);
 	/** */
 	void DisembarkUnit( GameUnit* toDisembark);
 private:

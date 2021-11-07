@@ -235,7 +235,7 @@ const QString& GameUnit::GetDomain() const
 	return UnitType->GetTerrainDomainName();
 }
 
-GameUnit* GameUnit::GetTransportedUnitAt(int index)
+const GameUnit* GameUnit::GetTransportedUnitAt(int index)
 {
 	return UnitTransportContainer->GetAt(index);
 }

@@ -1,13 +1,15 @@
 #include "stdafx.h"
 #include "GameUnitTransportContainer.h"
 #include "helper\GameUnitVectorHelper.h"
+#include "helper\GameUnitStackingHelper.h"
 
 GameUnitTransportContainer::GameUnitTransportContainer()
 	: Transporter(nullptr),
 	Domain(NOT_INITIALIZED_STRING),
-	Capacity(NOT_INITIALIZED_INT)
+	Capacity(NOT_INITIALIZED_INT),
+	GameUnitStackingHelperObject(nullptr)
 {
-
+	GameUnitStackingHelperObject = new GameUnitStackingHelper;
 }
 
 GameUnitTransportContainer::GameUnitTransportContainer(const GameUnit* transporter)
@@ -57,13 +59,31 @@ bool GameUnitTransportContainer::EmbarkUnit(GameUnit* toEmbark)
 		return false;
 	}
 	TransportedUnits.push_back(toEmbark);
+
+	UpdateStackingHelper();
+
 	return true;
+}
+
+void GameUnitTransportContainer::UpdateStackingHelper()
+{
+	const GameUnit* selected = GameUnitStackingHelperObject->GetSelected();
+	GameUnitStackingHelperObject->Clear();
+	GameUnitStackingHelperObject->AddGameUnits(TransportedUnits);
+	GameUnitStackingHelperObject->AddGameUnit(Transporter);
+	GameUnitStackingHelperObject->SetSelected(selected);
 }
 
 bool GameUnitTransportContainer::DisembarkUnit(GameUnit* toDisembark)
 {
 	GameUnitVectorHelper helper(TransportedUnits);
-	return helper.Remove(toDisembark) == nullptr ? false : true;
+	if (false == (helper.Remove(toDisembark) == nullptr ? false : true))
+	{
+		return false;
+	}
+
+	UpdateStackingHelper();
+	return true;
 }
 
 bool GameUnitTransportContainer::GetFreeCapacity() const
@@ -71,7 +91,7 @@ bool GameUnitTransportContainer::GetFreeCapacity() const
 	return (Capacity - GetCount()) > 0;
 }
 
-GameUnit* GameUnitTransportContainer::GetAt(int index)
+const GameUnit* GameUnitTransportContainer::GetAt(int index)
 {
 	if (index > TransportedUnits.size())
 	{
@@ -79,5 +99,20 @@ GameUnit* GameUnitTransportContainer::GetAt(int index)
 		return nullptr;
 	}
 	return TransportedUnits.at(index);
+}
+
+const GameUnit* GameUnitTransportContainer::GetSelectedUnit()
+{
+	return GameUnitStackingHelperObject->GetSelected();
+}
+
+const GameUnit* GameUnitTransportContainer::SelectNextUnit()
+{
+	return GameUnitStackingHelperObject->Next();
+}
+
+const QVector<const GameUnit*> GameUnitTransportContainer::GetNotSelectedUnits()
+{
+	return GameUnitStackingHelperObject->GetNotSelected();
 }
 

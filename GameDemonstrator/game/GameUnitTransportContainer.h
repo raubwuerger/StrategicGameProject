@@ -3,6 +3,7 @@
 
 class GameUnit;
 class GameUnitTransportContainerFactory;
+class GameUnitStackingHelper;
 
 class GameUnitTransportContainer
 {
@@ -26,18 +27,24 @@ public:
 	/** */
 	bool GetFreeCapacity() const;
 	/** */
-	GameUnit* GetAt(int index);
+	const GameUnit* GetAt(int index);
 	/** */
-	GameUnit* GetSelectedUnit() { return nullptr; }
+	const GameUnit* GetSelectedUnit();
 	/** */
-	void SelectNextUnit() {}
+	const GameUnit* SelectNextUnit();
+	/** */
+	const QVector<const GameUnit*> GetNotSelectedUnits();
+private:
+	/** */
+	void UpdateStackingHelper();
 public:
 	friend class GameUnitTransportContainerFactory;
-	const GameUnit*		Transporter;
-	int					Capacity;
-	QString				Domain;
-	QVector<GameUnit*>	TransportedUnits;
-//	QList<GameUnit*>	
+	const GameUnit*				Transporter;
+	int							Capacity;
+	QString						Domain;
+	QVector<const GameUnit*>	TransportedUnits;
+
+	GameUnitStackingHelper*	GameUnitStackingHelperObject;
 };
 
 #endif // GAMEUNITTRANSPORTCONTAINER_H

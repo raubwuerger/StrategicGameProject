@@ -53,7 +53,7 @@
 	032 -	Feature:	Implement attack concept.
 	033 -	Incorrectnes:	GameUnitProductionController is wrong. Should be CityProductionController?! -> Efficiency
 	034 +	Feature:	Make logging disable.
-	035 -	Bug:		Logging: Not working. Is still logging ...
+	035 +	Bug:		Logging: Not working.
 2021-11-04:
 	036 -	Feature:	Revise logging system.
 2021-11-05:
@@ -62,3 +62,6 @@
 	039 +	Bug:		Embarked unit shows up on old map position. Has something to do with moving ...
 2021-11-06:
 	040 +	Bug:		If embarked unit disembarks it will not be removed from the GameUnitTransportController
+2021-11-07:
+	041	+	Feature:	Implement unit switching concept for transporters. (Not tested)
+	042	-	Bug:		#041 is not tested!
