@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "KeyEventController.h"
 #include "GameUnitMovementController.h"
-#include "map\MapUnitItem.h"
-#include "map\MapHexItemRepository.h"
-#include "map\MapHexItem.h"
-#include "map\MapUnitItemRepository.h"
-#include "LogInterface.h"
 #include "controller\GameMapMoveInfo.h"
+#include "map\MapUnitItem.h"
+#include "map\MapHexItem.h"
+#include "game/GameUnitRepository.h"
+#include "game/GameUnit.h"
 
 KeyEventController::KeyEventController()
 {
@@ -47,9 +46,6 @@ void KeyEventController::HandleKeyPressEvent(MapUnitItem* mapUnitItem, QKeyEvent
 	}
 }
 
-#include "game/GameUnitRepository.h"
-#include "game/GameUnitFactory.h"
-#include "game/GameUnit.h"
 bool KeyEventController::MoveToDirection(int movementDirection, MapUnitItem* mapUnitItem) const
 {
 	GameMapMoveInfo gameMapMoveInfo(mapUnitItem);
