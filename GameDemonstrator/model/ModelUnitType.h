@@ -1,6 +1,8 @@
 #ifndef MODELUNIT_H
 #define MODELUNIT_H
 
+#include "ModelTerrainDomain.h"
+
 class ModelUnitType
 {
 public:
@@ -35,9 +37,7 @@ public:
 	/** */
 	bool GetReceiveCounterattack() const { return ReceiveCounterattack; }
 	/** */
-	const QString& GetTerrainDomainName() const { return TerrainDomain; }
-	/** */
-	int GetTerrainDomain() const;
+	const TerrainDomainEnum& GetTerrainDomain() const;
 	/** */
 	int GetTransportCapacityUnitsLand() const;
 	/** */
@@ -45,7 +45,7 @@ public:
 	/** */
 	int GetTransportCapacityUnitsSea() const;
 	/** */
-	int GetTransportCapacityByTerrainDomain(const QString& terrainDomain) const;
+	int GetTransportCapacityByTerrainDomain(const TerrainDomainEnum& terrainDomain) const;
 	/** Stupid. Gets first transport capacity greater one. At the moment no problem because there are no transporter units which can load different domain type units! */
 	int GetTransportCapacityStupid() const;
 	/** */
@@ -54,27 +54,34 @@ public:
 	QString GetTransportDomainStupid() const;
 	/** */
 	bool IsTransporter() const;
+	/** */
+	int GetAttackValueByTerrainDomain(const QString& terrainDomain) const;
+	/** */
+	int GetDefenseValueByTerrainDomain(const QString& terrainDomain) const;
+private:
+	/** */
+	TerrainDomainEnum GetDomainEnumFromString(const QString& terrainDomain) const;
 private:
 	friend class ModelUnitTypeFactory;
-	const int		Id;
-	QString			Name;
-	QString			PictureName;
-	const QImage	*Image;
-	int				Strength;
-	QVector<int>	AttackValues;
-	QVector<int>	DefenseValues;
-	int				Range;
-	int				MovementPointsPerTurn;
-	int				MovementPointsOverall;
-	QVector<int>	AccessibleTerrainTypes;
-	QVector<int>	AttackableUnitTypes;
-	QVector<int>	RecognisableUnitTypes;
-	QVector<int>	TransportCapacity;
-	bool			CanOccupieCity;
-	bool			ReceiveCounterattack;
-	int				ProductionCost;
-	QString			TerrainDomain;
-	bool			CanUnitBeTransported;
+	const int			Id;
+	QString				Name;
+	QString				PictureName;
+	const QImage		*Image;
+	int					Strength;
+	QVector<int>		AttackValues;
+	QVector<int>		DefenseValues;
+	int					Range;
+	int					MovementPointsPerTurn;
+	int					MovementPointsOverall;
+	QVector<int>		AccessibleTerrainTypes;
+	QVector<int>		AttackableUnitTypes;
+	QVector<int>		RecognisableUnitTypes;
+	QVector<int>		TransportCapacity;
+	bool				CanOccupieCity;
+	bool				ReceiveCounterattack;
+	int					ProductionCost;
+	TerrainDomainEnum	TerrainDomain;
+	bool				CanUnitBeTransported;
 };
 
 #endif

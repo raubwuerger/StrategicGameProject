@@ -87,8 +87,6 @@ public:
 	/** */
 	bool SetGameUnitTransportContainer(GameUnitTransportContainer* transportContainer);
 	/** */
-	const QString& GetDomain() const;
-	/** */
 	const GameUnit* GetTransportedUnitAt(int index);
 	/** */
 	void DisembarkUnit( GameUnit* toDisembark);

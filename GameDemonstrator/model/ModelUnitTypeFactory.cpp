@@ -10,6 +10,7 @@
 #include <QtXml>
 #include "LogInterface.h"
 #include "ImageLoader.h"
+#include "ModelTerrainDomain.h"
 
 ModelUnitTypeFactory::ModelUnitTypeFactory()
 {
@@ -62,7 +63,7 @@ ModelUnitType* ModelUnitTypeFactory::CreateFromXML(const QDomNode& node)
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_CANOCCUPIECITY, newType->CanOccupieCity);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_GETCOUNTERATTACK, newType->ReceiveCounterattack);
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_PRODUCTIONCOST, newType->ProductionCost);
-	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_TERRAINDOMAIN, newType->TerrainDomain);
+	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_TERRAINDOMAIN, static_cast<TerrainDomainEnum>(newType->TerrainDomain));
 	allElementsExtracted &= extractor.ExtractValue(ModelUnitTypeXMLItems::SUBELEMENT_CAN_UNIT_BE_TRANSPORTED, newType->CanUnitBeTransported);
 
 	DomNodeFinder find(node);

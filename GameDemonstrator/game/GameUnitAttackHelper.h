@@ -14,7 +14,7 @@ private:
 	/** */
 	GameUnitAttackHelper() {}
 	/** */
-	int	GetDefensValue(GameUnit* defender);
+	int	GetDefenseValue(GameUnit* defender);
 private:
 	GameUnit*	Attacker;
 };

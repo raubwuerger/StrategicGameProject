@@ -15,7 +15,7 @@ ModelUnitType::ModelUnitType(int id)
 	CanOccupieCity(NOT_INITIALIZED_BOOL),
 	ReceiveCounterattack(NOT_INITIALIZED_BOOL),
 	ProductionCost(NOT_INITIALIZED_INT),
-	TerrainDomain(NOT_INITIALIZED_STRING),
+	TerrainDomain(TerrainDomainEnum::NOT_DEFINED),
 	CanUnitBeTransported(NOT_INITIALIZED_BOOL)
 {
 }
@@ -65,46 +65,29 @@ bool ModelUnitType::GetCanOccupieCity() const
 	return CanOccupieCity;
 }
 
-int ModelUnitType::GetTerrainDomain() const
+const TerrainDomainEnum& ModelUnitType::GetTerrainDomain() const
 {
-	ModelTerrainDomain modelTerrainDomain;
-	return  modelTerrainDomain.GetModelTerrainDomainByName(TerrainDomain.toStdString());
+	return TerrainDomain;
 }
 
 int ModelUnitType::GetTransportCapacityUnitsLand() const
 {
-	return TransportCapacity[0];
+	return TransportCapacity[static_cast<int>(TerrainDomainEnum::LAND)];
 }
 
 int ModelUnitType::GetTransportCapacityUnitsAir() const
 {
-	return TransportCapacity[1];
+	return TransportCapacity[static_cast<int>(TerrainDomainEnum::AIR)];
 }
 
 int ModelUnitType::GetTransportCapacityUnitsSea() const
 {
-	return TransportCapacity[2];
+	return TransportCapacity[static_cast<int>(TerrainDomainEnum::SEA)];
 }
 
-int ModelUnitType::GetTransportCapacityByTerrainDomain(const QString& terrainDomain) const
+int ModelUnitType::GetTransportCapacityByTerrainDomain(const TerrainDomainEnum& terrainDomain) const
 {
-	if (terrainDomain == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_LAND)
-	{
-		return GetTransportCapacityUnitsLand();
-	}
-
-	if (terrainDomain == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_AIR)
-	{
-		return GetTransportCapacityUnitsAir();
-	}
-
-	if (terrainDomain == ModelUnitTypeXMLItems::SUBELEMENT_DOMAIN_SEA)
-	{
-		return GetTransportCapacityUnitsSea();
-	}
-
-	Q_ASSERT(false);
-	return NOT_INITIALIZED_INT;
+	return TransportCapacity[static_cast<int>(terrainDomain)];
 }
 
 int ModelUnitType::GetTransportCapacityStupid() const
@@ -150,4 +133,20 @@ QString ModelUnitType::GetTransportDomainStupid() const
 bool ModelUnitType::IsTransporter() const
 {
 	return GetTransportCapacityStupid() > 0;
+}
+
+int ModelUnitType::GetDefenseValueByTerrainDomain(const QString& terrainDomain) const
+{
+	return DefenseValues[static_cast<int>(ModelTerrainDomain::GetModelTerrainDomainByName(terrainDomain))];
+}
+
+int ModelUnitType::GetAttackValueByTerrainDomain(const QString& terrainDomain) const
+{
+	return AttackValues[static_cast<int>(ModelTerrainDomain::GetModelTerrainDomainByName(terrainDomain))];
+}
+
+TerrainDomainEnum ModelUnitType::GetDomainEnumFromString(const QString& terrainDomain) const
+{
+	ModelTerrainDomain modelTerrainDomain;
+	return modelTerrainDomain.GetModelTerrainDomainByName(terrainDomain);
 }

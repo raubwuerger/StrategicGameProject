@@ -235,11 +235,6 @@ bool GameUnit::SetGameUnitTransportContainer(GameUnitTransportContainer* transpo
 	return true;
 }
 
-const QString& GameUnit::GetDomain() const
-{
-	return UnitType->GetTerrainDomainName();
-}
-
 const GameUnit* GameUnit::GetTransportedUnitAt(int index)
 {
 	return UnitTransportContainer->GetAt(index);

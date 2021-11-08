@@ -3,20 +3,25 @@
 
 #include <map>
 
+enum class TerrainDomainEnum
+{
+	NOT_DEFINED = -1,
+	LAND = 0,
+	AIR = 1,
+	SEA = 2
+};
+
 class ModelTerrainDomain
 {
 public:
 	/** */
 	void Init();
 	/** */
-	int GetModelTerrainDomainByName(const std::string& terrainDomainName) const;
-private:
+	static TerrainDomainEnum GetModelTerrainDomainByName(const QString& terrainDomainName);
 	/** */
-	std::string ToLowerCase(const std::string& stringToConvert) const;
-	/** */
-	std::string ToUpperCase(const std::string& stringToConvert) const;
+	static const QString GetModelTerrainDomainByInt(TerrainDomainEnum domainInt);
 public:
-	static std::map<std::string,int>	TerrainDomains;
+	static QMap<QString, TerrainDomainEnum>	TerrainDomains;
 };
 
 #endif //MODELTERRAINDOMAIN_H

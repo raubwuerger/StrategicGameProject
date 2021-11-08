@@ -1,35 +1,30 @@
 #include "stdafx.h"
 #include "ModelTerrainDomain.h"
 
-std::map<std::string,int>	ModelTerrainDomain::TerrainDomains;
+QMap<QString, TerrainDomainEnum>	ModelTerrainDomain::TerrainDomains;
 
 void ModelTerrainDomain::Init()
 {
-	TerrainDomains.insert(std::pair<std::string, int>("land",0));
-	TerrainDomains.insert(std::pair<std::string, int>("air",1));
-	TerrainDomains.insert(std::pair<std::string, int>("sea",2));
+	TerrainDomains.insert("land",TerrainDomainEnum::LAND);
+	TerrainDomains.insert("air", TerrainDomainEnum::AIR);
+	TerrainDomains.insert("sea", TerrainDomainEnum::SEA);
 }
 
-int ModelTerrainDomain::GetModelTerrainDomainByName(const std::string& terrainDomainName) const
+TerrainDomainEnum ModelTerrainDomain::GetModelTerrainDomainByName(const QString& terrainDomainName)
 {
-	std::string lowerCase = ToLowerCase(terrainDomainName);
-	if (TerrainDomains.find(lowerCase) == TerrainDomains.end())
+	QString lower = terrainDomainName.toLower();
+	if (TerrainDomains.find(lower) == TerrainDomains.end())
 	{
-		return -1;
+		return TerrainDomainEnum::NOT_DEFINED;
 	}
-	return TerrainDomains[lowerCase];
+	return TerrainDomains.value(lower);
 }
 
-std::string ModelTerrainDomain::ToLowerCase(const std::string& stringToConvert) const
+const QString ModelTerrainDomain::GetModelTerrainDomainByInt(TerrainDomainEnum domainInt)
 {
-	std::string converted = stringToConvert;
-	std::for_each(converted.begin(), converted.end(), [](char & c){	c = ::tolower(c);});
-	return converted;
-}
-
-std::string ModelTerrainDomain::ToUpperCase(const std::string& stringToConvert) const
-{
-	std::string converted = stringToConvert;
-	std::for_each(converted.begin(), converted.end(), [](char & c){	c = ::toupper(c);});
-	return converted;
+	if (domainInt >= static_cast<TerrainDomainEnum>(TerrainDomains.size()) )
+	{
+		return INVALID_TERRAIN_DOMAIN;
+	}
+	return TerrainDomains.key(domainInt);
 }

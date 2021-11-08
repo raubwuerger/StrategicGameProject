@@ -7,11 +7,6 @@ GameUnitAttackHelper::GameUnitAttackHelper(GameUnit *attacker)
 	Q_ASSERT(attacker);
 }
 
-int GameUnitAttackHelper::GetDefensValue(GameUnit* defender)
-{
-	return -1;
-}
-
 bool GameUnitAttackHelper::Attack(GameUnit* defender)
 {
 	if (nullptr == defender)
@@ -20,3 +15,9 @@ bool GameUnitAttackHelper::Attack(GameUnit* defender)
 		return false;
 	}
 }
+
+int GameUnitAttackHelper::GetDefenseValue(GameUnit* defender)
+{
+	return -1;
+}
+
