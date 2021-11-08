@@ -86,7 +86,10 @@ void GameUnitController::SlotGameUnitUnselected(int gameUnitId)
 	}
 
 	mapUnitItem->ShowOriginal();
-	Selected = nullptr;
+	if (Selected->GetGameUnitId() == mapUnitItem->GetGameUnitId())
+	{
+		Selected = nullptr;
+	}
 }
 
 void GameUnitController::SlotShowEmbarkedUnit(int gameUnitId)

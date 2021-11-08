@@ -66,4 +66,4 @@
 	041	+	Feature:	Implement unit switching concept for transporters. (Not tested)
 	042	+	Bug:		#041 is not tested!
 	043	-	Feature:	Selected transport unit should be selected automatically
-	044	-	Feature:	More then one unit can be selected. -> GameUnitController should prohibit this behaviour.
+	044	+	Feature:	More then one unit can be selected. -> GameUnitController should prohibit this behaviour.
